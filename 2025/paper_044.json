@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_044",
+  "paper_id": "KaYXsoCxV7",
+  "number": 5612,
+  "title": "ViMoE: An Empirical Study of Designing Vision Mixture-of-Experts",
+  "authors": "Xumeng Han; Longhui Wei; Zhiyang Dou; Zipeng Wang; Chenhui Qiang; XIN HE; Yingfei Sun; Zhenjun Han; Qi Tian",
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": "Mixture-of-Experts; Image Classification",
+  "forum_url": "https://openreview.net/forum?id=KaYXsoCxV7",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    3,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper integrates the MoE structure into the Vision Transformer (ViT) to create ViMoE and studies its application in image classification. MoE models are promising for increasing capacity and scalability. However, the performance of ViMoE is sensitive to MoE layer configuration, as inappropriate layers cause unreliable routing and prevent experts from getting useful knowledge. To solve this, a shared expert is introduced to learn common information for stable ViMoE construction. Additionally, the analysis of expert routing behavior shows which MoE layers handle specific information and which don't, guiding the removal of redundancies to make ViMoE more efficient without losing accuracy. The work aims to provide new insights and empirical guidance for vision MoE model design in future research."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "This article studies the Vision MoE architecture. The article is easy to read and has a clear structure."
+        },
+        "weaknesses": {
+          "value": "My doubts regarding this paper primarily stem from two major aspects, namely the experimental setup and the theoretical foundation.\n\n1. At present, the most prominent application domain of the MoE lies in Vision - Language Models (VLM) and Large - Language Models (LLM). In this paper, although the focus is on investigating the role of MoE in visual representation learning, there is a significant shortcoming as it fails to provide validation within practical application scenarios. Practical scenarios are crucial as they can accurately reflect how the proposed model would perform in real-world situations where various factors come into play. Without such validation, the practical value of the research remains uncertain.\n\n2. Moreover, the scale of the experiments conducted in this paper is far too limited. It predominantly relies on the CIFAR dataset. This narrow choice of dataset restricts the generalizability of the results. In the field of computer vision research, a more diverse range of datasets, including those with complex and large-scale images, should be used to comprehensively evaluate the performance of the model. Experiments based solely on CIFAR can hardly provide a comprehensive understanding of how the model would handle different types of visual data, thereby rendering the experimental conclusions rather insignificant.\n\n3. Another major flaw is the absence of necessary comparisons regarding feature clustering visualization. Visualization of feature clustering can provide valuable insights into how the model organizes and processes visual information. It allows researchers to observe the patterns and structures within the data that the model has captured. Without such visual comparisons, it becomes difficult to assess the effectiveness of the proposed model in handling different visual features and understanding how it differentiates between various classes of objects within the images.\n\n4. The performance improvement achieved by the scheme proposed in this paper is extremely marginal. A significant performance improvement is one of the key indicators of the value of a research contribution. When the enhancement in performance is so small, it raises questions about the practical utility and innovation of the proposed approach. It implies that the proposed model may not bring substantial benefits compared to existing methods in the field.\n\n5. From a theoretical perspective, this paper lacks any form of in-depth theoretical or intuitive analysis. A solid theoretical basis is essential as it provides the rationale behind the proposed model and its design decisions. Intuitive analysis, on the other hand, helps in making the model more understandable and interpretable. Without these, the paper fails to establish a strong foundation for the proposed approach, leaving readers with doubts about the validity and soundness of the research.\n\nTo sum up, considering all these issues, I firmly believe that the quality of this paper does not meet the high standards required for ICLR."
+        },
+        "questions": {
+          "value": "See the weakness part."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dQ5DzzfHi2",
+      "forum": "KaYXsoCxV7",
+      "replyto": "KaYXsoCxV7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_gzs3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_gzs3"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5612/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730707471576,
+      "cdate": 1730707471576,
+      "tmdate": 1731428454765,
+      "mdate": 1731428454765,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores fine-tuning DINOv2 for image classification tasks by replacing FFNs with MoE layers. It considers different numbers of MoE layers, and adding them to different ViT blocks. It also considers different MoE structures. Experiments show that fine-tuning DINOv2 with this method improves over DINOv2, and also surpasses other backbones with better efficiency."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The shows that a simple method (adding sparse MoE layers, then fine-tuning) can improve the classification performance of pre-trained ViTs. It also presents a series of ablation study on various design choices, which could be helpful for future works.\n- The main experimental results suggest that the proposed method is overall competitive.\n- The presentation is clear and easy to understand."
+        },
+        "weaknesses": {
+          "value": "- Unfair comparison is a serious issue of this paper. 1) The method itself is a plug-and-play module and should not be stated as a new method in Fig.1 and Tab.2. Instead, it should be marked as DINOv2+ViMoE to avoid confusion. 2) It should be ensured that all other reported methods have gone through 200-epochs fine-tuning on ImageNet, and results of ViMoE+X (other backbones) should be reported. 3) ViMoE should be compared with other fine-tuning (adaptation) techniques, eg, SupCon, VPT, LoRA, etc.\n- Adding sparse MoE to ViTs during fine-tuning is of limited technical novelty. Despite the paper is stated to be an empirical study, the overall contribution is rather limited.\n- Evaluation is limited to ImageNet, and it should be extended to more datasets to show generalization.\n- Some technical details are missing in the text, eg, from L160 more details about the shared expert should be provided."
+        },
+        "questions": {
+          "value": "Minor:\n\nL414: $3e^{-4}$, should be $3\\times10^{-4}$ or $0.0003$ or 3e-4."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "OaIV6vhFnh",
+      "forum": "KaYXsoCxV7",
+      "replyto": "KaYXsoCxV7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_dNFx"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_dNFx"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5612/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730697134227,
+      "cdate": 1730697134227,
+      "tmdate": 1731428454943,
+      "mdate": 1731428454943,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper conduct a comprehensive analysis of MoE's potential in vision tasks, specifically image classification. However, they find that the model's performance is highly sensitive to the configuration of MoE layers, posing challenges for achieving optimal results without careful layer design. The root issue lies in suboptimal MoE layers causing unstable routing, preventing experts from effectively capturing valuable knowledge. To address this, they introduce a shared expert designed to learn and retain common information, stabilizing ViMoE’s performance. Additionally, they present a method for analyzing expert routing behavior, identifying which MoE layers specialize in processing specific types of information."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper writing is clear and easy to understand.\n2. They propose a new MoE for vision task, which is easy to implement. \n3. The analysis is sufficient."
+        },
+        "weaknesses": {
+          "value": "1. They only explore the image classification task. \n2. The dataset they used is common and corrupted. For example, ImageNet 1k has lot of samples with bad annotations. You should also try some better and hard datasets. \n3.  The network they proposed is not novel, which can be seen in many NLP papers."
+        },
+        "questions": {
+          "value": "1. Could you test your methods in other datasets, such as SUN, Places? \n2. Could you explain again about your novelty and the difference between your design and others?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "viGCJCL5ni",
+      "forum": "KaYXsoCxV7",
+      "replyto": "KaYXsoCxV7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_RvqA"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_RvqA"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5612/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730352165900,
+      "cdate": 1730352165900,
+      "tmdate": 1731428455375,
+      "mdate": 1731428455375,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose to study MoE configurations in ViTs, primarily for the task of image classification on ImageNET1k. They study the impact of using a varying number of MoE layers (rather than dense layers), and conclude that performance drops when using MoEs at too many early layers (when using a per-image expert assignment shared across all tokens). The paper then makes some suggestions about more efficient MoE design based on these findings. Furthermore, the paper also validates previous works’ ideas of using a shared expert in addition to image-specific experts."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- The study of optimal MoE configuration is an important issue. More and more models are turning to MoEs to increase either network capacity or for specialized subcomputations, and the authors’ object of study has potential to influence a lot of future model design in significant ways.\n- Independent of my reservations outlined below in the weaknesses section, the experimental section is relatively thorough, and I appreciate the multiple ways in which the authors attempt to visualize and evaluate the expert loadings and assignments. In particular, I feel ImageNET1k is a smart choice made by the authors for MoE study, through being a large scale diverse dataset that nonetheless has ground-truth labels allowing one to quantify expert routing choices and thus study MoE design in a more systematic manner."
+        },
+        "weaknesses": {
+          "value": "## [W1] Per-image expert assignment confounds conclusions\n\nThe major results in the paper are derived from experiments exploring the impact of varying which layers use MoEs for ImageNET classification in ViTs.\n\nMy main concern about the paper is that the authors’ design choice to share the expert assignment across *all* tokens in an image is problematic, and complicates their conclusions. I suspect this is underestimating the performance of networks trained with MoEs at earlier layers with a more sensible configuration (not tying expert assignments per image). Crucialy, a lot of conclusions in the paper seem to hinge on this result.\n\nThe authors state on [L080] that `in the shallow blocks, the gating network struggles to consistently route images of the same class to the same expert`. But this is the expected outcome--early in the network, the representations are not linearly separable by class (hence why we use more layers in a network, to transform representations to the point at which they can be linearly classified). However, the expert assignment itself is a linear transformation of the shallow features (plus softmax just for selection). Thus, we cannot hope to read off class information from such early layer representations, and forcing image-level expert assignments here is in conflict with the scale of the features extracted at shallow layers.\n\nIn contrast, existing work reports useful MoE expert specialization to lower-level patterns and textures shared across many images of different classes, when *not* making image-level assignments (see Fig. 4 of [1] and \"expert 17\" of Fig. 2 in [2]). This is consistent with the intuitive notion of a coarse- to fine-grained processing of information as the network deepens. Furthermore, as the authors mention on [L057], their design is a departure from the common approach of using a more flexible per-*token* assignment.\n\nWhilst the authors do have a small study in Tab. 4 to explore these two strategies, I believe this must be controlled for through a larger ablation study in the main experiments for (e.g.) Fig. 2. If the authors remove the image-level assignment in Fig. 2's experiments, and yet still observe decreased performance with earlier MoE layers, this would be a useful finding of the paper. At the minute, however, I believe that the presence of this confounding design choice means we cannot validate the conclusions in the authors’ study, given that the possibility the bad performance is explained simply by the tying of the image-level expert assignments. \n\n## [W2] Unclear contributions\n\nIn light of the questionable conclusions about the design choices made by the paper, I am unclear what the paper’s contributions are. For example, there are some interesting experiments on pruning MoE networks for efficiency, but these conclusions hinge upon the previous analysis of which layers benefit from MoEs and the assumption that earlier MoEs must make class-discriminative routings.\n\nIn addition to the study about layer placement, the authors do state in the conclusion that `To mitigate this [instability], we introduce the shared expert to stabilize the training process, thus streamlining the design by eliminating the need for repeated trials to find the optimal configuration.`. However, the “shared expert” is not a new feature proposed by the authors--the results in Figs 3&4 seem to simply confirm that previous works’ ideas of shared experts are beneficial, but we already know this from the original papers. Thus, I am struggling to see much value or new insights provided by the paper--I suggest the authors should clarify the novelty of their contributions, beyond confirming the benefits of the existing idea of using shared experts. For example, are there any analyses or insights here in the pruning study that are unique to this paper?  \n\n## [W3] Missing comparisons and discussions regarding previous work\n\nThe authors do not compare to nor discuss the recent important work of “From Sparse to Soft Mixtures of Experts” [3], which proposes improvements to MoE design specifically in the case of ViTs, exploring ImageNET1k classification like the authors.\n\nHow do the authors’ proposed design modifications (following their analysis) relate to the work in [3]? Can the two be combined for further improvements, or is one strictly dominant? A comparison to the two design choices would be necessary here to evaluate the authors’ MoE design contributions, as I understand [3] to be the current published SOTA approach for ViTs specifically.\n\n---\n\n**Minor**\n* [L044] subsets -> subset?\n\n---\n\n[1]: Oldfield et al. “Multilinear Mixture of Experts: Scalable Expert Specialization through Factorization.” NeurIPS 2024.\n\n[2]: Mustafa et al. “Multimodal Contrastive Learning with LIMoE: the Language-Image Mixture of Experts.” NeurIPS 2022.\n\n[3] Puigcerver et al. “From Sparse to Soft Mixtures of Experts.” ICLR 2024."
+        },
+        "questions": {
+          "value": "I have no major additional questions -- my primary concern is the major [W1] above, and I am happy to hear what the authors have to say about this."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "n/a"
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "uIYIqgiIGY",
+      "forum": "KaYXsoCxV7",
+      "replyto": "KaYXsoCxV7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_EbgX"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5612/Reviewer_EbgX"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5612/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729720823211,
+      "cdate": 1729720823211,
+      "tmdate": 1731428455554,
+      "mdate": 1731428455554,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a useful but narrow empirical study of converting DINOv2 ViT-S/14 into an image-routed MoE, finding that late-layer MoE is beneficial and that an always-active shared expert stabilizes broader MoE placement. The reported ImageNet gains are promising, but the main architectural ideas are established and several central interpretations are insufficiently validated.",
+        "strengths": [
+          "Systematic layer/expert scans reveal a clear and practically relevant stability pattern, including severe failures from excessive sparsity and consistent stabilization by a shared expert (pp. 4–5, 9).",
+          "Efficiency controls are reasonably thoughtful: activated parameters/FLOPs are reported, sparse variants are compared with matched-compute dense variants, and image- versus token-routing is ablated (pp. 7–8).",
+          "The principal trend is reproduced on CIFAR100, where routing heatmaps and layer scans again favor only the deepest MoE layers (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: vision MoE, image-level routing, late-layer placement, load balancing, and shared experts all build directly on prior work; the contribution is primarily a specific empirical recipe on one pretrained ViT family (pp. 2–4, 10).",
+          "The routing-degree claim D=N^L and the proposed 32–64 sufficient combinations are inferred from only three fitted ImageNet configurations; actual route-combination usage, independence, causality, and predictive performance on unseen settings are not measured (p. 6). Heatmaps with independently reordered class labels are qualitative and do not establish that specialization causes accuracy (pp. 6, 9).",
+          "Evidence is narrow and lacks uncertainty: only classification, one backbone/scale and pretrained initialization, two datasets, and apparently single runs are reported. Several gains are only 0.1–0.4 points on CIFAR100, while no error bars, seeds, training-cost analysis, or stronger dense/capacity controls are provided (pp. 7–9)."
+        ],
+        "score_rationale": "The paper offers useful empirical observations and a credible 1.1-point ImageNet improvement with modest activated-compute growth (p. 7), but the established nature of the components, narrow evaluation, absent variance reporting, and speculative routing-degree explanation leave it marginally below the ICLR acceptance bar. Uncertainty remains because repeated-run statistics could materially change the assessment of the smaller gains."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a useful empirical study of image-level MoE routing in DINOv2-pretrained ViT-S/14. It finds that MoE layers are most useful near the classifier and that an always-active shared expert stabilizes otherwise fragile configurations. The results are promising, but the central mechanisms are established largely through qualitative observations and limited experimental scope.",
+        "strengths": [
+          "The layer-count scans are systematic and reveal a clear, practically relevant interaction among depth, expert count, and shared-expert stabilization on ImageNet-1K and CIFAR100 (pp. 4–5, 8–9).",
+          "Compute-matched dense comparisons and image-level versus token-level routing ablations strengthen the efficiency case: sparse variants improve accuracy at comparable activated parameters, while image routing activates fewer experts (pp. 7–8).",
+          "The routing visualizations offer an intuitive connection between deeper-layer class specialization and the observed performance plateau (pp. 5–6, 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: vision MoE, image-level routing, late-layer placement, and shared experts are all attributed to prior work; the main contribution is their empirical combination and analysis rather than a new method (pp. 2–4, 10).",
+          "The proposed routing-degree rule D=N^L assumes independent, useful expert combinations and is inferred from only a few configurations; no occupancy, independence, predictive-validation, or quantitative specialization analysis supports the claimed 32–64 range (p. 6).",
+          "Evidence is restricted to one pretrained backbone and two classification datasets, with no repeated runs, uncertainty estimates, or broader transfer tasks. Independently reordered heatmaps are qualitative and can visually exaggerate specialization, weakening generality and causal claims (pp. 6–9)."
+        ],
+        "score_rationale": "The paper is clear and contains useful ablations with modest accuracy/efficiency gains, but its principal components are established ideas and its strongest design rule rests on an under-validated heuristic. Missing run variability, broader backbones/tasks, and quantitative routing analysis leave it marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "A useful empirical study of image-level MoE placement in DINOv2-pretrained ViT-S, showing that shallow MoE layers can destabilize fine-tuning and that a shared expert improves robustness. The experiments are coherent, but the main mechanism is borrowed, the routing-degree conclusion is weakly supported, and evaluation is too narrow and statistically underreported for a strong ICLR contribution.",
+        "strengths": [
+          "The layer-count scans reveal a clear and practically relevant failure mode: adding more MoE layers can reduce accuracy, while a shared expert makes performance substantially less sensitive to placement (pp. 4–5).",
+          "Reasonable efficiency ablations compare sparse MoE against parameter/FLOP-matched dense alternatives and image-level against token-level routing (pp. 7–8).",
+          "CIFAR100 reproduces the qualitative instability and stabilization trends across multiple expert and layer counts, rather than reporting only the best configuration (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: vision MoE, image-level routing, late-layer placement, and shared experts all build directly on prior work; the primary contribution is their combination and empirical characterization rather than a new method (pp. 2–4, 10).",
+          "The proposed routing degree of roughly 32–64 combinations is inferred from only three selected ImageNet configurations, without controlled sweeps, quantitative specialization metrics, or predictive validation. Heatmaps whose class order is adjusted for readability are insufficient to establish the claimed clustering mechanism (pp. 5–6).",
+          "Evidence is restricted to one pretrained ViT-S backbone and two classification datasets, with no seeds, variances, significance tests, training-cost analysis, or robustness beyond top-1 accuracy. The headline 1.1-point gain also uses additional activated parameters and FLOPs (pp. 7–9)."
+        ],
+        "score_rationale": "The paper offers solid, actionable ablations and a credible empirical observation, but its modest methodological novelty, narrow scope, and unsupported routing-degree/general-mechanism claims place it slightly below the acceptance bar. Uncertainty remains because run-to-run variance is not reported."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a systematic study of image-level MoE routing in a DINOv2-pretrained ViT, showing that shallow MoE layers can hurt optimization, while a shared expert stabilizes training and permits efficient deep-layer-only configurations. The empirical trends are useful, but the principal mechanisms are established ideas and the proposed routing-degree explanation is insufficiently validated.",
+        "strengths": [
+          "The layer/expert scans reveal a consistent non-monotonic dependence on MoE placement and a substantial stabilizing effect from the shared expert, including on CIFAR100 (pp. 4–5, 8–9).",
+          "Useful efficiency controls compare sparse MoE against parameter/FLOP-matched dense models and token-level routing; the best sparse variants improve ImageNet-1K accuracy by 0.5–0.6 points over matched dense variants (pp. 7–8).",
+          "Routing visualizations provide an intuitive connection between deeper-layer class specialization and the observed performance plateau across two datasets (pp. 5–6, 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: shared experts, image-level routing, and placing MoE layers late are all attributed to prior work; the main contribution is chiefly an empirical combination and analysis rather than a new method (pp. 2–4, 10).",
+          "The routing-degree claim that roughly 32–64 expert combinations suffice is heuristic and derived from only three configurations; the paper neither measures realized routing paths nor quantitatively links class specialization, combinations, and accuracy. Heatmaps reorder classes separately for readability and lack quantitative specialization metrics (pp. 5–6).",
+          "Evidence is narrow and uncertain: only classification fine-tuning with one pretrained ViT-S backbone is studied, CIFAR100 gains are just 0.3–0.4 points, and no multiple seeds, uncertainty estimates, latency, memory, or training-cost measurements are reported (pp. 7–9)."
+        ],
+        "score_rationale": "The paper offers careful, practically relevant sweeps and reasonable matched controls, but its main components are known and its central explanatory/generalization claims remain qualitative and under-tested. The modest gains without variance estimates make this marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a useful empirical study of image-level MoE routing in DINOv2-pretrained ViT-S/14. Its main findings are that shallow MoE layers can destabilize fine-tuning, a shared expert improves stability, and deep-layer routing exhibits stronger class specialization. Results are promising, but the conceptual novelty and validation breadth are insufficient for a clear ICLR acceptance.",
+        "strengths": [
+          "The layer-count scans consistently expose non-monotonic behavior without a shared expert and stable performance with one, across several expert counts (pp. 4–5, 9).",
+          "Efficiency comparisons include matched activated-parameter/FLOP dense baselines and token- versus image-level routing ablations, supporting the practical value of the proposed configurations (pp. 7–8).",
+          "The paper provides interpretable routing visualizations and verifies the broad qualitative trend on both ImageNet-1K and CIFAR100 (pp. 6, 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is modest: shared experts, image-level routing, and placing MoE layers late are all attributed to prior work; the main contribution is their empirical combination and analysis rather than a new method (pp. 2–4, 10).",
+          "The routing-degree claim that roughly 32–64 combinations suffice is heuristic and derived from selected plateau points; the paper neither measures which combinations are actually occupied nor establishes causality. Heatmaps use reordered class labels and lack quantitative specialization metrics (pp. 5–6).",
+          "Evidence is narrow and statistically weak: experiments use one small backbone and one pretrained initialization, only classification datasets, and report no multiple seeds or uncertainty despite gains as small as 0.3%. Some cross-method comparisons also mix architectures and pretraining recipes (pp. 7–9)."
+        ],
+        "score_rationale": "The study is clear and practically informative, with substantial configuration sweeps and reasonable efficiency controls. However, known architectural ingredients, qualitative routing arguments, absence of statistical reporting, and limited model/task coverage leave the central generality and mechanism claims under-supported. I therefore place it marginally below acceptance."
+      }
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "year": 2026,
+  "package_id": "paper_006",
+  "paper_id": "qFDju6ahkk",
+  "number": 2276,
+  "title": "Empowering Small VLMs to Think with Dynamic Memorization and Exploration",
+  "authors": [
+    "Jiazhen Liu",
+    "Yuchuan Deng",
+    "Long Chen"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "GRPO",
+    "SFT",
+    "Small-scale VLM",
+    "Computer Vision"
+  ],
+  "forum_url": "https://openreview.net/forum?id=qFDju6ahkk",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    4,
+    2
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "10e0Yg56Pj",
+      "forum": "qFDju6ahkk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2276/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761973998643,
+      "tmdate": 1764358385668,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "sVfH0s7hrW",
+      "forum": "qFDju6ahkk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2276/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761959649509,
+      "tmdate": 1762916170894,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "vSvJYUOvx6",
+      "forum": "qFDju6ahkk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2276/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761968456454,
+      "tmdate": 1762916170754,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DyME switches per example between SFT and GRPO according to whether any sampled response is correct, and augments this with LLM-generated visual facts, a checker, and a refiner. The idea is practical and results are promising, but incomplete controls, questionable theoretical claims, and insufficient reproducibility leave the evidence marginally below the ICLR acceptance bar.",
+        "strengths": [
+          "The simple adaptive switch addresses a relevant failure mode for sub-1B VLMs and is moderately novel relative to static two-stage or annealed mixtures (pp. 5–7).",
+          "Results cover three specialized visual domains and three small backbones, with consistent improvements over untrained and two-stage baselines; component ablations also show meaningful drops (pp. 8–9).",
+          "The appendix adds data-quality comparisons, learning trajectories, text/model-scale extensions, and a small human evaluation of generated traces (pp. 19–20)."
+        ],
+        "weaknesses": [
+          "The technical justification is overstated: calling SFT a special case of GRPO ignores sampling and group-relative structure, while all-zero binary rewards yield zero—not noise-dominated—advantages. Moreover, removing both clipping and KL from the importance-weighted objective lacks stability analysis (pp. 5–6).",
+          "The main comparison confounds dynamic switching with substantial external supervision from Qwen2.5-14B, domain tools, reference answers, and refined targets. Baselines are not clearly given equivalent checker/refiner supervision, and Table S2 suggests visual supervision alone can explain large gains (pp. 7–10, 17).",
+          "Evidence and reproducibility are incomplete: key hyperparameters and reward/checker details are absent, no multi-seed uncertainty is reported, and the 100-example human study lacks annotator protocol or agreement. Several showcased traces also contain incorrect or internally inconsistent reasoning despite correct answers (pp. 20, 22–24)."
+        ],
+        "score_rationale": "The method is useful and empirically promising, but its novelty is mainly a simple routing heuristic and the reported gains are not cleanly isolated from powerful external supervision. Together with theoretical inaccuracies, missing variance, and visibly flawed reasoning traces, this warrants a marginally-below-acceptance score; uncertainty remains because controlled multi-seed results could materially strengthen the case."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DyME switches per example between SFT when no sampled response is correct and GRPO when at least one is correct, with optional LLM-based visual checking/refinement. The idea is intuitive and results across several small VLMs are promising, but novelty is moderate and important theoretical, experimental, and reproducibility weaknesses leave the central claims insufficiently established.",
+        "strengths": [
+          "The state-dependent SFT/GRPO switch is simple, practical, and directly targets the zero-reward failure mode of small models (pp. 5–6).",
+          "Results are broad and generally consistent across three SVLMs and three specialized domains, with component ablations supporting both switching and visual supervision (pp. 8–9).",
+          "The paper includes useful comparisons against alternative switching heuristics, efficiency measurements, and a limited human evaluation of generated traces (pp. 8, 10, 18–20)."
+        ],
+        "weaknesses": [
+          "The claimed formal equivalence between SFT and GRPO is overstated: treating an externally supplied ground-truth sequence with unit advantage as a policy-gradient sample does not establish objective equivalence. Moreover, the unclipped, KL-free objective and its sampling distribution are ambiguously specified (pp. 5–6).",
+          "Experimental rigor and reproducibility are inadequate: essential details such as group size, optimizer, learning rates, reward mapping, and pool-update procedure are missing; most results lack seeds, variance, or significance tests, while human evaluation omits annotator count, agreement, and blinding (pp. 7–10, 16–20).",
+          "Evidence for genuinely correct, grounded reasoning is weakened by erroneous or internally inconsistent showcased traces—for example, the T2 MRI explanation reverses the usual water-signal relation (p. 22), and a geometry trace derives 35° but concludes 55° (p. 23). The external checker/refiner also receives reference answers and tool-generated facts, so gains do not cleanly isolate learned visual reasoning (pp. 14–16)."
+        ],
+        "score_rationale": "The paper offers a useful, plausible training heuristic with encouraging empirical gains, but the contribution appears incremental relative to hybrid SFT/RL methods, and missing implementation detail, absent statistical validation, questionable analysis, and visibly flawed reasoning examples prevent confidence at the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DyME conditionally applies SFT when no sampled response is correct and GRPO otherwise, augmented by LLM-generated visual facts, a checker, and a refiner. Results across three SVLMs and several domains are promising, but the theoretical motivation is weak and the evidence does not yet establish reliable visual reasoning rather than externally scaffolded template learning.",
+        "strengths": [
+          "A simple, practical switching rule addresses a relevant failure mode for sub-1B VLMs and is evaluated against several hybrid alternatives (pp. 5–8).",
+          "Broad experiments show consistent task-score improvements across three SVLMs and medical, chart, and geometry domains, supported by component ablations (pp. 8–10).",
+          "The appendix adds data-quality comparisons, baseline learning trajectories, efficiency measurements, and a small human evaluation of generated traces (pp. 18–20)."
+        ],
+        "weaknesses": [
+          "The claimed SFT–GRPO gradient equivalence is only a loose analogy: replacing policy samples and relative advantages with a ground-truth sample and unit weight does not formally make SFT a special case of GRPO. Likewise, omitting both clipping and KL is justified mainly by assertion rather than analysis or a direct controlled ablation (pp. 5–6).",
+          "Evidence lacks repeated-run variance, significance tests, and sufficient implementation detail for baseline parity. Several large claims rely on single scores, heterogeneous metric averages, or lightly documented appendix experiments; human evaluation omits annotator count, agreement, and blinding (pp. 7–10, 19–20).",
+          "The method often supplies reasoning-relevant facts and templates using external 7B/14B models or domain tools, making attribution to the switching algorithm difficult. Moreover, showcased traces contain factual or logical defects despite correct answers—for example, an incorrect MRI signal explanation (p. 22) and inconsistent geometry reasoning/arithmetic (p. 23)—while human validity is only 68–72% (p. 20)."
+        ],
+        "score_rationale": "The paper presents a useful and plausibly effective engineering idea with encouraging breadth, but novelty is moderate and central claims about formal unification, stable optimization, and genuine grounded thinking are insufficiently supported. Missing statistical rigor and visibly flawed reasoning traces keep it marginally below acceptance; uncertainty remains because repeated-run results and fuller training details could materially strengthen the case."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DyME conditionally applies SFT when no sampled answer is correct and GRPO otherwise, supplemented by an external-model-based visual checker/refiner. The approach is simple and practically motivated, with consistent reported gains for several small VLMs, but the evidence does not yet substantiate the stronger claims of reliable, visually grounded thinking.",
+        "strengths": [
+          "The per-input switching rule is simple, parameter-free, and directly addresses the sparse/degenerate reward regime encountered by small models (pp. 5–6).",
+          "Results show consistent task-average improvements across three small VLMs and three domains, supported by component ablations (pp. 9–10).",
+          "The appendices provide prompts, dataset sizes, baseline learning trajectories, efficiency measurements, and a limited human evaluation, improving transparency (pp. 14–20)."
+        ],
+        "weaknesses": [
+          "The central novelty is modest—a correctness-gated choice between standard SFT and GRPO—and the claimed formal equivalence is only a loose gradient analogy; moreover, removing both clipping and KL lacks theoretical justification or stability analysis (pp. 5–6).",
+          "Experimental reliability is underreported: there are no multiple seeds, uncertainty intervals, significance tests, or detailed human-evaluation protocol/agreement, despite potentially unstable RL training (pp. 8–10, 19–20).",
+          "The visual supervision depends on external models/tools and answer-conditioned prompts, raising leakage and attribution concerns; several showcased traces remain factually or logically inconsistent, undermining the grounded-thinking claim (e.g., the incorrect T2 MRI description on p. 22 and mismatched chart/geometry reasoning on p. 23)."
+        ],
+        "score_rationale": "The consistent quantitative gains make DyME promising, but limited methodological novelty, insufficient statistical validation, dependence on strong external supervision, and visibly flawed reasoning examples keep it marginally below acceptance. I am moderately confident because the full manuscript is available, though exact leakage risk cannot be resolved from the reported details."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DyME is a simple, potentially useful state-dependent hybrid: use SFT when no sampled response is correct and GRPO otherwise, augmented by an external-model checker/refiner. Results across several small VLMs and domains are promising, but the evidence does not cleanly isolate the proposed switching rule, and important optimization, fairness, and reasoning-quality concerns remain.",
+        "strengths": [
+          "The binary switch is intuitive and operationally simple, and controlled ChartQA results show consistent gains over tuned SFT/two-stage variants across three CoT qualities (pp. 7–8, 19).",
+          "Evaluation covers three SVLM backbones and multiple domains, with component ablations showing that both modes and both visual-supervision modules contribute (pp. 8–9).",
+          "The paper discusses compute cost and applicability limits, and includes a small human evaluation suggesting improved trace validity (pp. 10, 20)."
+        ],
+        "weaknesses": [
+          "The theoretical justification is weak: calling SFT a “special case” of GRPO does not establish objective equivalence, while the unclipped, KL-free objective has inconsistent sampling notation and lacks a stability argument beyond empirical observation (pp. 5–6).",
+          "Main baseline comparisons are confounded by unequal supervision. Full DyME uses online Qwen-based refinement/checking and extracted visual facts, while Table S2 shows that giving visual supervision to two-stage training raises LLaVA-OV-S ChartQA from the reported 52.9 to 63.62, substantially narrowing the 67.5 result (pp. 8–9, 17).",
+          "Evidence lacks repeated runs/error bars and adequate human-evaluation details; moreover, showcased “grounded” traces still contain factual or logical errors (e.g., incorrect MRI signal explanation on p. 22 and an angle calculation concluding 55 after deriving 35 on p. 23), weakening claims of reliable thinking."
+        ],
+        "score_rationale": "The method has practical merit and sizable reported gains, but novelty is moderate and the central empirical comparison is substantially confounded by external visual supervision. Missing variance/reproducibility details and visibly flawed reasoning traces prevent confidence that DyME reliably instills genuine grounded reasoning rather than better templates. I therefore place it marginally below acceptance, with some uncertainty because repeated-run statistics and fully supervision-matched baselines could change the assessment."
+      }
+    }
+  ]
+}

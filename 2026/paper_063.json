@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_063",
+  "paper_id": "54Klnf9t2s",
+  "number": 15096,
+  "title": "Probing Confidence Regions for Early Exits in Chain-of-Thought",
+  "authors": [
+    "Ting Xu",
+    "Xu He",
+    "Bryan Wilie",
+    "Jiankai Sun",
+    "Dong Li",
+    "Wai Lam",
+    "Jianye HAO"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "entropy",
+    "chain-of-thought",
+    "early exit"
+  ],
+  "forum_url": "https://openreview.net/forum?id=54Klnf9t2s",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "KJsUZYZyV2",
+      "forum": "54Klnf9t2s",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761886592113,
+      "tmdate": 1762925419059,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "NyCaqQi9v3",
+      "forum": "54Klnf9t2s",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761915933872,
+      "tmdate": 1762925418118,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "Qm6VZENzF9",
+      "forum": "54Klnf9t2s",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761896454655,
+      "tmdate": 1762925418546,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "R0flml6wjI",
+      "forum": "54Klnf9t2s",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761927563577,
+      "tmdate": 1762925417699,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CORE, a training-free CoT stopping rule that exits when probed answer entropy remains below a threshold over a sliding window. Results across three models and AIME/GPQA suggest a favorable accuracy–token trade-off relative to DEER and Dynasor, but the method is essentially temporal smoothing of an existing confidence signal, and important methodological and statistical details are insufficient to support the paper’s stronger claims.",
+        "strengths": [
+          "The stopping rule is simple, training-free, and practically applicable to multiple open reasoning models (pp. 5–6).",
+          "Across the reported aggressive and conservative settings, CORE generally provides higher accuracy than the two early-exit baselines at broadly comparable token counts, with especially strong gains for DeepSeek-7B on GPQA (pp. 6–7).",
+          "The paper examines runtime overhead and stratifies behavior by problem difficulty rather than reporting token savings alone (p. 8)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: CORE is primarily a moving-average/windowed version of confidence-based stopping, while the claimed global two-region discovery is based on only 100 selected traces, alignment at each trace’s sharpest entropy drop, and largely qualitative examples (pp. 4–6, 14).",
+          "The experimental evidence lacks uncertainty estimates, significance tests, decoding/probing intervals and costs, and sufficiently precise budget matching; Pareto curves are shown only for AIME25, weakening claims of universal Pareto superiority (pp. 6–8, 13).",
+          "The formal specification appears erroneous or ambiguous: Eq. 5 divides the window sum by max(i,w), rather than the number of included terms, which can spuriously lower early averages; it is also unclear whether a full window is required before stopping (p. 6)."
+        ],
+        "score_rationale": "CORE appears useful and the reported empirical gains are promising, but its incremental technical contribution, an apparent error/ambiguity in the core criterion, and incomplete statistical and implementation reporting leave it marginally below the acceptance bar. Uncertainty remains because released code could clarify whether Eq. 5 is merely a typographical error."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CORE, a training-free CoT early-exit rule that stops after answer-token entropy remains below a threshold over a sliding window. Results across three models and three benchmarks suggest a generally favorable accuracy–token trade-off, but the central interpretation and novelty are overstated: the implemented method is essentially temporal smoothing of an existing confidence signal rather than detection of a demonstrated global reasoning state.",
+        "strengths": [
+          "The method is simple, training-free, and evaluated across multiple model sizes and both mathematical and scientific reasoning benchmarks (pp. 6–7).",
+          "At approximately matched token budgets, CORE often improves substantially over DEER and Dynasor, especially for DeepSeek-7B and Qwen3-14B (Tables 2–3, pp. 6–7).",
+          "The paper considers Pareto behavior, difficulty-dependent effects, and wall-clock latency rather than reporting accuracy alone (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "The claimed connection between a low-entropy region and complete or sound reasoning is not established. The exploratory study uses only 100 samples, aligns traces by the sharpest entropy decrease, reports poorly specified and correlated counts, and never directly measures reasoning completeness; its low-entropy accuracies are only 59.7% and 73.8% (pp. 4–5).",
+          "CORE reduces operationally to thresholding a moving average of answer entropy (Eq. 5, p. 6), making its distinction from confidence-based stopping and its claimed novelty limited. Equation 5 also uses an unclear denominator, and the crucial reasoning-step/probing interval and probing-generation details are not specified sufficiently for reproduction (pp. 2, 6, 13–14).",
+          "Evidence for broad Pareto superiority is incomplete: full frontiers are shown only on AIME25, uncertainty intervals or significance tests are absent despite small AIME datasets, some comparisons do not favor CORE, and the latency experiment lacks enough implementation detail to assess probing overhead (pp. 6–8)."
+        ],
+        "score_rationale": "The method is practical and the reported empirical gains are promising, placing the work near the acceptance boundary. However, the contribution appears incremental, the principal mechanistic claim is supported by a small and partly circular analysis, and important reproducibility and statistical-validation details are missing. I am therefore marginally below acceptance, with some uncertainty because released code and fuller curves could resolve several concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CORE, a training-free CoT early-exit rule that probes intermediate answers and stops after their entropy remains below a threshold over a sliding window. The empirical results suggest a useful accuracy–token trade-off, but the claimed global two-region characterization and principled completion signal are not established rigorously enough.",
+        "strengths": [
+          "CORE is simple, training-free, and applicable to several open reasoning models; the evaluation spans AIME24, AIME25, and GPQA (pp. 6–7).",
+          "At matched aggressive or conservative operating points, CORE generally preserves more accuracy than DEER and Dynasor, with especially strong gains for DeepSeek-R1-Distill-Qwen-7B (pp. 6–7).",
+          "The paper examines difficulty-dependent behavior and reports wall-clock latency rather than relying solely on generated-token counts (p. 8)."
+        ],
+        "weaknesses": [
+          "The central two-region claim is supported by only 100 exploratory samples, aligned retrospectively at each trace’s sharpest entropy decrease; this procedure can manufacture a sharp aggregate transition, while Table 1 lacks threshold, sampling, and uncertainty details (pp. 4–5).",
+          "Despite framing CORE as a global-dynamics method, its online rule is essentially thresholded moving-average confidence. Equation 5 appears incorrectly normalized by max(i,w) rather than the number of included steps, and the reasoning-step/probing granularity is unspecified (pp. 5–6).",
+          "Evidence is incomplete: only two baselines are considered, Pareto curves are shown only for AIME25, no confidence intervals or significance tests are reported, and probe-token/computational accounting is insufficiently documented. Several gains on Qwen models are small or accompanied by substantial accuracy loss (pp. 6–8, 13–14)."
+        ],
+        "score_rationale": "CORE is practically appealing and often outperforms the selected baselines, but its novelty over smoothed confidence thresholding is modest and the principal mechanistic claim relies on potentially circular retrospective alignment. Missing statistical validation, ambiguous formulation, and incomplete cost/comparison details leave the work marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CORE, a training-free CoT early-exit rule that probes intermediate answers and halts after their entropy remains below a threshold over a sliding window. Results across three models and three benchmarks suggest useful token–accuracy trade-offs, but the evidence does not adequately support the claimed universal two-region reasoning structure or a principled connection to reasoning completeness.",
+        "strengths": [
+          "The method is simple, model-agnostic, and practically relevant; it improves over the two selected baselines at several approximately matched token budgets (pp. 6–7).",
+          "Evaluation spans three model sizes/families and both mathematical and scientific QA, with repeated runs stated for small datasets (p. 6).",
+          "The paper considers actual latency rather than token count alone and reports that savings remain after probing overhead (p. 8)."
+        ],
+        "weaknesses": [
+          "The central empirical claim is weakly established: only 100 development samples are analyzed, trajectories are aligned using the sharpest entropy decrease—making the aggregate two-phase pattern partly constructed—and no prevalence, uncertainty, or statistical test is reported (pp. 4–5). Individual traces also show early low-entropy periods and later spikes (p. 14).",
+          "CORE is essentially a moving-window version of confidence thresholding, so novelty is modest; low answer entropy does not establish that reasoning is complete or sound, and even the reported low-entropy-region accuracies are only 59.7%/73.8% for the analyzed signals (pp. 4–6).",
+          "Experimental support and reproducibility are incomplete: only two baselines are used, Pareto curves appear only for AIME25, no confidence intervals/significance tests are given, probe computation is omitted from token accounting, and step segmentation, decoding settings, and the malformed/ambiguous normalization in Eq. 5 are insufficiently specified (pp. 6–8, 13–14)."
+        ],
+        "score_rationale": "CORE is a useful lightweight heuristic with encouraging empirical results, but its conceptual advance is limited and its strongest claims exceed the supplied analysis. Missing uncertainty estimates, narrow baselines, incomplete cost accounting, and underspecified implementation make the current evidence marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CORE halts reasoning after probed answer entropy remains below a threshold for a sliding window. The idea is practical and evaluated on three models and three benchmarks, but it is an incremental modification of confidence-based stopping, and the evidence does not establish the claimed universal two-region structure or that entering the low-entropy region indicates complete, sound reasoning.",
+        "strengths": [
+          "The method is training-free, simple, and tested across three model sizes/families and both mathematics and science QA benchmarks (pp. 6–7).",
+          "Repeated runs are used for small AIME datasets and GPQA, and the paper reports both accuracy and generated-token cost at aggressive and conservative operating points (pp. 6–7).",
+          "CORE often improves over the two selected early-exit baselines at broadly similar token budgets, with especially substantial gains for DeepSeek-7B on GPQA (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "The central empirical claim is overstated: the two-region characterization comes from only 100 development examples with alignment around each trace’s sharpest decrease, which can induce the displayed transition; Table 1 has unclear event selection, and even low-entropy-region signals are only 59.7% or 73.8% correct, not evidence of reliably complete or sound reasoning (pp. 4–5).",
+          "CORE is essentially persistence filtering over an existing entropy threshold, so novelty is limited. The paper does not rigorously compare against combinations of confidence and answer stability, alternative smoothing/change-point detectors, or ablate the threshold and window independently; the Pareto analysis is restricted to AIME25 (pp. 5–8).",
+          "Experimental and reproducibility details are inadequate: probing interval/step construction, decoding settings, answer extraction, probe implementation and caching are unspecified; uncertainty bars or significance tests are absent; window selection and baseline budget matching are ambiguous; and the latency evidence is a single aggregate experiment despite repeated probing being central to actual cost (pp. 6–8, 13–14)."
+        ],
+        "score_rationale": "The paper presents a useful lightweight heuristic with encouraging comparative results, but its novelty is modest and its strongest mechanistic claims are not supported by sufficiently rigorous analysis. Missing implementation details, weak statistical reporting, and incomplete cost/fairness controls prevent the experiments from establishing a robust advantage, placing it below the acceptance threshold."
+      }
+    }
+  ]
+}

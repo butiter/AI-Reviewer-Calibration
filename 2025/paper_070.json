@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_070",
+  "paper_id": "6nnWnLK8If",
+  "number": 10033,
+  "title": "Dataset for Image-based Analysis of Mineral Fertilizer Granules",
+  "authors": "Dmitrii Iunovidov; Ikechi Kalu Ndukwe; Mohammad Reza Bahrami; Manuel Mazzara; Elizaveta Iunovidova",
+  "primary_area": "datasets and benchmarks",
+  "keywords": "Dataset; Industry; Fertilizer Granules; Quality Control; Instance Segmentation; Computer Vision",
+  "forum_url": "https://openreview.net/forum?id=6nnWnLK8If",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents the Mineral Fertilizer Dataset (MFD), created specifically for the segmentation of fertilizer granules. The dataset contains 1,608 annotated images of four types of mineral fertilizer granules: KCl, NH₄NO₃, DAP, and NPK. The authors assess the performance of classical semantic and instance segmentation techniques using the MFD, highlighting its applicability for fertilizer granule segmentation tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The constructed dataset offers a novel approach to evaluating the quality of mineral fertilizer products. The granule annotation process is both logical and compelling. The benchmark results can provide good guidance to researchers in the related fields."
+        },
+        "weaknesses": {
+          "value": "While the paper provides a benchmark evaluation of several classical semantic and instance segmentation techniques on the MFD, it lacks a significant technical contribution to the field. Given the unique features of the dataset, the authors could consider proposing a tailored model to achieve better segmentation performance.\n\nThe authors claim that the MFD dataset is designed for quality control in the fertilizer industry. However, it would be helpful to demonstrate how the segmentation results directly contribute to the quality evaluation process. For example, how do the segmentation metrics (e.g., accuracy, IoU) correlate with key quality control parameters in fertilizer production, such as granule size distribution or shape uniformity? Additional explanations are also needed to clarify the displayed experimental results.\n\nThe experiments conducted on extended datasets with similar morphological characteristics lack sufficient detail. A detailed table or description specifying the models used to segment beans, seeds, and tablets, along with their corresponding performance metrics, would strengthen the extended experiments.\n\nAlthough the dataset may be valuable for the fertilizer industry, the paper lacks a clear discussion of novel ideas or distinguishing contributions. It would be beneficial to explicitly state the novel contributions or to draw a more direct comparison between this dataset and approach and existing methods in the fields of industrial quality control or granular material analysis."
+        },
+        "questions": {
+          "value": "1. The authors state in the Abstract, \"our experiments demonstrate ... the robustness of the trained models in identifying fertilizer granules of different colors not included in our dataset.\" However, this claim is not supported in the experiment section. Which experiment validates this statement? Given that the segmentation networks used are classical ones, like FPN, Unet, and MANet, what exactly do the authors mean by this claim?\n\n2. In Line 85, the authors mention that isolating individual granules from the overall mask makes the method more acceptable for the fertilizer industry. Why would this isolation process improve industry acceptance?\n\n3. What does the x-axis of the Violin plot in Figure 3 represent for each type of fertilizer granule?\n\n4. In Figure 4, why are only a few KCl granules annotated?\n\n5. What is the intended explanation in Lines 262–268?\n\n6. Which models were employed to segment objects with similar morphology, as shown in Figures 9 through 12?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QdrBT3PGy7",
+      "forum": "6nnWnLK8If",
+      "replyto": "6nnWnLK8If",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_WWJx"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_WWJx"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10033/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730644945348,
+      "cdate": 1730644945348,
+      "tmdate": 1731429373007,
+      "mdate": 1731429373007,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces the Mineral Fertilizer Dataset (MFD), a novel annotated segmentation dataset designed for image-based analysis of mineral fertilizer granules. Aiming to address the lack of datasets in the fertilizer industry for improving production efficiency and quality control, MFD includes 1,608 images and 125,648 labeled instances, supporting both semantic and instance segmentation. Baseline models were trained on MFD demonstrate strong efficacy and robustness."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The Mineral Fertilizer Dataset (MFD) uniquely contributes to the field by explicitly addressing the image-based segmentation of mineral fertilizer granules. This dataset tackles real challenges in the fertilizer industry, where resources for quality control and production efficiency datasets are limited.\n2. The paper benchmarks multiple models—FPN, UNet, and MANet for semantic segmentation, and Mask R-CNN, YOLOv8, YOLOv9, and Mask2Former, for instance, segmentation—offering a thorough evaluation across a range of segmentation techniques.\n3. The paper provides a detailed overview of the dataset construction process, covering image capture, annotation, and preprocessing steps. It also clearly describes the experimental setup, model selection, and evaluation metrics, ensuring transparency and reproducibility."
+        },
+        "weaknesses": {
+          "value": "1. This paper does not include a comparative analysis with prior work in this field or similar fields. It would be beneficial to discuss what datasets have been used in previous studies on fertilizer granules or related domains and how the Mineral Fertilizer Dataset (MFD) compares in terms of uniqueness or advantages. \n2. This paper lacks a detailed analysis of the dataset's diversity, specifically regarding whether it covers all common types of fertilizer granules and whether these granule types are representative of real-world production. \n3. The dataset lacks detailed documentation and user instructions. Information such as the composition of each data element, annotation standards, and a clear breakdown of dataset attributes would make the dataset more accessible and manageable for other researchers.\n4. While the paper claims that the dataset and models support real-time and robust applications, it does not provide experimental data to substantiate these claims."
+        },
+        "questions": {
+          "value": "1. Could the authors provide a comparison between the Mineral Fertilizer Dataset (MFD) and other datasets commonly used in related fields?\n2. The paper mentions several types of fertilizer granules but does not specify whether these types cover the full range of granules commonly used in the fertilizer industry. Are there any significant granule types not included in MFD, and if so, how might this affect the dataset’s applicability?\n3. Could the authors consider adding a detailed usage guide to help future users better understand and adopt the dataset?\n4. Could the authors perform or further discuss tests measuring inference speed across different devices or environments? \n5. Could the authors provide experimental results using the same image resolution for all models?\n6. Could the authors clarify the criteria for selecting the specific segmentation models in the benchmark?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QYZ5qys3PY",
+      "forum": "6nnWnLK8If",
+      "replyto": "6nnWnLK8If",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_r52n"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_r52n"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10033/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730633855599,
+      "cdate": 1730633855599,
+      "tmdate": 1731429373325,
+      "mdate": 1731429373325,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a mineral fertilizer segmentation dataset, featuring real-world scenes with particles of various colors. It makes up for the lack of relevant datasets in the fertilizer industry.And it constructs benchmark test results based on some instance segmentation models and semantic segmentation models, which to a certain extent promotes the development of quality control technology in the fertilizer industry."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This paper proposes a mineral fertilizer segmentation dataset, which consists of mineral fertilizer particles of different colors in real scenes, which to a certain extent promotes the development of quality control technology in related industries."
+        },
+        "weaknesses": {
+          "value": "1. The article lacks innovation. The author only uses some benchmark models for testing on the constructed dataset and does not propose new methods to test on the dataset. The lack of technological innovation also makes the paper look more like an experimental report.\n2. In the introduction, the author did not describe the innovation of this paper in points, which is not intuitive enough. In terms of expression, the author did not explain some specific contents clearly, such as how the \"self-developed algorithm\" is implemented and what are the specific \"some OpenCV operations\"."
+        },
+        "questions": {
+          "value": "1. The technical innovation is extremely limited. This article only uses some benchmark models for testing on the proposed dataset, and does not make any technical optimization for this field. If there is any technical optimization for this field, it is recommended to add relevant content.\n2. For the annotation of the dataset, how does the algorithm developed by the author achieve block uniqueness? What does the author mean by some OpenCV (Bradski, 2000) operations in the article?\n3. For the evaluation of the dataset, can you provide more model evaluation effects and some additional indicators to more comprehensively evaluate the quality of the dataset?\n4. The article is not well organized in terms of language. It uses conjunctions such as first, second, and at last to describe things in one paragraph, which can easily lead people to mistake it for being AI-generated. Please modify the overall expression of the article.\n5. This dataset has only four categories. Can it represent most scenarios in this field?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9uXYhzf8qR",
+      "forum": "6nnWnLK8If",
+      "replyto": "6nnWnLK8If",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_Ptqw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_Ptqw"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10033/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730616728301,
+      "cdate": 1730616728301,
+      "tmdate": 1731429373522,
+      "mdate": 1731429373522,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces the Mineral Fertilizer Dataset (MFD), a novel annotated segmentation dataset containing 1,608 images and 125,648 instances of various fertilizer granules with different colors, aimed at supporting semantic and instance segmentation tasks in the mineral fertilizer industry. The authors trained baseline models such as FPN, UNet, MANet for semantic segmentation, and Mask R-CNN, YOLOv8, YOLOv9, and Mask2Former for instance segmentation, demonstrating the dataset's utility and the models' efficacy in identifying fertilizer granules and other granular objects. The contribution lies in providing a benchmark for computer vision applications in quality control for the fertilizer industry and related sectors."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The introduction of the Mineral Fertilizer Dataset (MFD) fills a significant gap in the field by providing a specialized dataset for image-based analysis of fertilizer granules, which was previously lacking."
+        },
+        "weaknesses": {
+          "value": "The paper's writing is very catastrophic.\nThe dataset is not very valuable."
+        },
+        "questions": {
+          "value": "refer weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "tZS5dQoGIt",
+      "forum": "6nnWnLK8If",
+      "replyto": "6nnWnLK8If",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_Saq6"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10033/Reviewer_Saq6"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10033/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730433504564,
+      "cdate": 1730433504564,
+      "tmdate": 1731977847992,
+      "mdate": 1731977847992,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces MFD, a niche dataset containing 1,608 images and 125,648 annotated fertilizer-granule instances, together with standard semantic- and instance-segmentation baselines. The resource could be useful for industrial vision, but the manuscript offers little methodological novelty and does not yet provide sufficiently rigorous evidence for its central quality-control and robustness claims.",
+        "strengths": [
+          "The dataset targets an apparently under-served industrial application and includes four fertilizer types with a substantial number of instance annotations (pp. 3–6).",
+          "The paper benchmarks several established semantic and instance segmentation families and reports both segmentation accuracy and inference speed on GPU and CPU hardware (pp. 6–7).",
+          "The annotation process includes multiple annotators and an initial IoU-based qualification step, while the appendix provides basic data-conversion guidance (pp. 4, 15–17)."
+        ],
+        "weaknesses": [
+          "The evaluation protocol risks serious leakage: images are tiled and geometrically transformed during dataset construction, but only a random 80/20 train/validation split is described, with no indication that tiles or augmentations derived from the same source capture, sample, or production plant are grouped across splits (pp. 4–5). There is also no independent test set, repeated runs, uncertainty, or cross-plant split.",
+          "The claimed robustness to unseen colors, ultraviolet imaging, and unrelated objects is supported only by selected qualitative examples without ground-truth masks or metrics; several examples visibly contain substantial misses and false detections (pp. 7–10). Thus these broad generalization claims are not established.",
+          "The motivating downstream claim is not evaluated: there is no comparison of predicted area-equivalent diameter or particle-size distributions against manual measurements, sieving, or an industrial reference device. Annotation smoothing/erosion and exclusion of overlapping granules may systematically alter diameter estimates and simplify realistic scenes (pp. 4, 6, 9)."
+        ],
+        "score_rationale": "The domain-specific dataset is potentially useful, but this is primarily a dataset-and-baselines contribution with limited ICLR-level novelty. More importantly, uncertainty about source-level split leakage and the absence of quantitative out-of-domain and particle-sizing validation undermine the reported evidence. These issues favor rejection in the present form."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper introduces MFD, a potentially useful fertilizer-granule segmentation dataset with 1,608 images and 125,648 annotated instances, together with standard semantic- and instance-segmentation baselines. The domain contribution is credible, but the evaluation does not yet establish reliable generalization or the claimed industrial utility.",
+        "strengths": [
+          "The dataset targets an apparently underserved industrial domain, covers four fertilizer types, and provides a substantial number of instance masks (pp. 3–6).",
+          "The paper benchmarks several established semantic and instance segmentation families and reports both accuracy and inference speed across GPU and CPU hardware (pp. 6–7).",
+          "The annotation process includes a preliminary inter-annotator qualification check, and the paper clearly illustrates the data and qualitative predictions (pp. 4, 8–10)."
+        ],
+        "weaknesses": [
+          "The split protocol is potentially vulnerable to severe leakage: images are tiled and geometrically transformed before an unspecified 80/20 split, with no assurance that tiles or augmentations from the same original capture remain in one partition. Moreover, only validation—not a source-level held-out test set—is described (pp. 4–6). This makes the high reported metrics difficult to interpret.",
+          "The central application claim is not validated: the paper does not measure equivalent-diameter error, particle-size distributions, agreement with sieve/Camsizer measurements, or downstream defect detection. Claimed robustness to unseen colors, UV illumination, and other materials is supported only by selected qualitative images without annotations or quantitative metrics (pp. 7–10).",
+          "Technical novelty is limited to dataset construction and standard-model benchmarking, while important reproducibility and dataset-quality details are missing: full training configurations, repeated runs or uncertainty, per-fertilizer results, final-label auditing, source/capture independence, and quantitative annotation agreement on the released data (pp. 4–7, 15–17)."
+        ],
+        "score_rationale": "The dataset could be valuable to a niche application, but for ICLR the methodological novelty is modest and the evidence has decisive validity gaps. In particular, possible source-level train/validation leakage and the absence of quantitative validation of physical particle sizing or out-of-domain robustness undermine the main claims. I therefore rate it a reject, with some uncertainty because the exact split construction and any unshown supplementary release metadata are unclear."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper introduces MFD, a potentially useful domain-specific dataset with 1,608 images and 125,648 fertilizer-granule instances, plus standard semantic and instance segmentation baselines. However, the evaluation does not convincingly establish generalization or the claimed quality-control utility, and the contribution is limited for ICLR beyond dataset collection.",
+        "strengths": [
+          "The dataset targets an under-served industrial application and provides both instance annotations and semantic-mask conversion, covering four fertilizer types and many instances (pp. 3–6).",
+          "Annotation includes a basic qualification procedure involving three annotators and an IoU threshold, while the appendix provides practical format and preprocessing guidance (pp. 4, 15–17).",
+          "Several established segmentation families are benchmarked, with accuracy and inference speed reported across GPU and CPU devices (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "The split protocol creates a major leakage risk: images are tiled and geometrically transformed before an unspecified 80/20 split, so tiles or augmented variants from the same source capture may occur in both partitions. No held-out test set, source-level split, repeated runs, or uncertainty is reported (pp. 4–7).",
+          "Claims of robustness to unseen colors, ultraviolet imaging, and other object domains rely only on selected qualitative examples without annotations or quantitative metrics; some examples visibly contain substantial misses or spurious/oversized predictions (pp. 7–10).",
+          "The central industrial claim is insufficiently validated: equivalent diameter is discussed, but there is no calibrated physical-size estimation, comparison with sieving/Camsizer measurements, diameter error metric, or realistic conveyor deployment study. Filtering overlaps and retaining only fully visible top-layer granules may further simplify the intended setting (pp. 2–4, 7–9)."
+        ],
+        "score_rationale": "This is a useful data-collection effort with competent baseline coverage, but it offers little methodological novelty and has a potentially invalid train/validation protocol. The absence of quantitative out-of-domain and physical measurement validation leaves the main robustness and quality-control claims unsupported. I am moderately confident because the split wording is ambiguous, but the manuscript provides no evidence that source-level leakage was prevented."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper introduces MFD, a potentially useful niche dataset with 1,608 images and 125,648 fertilizer-granule masks, plus standard segmentation baselines. However, the evaluation does not convincingly establish either reliable generalization or the claimed quality-control utility, and important dataset-splitting and release details are missing.",
+        "strengths": [
+          "The dataset targets a practically relevant and apparently under-served industrial domain, with four fertilizer types and a comparatively large number of instance annotations (pp. 3–6).",
+          "The paper benchmarks several semantic and instance segmentation families and reports both accuracy and inference speed, including CPU measurements relevant to deployment (pp. 6–7).",
+          "Annotation qualification and preprocessing are described, and qualitative results cover varied colors, ultraviolet illumination, and related granular objects (pp. 4, 8–10)."
+        ],
+        "weaknesses": [
+          "The 80/20 split is insufficiently specified: tiling and geometric transformations are applied during dataset construction, but the paper does not state that source images or acquisition sequences are grouped before splitting. Near-duplicate tiles or augmentations could therefore leak across train and validation sets and inflate the strong metrics (pp. 4–7).",
+          "Claims of robustness and cross-domain transfer rely only on selected qualitative images, without annotations, metrics, sample counts, or controlled held-out domain tests. Likewise, the central area-equivalent-diameter application is never evaluated against physical measurements or an industrial reference instrument (pp. 7–10).",
+          "Reproducibility and dataset quality documentation are incomplete: no dataset URL, license, fixed split, acquisition-site counts, per-image provenance, inter-annotator statistics, or main-set annotation audit is supplied. Overlapping/occluded granules are filtered out, potentially removing important industrial failure cases (pp. 3–5, 15–17)."
+        ],
+        "score_rationale": "The domain-specific dataset is useful and the baseline breadth is a positive, but this is primarily an application dataset contribution with limited methodological novelty. Possible split leakage, qualitative-only robustness evidence, and no validation of the claimed physical measurement use case substantially undermine the empirical conclusions. I am uncertain whether the unseen release materials provide fixed source-grouped splits or fuller metadata, but those safeguards are not established in the manuscript."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper introduces MFD, a domain-specific dataset containing 1,608 images and 125,648 fertilizer-granule instances, together with standard semantic- and instance-segmentation baselines. The application is useful, but the evaluation does not convincingly establish either generalization or the claimed suitability for physical particle-size quality control.",
+        "strengths": [
+          "The dataset targets an underrepresented industrial application and includes four fertilizer types with a substantial number of instance annotations (pp. 3–6).",
+          "The paper benchmarks several established semantic and instance segmentation architectures and reports both accuracy and inference speed, including CPU measurements (pp. 6–7).",
+          "The annotation workflow includes multiple annotators and a qualification step based on agreement over a small educational set (pp. 3–4)."
+        ],
+        "weaknesses": [
+          "The central area-equivalent-diameter application is not evaluated: no pixel-to-physical-unit calibration, diameter-error analysis, or comparison with sieve/laser/reference measurements is provided (pp. 2–3, 9). Segmentation metrics alone do not validate industrial particle sizing.",
+          "Evaluation integrity is unclear. Images are tiled and geometrically transformed before an unspecified 80/20 split, with no source-image or production-batch grouping described, creating substantial risk that correlated tiles or augmented variants cross the split; only validation, rather than a clearly independent test set, is reported (pp. 4–6).",
+          "Claims of robustness to unseen colors, ultraviolet illumination, and other object categories rely only on selected qualitative examples without annotations or quantitative metrics (pp. 7–10). Training details, seeds, variability, per-type results, and annotation quality on the main dataset are also missing."
+        ],
+        "score_rationale": "The specialized dataset could be useful, but novelty is primarily domain collection rather than methodological innovation. More importantly, possible split leakage and the absence of physical sizing validation undermine the main scientific and industrial claims. I am uncertain about the actual dataset release and source-level split because these are not documented in the supplied manuscript."
+      }
+    }
+  ]
+}

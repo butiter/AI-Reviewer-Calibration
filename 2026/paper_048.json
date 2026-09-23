@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_048",
+  "paper_id": "NOAuwgqr1J",
+  "number": 11657,
+  "title": "SimTrack3D: A Simple Sequential Motion Modeling for Efficient 3D Single Object Tracking",
+  "authors": [
+    "Yangzitai Xu",
+    "Fei Xie",
+    "Zongwei Wu",
+    "Xiaokang Yang",
+    "Chao Ma"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "3D single object tracking",
+    "State Space Model",
+    "Point Cloud"
+  ],
+  "forum_url": "https://openreview.net/forum?id=NOAuwgqr1J",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    6,
+    2,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "WVedUDnHnf",
+      "forum": "NOAuwgqr1J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761813569648,
+      "tmdate": 1762922717036,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "lbJJ3aQVBM",
+      "forum": "NOAuwgqr1J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761514234036,
+      "tmdate": 1762922718192,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "nNL45eBJAi",
+      "forum": "NOAuwgqr1J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761723626447,
+      "tmdate": 1762922717825,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "xjf2jceyFH",
+      "forum": "NOAuwgqr1J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761745988824,
+      "tmdate": 1762922717432,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SimTrack3D serializes point- or voxel-derived features with spatial scan orders and applies a compact Mamba/SSM aggregation backbone for 3D single-object tracking. The reported efficiency is attractive, but the accuracy gains are small and the technical specification and experimental record contain enough inconsistencies to make the central claims difficult to verify.",
+        "strengths": [
+          "The method targets an important accuracy–efficiency trade-off and provides a practical design applicable to both voxel and point representations (pp. 5–7).",
+          "The voxel model reports strong efficiency on matched RTX 4090 hardware: 188 FPS and 5.62M parameters, versus P2P-voxel's 158 FPS and 33.67M parameters (pp. 8, 14).",
+          "Results cover KITTI and NuScenes, with useful ablations of scan directions, causal ordering, and SSM versus convolutional aggregation (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the main mechanism combines established multidirectional visual scanning, feature concatenation, and Mamba blocks; the manuscript does not clearly establish a substantive technical advance beyond adapting these components to tracking (pp. 3, 5–6).",
+          "Technical presentation is insufficiently precise and sometimes inconsistent: Eq. 1 is described as an ODE but uses h(t−1), Eq. 6 is difficult to parse, and Algorithm 2 contains questionable split/dimension annotations (e.g., 1024-channel F3 followed by an output labeled 128) (pp. 4, 6, 15).",
+          "Evidence is weakened by unexplained discrepancies and limited controls: point-model speed is variously 256 and 283 FPS; NuScenes headline means differ markedly from the scan-ablation scale; the SSM ablation shows category-dependent losses; and there are no uncertainty estimates, training details in the paper, or controlled complexity-matched comparisons (pp. 8–10, 14–15)."
+        ],
+        "score_rationale": "The substantial parameter and runtime reductions are promising, and the reported tracking results are competitive. However, gains over P2P are marginal on NuScenes and KITTI success, while KITTI precision is worse, and unclear formulations plus inconsistent reporting prevent confident validation of soundness and reproducibility. This places the work marginally below acceptance, though clarification and stronger controlled experiments could change the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper applies spatial serialization and Mamba-style state-space blocks to voxel- and point-based 3D single-object tracking. It reports strong KITTI and NuScenes accuracy with high throughput, but the conceptual advance is incremental and substantial reporting inconsistencies and incomplete experimental controls weaken the evidence.",
+        "strengths": [
+          "The method targets a practically important accuracy–efficiency trade-off and supports both voxel and point representations with a reasonably clear high-level pipeline (pp. 5–7, 14–16).",
+          "Reported results are competitive: the voxel model attains 72.3 KITTI mean Success at 188 FPS and 60.20 NuScenes mean Success, while using 5.62M parameters (pp. 8, 14).",
+          "Ablations examine scan directions, temporal ordering, serialization, and SSM versus Conv1D aggregation, providing some evidence that each design choice matters (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the core recipe largely combines established BEV voxelization, standard row/column visual-SSM scans, temporal concatenation, and Mamba blocks; the claimed new DSFA mechanism is specified too vaguely to establish a substantial technical contribution (pp. 3–7).",
+          "Results are internally inconsistent or insufficiently explained: the NuScenes voxel result is 60.20/72.12 in Table 1 but the nominal four-scan configuration is 68.58/64.71 in Table 3; point-model speed is 256 FPS in Table 2 versus 283 FPS in Table 4; and several tensor shapes or algorithmic steps conflict in the pseudocode (pp. 8–9, 14–16).",
+          "The empirical case lacks rigorous controls: gains over P2P-voxel are only 0.6 Success on both datasets while precision is lower, speed comparisons often use different GPUs, and there are no FLOP/memory measurements, repeated-run uncertainty, robustness analysis, or controlled comparison against equally shallow CNN/Transformer alternatives (pp. 7–9, 14)."
+        ],
+        "score_rationale": "The promising efficiency and competitive benchmark numbers make the work potentially useful, but the modest novelty, small and mixed accuracy gains, unexplained numerical discrepancies, and incomplete controlled evaluation place it marginally below the ICLR acceptance bar. I am uncertain whether supplementary code/configurations would resolve the reporting and reproducibility concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "SimTrack3D serializes voxel-BEV or ordered point features, concatenates previous-target and current-scene sequences, and aggregates them with a three-layer Mamba-style DSFA-SSM. The approach is fast and reports strong tracking success, but its novelty is incremental, the technical specification is insufficiently rigorous, and several experimental inconsistencies weaken confidence in the claims.",
+        "strengths": [
+          "The method targets an important accuracy–efficiency trade-off and reports 188 FPS with 5.62M parameters for the voxel model, versus 158 FPS and 33.67M for P2P-voxel on the same stated GPU (pp. 8, 14).",
+          "Results cover both KITTI and NuScenes and both voxel- and point-based variants; reported success is competitive, including 72.3 on KITTI and 60.20 on NuScenes for the voxel model (pp. 8–9).",
+          "Ablations examine scan directions, temporal ordering, SSM versus Conv1D, and serialization, providing some support for the principal design choices (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "Novelty appears limited to combining established multi-directional visual scanning and Mamba/SSM aggregation with a standard target–scene tracking pipeline; the paper does not sharply distinguish DSFA-SSM from existing VMamba/PointMamba mechanisms (pp. 3–6).",
+          "The method is not reproducibly or rigorously specified: the SSM equations mix continuous and discrete notation, Eq. 6 and Algorithm 1 are ambiguous or malformed, and the manuscript omits losses, optimization schedules, voxel/grid settings, and other essential training details (pp. 4–7, 16).",
+          "Evidence contains consequential inconsistencies and limited rigor: point-model speed is 256 FPS in Table 2 but 283 FPS in Table 4; NuScenes ablation metrics differ markedly from the main result without a stated subset; Table 6 does not reconcile with Table 2; and the claimed gains are small, lack variance or repeated trials, and often sacrifice precision (pp. 8–9, 14–15)."
+        ],
+        "score_rationale": "The reported efficiency improvement and competitive success metrics are promising, but modest methodological novelty, unclear technical exposition, missing reproducibility details, and conflicting experimental numbers prevent the work from meeting the ICLR acceptance bar. I am confident in this assessment from the supplied manuscript, although unavailable code leaves uncertainty about whether some inconsistencies are merely reporting errors."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SimTrack3D serializes point/BEV features with spatial scan orders and applies a compact Mamba-style DSFA-SSM backbone for 3D single-object tracking. It reports a favorable accuracy–speed trade-off on KITTI and NuScenes, but the contribution appears largely an adaptation of established visual scanning and SSM components, and the experimental support is not sufficiently rigorous for the broad claims.",
+        "strengths": [
+          "The method addresses a practically important accuracy–efficiency trade-off and supports both voxel- and point-based trackers (pp. 2–6).",
+          "Reported KITTI results show the best mean Success with strong throughput, while NuScenes results are competitive across several categories (p. 8).",
+          "Ablations examine scan directions, causal ordering, SSM versus Conv1D, and serialization, providing some component-level evidence (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: four-directional/zigzag scanning and selective SSM processing closely follow existing vision/point-cloud Mamba designs, while the manuscript does not clearly isolate a technically substantive new SSM mechanism (pp. 3–6).",
+          "The technical specification is inconsistent or underspecified: equations and pseudocode contain unclear state updates and dimension mismatches, and important training hyperparameters are deferred to unavailable configuration files (pp. 4–7, 9–10, 15–16).",
+          "Evidence has unresolved inconsistencies and limited rigor: point-model speed is 256 FPS in Table 2 but 283 FPS in Table 4; the scan ablation's 68.58 Success is not reconciled with the reported 60.20 NuScenes mean; hardware differs across many speed comparisons; and no variance, repeated runs, FLOPs, or robustness analysis is given (pp. 8–9, 14)."
+        ],
+        "score_rationale": "The reported efficiency and Success gains are promising, especially on KITTI, but they are often modest and accompanied by lower Precision than P2P-voxel. Given the incremental methodological novelty, unclear formulation, and gaps in reproducibility and controlled evaluation, the paper is slightly below the acceptance threshold, although uncertainty remains because code and full training configurations are not included."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper applies spatial serialization and Mamba-style state-space blocks to point- and voxel-based 3D single-object tracking. The efficiency goal is relevant, and reported results suggest a useful speed/parameter trade-off, but the methodological presentation and experimental record contain substantial ambiguities and inconsistencies that prevent confident validation of the central claims.",
+        "strengths": [
+          "The proposed combination of four-directional BEV scans, temporal template/search concatenation, and progressive sequence aggregation is practically motivated and applicable to both voxel and point representations (pp. 5–7).",
+          "On KITTI, the voxel variant reports 72.3 success at 188 FPS with 5.62M parameters, compared with P2P-voxel's 71.7 at 158 FPS and 33.67M parameters (pp. 8, 14).",
+          "Ablations examine scan directions, causal ordering, SSM versus Conv1D, and serialization, providing some evidence that these components matter (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the main construction largely combines established BEV voxelization, multidirectional visual-Mamba scanning, temporal concatenation, and an SSM backbone; the paper does not clearly identify a technically new SSM mechanism beyond this adaptation (pp. 3–6).",
+          "The evidence is internally inconsistent. NuScenes' main result is 60.20/72.12 (p. 8), whereas the purported full scanning configuration is 68.58/64.71 (p. 9); point-model speed is variously 256, 283, and nearly 283 FPS (pp. 2, 8, 14). Moreover, gains over P2P-voxel are only +0.36 success on NuScenes and +0.6 on KITTI, while KITTI precision falls by 4.3 points (p. 8).",
+          "Technical and reproducibility details are inadequate or contradictory: equations and pseudocode do not precisely define the selective SSM or tensor operations, Algorithm 2 has incompatible pooling/channel annotations, training hyperparameters and variance across runs are absent, and the promised implementation/configuration is not included in the supplied manuscript (pp. 6–7, 9–10, 15–16)."
+        ],
+        "score_rationale": "The reported same-hardware efficiency improvement is promising, but incremental novelty, unclear technical specification, modest/selective accuracy gains, and serious numerical inconsistencies place the work below the acceptance threshold. I am uncertain whether some discrepancies are typographical or reflect different protocols because the paper does not explain them."
+      }
+    }
+  ]
+}

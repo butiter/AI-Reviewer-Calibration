@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_052",
+  "paper_id": "Z8Jv1Wsl7n",
+  "number": 12085,
+  "title": "On the Flow Matching Interpretability",
+  "authors": [
+    "Francesco Pivi",
+    "Simone Gazza",
+    "Davide Evangelista",
+    "Roberto Amadini",
+    "Maurizio Gabbrielli"
+  ],
+  "primary_area": "interpretability and explainable AI",
+  "keywords": [
+    "Interpetability",
+    "explainable AI",
+    "flow matching",
+    "diffusion",
+    "ising model."
+  ],
+  "forum_url": "https://openreview.net/forum?id=Z8Jv1Wsl7n",
+  "venue": "ICLR 2026 Conference Desk Rejected Submission",
+  "status": "desk_rejected",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "human_mean_rating": 2.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "YRQiReLHat",
+      "forum": "Z8Jv1Wsl7n",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12085/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761581659693,
+      "tmdate": 1762923055689,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "h3HeISyX8l",
+      "forum": "Z8Jv1Wsl7n",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12085/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760919785487,
+      "tmdate": 1762923056627,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "lE8ef642gJ",
+      "forum": "Z8Jv1Wsl7n",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12085/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761982609183,
+      "tmdate": 1762923055282,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "quGq2e8Kqp",
+      "forum": "Z8Jv1Wsl7n",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12085/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761487615294,
+      "tmdate": 1762923056177,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes assigning thermodynamic meaning to discrete latent updates by training an encoder, temperature-conditioned transition network, and projector on simulated 2D Ising cooling trajectories. The motivating idea is intuitive, but the presented method is not convincingly established as flow matching, does not guarantee equilibrium sampling, and is evaluated with insufficient and sometimes contradictory evidence.",
+        "strengths": [
+          "The use of prescribed temperatures gives intermediate states a clear intended semantic label, and the modular encoder–transition–projector construction is easy to understand (pp. 2, 6–7).",
+          "Experiments cover three lattice sizes and report several standard thermodynamic observables, qualitative configurations, and runtime (pp. 8–9, 13–15).",
+          "The paper includes comparisons against decoder-only Monte Carlo updates intended to test whether the learned transition contributes beyond projection (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "The technical formulation is not a sound generative flow-matching construction: training occurs only on discrete paired endpoints, the supposed KDE reduces to regression toward a conditional mean, and no likelihood, continuity equation, or distributional correctness argument is provided. Projection after every step further breaks the claimed flow, while equilibrium is not guaranteed by matching one target configuration's energy (pp. 4, 6–7).",
+          "The evidence does not support “physical fidelity.” The dataset uses a magnetization-sign constraint that biases the zero-field Gibbs distribution, and a 5% energy criterion is insufficient to establish equilibration (p. 5). Moreover, predicted specific heat and susceptibility visibly differ by large factors from ground truth, despite claims of strong adherence (pp. 8–9, 15).",
+          "Experimental reporting is inadequate for the efficiency and novelty claims: architecture, dataset size, splits, training cost, seeds, and statistical protocol are absent; Table 1 inconsistently calls signed, unit-bearing differences “Mean Absolute Error (%)”; and speed is compared mainly with fixed 10/15-step local Metropolis baselines rather than converged Wolff, modern neural samplers, or closely related discrete flow methods (pp. 7–10)."
+        ],
+        "score_rationale": "The temperature-indexed trajectory idea has some conceptual appeal, but the core method largely supervises an autoregressive latent predictor on Monte Carlo trajectories rather than demonstrating a valid or interpretable flow-matching sampler. Biased/weak equilibrium construction, major observable discrepancies, unclear metrics, and weak baselines undermine the main soundness and efficiency claims. Substantial reformulation and stronger distribution-level validation are required."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a latent autoregressive cooling pipeline for the 2D Ising model, assigning each discrete update to a prescribed temperature. While the physical testbed is intuitive, the method does not convincingly establish either flow matching or interpretability, and the experiments do not demonstrate faithful equilibrium sampling or fair computational superiority.",
+        "strengths": [
+          "The Ising cooling schedule gives intermediate checkpoints an intuitive thermodynamic label, and the encoder–transition–projector decomposition is conceptually clear (pp. 2, 6–7).",
+          "Experiments cover three lattice sizes and report several standard thermodynamic observables rather than relying only on visual samples (pp. 8–9, 13–15).",
+          "The learned projector is empirically fast at inference and often improves energy and magnetization errors over the limited-step Monte Carlo baselines (p. 8)."
+        ],
+        "weaknesses": [
+          "The core construction is a deterministic regression to the mean of K Monte Carlo transitions, followed by a projector; no stochastic mechanism or likelihood argument shows that it samples the Gibbs distribution. Moreover, only discrete knots are equilibrium-labelled, while linear interpolation between them is generally not an admissible Ising state (pp. 4, 6–7). Thus temperature annotation alone does not establish interpretable vector-field dynamics.",
+          "Physical and methodological validity is questionable: equilibration is declared when a configuration's energy is within 5% of the exact mean, which does not establish equilibrium, and the imposed magnetization-sign constraint biases the zero-field Gibbs distribution and conflicts with the stated spin-flip symmetry (pp. 4–6). Architectures, dataset sizes/splits, binarization, loss weights, sample counts, and uncertainty estimation are also absent.",
+          "The evidence overstates fidelity and speed. Specific heat and susceptibility differ by orders of magnitude in the plots (pp. 9, 15); Table 1 calls signed, unit-bearing differences “Mean Absolute Error (%)” (p. 8). Runtime comparisons exclude training/amortization and compare against only 10–15 local MC steps rather than a competitive Wolff sampler, while the claimed vector-field contribution lacks decoder-only, identity-field, or shuffled-field ablations (pp. 7–9)."
+        ],
+        "score_rationale": "The temperature-conditioned trajectory idea is understandable, but the claimed interpretability is largely semantic relabelling, and key claims about equilibrium sampling, physical fidelity, and scaling are unsupported or contradicted by the presented methodology and results. The missing distributional validation, biased data construction, weak ablations, and unfair baselines are substantial soundness issues, warranting rejection despite a potentially useful motivating direction."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes encoding Ising configurations into a continuous space, predicting transitions between adjacent temperatures, and projecting them back to discrete states. Although the temperature-indexed trajectory is intuitively interpretable, the manuscript does not establish that intermediate states follow the claimed equilibrium distributions or that the learned vector field—rather than the decoder—provides the reported fidelity.",
+        "strengths": [
+          "The temperature-conditioned construction gives every discrete generation stage a clear thermodynamic label and is easy to understand (pp. 6–7).",
+          "Experiments cover three lattice sizes and report several standard thermodynamic observables, qualitative samples, and runtime (pp. 8–9, 13–15).",
+          "The modular comparison includes learned and Monte Carlo-based projectors plus an autoregressive MC baseline (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The central claim is unsupported: assigning a temperature to a step does not guarantee an equilibrium state. The vector field regresses an average transition, while the projector is explicitly responsible for restoring physical plausibility; no distributional test, detailed-balance argument, or decisive ablation isolates the vector field from the learned decoder (pp. 6–9).",
+          "The empirical protocol is insufficient and potentially biased. Equilibration uses only agreement of energy with the exact value within 5%, and a magnetization-sign constraint alters the zero-field Gibbs distribution; sample counts, uncertainty methodology, architecture, and training details are largely absent (pp. 5–7, 10).",
+          "Several results and comparisons are unclear or physically concerning: specific heat per site reaches thousands despite the stated normalization, Table 1 calls signed differences “Mean Absolute Error (%)”, and speed is compared against fully equilibrated ground-truth simulation or deliberately under-mixed 10–15-step chains rather than strong cluster samplers (pp. 6, 8–9, 13)."
+        ],
+        "score_rationale": "The idea is intuitive but offers limited technical novelty beyond supervised temperature-conditioned latent prediction, and its equilibrium/interpretability claims are not demonstrated. Serious concerns about biased data construction, observable scaling, incomplete experimental specification, and unfair baselines undermine soundness and evidence, warranting rejection despite promising framing."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes encoding Ising configurations into a continuous space, learning temperature-indexed transitions, and projecting each prediction back to a discrete configuration. The thermodynamic interpretation is intuitive, but the method does not establish that intermediate or final samples follow the claimed equilibrium distributions, and the experimental design cannot support the stated fidelity, scaling, or interpretability conclusions.",
+        "strengths": [
+          "The temperature-indexed Ising construction gives each prescribed checkpoint an intuitive physical label and is presented through a modular encoder–transition–projector pipeline (pp. 2, 6–7).",
+          "Experiments cover three lattice sizes and report several standard thermodynamic observables rather than relying only on visual samples (pp. 8–9, 13–15).",
+          "The paper includes comparisons of learned and Monte Carlo projection variants and reports trajectory runtimes (p. 8)."
+        ],
+        "weaknesses": [
+          "The central guarantee is missing: a temperature label and projection do not ensure equilibrium sampling. The learned vector is regressed to an average of transitions, while the KDE objective as written is merely squared error to that average; this removes conditional stochasticity. The learned projector is constrained only by reconstruction and a scalar energy difference, which cannot identify the Gibbs distribution (pp. 6–7).",
+          "Dataset and evaluation validity are questionable. Equilibration is declared when a configuration's energy is within 5% of an exact ensemble-average energy, and a magnetization-sign constraint explicitly modifies sampling (p. 5). Evaluation reports signed quantities despite calling them mean absolute errors, with unclear normalization and very large deviations in fluctuation observables (pp. 8–9). No distributional goodness-of-fit, independence, autocorrelation, or effective-sample analysis is provided.",
+          "The speed/scaling comparison is not controlled: the learned model is compared mainly with only 10–15 Monte Carlo refinement steps, which the paper itself acknowledges are insufficient, while the unspecified ground-truth procedure has much larger runtimes (pp. 7–9). Architecture, latent dimensionality, dataset size, training cost, and key hyperparameters are absent from the manuscript (p. 10), and no ablation isolates whether the vector field contributes beyond the learned decoder."
+        ],
+        "score_rationale": "The physically indexed trajectory is a potentially useful framing, but novelty is modest and interpretability is asserted rather than measured. More importantly, the deterministic mean-transition formulation, weak projection constraint, biased/unclear data generation, and unfair baselines leave both equilibrium fidelity and acceleration unsubstantiated. These are central technical and evidential deficiencies, so the paper is a reject despite an interesting motivating idea."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes assigning thermodynamic meaning to discrete latent transitions by training an encoder, temperature-conditioned vector field, and projector on 2D Ising cooling trajectories. The motivating idea is intuitive, but the formulation does not establish that intermediate outputs are equilibrium samples or that the learned process is genuinely flow matching, and the empirical evaluation is insufficient to support the central fidelity and efficiency claims.",
+        "strengths": [
+          "The Ising cooling schedule provides an intuitive testbed in which intermediate states have a clear temperature label (pp. 1–2).",
+          "Evaluation spans three lattice sizes and reports several thermodynamic observables rather than reconstruction error alone (pp. 8–9).",
+          "The modular comparison of learned and short-Metropolis projectors is potentially useful, and the learned decoder shows favorable energy and magnetization errors in Table 1 (p. 8)."
+        ],
+        "weaknesses": [
+          "The method is essentially deterministic one-step regression to an averaged Monte Carlo displacement: the stated KDE loss reduces to squared error against the conditional mean, with no modeled transition distribution or continuous-time flow objective. Moreover, neither energy matching nor a few MC steps guarantees that projected states follow the Gibbs equilibrium distribution (pp. 6–7). Thus labeling steps by temperature does not establish the claimed physical interpretability or equilibrium traversal.",
+          "The evidence does not validate distributional fidelity. It relies on a few observables and qualitative samples; specific heat is substantially misestimated, susceptibility errors have very large variance, and the paper provides no autocorrelation, effective sample size, mode coverage, two-point correlations, held-out likelihood/divergence, or uncertainty analysis (pp. 8–9, 13–15). The magnetization-sign constraint also explicitly biases the finite zero-field Gibbs distribution without adequate justification (p. 5).",
+          "The efficiency comparison is unfair and under-specified: inference from a model trained on equilibrated Wolff trajectories is compared against deliberately truncated 10–15-step local Metropolis chains, while training and dataset-generation costs and the competitive Wolff baseline are excluded (pp. 5–8). Architectures, dataset sizes, splits, optimization details, KDE bandwidth, and loss weighting are absent from the manuscript, despite the reproducibility claim deferring them to a repository (p. 10)."
+        ],
+        "score_rationale": "The temperature-indexed latent trajectory is a plausible presentation device, but the central claims exceed what is technically established. Missing equilibrium guarantees, loss of conditional stochasticity, weak distributional tests, and an inequitable speed baseline are major flaws rather than minor omissions. Implementation uncertainty remains because essential details are absent, but the manuscript as supplied supports a reject score."
+      }
+    }
+  ]
+}

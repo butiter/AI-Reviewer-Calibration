@@ -1,0 +1,276 @@
+{
+  "year": 2026,
+  "package_id": "paper_005",
+  "paper_id": "PLN5Ku7kxa",
+  "number": 1962,
+  "title": "DIVER-1 : Deep Integration of Vast Electrophysiological Recordings at Scale",
+  "authors": [
+    "Danny Dongyeop Han",
+    "Yonghyeon Gwon",
+    "Ahhyun Lucy Lee",
+    "Taeyang Lee",
+    "Seong Jin Lee",
+    "Jubin Choi",
+    "Sebin Lee",
+    "Jihyun Bang",
+    "Seungju Lee",
+    "David Keetae Park",
+    "Shinjae Yoo",
+    "Chun Kee Chung",
+    "Jiook Cha"
+  ],
+  "primary_area": "applications to neuroscience & cognitive science",
+  "keywords": [
+    "neuroscience",
+    "EEG",
+    "Foundation Model",
+    "self-supervised learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=PLN5Ku7kxa",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    6,
+    2,
+    4,
+    4
+  ],
+  "human_mean_rating": 3.6,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "4Mp6z4SZHG",
+      "forum": "PLN5Ku7kxa",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1962/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762247397337,
+      "tmdate": 1762915976916,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "DKC7QPNcGP",
+      "forum": "PLN5Ku7kxa",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1962/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761558000754,
+      "tmdate": 1762915977532,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "EhLB4pTJxO",
+      "forum": "PLN5Ku7kxa",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1962/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762105182950,
+      "tmdate": 1762915977226,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "JyTUwOoEHc",
+      "forum": "PLN5Ku7kxa",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1962/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762484246742,
+      "tmdate": 1762915976458,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "ahSK90XMqC",
+      "forum": "PLN5Ku7kxa",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1962/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761656439558,
+      "tmdate": 1762915977412,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DIVER-1 is an ambitious EEG/iEEG foundation-model effort combining a very large corpus, models up to 1.82B parameters, electrophysiology-oriented architecture changes, and extensive downstream evaluation. The scale and empirical breadth are valuable, but the central claim of precise, broadly applicable data-constrained scaling laws is substantially stronger than the presented evidence, and several headline benchmark comparisons have important protocol caveats.",
+        "strengths": [
+          "The work assembles an unusually large and diverse electrophysiology corpus and evaluates a broad range of model sizes, epochs, modalities, and downstream tasks (pp. 16–18, 23–33).",
+          "The architecture is thoughtfully adapted to heterogeneous electrode layouts through permutation-equivariant attention/STCPE and multi-domain reconstruction, with same-data and component ablations that provide some support beyond scale alone (pp. 3–6, 36–39).",
+          "Downstream results are extensive and generally competitive, including controlled comparisons with CBraMod under identical fine-tuning configurations and reporting across multiple seeds or folds (pp. 34–35, 41–43)."
+        ],
+        "weaknesses": [
+          "The claimed “precise” scaling-law validation is not convincing across modalities: iEEG fits are based on only about 20–31 sparse, noisy configurations without held-out predictive validation or fit uncertainty, while the EEG fit has R²=0.50/0.60, an implausible exponent and irreducible loss, unstable runs, and a confounded learning-rate schedule that the authors themselves acknowledge (pp. 21–30). This weakens the compute-optimal-frontier and broad resource-allocation claims.",
+          "Headline SOTA evidence is uneven. On Neuroprobe, the overall gain over the linear STFT baseline is only 0.002 and within reported uncertainty, with DIVER losing several visual tasks (pp. 34–35). MAYO modifies the benchmark by concatenating samples and swapping train/test sets, while baseline context and tuning differ substantially (pp. 17, 21, 34), making the very large reported advantage difficult to interpret.",
+          "Architectural novelty is largely a synthesis of existing MOIRAI any-variate attention, RoPE, register tokens, and spectral reconstruction; the novel parts receive limited support. Several iEEG ablations improve when components are removed, and EEG ablations use only 10% of data for two epochs, with no statistical testing (pp. 36–38). There are also unexplained numerical inconsistencies in fitted parameters and their discussion (pp. 24–28)."
+        ],
+        "score_rationale": "The dataset/model scale and breadth make this potentially impactful, but the main scientific contribution—reliable data-constrained scaling guidance—is overclaimed relative to sparse, unstable, and partly confounded evidence. Benchmark protocol issues further prevent the downstream results from fully compensating. I therefore place it marginally below the acceptance threshold, with some uncertainty because independent reproduction could materially strengthen or weaken the conclusions."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DIVER-1 is an ambitious EEG/iEEG foundation-model effort combining an unusually large corpus, models up to 1.82B parameters, a data-constrained scaling analysis, and several Ephys-specific architectural adaptations. The scale and breadth are valuable, but the central claim that Ephys models “precisely” follow data-constrained scaling laws is not adequately supported, and several downstream protocols limit the strength of the SOTA conclusions.",
+        "strengths": [
+          "The pretraining resource is unusually large and diverse: 5,310 iEEG hours and 56,769 EEG hours spanning 17,718 subjects, with systematic model scaling from roughly 13M to 1.83B parameters (pp. 16–17).",
+          "The paper provides extensive experiments, including compute/data/model/epoch sweeps, same-data architecture comparisons, component ablations, and controlled finetuning comparisons (pp. 23–25, 37–43).",
+          "STCPE offers a potentially useful channel-permutation-equivariant positional mechanism, while variable-channel attention and multi-domain reconstruction form a practically compelling architecture (pp. 4–6)."
+        ],
+        "weaknesses": [
+          "The main scaling conclusion is overstated. The iEEG log-space fits are only R²=0.82/0.77, while the EEG fit is R²=0.60 with an implausible exponent and irreducible loss; the authors themselves attribute this to instability and checkpoint/schedule artifacts (pp. 24, 28). The empirical IsoLoss surface is based on only about 20–31 sparse configurations and interpolation, so the claimed compute-optimal frontier is uncertain (pp. 24–25).",
+          "Scaling experiments are confounded by optimization design: EEG losses are intermediate checkpoints from fixed 32-epoch runs, whereas iEEG models are separately trained for each horizon, yielding different cosine schedules; some large models show severe loss spikes or divergence (pp. 21–23, 28–30). Thus model-size-versus-epoch comparisons do not cleanly isolate scaling behavior.",
+          "Downstream evidence has important limitations. Neuroprobe uses only six subjects and the easier within-session setting, with the overall gain over a linear STFT baseline being very small (0.676 vs. 0.660 AUROC); multi-label comparisons lack learned baselines (pp. 34–35, 44). MAYO is modified by concatenating samples and swapping its train/test sets, making the very large gain difficult to interpret (pp. 17, 21), while EEG SOTA comparisons remain sensitive to unreproduced and model-dependent finetuning procedures (pp. 41–43)."
+        ],
+        "score_rationale": "The work has substantial engineering value, impressive scale, and promising performance, but its headline scientific contribution—the precise, broadly applicable data-constrained scaling law and compute-optimal prescription—is weakened by mediocre/unstable fits and optimization confounds. Together with limited or nonstandard downstream evaluations and mostly compositional architectural novelty, this places it marginally below acceptance despite a strong empirical effort."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DIVER-1 is an ambitious EEG/iEEG foundation-model study combining a very large electrophysiology corpus, models up to 1.82B parameters, and a data-constrained scaling analysis. The engineering and empirical scope are substantial, but the paper’s strongest claims about precise, general scaling laws and state-of-the-art transfer are not fully supported by the reported evidence.",
+        "strengths": [
+          "The pretraining effort is unusually broad in data, modality, and model scale, covering 59,613 recording hours and 1.66M channel-hours across 17,718 subjects (pp. 16–17).",
+          "STCPE provides a sensible channel-permutation-equivariant treatment of heterogeneous montages, and the paper includes component, shared-data, and pretraining-data ablations (pp. 4–5, 37–40).",
+          "Evaluation spans diverse EEG and iEEG tasks, with strong gains on the three principal EEG benchmarks and especially large gains on the modified MAYO task (pp. 34–35)."
+        ],
+        "weaknesses": [
+          "The central claim of “precise” data-constrained scaling is overstated. The EEG fit is weak (linear R² 0.502, log R² 0.601), has an implausible exponent and irreducible loss, and is explicitly confounded by extracting checkpoints from a fixed 32-epoch learning-rate schedule (pp. 21, 28). Even the iEEG fits are moderate and the iso-loss surface is based on sparse interpolation (pp. 24–25).",
+          "The downstream evidence does not establish that billion-parameter scaling is useful: the headline iEEG results use a 13M model, its overall Neuroprobe gain over a linear STFT baseline is small (0.676 versus 0.660) with several individual tasks worse, and the EEG comparisons are highly sensitive to classifier and fine-tuning choices (pp. 34–35, 41–43).",
+          "Several evaluation choices weaken validity: MAYO is modified by concatenating examples and swapping the official train/test sets because the test set was larger (p. 17), while many architectural ingredients are adopted from prior work and ablation gains are small or inconsistent, leaving limited novelty beyond STCPE and scale (pp. 4–5, 36–38)."
+        ],
+        "score_rationale": "The scale, dataset construction, and permutation-aware architecture make this potentially impactful, but the main scientific conclusion relies on noisy and procedurally confounded scaling fits, while benchmark evidence is not consistently controlled and does not demonstrate benefits from the largest models. I therefore place it marginally below acceptance. Some uncertainty remains because the private corpus and released implementation cannot be assessed from the manuscript alone."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "A highly ambitious EEG/iEEG foundation-model study combining unusually large pretraining corpora, models up to 1.82B parameters, architectural adaptations, and extensive scaling experiments. The resource contribution is substantial, but the central claim of precise, broadly applicable data-constrained scaling laws and several state-of-the-art claims are not yet supported by sufficiently controlled evidence.",
+        "strengths": [
+          "The scale and breadth are impressive: up to 1.66M channel-hours, 17,718 subjects, and model sizes from roughly 13M to 1.83B parameters, with experiments spanning data, model size, epochs, and subject diversity (pp. 16–24).",
+          "The architecture is reasonably tailored to heterogeneous electrophysiology through permutation-equivariant attention/STCPE, variable channel handling, and multi-domain reconstruction (pp. 3–6).",
+          "The paper provides broad downstream evaluation, detailed training information, baseline-reproduction studies, and numerous ablations rather than reporting only a single headline result (pp. 34–43)."
+        ],
+        "weaknesses": [
+          "The claimed “precise” scaling law is overstated. The iEEG log-space fits reach only R²=0.77–0.82, while EEG reaches 0.60 with an implausible exponent and acknowledged instability; EEG checkpoints also share a 32-epoch learning-rate schedule, confounding epoch comparisons (pp. 21, 24, 28–30). Sparse empirical IsoLoss sampling and substantial extrapolation further weaken the proposed compute-optimal frontier (pp. 24–25).",
+          "Evaluation comparability is problematic: MAYO is modified by concatenating samples and swapping train/test sets, while baselines have context/configuration mismatches (pp. 17, 21). EEG headline comparisons mix reported and reproduced results under highly sensitive finetuning protocols (pp. 35, 41–43). Moreover, pretraining on TUEG while evaluating on TUEV without an explicit exclusion protocol creates a serious possible overlap risk (pp. 17, 45–46).",
+          "Most architectural ingredients are adaptations of existing mechanisms, and the ablations use small, briefly pretrained models with inconsistent or sometimes adverse component effects and no clear significance analysis (pp. 37–38). The strongest Neuroprobe model improves only marginally over the linear STFT baseline overall and loses on several visual tasks (pp. 34–35), so gains remain substantially entangled with data scale and evaluation choices."
+        ],
+        "score_rationale": "The unprecedented dataset/model scale and extensive experimentation make this potentially important, but central scaling conclusions are stronger than the noisy and confounded fits justify, and benchmark-overlap/comparability concerns materially undermine the empirical claims. I am moderately confident, with uncertainty about whether undocumented split controls eliminate the apparent TUEG–TUEV overlap risk."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DIVER-1 is an ambitious electrophysiology foundation-model effort combining a very large EEG/iEEG corpus, models up to 1.83B parameters, domain-adapted architecture, and extensive downstream evaluation. The scale and empirical scope are valuable, but the central claim of precise, broadly applicable data-constrained scaling laws is not convincingly established, and several benchmark comparisons and ablations are insufficiently controlled.",
+        "strengths": [
+          "The pretraining corpus is unusually large and diverse—up to 1.66M channel-hours from 17,718 subjects—and the study explores a broad range of model sizes and training durations (pp. 16–18, 23–24).",
+          "The paper evaluates both EEG and iEEG across multiple tasks and reports detailed numerical results, including seeds/error bars, linear probing, full fine-tuning, data/model/epoch scaling, and some controlled baseline experiments (pp. 31–43).",
+          "The architecture sensibly combines permutation-aware spatiotemporal attention, conditional positional encoding, and multi-domain reconstruction for heterogeneous electrode configurations (pp. 3–6)."
+        ],
+        "weaknesses": [
+          "The headline scaling-law conclusion is overstated. The EEG fit is poor and unstable (log R²=0.6012, implausible α and irreducible loss), uses only 10–20% of data, and extracts intermediate checkpoints from a mismatched 32-epoch learning-rate schedule; the authors themselves acknowledge these distortions (pp. 21, 28–30). The iEEG law is fit on only about 30 configurations without held-out extrapolation, so agreement between fitted and empirical contours is not an independent validation (pp. 23–25).",
+          "Downstream evidence has important comparability limitations: Neuroprobe uses only the within-session LITE setting with six subjects (p. 44); MAYO is modified by concatenating samples and swapping official train/test sets, while Brant is evaluated under a context mismatch (pp. 17, 21); EEG SOTA tables mix values from original papers with the authors' protocol, and controlled comparisons later show metric-dependent mixed outcomes (pp. 35, 41–43).",
+          "The claimed architectural novelty and causal attribution are limited. Any-variate attention and MOIRAI blocks are borrowed, register tokens adapt prior work, no register-token ablation is shown, many iEEG component ablations are within uncertainty or improve when removed, and the shared-data architectural comparison covers only two tasks without compute matching (pp. 36–39)."
+        ],
+        "score_rationale": "The dataset construction and experimental scale are substantial and potentially impactful, but the main scientific claim rests on noisy in-sample scaling fits and inconsistent training procedures, while evaluation protocol issues weaken the SOTA claims. These concerns place the work marginally below acceptance despite its strong engineering contribution."
+      }
+    }
+  ]
+}

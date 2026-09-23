@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_015",
+  "paper_id": "rvxWEbTtRY",
+  "number": 989,
+  "title": "Training-Free Dataset Pruning for Instance Segmentation",
+  "authors": "Yalun Dai; Lingao Xiao; Ivor Tsang; Yang He",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "dataset pruning; instance segmentation",
+  "forum_url": "https://openreview.net/forum?id=rvxWEbTtRY",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    6
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a novel Training-Free Dataset Pruning (TFDP) method designed for instance segmentation tasks. Unlike existing dataset pruning techniques that focus on image classification and require time-consuming model training, TFDP leverages shape and class information from image annotations to prune datasets without any model training. The authors introduce a Shape Complexity Score (SCS), which is further refined into Scale-Invariant (SI-SCS) and Class-Balanced (CB-SCS) versions to address the challenges of instance area variations and class imbalances. This approach is intuitive and appears effective, with promising results."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- This approach is intuitive and appears effective\n- This is the first work to address dataset pruning for instance segmentation.\n- By eliminating the need for model training, TFDP aligns well with the goal of dataset pruning, which is to reduce resource consumption. And significantly accelerates the pruning process.\n- The paper is well-structured, with clear and concise explanations supported by intuitive figures."
+        },
+        "weaknesses": {
+          "value": "- Given that instance segmentation tasks are often data-scarce due to the high cost of annotations, the immediate practical utility of dataset pruning in this domain may be limited.\n- As prior work on instance segmentation pruning is lacking, the authors’ adaptation of classification-oriented methods may make baseline comparisons less compelling."
+        },
+        "questions": {
+          "value": "Some thoughts and explorations:\n1. Impact of Annotation Quality: The masks in the tested datasets are manually annotated, implying potential inaccuracies, especially for smaller objects. Since SI-SCS may assign lower scores to smaller objects due to annotation errors, it could lead to a bias towards pruning these objects. Given that the mean average precision (mAP) metric is averaged over instances, pruning smaller objects could disproportionately affect the overall mAP score.\n2. Balancing Scale Diversity: While SI-SCS aims to make the score scale-invariant and CB-SCS balances class contributions, it would be interesting to explore whether incorporating additional mechanisms to balance the pruning of objects across different scales could further improve performance, particularly in scenarios where small objects are critical for overall accuracy."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "3dQvdEvZu4",
+      "forum": "rvxWEbTtRY",
+      "replyto": "rvxWEbTtRY",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission989/Reviewer_SyrL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission989/Reviewer_SyrL"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission989/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730664939825,
+      "cdate": 1730664939825,
+      "tmdate": 1732508466726,
+      "mdate": 1732508466726,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a training-free dataset pruning method specifically for instance segmentation for the first time. The method leverages object shape information to propose two scores, SI-SCS and CB-SCS, which are then used to select the most challenging samples from the dataset. The method outperforms training-based approaches across different network architectures and datasets."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The writing in the paper is clear and easy to understand.\nThe paper provides thorough experiments across multiple datasets and network architectures."
+        },
+        "weaknesses": {
+          "value": "1. It is too simple to set the random sample selection strategy as the training-free baseline. Other intuitive selection methods should be compared as baselines to understand better why the proposed method is effective. For example, select images with the most objects or those containing rare categories.\n\n2. The minimum training unit for instance segmentation is the object, not the image. In the proposed dataset pruning task for instance segmentation, is it appropriate to define the pruning ratio based on the number of images? It is suggested that the authors report\nboth image-level and instance-level pruning ratios for each experiment, and discuss how this affects the interpretation of the results.\n\n3. Does the method show performance improvement over the baseline for all categories? It is suggested that the authors provide a category-wise performance breakdown, highlighting any categories where the proposed method underperforms the baselines, and analyzing potential reasons for these discrepancies.\n\n4. In addition to the random strategy, results at high pruning rates should also include other training-based adaptation methods."
+        },
+        "questions": {
+          "value": "The main concern is the rationality of the proposed task definition. As shown in Figure 6, the selected images predominantly contain a high number of objects, which implies that the actual object pruning rate could be smaller than the corresponding image pruning rate. The comparison between averaging image scores and summation image scores in the paper also supports this point. From this perspective, the comparison of the proposed method with other baseline methods may be unfair. The authors are suggested to:\n1. Provide a detailed analysis of how the image-level pruning translates to instance-level pruning.\n2. Discuss the implications of this discrepancy on the results and comparisons.\n3. Conduct additional experiments by controlling the total number of object instances rather than images when comparing methods. This would help address the potential bias towards selecting images with many objects and provide a more equitable comparison."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "U7LwfUpTD3",
+      "forum": "rvxWEbTtRY",
+      "replyto": "rvxWEbTtRY",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission989/Reviewer_TLfw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission989/Reviewer_TLfw"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission989/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730634871838,
+      "cdate": 1730634871838,
+      "tmdate": 1732422342315,
+      "mdate": 1732422342315,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The cropping method for classification tasks is ineffective in instance segmentation applications. The paper proposes a Training-Free Dataset Pruning (TFDP) method, which utilizes the shape and class information in image annotations to design a Shape Complexity Score (SCS) to address issues of instance region variation and class imbalance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper proposes the Shape Complexity Score method around the simple P/A ratio concept. It introduces a relatively simple cropping method in the instance segmentation task. On the other hand, it significantly shortens the time for sample sorting in the cropping method. In addition, this method is more prominent in solving the instance segmentation task compared to previous methods. As mentioned above, the proposed method in this work has certain innovation, the paper framework is logically clear, and the integrity of the paper is relatively high."
+        },
+        "weaknesses": {
+          "value": "1.It is suggested that the author add literature on different pruning methods in the instance segmentation task in the Introduction section or the Dataset Pruning section of the related work, or provide a relevant summary analysis.\n\n2.It is suggested that detailed explanations be provided for formulas (5) to (12) in the paper, such as what does T represent in formula (5)?\n\n3.The discussion and derivation of SI-SCS content in Section 3.3.2 of the text are not detailed enough, and it is recommended to add supplementary explanations.\n\n4.The experimental part of the paper is not sufficiently comprehensive. 1) Important details regarding the training and inference stages are not provided in the experimental setup; 2) No detailed explanation is given for the poorer results in Table 4 after using SI. In addition, the authors have not provided a detailed analysis of the experimental results for all figures and tables in the experimental section.\n\n5.The visualization results presented in Figures 6 and 9 can be intuitively observed to show that for some complex scenarios, when dealing with targets of more intricate shapes, or when addressing the local areas of the targets, the performance may be somewhat underwhelming."
+        },
+        "questions": {
+          "value": "1. Combining theoretical and experimental results, we have considerable doubts about the use of P/A ratio and other metrics as Shape Complexity Scores in the instance-level score calculation in the paper. \n\n2. In SCS, the CB-SCS actually balances the number of instance objects in each diagram, but for datasets like COCO, the number of instances in some categories is very small. Does this potentially cause bias in the data distribution? Additionally, is the consumption of computing resources relatively high?\n\n3. For the ablation experiments of SI and CB in SCS, it can be seen from Table 4 that the experimental results obtained by increasing SI or CB alone are not satisfactory. However, the authors did not provide relevant analysis in the paper. Why does increasing the module individually affect the performance of the original model? Why does the combination of the two result in better outcomes?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "UG1eagcVY0",
+      "forum": "rvxWEbTtRY",
+      "replyto": "rvxWEbTtRY",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission989/Reviewer_p9Ls"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission989/Reviewer_p9Ls"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission989/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730097452889,
+      "cdate": 1730097452889,
+      "tmdate": 1732454781671,
+      "mdate": 1732454781671,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple training-free pruning heuristic for instance segmentation: rank images using scale-normalized mask compactness and class-balanced aggregation. It is practically appealing and reports broad gains on three datasets, but the novelty is modest and experimental inconsistencies and missing statistical validation weaken the evidence.",
+        "strengths": [
+          "Addresses a useful, understudied setting and avoids the model-training cost required by the adapted pruning baselines (pp. 4–7).",
+          "Reports generally favorable results across COCO, VOC, and Cityscapes, including different architectures/backbones and high pruning rates (pp. 8–10, 20–22).",
+          "The scale and class-normalization components are intuitive, inexpensive, and supported by ablations (pp. 6–7, 9)."
+        ],
+        "weaknesses": [
+          "The core score is essentially normalized perimeter/area compactness, a straightforward heuristic with limited theoretical justification; it ignores holes/secondary contours and may rank annotation artifacts or boundary noise as valuable (pp. 5–7).",
+          "The evaluation lacks seeds, uncertainty estimates, and stronger annotation-only/diversity-aware baselines. Class balancing gives every class equal total score but provides no explicit subset coverage or redundancy control (pp. 7–9).",
+          "Several reporting issues undermine confidence: Table 7 numerically shows summation outperforming averaging despite the opposite textual conclusion (p. 20); some ablation/random values differ across tables without explanation (pp. 8–9); and the statement that COCO ablations are conducted on val2017 leaves the train/evaluation protocol ambiguous (p. 19)."
+        ],
+        "score_rationale": "The method is efficient and empirically promising, but its incremental heuristic novelty and insufficiently rigorous, partly inconsistent evidence place it marginally below the ICLR acceptance threshold. Some uncertainty remains because the discrepancies could be presentation errors rather than flaws in the underlying experiments."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free heuristic for instance-segmentation dataset pruning based on scale-normalized mask perimeter and class-wise score normalization. The approach is simple and efficient, with broad experiments showing generally favorable results, but its conceptual novelty is modest and important experimental inconsistencies prevent the evidence from clearly supporting acceptance.",
+        "strengths": [
+          "Addresses a useful, comparatively understudied setting and gives a clear, reproducible scoring pipeline requiring no model training (pp. 4–7, 16).",
+          "Evaluates three datasets, several pruning rates, CNN/Transformer architectures, and stronger backbones; the reported gains over random selection are often substantial (pp. 8–10, 20–22).",
+          "The method has a genuine computational advantage: reported ranking time is 50.4 seconds on COCO versus 12–21 hours for model-based adaptations under the stated setup (p. 10)."
+        ],
+        "weaknesses": [
+          "The key score is essentially the classical scale-normalized perimeter-to-area ratio, with limited justification that annotation-boundary complexity predicts training value. It uses only the largest contour, can ignore disconnected components or holes, and may be sensitive to polygon resolution and annotation noise (pp. 5–7).",
+          "Experimental reliability is unclear: no repeated-training variance or significance is reported, and several numbers differ across tables. Most seriously, Table 7 states averaging is better while every displayed AP value is higher for summation, directly questioning the baseline aggregation used in the main comparisons (pp. 8–9, 20).",
+          "The comparison set consists mainly of author-designed adaptations of classification methods, with no stronger segmentation-specific diversity/coverage or annotation-only baselines. Class normalization assigns each class equal total score but does not guarantee subset coverage, while the method also presupposes complete pixel-level annotations (pp. 4–7)."
+        ],
+        "score_rationale": "The practical efficiency and breadth of reported experiments are promising, but the method is a relatively simple heuristic and the contradictory aggregation ablation on p. 20 materially weakens confidence in the main baseline comparisons. Without variance estimates and stronger annotation-only baselines, the empirical advantage is not yet sufficiently secure for acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free instance-segmentation pruning heuristic based on mask compactness, scale normalization, and inverse class-frequency normalization. It is computationally attractive and evaluated broadly, but the conceptual novelty is modest and inconsistencies plus limited statistical reporting weaken the empirical case.",
+        "strengths": [
+          "The method is simple, model-independent, and extremely inexpensive: COCO ranking takes 50.4 seconds versus roughly 12–21 hours for the adapted model-based baselines (pp. 8, 10).",
+          "Experiments span VOC, Cityscapes, and COCO, multiple pruning rates, CNN/Transformer architectures, stronger backbones, and two pretraining regimes (pp. 8–10, 20–23).",
+          "The scale-invariant derivation is intuitive, and the component ablation generally supports combining scale and class balancing (pp. 6–7, 9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the core score is normalized perimeter-to-area compactness followed by dataset-level inverse-class normalization, without theoretical justification that this ranking preserves training utility or diversity (pp. 5–7).",
+          "The empirical protocol lacks multiple training seeds, uncertainty intervals, and significance tests; several COCO gains are small enough that run variance could alter conclusions, while the principal competitors are author-designed adaptations rather than established instance-segmentation pruning methods (pp. 7–9, 20–22).",
+          "There are consequential reporting inconsistencies: Table 7 states averaging is superior although every displayed “Sum” result exceeds “Avg,” and some random baselines differ between Tables 1 and 4 (pp. 8–9, 20). Reproducibility is also limited by relying on unspecified MMDetection defaults (p. 19)."
+        ],
+        "score_rationale": "The speed advantage and breadth of evaluation make the work promising, but the heuristic contribution is incremental and the absence of variance estimates, questionable baseline adaptation, and contradictory reported results prevent a reliable above-threshold assessment. I am uncertain whether corrected tables and repeated-run statistics would resolve these concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free ranking heuristic for instance-segmentation datasets using normalized mask compactness and class-wise score normalization. The approach is efficient and evaluated broadly, but its novelty is modest and several inconsistencies and missing uncertainty analyses weaken the empirical conclusions.",
+        "strengths": [
+          "The method is simple, model-independent, and extremely inexpensive compared with model-based adapted baselines; the reported COCO ranking time is 50.4 seconds versus 12–21 hours (pp. 8, 10).",
+          "Evaluation spans VOC, Cityscapes, and COCO, multiple pruning rates, CNN/Transformer architectures, and stronger backbones, with generally favorable results (pp. 8–9, 20–23).",
+          "Ablations separately examine scale and class normalization, and the size-specific results generally support the scale-normalization motivation (pp. 9, 22)."
+        ],
+        "weaknesses": [
+          "The technical novelty is limited: SI-SCS is essentially a standard dimensionless perimeter/area compactness measure, followed by global per-class normalization. There is no theory explaining why ranking only the highest-complexity images should produce a representative coreset, and no diversity/coverage mechanism (pp. 5–7).",
+          "The evidence lacks repeated training runs, variances, or significance tests, although many gains are only 0.3–1 AP. Baseline adaptation and training details are also insufficient to establish that the comparisons are robust or optimally tuned (pp. 8, 19–23).",
+          "There are concerning numerical/reporting inconsistencies: Table 7 says averaging is superior while every displayed “Sum” result exceeds “Avg”; random COCO/Cityscapes values differ between Tables 1/2 and Table 4; and Table 12 has scale AP values inconsistent in magnitude with the main COCO results without explaining the metric (pp. 8–9, 20, 22)."
+        ],
+        "score_rationale": "The practical speed advantage and broad empirical coverage are valuable, and the central heuristic appears useful. However, the contribution is largely an application of classical shape compactness and class reweighting, while absent uncertainty estimates and contradictory tables make the claimed superiority difficult to trust fully. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes TFDP, a training-free image-ranking heuristic for instance-segmentation datasets based on mask compactness, scale normalization, and class-wise normalization. Results across VOC, Cityscapes, and COCO are promising and computationally attractive, but the conceptual novelty is modest and important experimental inconsistencies and missing uncertainty estimates weaken the evidence.",
+        "strengths": [
+          "The method is simple, model-independent, and extremely inexpensive; the reported COCO ranking time is 50.4 seconds versus 12–21 hours for model-based adaptations (pp. 8, 10).",
+          "Evaluation covers three datasets, multiple pruning rates, CNN/Transformer architectures, stronger backbones, and object scales; TFDP generally improves over random and adapted baselines (pp. 8–10, 20–22).",
+          "Ablations indicate that scale and class normalization are complementary, with the combined method performing best across all three datasets (p. 9)."
+        ],
+        "weaknesses": [
+          "The main score is essentially a normalized perimeter-to-area compactness measure rather than a substantially new learning principle. Its claimed scale invariance is proved only for continuous exact scaling, while rasterized contours are resolution-sensitive; selecting only the largest contour also ignores holes or disconnected mask components (pp. 6–7).",
+          "The empirical reporting contains a serious contradiction: Appendix D.1 states that averaging significantly outperforms summation, but every displayed number in Table 7 is higher for summation (p. 20). Other table labels are also inconsistent, reducing confidence in the results.",
+          "No repeated-training variance, statistical tests, or seed information are reported, despite small performance gaps in several settings. Training is described largely through unspecified MMDetection defaults, and the statement that COCO ablations use val2017 is ambiguous about whether validation data were used for training (pp. 19, 21–22)."
+        ],
+        "score_rationale": "The efficient, annotation-only approach is practically useful and supported by broad experiments. However, it is a relatively simple compactness heuristic with limited theoretical justification, and the direct Table 7/text contradiction plus absent uncertainty reporting prevent the evidence from clearly supporting acceptance. I am moderately confident, though some implementation details may exist in the released code unavailable under this review protocol."
+      }
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "year": 2026,
+  "package_id": "paper_095",
+  "paper_id": "dFmG4cOC22",
+  "number": 24158,
+  "title": "RoboAlign: Reinforcement Learning for Action-Aligned Multimodal Large Language Models",
+  "authors": [
+    "Dongyoung Kim",
+    "Sumin Park",
+    "Woomin Song",
+    "Seungku Kim",
+    "Taeyoung Kim",
+    "Huiwon Jang",
+    "Jaehyung Kim",
+    "Younggyo Seo",
+    "Jinwoo Shin"
+  ],
+  "primary_area": "applications to robotics, autonomy, planning",
+  "keywords": [
+    "MLLM",
+    "VLA",
+    "RL",
+    "Alignment",
+    "Embodied Reasoning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=dFmG4cOC22",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    2,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "MfdQtY4qNV",
+      "forum": "dFmG4cOC22",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24158/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762023028271,
+      "tmdate": 1762942961528,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "USqOcS98fW",
+      "forum": "dFmG4cOC22",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24158/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761968280022,
+      "tmdate": 1762942962019,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "cJtBkx0nss",
+      "forum": "dFmG4cOC22",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24158/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761720732076,
+      "tmdate": 1762942962235,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "rFwMYRlUVD",
+      "forum": "dFmG4cOC22",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24158/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761982466772,
+      "tmdate": 1762942961729,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ROBOALIGN combines mixed-data SFT with GRPO on FAST action-token prefix accuracy, then uses the frozen MLLM representations to train diffusion action heads. The reported gains are broad and sometimes large, but the experiments do not adequately establish that reasoning, RL, or reduced forgetting—rather than direct action-token supervision and stochastic downstream training—causes those gains.",
+        "strengths": [
+          "The paper studies an important interface problem and proposes a sensible, moderately novel combination of FAST-token alignment and RL for preparing MLLM backbones for VLA training (pp. 4–6).",
+          "Results cover LIBERO, CALVIN, a second backbone, and real-robot tasks, with consistent improvements for the complete method, especially on goal and long-horizon settings (pp. 7–9).",
+          "The paper includes comparisons against language-action, trajectory, and SFT-based alignment, plus general MLLM evaluations and a representation probe (pp. 8–10, 17)."
+        ],
+        "weaknesses": [
+          "The principal results report no independent training seeds, error bars, or significance tests despite newly initialized diffusion heads; thus it is unclear how much of the improvement is robust to optimization variance. The real-robot description is also ambiguous about whether there are 96 total trials or 96 per task (pp. 7–8).",
+          "The causal claims are under-supported: the reward directly optimizes ground-truth action-token prefixes, while the free-form reasoning receives no semantic supervision. There is no ablation of reasoning generation versus action-token RL, and the example does not demonstrate that the changed rationale caused the corrected action (pp. 5–6, 18).",
+          "Several comparisons are not well controlled: the trajectory baseline uses only 6K samples, ECoT changes the data/objective as well as RL versus SFT, and the Robot-R1 evaluation is based on BridgeV2 while training also uses extensive BridgeV2-derived data, creating uncertainty about leakage and generalization claims (pp. 8–10, 16)."
+        ],
+        "score_rationale": "The action-alignment idea is useful and the reported cross-domain gains are promising, supporting borderline acceptance. However, missing variance estimates and insufficiently controlled ablations weaken the central claims that reasoning-incentivized RL specifically improves transferable representations and avoids forgetting. I therefore rate it marginally below acceptance pending stronger causal and statistical evidence."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "ROBOALIGN combines broad SFT with GRPO on FAST-token prefix accuracy to adapt MLLM representations for frozen-backbone VLA training. The controlled downstream gains are substantial across LIBERO, CALVIN, a small real-robot study, and a second backbone, but attribution to reasoning and the statistical reliability of the results remain insufficiently established.",
+        "strengths": [
+          "The frozen-backbone, newly initialized action-head protocol directly tests representation usefulness and yields large gains on LIBERO and CALVIN, including long-horizon tasks (pp. 7–8).",
+          "The evaluation is reasonably broad: two simulation benchmarks, four real-robot tasks, a second MLLM backbone, and general/spatial MLLM benchmarks (pp. 8–10).",
+          "Comparisons against language-level, trajectory-level, and SFT-based alignment support the value of low-level RL alignment within the proposed setup (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "No repeated training runs, confidence intervals, or significance tests are reported. Moreover, the nominally same ROBOALIGN-SFT baseline differs between Tables 2 and 6, while the real-robot study has only 24 trials per task and contradictory trial-count wording (pp. 7–9).",
+          "The claim that embodied reasoning causes improved action alignment is not isolated: the reward directly scores action-token prefixes, and there is no no-CoT/action-only RL ablation or intervention showing that generated thoughts matter (pp. 5–6, 17–18).",
+          "Reproducibility and comparison details are incomplete or inconsistent: the action-only baseline is described as using 1.88M BridgeV2 samples although the appendix states 400K action samples, the custom 500K-sample dataset is barely documented, and the exact-prefix reward is undefined when the first token mismatches (pp. 6, 16)."
+        ],
+        "score_rationale": "The method is a useful but incremental combination of FAST tokenization, multimodal SFT, and GRPO. Strong and broad downstream improvements place it slightly above the acceptance boundary, but missing variance estimates, data/configuration inconsistencies, and the absence of a causal reasoning ablation prevent a confident accept score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "ROBOALIGN post-trains an MLLM with SFT and GRPO to predict FAST low-level action tokens, then uses its frozen representations for diffusion-policy training. The transfer gains across LIBERO, CALVIN, a second backbone, and limited real-robot tasks are promising, but causal and statistical support is incomplete.",
+        "strengths": [
+          "The central idea—directly aligning MLLM representations with low-level action tokens before downstream VLA training—is practically meaningful and reasonably novel (pp. 4–6).",
+          "Results are broad and consistently favorable: LIBERO and CALVIN improve substantially, including long-horizon tasks, and gains transfer to Qwen3-VL (pp. 7–8).",
+          "The paper includes useful comparisons against language-action, trajectory, and SFT-based alignment, plus representation analysis and real-robot evaluation (pp. 8–9, 17)."
+        ],
+        "weaknesses": [
+          "No multi-seed results, confidence intervals, or significance tests are reported for training the MLLMs/action heads. This is especially problematic for the small real-robot study, whose trial description is internally confusing (24 trials per object versus “96 trials per task”; p. 8).",
+          "The experiments do not isolate why RL helps: GRPO changes both action-token supervision and generated reasoning, while no control uses the same low-level target and comparable optimization without explicit reasoning. Thus claims that reasoning becomes better coupled to actions remain under-supported (pp. 6, 9, 18).",
+          "The exact-prefix reward is brittle for multimodal control, gives no credit after the first mismatch, and is mathematically undefined when the matching-prefix set is empty; valid alternative trajectories are treated as wrong. Dataset/baseline accounting is also unclear, including conflicting BridgeV2 sample descriptions (pp. 6, 16)."
+        ],
+        "score_rationale": "The method offers a useful alignment strategy and unusually broad empirical gains, supporting a marginally positive score. However, absent variance estimates, ambiguous controls/data accounting, and a brittle reward prevent stronger confidence that the gains arise from the claimed reasoning–action alignment rather than optimization or representation-tuning effects."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ROBOALIGN first teaches an MLLM to emit FAST robot-action tokens and then applies GRPO with format and prefix-token-accuracy rewards before fitting frozen-backbone diffusion policies. The approach is practically interesting and reports substantial transfer gains on LIBERO, CALVIN, a second backbone, and real-robot tasks (pp. 7–9). However, the evidence does not yet establish that grounded reasoning or representation alignment—rather than additional action-token optimization—causes these gains.",
+        "strengths": [
+          "The direct use of low-level action tokens as an RL alignment target is a useful and reasonably novel alternative to language-only embodied post-training (pp. 4–6).",
+          "Evaluation covers two simulation benchmarks, four real-world tasks, and two MLLM backbones, with consistently improved downstream averages (pp. 7–9).",
+          "Ablations compare language, trajectory, low-level-action, and SFT-based alignment targets; the representation probe offers some mechanistic evidence (pp. 8–9, 17)."
+        ],
+        "weaknesses": [
+          "The central reasoning claim is weakly supported: the reward scores only output format and exact FAST-token prefix accuracy, never reasoning correctness or faithfulness, so free-form thoughts may be incidental (p. 6); the sole qualitative example is insufficient (pp. 17–18).",
+          "Results lack multiple seeds, uncertainty intervals, or significance tests despite newly initialized action heads, making large differences difficult to separate from training variance. There are also unexplained inconsistencies between the ROBOALIGN-SFT LIBERO results in Tables 2 and 6–7 (pp. 7, 9).",
+          "Comparison and evaluation fairness is unclear: training mixtures and sample counts differ across alignment baselines (pp. 6, 8, 16), Robot-R1 is BridgeV2-based while training uses substantial BridgeV2-derived data (pp. 9, 16), and the real-robot caption claims 96 trials per task whereas the text states 24 trials per object/96 total (p. 8)."
+        ],
+        "score_rationale": "The paper presents a promising alignment recipe with unusually broad and strong downstream results. Nonetheless, insufficient variance reporting, data-overlap/fairness concerns, and the absence of evidence that the generated chain-of-thought is causally meaningful leave the main scientific interpretation under-validated. I therefore place it marginally below the acceptance threshold, with some uncertainty because independent-run variability is not reported."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ROBOALIGN post-trains an MLLM using SFT followed by GRPO with a FAST-token prefix-accuracy reward, then freezes the resulting backbone and trains diffusion action heads. The reported gains are large across LIBERO, CALVIN, a small real-robot study, and a second backbone, but causal attribution and statistical reliability are not sufficiently established.",
+        "strengths": [
+          "The direct use of low-level action-token rewards for MLLM/VLA representation alignment is a relevant and reasonably novel formulation, with a clearly described two-stage pipeline (pp. 4–6).",
+          "Results are broad and consistently favorable across LIBERO, CALVIN, four real-robot tasks, and Qwen3-VL, including notable long-horizon gains (pp. 7–9).",
+          "The paper includes useful comparisons against language, trajectory, action-only, and ECoT-style alignment, plus general MLLM evaluations and a representation probe (pp. 7–10, 17)."
+        ],
+        "weaknesses": [
+          "No repeated runs, uncertainty estimates, or significance tests are reported despite newly initialized stochastic action heads; the real-robot evaluation has only 24 trials per object, and its table caption inconsistently says 96 trials per task (pp. 7–8). Thus the magnitude and robustness of gains are uncertain.",
+          "The evidence does not isolate the claimed mechanism: the reward checks only reasoning format and action-token prefix accuracy, not reasoning quality, so gains may reflect direct action-token optimization rather than improved embodied reasoning. The KNN probe uses only 20 trajectories from one task and lacks split details (pp. 6, 17–18).",
+          "Several comparisons are confounded or unclear: the SFT mixtures differ greatly, the ECoT comparison changes both data/target and objective, BridgeV2 is used in training while Robot-R1 Bench is BridgeV2-based, and nominally identical ROBOALIGN-SFT results differ between Tables 2 and 6 without explanation (pp. 6–9, 16)."
+        ],
+        "score_rationale": "The approach is promising and the cross-environment gains are substantial, supporting borderline acceptance. However, missing variance estimates, baseline/data confounds, overlap in one reasoning evaluation, and lack of evidence that the generated reasoning itself causes the improvement prevent the central claims from being fully convincing."
+      }
+    }
+  ]
+}

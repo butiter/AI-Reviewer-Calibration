@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_023",
+  "paper_id": "MeSfNZjGvN",
+  "number": 1804,
+  "title": "FedPeWS: Personalized Warmup via Subnetworks for Enhanced Heterogeneous Federated Learning",
+  "authors": "Nurbek Tastan; Samuel Horváth; Martin Takáč; Karthik Nandakumar",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "federated learning; heterogeneous federated learning; subnetworks; personalized warmup",
+  "forum_url": "https://openreview.net/forum?id=MeSfNZjGvN",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    3,
+    1,
+    3
+  ],
+  "human_mean_rating": 2.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes a personalized federated learning algorithm called FedPeWS. The paper proposes to split the learning rounds into two parts. The first $W$ rounds is called warmup phase where each client learns a personalized subnetwork of the model. The key parts of the proposed algorithm is to identify the subnetwork for each client and determining the warmup length."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper studies the problem of personalized federated learning from learning subnetworks point of view. The presentation of the paper is good."
+        },
+        "weaknesses": {
+          "value": "- The proposed algorithm is too intuitive. And reading the paper I am not clear why the proposed algorithm can help personalized federated learning. Also reading the introduction, the motivation is not convincing to me.\n- Since this work is based on intuitions, I believe the paper should improve the experimental study significantly. Specifically, I believe the paper should add more baselines to the paper with more analytical explanations about the result."
+        },
+        "questions": {
+          "value": "Based on my understating, in the first phase each client learns its own subnetwork. Then in the second phase the proposed algorithm employs federated averaging. Can you explain why does the algorithm split the learning rounds into two parts? I am not clear about the intuition behind this and its helpfulness in personalized federated learning."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ywOmzj7pj4",
+      "forum": "MeSfNZjGvN",
+      "replyto": "MeSfNZjGvN",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_zTLf"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_zTLf"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1804/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731000798753,
+      "cdate": 1731000798753,
+      "tmdate": 1731427492967,
+      "mdate": 1731427492967,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "To address the problem of extreme data heterogeneity in federated learning, this paper starts from the perspective of initialization. It argues that an appropriate personalized initial method can enable the clients to quickly learn their local data well before engaging in broader collaboration, and thus achieve faster convergence and a higher final accuracy. In this paper, the authors propose FedPeWS, a personalized warm-up method for the initial phase of federated learning training, which simultaneously optimize the personalized masks of the clients and update the corresponding sub-networks during the initial warm-up phase to enables the global network to adapt faster and better to extreme data heterogeneity scenarios. Experimental results under various scenarios and parameter settings validate the effectiveness of this method."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. This paper addresses the problem of data heterogeneity from a novel perspective. \n2. The authors have conducted extensive experiments under a variety of datasets and made a detailed analysis of the ablation experiments around the relevant parameters."
+        },
+        "weaknesses": {
+          "value": "1. As mentioned by the authors, this paper lacks proofs related to convergence, and therefore at the same time, it fails to give an analysis of the relationship between hyperparameters such as $\\lambda$, $\\tau$ and convergence to determine a better range of theoretical values. Therefore for different experimental scenarios, perhaps multiple experiments (e.g. grid search) are required to determine the most suitable parameter values, which has limitations in terms of generalizability and cost.\n2. The experimental results show that the effectiveness of FedPeWS and FedPeWS-Fixed methods are comparable, and in some stages FedPeWS-Fixed even outperforms FedPeWS, which I think is an issue that should not be ignored. In conjunction with Appendix B.2, I think FedPeWS-Fixed is a rigid approach to divide the network evenly and fixedly, while the FedPeWS method dynamically optimizes the personalized masks to select the appropriate sub-networks. Intuitively this dynamic optimization method should be more effective than the simple fixed division method, but the experimental results are the opposite, does it mean that the dynamic optimization method of FedPeWS does not achieve much extra gain? I think this is a question worth analyzing."
+        },
+        "questions": {
+          "value": "1. Since the research purpose of this paper is to solve the problem of extreme data heterogeneity, more comparisons can be made with some of the current state-of-the-art methods for solving data heterogeneity. I think that besides the FedProx method mentioned in this paper, the MOON [1] method is also a worthy comparison. And I think FedPeWS is essentially an initialization method, so it can also be combined with methods such as PFL [2] in the subsequent standard federated optimization to investigate whether this method, FedPeWS, can bring further enhancement to the existing state-of-the-art methods.\n2. In the related experimental descriptions of Table 1 and Table 2, there is no mention of the number setting of clients N. If I understand correctly, the settings on synthetic datasets for both experiments are N=2. This implies that when comparing with FedProx, the comparison has been made only in the scenario of synthetic datasets (N=2). If possible, I'd like to see experimental comparisons with the FedProx method under more datasets (and at the same time larger N value).\n3. In this paper, collaboration rounds are used in the experimental part of the main text to compare the convergence speeds of FedAvg and FedPeWS, but since FedPeWS contains a greater computational overhead for one collaboration round during the warm-up phase (but only need to transmit sub-network, which is theoretically less expensive in terms of communication overheads), simply comparing the number of rounds is not convincing enough. Although the experimental analysis for wall-clock time is also presented in the Appendix, it can also be seen that FedPeWS does take more time in the warm-up phase, and thus the balance between the parameter $\\tau$ and the actual convergence speed is very important in practical applications. To summarize, I think how to determine the size of the warm-up rounds $W$, or the size of $\\tau$, in the experiments is an issue worth discussing, which also involves the analysis of the overall computational and communication overheads. (By the way, if I understand correctly, $\\tau =25$ in Appendix C.4 should be changed to $W=25$)\n\n[1] Li, Qinbin, Bingsheng He, and Dawn Song. \"Model-contrastive federated learning.\" Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2021.\n[2] Arivazhagan, Manoj Ghuhan, et al. \"Federated learning with personalization layers.\" arXiv preprint arXiv:1912.00818 (2019)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Z8tvtaWDxI",
+      "forum": "MeSfNZjGvN",
+      "replyto": "MeSfNZjGvN",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_2YSy"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_2YSy"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1804/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730774171637,
+      "cdate": 1730774171637,
+      "tmdate": 1731427493085,
+      "mdate": 1731427493085,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes \"FedPeWS,\" a personalized warmup method for federated learning (FL) using subnetwork masking to improve model convergence under extreme data heterogeneity. It introduces a warmup phase where each participant trains a personalized subnetwork before switching to standard federated optimization, claiming enhanced accuracy and efficiency over baseline methods."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper studies an important problem which is convergence and performance issues of FL under extreme data heterogeneity."
+        },
+        "weaknesses": {
+          "value": "Overall, while this paper attempts to address challenges in federated learning under extreme data heterogeneity, there are several critical issues regarding its hypotheses, methodology, and experimental validation. I hope these comments provide constructive insights for improvement:\n\n* The paper is built upon unproven hypotheses, especially as stated in the abstract (lines 15-17): \"we hypothesize that ... rounds.\" Presenting such assumptions without experimental or theoretical proof weakens the foundation of the study. For any claim regarding the benefits of a personalized warmup phase, empirical or theoretical evidence is essential to establish credibility.\n* In lines 44-45, the authors suggest that the primary cause of federated learning failure under extreme data heterogeneity lies in high conflict between local updates during initial rounds. This premise is misleading, as conflicts due to objective misalignment and heterogeneity persist throughout the entire FL process, not just in early rounds. A more nuanced discussion around ongoing client conflicts across rounds would provide a clearer picture of challenges in FL.\n* Lines 51-53 mention that each participant uses a personalized binary mask to learn local data distributions and optimize local (sparse) models. However, there is no clear explanation of how the nonlinear parameter space of a model can be mapped directly to each client’s data distribution. To the best of my knowledge, there is no work which has been able to drive a specific subnetwork structure representing the data distribution in NN with non-linear activation.\n* The paper’s methodology seems to extend existing techniques without substantial innovation. Additionally, recent work in FL initialization with pre-trained models has shown that warmup rounds may not be necessary, as initialization with pre-trained or meta-learned models can often yield better results. A thorough discussion of and comparison with these approaches would better position the contributions within the current literature. I also urge the authors to enhance their literature review. \n* The experimental setup lacks robust benchmarks, as it does not evaluate the method on deeper architectures or complex datasets like CIFAR-100. Additionally, comparisons with state-of-the-art FL methods (such as those involving advanced initialization or optimization techniques) would strengthen the empirical evaluation and actual benefits of the method. Right now, the actual benefits of method are questionable."
+        },
+        "questions": {
+          "value": "See comments above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "h2c4JJW2JJ",
+      "forum": "MeSfNZjGvN",
+      "replyto": "MeSfNZjGvN",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_mkoE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_mkoE"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1804/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730572257484,
+      "cdate": 1730572257484,
+      "tmdate": 1731427493185,
+      "mdate": 1731427493185,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper develops a warmup algorithm to tackle data heterogeneity in federated learning. The idea is to first allow clients to personalize their models in initial rounds, and then adopt conventional federated approach. Some experiments are provided to showcase the effectiveness of the algorithm. The paper is well written and easy to read."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The idea of using independent subnet training in federated learning looks quite novel and reasonable to the reviewer.\n- The paper is well written and easy to follow."
+        },
+        "weaknesses": {
+          "value": "While the reviewer appreciates the novelty of the approach, they are a set of concerns/comments/questions: \n\n- While the paper emphasizes that the primary benefit of the algorithm is improved convergence, there is a lack of theoretical analysis. \n- How does the proposed method differ from FedPM (Isik et al., 2023) which also uses mask training? \n- The biggest concern from the reviewer is that the numerical results are on a relatively simple setting:\n   -- The datasets are too simple. The authors are suggested to try harder ones, e.g., CIFAR100, (Tiny) Imagenet\n   -- The model used are too simple. The authors are suggested to try ResNet and ViT\n   -- The comparison to SOTA is missing. Current comparison only involves FedAvg and FedProx and is far from enough. The authors are suggested to MOON, FedOpt, FedUV, etc.\n   -- The number of clients is too small. While the authors tried N=200 in the appendix, the improvement is much less obvious than the simple setting in the main text. \n   -- Important ablation study is missing. For example, the authors might try replacing the current warmup strategy by random neuron sampling and other IST approaches. \n   -- Data heterogeneity with \\alpha being 0.1 is not extreme. The authors are suggested to try smaller values, e.g., 0.01."
+        },
+        "questions": {
+          "value": "See weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "OXjUa4Fjh2",
+      "forum": "MeSfNZjGvN",
+      "replyto": "MeSfNZjGvN",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_VcjV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1804/Reviewer_VcjV"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1804/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730405482117,
+      "cdate": 1730405482117,
+      "tmdate": 1731427493306,
+      "mdate": 1731427493306,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes FedPeWS, a warmup phase in which clients learn neuron-level binary subnetworks before reverting to full-model federated optimization. The intuition is plausible and several experiments show gains over FedAvg/FedProx under deliberately severe heterogeneity, but the algorithm is technically underspecified and the empirical comparison is too narrow to establish an ICLR-level contribution.",
+        "strengths": [
+          "The personalized-subnetwork warmup is a simple, modular idea that is clearly motivated by conflicting early updates and can nominally wrap multiple federated optimizers (pp. 1–6).",
+          "Experiments cover synthetic, mixed natural-image, medical-image, varying-Dirichlet, fixed-mask, and 200-client settings, with some large gains under extreme heterogeneity (pp. 8–10, 18).",
+          "The appendices report hyperparameter sweeps, wall-clock behavior, mask-size effects, and activation analyses rather than only headline accuracy (pp. 16–19)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 is incomplete or potentially ill-defined: it never specifies an update for the global mask probability used in the diversity loss, despite sending it each round, and elementwise aggregation can divide by zero because learned masks need not cover every parameter (pp. 4–6). These issues impede reproducibility and soundness.",
+          "Evidence is limited to FedAvg and FedProx, omitting direct empirical comparisons with closely related subnet/masking methods and stronger heterogeneous-FL baselines discussed by the paper itself. Tests use small networks and largely contrived dataset mixtures, only three seeds, and the 200-client result lacks uncertainty (pp. 7–10, 15, 18).",
+          "Claims of robust communication/convergence improvement are overstated: accuracy varies substantially across λ and warmup choices, λ=0 often hurts on real datasets, wall-clock performance improves in only two of four reported cases, and communication accounting excludes mask transmission (pp. 16–18)."
+        ],
+        "score_rationale": "The work contains a useful intuition and encouraging preliminary results, but its novelty over IST/FedPM-style masking is incremental, decisive algorithmic details are missing, and the evaluation does not adequately compare against relevant methods or demonstrate realistic generality. I therefore lean reject, while acknowledging uncertainty about whether the global-mask update was merely omitted from the presentation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FedPeWS uses client-specific neuron masks during an initial warmup and then nominally returns to full-model federated optimization. The idea is intuitive and produces promising gains in several deliberately heterogeneous settings, but algorithmic inconsistencies and limited comparisons prevent the evidence from establishing a sound, broadly useful advance.",
+        "strengths": [
+          "The personalized-subnetwork warmup is a simple, reasonably novel combination of learned neuron masks, diversity regularization, and subsequent full-model training (pp. 4–6).",
+          "Experiments cover synthetic, mixed natural-image, medical, varying-heterogeneity, FedProx, and 200-client settings, with some large gains under extreme heterogeneity (pp. 8–10, 18).",
+          "The appendices include sensitivity, mask-size, wall-clock, and activation analyses rather than reporting only favorable final accuracies (pp. 16–19)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 is technically incomplete or inconsistent: it broadcasts a global mask probability but never specifies its server update; after warmup it sets uploaded masks to ones while the local objectives still use G(s); and elementwise aggregation can divide by zero when learned masks do not cover a parameter (pp. 4–6). These issues materially obstruct interpretation and reproduction.",
+          "The empirical comparison is too narrow: despite discussing IST, FedBN, SCAFFOLD, matched aggregation, and related masking methods, evaluation is essentially limited to FedAvg and FedProx on small/custom architectures and often contrived mixtures of unrelated datasets (pp. 7–10, 15).",
+          "The claimed communication/convergence benefit counts rounds despite extra alternating mask optimization and mask transmission. Wall-clock results improve in only two of four cases and worsen in the others, while hyperparameters are extensively tuned using only three seeds (pp. 6–8, 16–17)."
+        ],
+        "score_rationale": "The central heuristic is interesting and the reported accuracy gains merit attention, but unresolved algorithm-definition problems and insufficiently competitive, computation-aware evaluation are substantial. I therefore rate it below the acceptance threshold; uncertainty remains because a corrected implementation and stronger baselines could change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes FedPeWS, a warmup scheme in which clients learn personalized neuron-level subnetworks before reverting to full-model federated optimization. The idea is intuitive and shows promising gains under constructed extreme heterogeneity, but algorithmic ambiguities and a limited, potentially selection-sensitive evaluation prevent the evidence from supporting the broad claims.",
+        "strengths": [
+          "The personalized-subnetwork warmup is a simple, modular idea that is clearly motivated by conflicting early client updates and can be combined with FedAvg or FedProx (pp. 1–6, 10).",
+          "Experiments cover synthetic, mixed natural-image, mixed medical-image, varying-Dirichlet, fixed-mask, and 200-client settings, with several sizable gains under extreme heterogeneity (pp. 8–10, 16–18).",
+          "The appendix reports hyperparameter grids, three-seed variation, wall-clock comparisons, and activation analyses rather than only headline accuracy (pp. 16–19)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 never specifies an update for the global mask probability θ_g, although θ_g\\{i} is required by the diversity loss; moreover, elementwise masked aggregation can divide by zero when no client selects a parameter, a real possibility because full neuron coverage is explicitly not guaranteed (pp. 4–6). These omissions undermine technical completeness and reproducibility.",
+          "The empirical comparison is too narrow: it primarily uses FedAvg and FedProx, omitting strong heterogeneity methods such as SCAFFOLD, FedBN, FedNova/FedOpt, and directly relevant subnet-training baselines discussed by the paper itself (pp. 2–3, 7–10). Consequently, superiority over modern alternatives is not established.",
+          "Evidence is vulnerable to tuning and benchmark-selection effects: λ and warmup duration are extensively searched, target accuracies and reported learning-rate cases appear selected, only three seeds are used, and the strongest cases are artificial combinations of unrelated datasets or synthetic partitions (pp. 7–10, 17–18). Wall-clock results are also mixed, weakening the practical efficiency claim (p. 16)."
+        ],
+        "score_rationale": "The work offers a plausible, moderately novel heuristic and encouraging preliminary results, but the missing mask-aggregation definition and possible zero-denominator failure are substantial method-level issues. Together with weak baseline coverage and heavily tuned, mostly constructed evaluations, this places the submission below the ICLR acceptance threshold, though uncertainty remains because a clarified implementation might resolve some algorithmic concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FedPeWS uses client-specific neuron masks only during an initial warmup, then resumes ordinary federated optimization. The idea is intuitive and the reported gains under deliberately extreme heterogeneity are promising, but specification gaps and limited, tuning-heavy evidence prevent the claims from being established convincingly.",
+        "strengths": [
+          "A simple, potentially reusable warmup mechanism that combines learned neuron-level subnetworks with existing FL optimizers; the distinction from persistent sparse/personalized training is reasonably articulated (pp. 2–6).",
+          "Experiments cover several heterogeneity regimes, fixed and learned masks, FedAvg and FedProx, sensitivity grids, and a 200-client partial-participation setting (pp. 8–10, 17–18).",
+          "Large improvements appear in some extreme cases—for example, 91.13% versus 58.4% with four clients—and results generally include variation across three seeds (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 is not fully defined: it initializes and broadcasts a global mask probability but never specifies its aggregation/update, while the diversity term uses an unexplained leave-one-client-out quantity. Moreover, elementwise masked aggregation can divide by zero because full neuron coverage is explicitly not guaranteed (pp. 4–6).",
+          "The empirical comparison is too narrow for the claimed heterogeneous-FL advance: there are no direct results against SCAFFOLD, FedBN, FedOpt, IST, FedPM, or other subnet/matching approaches discussed by the paper, and the main tasks use small networks and artificial combinations of datasets with disjoint label spaces (pp. 2–3, 7–10, 15).",
+          "Communication-round gains do not consistently translate to computational efficiency: mask and weight optimization adds work, and wall-clock results improve in only two of four cases (p. 16). Performance also depends materially on searching two extra hyperparameters, with several settings worse than FedAvg, especially on the medical combination (pp. 9, 17–18)."
+        ],
+        "score_rationale": "The warmup concept offers moderate novelty and promising preliminary results, but the potentially undefined aggregation/diversity mechanics are a substantial soundness and reproducibility issue. Together with weak baseline coverage, extensive method-specific tuning, mixed wall-clock gains, and no theory, the evidence is below the acceptance threshold. I am somewhat uncertain whether omitted implementation details would resolve the algorithmic gaps."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes FedPeWS, which learns client-specific neuron masks during an initial warmup and then resumes full-model federated optimization. The idea is intuitive and sometimes yields sizable gains under deliberately extreme heterogeneity, but algorithmic ambiguities and a narrow, heavily tuned empirical evaluation leave the central claims insufficiently established.",
+        "strengths": [
+          "The personalized-subnetwork warmup is a simple, potentially useful addition that can be combined with FedAvg or FedProx, and its distinction from persistent sparse/subnetwork training is reasonably explained (pp. 3–6).",
+          "Some extreme heterogeneous settings show substantial improvements in final accuracy and communication rounds, including the four-client synthetic experiment and FedProx comparisons (pp. 8–10).",
+          "The appendices provide architecture details, hyperparameter grids, wall-clock plots, a 200-client experiment, and activation analysis (pp. 15–19)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 is underspecified or internally inconsistent: it never clearly updates the global mask probability used by the diversity loss, does not define the leave-one-out aggregation, appears to regenerate learned masks even after setting them to all ones, and can divide elementwise by zero when no client selects a parameter (pp. 4–6). These issues impede reproducibility and may affect correctness.",
+          "The evidence is narrow and weakly controlled: most experiments use synthetic or constructed mixtures, small custom networks, only three seeds, and primarily FedAvg/FedProx baselines, omitting strong heterogeneity methods such as SCAFFOLD and FedBN despite discussing them (pp. 7–10). Extensive method-specific tuning also makes the comparative protocol unclear.",
+          "The claimed communication/convergence benefit overlooks extra mask optimization and is not a consistent systems benefit: wall-clock performance is better in only two of four cases (p. 16). The claimed low hyperparameter sensitivity is also overstated, since many settings underperform FedAvg, particularly on the medical mixture (pp. 17–18)."
+        ],
+        "score_rationale": "The warmup concept has modest novelty and promising preliminary results, but the current algorithm specification has material gaps and the experiments do not convincingly establish superiority over appropriate modern baselines or in realistic FL settings. With no theoretical analysis and inconsistent wall-clock gains, this is below the ICLR acceptance bar, though potentially salvageable through clarification and substantially stronger evaluation."
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "year": 2026,
+  "package_id": "paper_066",
+  "paper_id": "iPCgCxmSR4",
+  "number": 15689,
+  "title": "Fast Block Attention Computation via Dynamic Algorithm",
+  "authors": [
+    "Yang Cao",
+    "Xuyang Guo",
+    "Zhao Song"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "attention",
+    "block attention",
+    "video generation",
+    "dynamic algorithm",
+    "theory",
+    "data structure"
+  ],
+  "forum_url": "https://openreview.net/forum?id=iPCgCxmSR4",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    0,
+    2,
+    4,
+    2
+  ],
+  "human_mean_rating": 2.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "040XScoWwF",
+      "forum": "iPCgCxmSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15689/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762430306881,
+      "tmdate": 1762925939949,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "16gslnWN0G",
+      "forum": "iPCgCxmSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15689/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762091360534,
+      "tmdate": 1762925940712,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "DtChk5ifxx",
+      "forum": "iPCgCxmSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15689/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762185548093,
+      "tmdate": 1762925940326,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "q4AmtQMMtE",
+      "forum": "iPCgCxmSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15689/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761994495398,
+      "tmdate": 1762925941119,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The paper proposes an exact dynamic algorithm for block-structured video attention under highly restrictive changes to consecutive key and value matrices. However, the presented algorithms do not compute the block attention defined in the paper, and the central theorem is therefore unsupported.",
+        "strengths": [
+          "The paper identifies attention cost in long videos as an important problem and gives an explicit block-matrix formulation (pp. 1–2).",
+          "It attempts to state concrete assumptions, space bounds, initialization costs, and amortized query complexity rather than making only qualitative efficiency claims (pp. 2–3)."
+        ],
+        "weaknesses": [
+          "The core correctness argument is incompatible with Definition 1.2: block attention normalizes and sums over all f key/value blocks, whereas the algorithm evolves a single ordinary-attention instance from (K1,V1) toward individual (Kj,Vj). The proof ultimately uses only exp(Qi Kj^T)Vj and a per-block denominator, not the required sum over all blocks (pp. 2, 5–9).",
+          "The interfaces and pseudocode are internally inconsistent. The theorem declares QUERY(x,y) with x,y in [n] although the output is N by d; Algorithm 2 then derives frame indices from x/n and y/n, uses undefined or mismatched UPDATE signatures, and apparently leaves persistent state altered between queries (pp. 3, 6–8). These issues are too fundamental to attribute confidently to minor typesetting errors.",
+          "The restrictive single-row key and rank-1 sparse value assumptions are not justified empirically for video models, and there are no experiments or practical comparisons. The claimed advance is also largely an adaptation of the cited dynamic-attention machinery, with the appendix supplying only a very brief amortization argument rather than a complete proof (pp. 2, 9, 13)."
+        ],
+        "score_rationale": "Strong reject: the main claimed theorem is undermined by a fundamental mismatch between the defined global block attention and the quantity maintained by the algorithms, alongside pervasive dimensional and state-management inconsistencies. Even if some notation is corrupted, the missing cross-block numerator and normalization cannot be repaired locally, and no empirical evidence supports the motivating assumptions."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The manuscript proposes an exact dynamic algorithm for block-structured video attention under highly restrictive inter-frame update assumptions. Although the target bottleneck is important, the stated algorithm and proof do not correctly implement the block-attention definition, and the claimed practical relevance is unsupported.",
+        "strengths": [
+          "Addresses the important computational cost of full spatiotemporal attention and clearly states its intended structural assumptions (pp. 1–3).",
+          "Attempts to provide explicit algorithms, complexity statements, and an exact rather than approximate computation (pp. 5–9)."
+        ],
+        "weaknesses": [
+          "There is a fundamental correctness mismatch: Definition 1.2 requires normalization and value aggregation over all f key/value blocks, whereas the proof reduces the result to expressions involving only K_j and V_j; it even writes a block-row product with 1_N despite incompatible dimensions (pp. 2, 8–9). Thus Lemma 4.3 does not establish the claimed output.",
+          "The query interface and pseudocode are internally inconsistent. The theorem declares x,y in [n] although the output is N-by-d; Algorithm 2 uses ceil(x/n) and floor(y/n) to identify blocks, making the former always one and treating a feature coordinate as a frame coordinate. Several operations, lists, and indices are undefined or dimensionally inconsistent (pp. 3, 5–8).",
+          "The work offers no empirical validation that single-row key differences and rank-1 O(1)-sparse value changes characterize videos. Moreover, the complexity comparison conflates producing one entry with computing the full attention output, and the method appears largely to reuse the cited dynamic-attention machinery without a sound block-attention extension (pp. 2–4, 7–9, 13)."
+        ],
+        "score_rationale": "Strong reject. The central theorem is not supported because the algorithm, interfaces, dimensions, and correctness proof conflict with the paper's own block-attention definition. Even if some errors were typographical, substantial reconstruction would be required, and there is no evidence supporting the assumptions or claimed video-modeling benefit."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The manuscript proposes an exact dynamic data structure for block-structured video attention by viewing consecutive frame keys and values as sparse/low-rank updates to a prior dynamic-attention method. However, the presented algorithm does not compute the block attention defined in the paper, and the main theorem is therefore unsupported.",
+        "strengths": [
+          "Targets an important computational bottleneck and states explicit structural assumptions and complexity goals (pp. 2–3).",
+          "Attempts to provide algorithms and separate correctness and runtime lemmas rather than relying only on informal intuition (pp. 5–9)."
+        ],
+        "weaknesses": [
+          "The core correctness argument uses normalization and multiplication for only one block, diag(exp(Q_i K_j^T)1_n)^{-1}exp(Q_i K_j^T)V_j, whereas Definition 1.2 requires normalization over all f key blocks and a sum of their value contributions. The invalid identification with BAttn occurs explicitly on pp. 8–9 and contradicts Lemma 2.1 on p. 3.",
+          "The query interface and pseudocode are dimensionally inconsistent: BAttn is N×d, but Theorem 1.5 takes x,y∈[n]; Algorithm 2 then interprets y/n as a frame index and x/n as a query block, making i=1 whenever x∈[n]. Multiple variables and operations are undefined or mismatched, including ListV, GETA/GETB, UPDATEV signatures, and inverse-versus-noninverse D updates (pp. 3, 6–8).",
+          "The claimed video relevance is unsupported: the exact single-row change in every consecutive K and rank-1 k-sparse change in every V are exceptionally restrictive and not empirically validated. There are no experiments, benchmarks, or even measurements showing these assumptions hold or that the method improves practical video attention (pp. 2, 9)."
+        ],
+        "score_rationale": "Strong reject. Although the motivating direction is relevant, the main algorithm conflates a single dynamically updated attention block with globally normalized block attention. This fundamental mathematical error, together with severe indexing and specification inconsistencies and no evidence for the assumptions, invalidates the central theorem and claimed contribution."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The paper proposes an exact dynamic data structure for block-structured video attention under highly restrictive consecutive-frame update assumptions. However, the presented algorithms do not compute the block attention in Definition 1.2, and the main theorem is undermined by pervasive indexing, dimensional, and normalization errors.",
+        "strengths": [
+          "Targets an important computational bottleneck and attempts to formalize an exact rather than approximate attention method (pp. 1–3).",
+          "Clearly states the intended temporal-coherence assumptions and provides pseudocode plus asymptotic complexity claims (pp. 2–9).",
+          "Connects the construction to prior dynamic-attention maintenance work rather than presenting it without context (pp. 3–4)."
+        ],
+        "weaknesses": [
+          "The central correctness claim appears false: Definition 1.2 requires a global denominator and numerator summed over all f key/value blocks, but Algorithms 1–2 initialize with K1,V1 and sequentially transform these into a single Kj,Vj computation. The proof on pp. 8–9 consequently ends with exp(QiKj^T)Vj normalized only over that block, not the globally normalized block attention defined on p. 2.",
+          "The theorem and algorithms are dimensionally/index-wise inconsistent. The output is N×d, yet QUERY takes x,y∈[n]; then i=ceil(x/n) is always 1 and floor(y/n) can be 0 or 1. V is also written as a horizontal concatenation while assigned shape N×d, and several update expressions and stored lists are undefined or inconsistent (pp. 2–3, 5–8).",
+          "Novelty and evidence are inadequate: the method is largely an invocation/adaptation of Brand et al.'s dynamic-attention machinery, the strong single-row and vaguely defined 'rank-1 k-sparse' assumptions are not empirically justified for video, and no experiments establish practical speedups or applicability. The appendix supplies only a very short amortization argument rather than the claimed complete proofs (pp. 9, 13)."
+        ],
+        "score_rationale": "Strong reject. The main algorithm does not match the stated block-attention objective, so Theorem 1.5 is unsupported even before assessing practical relevance. Extensive notation and pseudocode inconsistencies, restrictive unvalidated assumptions, and the absence of empirical evidence prevent the contribution from being technically sound or convincing."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The paper proposes a dynamic data structure for exact block attention under highly structured changes between consecutive video frames. However, the central algorithm does not compute the block-attention quantity defined in the paper, so the main theorem and complexity claim are unsupported.",
+        "strengths": [
+          "The computational motivation and block-attention definition are presented clearly (pp. 1–3).",
+          "The paper explicitly states the strong structural assumptions on consecutive keys and values rather than hiding them (pp. 2–3).",
+          "It attempts an exact, rather than approximate, attention-maintenance result and provides pseudocode for the intended construction (pp. 5–8)."
+        ],
+        "weaknesses": [
+          "The correctness proof is fundamentally wrong: Definition 1.2 normalizes over all N=fn keys and sums contributions from all value blocks, but Lemma 4.3 reduces the result to a single term exp(Q_i K_j^T)V_j with a single-block normalization and then equates it to full block attention (pp. 2, 8–9). The update procedure appears to replace one block by the next rather than accumulate all blocks.",
+          "The interfaces and indexing are inconsistent. The theorem queries (x,y) in [n]×[n] although BAttn has shape N×d; Algorithm 2 computes ceil(x/n), which is always 1 for the stated domain, and uses floor(y/n), which is generally 0 or 1. UPDATEK also conflicts across the cited scalar-entry primitive, its pseudocode signature, and its calls (pp. 3–6).",
+          "The claimed video relevance is not substantiated: the single-row key-change and rank-1 sparse value-change assumptions are extremely restrictive, with no empirical evidence that real video representations satisfy them. The contribution also largely invokes the prior dynamic-attention machinery, while the appendix supplies only a very short amortization argument rather than complete proofs (pp. 2, 9, 13)."
+        ],
+        "score_rationale": "Strong reject: the main result is invalid as written because the algorithm and proof compute a single evolving attention block rather than the globally normalized block attention they define. Multiple domain, dimension, and update-interface contradictions make the theorem unrecoverable without a substantial reformulation; the absence of evidence for the assumptions further limits significance."
+      }
+    }
+  ]
+}

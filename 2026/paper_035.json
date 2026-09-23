@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_035",
+  "paper_id": "fp51nxr5B1",
+  "number": 9521,
+  "title": "Automatic Generation of Safety-compliant Linear Temporal Logic via Large Language Model: A Self-supervised Framework",
+  "authors": [
+    "Junle Li",
+    "Siqi CHEN",
+    "Jiakai Li",
+    "Meiqi Tian",
+    "Bingzhuo Zhong"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "Linear Temporal Logic",
+    "Large Language Model",
+    "Language Inclusion Check",
+    "Automated Verification"
+  ],
+  "forum_url": "https://openreview.net/forum?id=fp51nxr5B1",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    2,
+    2,
+    4
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "EKjsNyJgxI",
+      "forum": "fp51nxr5B1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9521/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761929782225,
+      "tmdate": 1762921089214,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "TRuh4GaZwG",
+      "forum": "fp51nxr5B1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9521/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760881997464,
+      "tmdate": 1762921089774,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "fsToC368T1",
+      "forum": "fp51nxr5B1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9521/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761975913216,
+      "tmdate": 1762921088122,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "hkhU0dfFQJ",
+      "forum": "fp51nxr5B1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9521/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762293280625,
+      "tmdate": 1762921087755,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "AutoSafeLTL combines an edge LLM, cloud LLM agents, and automata-based checks to translate navigation instructions into LTL constrained by predefined safety rules. The safety-compliant NL2LTL objective is useful, but the central verification/path-extraction claims are technically unsound, and the experiments do not establish semantic fidelity or meaningful safety.",
+        "strengths": [
+          "Addresses an important gap by explicitly checking generated specifications against external safety constraints rather than evaluating NL2LTL translation alone (pp. 1–4).",
+          "Presents an understandable end-to-end generate–check–repair pipeline and reports staged fine-tuning and component ablations (pp. 7–9).",
+          "Includes implementation requirements, prompts, and training hyperparameters that improve reproducibility (pp. 10–11, 17–19)."
+        ],
+        "weaknesses": [
+          "The claimed counterexample algorithm is not a valid Büchi language-inclusion procedure: testing whether successor-state sets differ ignores nondeterminism and Büchi acceptance (Algorithm 1, p. 6). Theorem 1's finite-witness argument is false in general because an automaton may follow every finite prefix yet reject only through its infinite acceptance condition; its definition also asks a finite path to visit an accepting state infinitely often (pp. 15–16). Thus the formal guarantee and complexity claim are unsupported.",
+          "The objective admits vacuous solutions such as an unsatisfiable task formula, yet no satisfiability, non-vacuity, or post-repair semantic-fidelity metric is reported. The running repaired formula is difficult to reconcile with the original route and contains apparently tautological structure, while the paper explicitly prioritizes compliance over fidelity (p. 6). Reporting 0% final violations largely follows by construction from outputting only formulas accepted by the same checker, without timeout/failure or coverage statistics (pp. 7, 9).",
+          "Evidence is limited to one synthetic navigation benchmark generated from 50 templates, with unclear binary-accuracy annotation and no independent evaluation on established datasets or downstream behavior (pp. 7–9). There are also inconsistencies: Table 7 gives 4.3 rounds while the text says 5.7, and privacy claims conflict with the critic prompt receiving the original natural-language instruction (pp. 9, 18)."
+        ],
+        "score_rationale": "The problem and system framing have merit, but the paper's main novelty—formally guaranteed counterexample-guided safety compliance—rests on an invalid theoretical argument and an algorithm that does not implement Büchi inclusion. Combined with vacuity risks and weak, internally evaluated evidence, this requires fundamental correction rather than a minor revision."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "AutoSafeLTL combines an edge-side fine-tuned LLM, cloud LLM agents, and Büchi-language inclusion checking to repair generated LTL specifications until they satisfy predefined constraints. The integration is potentially useful, but the central counterexample-path theory/algorithm is unsound and the evaluation does not establish semantic fidelity or practical end-to-end reliability.",
+        "strengths": [
+          "The paper targets an important gap: checking generated specifications against explicit formal safety constraints rather than evaluating NL-to-LTL translation alone (pp. 1–3).",
+          "The proposed pipeline combines syntax checking, AP alignment, formal inclusion checking, and iterative repair in a reasonably clear modular architecture (pp. 2, 4–7).",
+          "The authors report staged fine-tuning ablations and comparisons across several generators, with held-out evaluation claimed for 300 examples (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The claimed technical contribution is incorrect as presented. Algorithm 1 declares a counterexample when successor-state sets differ, while ignoring Büchi acceptance and nondeterministic language semantics (p. 6). Theorem 1 falsely treats rejection by a non-accepting SCC as finite non-simulability; every finite prefix may remain simulable even though the infinite run fails Büchi acceptance (pp. 15–16). Thus Proposition 1 and its complexity claim do not justify correct counterexample extraction.",
+          "The 0% violation result is largely guaranteed by withholding any formula that fails the final checker, but the paper does not report timeout/failure/abstention rates or output coverage. More importantly, it provides no rigorous metric for preservation of the requested semantics after repair; the example introduces disjunctions and unrelated propositions that can make compliance vacuous or substantially alter the task (pp. 6–7, 9).",
+          "Several practical claims lack evidence or are inconsistent: no latency, hardware, memory, privacy, or deployment measurements support the cloud–edge claims; the cloud critic prompt includes the original natural-language instruction despite the claim that sensitive raw data never leaves the device (pp. 2, 18); and Table 7 reports 4.3 rounds while the accompanying text says 5.7 (p. 9)."
+        ],
+        "score_rationale": "The safety-oriented integration is relevant, but the paper's main claimed algorithmic advance and proof are fundamentally unsound. Since the experiments chiefly show that accepted outputs pass the same checker used to filter/repair them, without coverage or semantic-preservation evaluation, they do not rescue the core contribution. These are fatal soundness and evidence deficiencies, warranting a strong reject."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "AutoSafeLTL combines an edge LLM, cloud-based alignment/critique, and Büchi-language inclusion to iteratively produce LTL formulas whose languages are contained in predefined safety constraints. The integration is practically motivated, but the central counterexample-path theory and algorithm are incorrect, while the evaluation establishes verifier acceptance rather than faithful, non-vacuous task translation.",
+        "strengths": [
+          "Addresses an important gap by placing formal constraint checking inside the NL-to-LTL generation loop rather than relying solely on LLM outputs (pp. 2–7).",
+          "Provides a concrete staged fine-tuning pipeline, prompts, hyperparameters, and comparisons across generation and repair settings (pp. 7–11, 17–19).",
+          "The ablations suggest that the aligner, critic, and specialized fine-tuning reduce repair iterations, although the reported iteration numbers are inconsistent (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The main formal contribution is unsound. Algorithm 1 declares a counterexample when successor-state sets differ, which neither characterizes Büchi-language non-inclusion nor accounts for nondeterminism and acceptance. Theorem 1 is false as stated: an automaton may simulate every finite prefix yet reject an infinite word solely through its Büchi acceptance condition; entering a nonaccepting SCC does not make a finite path nonsimulable (pp. 5–6, 15–16).",
+          "The 0% violation result is largely guaranteed by filtering outputs through the same inclusion checker used as the metric. The paper does not report timeout/failure or no-output rates, satisfiability/non-vacuity, held-out constraint families, or semantic fidelity after repair. The running example itself introduces a tautological disjunction and unrelated propositions, illustrating how inclusion can be achieved without preserving intent (pp. 6–9).",
+          "Evidence and deployment claims are weak or inconsistent: “binary accuracy” lacks a precise semantic annotation protocol; only 300 synthetic navigation cases and predefined rules are tested; Table 7 reports 4.3 rounds while the text says 5.7; and the privacy claim that sensitive data never leaves the device conflicts with the critic prompt receiving the original natural-language instruction and formulas (pp. 2, 7–9, 18)."
+        ],
+        "score_rationale": "The verifier-guided architecture has useful engineering potential and some novelty, but the claimed counterexample extraction result is fundamentally incorrect and the experiments do not demonstrate safe, semantically faithful generation beyond passing the evaluation checker. These issues undermine the paper's principal guarantees, warranting rejection despite the promising motivation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "AutoSafeLTL combines an edge-side fine-tuned LLM, cloud LLM agents, and automata inclusion checks to iteratively produce LTL formulas included in predefined safety constraints. Although the integration is practically motivated, the claimed counterexample-path contribution is technically unsound, and the experiments do not establish semantic fidelity, non-vacuity, or realistic safety effectiveness.",
+        "strengths": [
+          "The paper targets an important gap: generated specifications should be checked against explicit safety constraints rather than assessed only for syntax or translation similarity (pp. 1–4).",
+          "The staged generation/repair pipeline is clearly structured and integrates established tools such as Spot and RABIT, with prompts and training settings documented in the appendix (pp. 5–8, 10–19).",
+          "Ablations compare the three fine-tuning stages and removal of the aligner or critic, suggesting that specialized training and both agents reduce repair iterations (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The principal technical contribution is incorrect: Algorithm 1 declares a counterexample when successor-state sets differ and ignores Büchi acceptance and nondeterminism; Theorem 1 incorrectly assumes rejection implies a finite path not simulable by the second automaton. A word may have every finite prefix/path simulated while all infinite runs reject because they fail the Büchi condition (pp. 5–6, 15–16).",
+          "The 0% violation result is largely guaranteed by filtering outputs through the same inclusion checker used as the metric. The paper does not report failures/timeouts, satisfiability or vacuity of final formulas, task-semantic accuracy after repair, or comparison against ground-truth corrected specifications; the running example itself introduces questionable disjunctions and new propositions while explicitly prioritizing compliance over fidelity (pp. 6–9).",
+          "Evidence is narrow and internally inconsistent: evaluation uses one synthetic navigation benchmark and apparently fixed safety rules, lacks statistical analysis and deployment latency/resource measurements, and reports AutoSafeLTL's average interactions as 4.3 in Table 7 but 5.7 in the text. The privacy claim is also weakened because the cloud critic prompt receives the original natural-language instruction (pp. 8–9, 18)."
+        ],
+        "score_rationale": "The formal verification wrapper can prevent release of formulas rejected by RABIT, but the claimed new counterexample algorithm and proof contain fundamental errors. Combined with a circular compliance evaluation and no convincing measurement of post-repair semantic fidelity or non-vacuity, the central novelty and safety claims are not adequately supported, warranting a strong reject."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "AutoSafeLTL combines an edge NL-to-LTL model, cloud LLM repair agents, and Büchi-language inclusion checks. The safety-aware generation goal is relevant, but the claimed formal guarantee and counterexample-extraction contribution are undermined by fundamental automata-theoretic errors, while the narrow synthetic evaluation does not establish semantic fidelity or practical safety.",
+        "strengths": [
+          "Integrating formal verification into the NL-to-LTL generation loop addresses an important limitation of translation-only approaches (pp. 1–2).",
+          "The staged design and ablations attempt to separate translation, syntactic repair, and semantic repair, and report correction efficiency as well as final violations (pp. 7–9).",
+          "Prompts, training hyperparameters, and deployment dependencies are documented in reasonable detail (pp. 10–11, 17–19)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 is not a valid Büchi-language-inclusion or counterexample-path algorithm: inequality of one-step successor sets neither witnesses non-inclusion nor accounts for nondeterminism and Büchi acceptance. Theorem 1 likewise incorrectly assumes rejection has a finite nonsimulable witness; all finite prefixes may be realizable while every infinite run fails the Büchi condition (pp. 5–6, 15–16).",
+          "Safety compliance alone can be achieved by an empty or excessively restrictive task language, yet no post-repair semantic-fidelity, satisfiability/non-vacuity, or destination-achievement evaluation is reported. The running output itself introduces tautological/restrictive constructs and changes the task, contradicting the stronger intent-alignment framing (p. 6).",
+          "Evidence is confined to 300 synthetic navigation cases built through closely related templates and LLM generation, with unclear exact-match accuracy annotation and weak baseline comparability. All methods reach 0% after the same verifier, making this largely acceptance-by-construction; moreover, Table 7 reports 4.3 AutoSafeLTL interactions while the text states 5.7 (pp. 7–9)."
+        ],
+        "score_rationale": "The problem and system architecture have some promise, but the purported theoretical contribution is incorrect and the experiments do not rule out vacuous or semantically corrupted outputs. Because these defects directly invalidate the central claims of formal safety-aligned generation, the manuscript requires substantial foundational revision rather than incremental clarification."
+      }
+    }
+  ]
+}

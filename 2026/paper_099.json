@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_099",
+  "paper_id": "MkrsbXl1GI",
+  "number": 25096,
+  "title": "When Language Models Lose Their Mind: The Consequences of Brain Misalignment",
+  "authors": [
+    "Gabriele Merlin",
+    "Mariya Toneva"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "language models",
+    "brain alignment",
+    "brain misalignment",
+    "linguistic competence",
+    "neuroscience",
+    "fMRI"
+  ],
+  "forum_url": "https://openreview.net/forum?id=MkrsbXl1GI",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    4,
+    6,
+    4,
+    2
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "7jTZi7HjV0",
+      "forum": "MkrsbXl1GI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission25096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761936660674,
+      "tmdate": 1764359647099,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "BYarPhzW7K",
+      "forum": "MkrsbXl1GI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission25096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761972523043,
+      "tmdate": 1762943322062,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 1
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "ghWzy0Ku0C",
+      "forum": "MkrsbXl1GI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission25096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761943724862,
+      "tmdate": 1764359647126,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "pliY8SDkgH",
+      "forum": "MkrsbXl1GI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission25096/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760600427866,
+      "tmdate": 1762943323309,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes adversarially reducing fMRI decodability from BERT, GPT-2, and Llama representations, then evaluates over 200 linguistic probes. The intervention reliably changes measured brain alignment and often correlates with probe performance, but it does not isolate brain-specific information, so the central causal claim that brain alignment is necessary for linguistic competence is not supported.",
+        "strengths": [
+          "The question is interesting and the bidirectional intervention—misalignment plus brain-tuning—is a novel empirical framing (pp. 3–4).",
+          "Evaluation spans three model families, two fMRI datasets, multiple participants, and a broad linguistic benchmark (pp. 3–5, 14–16).",
+          "The appendices provide extensive participant- and setting-level visualizations rather than only aggregate headline results (pp. 18–55)."
+        ],
+        "weaknesses": [
+          "The decisive confound is that adversarial prediction of stimulus-evoked fMRI removes any linguistic features shared with the structured target, not uniquely “brain-related” information. Permuting fMRI only supplies unstructured targets and therefore does not control for removal of meaningful linguistic signal; similarly, brain-tuning adds auxiliary linguistic supervision. Equal next-token loss cannot establish specificity (pp. 4–5).",
+          "Evidence is summarized mainly as significance-thresholded “win rates,” discarding effect magnitudes and conflating effects with statistical power. The analysis also appears to treat correlated tasks, participants, folds, and probe seeds without an appropriate hierarchical model; per-task thresholding creates substantial multiplicity concerns (pp. 5, 8–9).",
+          "Model selection conditions downstream analysis on obtaining significant alignment reduction but nonsignificant language-model differences, which is not an equivalence test and risks selection bias (pp. 4, 7). Reporting inconsistencies further reduce confidence—for example, six versus seven successful BERT/Harry Potter participants (pp. 7, 20) and six Moth participants versus “eight subjects” (pp. 3, 50)."
+        ],
+        "score_rationale": "Although the study is ambitious and the empirical pattern is potentially valuable, its core intervention cannot distinguish brain alignment from ordinary stimulus-relevant linguistic information. Combined with selective inclusion and weak statistical aggregation, this undermines the claimed causal conclusion. I am highly confident in the methodological concern, though uncertain whether stronger controls and raw-score analyses would preserve the empirical association."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes adversarially reducing fMRI predictability in BERT, GPT-2, and Llama representations, then evaluating more than 200 linguistic probes. The question and bidirectional interventions are interesting, but the experiments do not isolate brain alignment from removal or addition of ordinary stimulus-relevant linguistic information, so the claimed causal necessity of brain alignment is not established.",
+        "strengths": [
+          "Novel and potentially useful attempt to intervene on brain predictivity rather than merely correlate it with downstream behavior (pp. 3–4).",
+          "Broad evaluation across three model families, two fMRI datasets, and many linguistic phenomena, with complementary misalignment and brain-tuning interventions (pp. 5–9).",
+          "Held-out brain encoding evaluation and participant-level visualizations show that the interventions often change linear fMRI predictivity as intended (pp. 19–20, 25–26, 43–44)."
+        ],
+        "weaknesses": [
+          "The central control is not adequate: real fMRI is correlated with stimulus semantics and syntax, whereas permuted fMRI supplies essentially noise. Adversarial removal can therefore erase generally useful linguistic features, and brain-tuning can act as ordinary supervised multitask learning; neither direction demonstrates a brain-specific causal effect (pp. 4, 7–10).",
+          "The asserted language-model matching is not convincingly documented: no per-condition held-out losses or equivalence margins are reported, and failure to reject a difference is treated as similarity. The stated criterion is internally contradictory, saying similarity is tested with p<0.05 (pp. 4–5). Matching scalar cross-entropy on the same narratives would also not rule out broad representational degradation.",
+          "The downstream statistics are fragile: uncorrected per-dataset t-tests over only six probe seeds are converted to binary wins, magnitudes are discarded, dependence across runs/participants/tasks is unclear, and selection retains only subjects satisfying intervention criteria (pp. 5, 7). Reporting errors further reduce confidence—for example, the six-participant Moth dataset is described as having eight significant Llama subjects (pp. 3, 50)."
+        ],
+        "score_rationale": "The intervention framework and experimental breadth are promising, but the decisive evidence cannot distinguish brain alignment from generic linguistic information preservation, and the LM-control and statistical reporting are insufficient. These are central validity problems rather than presentation issues, warranting rejection despite an interesting research direction."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes adversarially reducing the linear decodability of fMRI responses from BERT, GPT-2, and Llama representations, then evaluates more than 200 probing tasks. The question and bidirectional intervention are interesting, but the experiments do not isolate brain alignment from removal or injection of ordinary linguistic information, so the central causal claim is not supported.",
+        "strengths": [
+          "Novel and potentially important attempt to intervene on brain–model alignment rather than merely correlate it with behavior (pp. 3–4).",
+          "Broad evaluation across three model families, two fMRI datasets, participants, and many linguistic probes (pp. 3–8, 18–53).",
+          "The paper includes both misalignment and brain-tuning interventions and verifies that these often change held-out linear fMRI predictivity (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The key control is inadequate: adversarial training against correctly paired fMRI removes stimulus-correlated linguistic features, whereas permuted fMRI supplies essentially random targets and different gradients (p. 4). Thus downstream degradation can reflect generic removal of language-relevant information rather than any special necessity of brain alignment; conversely, brain tuning can act as supervised linguistic fine-tuning.",
+          "Language-model matching is not convincingly demonstrated. The stated success criterion confusingly associates “similar performance” with p<0.05, no numerical LM losses or equivalence bounds are reported, and participants are selected after testing alignment/LM criteria (pp. 4, 7). Equal next-token loss would also not establish equally preserved representations.",
+          "The downstream analysis reduces scores to binary wins based on t-tests over only six probe seeds, obscuring effect sizes and inviting dependence/multiplicity and pseudoreplication concerns (p. 5). Results are heterogeneous—GPT-2/Moth reverses the aggregate misalignment effect (p. 38), and brain tuning is not significantly better than pretrained overall when averaged (p. 55)—yet conclusions repeatedly claim necessity and systematic improvement."
+        ],
+        "score_rationale": "The intervention and scale make this promising, but the principal comparison does not identify a causal effect of specifically brain-like representation, and essential LM-matching and task-level evidence are missing. The heterogeneous appendix results further make the strong “brain alignment is necessary” conclusion premature. I am fairly confident in a reject score, though uncertainty remains because implementation details or raw results not supplied here might permit stronger controls."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper uses adversarial fine-tuning to reduce linear fMRI predictability while preserving language-modeling loss, then reports reduced probing performance across Holmes; a complementary brain-tuning intervention often improves probing. The question and bidirectional intervention are interesting, but the experiments do not isolate brain alignment from generic representational damage or auxiliary linguistic supervision, and the statistical reporting is insufficient to support the causal claim that brain alignment is necessary for linguistic competence.",
+        "strengths": [
+          "The proposed intervention—gradient reversal against fMRI prediction paired with an LM objective—is novel and directly targets an important question about the functional relevance of brain–model similarity (pp. 2–4).",
+          "The study spans three model families, two naturalistic fMRI datasets, and more than 200 probing datasets, providing unusually broad empirical coverage (pp. 3–5, 18–53).",
+          "The complementary misalignment and brain-tuning directions are conceptually valuable, and held-out encoding analyses generally verify that the interventions alter linear fMRI predictability (pp. 5–9, 19–20, 25–26, 31–32, 43–50)."
+        ],
+        "weaknesses": [
+          "The preserving control does not identify brain alignment causally: adversarially suppressing predictions of true fMRI responses can suppress any stimulus/linguistic features correlated with those responses, whereas predicting permuted targets supplies qualitatively different gradients. Matching only LM cross-entropy does not establish equivalence of representations or general language ability (pp. 4–5). Likewise, brain tuning injects supervised linguistic information carried by fMRI rather than uniquely testing alignment.",
+          "The evaluation/statistics are difficult to interpret. Raw task scores and effect sizes are replaced by thresholded “win rates” derived from t-tests over only six probe seeds; the independence of seeds and the sampling unit for subsequent Wilcoxon tests are unclear. Participants are selected after requiring a significant alignment drop but a nonsignificant LM difference—absence of significance is not evidence of equivalence—creating selection bias (pp. 4–7).",
+          "The central claims overstate mixed evidence. Aggregated subfield differences for misalignment are not significant (p. 8); GPT-2/Harry is only p=0.055 and GPT-2/Moth reverses overall (pp. 33, 38); brain-tuned versus pretrained is mixed and nonsignificant in aggregate (pp. 23, 35, 55). There are also reporting inconsistencies, e.g. six Moth participants are described on p. 3 but Figure 55 claims eight subjects on p. 50."
+        ],
+        "score_rationale": "The breadth and intervention idea are promising, but the main causal interpretation is undermined by an inadequate control and fragile, highly aggregated statistical analysis. Because the evidence supports at most an association between intervention-induced representational changes and probing outcomes—not necessity of brain alignment—the work requires substantial redesign or additional controls rather than a minor revision."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes adversarially reducing fMRI predictability in BERT, GPT-2, and Llama representations and reports lower Holmes probing performance, with complementary brain-tuning experiments. The intervention is interesting, but it does not isolate brain alignment from ordinary stimulus-related linguistic information, so the central causal conclusion is unsupported.",
+        "strengths": [
+          "The bidirectional intervention—brain misalignment and brain tuning—is a novel and potentially useful experimental framing (pp. 3–4).",
+          "Evaluation spans three model families, two fMRI datasets, multiple participants, and over 200 linguistic probing datasets (pp. 3–5).",
+          "Held-out brain encoding evaluation and a permuted-fMRI control are sensible initial safeguards (pp. 4–5, 14–15)."
+        ],
+        "weaknesses": [
+          "The key control is inadequate: aligned adversarial training removes any linguistic features predictive of language-evoked fMRI, whereas permuted targets contain no corresponding signal. Thus degraded probes may simply reflect removal of ordinary linguistic information, not a special causal role of brain alignment (pp. 4–5). Matching in-domain LM cross-entropy cannot establish representational equivalence.",
+          "The statistical pipeline is difficult to interpret: task scores are thresholded into significance-based win rates using probe seeds, then aggregated across runs, participants, tasks, and model–dataset settings. Effect sizes and raw task/LM results are absent, and checkpoint/participant dependence and extensive multiplicity are not adequately modeled (pp. 4–5, 7–9).",
+          "Evidence is inconsistent and weaker than the claims: GPT-2/Moth reverses the aggregate misalignment trend (p. 38), brain tuning is often not better than the pretrained model and is worse for BERT/Harry overall (p. 23), while the final aggregate pretrained comparison is nonsignificant (p. 55). Reporting contradictions—six versus seven BERT/Harry participants (pp. 7, 20), and eight subjects despite six displayed for Llama/Moth (p. 50)—further reduce confidence."
+        ],
+        "score_rationale": "The broad experiments and intervention idea are promising, but the principal causal identification failure means the results show that suppressing fMRI-predictive linguistic features hurts probes, not that brain alignment is necessary for linguistic competence. Statistical and reporting problems compound this issue. I therefore judge it a reject, while allowing some uncertainty because stronger controls and raw-score analyses could materially change the assessment."
+      }
+    }
+  ]
+}

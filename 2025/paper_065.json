@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_065",
+  "paper_id": "S1U0CIuejF",
+  "number": 9730,
+  "title": "TrendDiff: Decoupling Intrinsic and Measurement Trends for Enhanced Time Series Causal Discovery",
+  "authors": "Pei Zhang; Biwei Huang; Linwei Tian; Kun Zhang",
+  "primary_area": "causal reasoning",
+  "keywords": "Causal discovery; Time trends; Measurement error; Constraint-based algorithm",
+  "forum_url": "https://openreview.net/forum?id=S1U0CIuejF",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    3,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The authors present a constraint-based algorithm to detect all trend-influenced variables and partially distinguish intrinsic trends from measurement trends."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The proposed algorithm addresses an interesting topic in time series datasets. The algorithm is capable of detecting time trend variables, and given the definitions of intrinsic trends and measurement trends, it can further partially identify which time trend variables exhibit intrinsic trends and which are affected by measurement trends within certain causal structures.\n\n2. The algorithm has been applied to a series of simulation experiments and a real case study.\n\n3. The assumptions are stated in a comprehensive manner."
+        },
+        "weaknesses": {
+          "value": "1. Without an explicit statement in the paper, this algorithm appears to be an extension of CD-NOD. The main paper describes phase 1 (Algorithm 1) in detail; however, I believe Algorithm 1 and Theorem 1 have already been introduced in Huang et al., 2020. The citation in phase 1 gave the impression that only step 4 in Algorithm 1 and the complete proof are originally presented in Huang et al., 2020. However, after reviewing the previous work by Huang et al., 2020, it seems the entire Algorithm 1 is from that paper. Therefore, I think the citation in this section is problematic.\n\n2. There is no theorem guaranteeing phase 2, whereas Theorem 1 in phase 1 has been proved in previous work.\n\n3. Considering that measurement trends are a type of measurement error, could the models introduced in the related work aimed at causal discovery in the presence of measurement errors be used as baselines? I understand that there are no previous methods capable of identifying time trend variables, but for the causal discovery part, these models could at least be treated as baselines in Fig. 6 (b). The effectiveness of the proposed algorithm for estimating the correct causal graph is difficult to evaluate without any baselines.\n\n4. Algorithm 1 and Theorem 1 are demonstrated in a setting that assumes there are no measurement errors, correct? If there are errors in the dataset, how can it be guaranteed that the results from Algorithm 1 are correct, given that phase 2 heavily relies on the correctness of Algorithm 1?"
+        },
+        "questions": {
+          "value": "1. Are there any experimental results on the performance of identifying measurement-trend variables, similar to Fig. 6 (a)?\n\n2. In Algorithm 2, measurement-trend variables are collected from the time-trend variables identified in Algorithm 1 after removing the identified intrinsic-trend variables. However, since intrinsic-trend variables are partly identified from the measurement, the remaining set of time-trend variables is not necessarily composed solely of measurement-trend variables, correct?\n\n3. The same question as in Questions Item 2 applies to Figure 6 (b). If the 'measurement-trend' variables are a mixture of measurement- and intrinsic-trend variables, how can it be ensured that the experiments were conducted both before and after the elimination of 'detected measurement trends'?\n\n4. Please direct me to the relevant part if I missed it—could you explain how the measurement trends are removed in the experiment?\n\n5. Is there a reason for choosing the PC algorithm, which is designed for IID samples, after removing the measurement trends, instead of applying Algorithm 1 or other algorithms designed for time series datasets? If applying Algorithm 1 to the data after the elimination of detected measurement trends results in higher accuracy, does this imply that the existence of measurement trends indeed affect the correctness of Phase 1 and, consequently, the entire proposed algorithm (please refer to Weaknesses Item 4)? This seems to suggest a cyclic conflict."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "SahYM0k2sV",
+      "forum": "S1U0CIuejF",
+      "replyto": "S1U0CIuejF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_3DD7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_3DD7"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9730/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730695117845,
+      "cdate": 1730695117845,
+      "tmdate": 1731428889907,
+      "mdate": 1731428889907,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces TrendDiff, an algorithm designed to enhance causal discovery in time-series data by distinguishing between intrinsic trends (genuine changes in the underlying phenomenon) and measurement trends (artifacts or errors in observation). Recognizing that measurement trends can obscure causal relationships, the authors present a two-phase approach: identifying trend-affected variables, and then classifying these into intrinsic or measurement trends based on their structural and conditional independence relationships within the causal network. The authors validate TrendDiff through simulations and a real-world environmental health dataset, showing that removing measurement trends improves causal discovery accuracy. By employing techniques like the “Savitzky-Golay filter” for detrending, they demonstrate that eliminating measurement noise clarifies causal structures, enabling more accurate data-driven insights."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The introduction of the TrendDiff algorithm for distinguishing intrinsic and measurement trends in time-series data is innovative and addresses an important gap in causal discovery for observational datasets.\n- The algorithm’s two-phase structure, employing conditional independence tests and Savitzky-Golay filtering, is an effective approach for identifying and removing measurement trends, demonstrating improved accuracy in causal inference over baseline methods.\n- The work is relevant to fields like finance, environmental science, and healthcare, where noisy trends can obscure causal relationships, offering a potentially valuable tool for enhancing data pre-processing and improving causal analysis reliability in these domains."
+        },
+        "weaknesses": {
+          "value": "- The current model assumes that all causal relationships are instantaneous, an oversimplification for domains requiring lagged causality (e.g., health impacts of pollution). To broaden its relevance, the algorithm could integrate methods for time-lagged effects allowing it to account for delayed causation in complex time-series data.\n- A crucial element of the TrendDiff algorithm is Algorithm 2, which represents the main novelty of this paper. However, this algorithm is placed in the appendix rather than the main text, obscuring its importance. Upon closer examination, it appears that Algorithm 2, along with other components, primarily serves as a data preprocessing step rather than a standalone causal discovery technique. This distinction is not clearly stated in the paper, which may lead to confusion about the intended scope and purpose of the method. Meanwhile, Algorithm 1, which is nearly identical to the CD-NOD algorithm, could be moved to the appendix, as it offers limited novel contribution and primarily replicates an established process for detecting time-influenced variables. Additionally, a key part of this preprocessing involves the Savitzky-Golay filter to detrend measurement-influenced variables and reduce noise. However, the filter’s role, configuration, and the rationale for its selection are not discussed in the main paper, leaving a gap in transparency regarding this essential step. A clear justification for using the Savitzky-Golay filter, including details on parameterization and potential alternatives, would improve understanding of the algorithm’s robustness and clarify its intended application as a preprocessing technique.\n- The paper does not provide a complete description of how the final causal graph is constructed, leaving out important details on whether additional steps were applied beyond the initial graph derived in Phase 1. While the initial causal graph is generated through conditional independence tests and orientation based on dependency relationships, it is unclear if this graph is directly used as the final causal graph or if further refinement steps were applied. The absence of a full algorithm or detailed methodology for finalizing the causal graph limits the reproducibility and clarity of the approach. Including this information would clarify whether the initial skeleton suffices or if other techniques (such as additional orientation rules or refinement methods) are necessary to achieve the final, fully directed causal graph.\n- The proposed TrendDiff algorithm is based on CD-NOD, which theoretically identifies time-influenced variables as trends. However, an examination of the CD-NOD GitHub repository and example datasets (https://github.com/Biwei-Huang/Causal-Discovery-from-Nonstationary-Heterogeneous-Data/tree/master) indicates that the synthetic data relies on sinusoidal functions to represent time dependencies. Sinusoidal patterns more accurately model seasonality rather than long-term trends, introducing ambiguity in Phase 1 of TrendDiff. This means that Phase 1 of the algorithm may be detecting seasonality along with trends, which undermines the core objective of differentiating intrinsic trends from measurement errors. Without a clear separation between seasonality and true trends, the validity of the paper's approach is in question, as the methodology may not be isolating trends as intended. A more refined approach to differentiate between seasonality and trends would strengthen the algorithm’s theoretical foundation and improve its practical applicability.\n- In Section 5.1, the authors state that \"all trends were modeled as sinusoidal functions with periods w chosen randomly from a uniform distribution Unif([5, 25])\". However, this approach models seasonality rather than a true trend, as sinusoidal functions are inherently cyclical and represent recurring patterns over time. True trends, in contrast, are typically non-repeating, directional changes that occur over a longer timeframe. By modeling trends with sinusoidal functions, the paper conflates seasonality with trend, which may lead to inaccuracies in trend differentiation and limit the algorithm’s effectiveness in real-world applications, where identifying genuine trends—rather than cyclic seasonal effects—is crucial.\n- Phase 1 of TrendDiff relies on CD-NOD to generate the initial causal graph, using a surrogate variable to represent time. However, CD-NOD’s approach is nearly identical to the PC algorithm and does not account for time lags in causal relationships. Given that the proposed approach uses the causal skeleton and time-influenced variables as foundational components, employing algorithms like JPCMCI+ (https://proceedings.mlr.press/v216/gunther23a/gunther23a.pdf) and CDANS (https://proceedings.mlr.press/v219/ferdous23a/ferdous23a.pdf) would likely produce a more accurate causal skeleton with time lag considerations. Additionally, these algorithms are more efficient in handling high-dimensional data, which would improve the scalability and robustness of the method.\n- The experimental section lacks a comprehensive evaluation of TrendDiff's performance relative to similar algorithms, such as JPCMCI+ and CDANS, both of which incorporate the time index as a surrogate variable and are better suited for time-series data. Benchmarking TrendDiff against these methods would provide a more robust assessment of its efficiency and accuracy, offering insights into its relative strengths and weaknesses. While the paper focuses solely on TrendDiff, the real data analysis only presents results from PCMCI+ with TrendDiff, without evaluating the effectiveness of TrendDiff or comparing it with other methods. Given that TrendDiff primarily functions as a data preprocessing step rather than a standalone causal discovery approach, a comparative study using different causal discovery methods on synthetic datasets, both before and after applying TrendDiff, would yield more meaningful insights. Such an evaluation would clarify the preprocessing step's impact on causal discovery accuracy and enhance understanding of its role in improving downstream analyses. Additionally, Figure 6(b), titled \"Performance of PC algorithm using data pre- and post-elimination of detected measurement trends,\" compares the PC algorithm's performance before and after removing measurement trends. However, the PC algorithm is not suitable for time-series data as it assumes an i.i.d. structure and does not consider temporal lags, which prevents it from capturing the dependencies and causal lags inherent in time-series data. This limitation raises concerns about the validity of using the PC algorithm in this evaluation, as the lack of time-series-specific adaptations undermines the reliability of the results presented in Figure 6(b) and calls into question the overall evaluation method's accuracy in a time-dependent context."
+        },
+        "questions": {
+          "value": "- Have you considered the possibility of variables being influenced by both intrinsic and measurement trends simultaneously? Could TrendDiff be adapted to detect and separate overlapping trends within a single variable, potentially using a hybrid model or disentanglement techniques?\n- Could you clarify the choice of the Savitzky-Golay filter for detrending measurement trends? Including parameterization details and comparing this filter with other detrending methods would provide more insight into this choice and its impact on causal discovery.\n- The construction of the final causal graph remains unclear. Was the initial causal graph sufficient, or did you apply additional refinement steps? A more comprehensive outline would improve the transparency of the final graph construction process.\n- Despite the limitations of CD-NOD, why was it selected for Phase 1 instead of alternatives like JPCMCI+ or CDANs? Could you explain any advantages or the rationale behind this choice?\n- Since CD-NOD uses sinusoidal functions, which represent seasonality rather than true trends, could Phase 1 of TrendDiff be misidentifying seasonality as trends? \n- Why were sinusoidal functions chosen for trends in synthetic data, given their alignment with cyclical rather than directional changes? Clearly distinguishing seasonality from true trends could improve the approach’s validity, particularly in contexts with prevalent seasonal patterns.\n- Why did you choose the PC algorithm to compare performance before and after eliminating measurement trends, given that PC is not designed for time-series data and cannot account for temporal dependencies? - Wouldn’t it have been more suitable to use CD-NOD, which was already employed in Algorithm 1 and is better suited for time-series causal discovery?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "brxxVvluJW",
+      "forum": "S1U0CIuejF",
+      "replyto": "S1U0CIuejF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_qk2J"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_qk2J"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9730/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730688218464,
+      "cdate": 1730688218464,
+      "tmdate": 1731428890036,
+      "mdate": 1731428890036,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies trends in causal discovery. Using a time indexing variable, the authors show how to identify variables with trend and how to differentiate intrinsic trend v.s. measurement trend variables. They also conduct experiments on synthetic data and real data to verify their theories."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "Extensive experiments are conducted on both synthetic data and real data to verify the results."
+        },
+        "weaknesses": {
+          "value": "**1**. The authors seem to confuse the concept of trend with nonstationarity. Nonstationarity means the causal mechanism $f_i$ that generates $X_i$ from its parent $PA_i$ changes with time. For trend, such a change should has a direction (increasing or decreasing) with time, see Def. 1 of (White and Granger, 2011) in your reference. However, Def. 1 in the paper fails to signify this.\n\nIn a similar way, measurement trend should not be confused with meansurement error along time. According to Def. 3 in the paper, a white noise along time or a Brownian motion can be considered as measurement trend, however, there is no tendency in them.\n\n**2**. The novelty of the proposed techniques is limited. The use of a time indexing variable $C$ to identify nonstationary variables is a classic approach established by CD-NOD (Huang et al., 2020). I believe that trend warrants special attention, particularly regarding their properties of increasing or decreasing over time, rather than trivially applying results from nonstationary causal discovery."
+        },
+        "questions": {
+          "value": "See weakness above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "uvFgN5f0KV",
+      "forum": "S1U0CIuejF",
+      "replyto": "S1U0CIuejF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_zCPg"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_zCPg"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9730/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730605048524,
+      "cdate": 1730605048524,
+      "tmdate": 1731428889688,
+      "mdate": 1731428889688,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the need to differentiate between intrinsic trends, which are integral to the causal interpretation, and measurement trends, which are artifacts of the measurement process rather than the data-generating mechanism. It is clearly shown that misidentifying one for the other will lead to incorrect causal interpretations. The authors first show that a trend, whether intrinsic or measurement-related, can be identified. More importantly, it is then argued that if a trended variable is affected by either an intrinsic or measurement trend, then the type can be distinguished, based on appropriate conditional independence statements related to the underlying causal structure. The paper concludes with a variety of experiments over simulated and real data, which demonstrate that the proposed algorithm can differentiate between the two types of trends. Further analysis is carried out at the level of causal discovery, where it is shown that appropritate detrending improves the recovery of the causal graph."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper addresses an interesting and important problem in causal inference, and proposes an intuitive framework and solution, with strong empirical backing. \n\nI appreciated the use of causal graph illustrations, as this helped convey the intuition for the distinction between the downstream effects of intrinsic and measurement trends. \n\nThe experiments were well designed. The simulated and real experiments featured both types of trends, and the positive effect on detrending just the measurement trend for causal discovery is a nice touch. I particularly liked the selected real dataset, given the significance of the likely measurement trend."
+        },
+        "weaknesses": {
+          "value": "As pointed out by other reviewers, the novelty of the paper is lacking, since many fundamental aspects come from the CD-NOD paper.\n\nI think that the paper should be more transparent about not being able to simultaneously handle intrinsic and measurement trends for the same variable. This is only discussed at the very end. I would recommend clarifying it as a model assumption within Section 3. In general, I think that the model assumptions can be stated more clearly.\n\nMost trends in the experiments section are sinuosoidal. There is a lack of evaluation for non-periodic trends (ex. Growth or decay). \n\nI found some notations/definitions ambigious:\n\nAlthough reasonably intuitive, intrinsic and measurement trend should be defined more rigorously in Definitions 2-3, given the importance to the paper.\n \nI think that the phrasing \"X2 and X3 are not observable\" (line 63) should be adjusted, since it can easily be misinterpreted to mean that they are completely unobserved, rather than their true values not being observed.\n\nWhat is C precisely? Is it the set of measurement times (modeled as a r.v.)?\n\nFigure 6a) legend typo \"Guassian\" -> \"Gaussian\""
+        },
+        "questions": {
+          "value": "What would the causal discovery results look like if it was completely detrended, as is often done in the literature (intrinsic trends also removed)? It would be interesting to see this ablation if possible.\n\nDo the authors think that distinction between measurement and intrinsic trends (given in this paper for a particular type of SEM) can be generalized when formalized in the SDE setting? There has been recent work with SDEs being used as SEMs (see for example from the last year: \"Dynamic Structural Causal Models\" and \"Causal Modeling with Stationary Diffusions\"). These models seem quite applicable, especially for modeling financial markets."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "XjUeLHJKfK",
+      "forum": "S1U0CIuejF",
+      "replyto": "S1U0CIuejF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_v1z9"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9730/Reviewer_v1z9"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9730/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730385383618,
+      "cdate": 1730385383618,
+      "tmdate": 1732042163348,
+      "mdate": 1732042163348,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "TrendDiff proposes a two-stage procedure that uses dependence on time to detect trend-affected variables and graphical criteria to classify intrinsic versus measurement trends. The distinction is potentially useful and plausibly novel relative to the cited literature, but the central classification theory is not established and the empirical evaluation largely reflects favorable assumptions. The real-data analysis is illustrative rather than credible validation.",
+        "strengths": [
+          "The paper formulates a practically meaningful distinction between intrinsic and measurement trends using structural causal models (pp. 1–3).",
+          "The two-stage algorithm is conceptually intuitive, and the paper explicitly acknowledges important non-identifiable cases, including leaf nodes and coexisting trend types (pp. 5–7, 9).",
+          "Experiments cover multiple noise distributions, sample sizes, dimensions, sparsities, confidence intervals, and computational costs (pp. 8, 15–17)."
+        ],
+        "weaknesses": [
+          "There is no correctness or identifiability theorem for Phase 2. More seriously, a measurement mechanism introduces an unobserved true variable that can act as a non-time-related latent common cause of its observed measurement and downstream variables, so the assumptions used to justify Phase 1 do not directly hold for the actual observed-variable graph. Figure 4 also omits the induced X1–X3 adjacency expected when true X2 is latent (pp. 3–6).",
+          "The simulations are strongly tailored to identifiable cases: random experiments exclude trends on leaves, require trend variables to be nonadjacent, and generate only the easy structures from Figure 5(a,d). The description also ambiguously calls time-indexed rows IID, and provides no substantive competing classification baseline (pp. 13–16).",
+          "The real-data result lacks ground truth and contains reporting concerns: 2007–2018 is inconsistent with the stated 6,543 daily observations, several SD entries appear malformed, seasonality is explicitly untreated, and agreement with selected literature does not validate trend type or causal edges (pp. 9, 17–18)."
+        ],
+        "score_rationale": "The problem and graphical intuition are interesting, but the main intrinsic-versus-measurement classification lacks a sound general guarantee, while experiments avoid the difficult cases and the real-data evidence is not validating. These are central rather than presentation-level issues, warranting a reject score despite the promising direction."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The manuscript proposes TrendDiff, a two-phase constraint-based method that uses time as a proxy to detect trend-affected variables and then classifies their trends as intrinsic or measurement-induced. The problem is interesting, but the central classification step lacks a convincing correctness result, and the empirical evaluation is too favorable and weakly validated to support the claims.",
+        "strengths": [
+          "The distinction between intrinsic and measurement trends is practically relevant, and the paper clearly motivates why indiscriminate detrending can harm causal discovery (pp. 1–3).",
+          "The paper gives an intuitive graphical account of how measurement trends can create collider-like behavior distinct from propagation of intrinsic trends (pp. 6–7).",
+          "Experiments cover multiple sample sizes, noise distributions, graph dimensions, and report uncertainty and runtime information (pp. 15–17)."
+        ],
+        "weaknesses": [
+          "The key Phase-2 rules are supported only by examples, not a general identifiability or correctness theorem. They depend on obtaining outgoing orientations from Phase 1 despite Markov-equivalence ambiguity, and Algorithm 2 restricts test nodes to non-trending variables even though the text discusses broader identifiable descendants (pp. 6–7, 13).",
+          "The formal foundation is unclear for measurement trends: observed variables are noisy proxies of latent true variables, but the stated augmented graph and Theorem 1 do not explicitly include those latent true variables or establish that the cited changing-module result remains valid under this measurement process (pp. 4–6).",
+          "Evidence is overly favorable: random simulations explicitly exclude trends at leaf nodes, adjacent trending variables, and non-identifiable structures (p. 16), there are no classification baselines, and the sole real-data result has no ground truth and admits untreated seasonality (pp. 8–9). The impossible-looking summary statistics—for example CO SD 2322 with range 250–2001.8—also raise data-reporting concerns (p. 18)."
+        ],
+        "score_rationale": "The paper frames a potentially novel and useful problem, but its main technical contribution is not established beyond selected graphical cases, while simulations largely enforce the method's identifiability conditions and the real-data study cannot validate labels. These are central rather than cosmetic issues, warranting rejection despite promising motivation; some uncertainty remains because a more precise latent-variable formulation might repair parts of the theory."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes TrendDiff, a two-phase constraint-based method that uses time as a proxy to detect trend-affected variables and structural criteria to classify intrinsic versus measurement trends. The problem is interesting, but the central recovery and classification claims are not established under the paper’s own measurement-error model, and the empirical evaluation largely tests specially constructed identifiable cases.",
+        "strengths": [
+          "The distinction between intrinsic and measurement trends is practically relevant and is presented intuitively with useful graphical examples (pp. 1–3).",
+          "The paper clearly states some important limitations, including leaf nodes and variables containing both trend types (p. 9).",
+          "Experiments cover several sample sizes, noise families, dimensions, and sparsity settings, and report runtime and uncertainty in parts of the appendix (pp. 15–17)."
+        ],
+        "weaknesses": [
+          "The core soundness claim appears false without substantially stronger assumptions. For a chain X1→X2→X3 with a noisy observation of X2, conditioning on time does not generally restore X1 ⟂ X3 | observed-X2,C; residual measurement noise prevents observed X2 from d-separating the endpoints. Thus Algorithm 1 cannot generally recover the true skeleton as claimed by Theorem 1, despite the arbitrary noisy measurement mechanism in Eqs. (2)–(3) (pp. 4–6). No new proof resolving this issue is supplied.",
+          "Phase 2 has no formal identifiability theorem and depends on fully reliable edge orientation and highly restrictive descendant configurations (pp. 6–7). Moreover, Algorithm 2’s stated matrix encoding says an outgoing i→j edge has β_i,j=-1, yet it tests whether row i contains 1 to detect outgoing links, an apparent reversal in the algorithm specification (p. 13).",
+          "The evidence is insufficient and partly inconsistent: there is no classification baseline; random graphs explicitly exclude leaves, adjacent trend variables, and difficult intrinsic-trend structures (p. 16); and the real study has no ground truth. Its reported 2007–2018 period is incompatible with 6,543 daily observations and Figure 7’s earlier dates, while several SDs exceed what the reported nonnegative ranges permit (pp. 8–9, 17–18)."
+        ],
+        "score_rationale": "The formulation and motivation have some novelty, but the main theorem does not appear applicable to noisy measured variables, Phase 2 lacks a rigorous correctness result, and experiments avoid many difficult cases while containing serious real-data inconsistencies. These issues undermine the central contribution rather than representing repairable presentation defects."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes TrendDiff, a two-phase constraint-based method that uses time as a proxy for latent trend drivers, then attempts to classify trend-affected variables as intrinsic or measurement-driven from graph structure and additional conditional-independence tests. The problem is interesting, but the central classification method lacks a convincing identifiability theorem and is evaluated mainly under highly favorable assumptions.",
+        "strengths": [
+          "Formulates a practically relevant distinction between intrinsic and measurement trends and clearly illustrates why measurement trends can distort causal discovery (pp. 1–3).",
+          "Provides an explicit algorithm, simulations across several noise types and sample sizes, and reports uncertainty intervals for the fixed-graph experiment (pp. 7–8, 13–17).",
+          "Openly acknowledges important limitations, including non-identifiability for leaf nodes and inability to handle variables containing both trend types (p. 9)."
+        ],
+        "weaknesses": [
+          "The main novelty—Phase 2 classification—has no formal correctness or identifiability theorem. Its rules assume sufficiently and correctly oriented outgoing edges, although Phase 1's stated theorem only establishes skeleton recovery, and ordinary observational causal discovery generally yields only an equivalence class (pp. 5–7, 13).",
+          "The evaluation is strongly tailored to the method: random simulations explicitly exclude trend-bearing leaves, adjacent trend variables, and the difficult configurations discussed by the paper itself, generating only selected identifiable structures (p. 16). There are no meaningful alternative baselines, assumption-violation studies, or evaluation of trend classification under realistic serial dependence.",
+          "The real-data study has no ground truth and validates labels largely through qualitative consistency with literature; the causal changes after detrending therefore do not establish correctness (pp. 8–9). Reproducibility is further weakened by missing detrending parameter choices and apparent data inconsistencies—for example, 6,543 days does not match 2007–2018, and several reported standard deviations exceed what the listed ranges permit (pp. 14, 17–18)."
+        ],
+        "score_rationale": "Despite a useful problem formulation, the paper does not adequately establish that intrinsic and measurement trends are observationally distinguishable under its assumptions. The unsupported Phase 2 logic, favorable simulation design, and weak/internally inconsistent real-data evidence are substantial technical and empirical shortcomings, warranting rejection."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "TrendDiff addresses the useful problem of separating intrinsic from measurement-induced time trends by combining changing-module causal discovery with structural tests. However, the central distinction is not established as identifiable under a coherent observed-data model, Phase 2 lacks a soundness/completeness theorem, and the experiments largely evaluate favorable synthetic cases. Serious inconsistencies also undermine the real-data evidence.",
+        "strengths": [
+          "The manuscript identifies an important and underexplored preprocessing problem and clearly motivates why intrinsic and measurement trends should be treated differently (pp. 1–3).",
+          "The proposed two-phase procedure is conceptually intuitive, and the paper evaluates multiple noise types, sample sizes, graph dimensions, and sparsities (pp. 7–8, 15–17).",
+          "The authors explicitly acknowledge important unsupported cases, including trend-affected leaf nodes and variables containing both trend types (p. 9)."
+        ],
+        "weaknesses": [
+          "The main technical claim is insufficiently justified. A measurement-error proxy with a latent true variable does not generally induce the simple collider DAG asserted on p. 6, and no Phase-2 soundness or identifiability theorem is given. Using outgoing orientations as definitive evidence of intrinsic trends is especially fragile because such orientations may be unidentified or erroneous; Theorem 1 only addresses skeleton recovery (pp. 5–7, 13).",
+          "The empirical design is favorable and incomplete: random simulations explicitly exclude trend-bearing leaves, adjacent trend variables, and harder configurations, retaining only identifiable structures (p. 16); there are no competing methods or simple baselines, and detrending depends on a Savitzky–Golay filter whose key window/order settings are not reported (pp. 14–16). Serial dependence and seasonality are also not adequately handled when applying ordinary KCI-based tests to time series.",
+          "The real-data result is not validation because trend labels and causal edges lack ground truth, uncertainty analysis, or sensitivity checks (pp. 8–9). Moreover, the dataset description is internally inconsistent: 6,543 daily observations cannot span only 2007–2018, Figure 7 appears to begin before 2005, and Table 1 reports standard deviations exceeding ranges for several variables (e.g., CO SD 2322 with maximum 2001.8) (pp. 9, 17–18)."
+        ],
+        "score_rationale": "The problem formulation is potentially valuable, but the paper does not establish that its core intrinsic-versus-measurement classification is generally valid, and its evidence is tailored to assumptions favoring the method. The substantial real-data inconsistencies further reduce confidence. These are central rather than easily repairable issues, warranting rejection despite an interesting direction."
+      }
+    }
+  ]
+}

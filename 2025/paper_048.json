@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_048",
+  "paper_id": "ldVkAO09Km",
+  "number": 6218,
+  "title": "Diffusion Actor-Critic: Formulating Constrained Policy Iteration as Diffusion Noise Regression for Offline Reinforcement Learning",
+  "authors": "Linjiajie Fang; Ruoxue Liu; Jing Zhang; Wenjia Wang; Bingyi Jing",
+  "primary_area": "reinforcement learning",
+  "keywords": "Offline Reinforcement Learning; Diffusion Models; Actor-critic Learning; Policy Iteration; Policy Regularization",
+  "forum_url": "https://openreview.net/forum?id=ldVkAO09Km",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    6,
+    6
+  ],
+  "human_mean_rating": 6.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper integrates the advantage-weighted regression and diffusion model for offline reinforcement learning. This paper introduces the Diffusion Actor-Critic (DAC) framework, which theoretically formulates KL-constrained policy iteration as a diffusion noise regression problem. The experimental results demonstrate the advantages of DAC in terms of performance and stability. However, several concerns are as follows."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Overall the paper is well-written, making readers quickly capture the core idea. There are several advantages of this paper:\n\n1. DAC directly models the target policy as a diffusion model, which is an innovation in the field of offline reinforcement learning.\n\n2. Soft Q guidance adjusts the intensity of Q gradients according to noise scale, encouraging the generation of high-return actions while staying within the behavior support range. This approach effectively prevents actions outside the sampled distribution, enhancing the stability and performance of the algorithm."
+        },
+        "weaknesses": {
+          "value": "1. The notation of this paper is complicated. \n\n2. The translation between Equations 13 and 14 probably is not acceptable. How could you replace the target policy with the offline dataset? Do you mean behavior policy?\n\n3. The design of Q-ensemble makes the results unconvincing. The Q-ensemble methods can solve the offline RL without any extra regularization. Given the design of the Q-ensemble, it's ambiguous whether the improvement comes from the proposed diffusion policy-constrained iteration or the Q-ensemble. The ablation of Fig. 4 seems to approve this. The baseline methods, such as DQL, should add a Q-ensemble to compare what makes it fairer. \n\n4. Although the paper emphasizes the importance of the LCB objective in stabilizing Q-value estimation, it lacks a deeper analysis of the impact of different pessimism factors, ρ.\n\n5. Insufficient comparison of offline RL, including but not limited to:\n\n[1] RORL: Robust Offline Reinforcement Learning via Conservative Smoothing.\n\n[2] Offline RL with No OOD Actions: In-Sample Learning via Implicit Value Regularization.\n\nSeveral previous methods using constrained policy learning for offline RL should be discussed at least:\n\n[3] Behavior proximal policy optimization\n\n[4] An Implicit Trust Region Approach to Behavior Regularized Offline Reinforcement Learning\n\n[5] Uni-o4: Unifying online and offline deep reinforcement learning with multi-step on-policy optimization"
+        },
+        "questions": {
+          "value": "See weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "llKqtEUeHY",
+      "forum": "ldVkAO09Km",
+      "replyto": "ldVkAO09Km",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_GEf6"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_GEf6"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6218/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730722798614,
+      "cdate": 1730722798614,
+      "tmdate": 1732370915239,
+      "mdate": 1732370915239,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents the Diffusion Actor-Critic (DAC) framework, aimed at addressing key challenges in offline reinforcement learning, particularly in policy optimization and high-reward action generation. By innovatively transforming the KL-constrained policy iteration problem into a diffusion noise regression problem, DAC introduces a soft Q-guidance mechanism. Through comparative experiments, DAC demonstrates superior performance over existing methods on multiple D4RL benchmark tasks, especially when handling datasets containing a large number of suboptimal trajectories. The experimental results indicate that DAC not only exhibits stable convergence but also surpasses other methods in overall scores, showcasing its potential in the field of offline reinforcement learning."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "Originality:\n\nThe DAC framework which combines diffusion models with policy optimization in reinforcement learning is novel. By introducing soft Q-guidance, the paper effectively overcomes the problem of overestimating Q-values in offline learning, enhancing the stability of policy improvement. This approach offers a new direction for future research.\n\nSignificance:\n\nThe authors conduct extensive experiments on D4RL benchmarks, covering a variety of tasks with results that are clear and convincing. The experimental results is strong\n\nClarity:\n\nThe paper is clearly written with illustrative examples"
+        },
+        "weaknesses": {
+          "value": "The authors should consider evaluate DAC in more offline reinforcement learning tasks, particularly in real-world application areas such as robotic control and atari games. And It would be better to provide specific choice of hyperparameter configuration"
+        },
+        "questions": {
+          "value": "- Soft Q-guidance relies on the accurate estimation of Q-values. If Q-values are overly optimistic or pessimistic, how does this affect the generated final policy? Have you considered the propagation of such uncertainty in the learning process? If the weight adjustment for soft Q-guidance is improper, could it lead to an over-reliance on Q-values in the generated policy, potentially resulting in overfitting?\n\n- Soft Q-guidance performs well in handling tasks, but that hard Q-guidance significantly deteriorates in performance when facing a large number of sub-optimal trajectories. Have you considered combining different guidance strategies to enhance the robustness of the algorithm? Specifically, have you evaluated the introduction of additional regularization methods in specific tasks to prevent the policy from overly relying on sub-optimal trajectories, thereby enhancing the model's stability and generalization ability?\n\n- In the antmaze task, the author noted that sparse rewards have a certain impact on the algorithm's performance. In this regard, have you designed more effective reward mechanisms or exploration strategies to address the challenges posed by sparse rewards? In practical applications, if the algorithm encounters sparse rewards, what measures do you anticipate taking to adjust the DAC algorithm to ensure it can still effectively learn and optimize the policy?\n\n- The authors mentioned using a lower confidence bound to counteract overly pessimistic estimates. Could this lead to a systematic bias in the Q-values? How significant is this bias in different task settings?\n\n- How does the $\\eta$ parameter in the objective function influence the optimization process? In certain scenarios, the choice of $\\eta$ might lead to oscillations or divergence of the algorithm. Is there a need for a sensitivity analysis regarding this choice? If gradient vanishing issues arise, particularly when the update frequency of the target policy is high, how should this potential problem be addressed?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "aADnxpDf3E",
+      "forum": "ldVkAO09Km",
+      "replyto": "ldVkAO09Km",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_Wqqq"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_Wqqq"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6218/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730647407250,
+      "cdate": 1730647407250,
+      "tmdate": 1731428182347,
+      "mdate": 1731428182347,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents Diffusion Actor-Critic (DAC), a novel offline reinforcement learning algorithm designed to directly generate target policies using diffusion models. DAC formalizes the policy iteration problem with Kullback-Leibler (KL) constraints as a diffusion noise regression problem, achieving policy constraints through soft Q guidance, thus avoiding the generation of actions outside the offline data distribution. The paper demonstrates the outstanding performance of DAC in D4RL benchmark tests, surpassing current state-of-the-art methods in nearly all environments, while showing stable convergence and robust performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Innovativeness: Introduces a new algorithm DAC and proposes the soft Q guidance, addressing several challenges in offline reinforcement learning.\n\nExperimental Performance: Demonstrates outstanding performance in D4RL benchmark tests, especially surpassing current state-of-the-art algorithms in locomotion and antmaze tasks.\n\nTheoretical Support: Provides clear theoretical justification by rigorously transforming the KL constrained policy iteration problem into a diffusion noise regression problem."
+        },
+        "weaknesses": {
+          "value": "Lack of presentation: structure of the article is chaotic, failing to highlight key points, which creates some difficulty in reading.\n\nScope of Application: Although DAC performs well on standard benchmarks, its generalization ability in large-scale or complex real-world tasks has not been fully validated.\n\nThe advantages of Soft Q-guidance are not sufficiently pronounced compared to other methods."
+        },
+        "questions": {
+          "value": "How does DAC's generalization performance hold up in larger-scale real-world applications, such as autonomous driving or industrial robotics? Is there a plan to further test the scalability of this method?\n\nDoes the trade-off in soft Q guidance choice show differences in performance across various environments? Can the specific effects of different weight parameters on model performance be further explored?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9ixsHrNDr3",
+      "forum": "ldVkAO09Km",
+      "replyto": "ldVkAO09Km",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_sKYu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_sKYu"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6218/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730301919666,
+      "cdate": 1730301919666,
+      "tmdate": 1732163849030,
+      "mdate": 1732163849030,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes DAC, an offline reinforcement learning algorithm that uses diffusion models to manage out-of-distribution actions and prevent the overestimation of value functions. DAC formulates the KL-constrained policy iteration as a diffusion noise regression problem, enabling the direct representation of target policies as diffusion models. The approach includes soft Q-guidance for actor training and a Q-ensemble for critic training, stabilizing Q-gradient estimation. DAC outperforms state-of-the-art methods on the D4RL benchmarks, demonstrating its effectiveness across various environments."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper incorporates diffusion models into constrained policy iteration by using score functions, addressing the issue of the untraceable KL divergence in diffusion policies. \n\n- The paper also presents extensive experiments and thorough ablation studies, demonstrating the effectiveness and robustness of DAC.\n\n- DAC captures the multimodality of policies using diffusion model."
+        },
+        "weaknesses": {
+          "value": "- There are some 2024 papers missing in the offline RL summaries (existing citations are 2023 at best), and accordingly I would like to see your results against them in the experimental section eg. AlignIQL: Policy Alignment in Implicit Q-Learning through Constrained Optimization (He et al.), Diffusion Policies creating a Trust Region for Offline Reinforcement Learning (Chen et al.). \n\n- Recently, there is also a lot of work combining online RL and diffusion modelling, and I think a brief summary is also very necessary. Let me name a few famous works, you can add a paragraph to summarise eg. Policy Representation via Diffusion Probability Model for Reinforcement Learning(Yang et al.), Learning a Diffusion Model Policy from Rewards via Q-Score Matching(Psenka et al.), Diffusion Actor-Critic with Entropy Regulator(Wang et al.).\n\n- I don't seem to have seen you perform ablation experiments for LCB, as well as ablation experiments for diffusion step size. Especially with the ablation experiments for LCB, I'd like to see the proportionality of the improvement in performance of LCB for your final performance compared to the improvement in performance of your proposed method.\n\n- Experiments including $\\rho$ were not analysed for sensitivity."
+        },
+        "questions": {
+          "value": "- line244 or so, did you experiment with estimating entropy in the EDP?\n- Why haven't you done experiments with Adroit Tasks and Kitchen Tasks and compared them with the latest algorithms? (It's not enough in the appendix, it's perfectly fine to put it in the body of the text for comparison)\n- In Equation 15, the Q-function is well-trained only within the original data distribution. However, the distribution of $x_t$ tends to be more random and can significantly diverge from the dataset distribution. How can we ensure that the Q-function's gradients with respect to $x_t$ remain accurate and avoid substantial extrapolation errors?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "N/A"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "g0utGnOnpq",
+      "forum": "ldVkAO09Km",
+      "replyto": "ldVkAO09Km",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_rDBF"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6218/Reviewer_rDBF"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6218/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729789169243,
+      "cdate": 1729789169243,
+      "tmdate": 1732413354831,
+      "mdate": 1732413354831,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "DAC trains a diffusion target policy for offline RL using noise regression augmented by scale-dependent Q-gradient guidance, together with pessimistic ensemble critics. The idea is interesting and the reported D4RL results are often strong, but the central claim that the loss analytically solves KL-constrained policy iteration is not technically established.",
+        "strengths": [
+          "The direct diffusion actor and soft Q-guidance constitute a meaningful algorithmic contribution relative to using diffusion solely as a behavior sampler; the method also avoids backpropagation through the denoising chain (pp. 4–7).",
+          "Experiments cover locomotion, AntMaze, Adroit, and Kitchen, use eight independent training runs, and report converged rather than best-checkpoint performance (pp. 8–10, 16, 18–21).",
+          "Ablations support the practical importance of soft guidance and the LCB ensemble target, while sensitivity and timing studies provide useful implementation evidence (pp. 9–10, 18–20)."
+        ],
+        "weaknesses": [
+          "The key noisy-score identity in Eq. 12 is generally false: Gaussian convolution of the exponentially tilted policy in Eq. 8 does not preserve the relation “target score = behavior score + ∇Q/η.” The text acknowledges recovery only for small perturbations, yet trains uniformly across all noise levels and subsequently treats the identity as exact; Theorems 1–2 therefore do not prove the advertised KL-constrained policy-iteration interpretation (pp. 4–6, 14–15).",
+          "The additional replacement of sampling from the target policy in Eq. 13 by behavior-data sampling in Eq. 14 can change the regression minimizer and lacks an approximation bound. The appendix proof also appears to drop the required √(1−ᾱ_t) factor on the Q-gradient during the derivation (pp. 5–6, 15).",
+          "The empirical comparison mixes numbers copied from prior papers and potentially differing tuning/model-selection protocols rather than controlled reruns. Task-specific hyperparameters are selected from broad ranges without a clearly offline selection rule, and there is a notable inconsistency for hopper-medium-replay (103.1 in Tables 1/6 versus 113.1 in Table 2) (pp. 8–10, 16–19)."
+        ],
+        "score_rationale": "The method is practically promising and empirically well studied, but its principal theoretical novelty relies on an unjustified noisy-score identity and an uncontrolled change of sampling distribution. Because these issues undermine the claimed derivation rather than merely a peripheral proof, and the empirical protocol contains unresolved comparability and consistency concerns, I rate it below the acceptance threshold despite strong benchmark results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DAC proposes a practically interesting diffusion actor-critic objective with noise-scaled Q-guidance and pessimistic ensemble targets. The experiments are broad and often strong, but the central claim that the method analytically solves KL-constrained policy iteration is not established because the key noisy-score relation is generally invalid after Gaussian convolution.",
+        "strengths": [
+          "The soft Q-guidance objective is a simple and potentially useful way to train a diffusion policy without backpropagating through the denoising chain; the reported update-time advantage is substantial (pp. 6, 19).",
+          "Evaluation covers locomotion, AntMaze, Adroit, and Kitchen, uses multiple runs, and reports converged rather than best-checkpoint performance (pp. 8–10, 16, 18–21).",
+          "Ablations compare soft, hard, and denoised guidance and separately examine ensemble targets, diffusion steps, ensemble size, and action-sample count (pp. 9–10, 18–20)."
+        ],
+        "weaknesses": [
+          "Equation (12) is not generally implied by Equation (11): convolving πβ(a|s)exp(Q(s,a)/η) with Gaussian noise does not yield a density whose score equals the convolved behavior score plus ∇Q(s,x_t)/η. The paper only invokes a small-noise intuition, although training spans all noise levels; therefore Theorem 2 and the claimed analytical solution of constrained policy iteration rest on an unjustified approximation (pp. 5–6, 14–15).",
+          "The additional replacement of samples from the unknown target policy by behavior-data samples in Equation (14) is introduced as a surrogate without an error bound or consistency argument, further weakening the theoretical interpretation (pp. 5–6).",
+          "Empirical superiority is less uniform than advertised: DAC trails prior methods on both large AntMaze tasks and several Kitchen/Adroit tasks, while baseline numbers are imported from papers with potentially differing tuning protocols. There is also a result inconsistency for hopper-medium-replay: 113.1 on p. 10 versus 103.1 elsewhere (pp. 8–10, 18–19)."
+        ],
+        "score_rationale": "The practical algorithm and experimental effort are promising, but the paper's main novelty is framed as a theoretically sound reformulation, and its decisive noisy-score identity is generally false rather than proved. Strong benchmark results keep this near the acceptance boundary, but the central soundness gap and comparison inconsistencies place it marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DAC is an interesting offline-RL algorithm that trains a diffusion target policy using noise regression with Q-gradient guidance and an ensemble-LCB critic. The empirical results are often strong, but the central claim that the method analytically solves KL-constrained policy iteration is not technically established.",
+        "strengths": [
+          "The combination of a directly generated diffusion target policy, noise-level-scaled Q-guidance, and no backpropagation through the denoising chain is practically appealing and reasonably novel (pp. 4–7).",
+          "Broad D4RL evaluation reports eight independent runs, convergence-time evaluation, and useful ablations of guidance, ensemble targets, diffusion steps, and sampling cost (pp. 8–10, 16–21).",
+          "Results are particularly strong on locomotion, and the soft-guidance ablation generally supports the proposed design over hard and denoised guidance (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The key noisy-score identity in Eq. 12 is generally false: Gaussian convolution of πβ(a|s)exp(Q(s,a)/η) does not yield ∇log p*t(x|s)=∇log pt(x|s)+∇Q(s,x)/η. The text effectively assumes this after noting only a small-noise approximation, so Theorems 1–2 do not show that DAC solves the original KL-constrained update (pp. 5–6, 14–15).",
+          "The proof of Theorem 2 also inconsistently drops the √(1−ᾱt) factor from the Q-gradient in its final derivation, whereas Eq. 15 includes it; this factor defines the claimed soft guidance and is therefore not a harmless presentation issue (pp. 6, 15).",
+          "Empirical comparisons use best numbers collected from different papers rather than controlled reruns, with extensive task-specific tuning and unclear selection criteria; there is also a conspicuous hopper-medium-replay inconsistency (113.1 in Table 2 versus 103.1 elsewhere). General gains are weaker on Kitchen and large AntMaze (pp. 8–10, 16–19)."
+        ],
+        "score_rationale": "The method has meaningful algorithmic ideas and substantial empirical evidence, warranting more than a clear reject. However, the invalid central noisy-score step undermines the advertised theoretical formulation, while comparison and reporting issues weaken the evidence for broad state-of-the-art claims. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DAC is a promising offline-RL algorithm that trains a diffusion target policy through noise regression with Q-gradient guidance and an ensemble-LCB critic. The empirical results are broad and often strong, but the central claimed derivation of KL-constrained policy iteration contains a major unsupported approximation, so the paper does not establish its main theoretical claim.",
+        "strengths": [
+          "The soft Q-guidance construction is intuitive, computationally attractive, and avoids backpropagation through the full denoising chain (pp. 4–7, 19).",
+          "Experiments cover locomotion, AntMaze, Adroit, and Kitchen, with multiple runs, convergence-based reporting, and useful guidance, ensemble, diffusion-step, and sampling ablations (pp. 8–10, 16–21).",
+          "The method achieves particularly strong locomotion results and uses only five diffusion steps and ten evaluation candidates, offering practical efficiency (pp. 7–10, 16, 19)."
+        ],
+        "weaknesses": [
+          "The key noisy-score identity in Eq. 12 is generally false: Gaussian convolution of the exponentially tilted clean policy in Eq. 8 does not preserve an additive score decomposition using ∇Q(s,x_t). The text only motivates it by a small-noise approximation, yet applies it across all diffusion levels; consequently, Theorems 1–2 do not show that the trained model represents the KL-constrained optimum (pp. 4–6, 14–15).",
+          "Replacing samples from the unknown target policy with behavior samples in Eq. 14 is another uncontrolled surrogate, with no bound or consistency argument. Thus even apart from Eq. 12, constraint satisfaction and avoidance of OOD actions are not theoretically guaranteed (pp. 5–6).",
+          "The empirical comparison combines best numbers from different papers and protocols rather than controlled reruns, while task-specific tuning is substantial. There is also a material inconsistency: hopper-medium-replay is 103.1 in Tables 1, 6, and 7 but 113.1 in Table 2 (pp. 8–10, 16–19)."
+        ],
+        "score_rationale": "The algorithmic idea and extensive results make this stronger than a clear reject, but the central theoretical formulation relies on an invalid noisy-score equality and an uncontrolled distribution substitution. Together with heterogeneous baseline comparisons and a reported-score inconsistency, this places the work marginally below acceptance pending substantial correction and reframing."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes DAC, an offline actor-critic method whose diffusion policy is trained with noise-scaled Q-gradient guidance and an ensemble-LCB critic. The algorithm is interesting and empirically strong on many D4RL locomotion tasks, but its central claim of analytically solving KL-constrained policy iteration is undermined by an unjustified score identity.",
+        "strengths": [
+          "The combination of a directly parameterized diffusion target policy, soft Q-guidance, and actor-critic training is practically meaningful and avoids backpropagation through the denoising chain (pp. 4–7).",
+          "Experiments cover several D4RL domains, use eight independent training runs, report converged rather than best-checkpoint performance, and include guidance, LCB, ensemble-size, sampling, and diffusion-step ablations (pp. 8–10, 16–21).",
+          "Results are particularly strong and stable on locomotion, while the guidance ablation provides useful evidence that noise-scaled guidance improves over hard or denoised guidance (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The crucial Eq. 12 is not generally valid: Gaussian smoothing of πβ(a|s)exp(Q(s,a)/η) does not yield a noisy score equal to the smoothed behavior score plus ∇Q(s,xt)/η. The paper only motivates this as a small-noise approximation, yet subsequently treats it as exact across diffusion times; therefore Theorem 2 and the claimed analytical solution to KL-constrained policy iteration are unsupported (pp. 5–6, 14–15).",
+          "The empirical comparison is not fully controlled: baseline numbers are selected from different papers, DAC uses task-specific hyperparameters, and the procedure for choosing them without online returns is unclear. Performance is also weaker on AntMaze-large and Kitchen, tempering the broad state-of-the-art claim (pp. 8–9, 16–19).",
+          "There are reporting inconsistencies: hopper-medium-replay is 113.1 in Table 2 but 103.1 elsewhere, and the IQL locomotion total in Table 1 does not equal its listed task scores (pp. 8, 10, 19). Computational claims also omit the substantial cost of ten critics and multiple action samples."
+        ],
+        "score_rationale": "The method is novel enough and backed by substantial positive experiments, placing it near the acceptance boundary. However, the main theoretical derivation relies on a generally false noisy-score equality rather than a quantified approximation, while comparison and reporting issues reduce confidence in the claimed advantage. I therefore rate it marginally below acceptance."
+      }
+    }
+  ]
+}

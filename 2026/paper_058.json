@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_058",
+  "paper_id": "sTfIhVn7TM",
+  "number": 13304,
+  "title": "LayerCake: Token-Aware Contrastive Decoding within Large Language Model Layers",
+  "authors": [
+    "Jingze Zhu",
+    "Yongliang Wu",
+    "Wenbo Zhu",
+    "Jiawang Cao",
+    "yanqiang zheng",
+    "Jiawei Chen",
+    "Xu Yang",
+    "Bernt Schiele",
+    "Jonas Fischer",
+    "Xinting Hu"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "Contrastive decoding",
+    "Large Language Models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=sTfIhVn7TM",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    6,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "3K457xImyE",
+      "forum": "sTfIhVn7TM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13304/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761512878880,
+      "tmdate": 1762923969977,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "5s2eSJNqKC",
+      "forum": "sTfIhVn7TM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13304/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761001796097,
+      "tmdate": 1762923970378,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "UJMGCarrvo",
+      "forum": "sTfIhVn7TM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13304/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761668700103,
+      "tmdate": 1762923969587,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "xNv2Vse1Yi",
+      "forum": "sTfIhVn7TM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13304/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761950731201,
+      "tmdate": 1762923969072,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "LayerCake contrasts ordinary next-token logits with logits obtained after suppressing attention to punctuation in early layers and conceptual tokens in middle layers. The token-layer intervention is intuitive and results are broad, but the mechanistic conclusions are weakly supported and crucial implementation/evaluation details are missing.",
+        "strengths": [
+          "The method offers a simple, training-free combination of token-type and layer-specific interventions, extending layer-only contrastive decoding (pp. 6–7).",
+          "Experiments cover five model configurations and diverse factuality, QA, reasoning, and generation benchmarks, with generally consistent gains over greedy, DoLa, and SLED (pp. 7–9).",
+          "The paper includes layer/token ablations, cross-architecture tests, latency measurements, parameter sweeps, and qualitative examples (pp. 8–9, 17–21)."
+        ],
+        "weaknesses": [
+          "The claimed functional interpretation of attention is not established: category attention is aggregated without controlling for category size, heads, or token frequency, while punctuation includes the known BOS attention sink. Masking-induced degradation therefore does not demonstrate structural or semantic reasoning roles (pp. 4–5, 15).",
+          "The method is insufficiently specified for reproduction: word-to-subword category alignment, treatment of generated tokens and attention heads, exact alpha values, prompt/model variants, and several evaluation protocols are absent or ambiguous; Equations 3–7 also inconsistently refer to logits, weights, and token-specific distributions (pp. 5–7, 15–16).",
+          "Novelty and evidence are limited by comparison only against greedy, DoLa, and SLED, despite citing closely related hallucination-inducing attention perturbation methods such as HICD. There is also no held-out hyperparameter-selection protocol, statistical uncertainty, or significance analysis (pp. 3, 7–9, 20–21)."
+        ],
+        "score_rationale": "The targeted token-layer contrast is a plausible incremental contribution, and the reported empirical breadth is encouraging. However, missing comparisons to the closest methods, under-specified implementation and evaluation, and overclaimed causal interpretation prevent the evidence from supporting acceptance in its current form."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "LayerCake constructs contrastive decoding signals by suppressing attention to punctuation in early layers and conceptual tokens in middle layers, then contrasting the perturbed and original next-token distributions. The idea is intuitive and results span several models and tasks, but the causal analysis is weak and substantial evaluation/reproducibility problems prevent the reported gains from being convincing.",
+        "strengths": [
+          "The token-type/layer coupling is a sensible, lightweight extension of layerwise and hallucination-inducing contrastive decoding, requiring no training or external retrieval (pp. 6–7).",
+          "Reported improvements are broad across LLaMA, Qwen, and Mistral and include factuality, QA, and reasoning benchmarks (pp. 8–9).",
+          "The paper includes layer/token ablations, latency measurements, repetition analysis, qualitative examples, and threshold sensitivity studies (pp. 8–9, 17–21)."
+        ],
+        "weaknesses": [
+          "The mechanistic evidence does not establish the claimed functional roles: raw attention mass is confounded by category size and the BOS attention sink, only the first generated token is analyzed, and the intervention primarily shows that severe masking damages accuracy rather than that the identified layers specifically implement factual reasoning (pp. 4–6).",
+          "The experimental protocol is insufficiently controlled: layer ranges and thresholds appear selected using the evaluated benchmarks, no held-out tuning protocol, variance, significance, prompt details, or complete decoding configurations are given, and comparisons cover only two principal contrastive baselines despite closely related induced-hallucination methods discussed by the paper (pp. 7–9, 15, 20–21).",
+          "There are serious reporting inconsistencies. In Table 2, QA exact-match values exceed token F1, suggesting swapped or incorrect columns; metrics such as HaluEval Acc_H/Acc_A are undefined; and a purportedly successful TriviaQA example uses an erroneous ground truth and output—New Orleans has played in a Super Bowl, while Buffalo and Minnesota have also played—undermining confidence in evaluation quality (pp. 8, 17)."
+        ],
+        "score_rationale": "The method has an appealing inference-time intuition and encouraging breadth, but its novelty over prior hallucination-inducing contrastive decoding is incremental. More importantly, weak causal support, unclear tuning/evaluation procedures, and concrete metric and qualitative-example errors make the central empirical claims unreliable. I therefore lean reject, while allowing that a carefully corrected and independently reproducible evaluation could change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "LayerCake forms contrastive decoding signals by suppressing attention to punctuation in early layers and conceptual tokens in intermediate layers. The idea is intuitive and the reported gains span several models and tasks, but the mechanistic conclusions and empirical validation are not sufficiently rigorous for the claims made.",
+        "strengths": [
+          "The method combines token type and layer location in a simple training-free decoding intervention, offering a modest extension over layer-only contrastive decoding (pp. 6–7).",
+          "Reported improvements are broad and often sizable across LLaMA, Mistral, and Qwen families and multiple task categories (pp. 8–9).",
+          "The paper includes layer/token ablations, latency measurements, parameter sweeps, and qualitative generations (pp. 8–9, 17–21)."
+        ],
+        "weaknesses": [
+          "The claimed causal interpretation of attention is weak: token-type attention is aggregated without controlling for category frequency, heads, or tokenization, and the stage boundaries are derived on TruthfulQA/LLaMA-2 then manually transferred to other models. Attention mass and suppression sensitivity do not establish that the identified layers perform structural or factual reasoning (pp. 4–6, 15).",
+          "Experimental reporting contains serious ambiguities and apparent inconsistencies. In Table 2, NQ, TriviaQA, and HotpotQA all report F1 below EM, contrary to standard span-level scoring; prompts, decoding lengths, head-wise intervention details, subword/POS alignment, and the crucial contrastive strength α are also unspecified (pp. 7–8, 15–16).",
+          "Novelty and comparisons are limited relative to closely related hallucination-inducing contrastive methods, especially HICD, which is cited but not evaluated. Results lack uncertainty/significance estimates, held-out hyperparameter selection, and a clean ablation separating the two intervention branches from their combination (pp. 3, 8, 21)."
+        ],
+        "score_rationale": "The paper presents a plausible, useful decoding heuristic with encouraging breadth, but it is incremental and the evidence does not substantiate its mechanistic story. Missing implementation details, weak controls, omitted close baselines, and apparently invalid EM/F1 reporting materially undermine confidence in the headline results, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "LayerCake creates contrastive decoding signals by suppressing punctuation attention in early layers and conceptual-token attention in middle layers. The idea is intuitive and reported gains are broad, but methodological ambiguities and inconsistencies in the evaluation prevent the evidence from securely supporting the paper’s factuality and state-of-the-art claims.",
+        "strengths": [
+          "The token-type/layer interaction provides a clear, moderately novel refinement of internal contrastive decoding, with a training-free implementation (pp. 6–7).",
+          "Experiments cover five model configurations and diverse factuality, QA, reasoning, and generation benchmarks, generally showing consistent gains over greedy, DoLa, and SLED (pp. 7–9).",
+          "The paper includes layer/token ablations, threshold sensitivity, latency measurements, and repetition/coherence checks rather than reporting only headline accuracy (pp. 8–9, 20–21)."
+        ],
+        "weaknesses": [
+          "Key implementation details are insufficient or ambiguous: the value of alpha is never supplied; attention masking across heads and word-to-subword alignment are unclear; the notation alternates between attention weights and pre-softmax logits; and the candidate constraint is ambiguously defined after combining two distributions (pp. 5–7, 15).",
+          "Several reported QA results are internally suspicious: NQ, TriviaQA, and HotpotQA repeatedly have token-level F1 below exact match, contrary to their standard metric relationship, and prompts, decoding lengths, seeds, uncertainty estimates, and significance tests are absent (p. 8). Thresholds and layer ranges also appear selected and evaluated on the same benchmarks (pp. 8, 20–21).",
+          "The mechanistic conclusions overreach the evidence: attention mass and destructive masking do not establish that punctuation performs structural encoding or conceptual tokens perform reasoning, especially because punctuation includes the BOS attention sink and category sizes differ. Comparisons omit the closest cited attention-perturbation/induced-hallucination methods, weakening novelty and SOTA claims (pp. 3–6, 12–13)."
+        ],
+        "score_rationale": "The approach is plausible and the breadth of reported improvements is promising, placing it above a clear strong reject. However, incomplete specification, potentially invalid or mislabeled core metrics, possible benchmark-level tuning, and weak controls for the claimed mechanism make the current evidence unreliable for acceptance. I am uncertain how much the metric problems are presentation errors versus experimental errors because the supplied manuscript does not permit replication."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "LayerCake constructs contrastive decoding signals by suppressing attention to punctuation in early layers and conceptual tokens in middle layers, then contrasting perturbed and original next-token distributions. The idea is intuitive and results are broad, but the evidence does not yet establish the claimed token-layer mechanism or state-of-the-art factuality.",
+        "strengths": [
+          "A simple training-free intervention is motivated by attention analyses and described with explicit suppression and contrastive-scoring equations (pp. 4–7).",
+          "Reported improvements are broad across several model families and task types, often exceeding both greedy decoding and the included baselines (pp. 8–9).",
+          "The paper includes layer/token ablations, latency measurements, parameter sensitivity, and qualitative generations (pp. 8–9, 17–21)."
+        ],
+        "weaknesses": [
+          "The mechanistic evidence is confounded: category attention is summed over unequal numbers of tokens, punctuation includes the known BOS attention sink, and suppression removes whole categories without count-/position-matched random-token controls. Thus the results do not establish the claimed semantic specialization or causal token-layer correspondence (pp. 4–6).",
+          "Evaluation and reproducibility have serious gaps: the closest induced-hallucination/attention-perturbation methods discussed in related work are not compared; stage boundaries and thresholds appear manually selected on evaluated benchmarks; alpha, prompting, BPE-to-POS alignment, and several task protocols are insufficiently specified (pp. 3, 7, 15, 20–21).",
+          "Reported QA metrics contain apparent inconsistencies: NQ, TriviaQA, and HotpotQA repeatedly have token-level F1 below exact match, which should not occur under standard per-example EM/F1 definitions; the same issue recurs across models (pp. 8–9). This raises uncertainty about metric labeling or implementation and weakens the headline evidence."
+        ],
+        "score_rationale": "The token-aware perturbation combination is a plausible incremental contribution, and the reported gains are promising. However, missing causal controls, inadequate comparison with the most relevant methods, underspecified tuning/protocols, and apparently impossible EM/F1 relationships materially undermine technical soundness. I therefore lean reject, while allowing that corrected metric labels and stronger controlled experiments could substantially improve the assessment."
+      }
+    }
+  ]
+}

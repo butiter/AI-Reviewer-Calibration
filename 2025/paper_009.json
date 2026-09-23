@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_009",
+  "paper_id": "506BjJ1ziZ",
+  "number": 632,
+  "title": "COME: Test-time Adaption by Conservatively Minimizing Entropy",
+  "authors": "Qingyang Zhang; Yatao Bian; Xinke Kong; Peilin Zhao; Changqing Zhang",
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": "Test-time adaption; Out-of-distribution generalization",
+  "forum_url": "https://openreview.net/forum?id=506BjJ1ziZ",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    5,
+    6,
+    6
+  ],
+  "human_mean_rating": 6.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the model collapse of the popular Entropy Minimization algorithm for Test-Time Adaptation. Motivated by the observation that the amplification of model over-confidence causes model collapse, this paper proposes to minimize entropy with respect to an augmented output distribution that includes the probability to reject a sample, which is an uncertainty estimation technique known as subjective logic. Moreover, a logit normalization is designed in order to avoid degenerated solutions. Theoretical analysis reveals that the resulting approach upper bounds model confidence during adaptation based on the sample-specific confidence of the initial model. The resulting algorithm, COME, can be easily embedded into general EM-based TTA methods with a few lines of code revision. Experiments across TTA, open-world and life long TTA settings demonstrate a significant and consistent improvement upon current EM baselines."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper accurately spots the paradox of EM's learning objective: minimization of entropy leads to over-confidence. And the paper proposes a simple yet effective solution to minimize entropy with respect to a probability distribution that faithfully estimates the uncertainty without over-confidence. It is a very reasonable idea to differentiate between the statistics used for prediction and for uncertainty estimation, which has long been considered the same in the TTA literature. Therefore, the algorithm enjoys the feature that the entropy minimization can be tailored to samples with different uncertainty, which is also supported by the monotonicity result in Theorem 1. The introduction of SL for uncertainty estimation is natural and perfectly compatible with softmax functions used for training models in most cases. As a result, the implementation is light-weight, model-agnostic, and extremely easy to embed into any TTA algorithms based on the EM objective. The experiments are convincing by covering both standard TTA tasks and more challenging settings of open-world TTA. A surprisingly significant 34.5% improvement on accuracy is reported on the model of SAR. And the algorithm has further addressed uncertainty estimation under continual distribution shift as a side product, which itself is also an important problem."
+        },
+        "weaknesses": {
+          "value": "These are not necessarily weaknesses but rather some questions that I would like to confirm with the author.\n1. How does the algorithm ensure that $b_k$ is non-negative for the computation of entropy, since $b_k$ is implemented as \n$(e^{f_k(x)}-1)/ \\sum_{k'} e^{f_k'(x)}$ which could be negative?\n\n2. Why does the algorithm keep $u$ close to $u_0$? Does it imply that the uncertainty estimation for the pretrained model is trusted? What if the pretrained model is over-confident? What about the alternative constraint $u \\geq u_0$ which seems to be more conservative as is the objective of COME?\n\n3. Average false positive rate is used in experiments to assess uncertainty estimation. However, FPR measures the correctness of uncertainty estimation with such a binary perspective: for the samples we predict 1, what is the actual proportion of 0. Uncertainty estimation considers a more sophisticated question: for the samples we predict with a probability 0.7, is the actual proportion of 1 exactly 0.7? Expected calibration error (ECE) is a better metric in this sense.\n\n4. Are there standard errors of the reported results?"
+        },
+        "questions": {
+          "value": "1. The tightness for the upper and lower bounds in Lemma 1 is determined by the choice of p. By considering the simple model where f(x) outputs the same logit for all classes, the ratio between the upper and lower bound is minimized by $p=\\infty$. Is is a better choice to consider $\\| f(x) \\|_\\infty = \\max_k | f_k(x) |$?\n\n2. The usage of exp transformation of logits in the softmax function appears pivotal to the proof of Theorem 1. And if we take b(x) as a general non-negative function of f(x), the upper bound may reduce to 1. And minimizing the entropy of opinion in equation 6 can also lead to the Dirac distribution, which is over-confident.  Is there a characterization for the class of functions that could be used to form a reasonable belief b(x)?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Vp0vz2Rkif",
+      "forum": "506BjJ1ziZ",
+      "replyto": "506BjJ1ziZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_saue"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_saue"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission632/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730822042654,
+      "cdate": 1730822042654,
+      "tmdate": 1731427290701,
+      "mdate": 1731427290701,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose Conservatively Minimizing Entropy, a method for test-time adaptation (TTA) that improves test-time adaption by managing prediction uncertainty. Unlike traditional entropy minimization, which can lead to overconfidence, COME uses a Dirichlet distribution to model uncertainty, allowing the model to avoid forced classification on unreliable data."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- This paper is well-motivated, and the story makes sense. \n- Extensive experiments have been done to support the proposed method."
+        },
+        "weaknesses": {
+          "value": "My major concerns include:\n- For the proposed method: Why Dirichlet distribution is used? How is the Dirichlet distribution related to the final algorithm in Algorithm 1. In addition, what is the role of delta in Algorithm 1? It seems that the authors tell a long story about their algorithm, but the algorithm itself is rather simple.\n- For the theoretical analysis: Could the authors provide a more detailed (theoretical) comparison between the proposed method and traditional EM? What is the benefit?\n- For baselines: Some baselines are missing, for example,  [1] and [2].\n- For the datasets: I'm curious why the authors follow literatures on outliers detection.\n- For Theory 1: What is the exact benefit of the upper bound of model confidence? I think it will also hurt the performance on some \"confident\" samples. \n\n[1] Nado, Z., Padhy, S., Sculley, D., D'Amour, A., Lakshminarayanan, B., & Snoek, J. (2020). Evaluating prediction-time batch normalization for robustness under covariate shift. arXiv preprint arXiv:2006.10963.\n[2]Zhou, A., & Levine, S. (2021). Bayesian adaptation for covariate shift. Advances in neural information processing systems, 34, 914-927."
+        },
+        "questions": {
+          "value": "Please refer to weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Xb6E6bj26O",
+      "forum": "506BjJ1ziZ",
+      "replyto": "506BjJ1ziZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_4L2X"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_4L2X"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission632/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730739040015,
+      "cdate": 1730739040015,
+      "tmdate": 1733222732019,
+      "mdate": 1733222732019,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates the issue of model collapse in entropy minimization algorithms for test-time adaptation. The authors propose a novel entropy minimization approach that models prediction uncertainty by defining a Dirichlet prior distribution over model predictions. This method regularizes the model to favor conservative confidence for unreliable samples. Experiments on benchmark datasets demonstrate the effectiveness of the proposed algorithm."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The proposed algorithm introduces a rejection mechanism for unreliable samples in the TTA process, preventing the model from learning from potentially noisy labeled data. It is simple to integrate into existing TTA frameworks, and the experimental results indicate satisfactory performance."
+        },
+        "weaknesses": {
+          "value": "The proposed method and its theoretical analysis rely heavily on existing techniques, which limits its technical novelty.\n\nThe core concept shares some similarity with research on learning with rejection. It is recommended to discuss how the proposed loss function compares with the loss functions used in learning with rejection, as outlined in [1].\n\nThere is a lack of experiments involving real-world applications with distribution shifts, as exemplified in [2]. Testing the proposed algorithm on real-world data streams in dynamic environments is suggested to validate its robustness.\n\nReferences:\n\n[1] Cortes, Corinna, Giulia DeSalvo, and Mehryar Mohri. \"Learning with rejection.\" Algorithmic Learning Theory (2016).\n\n[2] Yao, Huaxiu, et al. \"Wild-time: A benchmark of in-the-wild distribution shift over time.\" Advances in Neural Information Processing Systems 35 (2022): 10309-10324."
+        },
+        "questions": {
+          "value": "see weakness"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QR0pnFmEJs",
+      "forum": "506BjJ1ziZ",
+      "replyto": "506BjJ1ziZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_WHFP"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_WHFP"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission632/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730436468728,
+      "cdate": 1730436468728,
+      "tmdate": 1732629071613,
+      "mdate": 1732629071613,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes a Bayesian inference technique to address the overconfidence problem in test-time domain adaptation. Experiments demonstrate its effectiveness, achieving a SOTA performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The motivation of the proposed method is clear. \n\n- The idea of transforming the optimization problem with a constraint (Eq. (7)) into a simpler form (Eq. (9)) is interesting and effective, which significantly simplifies the problem.\n\n- Several theoretical results, as well as empirical results, are provided. Theorem 1 helps quantitative understanding of the proposed method.\n\n- Code is available."
+        },
+        "weaknesses": {
+          "value": "- Experiments on the dependence of the results on $p$ and $\\tau$ are lacking. I would like to see the results and discussions when $p \\neq 2$ and $\\tau \\neq 1$.\n\n- (Major) The paper applies a Bayesian inference (Eq. (5)) with a regularization to the overconfidence problem inherent in TTA. The \"EM\" (entropy minimization) mentioned in the paper is, in a more general context, the unsupervised learning using soft pseudo-label, which has a wide variety of applications beyond TTA.\nWhile the proposed method is technically sound, it would benefit from discussion in a broader context—such as unsupervised learning with a pretrained model, unsupervised domain adaptation, source-free domain adaptation, and semi-supervised learning—to emphasize its wide applicability as a key contribution.\n\n- (Major) Error bars are missing. Could you provide error bars because several performance gains are marginal?\n\n- The performance metric \"Avg.\" in the tables are nonsense, while it is actually a bad convention in the field. Obviously, a \"1% gain\" is quite different in iNaturalist and SSB-Hard, for example.\n\n- (Minor) A large part of the paper is dedicated to reviewing previously known works, such as the overconfidence problem, which hinders readability.\n\n- (Minor) Much of the paper, particularly the description of the proposed method, is redundant. A more direct tone is generally preferable in academic writing.\n\n- Overall, while the paper is well-written and the proposed method is interesting and effective, the paper would benefit from a more refined articulation of its contributions and focus. Additionally, the reproducibility issue should be addressed."
+        },
+        "questions": {
+          "value": "- (Eq. (6)) What if a hyperparameter $\\lambda \\in \\mathbb{R}$ is introduced as $-\\sum_{k=1}^K b_k \\log b_k - \\lambda u \\log u$? This seems to be a straightforward generalization of Eq. (6).\n\n- Is there any quantitative correspondence between $\\tau$ and $\\delta$ (Eq. (9) & (7))?\n\n- How can we set $p$ and $\\tau$ (or $\\delta$) in practice?\n\n- To my understanding, the regularizer (Eq. (9)) effectively prevents spurious training that would drive the second term in Eq. (6) to zero by enforcing $e \\rightarrow 0$. Is this correct?\n\n- To me, the proposed method seems to be a simple combination of known techniques (to clarify, I do *not* claim that simplicity  alone is grounds for rejection at all). Could you clarify the differences of the proposed technique from other Bayesian approaches, confidence calibration algorithms, semi-supervised learning, and entropy regularization techniques? A quantitative and objective discussion would be preferable, which would significantly enhance the paper's contribution and clarity."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "L2xGirkAIb",
+      "forum": "506BjJ1ziZ",
+      "replyto": "506BjJ1ziZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_5e1E"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission632/Reviewer_5e1E"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission632/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730090949091,
+      "cdate": 1730090949091,
+      "tmdate": 1732601875023,
+      "mdate": 1732601875023,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper replaces entropy minimization in test-time adaptation with entropy over an evidential “opinion” and a stop-gradient logit-normalization update. The empirical study is broad and often reports large stability and accuracy gains, but the central uncertainty interpretation and theoretical justification contain serious mathematical and implementation inconsistencies.",
+        "strengths": [
+          "The method is a lightweight, model-agnostic modification with essentially no measured runtime or memory overhead (PDF pp. 6, 28).",
+          "Experiments cover several TTA algorithms, architectures, corruption datasets, open-world, lifelong, imbalanced, and mixed-shift streams; improvements are often substantial, especially where standard EM collapses (PDF pp. 8–10, 19, 27–29).",
+          "Ablations indicate that the proposed gradient constraint, rather than merely changing the entropy definition, drives most of the stability benefit (PDF p. 10)."
+        ],
+        "weaknesses": [
+          "The theory is materially incorrect or at least internally inconsistent. With the stated definition, u=K/sum_i exp(f_i), but the proof substitutes u=K/LSE(f), where LSE=log sum_i exp(f_i); consequently Lemma 1 and the subsequent confidence argument do not follow (PDF pp. 4, 6, 16–17). Moreover, Theorem 1 assumes |u-u0|≤δ, while the actual stop-gradient update does not ensure this finite-distance constraint relative to the pretrained model (PDF pp. 5–7).",
+          "The claimed uncertainty is not well-founded for an ordinarily cross-entropy-trained classifier: α=exp(f) makes the Dirichlet mean exactly softmax, while u depends on the arbitrary common offset of the logits even though predictions do not. The paper also alternates between exp(ReLU(f)) and exp(f), the latter allowing α<1 and negative “evidence,” and Algorithm 1 is ambiguous due to missing parentheses (PDF pp. 4–6, 27).",
+          "Uncertainty evidence is incomplete: FPR lacks a clearly specified operating threshold/TPR, and calibration, AUROC/AUPR, NLL, or proper scoring rules are absent. Hyperparameter sensitivity is severe—e.g., λ=150 collapses accuracy to 10.6 and several τ,p settings underperform EM—while selection is described as trial and error without an unlabeled selection protocol (PDF pp. 7, 10, 20–21)."
+        ],
+        "score_rationale": "The broad empirical gains make the optimization trick potentially useful, but novelty is moderate and the paper’s main principled contribution is undermined by an erroneous lemma, an unestablished theorem premise, and an offset-dependent uncertainty construction. Unless key equations were corrupted in presentation, these are too central for acceptance despite promising results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "COME replaces predictive-entropy minimization in test-time adaptation with entropy minimization over an evidential “opinion,” while stopping gradients through logit norms. The empirical study is broad and often reports substantial stability and accuracy gains, but central mathematical and implementation inconsistencies undermine the claimed uncertainty interpretation and theoretical guarantees.",
+        "strengths": [
+          "The method is simple, computationally inexpensive, and applicable to several established TTA algorithms; the reported runtime and memory overhead are negligible (p. 28).",
+          "Evaluation covers standard, lifelong, open-world, mixed-shift, and label-imbalanced settings, with generally consistent accuracy improvements across multiple TTA baselines (pp. 8–9, 27–29).",
+          "The ablation indicates that the proposed gradient constraint, rather than merely replacing softmax entropy with opinion entropy, drives the stability benefit (p. 10)."
+        ],
+        "weaknesses": [
+          "The core theory is incorrect as written: subjective logic gives u=K/sum_i exp(f_i), but the proof substitutes u=K/LSE(f), invalidating Lemma 1 and consequently the claimed connection between norm control, uncertainty, and the confidence bound (pp. 4, 6, 16).",
+          "The method is internally inconsistent and not shown to enforce its stated constraint. The text uses exp(ReLU(f)), equations later use exp(f), and Algorithm 1 omits ReLU and has ambiguous belief parentheses; without nonnegative logits, evidence can be negative. Moreover, the detach operation only removes the instantaneous radial logit gradient and does not ensure closeness to pretrained uncertainty as assumed by Theorem 1 (pp. 4–7).",
+          "The uncertainty evidence is incomplete: the constructed uncertainty depends on arbitrary additive shifts of CE-trained logits, FPR lacks a clearly specified operating point, and no AUROC/AUPR or calibration metrics are reported. Hyperparameters are described as selected by trial and error and exhibit severe sensitivity, including collapse at lambda=150 and poor performance for several p/tau choices (pp. 9–10, 20–21)."
+        ],
+        "score_rationale": "The extensive empirical gains and practical simplicity are promising, but the principal theoretical claims rely on a false equality, while the algorithm does not clearly implement the defined opinion or guarantee the assumed constraint. These are major soundness and reproducibility issues rather than minor presentation defects, placing the work below the acceptance threshold despite strong reported results. Some uncertainty remains because a corrected implementation could preserve the empirical contribution."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "COME replaces predictive-entropy minimization with entropy over an evidential opinion and uses detached logit normalization to reduce TTA collapse. The empirical coverage and reported gains are substantial, but the main theoretical justification contains fundamental algebraic errors, and the stated implementation is inconsistent with the formulation. These issues prevent confidence in the claimed principled uncertainty interpretation despite promising empirical results.",
+        "strengths": [
+          "Broad evaluation across standard, lifelong, open-world, imbalanced, and mixed-shift TTA, with generally strong improvements across several base methods and architectures (pp. 8–10, 19–29).",
+          "The method is computationally inexpensive and designed as a drop-in objective; the reported runtime and memory are essentially unchanged (p. 28).",
+          "The ablation suggests detached logit normalization substantially improves worst-case stability, while the trajectory plots clearly illustrate mitigation of collapse (pp. 10, 22–26)."
+        ],
+        "weaknesses": [
+          "The core theory is mathematically invalid: since u=K/sum_i exp(f_i), one has LSE(f)=log(K/u), not K/u. Lemma 1 and the proof use u=K/LSE(f), invalidating the stated bounds and the derivation of Theorem 1; even Lemma 2 is stated with the exponent sign reversed (pp. 6–7, 15–17).",
+          "The implementation does not establish the claimed constraint relative to the pretrained uncertainty. Detaching the current logit norm only removes its local gradient; parameter updates can still change that norm across samples and iterations. Moreover, the text applies exp(ReLU(f)) to ensure nonnegative evidence, whereas Algorithm 1 uses exp(f)-1, which can produce negative belief masses and undefined entropy (pp. 4–6).",
+          "Evidence reporting has important ambiguities: the exact FPR operating point/threshold is not defined, hyperparameters are said to require trial and error despite unlabeled online adaptation and show severe failure regimes, and selection protocols and run counts are absent (pp. 7, 9–10, 18–21)."
+        ],
+        "score_rationale": "The empirical results make the approach potentially useful, but the principal theoretical contribution is based on an incorrect relation between uncertainty and log-sum-exp, while formulation/implementation inconsistencies undermine reproducibility. I therefore rate it below acceptance; uncertainty remains about whether a corrected implementation would preserve the reported gains."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "COME replaces entropy minimization with entropy over a subjective-logic opinion and projects gradients to reduce changes in logit norm. The empirical accuracy gains are broad and sometimes large, but the central theoretical justification does not match the implemented method, and the uncertainty evaluation is insufficiently specified.",
+        "strengths": [
+          "The method is lightweight and presented as a drop-in modification with essentially unchanged runtime and memory (pp. 6, 28).",
+          "Experiments cover several TTA regimes, architectures, datasets, and baseline algorithms, with generally consistent accuracy gains and reported variability (pp. 8–9, 19, 27–29).",
+          "The ablation indicates that the gradient constraint, rather than opinion entropy alone, drives the stability improvement (p. 10)."
+        ],
+        "weaknesses": [
+          "The core theory is unsound or disconnected from the algorithm: subjective logic gives u=K/sum_k exp(f_k), but the proof substitutes u=K/LSE(f); moreover, the detached-norm gradient projection does not ensure proximity to the pretrained uncertainty required by Theorem 1 (pp. 6–7, 16–17).",
+          "The uncertainty construction is inconsistent: the text alternates between exp(ReLU(f)) and exp(f), while Algorithm 1 can produce negative belief masses for negative logits and has ambiguous parentheses. Evidence strength is also sensitive to an arbitrary common shift of logits although softmax predictions are unchanged (pp. 4–6, 27).",
+          "The uncertainty evidence is difficult to interpret because the reported FPR lacks a threshold or operating-point definition, some FPR results degrade, and the method is highly sensitive to hyperparameters, including severe collapse for plausible settings (pp. 7–10, 20–21)."
+        ],
+        "score_rationale": "The broad empirical accuracy improvements make the idea potentially useful, but the claimed principled uncertainty interpretation and confidence guarantee contain fundamental mathematical and implementation inconsistencies. Because these issues affect the paper's central contribution rather than a peripheral proof, the manuscript is below the acceptance threshold despite promising experiments."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "COME replaces predictive-entropy minimization with entropy over a subjective-logic opinion and uses a stop-gradient logit-normalization operation to reduce adaptation collapse. The empirical scope is broad, but central mathematical claims and the correspondence between the stated constrained objective and implemented algorithm are incorrect or unsupported.",
+        "strengths": [
+          "Addresses the important practical failure of entropy-based TTA under long or difficult streams, with clear trajectory visualizations (pp. 3, 22–26).",
+          "Evaluates several TTA frameworks across standard, open-world, lifelong, imbalanced, and mixed-shift settings, often reporting substantial accuracy improvements (pp. 8–10, 19, 27–29).",
+          "The modification is simple and appears to add negligible runtime or memory overhead (p. 28)."
+        ],
+        "weaknesses": [
+          "The theory contains a fundamental error: uncertainty is defined as u=K/sum_i exp(f_i), but the proof substitutes u=K/LSE(f), invalidating Lemma 1 and consequently the claimed link between logit norm and uncertainty (pp. 4, 6, 16). Theorem 1 additionally assumes the explicit uncertainty constraint, which the implemented stop-gradient operation does not establish (pp. 6–7, 16–17).",
+          "The method is internally inconsistent: valid evidence requires exp(ReLU(f))-1, whereas the pseudocode uses exp(f)-1 without ReLU, allowing negative belief masses and undefined opinion entropy. Moreover, u changes under an arbitrary common logit shift even though class probabilities do not, undermining its interpretation as uncertainty (pp. 4–6).",
+          "Experimental evidence is difficult to interpret fully: FPR lacks an operating-point definition, run counts and key online protocol details are incomplete, sensitivity can be catastrophic for plausible hyperparameters, and the reported 3% unadapted ResNet accuracy is unexplained (pp. 7, 10, 18, 21, 28)."
+        ],
+        "score_rationale": "Despite promising and extensive empirical results, the paper's main theoretical justification is mathematically invalid, and the stated uncertainty model, pseudocode, and actual surrogate constraint do not align. These are central rather than cosmetic issues, so the work requires substantial correction and revalidation before its gains can support acceptance."
+      }
+    }
+  ]
+}

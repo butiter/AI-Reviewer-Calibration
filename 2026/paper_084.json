@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_084",
+  "paper_id": "FjbU4kLriN",
+  "number": 20454,
+  "title": "Unique between the lines: benchmarking re-identification risk for text anonymization",
+  "authors": [
+    "Nataša Krčo",
+    "Zexi Yao",
+    "Matthieu Meeus",
+    "Yves-Alexandre de Montjoye"
+  ],
+  "primary_area": "datasets and benchmarks",
+  "keywords": [
+    "anonymization",
+    "re-identification",
+    "privacy",
+    "large language models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=FjbU4kLriN",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    6,
+    2
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "G1Jkh6II7Z",
+      "forum": "FjbU4kLriN",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20454/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762114173956,
+      "tmdate": 1762933895732,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "GS4yCpF0eA",
+      "forum": "FjbU4kLriN",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20454/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761840940417,
+      "tmdate": 1762933896356,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "mCf7NE5BmV",
+      "forum": "FjbU4kLriN",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20454/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761814503772,
+      "tmdate": 1764359909926,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "rIJyzODHBs",
+      "forum": "FjbU4kLriN",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20454/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761078717719,
+      "tmdate": 1762933898387,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "RAT-Bench is a timely synthetic benchmark for evaluating whether anonymized text still reveals direct and indirect identifiers. It compares a broad set of anonymizers across controlled difficulty levels and includes useful privacy–utility–cost analyses. However, the central reported metric does not consistently estimate the claimed re-identification probability, and the synthetic, oracle-assisted evaluation is insufficiently validated for conclusions about real-world population re-identification.",
+        "strengths": [
+          "The benchmark targets an important gap beyond conventional span-level PII recall by considering combinations of indirect identifiers (pp. 2–6).",
+          "The evaluation covers diverse NER-, perturbation-, and LLM-based methods, with ablations over identifier number/type, attacker model, prompts, utility, and cost (pp. 7–10, 31–46).",
+          "The paper is generally clear and unusually transparent about prompts, generated examples, failure cases, and benchmark artifacts (pp. 16–42)."
+        ],
+        "weaknesses": [
+          "The primary metric is technically problematic: Algorithm 2 assigns a continuous indirect-identifier risk κ, but Rsucc is defined as the fraction with exactly R=1 rather than averaging κ (pp. 5–6). Thus most estimated risks are discarded, and the reported percentages do not support the paper's broader claims about population-level re-identification probability.",
+          "The attacker is told the exact target attribute set present in each example and is scored by matching inferred attributes to known ground truth, rather than performing linkage against an identified population (pp. 5–6). Combined with synthetic direct identifiers that need not correspond to anyone (pp. 16–17), this primarily measures attribute recovery under oracle knowledge, not demonstrated re-identification.",
+          "External validity and statistical support are limited: only two LLM-generated scenarios and typically 100 samples per aggregation are used, with no uncertainty intervals or significance tests (pp. 6–9). Difficulty validation uses one annotator per text, matching thresholds are manually chosen without reported held-out reliability, and BLEU/ROUGE are weak proxies for downstream utility (pp. 30–31, 44–45)."
+        ],
+        "score_rationale": "The benchmark idea, breadth of comparisons, and extensive appendices are valuable, but the mismatch between κ and Rsucc is central and materially weakens the main quantitative claim. Together with oracle-assisted attribute inference and limited real-world validation, this places the work below the acceptance threshold despite its promising direction."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RAT-Bench is a useful synthetic benchmark for evaluating whether anonymized text retains direct or indirect identifiers. It covers multiple scenarios, difficulty levels, anonymizer families, attacker models, utility measures, and extensive ablations. However, the central re-identification metric and its real-world interpretation are insufficiently justified, and the synthetic evaluation is too limited to support some broad claims.",
+        "strengths": [
+          "Important and practically relevant shift from span-removal recall toward attacker-based evaluation of residual identifying information (pp. 2–6).",
+          "Broad comparison across NER-, perturbation-, and LLM-based anonymizers, with attribute-count, attacker, generator, prompt, cost, and utility analyses (pp. 7–10, 20, 31–46).",
+          "The appendices provide prompts, examples, failure cases, and a manual difficulty check, making the benchmark construction unusually transparent (pp. 16–19, 21–30, 38–42)."
+        ],
+        "weaknesses": [
+          "The claimed population-level re-identification measure is under-specified: κ is delegated to prior work without a self-contained formula, while the reported success rate counts only R=1. Any correctly recovered synthetic direct identifier is also automatically treated as successful real-person re-identification, although those identifiers are fictitious (pp. 5–6, 16–17).",
+          "External validity is weak. Results rely mainly on two LLM-generated dialogue scenarios with only 100 records per reported cell, no uncertainty intervals or significance tests, and limited validation by one annotator per text; an accidental DOB oversampling is acknowledged (pp. 6–7, 19–20, 30).",
+          "Utility evidence is not adequate for the conclusions: BLEU/ROUGE against the original reward copying and cannot establish preservation of downstream semantics or task performance, especially when comparing redaction against summarization (pp. 9, 32–33, 44–45)."
+        ],
+        "score_rationale": "The benchmark is relevant, extensive, and potentially valuable, but the core operationalization conflates attribute recovery, uniqueness, and actual re-identification, and the synthetic evidence lacks statistical and downstream validation. These issues place it marginally below acceptance despite strong presentation and breadth."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RAT-Bench is a timely synthetic benchmark for evaluating text anonymizers through residual direct and indirect attribute inference. It compares a broad set of NER-, perturbation-, and LLM-based methods and provides useful difficulty, attribute-count, utility, cost, and attacker ablations. However, the central metric does not yet convincingly measure real-world re-identification, and several experimental choices limit the strength of the conclusions.",
+        "strengths": [
+          "Important problem and useful shift beyond span-level PII recall toward combined direct and indirect disclosure risk (pp. 2–6).",
+          "Broad empirical comparison with informative breakdowns by difficulty, identifier type/count, utility, computation, and iterative anonymization (pp. 7–10, 35–46).",
+          "Substantial methodological disclosure, examples, prompts, and checks using another generator and attacker model support reproducibility (pp. 11, 16–34, 43)."
+        ],
+        "weaknesses": [
+          "The claimed re-identification measure is conceptually under-validated: the attacker is given the target attribute set, correctness is determined using oracle ground truth, and success is reported as 1{R=1}, apparently discarding non-unit values of the population-risk estimate κ. Thus this is closer to attribute-leakage-plus-uniqueness than an operational linkage attack; κ itself is insufficiently specified in the manuscript (pp. 5–6).",
+          "External validity is limited to LLM-generated conversations in two scenarios. Hard clues can be artificial or too weak to determine the exact ground truth, while the non-anonymized attacker succeeds in only 28–34% of hard cases, entangling generator/attacker failure with anonymizer quality (pp. 7–9, 22–30).",
+          "Results use only about 100 records per aggregation without confidence intervals, repeated stochastic trials, or significance tests. There are also construction concerns: accidental DOB oversampling and inconsistent descriptions of the source as a 5% versus 2010 1% PUMS sample (pp. 6, 16, 30), while BLEU/ROUGE provide weak evidence of downstream utility (pp. 9, 44–45)."
+        ],
+        "score_rationale": "The benchmark is relevant, reasonably novel, and empirically extensive, but the central claim of estimating real-world re-identification risk is stronger than the evaluation supports. The oracle-conditioned attacker and thresholded risk metric are substantial technical concerns, and the synthetic-only, small-sample evaluation leaves uncertain whether method rankings generalize. These issues place the work marginally below acceptance despite its useful benchmark design."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RAT-Bench is a useful synthetic benchmark combining controlled identifier generation, anonymization, LLM-based attribute inference, and population-based uniqueness estimates. Its broad tool comparison reveals plausible weaknesses, especially for obfuscated and indirect identifiers. However, the central metric is not a demonstrated re-identification attack: it converts correctly inferred attributes into uniqueness risk and then reports success only when R=1, making several real-world privacy claims stronger than the evidence supports.",
+        "strengths": [
+          "The benchmark systematically varies direct/indirect identifiers, difficulty, and two application scenarios, with clear generation procedures and illustrative samples (pp. 5–8, 16–30).",
+          "The evaluation covers diverse NER-, perturbation-, and LLM-based anonymizers and includes useful identifier-count/type, utility, cost, and iterative-anonymizer analyses (pp. 7–10, 35–46).",
+          "Generator, attacker, adaptive-attacker, and manual difficulty checks provide valuable robustness evidence, although on limited subsets (pp. 20, 30, 43–44)."
+        ],
+        "weaknesses": [
+          "The core evaluation does not actually link a text to a person or candidate database. It credits only correct attribute guesses, maps them through a Rocher-style population model, and defines reported success as 1{R=1}; thus it measures inferred-attribute uniqueness rather than empirical re-identification and omits effects of wrong guesses and attacker confidence (pp. 5–6).",
+          "External validity is limited by contrived LLM-generated conversations that are explicitly forced to contain selected attributes, only two scenarios, known target-attribute sets, and synthetic direct identifiers. Fabricating exact birth month/day from age may particularly distort uniqueness (pp. 6, 16–18, 21–30).",
+          "Statistical and reproducibility reporting is insufficient for many conclusions: most cells use only 100 samples without uncertainty intervals or significance tests, matching thresholds are manually chosen without reported validation, and the manuscript inconsistently describes the source as 5% PUMS versus 2010 1% PUMS (pp. 2, 6, 16, 30–31)."
+        ],
+        "score_rationale": "The paper offers a timely, well-presented, and potentially reusable evaluation framework with unusually broad experiments. Nonetheless, the gap between its uniqueness proxy and actual re-identification is central to the claimed contribution, while synthetic-data realism and limited statistical treatment further weaken the conclusions. I therefore judge it promising but marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RAT-Bench is a timely, potentially useful synthetic benchmark combining planted identifiers, anonymization systems, an LLM attacker, and demographic uniqueness estimates. The experiments reveal meaningful failure modes, especially for obfuscated and indirect identifiers. However, the central quantity is not convincingly established as real-world re-identification: it primarily measures recovery of synthetic attributes, while the indirect-risk computation and conversion to binary success are insufficiently specified.",
+        "strengths": [
+          "Broad empirical comparison spanning NER-, perturbation-, and LLM-based anonymizers, with attribute-count ablations, iterative anonymization, alternative attackers, cost, and utility analyses (pp. 6–10, 43–46).",
+          "Controlled construction covers direct and indirect identifiers, multiple difficulty levels, and two relevant scenarios; prompts and illustrative examples are documented extensively (pp. 16–34).",
+          "Qualitative error analysis identifies actionable failures such as nonstandard identifier formats, contextual leakage, and over-redaction (pp. 35–42)."
+        ],
+        "weaknesses": [
+          "The headline metric conflates attribute inference with re-identification. Records are synthetic/PUMS-derived and are never linked against an identifiable candidate population; recovering a fabricated phone number or other planted value is declared re-identification (pp. 5, 16–17). Thus claims about correctly re-identifying individuals in the U.S. population are stronger than the demonstrated evaluation.",
+          "For indirect identifiers, the paper does not provide the actual computation or calibration of κx, referring only to Rocher et al.; moreover, Rsucc counts only cases where R=1, apparently discarding substantial continuous risks below one (pp. 5–6). This makes the principal endpoint difficult to interpret or reproduce.",
+          "External validity and statistical support are limited: most cells use only 100 LLM-generated records, no uncertainty intervals or significance tests are reported, realism is not systematically evaluated, and an accidental DOB oversampling is acknowledged (pp. 6–9, 30). BLEU/ROUGE against the original text also inadequately measures preservation of task-relevant semantics."
+        ],
+        "score_rationale": "The benchmark design, breadth of evaluations, and failure analysis constitute useful progress. Nevertheless, the foundational interpretation of attribute recovery as population-level re-identification, together with the underspecified κx-based endpoint and limited statistical validation, prevents the main privacy claims from being technically convincing. I am moderately confident, though uncertainty remains because the implementation of the referenced risk estimator may contain details absent from the manuscript."
+      }
+    }
+  ]
+}

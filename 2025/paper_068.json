@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_068",
+  "paper_id": "VgmvKk7yfE",
+  "number": 9987,
+  "title": "The Turing Game",
+  "authors": "Michal Lewandowski; Simon Lucas Schmid; Patrick Mederitsch; Alexander Aufreiter; Gregor Aichinger; Felix Nessler; Severin Bergsmann; Viktor Szolga; Tobias Halmdienst; Bernhard Nessler",
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": "Turing Test; LLMs; Chatbots; Testing; Human-Ai Interface",
+  "forum_url": "https://openreview.net/forum?id=VgmvKk7yfE",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    6,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This work describes the Turing Game, a modification of Turing's Imitation Game by setting up humans to take on a symmetrical role of conversing with one another in a three-way fashion to detect which one of the players is a machine, rather than the traditional setup of having one person take on the role of a  interrogator and another take on the role of a judge. This work also describes an elaborate setup for scoring and pairing players at similar skill levels."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- This work presents an interesting modification to the original Turing's Imitation Game by making adjustments in order to address shortcomings found in previous efforts of modern adaptations of this game.\n- The paper presents in great detail the process and importance of scoring and matching players.\n- The authors also present a classifier that can automatically identify the bot in the Turing Game correctly 81% of the time."
+        },
+        "weaknesses": {
+          "value": "- While the design of the Turing Game is very interesting and the author describes the matching process in great detail, it lacks key information or appropriate explanations for interpreting the results (e.g., it is unclear even after reading the full paper, including the appendix what the different types of chatbots are, and how equation 8 is used to compute the adjusted win rates of the bots). Without knowing what the chatbots are and knowing their performance from previous adaptations of the Turing Test, the value of the Turing Game is unclear to me. For example, do we find that these bots are considered indistinguishable to humans in previous work while the Turing Game finds that they are clearly distinguishable, as demonstrated by the low win rate?\n- In general, the work lacks clarity and requires many improvement in terms of presentation. See questions/suggestions for further detail."
+        },
+        "questions": {
+          "value": "- Incorrect citation format. Differs from  other papers that I've reviewed.\n- Figure 1 and lines 64-68 are not clear on what the redesign is and how this is a better setup than the original Imitation Game. It would help to elaborate on what the checks and crosses mean, along with the hammers and the arrows.\n- lines 69-71: How does this setup avoid the quicksand of the notion of thinking?\n- lines 72: Citation?\n- line 83: what are the criteria for qualification?\n- line 87: not everyone is familiar with the festival and would not be able to imagine how this game was installed at the festival for collecting the data analyzed in this work.\n- line 115: incomplete sentence due to typo, likely missing \"asks\" between \"system\" and \"one.\"\n- What was the shortcoming of the work described in line 122-126? Did they exhibit the issues of results being noisy due to variance in participants' effort and gullibility?\n- The mention of the Chinese Room argument in line 147 is abrupt. What role does this serve in the narrative of the shortcoming of previous work?\n- line 174-175: Is there any evidence that time constraints were encouraging System 1 judgements over System 2 reasoning? Also, is there evidence that System 2 reasoning is better than System 1 judgement for discerning between LLM and humans? Otherwise, this would be an unsubstantiated claim.\n- What is the reverse effect of the Turing Test mentioned in line 191-192?\n- line 199-207: doesn't this cause a downward spiral for initially underperforming players as they continue to get paired with underperforming players as they keep losing points due to the other players' mistakes? Shouldn't each player be scored based on their own prediction only? This may disincentivize collaborative interactions for gaining points but if the goal is to find the most proficient ones, this may be the better design.\n- Is the formulation in line 216-221 correct in that the sigmoid is setup so that a bigger weight is assigned for games that were played earlier and lower weight is assigned for later games? (as k approaches 100, it gets closer to 0.5 while starting from closer to 1 when k=0) This seems counterintuitive since line 215 mentions measuring current strength, so shouldn't more recent games be weighted more?\n- line 226: Why is a strong prior towards $S_i=1$ needed?\n- line 285-286: typo? likely \"the snips were taken once the game finished...\"\n- line 284, line 340-342: What are AllTalker, MadTalker, and MetaSim?\n- What is the dialogue manager of the chatbots? Based on Figure 4, it is unclear how the bot decides to produce a turn given a three-way conversation. For instance, on the right side of Figure 4, Purple waits for others' responses but none is given by the bot, while in certain turns it produces two utterances at a time.\n- line 336-337: I think examining the nature of games surrendered is going to be important, especially since it takes up a significant portion of games that were played.\n- Section 4.3: This setup is akin to detecting LLMs, and therefore I would like to see how this result compares to DetectGPT, etc.\n- Table 1: How is equation 8 applied to compute the weighted win ratio?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "U2P1pGVVVv",
+      "forum": "VgmvKk7yfE",
+      "replyto": "VgmvKk7yfE",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_XJMd"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_XJMd"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9987/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730789974994,
+      "cdate": 1730789974994,
+      "tmdate": 1731428755989,
+      "mdate": 1731428755989,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a novel approach to the Turing Test called the Turing Game, which symmetrizes the roles of human participants and removes the interrogator role present in previous implementations. The goal of the Turing Game is to assess whether machines can convincingly mimic human behavior in chat-based interactions, focusing on collaborative dialogue and intention inference as key elements of human communication."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The Turing Game brings a fresh perspective to the Turing Test by transforming it into a three-player game with symmetrized roles, where both humans participate in identifying the AI. \n\nThe creation and public launch of the Turing Game platform is a significant contribution to AI research.\n\nThe player-matching algorithm pairs participants with similar skills and decision-making tempos, ensuring that users have a more engaging and balanced game experience. This is a thoughtful design choice, as it minimizes frustration for players of different skill levels, leading to more consistent, high-quality data."
+        },
+        "weaknesses": {
+          "value": "The paper provides a statistical analysis of game outcomes, but it lacks a deeper qualitative analysis of the conversations themselves. Examining specific examples of successful and unsuccessful bot interactions, and analyzing the types of conversational strategies employed by humans and bots, would provide richer insights into the dynamics of the Turing Game.\n\nThe preliminary data is drawn mainly from interactions at the Ars Electronica Festival, which may not represent a diverse user base. Participants at the festival may share certain cultural or technological backgrounds that could affect how they perceive and interact with AI."
+        },
+        "questions": {
+          "value": "What are the specific details of the three bots evaluated in the study (AllTalker, MetaSim, MadTalker)? More information on their architecture, and training data would help readers understand their strengths and limitations.\n\nHow do the authors ensure that human players are sufficiently motivated to engage in the Turing Game and provide accurate judgments? What measures are taken to prevent players from deliberately misidentifying fellow humans or guessing randomly?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "aFXNBplqgJ",
+      "forum": "VgmvKk7yfE",
+      "replyto": "VgmvKk7yfE",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_Zs5n"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_Zs5n"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9987/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730560577296,
+      "cdate": 1730560577296,
+      "tmdate": 1731428755972,
+      "mdate": 1731428755972,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces the Turing Game, a modern adaptation of Alan Turing's original one designed to test whether humans can distinguish between fellow humans and AI in chat-based interactions. The game features two human players and an AI chatbot, all interacting anonymously through text. Unlike the traditional Turing Test, which focuses on a one-on-one interaction with an interrogator, the Turing Game is symmetric, removing predetermined roles and encouraging collaborative or interrogative dynamics among the participants. The authors have launched the game on the Internet and gained preliminary results involving many human subjects."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "I really like the idea to changing the Turing test into a game – humans in their nature want to win – this gives them the initial and the biggest motivation to take it seriously. This could avoid two challenges in vanilla design: (1) human subjects being perfunctory so that human judges can easily distinguish, and (2) human judges being perfunctory and guess randomly, invalidating results, since if they do so, they cannot win the game.\n\n+ New design on Turing test.\n+ Detailed metrics for matching players.\n+ Large scale experiments on humans with deployment on the Internet."
+        },
+        "weaknesses": {
+          "value": "- Research questions are unclear.\n- Lack experiments for deeper analysis. The paper selects MadTalker, MetaSim and AllTalker without introducing them. We have no idea how the methods are implemented and how to interpret the results on these models. Instead, ICLR readers might be more interested on how specific models, say GPT-4o, LLaMA-3.2 perform.\n- Paper presentation needs further improvement. It looks like a technical report instead of an academic paper. Also, many parts in the current version of the paper seem unnecessary for ICLR readers (e.g., the background of Turing test, the definition of Euler distance)."
+        },
+        "questions": {
+          "value": "1.\tAbout the player rating: current metric considers only the victories and lost games. But I think some lose might be due to another human making a wrong decision. Current metric just counts it as a lost game – which is unfair for the human making the correct decision.\n2.\tHow do you handle turn taking? This is not introduced in the framework session. Do you let the three parties speak one-by-one (roundtable style)? Or do you let them speak freely without restrictions? Then how does a chatbot decide when to stop taking inputs and generate responses?\n3.\tIn the human collaboration design. Will there be bias when one human participant is more dominant?\n4.\tAbout the top-performing judges: do you have a threshold to determine whether human players are top-performing ones? What is LLMs’ performance (win rate) when the two human players are both top-performing ones?\n5.\tIn ethics statements, I think you should discuss how to protect participants’ privacy, especially their demographic information and their chat history.\n\nPresentation (minor) issues:\n\n1.\tUpon seeing figure 1 and 2, one cannot tell whether this game is about human (the male) competing against another human (the female), or two humans competing against a bot.\n2.\tQuotation marks need to be consistent (curly quotation marks recommended). There are still straight quotation marks at line 134, 145, etc.\n3.\tThe related work has only been introduced but not been sufficiently compared with the proposed method. Need more comparison to show the difference.\n4.\tTable 1: There should be a period at the end of the caption. The header will look better if the first letters of words are capitalized.\n5.\tFigure 5: sizes of subfigures are inconsistent.\n6.\tOverall, the writing should be improved."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9use2h73NM",
+      "forum": "VgmvKk7yfE",
+      "replyto": "VgmvKk7yfE",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_Dbbj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_Dbbj"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9987/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730513095730,
+      "cdate": 1730513095730,
+      "tmdate": 1731428755924,
+      "mdate": 1731428755924,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors introduce a variant of the Turing Test: the Turing Game. The generalized Turing Game removes the interrogator role and focuses instead on the interaction between an AI and two humans. In addition, the authors walk through a deployment of the Turing Game: they propose ranking metrics and matchmaking methods.\n\nThe authors deploy their game and recruit human participants. Then they report statistics of their dataset; an analysis of length and human success; and the design and evaluation of a classifier that predicts outcomes in the Turing Game."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The task setup and dataset are very promising. Turning the game into a collaborative “who is the mole” game sounds useful. I’m additionally impressed by the infrastructure and effort that likely went into deploying this system—the deployment at Ars likely took quite a bit of work!"
+        },
+        "weaknesses": {
+          "value": "I worry that the infrastructure is too large of a focus of the paper. While the infrastructure and pairing methods are undoubtedly important, I found myself more interested in the dynamics of human-AI interaction as the game progresses. While the authors conducted an automated eval and a length-based analysis of success, there wasn’t a deeper analysis of _why_ these outcomes occurred or were observed.\n\nIn addition, I worry that some of the metrics are overcomplicated and have some arbitrarily chosen hyperparameters. Why derive your own ranking metric for this game when other ELO generalizations exist? See TrueSkill [0]. I think it satisfies many of your constraints. The bot itself could be treated as a single player in the TrueSkill setup, in it’s own team.\n\nFinally, I worry that portions of the paper are incomplete. I’m not sure what the MadTalker, AllTalker and MetaTalker systems are. Given all these considerations, I worry that the authors do not have enough time to revise the paper in the rebuttal period.\n\n[0] Herbrich et al. TrueSkill™: A Bayesian Skill Rating System, NeurIPS 2007."
+        },
+        "questions": {
+          "value": "**General Questions:**\n\nWhat are AllTalker, MadSim, and MetaTalker? I recommend introducing these methods before discussing them in the results.\n\nThere are some typos/spacing issues in the paper that a closer look might be able to help. For example, the grammar for the caption in FIgure 4: “he snips where takes once the game finished, that’s why the bot’s identity is already visually revealed.” could use some rewording. Also “nominator” -> numerator.\n\nWhy not just use an already-validated player ranking metric like TrueSkill?\n\nFinally, did authors take consent from participants or pay participants? Was the user study approved by some kind of IRB?\n\n**Framing Questions:**\n\nI think the authors have a goldmine of a dataset in their possession. Unfortunately, the current paper’s framing focuses a bit too much on the system's infrastructure rather than the game's dynamics! The dynamics here are the interesting part: how do humans build common ground with each other in unsuccessful games? What about successful games? What cues do people rely on to single out an AI model? If longer interactions are indeed more successful, can we forecast early if a conversation will go long? Are early interactions likely to predict if users will successfully identify the AI? \n\nMore generally, I wanted to see a deeper analysis of the dynamics of how human successfully came to discern that the system was or wasn’t an AI. Also: why not reframe the paper and focus on this being a dataset contribution? That would be cool too. Are the authors planning on releasing all the interaction data?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "Yes, Responsible research practice (e.g., human subjects, data release)"
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "Not sure how consent was taken, or if there was an IRB protocol process. Were participants paid? Unclear."
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "SkEcC01mvj",
+      "forum": "VgmvKk7yfE",
+      "replyto": "VgmvKk7yfE",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_2FRu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9987/Reviewer_2FRu"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9987/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730447700952,
+      "cdate": 1730447700952,
+      "tmdate": 1731428755819,
+      "mdate": 1731428755819,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces a symmetric three-party Turing-game platform in which two humans jointly identify an LLM, and reports preliminary festival deployment results. The platform is interesting, but the empirical analysis does not yet support several central conclusions about deliberation, judge quality, or bot rankings.",
+        "strengths": [
+          "The two-human/one-bot interaction is an intuitive, moderately novel variation that enables collaboration and richer group dynamics (pp. 1–4).",
+          "The authors built a substantial working platform, bot API, matching system, and human-like response machinery, documented in useful implementation detail (pp. 14–21).",
+          "The deployment provides real-world interaction data across 595 completed games, and the paper reports outcomes, durations, bot-specific statistics, and example conversations (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The observational study lacks adequate controls and uncertainty analysis: festival recruitment is highly nonrepresentative, repeated games are not modeled as dependent, bots are severely imbalanced, and no confidence intervals or hypothesis tests accompany the main outcome comparisons (pp. 6–8).",
+          "The claim that good judgment requires about three minutes is not identified by the duration-conditioned win rates: stopping time is endogenous, longer games may be systematically harder, bins become sparse, and the curves fluctuate substantially. Consequently, the causal comparison with a two-minute prior study is unsupported (p. 8).",
+          "Core technical evaluations are insufficiently specified or biased: the bot score formula is not fully given beyond its weighting term, the human score and matching metric are ad hoc, and the classifier uses its test set for early stopping while random game splits may leak recurring participant or bot/persona styles (pp. 4–6, 13–14). Privacy/consent governance for stored IPs and publicly accessible chats is also not addressed (pp. 6, 14)."
+        ],
+        "score_rationale": "The platform and interaction design could become a valuable benchmark, but the current submission is a preliminary demonstration rather than a sound empirical study. Major revisions would require controlled sampling, participant-level splits, statistical uncertainty, fully specified baselines and scores, and substantially more cautious causal claims."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces a three-party, symmetric variant of the Turing Test and an operational platform, then reports preliminary results from 595 completed games collected largely at a public festival. The artifact and dataset could be useful, but the current paper does not provide sufficiently controlled or rigorous evidence for its central behavioral conclusions.",
+        "strengths": [
+          "The two-human/one-bot interaction creates an interesting collaborative identification setting, and the paper clearly distinguishes it from the traditional interrogator setup (pp. 1–4).",
+          "The authors built a substantial end-to-end platform with matchmaking, external-bot APIs, and multiple conversational agents; implementation details are unusually extensive (pp. 14–21).",
+          "The study provides real-world interaction data and reports outcomes, durations, message counts, and bot-specific performance rather than relying only on demonstrations (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The empirical design is uncontrolled and highly selected: most observations originate from one festival, surrender/cancellation/invalid rates are large, bots are used in very unequal proportions, and there are no uncertainty intervals, hypothesis tests, demographic controls, or randomized comparisons against the original/timed Turing Test (pp. 6–8).",
+          "The claim that longer interaction improves judgment is not causally supported. Duration is endogenous because players decide when the game ends, and the binned curves are non-monotonic; difficulty, player skill, repeated participation, bot identity, and survivorship could explain the pattern (p. 8).",
+          "Core metrics and automated evaluation lack validation. The proposed human score is based on joint wins and ad hoc constants, while the bot weighting excludes novices and is endogenous to those scores (pp. 4–7). The classifier explicitly uses its test fold for early stopping, and no clean held-out baseline or uncertainty analysis is provided (pp. 8–9, 14)."
+        ],
+        "score_rationale": "The platform engineering and interaction format are promising, but the conceptual novelty is incremental relative to prior gamified Turing tests, and the main scientific claims rest on descriptive, confounded analyses. The admitted classifier leakage and unvalidated scoring rules further weaken technical soundness. I therefore rate it below the ICLR acceptance threshold, while allowing some credit for the artifact and potentially valuable dataset."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper introduces a symmetric three-party Turing game, an operational web platform, and preliminary observations from a public deployment. The platform is potentially useful, but the central scientific conclusions are not supported by sufficiently controlled or rigorous analyses.",
+        "strengths": [
+          "The two-human/one-bot setup is an intuitive, modestly novel reformulation that introduces collaboration and mutual identification (pp. 1–4).",
+          "The authors built a substantial end-to-end platform, bot API, and human-like bot with timing and initiative mechanisms (pp. 14–21).",
+          "The deployment provides real interaction data and transparently reports surrendered/invalid games and classifier leakage (pp. 6–9, 14)."
+        ],
+        "weaknesses": [
+          "The claim that deliberation requires roughly three minutes is observational and confounded by self-selected stopping, participant ability, bot type, and survivorship; no randomized time-limit intervention, uncertainty intervals, or regression analysis is provided (pp. 8, 22).",
+          "The evaluation is uncontrolled and underspecified: festival-heavy convenience sampling, repeated users/games, heterogeneous bots and languages, many surrendered/invalid games, no demographic controls, and no comparison against the prior two-party format (pp. 6–8, 21–22).",
+          "Several methods are technically weak or inconsistent: the ad hoc scores mix unnormalized time and skill, the claimed uniform Bayesian prior conflicts with adding 11 pseudo-counts, Eq. 7 is not used in the stated selection rule, the bot-score formula is incomplete, and the classifier uses its test fold for early stopping (pp. 4–6, 13–14)."
+        ],
+        "score_rationale": "The engineering artifact and collected interactions are interesting, but novelty is incremental and the main empirical claims exceed what the uncontrolled preliminary study establishes. Missing baselines, weak statistical methodology, and scoring/classifier issues place the work below the ICLR acceptance threshold, though the platform could support a stronger future study."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper introduces a three-party, symmetric variant of the Turing test, implements an online platform, and reports preliminary festival data involving three bots. The platform is potentially useful, but the current manuscript is primarily a system/demo report; its central empirical and scoring claims are not supported by sufficiently controlled or rigorous analyses.",
+        "strengths": [
+          "The two-human/one-bot interaction is an intuitive and potentially useful variation that enables collaboration and richer group dynamics than standard pairwise tests (pp. 1–4).",
+          "The authors built a substantial end-to-end platform, including matchmaking, bot APIs, test interfaces, and human-like response timing, with useful implementation detail (pp. 14–21).",
+          "The paper provides real-world interaction data and reports outcome, duration, bot-specific, and automated-detection analyses rather than relying solely on curated demonstrations (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The duration analysis does not justify claims that three minutes are necessary or that a two-minute limit would make games essentially random: duration is endogenous because games terminate upon voting, cohorts differ across bins, later bins are sparse, and no uncertainty estimates or controlled comparison are provided (p. 8; p. 22).",
+          "The proposed ratings are ad hoc and insufficiently validated. Human scores use joint outcomes and therefore confound individual skill with partners and bots; the bot weighting discards novices and induces selection effects; units are mixed in the matching distance; and no comparison against established rating or calibration methods is presented (pp. 4–6, 13).",
+          "The evidence has major validity and reproducibility limitations: it is a convenience sample dominated by one festival and one bot, outcome percentages are inconsistent between text and Figure 4, surrendered/invalid games are excluded without bias analysis, and the classifier uses its test folds for early stopping while potentially leaking recurring player/bot styles across folds (pp. 6–8, 14)."
+        ],
+        "score_rationale": "The platform and interaction design are promising, but novelty is moderate and the main scientific conclusions exceed the observational evidence. Unvalidated scoring, selection/confounding issues, inconsistent statistics, and leakage in the classifier evaluation prevent the work from meeting ICLR standards in its current preliminary form."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces a three-party, symmetric variant of the Turing test, implements a public platform, and reports preliminary festival data. The artifact is potentially useful, but the current empirical analysis does not support several central conclusions, and the proposed ratings lack adequate justification or validation.",
+        "strengths": [
+          "The two-human/one-bot interaction is an intuitive and engaging modification that enables collaborative identification and removes a fixed interrogator role (pp. 1–4).",
+          "The authors built a substantial end-to-end platform, including matchmaking, bot APIs, testing tools, and detailed bot implementations (pp. 14–21).",
+          "The study collects naturalistic interactions and reports outcomes, conversation duration, and bot-specific results rather than relying only on curated demonstrations (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The observational convenience sample is heavily dominated by one festival and particular bots, with many surrendered or invalid games; participant repetition, recruitment, demographics, language, bot assignment, and dependence among observations are insufficiently controlled. Even basic outcome percentages differ between the text and Figure 4 (pp. 6–7).",
+          "The claim that good judgment requires roughly three minutes is not established: duration is endogenous to difficulty and player behavior, completed-game conditioning creates selection effects, and no uncertainty estimates, hypothesis tests, or controlled time-limit comparison are provided (p. 8). Thus the comparison with prior two-minute studies and the System-2 interpretation are speculative.",
+          "The human/bot scores are ad hoc and unvalidated, including arbitrary constants and zero weighting for novices (pp. 4–6). The automated classifier uses its test folds for early stopping, explicitly leaking information, and lacks clean participant-level splits, simple baselines, or evaluation on unseen bots, so the reported 81% accuracy is not reliable evidence of generalizable detection (pp. 8–9, 13–14)."
+        ],
+        "score_rationale": "The platform and game design have practical value and modest novelty, but this is presently closer to a preliminary system demonstration than a sound ICLR empirical contribution. Major revisions would require a controlled protocol, consistent reporting, statistically valid analysis, validated ratings, and leakage-free generalization experiments. I am somewhat uncertain about novelty relative to all prior multiplayer Turing-test variants because the review is restricted to the supplied manuscript."
+      }
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+{
+  "year": 2025,
+  "package_id": "paper_037",
+  "paper_id": "ICr9KMxa1K",
+  "number": 4837,
+  "title": "ART: Actor-Related Tubelet for Detecting Complex-shaped Action Tubes",
+  "authors": "Jiaojiao Zhao; Shuai Liao; Xinyu Li; Bing Shuai; Caren Chen",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "human action recognition; action tube localization",
+  "forum_url": "https://openreview.net/forum?id=ICr9KMxa1K",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    5,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposed an approach to solve action detection via tubelet based approach. The paper proposes a metric to compute the complexity of the datasets based on tubelet IoUs. Tubelet query Generator helps for actor tubelet queries to boost the performance."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The proposed approach outperforms previous approaches on all datasets."
+        },
+        "weaknesses": {
+          "value": "Novelty - \n- (Section 1 Introduction - Lines: 98-102) In the current settings, precise information about the actor location is provided by analyzing the video beforehand. What does this mean? Does the model know the actor locations in all the keyframes? These settings are not consistent with previous approaches [TubeR, EVAD, STAR, BMViT]. Are the previous approaches evaluated in similar settings - where the actor/action locations are provided and then the model is trained and evaluated? How would the model work without these annotations provided beforehand?\n- (Section 3.1 Tube shape Complexity) How is the proposed metric different from [1]? Is it a direct extension from [1]? Can authors please elaborate on this?\n- (Section 3.3 Actor-Related Tubelet) The proposed approach looks very similar to TubeR each module. I understood the difference between position vs actor against TubeR. Tubelet Query Generator module - It’s not clear how it is different from TubeR’s Tubelet attention module. Can authors please clarify? Also, the complexity analysis is also not clear. Looks like TubeR should have the similar complexity. \n\n(Results & Ablations) \n- Ablation Study - There is only one ablation study on temporal compensation for the whole model with just one model and one dataset. Can authors please provide more ablations for different datasets or with different models? The proposed module shows a very minor performance boost for 0.5%. It will be helpful to see if this is the same pattern with other models/datasets.\n- Is the results on AVA comparable since the paper is using a better visual backbone?  Without ablations, it is hard to prove that it’s not just a good performance due to better backbone. AVA is a very difficult dataset where an actor comes and goes out of the scene. How are the tubelet of an actor maintained across time?\n- (Sec 4.1 - Scenario with Multiple Actors) Does knowing the location of the bounding box helps in performance boost for difficult classes such as Basketball, Basketball Dunk, etc.? Is there any analysis of how prior knowledge helps?\n- UCF and JHMDB don't have the issue of actors appearing and disappearing from the video. Do Multisports have this issue? If yes, how is the paper handling the issue that the same tubelet id is assigned similar to any offline tracker?\n- (Section 4.1 Actor decoder vs Offline person detector) Does the ablation study show the detector+tracker with some base ReID model to track appearance features? Without a ReID model, the tracker mixes up IDs and leads to false tubelet generation because of ID switching."
+        },
+        "questions": {
+          "value": "- Could the approach of the tubelet query generator be applied to other works? If so, how? If not, why not? The module looks pretty flexible to be adaptable for video action detection modules. \n- Can authors also please show or share f-mAP results on UCF, JHMDB, and Multisports? It will be helpful to compare it to recent works that use frame-based approaches.\n\nPlease look into the weakness section for other queries. The weaknesses are listed in priority from high to low."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "cKbugEDcjU",
+      "forum": "ICr9KMxa1K",
+      "replyto": "ICr9KMxa1K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_gELM"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_gELM"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4837/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730705562831,
+      "cdate": 1730705562831,
+      "tmdate": 1731428238698,
+      "mdate": 1731428238698,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces actor-related tubelet (ART) for spatial-temporal action localization. It aim to improve the performance in complex scenes. The framework is based on transformer architectures.  To distinguish different actors, the authors employ ROI align to extract actor features using key frame features from the decoder and extend these features temporally to build actor-related queries. The proposed method obtained competitive results on JHMDB51-21, UCF101-24, and MultiSports."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1) Different from position-based methods, the proposed ART leverages actor features to distinguish different actors in complex scenes\n2) The proposed method shows significant improvements on complex activities."
+        },
+        "weaknesses": {
+          "value": "1) Notations in Section 3.1 are confusing, variable names and indexes are tangled together.\n2) The loss function in Eq. 9 is incorrect, please proofread the equations.\n3) Simple action with large motion can also lead to high complexity in Eq. 2\n4) The key of the method is actor tubelet query, but there are few discussion of actor-related feature except using the ROI align method in (He et al., 2017)\n5) In Figure 6, the performance of many actions using actor-related methods are worse that the ones using position-related methods. And which method is used for the blue bar?"
+        },
+        "questions": {
+          "value": "1) Previous also use DETR to detect actors for generating queries, why they cannot capture actor related information?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "No concerns"
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dRvRtk8Tkm",
+      "forum": "ICr9KMxa1K",
+      "replyto": "ICr9KMxa1K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_avT7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_avT7"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4837/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730669800978,
+      "cdate": 1730669800978,
+      "tmdate": 1731428239072,
+      "mdate": 1731428239072,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces Actor-related Tubelets (ART), an action tublet centric approach for detecting complex-shaped action tubes in videos. ART generates \"actor tubelet queries\" by extracting ROI-aligned keyframe features with temporal compensation, which are then passed to an Action Decoder to produce action tubelet boxes and scores. The model is evaluated on the MultiSports, UCF101-24, and JHMDB51-21 datasets, where it demonstrates decent results."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "1. Performance and Analysis:\n\nThe reported performance of ART on key datasets is at least decent, and the analysis provided is informative, especially the performance breakdown based on the proposed tube complexity criterion.\n\n2. Metric Innovation:\n\nThe proposed metric for measuring tube complexity is a valuable addition."
+        },
+        "weaknesses": {
+          "value": "1. Questionable Omission of Frame-mAP:\n\nThe authors’ decision to exclude frame-mAP results is questionable and limits comparability with prior work in spatio-temporal action recognition. While ART focuses on action tubelets, the tubelet output can certainly be converted to framewise bounding boxes. If the tubelet predictions are indeed high-quality, one would expect the framewise mAP to reflect that as well. Since ART does not propose a new task or benchmark, adhering to conventional evaluation schemes, including frame-mAP, would offer a more transparent assessment of the model’s performance. This addition would also facilitate direct comparison with existing literature, adding further validity to the claims made in the paper.\n\n\n2. Potentially Misleading Omission of Key Comparisons:\n\nTable 5 primarily compares ART with older works, despite the authors having cited recent influential methods such as “End-to-End Spatio-Temporal Action Localisation with Video Transformers” and “Holistic Interaction Transformer Network for Action Detection.” The omission of these contemporary approaches from the main performance table is problematic, as it may obscure ART's comparative impact. Including these methods would present a more comprehensive and honest performance evaluation.\n\n3. Moderate Impact of Architectural Changes:\n\nWhile ART introduces an architectural modification that addresses positional constraints, this adaptation alone may not be groundbreaking. ART’s performance gains, while respectable, do not demonstrate a transformative leap, especially if compared directly to the omitted recent works. The improvements seen with ART suggest more of an incremental contribution rather than a paradigm shift in action tube detection."
+        },
+        "questions": {
+          "value": "Please see weakness section. Not that important but too many underbars in Sec 3.1 equations seem somewhat ackward."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "RMdbWFYOu5",
+      "forum": "ICr9KMxa1K",
+      "replyto": "ICr9KMxa1K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_RXt2"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_RXt2"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4837/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730601191179,
+      "cdate": 1730601191179,
+      "tmdate": 1732612330373,
+      "mdate": 1732612330373,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces an interesting problem on detecting the complex-shaped  action tubes.\n\nThe main motivation is that the authors notice that existing methods rely only on the position information to determine the action tubes, lacking the ability to trace the same actor when their movement patterns are complicated.\n\nThey introduce actor-related tubelet (ART) which incorporates the actor-specific information when generating the action cubes.\n\nThey perform evaluation on 3 benchmark datasets and show that the proposed method achieves better performance compared to existing methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "+ Good and clear motivation, with nice visualisations presented in the paper, eg, Fig. 1\n\n+ The authors conduct some interesting experiments, analysis and comparisons, such as Fig. 3.\n\n+ Experimental results, especially those presented in tables, show that the proposed model achieves better performance. The authors also provide some insights and discussions regarding the proposed model."
+        },
+        "weaknesses": {
+          "value": "Major:\n\n- Page 1, why “easy actions like brushing hair/teeth … that are spatially stationary or follow predictable patterns”? These motions are just subtle, still considered to be complicated eg the hair movements during brushing process, etc. The descriptions and claims make in the paper needs to be more precise and clear to readers.\n\n- What are the main reasons that cause eg deformable shape in tubes? Would the camera distance, and human subject movement eg far away from camera, or move close camera, can be considered as deformable shape in tubes where human subject sizes changed during the process and eg when the human subject is partially inside the video frame? The authors should make these concepts clear enough.\n\n- Related work section is not polished. It shows significant redundancies especially when the name and citation being repeated in the whole section. The review of closely related works are a bit limited. What are the existing works that doing the action tube detection. The review is also not comprehensive and thorough, a good review should outline the major differences between the method introduced and the existing closely related works.\n\n- Sec. 3, while these metrics and concepts are explained, they are not clear enough to readers. The authors are encouraged to use figures to explain these concepts. Moreover, the method section is not that well-written and well-structured. It is suggested to add a notation section detailing the maths symbols and operations used in the paper to make them clear to readers. The maths symbols presented are also quite raw. What is “*” in Eq. (5), and is it the same as Line 282-283? In Eq. (6), would a weighted sum works? \n\n- Page 5 top, what does it mean “JHMDB is excluded from this plot as it features only a single actor per video”? Does that mean it is unable to visualise it in Fig. 3b?\n\n- The paper is presented in an unnecessarily complicated way, for example, Fig. 4 is quite confusing. The authors should be more specific regarding each maths symbol introduced in texts and figures.  The reviewer gets lost many times and still cannot get the core innovations and insights from the method section, although the motivation is quite interesting.\n\n- Regarding the evaluation metrics, the authors do not clearly explain what is video-mAP, and how this evaluation metric contributes to the performance evaluation of the method.\n\n- Section 4.3, although the authors presented some visualisations, the analysis, evaluations, comparisons and discussions are very limited to 2 sentences. An excellent paper should provide enough insights that are able to deliver powerful and useful information/insights to readers.\n\nMinor: \n\n- Page 6, what is the “ps” value exactly?\n\n- How those hyperparameters are selected, eg, in Eq (9), a reference referring to existing works or how empirically choosing these values would be much clearer and useful."
+        },
+        "questions": {
+          "value": "Please refer to my main comments above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "The research experiments conducted in this paper use publicly available datasets. No ethics review needed."
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "pmE8h2ODpq",
+      "forum": "ICr9KMxa1K",
+      "replyto": "ICr9KMxa1K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_r5dE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4837/Reviewer_r5dE"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4837/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730192775860,
+      "cdate": 1730192775860,
+      "tmdate": 1731428239477,
+      "mdate": 1731428239477,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ART conditions tubelet queries on actor features pooled from keyframe detections, then uses an action decoder to regress per-frame boxes. The idea is intuitive and yields consistent gains on three tube-detection benchmarks, especially on the proposed high-complexity subsets, but the conceptual novelty is moderate and important metric, attribution, and reproducibility issues weaken the claims.",
+        "strengths": [
+          "The method is simple and practically motivated: keyframe actor detection, actor-specific ROI features, and temporally expanded queries form an end-to-end alternative to external tracking (pp. 5–7).",
+          "Same-backbone comparisons show consistent improvements over TubeR, including 61.1 vs. 57.7 mAP@0.5 on UCF and 36.0 vs. 31.7 on MultiSports (pp. 9–10).",
+          "Ablations examine complexity, motion sampling, temporal compensation, crowded categories, and actor/action decoder choices; the larger gains on high-complexity subsets support the central motivation (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The proposed complexity metric is technically problematic: normalization in Eq. 4 removes the magnitude of overlap, so with one overlapping tube an arbitrarily tiny overlap contributes its full complexity; it is also undefined when no tube overlaps unless an unstated convention is used (pp. 4–5). This undermines the subset analysis.",
+          "The claimed identity-tracking mechanism is not convincingly established. Replicating a single keyframe ROI feature does not inherently guarantee persistent identity under occlusion or similar appearances, and the evidence consists mainly of aggregate AP and selected visualizations rather than identity-switch or tracking-consistency measurements (pp. 6, 8, 10).",
+          "Reproducibility and attribution are incomplete: the position-related baseline is insufficiently specified, inference across clips and tube linking are not described, several training/model details are omitted, and no repeated-run uncertainty is reported. Claims about reducing complexity to O(K+T) also overlook that N×T decoder queries are still materialized and processed (pp. 5–7)."
+        ],
+        "score_rationale": "The paper offers a useful, intuitive query construction and credible benchmark gains, making it stronger than a clear reject. However, the flawed complexity metric, limited direct evidence for identity preservation, moderate novelty, and missing implementation/evaluation details leave it marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ART uses keyframe actor detections and ROI-aligned appearance features to construct actor-conditioned tubelet queries for end-to-end action-tube detection. The idea is intuitive and controlled experiments show improvements, especially on harder subsets, but the novelty is incremental and several central complexity and tracking claims are not adequately justified.",
+        "strengths": [
+          "The actor-conditioned query construction is simple, coherent, end-to-end, and avoids an external tracker (pp. 5–7).",
+          "Controlled ablations report larger gains on high-complexity subsets (+5.7 UCF and +6.6 MultiSports) and under increased temporal sampling (+2.0), supporting the intended use case (p. 8).",
+          "Matched-backbone results improve over the authors' TubeR implementations, while ART-I3D also uses fewer FLOPs and parameters (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The proposed complexity metric is technically problematic: normalization makes the interaction term largely insensitive to total overlap magnitude, and Eq. 4 is undefined when a tube has no overlap unless an unstated convention is used (pp. 4–5).",
+          "The claimed reduction from O(K^T) to O(KT) and then O(K+T) conflates the combinatorial space of trajectories with actual query/model complexity and is not substantiated (pp. 5–6).",
+          "Evidence does not isolate all claimed benefits: the strongest ViT results lack a matched TubeR/STAR baseline, comparisons often favor the authors' lower reproduced TubeR numbers, and there is no quantitative identity-switch/tracking metric despite consistent-actor tracking being the main claim (pp. 8–10)."
+        ],
+        "score_rationale": "The method is plausible and obtains meaningful controlled gains, particularly on MultiSports, but the central complexity metric and theoretical motivation have notable flaws, while the empirical study measures tube mAP rather than the claimed identity consistency. I am uncertain whether stronger matched query-based baselines would preserve the reported advantage, so the paper is marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "ART initializes tubelet queries from keyframe actor RoI features and decodes per-frame boxes end to end. The idea is intuitive and yields consistent gains over matched TubeR backbones, especially on the more complex MultiSports benchmark. However, the proposed complexity metric is technically problematic, and the experiments do not directly establish the central claim of maintaining actor identity.",
+        "strengths": [
+          "The actor-conditioned query construction is a simple, practically useful alternative to purely learned positional tube queries or external tracking (pp. 5–7).",
+          "Matched-backbone comparisons show consistent improvements over TubeR: +3.4 video-mAP@0.5 on UCF with I3D and +4.3 on MultiSports with R50, while using fewer FLOPs than TubeR-I3D (pp. 9–10).",
+          "The paper evaluates three tube-level datasets and includes targeted analyses for high-complexity subsets, larger temporal sampling rates, and multiple-actor categories (p. 8)."
+        ],
+        "weaknesses": [
+          "The interaction-complexity metric is poorly founded: normalization in Eq. 4 removes overlap magnitude, so an arbitrarily small single overlap can contribute as much as a large overlap; it is also undefined when no other tube overlaps. Consequently, the subset evidence built from this metric is questionable (pp. 4–5, 8).",
+          "The central identity-tracking claim is supported only indirectly through mAP, category results, and qualitative examples. There are no identity-switch or association metrics, controlled crossing-actor tests, or quantitative comparison to a tracker, so it remains uncertain whether gains arise from actor identity cues rather than stronger keyframe initialization (pp. 8–10).",
+          "The claimed O(K+T) versus O(KT) learning complexity is not a valid accounting of the decoder computation, which still processes N×T queries, and the asserted exponential O(K^T) preliminary formulation is insufficiently justified (pp. 5–7)."
+        ],
+        "score_rationale": "The method is reasonably novel, end to end, efficient, and empirically improves strong matched baselines across datasets, supporting marginal acceptance. The flawed complexity metric and lack of direct evidence for identity preservation weaken the paper’s main explanatory claim, preventing a clearer accept score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ART initializes tubelet queries from actors detected in a keyframe, using ROI-aligned actor appearance plus temporal embeddings to improve video-level action-tube detection. The idea is intuitive and yields consistent gains, but the proposed complexity metric is technically problematic and the evidence does not fully establish actor identity preservation.",
+        "strengths": [
+          "The keyframe actor decoder and actor-conditioned tubelet queries form a simple end-to-end alternative to external tracking, with lower reported compute than TubeR (70.8 vs. 90.1 GFLOPs; pp. 5–7, 10).",
+          "Controlled same-backbone comparisons show consistent improvements over TubeR on UCF101-24, JHMDB51-21, and MultiSports, including roughly 3–4 mAP gains on the more challenging datasets (pp. 9–10).",
+          "Subset, sampling-rate, multi-actor, and component ablations generally support the intended benefits for complex motion, although imperfectly (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The complexity metric is poorly founded: normalizing inter-tube IoUs makes interaction complexity insensitive to the absolute amount of overlap, while the zero-overlap case makes Eq. 4 undefined; moreover, it measures neighboring tubes' motion rather than identity ambiguity (pp. 4–5).",
+          "The central claim that queries consistently follow the same actor is not directly evaluated with identity-switch or tracking metrics. The high/low-complexity AP split is insufficient, its evaluation protocol is underspecified, and qualitative examples cannot establish identity consistency (pp. 8, 10).",
+          "Novelty is moderate—primarily ROI-aligning predicted keyframe actors and temporally replicating their features—and important implementation/supervision details are unclear, including whether actor and tube losses share a consistent Hungarian assignment. Results lack variance, while the strongest ViT comparisons are not backbone-matched (pp. 6–9)."
+        ],
+        "score_rationale": "The method is plausible, efficient, and empirically promising, with credible matched-backbone gains. However, the flawed proposed metric and absence of direct evidence for the principal identity-tracking claim leave the contribution just below the acceptance threshold; uncertainty remains because no supplementary analyses referenced on p. 10 are included."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ART initializes tubelet queries from actors detected in a keyframe, then uses an action decoder to regress actor-consistent tubes. The approach is intuitive and produces meaningful gains on three benchmarks, especially on purportedly complex subsets, but the complexity metric and evidence for identity preservation have important gaps.",
+        "strengths": [
+          "The actor-conditioned query design is simple, end-to-end, and computationally lighter than the reported TubeR configuration (70.8 vs. 90.1 GFLOPs; p. 10).",
+          "Controlled backbone comparisons show consistent improvements over TubeR on UCF101-24 and JHMDB51-21, while MultiSports improves by 4.3 mAP@0.5 over TubeR-R50 (pp. 9–10).",
+          "Subset and sampling-rate ablations support the intended benefit: gains are larger for high-complexity tubes and larger temporal displacement (p. 8)."
+        ],
+        "weaknesses": [
+          "The proposed complexity metric is technically problematic: normalization in Eq. 4 removes overlap magnitude, so arbitrarily tiny overlap can contribute as much as extensive overlap, while the zero-overlap denominator is undefined (pp. 4–5). The threshold of 0.75 is also selected heuristically (p. 8).",
+          "The central claim of tracking the same identity is not directly evaluated. There are no identity-switch or association metrics, and the reported category/subset mAP gains cannot distinguish improved identity consistency from better localization or recognition (pp. 8–10).",
+          "Novelty and controls are limited: the method largely combines a DETR-style actor decoder, ROI-aligned keyframe features, replicated queries, and a second decoder (pp. 5–7). The position-related baseline is insufficiently specified, no variability is reported, and comparison with the discussed STAR method is absent (pp. 3, 7–10)."
+        ],
+        "score_rationale": "The method is plausible, efficient, and empirically useful, but the main diagnostic metric is flawed and the defining identity-consistency claim lacks direct evidence. Together with moderate architectural novelty and incomplete controls, this places the work marginally below the ICLR acceptance bar, though I am uncertain whether stronger omitted supplementary evidence would change the assessment."
+      }
+    }
+  ]
+}

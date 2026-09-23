@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_018",
+  "paper_id": "SWg72N2ky1",
+  "number": 1312,
+  "title": "Maximum Noise Level as Third Optimality Criterion in Black-box Optimization Problem",
+  "authors": "Aleksandr Lobanov",
+  "primary_area": "optimization",
+  "keywords": "Black-box optimization; Higher order smoothness function; Strongly convex optimization; Maximum noise level",
+  "forum_url": "https://openreview.net/forum?id=SWg72N2ky1",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    5,
+    5,
+    6
+  ],
+  "human_mean_rating": 4.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper analyzes the zeroth order method with a biased oracle for strongly convex functions with higher-order smoothness. The author introduces ZO Accelerated batched SGD and demonstrates that it achieves the optimal iteration complexity. The paper highlights that its results provide estimates of  the maximum noise level required for the algorithm to converge."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper extends the analysis of the first-order Accelerated SGD to a setting with a biased gradient oracle and the use of mini-batches. Further, It combines this result with the estimated gradients from zeroth-order orcale."
+        },
+        "weaknesses": {
+          "value": "1. The paper’s writing is problematic. Symbols are introduced before their definitions, such as $e$ and $r$ in Definition 1.3. The first-order Accelerated SGD algorithm is presented without a definition. Furthermore, Figure 1 seems unnecessary for a theoretical work in this field.\n\n2. Technically, the contribution is limited. The convergence of Accelerated SGD has been proven, and extending it to the biased and mini-batch settings appears straightforward. Additionally, the estimations of bias and second moment of the zeroth-order oracle are well-established in the literature.\n\n3. The motivation behind considering the maximum noise level is unclear. Previous work assumed a constant $\\Delta$ and showed convergence to minima. This work considers $\\Delta$ diminishing with the target accuracy, and does not converge to minima with constant $\\Delta$. I fail to see the advantage of considering this case. Furthermore, Table 1 does not provide a fair comparison since $\\Delta$ depends on $\\epsilon$ in this work. Moreover, Table 1 reports iteration complexity, while the proposed algorithm utilizes mini-batches, which also leads to an unfair comparison. The oracle complexity should be the more relevant measure in this context."
+        },
+        "questions": {
+          "value": "1. Could the author clarify the technical challenges in this work and address the third point in Weakness?\n\n2. Regarding the Zeroth order oracle, how can we guarantee that $\\xi_1 \\neq \\xi_2$? If we know their values, we can already get the true function value.\n\n3. In Figure 2 b), why does the red curve converge to minimizers even in the case of bias?\n\n4. In the numerical experiment section, what noise is used? Why is the final accuracy of ZO-VARAG large, given that the noise level is already set to be small?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "S0oHC94YeT",
+      "forum": "SWg72N2ky1",
+      "replyto": "SWg72N2ky1",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_nr6M"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_nr6M"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730920686622,
+      "cdate": 1730920686622,
+      "tmdate": 1731427407551,
+      "mdate": 1731427407551,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper generalizes the analysis of an accelerated SGD algorithm in Vaswani et al. (2019) to allow for biased gradient oracle ands mini-batch data. Base on this contribution, this paper develops a zeroth-order method based on Kernel approximation and prove new convergence results. Experiments show that this new method is effective."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper generalizes an existing accelerated SGD method in Vaswani et al. (2019) to the case with bised gradient noise."
+        },
+        "weaknesses": {
+          "value": "1. Biased noise has been studied in existing works such as Akhavan, Chzhen, Pontil, Tsybakov (2023), see their assumption B. Thus, this is not new at least for zeroth order method. \n2. The convergence rate is achieved by taking $\\Delta$ linear in target accuracy $\\epsilon$, which makes it hard to compare with other listed works which treat $\\Delta$ as some $\\epsilon$-independent problem-dependent constant. \n3. The writing of this paper is not smooth, some terms come up without definition."
+        },
+        "questions": {
+          "value": "1. When mentioning Kernel approximation in the introduction, can you briefly discuss the advantage of using this approximation? \n2. In definition 1.3, $e$ and $r$ are undefined. Do you mean there are two queries at the same point $x_k$?\n3. The lemma 2.4 and lemma 2.5 presented results for an algorithm not described? And what is $\\eta, \\tilde{R}$, why the third with $\\tilde{R}$ does not affect much? Can you revise and text and make these clear?\n4. Can the authors briefly discuss what new tricks used in this paper to allow biased noise oracles?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "kT5QHQcKo5",
+      "forum": "SWg72N2ky1",
+      "replyto": "SWg72N2ky1",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_METE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_METE"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730825061348,
+      "cdate": 1730825061348,
+      "tmdate": 1731427407674,
+      "mdate": 1731427407674,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper is devoted to the study of the black-box optimization problem and the objective function value contains stochastic noise. For the case where the objective function is strongly convex and exhibits higher-order smoothness, the authors propose a novel zeroth-order accelerated batch stochastic gradient descent algorithm (ZO-ABSGD). The authors generalize existing convergence results for accelerated stochastic gradient descent to the case where the gradient oracle is biased. In addition, the authors provide improved iteration complexity through theoretical analysis and conduct a detailed examination of the maximum noise level. Finally, the authors demonstrate the performance of the proposed algorithm through experiments."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.Compared to previous studies, the proposed algorithm improves iteration complexity and provides a thorough analysis of the maximum noise level.\n\n2.The authors provide solid proof details to support their proposed theory."
+        },
+        "weaknesses": {
+          "value": "1.I have some unclear aspects regarding certain writing details in this paper.\n\n2.The experiments are insufficient; it is recommended that the authors provide additional experiments."
+        },
+        "questions": {
+          "value": "1.The experiments demonstrate that the proposed ZO-ABSGD outperforms the ZO-VARAG algorithm on the a9a dataset, while exhibiting comparable performance to the ARDFDS algorithm. It is hoped that the authors can explain the unique practical advantages of the ZO-ABSGD algorithm in comparison to the ARDFDS algorithm.\n\n2.I understand that the authors' main contribution lies in the theoretical aspects; however, the authors should attempt to conduct experiments on more datasets to demonstrate the efficiency of the ZO-ABSGD algorithm.\n\n3.In section 4, the authors propose ''we show the importance of considering the maximum noise level ∆ as a third optimality criterion along with the standard two.'' It is hoped that the authors can provide a more detailed description of what \"third optimality criterion\" and \"the standard two\" specifically refer to, as well as how they are represented in the experiments."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ksn4GhvS5N",
+      "forum": "SWg72N2ky1",
+      "replyto": "SWg72N2ky1",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_aZP7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_aZP7"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730623591078,
+      "cdate": 1730623591078,
+      "tmdate": 1731427407770,
+      "mdate": 1731427407770,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a comprehensive technique for creating a gradient-free algorithm that leverages increased function smoothness through kernel approximation, which generalizes convergence results for accelerated stochastic gradient descent to cases where the gradient oracle is biased and illustrates how bias accumulates in the algorithm's convergence. \n\nThis paper also resolves the question of iteration complexity by providing an improved estimate (as shown in Table 1) that is optimal. It determines the maximum noise level ∆ at which the algorithm can still achieve the desired accuracy ε (see Table 1 and Theorem 3.1). \n\nFurthermore, the paper emphasizes the importance of considering the maximum noise level ∆ as a third optimality criterion alongside the standard two."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The work seems to be solid.\n\nThe paper is organized clearly.\n\nAn interesting idea on Kernel approximation is presented. A novel algorithm is given for zero-order optimization. Numerical experiments are conducted to illustrate the advantages of the proposed algorithm."
+        },
+        "weaknesses": {
+          "value": "The definition of Oracle complexity should be introduced in the introduction, explaining its difference from Iteration complexity.\n\nI am sorry I am not very familiar with this topic. I will change my score based on the comments of other more senior reviewers."
+        },
+        "questions": {
+          "value": "Is the strong convexity assumption necessary? Is it possible that the proposed algorithm will perform equally well on convex or non-convex problems?\n\nIs the bounded bias assumption, Assumption2.3, too strong?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "iBVFTFw9NA",
+      "forum": "SWg72N2ky1",
+      "replyto": "SWg72N2ky1",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_ogRS"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1312/Reviewer_ogRS"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729780510340,
+      "cdate": 1729780510340,
+      "tmdate": 1731427407892,
+      "mdate": 1731427407892,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes an accelerated batched zeroth-order method for strongly convex, higher-order-smooth objectives and emphasizes maximum tolerable oracle noise as an additional performance criterion. While the direction is potentially useful, multiple errors undermine the central convergence and noise-tolerance claims, and the experiment provides little validating evidence.",
+        "strengths": [
+          "The paper studies a relevant trade-off among iteration complexity, oracle complexity, and noise tolerance, and attempts to expose explicit dependence on batch size and smoothness order (pp. 8–9).",
+          "The kernel-based estimator and the intended reduction from biased stochastic first-order optimization to zeroth-order optimization are presented in a reasonably self-contained manner (pp. 6–8, 13–20).",
+          "The appendices include substantial derivations rather than leaving the main theoretical claims entirely unsupported."
+        ],
+        "weaknesses": [
+          "The proof of the foundational biased-gradient result contains an invalid sign: two bias inner products that can each contribute positively are replaced by a telescoping difference, including a negative term −4a²_{k+1}δR (p. 17). This invalidates Theorem 2.6 and its unusually favorable bias floor. Moreover, Algorithm 1 evaluates g at x_k (p. 7), whereas the proof assumes g(y_k) (pp. 14–16).",
+          "The batching and parameter calculations are not sound. Replacing the single-sample strong-growth constants by ρ_B=max{1,ρ/B} and σ²/B is generally unjustified for biased averages and requires independence assumptions not stated (pp. 6, 19). The appendix also drops essential powers of L—for example, L²h²/√(μL)≤ε does not imply h²≲ε√μ as claimed (pp. 21–22)—so the stated smoothing and maximum-noise dependencies in Theorem 3.1 are unsupported.",
+          "The empirical evidence is only one tuned run on one dataset, with no specified noise distribution, repetitions, uncertainty bars, or controlled batch/noise/smoothness ablations (p. 10). The unregularized logistic objective shown on p. 9 is not established to satisfy the paper’s global strong-convexity assumption. Novelty relative to prior accelerated zeroth-order and error-floor analyses also remains uncertain from the manuscript alone."
+        ],
+        "score_rationale": "The central theorem depends on a demonstrably invalid bias bound, an algorithm/proof mismatch, and incorrect batching and scaling steps. Because these issues compromise the main claimed optimal iteration and maximum-noise results, while the experiment does not validate the theory, the paper is not technically sound in its current form despite a potentially interesting framing."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes an accelerated batched zeroth-order method using kernel gradient estimates and frames maximum tolerable oracle noise as a third complexity criterion. While the direction is relevant, the central convergence theorem is not established by the supplied proof, and the single experiment does not directly validate the principal noise/overbatching claims.",
+        "strengths": [
+          "The paper highlights a practically meaningful trade-off among iteration count, oracle calls, and tolerable evaluation noise (pp. 2–4).",
+          "Combining higher-order kernel estimates with accelerated batched optimization is potentially useful, and the paper attempts an explicit bias/second-moment analysis (pp. 6–8).",
+          "The appendices expose substantial derivation detail, making several technical issues identifiable rather than hiding them."
+        ],
+        "weaknesses": [
+          "The core proof contains a decisive invalid sign change: two bias inner products that are each only upper-bounded in magnitude are converted into a telescoping difference, including an unjustified negative term −4a²_{k+1}δR (p. 17). Consequently, Theorem 2.6 and all results derived from it are unsupported.",
+          "Algorithm 1 evaluates g at x_k before constructing y_k (p. 7), whereas Theorem 2.6 and its proof require g(y_k). In addition, batching is asserted to replace ρ by max{1,ρ/B} (p. 19), although averaging generally yields a coefficient such as 1+(ρ−1)/B, so the claimed rates and threshold B=4dκ do not follow.",
+          "The main theorem omits needed L dependence and even does not explicitly assume Assumption 2.1, despite repeatedly using L-smoothness; the appendix drops parameter-dependent powers of L when selecting h (pp. 20–23). Empirically, only one fixed-noise, fixed-batch plot is shown, with no repetitions/error bars, and unregularized logistic regression need not satisfy global strong convexity (pp. 9–10)."
+        ],
+        "score_rationale": "The proposed perspective and construction have some promise, but multiple errors directly affect the main theorem rather than presentation details. The invalid bias telescoping, algorithm–analysis mismatch, and unsupported batching rule require a substantial new analysis. The limited experiment also fails to demonstrate the claimed maximum-noise or overbatching behavior, placing the work clearly below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes an accelerated batched zeroth-order method using a higher-order kernel estimator and emphasizes maximum tolerable oracle noise as an additional complexity criterion. The direction is relevant, but central proof errors and an experiment that does not test the claimed regime prevent the stated guarantees from being trusted.",
+        "strengths": [
+          "The paper highlights a practically meaningful tradeoff among iteration count, oracle calls, and tolerable noise, with explicit dependence on batch size and smoothness order (pp. 4, 8).",
+          "The kernel estimator is accompanied by bias and second-moment calculations, and the appendices attempt to provide complete derivations (pp. 7–8, 13–23).",
+          "The method is compared against several zeroth-order baselines on a standard dataset (p. 10)."
+        ],
+        "weaknesses": [
+          "The proof of Theorem 2.6 contains a decisive sign error: two positively weighted bias inner products on p. 17 are bounded by a telescoping difference, including a negative term, rather than by their positive absolute-value bounds. The resulting biased-oracle convergence theorem, and hence Theorem 3.1, is unsupported (pp. 17–19).",
+          "The batching step is asserted without a valid derivation: averaging biased gradients does not generally give the stated parameters σ²/B and max{1,ρ/B}, and independence of oracle noises across batch elements is not assumed. Algorithm 1 also evaluates g at x_k although the analyzed recursion requires g(y_k) (pp. 3, 7, 19).",
+          "The evidence is inadequate for the headline claims. The sole logistic-regression experiment neither establishes global strong convexity nor varies noise, batch size, or β; moreover, its B=1000 setting need not enter the claimed B>4dκ overbatching regime. No lower bound justifies the claimed optimality (pp. 8–10)."
+        ],
+        "score_rationale": "The noise-aware overbatching perspective has some conceptual value, but the main results depend on an invalid biased-gradient proof and unjustified batching reduction. Together with the algorithm-analysis mismatch and limited empirical validation, these are fundamental rather than cosmetic issues, warranting rejection despite a potentially salvageable direction."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a kernel-based, accelerated batched zeroth-order method for strongly convex, highly smooth objectives and emphasizes tolerable oracle noise as an optimization criterion. However, central inconsistencies and gaps prevent the stated convergence, overbatching, and optimality claims from being established.",
+        "strengths": [
+          "The paper studies a relevant trade-off among iteration count, oracle complexity, and noise tolerance, with explicit dependence on dimension, batch size, and smoothness order (pp. 4, 8).",
+          "Using higher-order kernel estimators within an accelerated batched framework is potentially useful, and the paper attempts to provide a self-contained biased-oracle analysis (pp. 6–8, 14–19).",
+          "The appendix exposes much of the derivation rather than presenting only final rates."
+        ],
+        "weaknesses": [
+          "Algorithm 1 evaluates the estimator at x_k before constructing y_k, whereas Theorem 2.6 and its proof require g(y_k,ξ_k); thus the analyzed method is not the stated method (pp. 5, 7, 14–16). Moreover, the batching step simply replaces σ² by σ²/B and ρ by max{1,ρ/B}, but averaging biased gradients introduces a non-vanishing squared mean/bias term that is not handled (p. 19).",
+          "The overbatching result omits a necessary smoothing constraint. Page 22 derives both h²≲ε√μ B/d and h≲(ε√μ)^{1/[2(β−1)]}, but Theorem 3.1 retains only the latter for every B>4dκ. That choice need not satisfy the former unless B is substantially larger, invalidating the claimed noise and oracle-complexity regimes (pp. 8, 22–23). No lower bound is supplied to support the repeated claim of optimal iteration complexity (pp. 4, 8).",
+          "The sole experiment does not substantiate the principal claims: unregularized logistic regression is not shown to satisfy global strong convexity, the noise distribution and repetition protocol are unspecified, and neither batch size nor noise level is varied. Consequently, it does not demonstrate the predicted maximum-noise or overbatching effects (pp. 9–10)."
+        ],
+        "score_rationale": "The problem and proposed combination are interesting, but the algorithm-analysis mismatch and faulty batching/overbatching derivations affect the main theorem rather than minor details. The limited experiment cannot compensate for these theoretical issues, so the submission is below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper combines accelerated batched SGD with a higher-order kernel gradient estimator and studies iteration, oracle, and noise-level tradeoffs. The topic is relevant, but central inconsistencies and proof errors undermine the main theorem, while the single experiment does not test the claimed noise/batch scaling.",
+        "strengths": [
+          "The paper highlights a practically relevant tradeoff among sequential iterations, total oracle calls, and tolerable evaluation noise (pp. 2–4).",
+          "The proposed construction coherently attempts to combine acceleration, batching, and higher-order kernel estimators, with extensive derivations in the appendix (pp. 6–8, 13–23).",
+          "A real-data comparison against several zero-order baselines is provided (p. 10)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 computes the estimator at x_k, whereas the accelerated method and its analysis require an oracle evaluated at y_k; the proof repeatedly uses g(y_k,ξ_k). Thus the analyzed method is not the stated algorithm (pp. 5, 7, 14–16).",
+          "The biased-oracle proof contains a decisive sign error: two bias inner products are upper-bounded on p. 17 as a telescoping difference, although norm bounds make both contributions positive. Moreover, the derivation of Theorem 3.1 drops nonconstant L-dependence when choosing h on pp. 20–22. Consequently, the convergence and maximum-noise claims are not established.",
+          "The experiment uses unregularized logistic regression without establishing global strong convexity, does not specify the injected-noise distribution or report repetitions/error bars, and varies neither B nor Δ. It therefore does not validate the paper's central predicted noise/batch/smoothness tradeoff (pp. 9–10)."
+        ],
+        "score_rationale": "The three-criterion perspective and synthesis are potentially useful, but novelty is largely an integration of known acceleration and kernel estimation, and the claimed optimality lacks a lower-bound argument. More importantly, the algorithm-analysis mismatch and invalid bias proof affect the main result rather than being minor presentation issues. Substantial theoretical correction and experiments directly testing the predicted scaling are required."
+      }
+    }
+  ]
+}

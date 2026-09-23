@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_005",
+  "paper_id": "kqSmedTcgb",
+  "number": 373,
+  "title": "Text-Augmented Multimodal LLMs for Chemical Reaction Condition Recommendation",
+  "authors": "Yu Zhang; Ruijie Yu; Kaipeng Zeng; Ding Li; Feng Zhu; Xiaokang Yang; Yaohui Jin; Yanyan Xu",
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": "Text-augmented; Multimodal LLM; Chemical reaction condition recommendation",
+  "forum_url": "https://openreview.net/forum?id=kqSmedTcgb",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    5,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces Chemma-RC, a multimodal large language model designed for recommending chemical reaction conditions. It integrates SMILES, reaction graphs, and textual descriptions to improve prediction accuracy, supported by a dataset of 1.2 million question-and-answer pairs. Experimental evaluations on benchmark datasets demonstrate its effectiveness in various contexts. The Perceiver module enhances alignment between data modalities, contributing to the model's strong performance."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Chemma-RC captures the complexity of chemical reactions more comprehensively by combining multiple modalities, including SMILES, graph structures, and textual corpora. This integration may enhance the model's understanding and predictive capabilities regarding reaction conditions. Chemma-RC is trained on a dataset of 1.2 million question-and-answer pairs, significantly enhancing the model's learning efficacy and accuracy, especially in high-throughput experiments. By incorporating text-augmented instruction prompts, Chemma-RC effectively guides the model in learning and generating reaction conditions."
+        },
+        "weaknesses": {
+          "value": "Integrating multiple modalities enhances the model's abilities but also complicates it, potentially leading to longer training durations and increased debugging challenges.\nThe model depends on extensive, high-quality multimodal data for training, which may be difficult to obtain, particularly in data-scarce environments.\nThe complexity of the model can hinder its interpretability, making it challenging to trace the rationale behind specific predictions, a crucial aspect in chemistry.\nThe model's high complexity may result in overfitting, especially when training datasets are small or noisy.\nAlthough effective with existing multimodal data, the model might struggle to adapt to new data types or domains without adequate training examples.\nThe model’s success is closely tied to the quality of its training data; poor or biased data can lead to inaccurate reaction condition predictions.\nDeveloping and training such a sophisticated model may require significant computational power and time, which could be a challenge for some research groups.\nThe model's performance may differ across various chemical conditions or experimental contexts, restricting its overall transferability."
+        },
+        "questions": {
+          "value": "In Section 4.4, the ablation study highlights performance variations across different data types (SMILES, Graph, Corpus). However, it would be helpful to specify how the model utilizes each modality to enhance predictions.\nIn Section 4.6, the term \"top-1 partial match accuracy\" in the results table requires clarification. The distinction between partial and complete matches, especially regarding reagent and solvent predictions, is not clearly defined."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "bhnvPhgYa7",
+      "forum": "kqSmedTcgb",
+      "replyto": "kqSmedTcgb",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_WdLV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_WdLV"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission373/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730642269612,
+      "cdate": 1730642269612,
+      "tmdate": 1731427244053,
+      "mdate": 1731427244053,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper titled “Text-Augmented Multimodal Large Language Models for Chemical Reaction Condition Recommendation” introduces Chemma-RC, a novel multimodal large language model designed for chemical reaction condition recommendation (RCR). It leverages SMILES, reaction graphs, and textual corpus to improve the accuracy of RCR predictions and builds a 1.2 million pairwise Q&A dataset to train the model. Experimental results on USPTO benchmark datasets indicate that Chemma-RC achieves strong performance in both in-domain and out-of-domain settings, with a proposed Perceiver module for modality alignment."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. Large-scale training data: Chemma-RC utilizes a dataset comprising 1.2 million pairs of question-and-answer instructions during training. The substantial size of this dataset may contribute to improved learning efficacy and accuracy of the model, enhancing its performance on high-throughput experimental data.\n\n2. Generalization capability: The paper indicates that Chemma-RC performs well on out-of-domain (OOD) and high-throughput experimentation (HTE) datasets, demonstrating its robustness and adaptability across different data distributions."
+        },
+        "weaknesses": {
+          "value": "1. While the paper presents Chemma-RC as a novel multimodal model, the experimental results lack sufficient evidence that its core techniques—such as modality alignment and instruction tuning—offer a distinct advantage over simpler models like T-Rex and TextReact. To address this, I recommend that the authors include specific comparisons to highlight the unique contributions of Chemma-RC. For example, broadening the set of baseline models beyond T-Rex and TextReact could provide a more comprehensive view of Chemma-RC’s competitive edge.\n\n2. While the manuscript addresses certain aspects of generalization (e.g., OOD and HTE results), it would benefit from additional evaluations to comprehensively demonstrate Chemma-RC’s versatility in chemical reaction modeling. For instance, models like TextReact illustrate their flexibility by performing multiple tasks, including reaction condition prediction and retrosynthesis. To parallel these capabilities, I suggest that the authors add experiments to assess Chemma-RC on diverse predictive tasks, such as reaction condition recommendation (RCR) using the USPTO dataset, as in TextReact. Additionally, it would be valuable to report how Chemma-RC performs under different dataset splits, such as random split (RS) and time split (TS), to further highlight its robustness across varied conditions.\n\n3. The construction and training of Chemma-RC, as a complex multimodal model, may demand substantial computational resources and time, potentially creating challenges for research teams with limited access to high-performance computing. To make the model more accessible, I suggest the authors provide details on the computational requirements (e.g., training time, hardware specifications) and consider exploring ways to reduce these demands, such as model simplifications or alternative training strategies. This would offer clearer guidance for teams looking to replicate or adapt Chemma-RC within resource constraints.\n\n4. While integrating multiple modalities indeed enhances the model's capabilities, it also increases its complexity, potentially leading to extended training times and additional debugging challenges. To assist others in implementing or building upon this work, I suggest that the authors discuss any specific challenges they encountered during the model’s training and debugging process due to its complexity. Insights into how these issues were addressed, including strategies or tools used to streamline debugging, would be valuable additions to the community and provide practical guidance for future work.\n\n5. The model’s dependence on a large volume of high-quality multimodal data may limit its applicability in fields with limited data availability. I recommend that the authors discuss how Chemma-RC might perform with smaller datasets and explore potential strategies for adapting it to data-scarce domains. For example, they could consider approaches such as transfer learning, data augmentation, or semi-supervised learning to enhance the model's applicability where data is less abundant. Including these insights would make the model’s utility more broadly applicable to real-world scenarios.\n\n6. Given the model's complexity, there is an inherent risk of overfitting, particularly in cases of limited or noisy training data. I suggest that the authors provide details on any regularization techniques or strategies they employed to mitigate overfitting. Additionally, discussing how they validated the model’s performance on unseen data—such as through cross-validation or using an independent test set—would help clarify the model’s robustness and reliability. These insights would be valuable for understanding the model's generalization capabilities in varied data environments."
+        },
+        "questions": {
+          "value": "1. What are the results of the reaction condition recommendation (RCR) when using the USPTO dataset employed by the TextReact model, and how do the results differ when the dataset is partitioned according to RS (random split) and TS (time split)?\n\n2. In Abstract: The term \"unified reaction representation\" might need clarification. It would be helpful to specify how the SMILES, reaction graphs, and textual corpus are integrated into this unified representation.\n\n3. In Introduction (Lines 38-39): The problem of \"low sparsity of chemical data\" is mentioned but could be better explained. It’s unclear if this refers to limited diversity in reaction data or the low availability of high-quality reaction data.\n\n4. Figure 1 - Model architecture description: The diagram of Chemma-RC's architecture (Figure 1) is complex, and the explanation in the text doesn’t fully clarify how each component (e.g., modality projection and condition prediction) interacts within the model. A step-by-step walkthrough could enhance understanding.\n\n5. In section 3.2.1 - Text-Augmented Instruction Prompts: The description of how prompts are constructed might benefit from more examples, especially regarding \"question templates\" and their variety. It is unclear how \"2,000 question templates\" differ in structure or content and how these templates influence model training.\n\n6. In section 4.3 - Performance Comparison (Tables 2 and 3): The term \"strict matching policy\" for top-k accuracy might need clarification. It’s unclear what criteria are used for strict matching—whether it’s an exact match of predicted and true labels or some other criteria.\n\n7. Ablation Study (Section 4.4): While this section reports performance changes with various data types (SMILES, Graph, Corpus), it would be beneficial to clarify how the model interprets these individually. For example, what specific information from each modality improves the prediction?\n\n8. In section 4.6 - Zero-Shot Prediction on High-Throughput Experimentation: The phrase \"top-1 partial match accuracy\" in the results table needs explanation. It is unclear what is considered a partial match versus a complete match, particularly for reagent and solvent prediction.\n\n9. In Conclusion and Limitations: The paper mentions plans to \"optimize data representation with full fine-tuning training strategies\" but doesn’t clarify why full fine-tuning was not initially used. It would be helpful to understand the limitations of the current training strategy and how it impacts model performance.\n\n10. In Appendix B - Data Description: In the dataset descriptions, some technical terms like \"sparsity analysis\" might be confusing. A brief explanation of \"non-empty count\" and \"density\" could aid in understanding the data distribution."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Rx75Z5tWdO",
+      "forum": "kqSmedTcgb",
+      "replyto": "kqSmedTcgb",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_3FKb"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_3FKb"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission373/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730640795295,
+      "cdate": 1730640795295,
+      "tmdate": 1731427244178,
+      "mdate": 1731427244178,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors present a novel Chemma-RC model designed for chemical reaction recommendation and prediction tasks. This model is trained on multiple data representations, including SMILES notations, reaction graphs, and chemical reaction recommendation corpora. Additionally, the authors introduce an instruction dataset comprising data from various sources, which has been augmented with textual templates. They further demonstrate that the Chemma-RC model can be easily fine-tuned on out-of-distribution data, enabling it to generalize to new types of chemical reactions."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The application of language models to chemical reaction planning represents a highly valuable direction for research. While the incorporation of additional data modalities into language models is not entirely novel, it is still an important approach that has the potential to enhance current methodologies by utilizing a broader range of available data. Moreover, the demonstrated ability of the Chemma-RC model to handle out-of-distribution data adds further significance to this work.  Experimental results and ablation study sections are comprehensive."
+        },
+        "weaknesses": {
+          "value": "While the paper is generally well-written, certain sections lack clarity and sufficient justification for specific decisions made in the study. Additional details on these issues can be found in the Question section."
+        },
+        "questions": {
+          "value": "* What is the specific purpose of introducing the new dataset? Aside from integrating available data through templating, what novel contributions does this dataset offer? According to the paper, templates were generated using the GPT-4 model. How was the correctness of these generated templates verified?\n* The purpose of using reaction graph embeddings remains unclear based on the current ablation study. Integrating graph embeddings requires additional effort including language model’s source code modification, yet Table 4 shows only a slight improvement in model performance with their usage. It appears that relying solely on textual corpora and SMILES representations might be sufficient. It may be beneficial to include an additional ablation study demonstrating cases where graph embeddings significantly enhance performance.\n* One of the main contributions of the paper is the integration of multiple data representations and sources within a unified paradigm, positioning the proposed model closer to multi-task, multi-domain foundational models rather than single-task models, mainly presented in the Experimental section. To strengthen the significance of the results, it would be beneficial to include comparisons with current state-of-the-art chemical language models that address reaction planning tasks in their scopes, such as [a, b].\n\na. BioT5+: Towards Generalized Biological Understanding with IUPAC Integration and Multi-task Tuning, 2024\n\nb. nach0: multimodal natural and chemical languages foundation model, 2024"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "mXtiDTtcz3",
+      "forum": "kqSmedTcgb",
+      "replyto": "kqSmedTcgb",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_GYuz"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_GYuz"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission373/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730586719755,
+      "cdate": 1730586719755,
+      "tmdate": 1731427244331,
+      "mdate": 1731427244331,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper focuses on chemical reaction condition recommendation using LLMs. It proposes incorporating different data modalities, such as reaction formulas, graph-structured molecules, and reaction descriptions, into a single multimodal large language model (LLM) called Chemma-RC, fine-tuned through the Llama 2 model. The model is compared to previous baselines and shows promise in generating useful reaction conditions to accelerate high-throughput condition screening in chemical synthesis. Overall, the proposed method is interesting."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "**Originality**: The paper focuses on an interesting problem with a reasonable solution. This is a useful and new case demonstrating the effectiveness of multimodal LLMs in drug discovery.\n\n**Quality**: The proposed method seems promising.\n\n**Clarity**: The paper includes figures to aid readability, with a well-illustrated method. The experimental setups and baselines are properly introduced.\n\n**Significance**: The paper shows promising contributions to reaction condition recommendation."
+        },
+        "weaknesses": {
+          "value": "1. Reaction condition recommendation is not a novel task in the era of LLMs. The paper needs a more thorough discussion and demonstration of why research focus should shift to LLM-based reaction condition recommendation. Do LLMs truly provide higher accuracy? Or do LLMs offer more interpretability through text generation? Has any work benchmarked the performance of LLMs in reaction condition recommendation?\n\n2. Why are there two types of condition prediction modules mentioned in line 76? There is no motivation provided for them. LLMs are more naturally suited for generative tasks rather than prediction; why is prediction necessary here?\n\n3. The ablation studies should be improved. In Table 4, consider adding a study that enables SMILES and graphs but disables the corpus (i.e., disabling the LLM part of the model).\n\n4. There is a lack of detailed description regarding the process of constructing the question-answering dataset. Do the authors ensure that there is no data leakage? How was the data collected and deduplicated?"
+        },
+        "questions": {
+          "value": "1. In line 66: How can one determine that the LLMs are pre-trained on extensive reaction data?\n\n2. Line 80: The term \"Perceiver\" appears without context. Please add a citation and provide an introduction.\n\n3. In line 84/4.5: What distinguishes the USPTO 500MT Condition dataset from the USPTO-Condition dataset, and what causes their distributional differences? Are there any statistical results indicating that these tasks are out-of-distribution?\n\n4. Figure 1 needs improvement. The boxes for data and model are indistinguishable, or there are no boxes, making it difficult for readers to determine where to begin.\n\n5. Tables should be self-explanatory. In Table 1, what does the condition label mean?\n\n6. In lines 300-303: Is there a specific reason why the authors freeze the parameters of all models and only fine-tune the projectors?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PzZGsImiKm",
+      "forum": "kqSmedTcgb",
+      "replyto": "kqSmedTcgb",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_od79"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission373/Reviewer_od79"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission373/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730150429694,
+      "cdate": 1730150429694,
+      "tmdate": 1732908265625,
+      "mdate": 1732908265625,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Chemma-RC combines frozen reaction/graph encoders, a frozen LLaMA-2 decoder, and Perceiver projections for reaction-condition prediction. Reported benchmark gains and an HTE ligand study are promising, but leakage controls, metric consistency, and baseline comparability are insufficient to establish the central claims.",
+        "strengths": [
+          "Addresses an important practical problem and reports sizable gains on two large benchmarks, especially for generative exact matching on USPTO-500MT (pp. 6–8).",
+          "Includes modality and projection ablations; these show that retrieved corpus information materially improves difficult condition predictions and that Perceiver modestly outperforms alternative projections (pp. 8–9).",
+          "Attempts evaluation beyond random in-domain splits through a time split, cross-dataset transfer, and an HTE ligand-yield analysis (pp. 8–10, 18–23)."
+        ],
+        "weaknesses": [
+          "The retrieved reaction corpus creates a serious unresolved leakage/confounding risk: reaction descriptions can explicitly contain conditions (p. 4), yet the paper does not document retrieval indexing, train/test separation, similarity filtering, or systematic removal of target-condition mentions. Saying the corpus is merely “similar” or “unpaired” does not establish leakage-free evaluation (pp. 7, 13–15).",
+          "Evaluation is inconsistent and potentially inflated. Highly sparse labels make accuracy dominated by “none” (e.g., catalysts are only 13% non-empty, p. 15), while the text incorrectly describes catalysts as having low sparsity (p. 7). Tables 2 and 5 report very different notions of USPTO-Condition accuracy without a clear reconciliation, and the permissive partial-match OOD metric can reward incomplete outputs (pp. 7–8, 18–21).",
+          "Technical novelty and evidence for the multimodal/LLM claims are limited: the system largely composes existing frozen Parrot, R-GCN, LLaMA-2, and Perceiver components; adding graphs changes most results only marginally (p. 8), and there is no ablation isolating the value of LLaMA versus a comparably scaled non-LLM decoder. Reproducibility is further weakened by contradictory hardware reports (2×A6000 on p. 6 versus 8×A800 on p. 14) and missing implementation details/code."
+        ],
+        "score_rationale": "The empirical results are potentially useful, but the strongest gains may be attributable to retrieved text containing condition-correlated or leaked information, and the sparse-label metrics and inconsistent evaluation protocols prevent confident interpretation. Combined with modest architectural novelty and weak reproducibility, this falls below the ICLR acceptance bar, although the breadth of experiments keeps it above a strong reject."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Chemma-RC combines frozen reaction/graph encoders and LLaMA-2 through Perceiver projections, using retrieved reaction text to recommend conditions. The reported benchmark gains are substantial, but the main improvement appears attributable to retrieved text rather than the proposed multimodal design, and insufficiently controlled leakage and evaluation ambiguities undermine the central empirical claims.",
+        "strengths": [
+          "Reports strong top-k results on two sizable benchmarks, including a large improvement on the generative USPTO-500MT task (pp. 6–8).",
+          "Includes useful modality and projection ablations; Perceiver consistently improves over MLP and reprogramming alternatives (pp. 8–9).",
+          "Attempts evaluation beyond random in-domain splits through temporal, cross-dataset, and HTE tests (pp. 8–10, 18–23)."
+        ],
+        "weaknesses": [
+          "The retrieved corpus is the dominant contributor: adding it to SMILES raises solvent-1 top-1 from 37.1% to 54.0%, whereas adding graphs yields only 42.1%, and the full model barely changes SMILES+corpus results (pp. 7–8). There is no rigorous audit showing that retrieved patent text, near-duplicates, or condition mentions cannot leak labels across the random split.",
+          "Evaluation is inconsistent or insufficiently defined. Table 5's aggregate accuracies do not reconcile with the per-condition results, partial-match OOD accuracy is permissive, and the claim that catalyst accuracy 89.9% is “lower” than 67.1%/58.1% is erroneous (pp. 8, 18–19). Statistical variation and significance are absent.",
+          "The HTE evidence is not credible as presented: the paper says relevant reactions were excluded from the test set rather than training data, does not specify ligand-selection protocol or candidate access, and reports favorable post-hoc median-yield comparisons without a clear baseline (pp. 9–10). Reproducibility is further weakened by conflicting hardware descriptions (2×A6000 on p. 6 versus 8×A800 on pp. 13–14) and no released implementation."
+        ],
+        "score_rationale": "The architecture is a plausible but incremental combination of established encoders, retrieval, Perceiver projection, and a frozen LLM. Although headline results are strong, the decisive gains track retrieved text, while leakage controls, metric definitions, and the claimed zero-shot HTE validation are inadequate. These issues prevent confidence that the method itself, rather than retrieval artifacts or evaluation choices, explains the improvements."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "Chemma-RC combines frozen reaction/graph encoders, a Perceiver projection, and LLaMA-2 for reaction-condition classification or generation. Although the reported benchmark gains are large, ambiguities about retrieved-text leakage, inconsistent evaluation, and insufficiently controlled HTE validation prevent the evidence from supporting the main claims.",
+        "strengths": [
+          "Addresses an important practical problem and evaluates on two sizable reaction-condition datasets, reporting substantial gains over several established baselines (pp. 6–8).",
+          "Includes modality and projection ablations; the comparisons indicate that retrieved corpus text supplies most of the improvement and that Perceiver projection modestly outperforms alternatives (pp. 8–9).",
+          "Attempts evaluation beyond random in-domain splits through a time split, cross-dataset transfer, and an HTE yield dataset (pp. 8–10, 18–23)."
+        ],
+        "weaknesses": [
+          "Leakage controls for the retrieved reaction corpus are inadequate. Reaction descriptions can explicitly contain conditions, yet the paper provides no retrieval-index split, duplicate audit, or analysis of label-bearing text; the very large corpus gain heightens this concern (pp. 4, 7–8, 13–14). For HTE, the authors state only that relevant reactions were excluded from the test set—not the training set—so the claimed zero-shot evaluation is not established (p. 10).",
+          "The reported metrics are internally unclear or inconsistent. Table 5 gives 72.3% Top-1 accuracy without defining how it relates to the per-condition accuracies in Table 2, while the claimed 34.1% overall improvement is not supported by those values (pp. 7–8). The OOD analysis uses permissive substring-style partial matching and even calls 89.9% catalyst accuracy lower than 67.1% and 58.1% (pp. 18–19).",
+          "Technical and reproducibility details are insufficient: the projection pseudocode is incomplete/ambiguous, no parameter-matched or non-LLM control establishes the benefit of LLaMA, code is only promised, and hardware descriptions conflict between 2×A6000 and 8×A800 (pp. 6, 13–17). The limitations section does not acknowledge leakage, dataset bias, or the absence of prospective experimental validation (p. 10)."
+        ],
+        "score_rationale": "The architecture is a plausible but mostly standard assembly of pretrained encoders, retrieval, Perceiver projection, and a frozen LLM. Strong tabulated results and broad evaluation merit consideration, but potential condition leakage through retrieved text, unclear/inconsistent metrics, and an unsubstantiated zero-shot HTE claim undermine technical soundness. I therefore rate it a reject; uncertainty remains because raw splits, retrieval outputs, and code are unavailable."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Chemma-RC combines frozen reaction/graph encoders, Perceiver-style projection, retrieved reaction text, and a frozen LLaMA-2 decoder for reaction-condition recommendation. The reported benchmark gains are large, but the manuscript does not isolate the value of the LLM or genuinely multimodal design, and substantial evaluation and reproducibility ambiguities weaken the conclusions.",
+        "strengths": [
+          "Addresses an important practical chemistry problem and evaluates both classification and sequence-generation settings on two sizable datasets (pp. 6–8).",
+          "Reports broad comparisons, modality/projection ablations, random and temporal splits, and an attempted HTE transfer evaluation (pp. 7–10).",
+          "The retrieved-corpus augmentation produces substantial reported gains on difficult condition categories, especially solvent 1 and reagent 1 (p. 8)."
+        ],
+        "weaknesses": [
+          "Novelty and attribution are weak: the components are largely existing encoders, retrieval, Perceiver projection, and a frozen LLM; there is no matched non-LLM baseline using identical inputs. Moreover, adding graphs to SMILES+corpus changes results negligibly, undermining the central multimodal claim (Table 4, p. 8).",
+          "The evidence has serious ambiguities and inconsistencies: the very large Table 5 gains are not reconciled with Table 2 or clearly defined; the claimed 34.1% overall improvement is unsupported by the displayed per-field results; and the claimed 7.1% Perceiver gain does not correspond clearly to Table 6 (pp. 7–9). Retrieval leakage and near-duplicate controls are also insufficiently documented.",
+          "Technical and reproducibility details are inadequate: Algorithm 1 is dimensionally/architecturally unclear, the corpus retrieval and prediction heads are underspecified, compute descriptions conflict (2×A6000 on p. 6 versus 8×A800 on p. 14), and the supposed HTE leakage control excludes reactions from the test set rather than explicitly from training (pp. 9–10, 13–17)."
+        ],
+        "score_rationale": "The task and reported improvements are promising, but the contribution is mostly an incremental integration and the central claims are not supported by sufficiently controlled or internally consistent evidence. Uncertainty remains because clearer implementation and split/retrieval details could resolve some concerns, but in its current form the paper falls below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Chemma-RC combines frozen reaction/graph encoders and LLaMA-2 through Perceiver-style projections for reaction-condition classification and generation. Reported benchmark gains are large, but unclear evaluation protocols, possible retrieval/split leakage, and insufficient implementation detail prevent confidence that they establish robust generalization.",
+        "strengths": [
+          "Addresses an important practical problem with a unified treatment of SMILES, molecular graphs, and retrieved reaction text (pp. 3–6).",
+          "Reports substantial gains on two sizable benchmarks, especially USPTO-500MT top-1 accuracy (25.9% versus 17.5%), and includes modality/projection ablations (pp. 7–9).",
+          "Attempts evaluation beyond random in-domain splits through time splits, cross-dataset transfer, and an HTE yield dataset (pp. 8–10, 18–23)."
+        ],
+        "weaknesses": [
+          "The text-retrieval pipeline is not audited convincingly for leakage: corpus retrieval draws from literature/patents, but corpus provenance, deduplication, temporal boundaries, and overlap with reaction/test records are unspecified. The huge jump in Table 5 and the vague assertion that using a “similar unpaired corpus” avoids leakage make this decisive (pp. 7–8, 13–15).",
+          "Experimental reporting is internally inconsistent and underspecified. Training uses 2×A6000 on p. 6 but 8×A800 on p. 14; Table 5's metric/task construction is not reconciled with Table 2; the OOD evaluation uses permissive substring-style partial matching; and the HTE protocol does not clearly define candidate ranking or statistical baselines (pp. 6–10, 14, 18–19).",
+          "The technical contribution is incremental and incompletely specified: it mainly combines existing Parrot, R-GCN, LLaMA-2, retrieval, and Perceiver components, while Algorithm 1 is only schematic and even leaves key query/attention behavior unclear. No uncertainty, repeated-run variance, stronger matched-capacity controls, or substantive limitations analysis is provided (pp. 5–6, 10, 17)."
+        ],
+        "score_rationale": "The multimodal formulation and reported gains are promising, but the central evidence is not reliable enough for acceptance because retrieval leakage and evaluation comparability remain unresolved, while reproducibility details and limitations are inadequate. I therefore rate it below the acceptance threshold, with some uncertainty because the claimed gains could be meaningful if validated under rigorously deduplicated splits."
+      }
+    }
+  ]
+}

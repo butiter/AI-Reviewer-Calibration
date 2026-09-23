@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_058",
+  "paper_id": "8O9HLDrmtq",
+  "number": 7639,
+  "title": "The Genomics Long-Range Benchmark: Advancing DNA Language Models",
+  "authors": "Evan Trop; Yair Schiff; Edgar Mariano Marroquin; Chia Hsiang Kao; Aaron Gokaslan; McKinley Polen; Mingyi Shao; Aymen Kallala; Bernardo P de Almeida; Thomas PIERROT; Yang I Li; Volodymyr Kuleshov",
+  "primary_area": "datasets and benchmarks",
+  "keywords": "DNA; Language Models; Genomics; Benchmark",
+  "forum_url": "https://openreview.net/forum?id=8O9HLDrmtq",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    6,
+    3,
+    5
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents the Genomics Long-Range Benchmark (LRB), a new suite of biologically meaningful tasks designed to evaluate DNA language models with a focus on long-range genomic contexts. The authors argue that existing benchmarks are limited by their emphasis on short sequences and sometimes biologically irrelevant tasks. They provide fine-tuning recipes to improve model performance, introduce a visualization tool for detailed analysis, and explore methods for extending the context length of transformer-based models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper identifies a significant gap in the evaluation of DNA LMs by focusing on long-range genomic interactions, which are key for understanding complex biological processes.\n\nThe LRB includes nine tasks covering variant effect prediction, gene expression prediction, regulatory element detection, and chromatin feature identification. This breadth ensures that models are tested on a variety of biologically relevant tasks.\n\nAllowing users to select arbitrary sequence lengths for each task is very relevant for the field and facilitates the exploration of context length effects on model performance.\n\nThe authors demonstrate that full fine-tuning of DNA LMs significantly enhances performance compared to previous methods that froze the backbone model weights.\n\nExploring techniques to extend the context size of transformer-based models is a valuable contribution, especially given the computational challenges associated with long sequences."
+        },
+        "weaknesses": {
+          "value": "Although the paper compares DNA LMs to supervised baselines like Enformer and DeepSEA, it could include more recent or diverse models to strengthen the evaluation.\n\nThe results are presented with mean and standard deviation across folds, but there's no discussion of statistical significance. Including statistical tests would provide more confidence in the reported improvements."
+        },
+        "questions": {
+          "value": "I highly encourage the authors to:\n\nReport statistical comparison between metrics.\nInclude more models in the benchmark. A good example is https://arxiv.org/abs/2406.10391"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "bQVKep28TV",
+      "forum": "8O9HLDrmtq",
+      "replyto": "8O9HLDrmtq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_1nci"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_1nci"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7639/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730714280377,
+      "cdate": 1730714280377,
+      "tmdate": 1731428934426,
+      "mdate": 1731428934426,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors present a new benchmark for evaluating DNA language models (LMs) with a focus on context size studies. They compiled a set of both long-range and short-range downstream tasks for DNA LMs, including variant effect prediction, gene expression, regulatory element, chromatin feature predictions, etc. The tasks and datasets are well-documented, and the benchmark comes with user-friendly features such as customizable context size downloads and visualization tools. Although this benchmark has potential utility for the field, it lacks some important results and discussions. Therefore, I currently recommend a weak rejection of this paper. I am open to raising my score if these issues are adequately addressed."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The benchmark has a clear theme centered on the study of context sizes, which is currently an important topic in the development and application of DNA LMs. This benchmark can be expected to yield valuable insights for the field.\n2. The authors selected a biologically relevant array of downstream tasks.\n3. The paper includes a thorough review of existing benchmarks.\n4. Dataset details are well-documented.\n5. The visualization tool appears useful and well-designed."
+        },
+        "weaknesses": {
+          "value": "1. I see the most significant contribution/novelty of this benchmark to be facilitating studies on context size, a point emphasized in both the title and introduction. However, the results section provides only a general and superficial discussion on this topic, and the study of context length is quite restricted to NT. To provide more insight, there should be an in-depth analysis of the impact of context sizes on individual tasks and models. For instance, does each model empirically benefit from longer context lengths, and to what extent? Do certain tasks show a stronger dependence on longer context sizes as expected? There are more detailed evaluation results in Tables 11 and 12 in the appendix but lack an interpretation of the data. I would suggest creating some figures/tables to summarize these results and have more discussion on the impact of context size.\n2. There is a missing discussion regarding alignment-based DNA LMs, which could have different context-size dependencies than single-sequence DNA LMs. Including this aspect is crucial for a complete and accurate narrative. This work builds on the GPN-MSA ClinVar and OMIM benchmarks but strangely does not include (nor even mention) the GPN-MSA model itself. GPN-MSA achieves SOTA on these tasks, performing better than CADD, and therefore better than all the DNA language models considered. It is important to include GPN-MSA in the benchmark (at least for zero-shot evaluations, if the authors deem fine-tuning to be cumbersome), since this could change the narrative in fundamental ways. First, it's not true that DNA language models do worse than CADD. This only applies to single-sequence models. Second, GPN-MSA achieves a good performance even with the smallest context. One interpretation is that with evolutionary context, one doesn’t need as much spatial context. Given that GPN-MSA is alignment-based, it could be reported by itself with a separator line in Table 3. Finally, even if the authors decide to restrict the discussion to single-sequence DNA LMs, it is conventional to compare with the actual SOTA on each task."
+        },
+        "questions": {
+          "value": "1. The sections on context length extrapolation read a bit disconnected from the rest of the manuscript. It appears to be an improvement on the NT model rather than directly related to the benchmark. If the authors claim it to be a generally applicable method to other DNA LMs, it should be made clear in the writing and preferably applied to at least another model. If it is for a focal investigation on the impact of context size on NT, the results should be more carefully analyzed and discussed.\n2. In Table 3, Enformer is not a good baseline for the ClinVar task, since this set only contains missense variants and Enformer is a model focused on the non-coding genome.\n3. In Section 3, the authors discussed why several tasks should be considered long-range, but did not discuss why the others are not. It would have been better to also include brief discussions on why those tasks are expected to be performed well with short-range models.\n4. Section 3.1.3 and Line 1042: I’d like to point out that missense VEP is not necessarily a short-context task. Coding variants require a small protein context but a large genomic context, since the coding sequence is distributed across exons (which are very far away due to large introns)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "FzAAojwC1z",
+      "forum": "8O9HLDrmtq",
+      "replyto": "8O9HLDrmtq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_GKL3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_GKL3"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7639/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730694566662,
+      "cdate": 1730694566662,
+      "tmdate": 1732579797994,
+      "mdate": 1732579797994,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a new benchmark for evaluating DNA LMs on tasks with emphasis on long-range prediction, unlike other benchmarks which focus on short sequence tasks (<2k bp). The authors benchmark 4 DNA LMs on 4 tasks in their benchmark (variant effect prediction, gene expression prediction, and cis-regulatory element detection, chromatin feature identification). They compare performance on both zero-shot and full finetune settings. The authors also finetune NucleotideTransformer with extended context length."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- Benchmarks for DNA language models are currently sparse, and this paper does a good job of curating a diverse set of tasks and benchmarking recent DNA LMs."
+        },
+        "weaknesses": {
+          "value": "- A main claim of this paper is that the tasks they curate are long-range tasks, and that they expect that model performance increases with longer context input. The claim that these tasks require long context would be strengthened by an ablation study over different input lengths.\n\n- The authors should be clear that this is a human-only benchmark, ideally in the title and abstract. This is not mentioned until Section 3, and limits the usefulness of the benchmark as many DNA LMs like Evo are trained primarily on microbial sequences."
+        },
+        "questions": {
+          "value": "- Section 4 describes context length extension, specifically using NTK and an attention implementation with sqrt(L) chunks. The latter is not explained in the paper or in the supplement.\n\n-The authors do not explain how the train/test splits are generated. How is train/test leakage avoided? Do they split by sequence similarity thresholds?\n\n- The Evo model (https://www.biorxiv.org/content/10.1101/2024.02.27.582234v2) and Caduceus (https://arxiv.org/abs/2403.03234) should be benchmarked if possible."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "lRPXS3kwMb",
+      "forum": "8O9HLDrmtq",
+      "replyto": "8O9HLDrmtq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_frd8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_frd8"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7639/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730665030299,
+      "cdate": 1730665030299,
+      "tmdate": 1732547826018,
+      "mdate": 1732547826018,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces the Genomics Long-Range Benchmark (LRB), designed to evaluate DNA language models (LMs) on tasks that reflect biologically meaningful long-range interactions. The benchmark includes tasks across variant effect prediction, gene expression prediction, regulatory element detection, and chromatin feature identification."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The LRB addresses a critical gap in DNA LM evaluation by focusing on biologically relevant tasks that require long genomic contexts. \n2. The experiments on DNA LMs, including zero-shot and fine-tuning performance across multiple tasks, reveal the strengths and limitations of the models.\n3. Fine-tuning recipes and context-length extension methods provide a robust framework for DNA LM evaluation."
+        },
+        "weaknesses": {
+          "value": "- Lack of in-depth analysis of the experiments. Why do certain DNA LMs perform well on specific tasks?\n- Potential unfairness in comparisons. DNABERT and HyenaDNA have significantly fewer parameters compared to NT500M, which may skew results. It would be beneficial to compare models with similar parameter counts where possible.\n- Missing key long-range baseline LMs. The benchmark lacks important long-sequence models such as Caduceus [1] and Evo [2], which would provide a more comprehensive evaluation.\n- Insufficient comparison in context extension experiments. The analysis of TSS distance effects lacks comparisons with other long-sequence models.\n- References on benchmarks. In the first paragraph of the Introduction, the reference to ProteinGym [3] should have the publication year 2023 instead of 2024. Additionally, including relevant benchmarks like GenBench [4] and BEACON [5] would improve the coverage of related literature.\n\n[1] Caduceus: Bi-directional equivariant long-range dna sequence modeling\n\n[2] Sequence modeling and design from molecular to genome scale with Evo\n\n[3] Proteingym: Large-scale benchmarks for protein fitness prediction and design\n\n[4] GenBench: A Benchmarking Suite for Systematic Evaluation of Genomic Foundation Models\n\n[5] BEACON: Benchmark for Comprehensive RNA Tasks and Language Models"
+        },
+        "questions": {
+          "value": "See Weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "SVtqG7Iyaw",
+      "forum": "8O9HLDrmtq",
+      "replyto": "8O9HLDrmtq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_39ce"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7639/Reviewer_39ce"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7639/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730569979187,
+      "cdate": 1730569979187,
+      "tmdate": 1731428934981,
+      "mdate": 1731428934981,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "This paper introduces a useful human-genomics benchmark spanning nine tasks, long configurable contexts, full-fine-tuning recipes, annotation-stratified analysis, and NTv2 context extension. The breadth and practical evaluation are valuable, but the central claim that the benchmark meaningfully validates long-range modeling is only weakly supported, and several evaluation inconsistencies reduce confidence.",
+        "strengths": [
+          "The benchmark covers biologically relevant and diverse applications—variant effects, expression, regulatory elements, and chromatin features—with large datasets and generally chromosome-held-out tests (pp. 3–5, 21).",
+          "The empirical comparison is broad, including multiple DNA-LM families, zero-shot and fine-tuned settings, supervised models, expert baselines, and annotation-stratified diagnostics (pp. 7–9, 33–35).",
+          "The paper contributes practical infrastructure beyond datasets: arbitrary-length extraction, full-fine-tuning analysis, a visualization tool, and a concrete context-extension implementation (pp. 5–7, 27–32)."
+        ],
+        "weaknesses": [
+          "Evidence for the headline long-range claim is weak: increasing context does not improve causal-eQTL performance, barely changes bulk RNA, and yields only modest CAGE gains (Table 5, p. 8); extended NTv2 is often equal to or worse than standard NTv2 (Tables 3–4, p. 8). No controlled same-architecture comparison isolates useful distal information from added training or capacity.",
+          "Evaluation fairness and uncertainty are limited. DNA LMs are fully fine-tuned while Enformer embeddings are frozen, training uses mostly one fixed hyperparameter recipe and only 1–3 epochs, and the reported five-fold procedure changes train/validation splits but repeatedly evaluates the same test set (pp. 7, 30–32). The random rather than chromosome-based CAGE split also raises possible genomic-neighborhood leakage concerns (p. 21).",
+          "There are reproducibility/reporting inconsistencies: the CAGE head is stated to predict 218 values although the benchmark uses 50 tracks per bin (p. 31 versus pp. 5, 22); OMIM CADD AUPRC differs between Tables 3 and 12 (0.253 versus 0.205, pp. 8, 33); and the NTv2 bulk-RNA fine-tuning gain differs between Tables 6 and 15 (18.29% versus 24.45%, pp. 10, 34)."
+        ],
+        "score_rationale": "The benchmark and evaluation suite are likely useful to the community and justify a marginally positive score. However, the paper overstates its demonstration of long-range capability: its principal controlled results show little benefit from longer contexts, while fairness and numerical inconsistencies weaken the conclusions. I therefore lean marginally above acceptance, with some uncertainty about release quality and the CAGE split."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a useful human-genomics benchmark spanning nine tasks, several DNA language models, supervised references, full fine-tuning, and annotation-stratified analysis. The resource could be valuable, but the central claim that it meaningfully evaluates long-range capability is not convincingly supported by the reported experiments.",
+        "strengths": [
+          "Broad, practically relevant task coverage, including variant effects, expression, regulatory elements, and chromatin features, with generally sensible imbalance-aware metrics and chromosome-held-out splits for most tasks (pp. 3–5, 21).",
+          "Extensive evaluation across model families, sizes, zero-shot and fine-tuned settings, including strong domain baselines; the results clearly expose major weaknesses of current DNA LMs in zero-shot variant-effect and expression prediction (pp. 7–8, 33–34).",
+          "The annotation-based visualization and stratified analyses offer useful diagnostics beyond aggregate benchmark scores (pp. 9, 27–28, 35)."
+        ],
+        "weaknesses": [
+          "Evidence for the defining long-range claim is weak and partly contradicts the prose: increasing context hurts causal-eQTL performance, produces only tiny bulk-RNA changes, and clearly helps mainly CAGE; extended NTv2 is often worse than standard NTv2 (pp. 8–9, 33–34). Thus Table 5 does not establish a positive association \"across both architectures,\" nor isolate context from extra pretraining.",
+          "Evaluation comparability and leakage risks are insufficiently controlled. Enformer is frozen while DNA LMs are fully fine-tuned (p. 30), training budgets and usable data differ (pp. 31–32), and CAGE alone uses a random split despite 114,688-bp genomic windows, without analysis of overlap or genomic proximity leakage (pp. 21–22).",
+          "Reporting inconsistencies undermine reproducibility: the CAGE head is stated to predict 218 outputs although the task has 50 tracks per bin (p. 31), NTv2 bulk-RNA fine-tuning gain differs between Tables 6 and 15 (pp. 10, 34), and CADD OMIM AUPRC differs between the main and appendix tables (0.253 vs. 0.205; pp. 8, 33)."
+        ],
+        "score_rationale": "The benchmark scope and empirical breadth are valuable, but novelty is primarily curatorial and the claimed long-range contribution is not validated rigorously. Split/comparison concerns and multiple numerical or methodological inconsistencies require substantial correction, placing the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "A useful benchmark effort covering nine human-genomics tasks, multiple DNA language models, long-context evaluation, and annotation-stratified analysis. However, the central claim that the benchmark meaningfully evaluates long-range capabilities is only weakly supported, and important experimental/documentation inconsistencies undermine reproducibility and comparison fairness.",
+        "strengths": [
+          "Broad task coverage spanning variant effects, expression, regulatory elements, and chromatin features, with chromosome-based splits for most tasks and appropriate imbalance-aware metrics (pp. 3, 7, 21).",
+          "Evaluation includes several prominent DNA LMs, supervised/expert baselines, zero-shot and fine-tuned settings, and reports variability across five runs (pp. 7–8, 33–34).",
+          "The arbitrary-length data interface and annotation-based visualization can support useful diagnostic analyses beyond aggregate scores (pp. 6, 9, 27–28)."
+        ],
+        "weaknesses": [
+          "Evidence for the defining long-range claim is weak: Table 5 shows tiny or inconsistent gains, including no eQTL improvement and no CNN Bulk-RNA improvement, while extended NTv2 often matches or underperforms standard NTv2 across tasks (pp. 8, 33–34). Thus the statement that results validate the tasks as long-range is overstated.",
+          "Several inconsistencies impede reproducibility: the CAGE task has 50 outputs per bin, but its head is described as predicting 218 values without explaining sequence/bin alignment; reported OMIM CADD and NTv2 Bulk-RNA fine-tuning-ablation values differ between main and appendix tables (pp. 5, 8, 31, 33–34).",
+          "Baseline comparisons are not fully controlled: DNA LMs are fully fine-tuned while Enformer embeddings are frozen, model contexts and pretraining supervision differ substantially, and task-specific hyperparameter search is absent. Consequently, conclusions about relative model capability are difficult to isolate (pp. 6–7, 10, 30)."
+        ],
+        "score_rationale": "The benchmark and accompanying evaluations are potentially valuable, but the paper does not convincingly establish its main long-range premise, and methodological/reporting inconsistencies weaken confidence in the results. I view it as marginally below acceptance pending stronger controlled context-length experiments and corrected, complete implementation details."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "A useful benchmark compilation for evaluating DNA language models on nine human-genomics tasks, supplemented by full-fine-tuning recipes, annotation-stratified analysis, and NTv2 context extension. The empirical breadth is valuable, but the central claim that the benchmark meaningfully tests long-range modeling is not convincingly validated.",
+        "strengths": [
+          "Broad, biologically motivated coverage spanning variant effects, expression, regulatory elements, and chromatin features, with task construction and splits documented in detail (pp. 3–6, 21–27).",
+          "Evaluation includes multiple DNA-LM families, supervised/domain baselines, zero-shot and fine-tuned settings, cross-fold variability, and useful annotation-stratified diagnostics (pp. 7–9, 33–35).",
+          "The study exposes practically important findings: full fine-tuning can substantially change rankings, while current DNA LMs remain weak on zero-shot variant effects and gene expression (pp. 7–10, 34)."
+        ],
+        "weaknesses": [
+          "Evidence for the defining long-range claim is weak: increasing context yields tiny, absent, or non-monotonic gains in Table 5, while extended NTv2 is often equal or worse than standard NTv2 in Tables 3–4 and 12–13 (pp. 8–9, 33–34). Thus the assertion that these experiments validate the tasks as long-range is overstated.",
+          "Comparisons are not fully controlled: DNA LMs receive full fine-tuning while Enformer embeddings are frozen, model contexts and training subsets differ, and the frozen-versus-full ablation changes learning rates rather than isolating backbone updating (pp. 30–32). This limits conclusions about architecture, pretraining, and fine-tuning superiority.",
+          "Reproducibility and reliability are weakened by inconsistencies and ambiguities: CADD OMIM AUPRC is 0.253 in Table 3 but 0.205 in Table 12, the CAGE head is described as predicting 218 outputs despite the benchmark using 50 tracks per bin, and CAGE uses a random rather than chromosome-held-out test split (pp. 8, 21, 31, 33)."
+        ],
+        "score_rationale": "The benchmark is timely and potentially useful, with unusually broad evaluation and strong documentation. However, its principal novelty—the long-range characterization—is not supported by consistent context-length gains, and several comparison-control and reporting issues undermine the main conclusions. I am uncertain whether the released artifacts resolve some ambiguities, since they cannot be assessed from the manuscript alone."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces a useful human-genomics benchmark spanning nine tasks, multiple DNA language models, long-context inputs, expert baselines, and annotation-stratified analysis. The resource could be valuable, but the central claim that it meaningfully evaluates and validates long-range modeling is not convincingly supported by the reported experiments.",
+        "strengths": [
+          "The benchmark covers biologically relevant and varied applications—variant effects, expression, regulatory elements, and chromatin features—with chromosome-based test splits for most tasks and appropriate imbalance-aware metrics (pp. 3–5, 7, 21).",
+          "The evaluation is broad, including zero-shot and fine-tuned DNA LMs, supervised expert models, models trained from scratch, and five repeated training runs; the results expose substantial gaps on expression and zero-shot variant prediction (pp. 7–8, 33–34).",
+          "The annotation-aligned visualization and stratified analyses offer useful diagnostics beyond aggregate scores, including performance by genomic region and distance to TSS (pp. 9, 27–28, 35)."
+        ],
+        "weaknesses": [
+          "The evidence for the headline long-range claim is weak and sometimes contradictory: increasing context leaves CNN bulk-RNA performance flat, lowers eQTL AUROC, and produces only modest CAGE gains; extended NTv2 is worse than standard NTv2 on most main tasks (pp. 8–9, 33–34). No matched pretrained-model ablation cleanly isolates context length from extra pretraining or architecture.",
+          "Important evaluation details are inconsistent or insufficiently controlled. CAGE uses a random rather than chromosome-held-out split (p. 21), its head is described as predicting 218 values although the benchmark has 50 tracks per bin (pp. 22, 31), and repeated train/validation splits evaluated on one fixed test set are called five-fold cross-validation (p. 7).",
+          "Baseline comparisons are not fully apples-to-apples: DNA LMs receive full fine-tuning while Enformer embeddings are frozen (p. 30), training subsets and hyperparameters are constrained and uneven (pp. 31–32), and the claimed memory scaling/context-extension equations and implementation lack direct validation such as MLM loss or controlled extrapolation tests (pp. 7, 29)."
+        ],
+        "score_rationale": "This is a potentially valuable benchmark/resource with broad empirical coverage, but it falls marginally below acceptance because its defining long-range contribution is not established by the results, while inconsistencies in the CAGE setup and unequal fine-tuning protocols reduce confidence in key comparisons. I am uncertain how much released code/data might resolve these presentation and reproducibility concerns."
+      }
+    }
+  ]
+}

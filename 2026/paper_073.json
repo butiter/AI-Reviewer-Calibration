@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_073",
+  "paper_id": "ZEuQ4Mm1bh",
+  "number": 17765,
+  "title": "Tuning without Peeking: Provable Privacy and Generalization Bounds for LLM Post-Training",
+  "authors": [
+    "Ismail Labiad",
+    "Mathurin VIDEAU",
+    "Matthieu Kowalski",
+    "Marc Schoenauer",
+    "Alessandro Leite",
+    "Julia Kempe",
+    "Olivier Teytaud"
+  ],
+  "primary_area": "learning theory",
+  "keywords": [
+    "Machine Learning Theory",
+    "Black-Box Optimization",
+    "Non-vacuous Generalization Bounds",
+    "Privacy",
+    "Fair Use"
+  ],
+  "forum_url": "https://openreview.net/forum?id=ZEuQ4Mm1bh",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    0,
+    4,
+    8
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0tmorosqBB",
+      "forum": "ZEuQ4Mm1bh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17765/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761991262660,
+      "tmdate": 1764359152286,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "9JpIpV76TO",
+      "forum": "ZEuQ4Mm1bh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17765/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761534235716,
+      "tmdate": 1762927608951,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "j4JO6k7SCT",
+      "forum": "ZEuQ4Mm1bh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17765/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761959391432,
+      "tmdate": 1762927608028,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "onSyVccAaz",
+      "forum": "ZEuQ4Mm1bh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17765/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761927086764,
+      "tmdate": 1762927608400,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes BBoxER, a comparison-based evolutionary post-training framework whose finite decision trace enables a simple cardinality/union-bound generalization analysis. The idea is interesting and the LLM experiments show that limited black-box updates can modestly improve GSM8K. However, the central privacy, poisoning, and extraction claims substantially exceed what is established, and the empirical privacy evaluation does not test an actual attack.",
+        "strengths": [
+          "The compression-trace formulation is clear, modular, and yields a valid-looking finite-output generalization argument when the initial model and optimizer seed are independent of the training sample (pp. 4–5, 27–28).",
+          "Experiments cover several parameter modifiers, optimizers, and model families, with some multi-seed results and reproducibility details (pp. 7–9, 32–36).",
+          "BBoxER demonstrates nontrivial utility under a highly constrained information channel, including consistent in-domain gains for Qwen-2.5-3B-Instruct (pp. 9, 35)."
+        ],
+        "weaknesses": [
+          "The poisoning theorem appears invalid for adaptive reuse of one dataset: at later rounds, model pairs depend on earlier comparisons on that same dataset, so the per-round preference variables need not remain i.i.d. Bernoulli conditional on the trajectory. The proof simply applies the single-comparison lemma and a union bound without resolving this adaptivity (pp. 6, 31–32).",
+          "The privacy and extraction conclusions are overstated. The claimed (0,0)-DP protects prompts only by assuming the exposed preference signal is fixed/nonprivate, although it can itself depend on and encode the prompt. Corollary 2 merely rules out perfect identification of every dataset among more than 2^b alternatives; it does not establish resistance to record extraction or membership inference (pp. 6–7, 30–32).",
+          "The MIA experiment measures only average NLL change rather than attack AUC or member/nonmember distinguishability, so it cannot substantiate MIA resistance. Utility gains are mostly modest or inconsistent out of distribution, and the significance analysis treats configurations/trajectory points as independent while acknowledging multiple dependent tests (pp. 8–9, 33–34, 37–38)."
+        ],
+        "score_rationale": "The finite-trace generalization perspective and empirical demonstration are worthwhile, but major gaps affect the paper’s headline privacy and robustness guarantees. Because these are central contributions rather than localized presentation issues, substantial theoretical correction and direct attack-based evaluation are required."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "BBoxER applies comparison-based black-box optimization to small LLM parameter subsets and observes that the resulting finite comparison transcript bounds the data-dependent output space. This supports a valid, if loose, union-bound generalization argument and yields some encouraging reasoning-benchmark gains. However, the manuscript substantially overstates what this bottleneck establishes about differential privacy, poisoning, extraction, and membership inference.",
+        "strengths": [
+          "The finite-transcript perspective is clear and potentially useful: for a fixed initial model, seed, and optimizer, the number of reachable outputs gives a straightforward parameter-count-independent generalization bound (pp. 4–5, 27–30).",
+          "Experiments cover multiple optimizers, update locations, models, and in-/out-of-distribution benchmarks; the five-seed Qwen results show a meaningful GSM8K gain of roughly 3–3.6 points (pp. 8–9).",
+          "The appendices provide modifier definitions, optimizer branching-factor discussions, hyperparameters, compute requirements, and additional experiments (pp. 20–38)."
+        ],
+        "weaknesses": [
+          "The central privacy and poisoning guarantees do not hold as advertised. The analysis assumes i.i.d. Bernoulli preferences and probability over randomly sampled data, whereas differential privacy must compare every fixed neighboring pair; adaptive reuse of the same dataset also undermines the per-round binomial argument. Moreover, Eq. (7) requires corruption on the order of sqrt(s)/b, not sqrt(s), to appreciably alter a b-step run (pp. 5–6, 30–32). The claimed (0,0)-DP case merely declares prompts/outputs unobserved while excluding their induced preference signal from adjacency.",
+          "The extraction result uses an unusually weak all-datasets-exactly-identifiable definition and only applies a pigeonhole argument; it does not rule out extracting individual records or partial information. The empirical study runs no membership-inference attack and measures only absolute NLL change, which is not attack success or privacy leakage (pp. 6–9, 32–34). The proof also reverses the key inequality in one sentence on p. 32.",
+          "Empirical support is weaker than claimed: many settings use one seed, OOD effects are mixed, and there is no strong equal-compute random-search or tuning baseline. The p-value analysis treats connected budgets and optimizer trials as independent despite their shared trajectories and extensive setting selection (pp. 8–9, 35–38)."
+        ],
+        "score_rationale": "The compression/generalization observation and some utility results are worthwhile, but the paper's main contribution is framed as provable privacy, poisoning robustness, and extraction resistance. Those claims rely on mismatched threat models or insufficient proxies, and several statistical claims are unreliable. These are central rather than readily repairable presentation issues, so the manuscript falls clearly below acceptance despite a promising core idea. Novelty relative to the cited prior evolutionary-retrofitting work is also uncertain from the supplied text."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "BBoxER performs comparison-based black-box post-training while limiting the data-dependent optimization trace to a finite number of bits. The resulting union-bound generalization argument is simple and potentially useful, and experiments show modest improvements on several LLM reasoning settings. However, the manuscript substantially overstates its privacy, poisoning, and extraction guarantees, while the corresponding empirical privacy evaluation is only a proxy rather than an actual attack evaluation.",
+        "strengths": [
+          "The finite-branching optimization-trace formulation yields a clear, parameter-count-independent generalization bound under bounded i.i.d. losses (pp. 4–5, 27–30).",
+          "Experiments cover multiple optimizers, update parameterizations, models, seeds, and some out-of-distribution benchmarks; the strongest Qwen results show meaningful GSM8K gains (pp. 7–9, 35–37).",
+          "The appendices provide unusually extensive algorithmic, modifier, hyperparameter, and compute details (pp. 20–38)."
+        ],
+        "weaknesses": [
+          "The claimed perfect privacy is largely definitional: (0,0)-DP is asserted only when prompts/outputs are fields the algorithm never observes while the preference signal is held non-private. If changing a prompt changes its preference, this argument does not apply; for private samples the stated bound is explicitly insufficient and often vacuous (pp. 6, 30–31).",
+          "The poisoning theorem assumes i.i.d. Bernoulli preferences for a fixed comparison, but later comparisons and candidate models are adaptively selected using the same dataset. The proof does not justify applying the single-comparison binomial anti-concentration bound under this adaptivity. The text also inconsistently states the required corruption scale as Ω(√s) versus approximately √s/b (pp. 6, 31–32).",
+          "The extraction result is only a pigeonhole statement excluding perfect identification among more datasets than possible outputs, not a standard extraction or membership-inference guarantee. Experiment 4 measures average NLL changes rather than attack success, member/nonmember separation, ROC-AUC, or exposure, so it does not empirically establish MIA resistance (pp. 6–9, 32–34)."
+        ],
+        "score_rationale": "The compression perspective and utility results are interesting, but the principal advertised contributions—strong privacy, poisoning robustness, and extraction resistance—are not established at the claimed level. The valid generalization component is mostly a direct finite-hypothesis union bound, while limited seeds, configuration selection, and proxy privacy metrics weaken the evidence. These issues require substantial theoretical and empirical revision."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "BBoxER restricts data-dependent communication to a finite comparison transcript and uses this to derive finite-class generalization bounds for black-box LLM retrofitting. The compression perspective is interesting and the utility experiments show that small parameter perturbations can improve GSM8K performance. However, the manuscript’s central privacy, poisoning, and extraction claims substantially exceed what its theory and experiments establish.",
+        "strengths": [
+          "The finite-transcript formulation is clear, and the resulting union-bound generalization result is plausible under the stated bounded-loss, fixed-seed, and genuinely comparison-only assumptions (pp. 4–5, 27–30).",
+          "The empirical study covers multiple optimizers, parameterizations, model families, and some out-of-distribution benchmarks, with useful implementation and compute details (pp. 7–9, 32–38).",
+          "Five-seed results provide credible evidence of modest in-domain gains, particularly for Qwen-2.5-3B-Instruct, while largely preserving unrelated-task performance (p. 9)."
+        ],
+        "weaknesses": [
+          "The poisoning theorem assumes i.i.d. preferences for each comparison, but the compared models are adaptively selected using the same dataset; the proof applies a single fixed-comparison anti-concentration result without handling this dependence. Moreover, its probability is over randomly sampled datasets, not uniformly over fixed neighboring datasets and mechanism randomness, so the claimed differential-privacy interpretation does not follow (pp. 6, 31–32).",
+          "The extraction guarantee uses an unusually strong all-datasets exact-identification definition. A pigeonhole argument showing that not every one of more than 2^b datasets is uniquely identifiable does not imply practical resistance to partial extraction or membership inference (pp. 6–7, 32). Experiment 4 evaluates only average training-sample NLL change—without nonmembers, attack AUC, or an implemented attack—so it does not validate MIA robustness (pp. 8–9, 33–34).",
+          "Evidence for broad practical effectiveness is limited: many configurations have one seed, gains outside GSM8K/GSM+ are small or inconsistent, and the sign-based p-values aggregate many chosen algorithms/configurations without an evident multiple-testing or selection correction (pp. 8–9, 35–38). The reported theoretical budgets also use relatively weak illustrative confidence/error settings rather than a clearly prespecified guarantee for each experiment (p. 30)."
+        ],
+        "score_rationale": "The finite-information generalization argument and empirical feasibility study are worthwhile, but the headline privacy, poisoning, and extraction guarantees contain fundamental definition and dependence gaps. Since these claims are the paper’s main contribution, they require major conceptual correction and direct attack-based validation. Novelty beyond the cited evolutionary-retrofitting work is also somewhat uncertain from the supplied manuscript alone."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "BBoxER adapts pretrained LLMs using comparison-based evolutionary optimization and interprets the resulting discrete comparison trace as an information bottleneck. The finite-output-space argument yields a plausible, parameter-count-independent generalization bound, and experiments show modest reasoning gains. However, the manuscript substantially overstates its central privacy, poisoning, and extraction guarantees.",
+        "strengths": [
+          "The comparison-trace formulation is clear and provides a simple, potentially useful finite-class generalization argument whose complexity depends on the optimization trajectory rather than model size (pp. 4–5, 27–30).",
+          "Experiments cover multiple optimizers, parameter modifiers, model families, seeds, and some out-of-distribution benchmarks; the Qwen GSM8K improvements are reasonably consistent (pp. 7–9, 35–37).",
+          "The appendices give extensive algorithmic, modifier, compute, and hyperparameter details, supporting reproducibility (pp. 20–38)."
+        ],
+        "weaknesses": [
+          "The claimed differential privacy guarantee is invalid in the general setting: the probability in Theorem 2 is over randomly drawn data, whereas DP must hold for every fixed pair of neighboring datasets over algorithmic randomness. The A/B-testing (0,0)-DP claim is instead obtained by defining prompts/outputs as unable to affect the observed preference signal, making it largely tautological (pp. 5–6, 30–32).",
+          "The extraction guarantee uses an unusually weak perfect-identification criterion. A pigeonhole argument showing that not all of more than 2^b datasets can be uniquely identified does not prevent extraction of individual records or substantial membership advantage; the experiment reports only NLL-change proxies rather than an actual MIA metric such as attack AUROC (pp. 6–9, 32–34).",
+          "The poisoning proof assumes i.i.d. preferences for a fixed comparison, but comparisons are selected adaptively using the reused dataset; no conditioning or uniform argument justifies applying the single-comparison lemma at every round. Moreover, standard weighted CMA/D-CMA can have a larger branching factor than the binary budget emphasized in the main claims (pp. 6, 25, 29–32)."
+        ],
+        "score_rationale": "The trace-compression perspective and empirical utility are interesting, but the paper's headline privacy, poisoning, and extraction claims are not established by the supplied theory or experiments. Because these issues affect the main contribution rather than peripheral details, the work is below the acceptance threshold despite a credible generalization component. Some uncertainty remains about whether the adaptive poisoning argument could be repaired under stronger fresh-sample assumptions."
+      }
+    }
+  ]
+}

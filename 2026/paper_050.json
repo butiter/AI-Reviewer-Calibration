@@ -1,0 +1,247 @@
+{
+  "year": 2026,
+  "package_id": "paper_050",
+  "paper_id": "pObX7pIjF1",
+  "number": 11877,
+  "title": "HieraQuery: Bridging Multimodal Understanding and High-Quality Generation through Multi-Scale Query Learning",
+  "authors": [
+    "DanDan Zheng",
+    "Weilong Chai",
+    "libin wang",
+    "Rui Liu",
+    "Ziyuan Huang",
+    "Xinyu Xiao",
+    "Jianxin Sun",
+    "Biao Gong",
+    "Hu Yu",
+    "Qingpei Guo",
+    "Jingdong Chen",
+    "Ming Yang",
+    "JUN ZHOU",
+    "Xianjun Deng"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Unified multimodal models",
+    "Diffusion Models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=pObX7pIjF1",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "EFExL9CKKW",
+      "forum": "pObX7pIjF1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11877/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762179970301,
+      "tmdate": 1762922892536,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "HHAyZVJlef",
+      "forum": "pObX7pIjF1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11877/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761807430145,
+      "tmdate": 1762922893311,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "MKVy02T8FM",
+      "forum": "pObX7pIjF1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11877/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761569813655,
+      "tmdate": 1762922893696,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "qUV4cPQjxW",
+      "forum": "pObX7pIjF1",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11877/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761836335239,
+      "tmdate": 1762922892942,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "HieraQuery extends query-based unified understanding/generation models with scale-specific query groups and intermediate representation alignment. The reported generation and editing results are promising, but the contribution is incremental and key methodological/evaluation details are insufficient to establish the claimed advantages conclusively.",
+        "strengths": [
+          "Controlled ablations show a substantial GenEval gain from multi-scale queries at nearly matched token counts (54.7 to 61.8) and a further gain from alignment (63.2) (PDF p. 8).",
+          "The evaluation covers text-to-image quality/alignment, multimodal understanding, and instruction-based editing; the reported final model is competitive across several benchmarks (PDF pp. 5–6).",
+          "Scale-combination experiments support the central observation that adding coarse query scales helps more than merely increasing queries at one configuration (PDF p. 9)."
+        ],
+        "weaknesses": [
+          "The method is underspecified: no mathematical definition of the alignment loss, selected DiT layers, distance, weighting, or precise per-scale conditioning/sharing is given, and Eqs. 4–5 do not explain the claimed coarse-to-fine dependency or inference procedure (PDF p. 4).",
+          "Novelty is modest: scale-grouped queries are a straightforward extension of MetaQuery, while representation alignment is explicitly adapted from prior work; there is limited analysis showing why the hierarchy works beyond empirical gains (PDF pp. 3–4).",
+          "The headline comparisons confound architecture, initialization, data, and scale, while training data are only vaguely documented and leakage/deduplication, compute, variance, and human evaluation are absent; editing relies on a single GPT-4.1 judge (PDF pp. 4–6)."
+        ],
+        "score_rationale": "The controlled ablations provide credible evidence that multi-scale queries help, but limited novelty, incomplete technical specification, and weakly controlled headline comparisons keep the work marginally below acceptance. I am somewhat uncertain because the reported gains are strong, yet reproducibility and attribution cannot be verified from the manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "HieraQuery extends MetaQuery-style unified understanding/generation with scale-specific query groups and cross-scale feature alignment. The reported generation and editing results are promising, but the contribution is incremental and the method/evaluation are insufficiently specified to firmly establish the claimed gains.",
+        "strengths": [
+          "Strong reported generation performance: 4.85 MJHQ FID, 0.87 GenEval, and 84.2 DPG-Bench, alongside competitive understanding scores (p. 6).",
+          "Controlled ablations indicate sizable gains from multi-scale queries and a smaller additional gain from representation alignment (pp. 8–9).",
+          "The model covers text-to-image generation, editing, and style transfer, with encouraging quantitative and qualitative examples (pp. 2, 6–7)."
+        ],
+        "weaknesses": [
+          "The technical description is not reproducible: it omits the alignment loss, selected DiT layers, loss weights, precise cross-scale conditioning/sharing, and inference procedure; Eqs. 4–5 do not clearly implement the claimed sequential coarse-to-fine generation (p. 4).",
+          "Novelty is modest, largely combining MetaQuery-style learnable conditions with multi-resolution grouping and previously proposed representation alignment; the manuscript offers little analysis explaining why this arrangement works beyond token-count controls (pp. 3–4, 8–9).",
+          "Evidence has comparability and reporting gaps: the main table mixes different backbones, data, and rewriting settings; no base-model before/after comparison substantiates preserved understanding; editing relies only on GPT-4.1 judging without uncertainty, and the claim of outperforming open models on all metrics is contradicted by the full-set overall score versus Step1X-Edit (pp. 5–6)."
+        ],
+        "score_rationale": "The empirical results and ablations make the approach potentially useful, but unclear technical specification, limited novelty, and insufficiently controlled evaluation prevent confident acceptance. I therefore rate it marginally below the acceptance threshold; uncertainty remains because the reported gains could be meaningful if validated under matched baselines and fully documented."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "HieraQuery extends MetaQuery-style unified understanding/generation with scale-specific query groups and feature alignment, reporting strong generation and editing results. The coarse-to-fine idea is plausible and empirically promising, but the contribution is incremental and the manuscript lacks enough architectural, objective, and controlled-comparison detail to establish that the reported gains specifically arise from the proposed method.",
+        "strengths": [
+          "Strong reported benchmark performance: 0.87 GenEval, 4.85 MJHQ FID, and 84.2 DPG-Bench, alongside competitive understanding scores (p. 6).",
+          "Useful ablations show that multi-scale queries improve GenEval from 54.7 to 61.8 and alignment further improves it to 63.2 under a reduced setting (p. 8); scale-combination experiments also test whether gains merely follow from more tokens (p. 9).",
+          "The approach supports generation, editing, and style transfer, with quantitative editing evaluation and illustrative qualitative results (pp. 2, 6–7)."
+        ],
+        "weaknesses": [
+          "The method is materially underspecified: there is no explicit alignment loss, weighting, selected DiT layers, attention/masking scheme, or precise mapping from each query group to shared DiT stages. Equations 3–5 obscure boundary-token positional encoding and collapse scale-specific conditioning into one undifferentiated H (p. 4), limiting reproducibility and technical verification.",
+          "Attribution is confounded. The headline model uses a large proprietary/poorly characterized training mixture, Ming-Lite-Omni, Qwen2.5-0.5B, and a trainable SD3/SANA decoder (pp. 4–5), while matched ablations use only about 5M pairs and a smaller SANA setup (p. 8). There is no full-scale, compute/data-matched MetaQuery baseline or comparison against simply training the same system longer or with equivalent auxiliary supervision.",
+          "Novelty is modest: hierarchical coarse-to-fine generation is established, the query interface comes from MetaQuery, and representation alignment is explicitly adapted from prior work (pp. 3–4). Evidence also contains presentation/claim issues: Figure 3 is called a quantitative comparison despite showing samples (p. 7), and the claim of outperforming open-source editors overall is contradicted on the full-set overall score by Step1X-Edit, 6.616 versus 6.701 (p. 6)."
+        ],
+        "score_rationale": "The reported results and ablations make the central idea credible and potentially useful, but insufficient specification and confounded full-scale comparisons prevent firm validation of the claimed advance. I therefore place it marginally below acceptance; uncertainty remains because a clearer loss/architecture description and a matched full-scale baseline could substantially improve the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "HieraQuery extends MetaQuery-style unified understanding/generation models with scale-grouped query tokens and intermediate DiT-to-encoder representation alignment. The reported generation and editing results are promising, but the method is incremental and insufficiently specified, while key comparisons do not isolate its contribution.",
+        "strengths": [
+          "Strong reported generation performance across MJHQ-FID, GenEval, and DPG-Bench, plus competitive editing results on GEdit-Bench (pp. 6–7).",
+          "Ablations separately evaluate multi-scale queries and representation alignment; the former yields a substantial GenEval improvement under the reduced setup (p. 8).",
+          "The paper studies scale combinations and shows that gains are not explained merely by increasing the single-scale token count (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Core technical details are missing: no explicit training objectives or alignment loss, no precise mapping from each query group to DiT stages/conditions, and Eq. 5 obscures whether DiT parameters are shared and how coarse outputs affect finer generation (pp. 3–5). This substantially limits reproducibility and technical verification.",
+          "The main comparison is heavily confounded by different backbones, training data, initialization, and budgets. The controlled ablations use a smaller DiT and roughly 5M pairs, reach only 0.632–0.64 GenEval, and do not connect convincingly to the headline 0.87 result (pp. 5–6, 8–9).",
+          "Novelty is modest relative to MetaQuery and established coarse-to-fine generation, while several claims are overstated: preservation of understanding is not demonstrated by a matched before/after comparison, and the limitations discuss only editing-data quality rather than compute, data provenance, evaluation bias, or failure modes (pp. 2–4, 6, 9)."
+        ],
+        "score_rationale": "The empirical results are potentially valuable and the ablations support the basic hierarchical-query idea. However, missing objective/architecture details, confounded headline comparisons, and limited novelty prevent confidence that the reported gains follow from the proposed method or can be reproduced. I therefore rate it marginally below acceptance, with some uncertainty because fuller implementation details could materially improve the assessment."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "HieraQuery extends MetaQuery-style unified understanding/generation with scale-specific query groups and intermediate representation alignment, aiming for coarse-to-fine image generation. The reported generation and editing results are promising, but the contribution is incremental and the manuscript lacks enough methodological and experimental detail to establish that the gains arise from the proposed hierarchy rather than training or backbone differences.",
+        "strengths": [
+          "Strong reported results across generation and editing: 0.87 GenEval, 4.85 MJHQ FID, and competitive GEdit-Bench scores (pp. 6–7).",
+          "Controlled small-scale ablations show that multi-scale queries improve GenEval from 54.7 to 61.8 and alignment further improves it to 63.2 (p. 8).",
+          "The scaling study usefully indicates that adding scales is more effective than merely increasing the single-scale token count, with saturation beyond 336 hierarchical queries (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The method is substantially underspecified: the exact scale-to-query routing, attention/causal masking, shared versus separate DiT computation, conditioning at inference, alignment layers, targets, loss function, and weighting are absent from Eqs. 1–5 and the surrounding description (pp. 3–4), preventing reproduction and weakening technical assessment.",
+          "The main comparisons do not isolate the contribution: models use different backbones, initialization, data, and prompt-rewriting policies, while the decisive ablations use a smaller dataset and SANA rather than the primary SD3 setup (pp. 5–6, 8). No matched MetaQuery retraining with identical data/compute is reported, and the claim that understanding is maintained is unsupported by a before/after comparison (pp. 6, 9).",
+          "Evidence and reporting are incomplete: training-data composition is ambiguous, compute and sampling details are omitted (pp. 4–5), editing relies only on GPT-4.1 judgments without uncertainty or human validation (p. 6), and no statistical variation, efficiency cost, or broad failure analysis is provided."
+        ],
+        "score_rationale": "The coarse-to-fine query organization is plausible and supported by encouraging ablations, but it is a modest extension of prior multi-scale generation and MetaQuery ideas. Missing algorithmic details and insufficiently controlled comparisons make the headline gains difficult to attribute confidently, placing the work marginally below the acceptance threshold."
+      }
+    }
+  ]
+}

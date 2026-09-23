@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_090",
+  "paper_id": "FQ8KX1pxeo",
+  "number": 22729,
+  "title": "Progressive Binarization with Semi-Structured Pruning for LLMs",
+  "authors": [
+    "Xianglong Yan",
+    "Tianao Zhang",
+    "Zhiteng Li",
+    "Haotong Qin",
+    "Yulun Zhang"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "LLM",
+    "Binarization",
+    "Pruning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=FQ8KX1pxeo",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    6,
+    4
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "3AtzcGIipq",
+      "forum": "FQ8KX1pxeo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22729/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761553435110,
+      "tmdate": 1764359921286,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "4kvnboIiF4",
+      "forum": "FQ8KX1pxeo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22729/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761820345225,
+      "tmdate": 1762942361108,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "duYW0li0eL",
+      "forum": "FQ8KX1pxeo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22729/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761750963448,
+      "tmdate": 1762942361433,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "jhgkaen2Z3",
+      "forum": "FQ8KX1pxeo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22729/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761856670814,
+      "tmdate": 1762942360799,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PBS2P combines progressive N:M pruning, alternating binarization-parameter updates, layer-wise sparsity allocation, and an OBS-style Hessian score. The reported sub-1-bit results are often substantially better than STBLLM, but important mathematical, accounting, and reproducibility gaps prevent confidence in the central claims.",
+        "strengths": [
+          "The empirical gains over the closest sub-1-bit baseline are large across several LLaMA sizes and sparsity levels (p. 7), with additional OPT and zero-shot evaluations (pp. 7–8).",
+          "Ablations separately examine progressive optimization, fine/coarse search metrics, pruning type, group size, and calibration size (pp. 8–9).",
+          "The paper includes compression-time and custom-kernel matrix-multiplication latency measurements rather than reporting accuracy alone (p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed optimization is not technically well specified: Eq. 2 masks the reconstructed weights, but the stationary updates in Eqs. 4–5 do not visibly incorporate the row-dependent mask and replace the original reconstruction target with pruned W_k. Thus the stated closed-form updates do not evidently optimize the declared objective (p. 4).",
+          "The theoretical novelty is overstated. Theorem 3.1 is the classical single-weight OBS quadratic approximation and does not prove optimal joint N:M selection under binarization; the promised proof is absent from the supplied manuscript. The layer-allocation equation and its preservation of the target average ratio are also unclear (p. 5).",
+          "Evidence for practical compression is incomplete: average-bit accounting does not clearly include masks, scales, means, and all metadata (p. 6), while inference evidence is only a few GEMM microbenchmarks without end-to-end throughput or memory results (p. 9). There are also numerical/reporting issues: all three FP16 averages in Table 3 disagree with the displayed task scores (p. 8), and the abstract's “consistently” better claim has exceptions such as OPT-2.7B at 0.8 bits (p. 7)."
+        ],
+        "score_rationale": "The integration is useful and the reported gains are promising, but it is largely incremental over existing binarization, progressive pruning, and OBS ideas. More importantly, the objective/update mismatch, unsupported optimality language, incomplete compression accounting, and table inconsistencies materially weaken technical soundness and reproducibility. I therefore lean reject, while retaining some uncertainty because code and missing derivations could clarify these issues."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PBS2P combines progressive N:M pruning, alternating binary scale/offset optimization, and coarse-to-fine mask selection. The reported sub-1-bit perplexity and zero-shot gains are substantial, but ambiguities in the formulation, missing promised proofs, incomplete bit accounting, and limited deployment evidence prevent confidence in the central claims.",
+        "strengths": [
+          "Broad evaluation across LLaMA/LLaMA-2/LLaMA-3 and OPT, with large perplexity improvements over the closest sub-1-bit baseline at matched nominal budgets (pp. 7–8).",
+          "Ablations separately examine SPBO, fine/coarse search metrics, sparsity type, group size, and calibration size (pp. 8–9).",
+          "The progressive optimization is intuitive, computationally lightweight relative to retraining, and accompanied by kernel-level latency measurements (pp. 4, 9)."
+        ],
+        "weaknesses": [
+          "Core technical details are inconsistent or incomplete: the mask is described as a union but applied through successive multiplication, Eq. 7 appears not to produce the stated N values, and the fine-stage score/theorem presentation is inconsistent. The promised derivations and theorem proof are absent from the supplied appendices (pp. 4–5, 10–12).",
+          "The claimed average bit-width omits or insufficiently explains sparse-mask/index metadata, group parameters, scales/offsets, and salient-weight representation; consequently, the asserted 0.55–0.80-bit storage budgets and fairness are not established (p. 6).",
+          "Efficiency evidence is only a custom matrix-multiplication microbenchmark without hardware/kernel configuration, memory footprint, throughput, or end-to-end generation results. Reproducibility is also limited by unspecified salient-weight selection, split points, optimization-step count, and several evaluation details (pp. 6, 9–10)."
+        ],
+        "score_rationale": "The empirical improvements are promising and broad enough to merit consideration, but the method is an incremental synthesis of known ideas and its decisive theoretical, compression-budget, and deployment claims are not adequately substantiated. I therefore place it marginally below acceptance, with some uncertainty because the reported gains are unusually large but cannot be fully audited from the supplied text."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PBS2P combines binary post-training quantization with layer-wise N:M pruning, progressive mask application, and Hessian-based element selection. The reported perplexity improvements over STBLLM are large and consistent across several LLaMA and OPT models, but missing technical details, overstated theory, and incomplete efficiency accounting prevent the evidence from fully supporting the paper’s claims.",
+        "strengths": [
+          "The paper addresses an important deployment problem and presents a coherent, training-free compression pipeline with layer-wise processing and modest stated calibration requirements (pp. 4–6).",
+          "Perplexity gains over the closest reported sub-1-bit baseline are substantial across many LLaMA configurations and mostly consistent on OPT; zero-shot results also improve average accuracy (pp. 7–8).",
+          "Ablations examine SPBO, coarse- and fine-stage metrics, pruning structure, group size, and calibration size, alongside conversion time and kernel latency (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the method largely combines standard N:M pruning, cosine-based layer importance, OBS-style Hessian scores, and alternating scale/offset fitting. The claimed “provably optimal” selection is only under a local second-order approximation, while the promised proof and parameter-update derivations are absent from the supplied complete manuscript (pp. 4–5, 10–12).",
+          "The method is insufficiently specified for reproduction: Hessian construction/approximation, salient-weight selection, mask ordering, optimization step count τ, and several implementation details are missing. Moreover, after the final mask is fixed, repeatedly re-estimating only α and μ appears to target the same final quadratic problem as direct optimization; the ablation does not isolate whether progressiveness itself, rather than better final re-estimation, causes the gain (pp. 4, 6, 8–9).",
+          "The compression and deployment claims are not fully validated. The reported average bit-width does not clearly include N:M mask metadata, scales, offsets, or all grouping information, and the latency study is only a custom GEMM microbenchmark without end-to-end latency, memory measurements, or the closest sparse baseline STBLLM (pp. 6, 9)."
+        ],
+        "score_rationale": "The broad experiments and unusually strong same-budget perplexity gains make the work promising, but the contribution is incremental and key theoretical, reproducibility, bit-accounting, and deployment claims remain insufficiently substantiated. I therefore place it marginally below acceptance, with some uncertainty because the missing promised supplement could address several concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PBS2P combines progressive N:M pruning, alternating optimization of binary scaling/offset parameters, and coarse-to-fine mask selection. The reported sub-1-bit results are often substantially better than the closest baseline, but the theoretical justification and reproducibility are insufficient to establish the claims reliably.",
+        "strengths": [
+          "Strong empirical perplexity gains over STBLLM across most LLaMA configurations and model sizes (p. 7), supported by zero-shot evaluations (p. 8).",
+          "Ablations separately examine progressive optimization, pruning metrics, layer allocation, pruning structure, group size, and calibration size (pp. 8–9).",
+          "The paper includes an inference-oriented matrix-multiplication benchmark using custom sparse binary kernels rather than reporting compression alone (p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed optimality is not established: Eq. 8 appears to square the inverse-Hessian diagonal, unlike the stated second-order pruning relation, and individual OBS-style scores do not prove optimal mask selection under binary and N:M constraints. The promised proof/supplement is absent from the supplied manuscript (p. 5).",
+          "Key implementation and accounting details are missing or ambiguous, including salient-weight selection, split points, pruning-stage ordering, Hessian computation, optimization-step count, and complete mask/metadata overhead; thus the 0.55–0.80-bit comparisons are difficult to reproduce or verify as equivalent budgets (pp. 4–6).",
+          "Efficiency evidence is limited to three matrix-multiplication shapes, with no end-to-end latency, memory, energy, or kernel methodology details; moreover, the broad deployment claims exceed this evidence (p. 9)."
+        ],
+        "score_rationale": "The empirical improvements are promising and broad enough to merit consideration, but the contribution is largely a combination of known ideas, while a central theoretical claim appears erroneous or at least inadequately specified. Missing supplementary proof and substantial reproducibility gaps make this marginally below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PBS2P combines progressive N:M pruning, alternating binary-parameter fitting, and a coarse-to-fine mask search for sub-1-bit LLM compression. The reported perplexity gains over the closest baseline are large, but important algorithmic inconsistencies and incomplete validation make the claims difficult to verify.",
+        "strengths": [
+          "The method targets a practically important regime and reports broad evaluations across LLaMA/OPT models, three perplexity datasets, and seven zero-shot tasks (pp. 6–8).",
+          "At matched stated bit-widths, PBS2P substantially improves over STBLLM on most configurations, especially across the LLaMA family (p. 7).",
+          "Ablations separately examine SPBO, pruning metrics, coarse allocation, pruning type, group size, and calibration size (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The coarse allocation equation appears inconsistent with its description: with Nhigh=Ntarget+1 and Nlow=Ntarget−1, Eq. 7's division by two produces Ni values far below the claimed range and target average. Moreover, cosine similarity between a weight layer's input and output can be undefined when their dimensions differ (p. 5). These issues undermine the specified core algorithm.",
+          "The claimed theoretical optimality is overstated: Theorem 3.1 is a standard local second-order single-weight result and does not establish optimality for constrained N:M mask selection jointly with binarization. The promised supplementary proof/derivations are absent from the supplied manuscript (pp. 2, 4–5).",
+          "Practical evidence is incomplete. Average-bit accounting does not clearly include all sparse-mask/index, scale, mean, and split-point overheads; inference evaluation is limited to custom GEMM microbenchmarks rather than end-to-end latency, memory, or energy; and reproducibility details are sparse despite an unusually large gain over the nearest baseline (pp. 6, 9–10)."
+        ],
+        "score_rationale": "The empirical improvements are potentially significant and the evaluation breadth is useful, but the central pruning-ratio formula seems incompatible with the stated method and compression budgets, while the theoretical and practical-efficiency claims are insufficiently supported. I therefore rate it below the acceptance threshold, with some uncertainty because missing supplementary material or a typographical error could resolve part of the concern."
+      }
+    }
+  ]
+}

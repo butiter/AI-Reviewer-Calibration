@@ -1,0 +1,210 @@
+{
+  "year": 2026,
+  "package_id": "paper_012",
+  "paper_id": "FtmJiQJrPf",
+  "number": 3812,
+  "title": "INSES: Intelligent Navigation and Similarity Enhanced Search for Knowledge Graph Reasoning",
+  "authors": [
+    "Hang Gao",
+    "Dimitris N. Metaxas"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "Knowledge Graph Reasoning",
+    "Graph Search",
+    "Algorithm",
+    "RAG",
+    "LLM"
+  ],
+  "forum_url": "https://openreview.net/forum?id=FtmJiQJrPf",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.3333333333333335,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "U36e0eKRFh",
+      "forum": "FtmJiQJrPf",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3812/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762197059426,
+      "tmdate": 1762917048066,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "UK68P3P6C6",
+      "forum": "FtmJiQJrPf",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3812/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762002818694,
+      "tmdate": 1762917048347,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "mbJXsKxRND",
+      "forum": "FtmJiQJrPf",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3812/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761959843646,
+      "tmdate": 1762917048634,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "INSES combines LLM-guided pruning, nearest-neighbor node expansion, and a router between text RAG and graph reasoning. The reported gains are promising, but the method is incremental and the current evaluation does not establish that gains arise from sound, generalizable graph reasoning rather than heuristic semantic jumps and routing effects.",
+        "strengths": [
+          "The paper identifies a practical failure mode of extracted KGs and presents a clear, modular search pipeline with prompts and pseudocode (pp. 4–6, 17–20).",
+          "Results cover three multi-hop QA datasets, several RAG/GraphRAG baselines, component ablations, and three KG construction paradigms on MINE (pp. 7–9).",
+          "The case study concretely illustrates how similarity expansion can recover evidence missed by explicit traversal (pp. 20–23)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: LLM-guided graph traversal, embedding-based retrieval/expansion, and query routing are established ideas, while differentiation from especially SiReRAG, HippoRAG, and Think-on-Graph is not demonstrated experimentally or conceptually in sufficient depth (pp. 3–5).",
+          "Similarity creates an unsupported reasoning transition between merely nearby entities; Eq. 4 retrieves only one nearest neighbor and provides no learned or relation-aware validity criterion. The case study's jump from “Frederick Douglass” to a memorial association illustrates retrieval utility but not logically sound inference (pp. 5, 21–23).",
+          "Evidence and reproducibility are inadequate for the claims: only 1,000 sampled questions per dataset are used without seeds, uncertainty, or significance tests; key thresholds, router prompt/calibration, main KG construction details, and judge model are unspecified. The efficiency claim has no latency, token, or cost measurements, only routing proportions (pp. 6–9, 20, 25–26)."
+        ],
+        "score_rationale": "The empirical improvements warrant interest, but modest novelty, questionable faithfulness of similarity edges, and substantial evaluation/reproducibility gaps prevent confidence in the central soundness and efficiency claims. I am somewhat uncertain because the unavailable supplementary code may resolve some implementation omissions, but it would not address the missing statistical, cost, and faithfulness evaluations."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "INSES combines LLM-guided pruning, nearest-neighbor semantic expansion, and a router between text RAG and graph reasoning. The idea is intuitive and the reported QA gains are promising, but the contribution is technically modest and the evaluation lacks crucial controls, cost measurements, and implementation details needed to substantiate its central claims.",
+        "strengths": [
+          "The paper identifies a practical failure mode of extracted KGs—fragmented or aliased entities—and presents a clear, modular response combining navigation and semantic expansion (pp. 2–5).",
+          "Results cover three multi-hop QA datasets and KGs produced by three construction paradigms; the reported improvements are generally consistent (pp. 7–9).",
+          "The component ablation suggests that similarity expansion contributes materially beyond LLM navigation, especially on MuSiQue and 2Wiki (p. 8)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the method is essentially LLM-based neighbor filtering plus top-1 embedding-neighbor expansion and heuristic routing, while distinctions from closely related similarity/graph retrieval approaches such as SiReRAG and HippoRAG are not established experimentally or conceptually (pp. 3–5, 14).",
+          "The main evaluation is insufficiently controlled: only 1,000 sampled questions per dataset are used without sampling details, seeds, variance, significance tests, or matched compute; KG construction and baseline tuning are under-specified, and the LLM judge configuration is unclear (pp. 6–9, 26).",
+          "The efficiency and routing claims are not demonstrated. The router relies on an unspecified confidence threshold and self-reported LLM confidence, while no latency, token, monetary, graph-construction, or accuracy–cost measurements are reported; routing proportions alone do not establish efficiency (pp. 6, 8, 20, 25)."
+        ],
+        "score_rationale": "The approach is plausible and reports encouraging gains, but substantial uncertainty remains because the graph-building/evaluation pipeline is under-specified and the claimed accuracy–efficiency advantage lacks direct evidence. The limited methodological novelty and absence of stronger routing, retrieval, and cost controls place it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "INSES combines LLM-guided graph traversal, nearest-neighbor node expansion, and a router between text RAG and graph reasoning. The motivation is plausible and the reported gains are promising, but the contribution is largely a combination of familiar components, while missing routing details, confounded comparisons, and questionable evaluation consistency prevent the evidence from establishing the main accuracy-efficiency claims.",
+        "strengths": [
+          "The paper clearly motivates failures caused by noisy and incomplete extracted graphs and gives an understandable algorithm, prompts, and worked example (pp. 4–5, 17–23).",
+          "Evaluation covers three multi-hop QA datasets and three substantially different KG construction methods, providing useful breadth (pp. 6–9, 16).",
+          "The component ablation suggests similarity expansion is useful, with sizeable reported EM gains over navigation alone (p. 8)."
+        ],
+        "weaknesses": [
+          "Novelty is limited and insufficiently differentiated from prior LLM-guided traversal and similarity-based retrieval methods such as ToG, HippoRAG, and SiReRAG. The proposed expansion is simply the nearest embedding neighbor per frontier node, and the case study relies on a tenuous jump from Frederick Douglass to a memorial association rather than a semantically valid reasoning edge (pp. 3, 5, 21–23).",
+          "The router is under-specified and confounds the central comparison: no exact routing prompt, confidence threshold, calibration analysis, or routing-error evaluation is given, while the combined system can improve merely by selecting the stronger of naïve RAG and INSES. Despite efficiency claims, there are no latency, token, monetary, indexing, or retrieval-cost measurements (pp. 6–8, 19–20).",
+          "Experimental reliability is inadequate: KG construction and baseline tuning are not sufficiently specified, random 1,000-example sampling lacks seeds or uncertainty tests, and the main LLM judge is not identified. Moreover, Table 2 reports LLM-judge accuracy below EM for several methods, although an exact ground-truth match should be semantically equivalent, raising concern about the judge or metric implementation (pp. 6–7, 26)."
+        ],
+        "score_rationale": "The method is intuitive and empirically promising, especially on 2Wiki and across MINE graph types, but modest novelty and substantial evaluation/reproducibility gaps make the claimed superiority and accuracy-cost trade-off unconvincing. I therefore rate it below acceptance; uncertainty remains because the claimed supplementary implementation is not part of the supplied manuscript."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "INSES combines LLM-guided pruning, nearest-neighbor node expansion, and a router between text RAG and graph search. The idea is intuitive and reported results are promising, but the contribution is incremental and the current evidence does not adequately establish either fair superiority or the claimed accuracy–efficiency trade-off.",
+        "strengths": [
+          "The method addresses a real failure mode of extracted KGs—missing or fragmented semantic links—and presents an understandable navigation/expansion workflow with prompts and pseudocode (pp. 4–5, 17–18).",
+          "Results cover three multi-hop QA datasets and several text- and graph-RAG baselines, with consistent best reported scores for the routed system (p. 7).",
+          "The ablations and evaluation across KGGEN, GraphRAG, and OpenIE graphs provide useful initial evidence that similarity expansion transfers across graph constructions (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the method mainly composes LLM-guided graph traversal, embedding-neighbor expansion, and confidence/complexity routing, while distinctions from closely related guided graph retrieval methods are not demonstrated through direct component-matched comparisons (pp. 3–6).",
+          "Experimental rigor is insufficient: only 1,000 sampled queries per dataset are used without sampling details, uncertainty, significance tests, or repeated runs; baseline tuning and KG-construction details are sparse, and the MINE comparison gives INSES an LLM-guided retriever against each method's native retriever without controlling compute (pp. 6–9).",
+          "The central efficiency claim is unsupported by latency, token, API-call, graph-build, or monetary-cost measurements. Important operational details such as the similarity and confidence thresholds are also missing despite the reproducibility claim, and the router relies on self-reported LLM confidence without calibration analysis (pp. 6, 8, 10, 20, 25)."
+        ],
+        "score_rationale": "The paper offers a sensible system and encouraging gains, but the modest methodological novelty, missing efficiency evidence, and substantial reproducibility/fairness gaps prevent confidence that the reported improvements establish a strong ICLR contribution. I am somewhat uncertain because the claimed supplementary code is not part of the supplied manuscript."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "INSES combines LLM-guided pruning of KG neighborhoods, nearest-neighbor embedding expansion, and a router between text RAG and graph reasoning. The approach is intuitive and reports sizable gains, but the contribution is incremental and the evaluation lacks enough specification and controls to establish that the gains arise from the proposed reasoning mechanism rather than routing, implementation choices, or unreliable judging.",
+        "strengths": [
+          "The method addresses a meaningful failure mode of extracted KGs—missing or fragmented entity links—with a simple, modular combination of semantic expansion and guided traversal (pp. 4–6).",
+          "Results cover three multi-hop QA datasets, component ablations, two LLM backbones, and three distinct KG construction methods on MINE (pp. 7–9).",
+          "The appendices provide prompts, algorithms, and a useful qualitative trace contrasting traversal with and without similarity expansion (pp. 17–26)."
+        ],
+        "weaknesses": [
+          "Key experimental details are missing despite the reproducibility claim: the main-dataset KG construction procedure, similarity and confidence thresholds, router prompt/model, sampling seeds, judge identity for the main experiments, and important retrieval/generation settings are not specified (pp. 6, 10, 20, 25–26).",
+          "The evidence has serious reliability gaps: there are no repeated runs, uncertainty estimates, significance tests, or human validation of the judge; moreover, several EM scores exceed the corresponding semantic-judge scores (e.g., 2Wiki GraphRAG Top-10: 0.50 vs. 0.43), which is difficult to reconcile with the stated equivalence criterion and is not investigated (p. 7).",
+          "Novelty and claimed efficiency are insufficiently demonstrated. LLM-guided graph traversal, embedding retrieval, and routing are established ingredients, while comparisons do not isolate against closely matched semantic-expansion/traversal alternatives. Efficiency is argued only through routing shares, without latency, token, graph-construction, or monetary costs, and the router lacks oracle/calibration baselines (pp. 3, 8, 19–20)."
+        ],
+        "score_rationale": "The paper presents a plausible practical system and encouraging results, but its central claims are not yet supported to ICLR standards. Incremental novelty, substantial reproducibility omissions, internally questionable evaluation behavior, and the absence of quantitative cost or router-quality analysis outweigh the reported gains. I am somewhat uncertain because the unavailable supplementary code may resolve some implementation details, but the manuscript itself does not."
+      }
+    }
+  ]
+}

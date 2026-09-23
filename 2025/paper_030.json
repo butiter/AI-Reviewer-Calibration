@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_030",
+  "paper_id": "82VzAtBZGk",
+  "number": 3537,
+  "title": "Safe Reinforcement Learning in Black-Box Environments via Adaptive Shielding",
+  "authors": "Daniel Bethell; Simos Gerasimou; Radu Calinescu; Calum Imrie",
+  "primary_area": "reinforcement learning",
+  "keywords": "Reinforcement Learning; Safe Reinforcement Learning",
+  "forum_url": "https://openreview.net/forum?id=82VzAtBZGk",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper develops a new shield based on contrastive learning to increase the safety of RL agents. This approach learns a latent representation that separates safe and unsafe state-action pairs. After learning this latent representation, it uses a KNN approach to classify, which requires a threshold K to indicate how many neighbors to consider a state-action pair unsafe. The paper shows how this parameter can be adapted online based on the safety of the RL agent. Finally, the paper provides empirical evidence that the proposed method increases the safety of the RL agent."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper is well written. The description of the method is precise.\n- The proposed method is original. It is the first method to use contrastive learning in a safe RL setting.\n- The empirical evaluation indicates the approach can potentially increase the safety of RL algorithms."
+        },
+        "weaknesses": {
+          "value": "The problem formulation is incomplete. The paper does not define the safety properties expected from the RL agent.\n- Lack of theoretical results. This paper provides only empirical results to support its claims.\n- The results are presented in a convoluted way. In particular, the results disregard the safety violations of the agent in the first 1000 episodes. The reason for presenting the results in this way is unclear.\n- The presentation of the DDPG-Lag as a constrained RL algorithm is imprecise, as it uses a fixed weight for the costs, which works as simple reward engineering. In general, with a Lagrangian relaxation, this weight should be adjusted online to ensure the accumulated cost stays below a predefined threshold [1].\n- The evaluation in CMDPs is inconsistent. These approaches solve different problems where a predefined accumulated cost is allowed.\n- Weak baseline. From the results in Figure 10, it is clear that Tabular Shield does not recognize any unsafe state-action pairs, making it an unsuitable baseline. This is not surprising considering how the state-action space is discretized. Perhaps it is necessary to finetune the discretization of this baseline. Alternatively, it would be more suitable to consider stronger baselines, such as the accumulating safety rules [2]\n\n**references**\n- [1] Ray, A., Achiam, J., and Amodei, D. (2019). *Benchmarking safe exploration in deep reinforcement learning*. <https://github.com/openai/safety-gym>\n- [2] Shperberg, S. S., Liu, B., Allievi, A., and Stone, P. (2022). A rule-based shield: Accumulating safety rules from catastrophic action effects. *CoLLAs*, 231–242. <https://proceedings.mlr.press/v199/shperberg22a.html>"
+        },
+        "questions": {
+          "value": "- If the problem had a single initial state, would this be an issue for this approach? How does the diversity of initial states influence the performance of the ADVICE algorithm?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "r28J9iG1WA",
+      "forum": "82VzAtBZGk",
+      "replyto": "82VzAtBZGk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_Kt6J"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_Kt6J"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3537/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730734077758,
+      "cdate": 1730734077758,
+      "tmdate": 1731427874821,
+      "mdate": 1731427874821,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents ADVICE (Adaptive Shielding with a Contrastive Autoencoder), a novel post-shielding technique for safe reinforcement learning (RL) in complex black-box environments. ADVICE distinguishes between safe and unsafe state-action pairs during training using a contrastive autoencoder, protecting the RL agent from executing hazardous actions. The method includes an adaptation component based on the agent's recent performance, encouraging exploration when appropriate. Extensive experiments against state-of-the-art safe RL exploration techniques demonstrate that ADVICE significantly reduces safety violations during training while maintaining competitive outcome rewards."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- ADVICE introduces a new way to handle safety in RL using a contrastive autoencoder for distinguishing safe and unsafe actions.\n- Despite prioritizing safety, ADVICE maintains competitive performance in terms of rewards compared to other methods.\n-  ADVICE does not require prior knowledge about the environment, making it suitable for black-box scenarios."
+        },
+        "weaknesses": {
+          "value": "- ADVICE requires an initial period to gather data before it can be fully effective, which could be a disadvantage in some scenarios.\n- The paper suggests that ADVICE might struggle with dynamic environments and could benefit from incorporating temporal context, which would add additional computational load.\n- The performance of ADVICE is sensitive to hyperparameters like the safety threshold K, which might require careful tuning."
+        },
+        "questions": {
+          "value": "- Can ADVICE be integrated with other RL algorithms except for DDPG?\n- What are the potential limitations of using a contrastive autoencoder in the context of safe RL, and how might these be addressed?\n- What are the implications of ADVICE's cold-start issue on its applicability in real-world scenarios where immediate safety is critical?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "BeBkED7UMi",
+      "forum": "82VzAtBZGk",
+      "replyto": "82VzAtBZGk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_DQ3Z"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_DQ3Z"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3537/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730685967898,
+      "cdate": 1730685967898,
+      "tmdate": 1731427875199,
+      "mdate": 1731427875199,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a post-shielding method ADVICE to reduce the constraint violation during the safe RL training. It first trains a neighbor model to classify the safety of state-action pair by contrastive learning in embedding space. Then it leverages this model to identify the safety of new state-action by the statistics of its K nearest neighbors and corrects the unsafe action to a safe one from a selected safe set. The authors conduct experiments on several safety gymnasium environments, which show that the proposed method can reduce the cumulative safety constraint violation during training."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- This paper proposes a new shield-based method for safe exploration, which is an important problem for application of RL.\n- Overall, the paper is clearly written (e.g., fig. 1) and easy to follow. \n- The idea of classifying the safety of state-action in latent space is novel."
+        },
+        "weaknesses": {
+          "value": "- My biggest concern is the effectiveness of neighbor model in step 1, which determines whether a new state-action is safe or not. However, this key component in the proposed shielding method is trained based on data collected in an initial unshielded stage (line 161). During the execution, the policy will be updated and differ from the initial policy, which will lead to a severe distribution shift of state-action pair. Therefore, it's very questionable whether the neighbor model can still distinguish safe state from the unsafe one given unseen new state-action distribution. \n- The construction of safe or unsafe sets $\\mathcal S, \\mathcal U$ is also problematic. In eq. (3), the feature (state-action pair) is classified as safe if it's start or next state reaches the goal while the feature with next state crashed is unsafe. Such classification obviously introduces some spurious correlations, e.g., the state-action pair is identified as unsafe because it's far from the goal instead of it will truly crash with obstacles. Meanwhile, the contrastive learning objective excludes the inconclusive features, the majority of the collected data, which makes the coverage of training data on state-action space very limited and further exacerbates the distribution shift issue. \n- In experiment, although the results in fig.2 show that ADVICE has smaller cumulative safety violation, ADVICE also performs similarly to baselines on some other tasks (e.g., fig. 8(c) &9). Meanwhile, it's very weird that DDPG-lag and DDPG have very close results (also see questions), suggesting the DDPG-lag baseline is not well-tuned.\n\nMinor issues:\n- line 142, distinguish -> distinguishes \n- Eq.(2), $F$ -> $\\mathcal F$\n- many notations are not defined before using. E.g., $\\mathbb Z_+$ in eq. (2), $E$ in line 2 of Algorithm 1."
+        },
+        "questions": {
+          "value": "- What are the data of visualization in last column in fig.2? Are they training data for neighbor model?\n- Does the \"constrained randomised goal\" correspond to \"randomised CMDP\" in fig.7(d)?\n- Why do not you use the standard tasks provided by safety-gymnasium (e.g., PointGoal, CarButton, ...) instead of customizing the tasks? The original tasks should be harder because all the layouts (agent, goal and obstacles) are randomized in each episode and they can better test the ability of safety exploration.\n- In the experiment, why are the performances of DDPG and DDPG-lag very similar in terms of reward or safety violation? DDPG does not take safety into the consideration and only aims to maximize the reward. The lagrangian in DDPG-lag will thus be almost useless if it performs similarly to DDPG."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "HpUpTShL2L",
+      "forum": "82VzAtBZGk",
+      "replyto": "82VzAtBZGk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_C6Rd"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_C6Rd"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3537/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730351596781,
+      "cdate": 1730351596781,
+      "tmdate": 1731427875426,
+      "mdate": 1731427875426,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a framework to address the problem of safety within unknown environments using a combination of techniques including shielding, contrastive learning and latent feature representations. The framework therefore consists of many components that have been combined under one roof. The target is so called black box environments where the benefit of information relating to safe states is not a priori available so special techniques need to be employed to enable training and execution to proceed as safely as possible. The empirical results show that the framework, ADVICE increases safety violations by a meaningful margin though often at the expense of return"
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The methodology is intuitive and the motivation and requirement of each component are reasonably well explained. The problem setting is one of significant interest to the RL community and the approach seems original."
+        },
+        "weaknesses": {
+          "value": "Although some parts of the paper are well explained, especially the non-technical elements and the intuition of the algorithm, many important details are skipped. This leaves the reader to simply guess how important aspects of the framework work. Also, some maths expressions seem to have been written without due care which further adds to confusion. The framework involves various interdependent learning processes - specifically, in addition to the regular policy updates, the action and hence the reward received at a given state depends on the latent representation (which presumably is being updated) as well as the value of K which varies in quite an abrupt manner. This generates concerns about convergence guarantees and the numerical stability of the framework. The paper would benefit from some analysis or at least a discussion on this aspect. Additionally, within the framework there are a number of functions within the method that have max/min functions - this introduces a high level of discontinuity which can be harmful for some learning methods e.g. gradient-based learning methods, and may cause numerical instabilities. \n\nThe novelty of the paper as a whole could be more clearly spelled out. Lastly, although the framework achieves a significant reduction in safety, this often comes at a notable expense to the return. I would like to see how this compares to the frameworks that have some calibration aspect for the performance:safety ratio."
+        },
+        "questions": {
+          "value": "1. In environments with a highly non-smooth reward function, similar features can induce very different rewards (specifically different levels of safety). What exactly is the function $h_\\theta$ in (1)? If this function does not relate to safety or reward then the issue of non-smoothness in the safety w.r.t. features may be problematic here.\n\n2. Given that $\\mathcal{U},\\mathcal{S},\\mathcal{I}$ are defined as sets, the construction of $g$ in (3) does not seem like a function since it maps elements of $F_E$ to sets. Perhaps $\\mathcal{U},\\mathcal{S},\\mathcal{I}$ need not be sets for this construction.\n\n3. The construction of $\\mathcal{C}$ in (4) also seems spurious since it maps a product of sets to a set which is the union of other sets. Also, it seems not to consider the cases of two dissimilar features in $U$ and secondly, two dissimilar features in $S. \n\n4. What are $S$ and $U$ in (4) - in page 3, the subindex of $f$ represents time, the indices $i,j \\in S$ etc. in (4) therefore seem incorrect.\n\n5. In relation to the construction of the function $g$ in (3), in the black box setting, how can we know which are accepting states?\n\n6. In line 6 of the algorithm, how can we be sure that constructing an action by taking a cartesian product across action dimensions will produce a valid action in the environment? The set of valid actions may only be a subset of this product space e.g. a robot may not be able to lift both its feet off the ground simultaneously.\n\n7. What is the definition of a safety violation - specifically, is there a notion of safety violation that can be used to detect such violations in black-box environments?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Pl5scOEioh",
+      "forum": "82VzAtBZGk",
+      "replyto": "82VzAtBZGk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_Ff6i"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3537/Reviewer_Ff6i"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3537/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730208994991,
+      "cdate": 1730208994991,
+      "tmdate": 1731427875668,
+      "mdate": 1731427875668,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "ADVICE combines a contrastive autoencoder, nearest-neighbor classification, and adaptive thresholding to post-shield a DDPG agent. The approach is intuitive and shows reduced violations on several Safety Gymnasium variants, but the safety labeling, theoretical claims, and empirical validation have substantial shortcomings that prevent the central claims from being established.",
+        "strengths": [
+          "The contrastive representation plus nonparametric post-shield is a practically understandable combination, with an explicit mechanism for proposing safer replacement actions (pp. 3–6).",
+          "Experiments report reward, violations, and task completion across four task variants, including transfer and constrained settings (pp. 7–10, 17–19).",
+          "The appendices disclose hyperparameters, computational overhead, and sensitivity to the threshold and activation time (pp. 18–21)."
+        ],
+        "weaknesses": [
+          "The supervision defining the shield is poorly justified: only the initial transition and goal-reaching transitions are labeled safe, only immediately terminal transitions are unsafe, and all intermediate transitions are discarded (p. 4). Thus labels need not reflect whether an action leads toward future failure, and the method still assumes access to explicit goal/failure signals despite its broad “no prior knowledge” framing. How this construction applies to nonterminal step-wise hazards is unclear.",
+          "The theoretical analysis is not sound. It assumes Gaussian latent noise and a separation relationship without justification, reduces KNN behavior to nearest-safe/nearest-unsafe distances, contains questionable variance and margin steps, and simply posits that the achieved margin is proportional to the square root of feature-set entropy (pp. 15–16). Consequently, the stated exponential guarantees do not follow for the learned encoder or unseen data.",
+          "The evidence is too limited for the broad claims: only three runs and one robot with a two-dimensional action space are used; there is no classifier accuracy/calibration analysis or ablation isolating contrastive learning, reconstruction, KNN, and adaptation. Main plots reset metrics after 1,000 unshielded episodes (pp. 7–8, 17), obscuring cold-start violations, while candidate-action Cartesian enumeration and 3–6× runtime raise scalability concerns (pp. 5, 21)."
+        ],
+        "score_rationale": "The paper offers a plausible engineering method and encouraging benchmark results, but its core safety labels are weak, the purported theory is largely assumption-driven and contains invalid leaps, and the small, narrow evaluation does not substantiate safety or high-dimensional generality. These are central rather than readily cosmetic issues, so I would reject despite the promising empirical direction."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "ADVICE combines a contrastive autoencoder, nearest-neighbor post-shield, and adaptive voting threshold to reduce collisions during DDPG training. The idea is intuitive and results suggest fewer post-activation violations, but the safety labeling, theoretical analysis, and experimental validation do not adequately support the paper’s broad safety and scalability claims.",
+        "strengths": [
+          "The post-shield is conceptually simple, compatible with a black-box interaction loop, and selects safe candidates using the agent’s value estimate (pp. 3–6).",
+          "Across three navigation tasks, ADVICE consistently lowers the post-activation violation slope, while the appendices expose full training curves and safety–performance trade-offs (pp. 8, 17–19).",
+          "The paper discusses cold start, computation, dynamic obstacles, and reports substantial runtime overhead rather than hiding these limitations (pp. 10, 21)."
+        ],
+        "weaknesses": [
+          "The supervision is poorly justified: only initial/goal-reaching transitions are labeled safe and terminal transitions unsafe, while all intermediate transitions are discarded (p. 4). Thus the learned classifier need not represent action safety, and no held-out classification, calibration, or false-negative evaluation is provided.",
+          "The theoretical results are unsound. The separation of stored safe/unsafe embeddings does not imply the claimed distance gap for an unseen feature; the Gaussian variance handling is inconsistent; and Theorem 2 simply assumes an entropy-to-margin proportionality, so neither bound establishes a safety guarantee (pp. 15–16).",
+          "Evidence is narrow and underpowered: only three seeds, one 2D-action robot family, weak/hand-tuned DDPG baselines, and no essential ablations of contrastive loss, autoencoding, KNN, or adaptation. The adaptive parameters reportedly barely affect violations, while action-space quantization is not tested beyond two dimensions (pp. 7, 9–10, 14, 21)."
+        ],
+        "score_rationale": "The combination has some novelty and promising empirical behavior, but decisive technical claims are unsupported, the theory is invalid, and the evaluation does not establish robustness or high-dimensional scalability. These issues require substantial new analysis and experiments rather than a minor revision."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "ADVICE combines a contrastive autoencoder, KNN action screening, and an adaptive voting threshold to reduce training-time violations without a dynamics model. The idea is intuitive and results on several Safety Gymnasium variants are encouraging, but the safety-label construction, invalid theoretical analysis, and limited evaluation leave the central claims insufficiently supported.",
+        "strengths": [
+          "The post-shielding pipeline is clearly described and integrates action replacement with the agent's value function (pp. 3–6).",
+          "Across the tested tasks, ADVICE generally lowers post-activation violation rates while retaining some task performance, with transfer and parameter studies providing useful additional evidence (pp. 8–10, 17–20).",
+          "The paper candidly reports cold-start and substantial computational overhead—12–24 hours versus 3–5 hours for baselines—and discusses several limitations (pp. 10, 21)."
+        ],
+        "weaknesses": [
+          "The supervision does not justify the claimed notion of safety: only the initial transition or a goal-reaching transition is labeled safe, only failure-terminal transitions are unsafe, and all ordinary nonterminal transitions are discarded (p. 4). Thus the model mainly separates goal/start examples from immediate crashes rather than learning whether arbitrary state-action pairs are safe; it also requires explicit failure/goal signals despite the broad 'no prior knowledge' claim.",
+          "The theoretical results are unsound (pp. 15–16): the proof assumes the desired latent geometry and Gaussian noise without justification, inconsistently defines the margin/sign and noise variance, uses an exponential tail with the unsquared margin, reduces KNN classification to nearest safe/unsafe points, and simply posits that margin is proportional to the square root of feature entropy. The theorems therefore provide no valid guarantee.",
+          "Evidence is narrow and statistically weak: only three runs, one robot and closely related custom tasks, no direct ablation of contrastive learning versus simpler supervised classifiers or static versus adaptive shielding, and main plots exclude the first 1000 unshielded episodes where ADVICE gathers unsafe data (pp. 6–10, 17). Candidate-action Cartesian enumeration is tested only for a 2-D action space (pp. 5, 14), undermining claims about high-dimensional action spaces."
+        ],
+        "score_rationale": "The learned shield is a potentially useful empirical heuristic with promising post-activation results, but its key safety labels are poorly aligned with the claimed prediction task, the theoretical guarantees are invalid, and the small, selectively presented evaluation does not establish broad safe-exploration effectiveness. These are substantial technical issues warranting rejection rather than a marginal acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "ADVICE combines a contrastive autoencoder, nearest-neighbor classification, and an adaptive threshold to post-process continuous-control actions. Although post-activation results show fewer violations on several Safety Gymnasium variants, the safety formulation, theoretical claims, and empirical protocol do not adequately support the paper’s broad claims about safe exploration in black-box environments.",
+        "strengths": [
+          "The end-to-end shield architecture is clearly motivated and integrates representation learning, action replacement, and adaptive cautiousness (pp. 3–6).",
+          "The evaluation includes several task variants, transfer, constrained-control, threshold/activation analyses, and computational overhead reporting (pp. 7–10, 17–21).",
+          "Across the reported post-activation intervals, ADVICE generally reduces violations relative to the tested baselines, with an interpretable reward–safety trade-off (pp. 8, 18–19)."
+        ],
+        "weaknesses": [
+          "The claimed absence of prior safety knowledge is misleading: labeling explicitly requires recognizing goal and failure terminal states. Moreover, only initial/goal-reaching transitions are labeled safe and crash transitions unsafe, with the first transition apparently marked safe regardless of outcome; this is noisy and addresses primarily immediate collisions rather than delayed consequences (Eq. 3, p. 4).",
+          "The theoretical analysis is not sound. The inter-class training margin does not imply the asserted distance gap for an unseen point; the Gaussian variance/tail bound appears inconsistent and omits the squared margin; and Theorem 2 simply assumes, rather than establishes, a square-root relationship between feature entropy and separation (pp. 15–16).",
+          "Evidence is limited to three seeds and closely related custom Safety Gymnasium tasks. Comparisons against CSC/Lagrangian methods are poorly matched in unconstrained sparse-cost settings, headline plots reset metrics after 1,000 unsafe collection episodes, statistical significance is not tested, candidate-action discretization is underspecified, and ADVICE costs roughly 3–6× more training time (pp. 7, 17, 21)."
+        ],
+        "score_rationale": "The representation-based post-shield is a plausible engineering idea and the post-activation trends are encouraging, but novelty is moderate and the central black-box/no-prior-knowledge framing is overstated. Incorrect theoretical guarantees and an evaluation that obscures cold-start violations make the safety conclusions insufficiently supported. I am highly confident in these concerns, though broader benchmarks could change the empirical assessment."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "ADVICE combines a contrastive autoencoder, nearest-neighbor post-shield, and adaptive voting threshold to reduce unsafe exploration without an environment model. The idea is intuitive and results suggest fewer post-activation violations, but the safety formulation, theoretical analysis, and limited evaluation do not adequately support the paper’s broad claims.",
+        "strengths": [
+          "The proposed pipeline is clearly described and combines representation learning, action replacement, and adaptive conservativeness in a practically understandable way (pp. 3–6).",
+          "Across the tested Safety Gymnasium variants, ADVICE generally reduces post-activation violation rates while retaining some task performance; transfer and constrained-setting experiments add useful breadth (pp. 7–9, 17–19).",
+          "The appendices report hyperparameters, computational cost, cold-start and threshold sensitivities, and full rather than only post-activation curves (pp. 17–21)."
+        ],
+        "weaknesses": [
+          "The safety supervision is much stronger and less general than claimed: features are labeled using known goal and terminal-failure events, while almost all intermediate transitions are discarded as inconclusive (p. 4). Thus “without any prior knowledge” is overstated, and similarity between the sparse endpoint labels and genuinely safe actions is not justified.",
+          "The theoretical results are unsound or unsupported. The separation between training safe/unsafe embeddings does not imply the asserted distance relation for an unseen point; the Gaussian variance/tail derivation is inconsistent; and the claimed relationship between feature entropy and separation is merely assumed, with even the stated Theorem 2 bound having the wrong exponent sign (pp. 15–16).",
+          "Evidence is limited to three seeds, one robot and closely related custom tasks, using DDPG-centered baselines. The primary plots omit the first 1,000 unsafe episodes and reset metrics at shield activation, while exhaustive quantized candidate enumeration scales exponentially with action dimension and incurs 3–6× training time (pp. 7, 17, 21)."
+        ],
+        "score_rationale": "The learned post-shield is a plausible, moderately novel engineering combination with encouraging benchmark results, but it does not establish robust safe exploration in general black-box environments. Invalid theoretical support, sparse endpoint-based safety labels, weak statistical evidence, and scalability concerns are substantial enough to place it below the acceptance threshold."
+      }
+    }
+  ]
+}

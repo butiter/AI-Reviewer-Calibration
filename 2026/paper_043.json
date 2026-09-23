@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_043",
+  "paper_id": "Y74tGjpsjq",
+  "number": 10554,
+  "title": "PAML: MoE-Based Partitioning and Merging Framework for Solving Large-scale Multi-task VRPs",
+  "authors": [
+    "Yujie Pan",
+    "Qingchun Hou"
+  ],
+  "primary_area": "optimization",
+  "keywords": [
+    "Combinatorial Optimization",
+    "Large-scale VRPs",
+    "Multi-task VRPs",
+    "Learning to Optimize",
+    "Mixture of Experts (MoE)"
+  ],
+  "forum_url": "https://openreview.net/forum?id=Y74tGjpsjq",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "human_mean_rating": 2.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "01myf25tck",
+      "forum": "Y74tGjpsjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10554/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761880270979,
+      "tmdate": 1762921829363,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "GCBet9ZZy4",
+      "forum": "Y74tGjpsjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10554/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761548661502,
+      "tmdate": 1762921830648,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "bZ5HlGJW8U",
+      "forum": "Y74tGjpsjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10554/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761756292213,
+      "tmdate": 1762921830278,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "oyhahayfTT",
+      "forum": "Y74tGjpsjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10554/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761791600262,
+      "tmdate": 1762921829760,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "PAML partitions large multi-variant VRPs with an MoE policy, heuristically merges angularly adjacent partitions to a target size, and solves the resulting subproblems in parallel. The practical idea is plausible and reported speed/quality gains are promising, but the supplied manuscript does not provide sufficient technical specification or controlled evidence to substantiate its broad claims.",
+        "strengths": [
+          "The partition–merge–solve pipeline is intuitive and can exploit parallelism while placing instances within a pretrained solver’s effective size range (pp. 2, 5–6).",
+          "Experiments nominally cover five variants, synthetic scales up to 2,000 nodes, and CVRPLIB instances, with both quality and runtime reported (pp. 7–9).",
+          "The merging ablation suggests that target-size merging is materially better than solving raw partitions or using fixed-count merging (p. 8)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the method largely combines TAM-style learned decomposition, the existing MVMoE solver, and a classical polar-angle heuristic; comparisons omit the most relevant decomposition and strong modern VRP baselines, so the claimed advance is not isolated (pp. 2–5, 7).",
+          "Technical specification and reproducibility are inadequate. Architecture/training details, hyperparameters, hardware, datasets and splits, OR-Tools configuration/time limits, feasibility checking, and uncertainty across runs are absent. Referenced Appendices B and D, Tables 3–4, and Figures 6–8 are not present in the supplied complete manuscript (pp. 4, 7–8). The constraint reward is also unclear or questionable—for example, capacity violation is computed from total demand in a merged subproblem even though it may contain multiple routes (p. 6).",
+          "The evidence is not sufficiently controlled: best merge sizes are selected separately for every variant and scale without a validation protocol (p. 9), only two base solvers are compared, and the asserted p<0.05 analysis is unavailable (p. 7). Headline numbers are inconsistent, including 16.78% versus 15.75% CVRPLIB improvement and 14.23s versus 14.50s OR-Tools time (pp. 1, 8), and limitations are not discussed."
+        ],
+        "score_rationale": "The framework offers a sensible engineering strategy and potentially useful empirical behavior, but its conceptual increment over existing decomposition methods is modest. More decisively, missing experimental material, unclear feasibility/training details, tuned merge sizes without a stated protocol, weak baselines, and inconsistent headline results prevent verification of soundness or generalization. I therefore assign a reject score; uncertainty remains because the manuscript repeatedly refers to appendices that are absent from the supplied pages."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PAML combines a learned MoE partitioner, polar-angle-based merging, and parallel subproblem solving for large multi-variant VRPs. The general divide–merge–solve direction is reasonable, but the novelty over TAM-style decomposition plus MVMoE is modest, and the supplied manuscript does not provide sufficiently rigorous methodology or evidence for its strong quality and speed claims.",
+        "strengths": [
+          "The framework addresses a practically relevant scalability problem and can wrap either neural or conventional subproblem solvers (pp. 2, 5–6).",
+          "The paper identifies a meaningful quality–efficiency trade-off in subproblem sizing and reports results across several scales and five VRP variants (pp. 7–9).",
+          "The merging ablation suggests that adaptive target-size merging is materially better than directly solving primitive partitions (p. 8)."
+        ],
+        "weaknesses": [
+          "The evaluation is not reproducible or convincingly fair: hardware, training budget, dataset sizes/splits, OR-Tools settings and stopping criteria, parallelization details, variance, and target-size selection protocol are absent. OR-Tools times visibly plateau at apparent limits, while PAML uses batched parallel inference, undermining both quality and timing comparisons (pp. 3, 7–9).",
+          "Technical specification is incomplete and sometimes questionable: the stated VRP cost omits depot returns and route boundaries; constraint masking only explicitly treats capacity; the time-window penalty is inadequately defined; and padding, separator generation, model architecture, and preservation of variant-specific feasibility are not explained sufficiently (pp. 4–6).",
+          "Key supporting evidence is unavailable in the supplied paper: the text repeatedly cites Tables 3–4, Figures 6–8, instance-level results, statistical tests, and Appendices B/D, but pages 10–14 contain only references. Comparisons also omit strong large-scale VRP baselines such as TAM/delegation and modern classical solvers, leaving novelty and competitiveness poorly established (pp. 7–8, 10–14)."
+        ],
+        "score_rationale": "The idea is plausible and preliminary plots indicate potential, but the contribution largely combines existing partitioning and MoE concepts with a simple geometric merge heuristic. Missing referenced appendices/results, underspecified feasibility handling, and an inadequately controlled baseline comparison prevent validation of the central claims. These are substantial rather than cosmetic issues, so I rate it a reject."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PAML combines an MoE/RL partitioner, polar-angle-based merging, and parallel pretrained solvers for large multi-variant VRPs. The direction is practically relevant and reported gains are substantial, but the supplied manuscript does not provide enough methodological precision or experimental evidence to validate those gains.",
+        "strengths": [
+          "The partition–merge–solve pipeline is intuitive and targets an important scalability bottleneck; it can also wrap either neural or conventional subproblem solvers (pp. 2, 5–6).",
+          "The evaluation nominally spans five VRP variants, synthetic scales up to 2,000 nodes, and CVRPLIB instances, with both cost and runtime reported (pp. 7–9).",
+          "The merging ablation and target-size analysis indicate a useful quality–efficiency trade-off rather than assuming the solver's native training size is optimal (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The technical formulation is incomplete or questionable: separator generation and variant-specific feasibility masks are unspecified; the reward penalizes aggregate subproblem demand rather than route-level capacity, uses an unclear time-window violation, and invokes route length before clearly defining a feasible solution (pp. 5–6). Thus feasibility preservation for VRPTW, VRPB, OVRP, and VRPL is not established.",
+          "The evidence is not reproducible or sufficiently controlled. Sample counts, variance/error bars, hardware, training details, solver settings and stopping budgets are absent; target subproblem sizes appear selected by performance without a validation protocol; and strong relevant baselines such as TAM, learning-to-delegate, CaDA/RouteFinder, and HGS are not evaluated (pp. 4, 7–9).",
+          "Decisive supporting material cited as Appendix D, Tables 3–4, and Figures 6–8 is absent from the supplied 14 pages, preventing verification of instance-level results and significance claims (pp. 7–8). Reported headline numbers are also inconsistent, e.g. 16.78% versus 15.75% and 14.23s versus 14.50s (pp. 1, 8)."
+        ],
+        "score_rationale": "The core engineering idea is plausible but largely combines established decomposition, geometric clustering, and MVMoE components, so novelty appears incremental. More importantly, underspecified feasibility handling and missing experimental details/appendices make the large claimed improvements unverifiable. I therefore assign a reject score, with high confidence based on the complete supplied content."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PAML combines a learned VRP partitioner, polar-angle-based subproblem merging, and parallel use of existing solvers. The approach is practically motivated and the reported gains are potentially substantial, but the manuscript does not provide enough method specification or experimental evidence to establish correctness, novelty, or reproducibility.",
+        "strengths": [
+          "The partition–merge–solve pipeline is intuitive and addresses a relevant scalability problem while remaining compatible with neural and conventional subproblem solvers (pp. 2, 5–6).",
+          "Experiments nominally cover several VRP variants, scales up to 2,000 nodes, and CVRPLIB instances rather than only small synthetic cases (pp. 7–9).",
+          "The merging ablation and target-size analysis identify a plausible quality/efficiency trade-off and suggest that naive small subproblems lose global information (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Core technical details are missing: there is no actual partitioner architecture, separator-generation rule, training protocol, or adequate formulation of variant-specific feasibility. The stated reward/violations are underspecified (e.g., time variables), and independent merging/solving does not demonstrate preservation of global fleet and cross-route constraints (pp. 5–7).",
+          "The evidence is incomplete and not reproducible. The paper repeatedly points to Appendix B/D, Tables 3–4, and Figures 6–8, but the supplied manuscript ends with references and contains none of these materials. Dataset sizes, seeds, variance, hardware, solver budgets/settings, and the claimed significance analysis are unavailable (pp. 4, 7–8, 10–14).",
+          "Novelty and comparisons are weak: the method largely combines TAM-style decomposition, an MVMoE model, and classical angular clustering, yet compares only against direct MVMoE and OR-Tools rather than strong learned decomposition or modern VRP heuristics. Per-scale “best” merge sizes may reflect test-set tuning, and reported headline values are inconsistent (15.75% vs. 16.78%; 14.50s vs. 14.23s) (pp. 1–4, 8–9)."
+        ],
+        "score_rationale": "The idea is plausible and reported results are promising, but the absent referenced appendices/results, insufficient method specification, unclear feasibility guarantees, and inadequate baseline protocol prevent verification of the main claims. These are substantive rather than presentation-only issues, so the work is not presently acceptable."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PAML partitions large multi-variant VRPs with a learned MoE policy, heuristically merges angularly adjacent partitions to a target size, and solves the resulting subproblems in parallel. The approach is practically motivated, but its novelty is largely an integration of TAM-style decomposition and MVMoE with a polar-angle heuristic. Major specification and experimental deficiencies prevent verification of its technical and empirical claims.",
+        "strengths": [
+          "The partition–merge–solve pipeline is intuitive and could offer a useful quality/runtime trade-off for large instances (pp. 2, 5–6).",
+          "Experiments nominally span five VRP variants, synthetic scales up to 2,000 nodes, and CVRPLIB instances (pp. 7–9).",
+          "The merging ablation and target-size study suggest that controlling subproblem size matters substantially (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The method is not reproducibly specified: there is no partitioner architecture, separator policy, training configuration, dataset size, hardware, solver configuration, or OR-Tools stopping criterion. Crucial mathematical details are also questionable: Eq. 8b penalizes total subproblem demand above one vehicle capacity even though a VRP subproblem may contain multiple routes, and analogous time-window/route penalties are inadequately defined (pp. 5–6).",
+          "The evidence is incomplete and potentially tuned to the test setting. The manuscript repeatedly relies on absent Appendices B and D, Tables 3–4, and Figures 6–8; it provides no sample counts, uncertainty bars, or actual significance analysis despite claiming p<0.05. Target merge sizes are selected separately for each variant and scale without a validation protocol, weakening the generalization claim (pp. 7–9).",
+          "Comparisons are too limited for the claimed contribution: only the inherited MVMoE solver and OR-Tools are evaluated, omitting closely related decomposition and modern neural/hybrid solvers discussed in the paper. The headline 48.71% gain is only against severely out-of-distribution MVMoE, while PAML remains 6.43% worse than OR-Tools on CVRPLIB; reported real-world averages are also inconsistent across pages (pp. 1, 3, 7–9)."
+        ],
+        "score_rationale": "The framework may be useful engineering, but the incremental novelty, questionable constraint formulation, missing methodological details, weak baselines, absent referenced evidence, and unclear test-time hyperparameter selection make the central soundness and generalization claims unsupported. I am highly confident in this assessment because these omissions affect the paper's main contribution rather than minor presentation details."
+      }
+    }
+  ]
+}

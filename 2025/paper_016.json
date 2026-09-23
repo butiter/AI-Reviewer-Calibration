@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_016",
+  "paper_id": "S4jzvOBs9m",
+  "number": 1055,
+  "title": "FlowBench: A Robustness Benchmark for Optical Flow Estimation",
+  "authors": "Shashank Agnihotri; Julian Yuya Caspary; Luca Schwarz; Xinyan Gao; Jenny Schmalfuss; Andres Bruhn; Margret Keuper",
+  "primary_area": "datasets and benchmarks",
+  "keywords": "Adversarial attacks; optical flow estimation; benchmarking tool; benchmark; robustness",
+  "forum_url": "https://openreview.net/forum?id=S4jzvOBs9m",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    8,
+    8,
+    3,
+    5
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes FLOWBENCH, a new benchmarking tool designed to evaluate optical flow prediction specifically in terms of reliability (robustness against adversarial attacks) and generalization ability (out-of-distribution performance). Three related metrics are proposed, namely TARM (Targeted Attack Reliability Measure), NARM (Non-targeted Attack Reliability Measure), and GAM (Generalization Ability Measure). An extensive study on 89 released models/checkpoints over four widely used datasets shows in-depth findings and insights."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "1. This paper is among the first attempts to evaluate optical flow methods on reliability and generalization ability, which are both important but often overlooked in the research community.\n2. The effort put into this research is huge. Building an open-source benchmark tool requires a large amount of coding and implementation. The results on all latest models are insightful and worth sharing.\n3. The writing is overall in good quality."
+        },
+        "weaknesses": {
+          "value": "1. The definition of TARM and NARM is not very clear in the text. Are they just defined as the EPE in different settings? The scales of these metrics shown in the figures are also a bit confusing, as EPEs up to the level of hundreds are weird. Maybe the authors should elaborate this more in the main body (not just in the appendix). Maybe it is also better to discuss the specific differences between targeted and non-targeted attacks in the context of optical flow estimation.\n2. The benchmarked models are all DL-based models. Maybe it will be better to pick a few SotA traditional methods as a baseline? It is commonly believed that traditional methods are more interpretable and thus more robust, so it may be interesting to see how they compare on this benchmark.\n3. One minor point that makes the proposed metrics less accessible and a bit unnatural is: for TARM, the higher the better, but for NARM and GAM, the lower the better. I would suggest aligning them into a uniform format by, for example, taking the inverse/reciprocal in the definition of TARM, so that it is also the lower the better. Also, the name \"measure\" does not imply that much as \"score\" (assuming the higher the better) or \"error\" (assuming the lower the better). Making these changes may make the metrics better understood and easy to use."
+        },
+        "questions": {
+          "value": "1. Are there randomness in the evaluation of these metrics? As a benchmark metric, I would assume that it should be deterministic (I should get the same results no matter how many times I run the evaluation). It seems that there could be randomness, for example, when we add corruptions. If so, how large is the randomness and how would they affect the final evaluation results?\n\n---\n**Additional comments**:\n1. Just a typo: Line 085 says the benchmark is based on 3 datasets, but Line 093 says 4 datasets.\n2. Line 123: the citation \"Russakovsky et al. (2015)\" should use \\citep instead of \\citet.\n3. Line 141: Maybe it will be better to find the authors of mmflow instead of citing \"Contributors\".\n4. Line 166: the citation \"Schmalfuss et al. (2022b)\" should use \\citep instead of \\citet."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PT6nLsLYfM",
+      "forum": "S4jzvOBs9m",
+      "replyto": "S4jzvOBs9m",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_MVeY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_MVeY"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1055/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730706283011,
+      "cdate": 1730706283011,
+      "tmdate": 1731427365636,
+      "mdate": 1731427365636,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes a FlowBenmark that benchmarks the robustness of 89 learning-based optical flow methods under different types of adversarial attacks and their generalization ability. The method also analyzes what factors can affect the robustness (e.g., the number of parameters, architecture components, etc). The paper promises to make the benchmark open source upon its acceptance. \n\n--- \n* Justification on the rating\n\n   I support the acceptance of the paper unless any significant flaws are found during the reviewing period. It provides a comprehensive and insightful benchmark on the robustness of optical flow methods. The findings in the paper will benefit the community and help better design of optical flow method in the future. However, it will be great if the paper provides more in-depth technical analyses and answers the questions below for better clarity."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "* Insightful benchmark\n\n   The paper provides comprehensive analyses of existing learning-based optical flow methods on their robustness. In the optical flow literature, papers mostly have focused on their EPE accuracy only. This paper provides an interesting analysis that methods with the best accuracy are not necessarily the most robust methods. Given comprehensive analyses, readers can understand the pros and cons of each method. I believe the benchmark will certainly benefit the community and help design a better and more robust method for future work.\n\n* Clarity \n\n   The paper is written clearly so that it's easy to follow and understand many graphs, metrics, and analyses in the paper."
+        },
+        "weaknesses": {
+          "value": "* Concern about fair comparison\n\n   The checkpoints compared in the analyses might not be trained in the same setups, (e.g., data augmentation (photometric, random noise, etc), regularization, the usage of drop-out, etc), which can affect the robustness of the method. It would be ideal if all methods were trained in the same setup, but it's unrealistic and may not be possible. What does the paper think about the current comparison in the context that the methods are trained in different setups? Will it change any discussion that the paper made in the paper?\n\n   Also, can the paper include or list brief details on training setups (e.g., data augmentation, type of regularization, etc.) of each method? Or discussing them as future work (e.g., each method is trained on different setups, but analyses didn't consider this axis yet) would be also fine.\n\n* Less in-depth analyses\n\n  Given the robustness measure, the paper discusses what method shows better generalization, accuracy, or robustness, but it's a bit lacking in what makes them better or more robust. There are analyses of the number of parameters or matching concepts (attention, CNN) at a high level, but it's a bit unclear what technical designs (e.g., architectural choices, domain knowledge, training strategies, etc.) really make these differences. Can the paper discuss more on the technical aspects?"
+        },
+        "questions": {
+          "value": "* Continuing on the question above, if we want to build an optical flow method that is both robust and accurate, what architectural design choices can we make by learning from this benchmark paper? Maybe this is the task of readers, but can the paper provide a brief discussion of any insights or findings while analyzing 89 methods? What can be the best architectural design choices for future models?\n\n* nit\n   * In Fig. 2, IRR shows the most reliable method, but the text says that RapidFlow is the most reliable one. There may be a mistake during making a graph or writing the text. \n   * In Fig. 1 right, generalization ability seems to improve when discarding one outlier on the right middle (i.e., one point at mid-2022 and GAM 80), when drawing the graph, does the paper discard a few extreme outliers or include all data points?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "iPYNenY9SG",
+      "forum": "S4jzvOBs9m",
+      "replyto": "S4jzvOBs9m",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_hv2r"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_hv2r"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1055/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730658310100,
+      "cdate": 1730658310100,
+      "tmdate": 1731427365746,
+      "mdate": 1731427365746,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces FlowBench, a novel benchmarking tool designed to evaluate the robustness of optical flow estimation methods, specifically their resistance to adversarial attacks and performance under out-of-distribution (OOD) conditions. As deep learning methods continue to improve accuracy in optical flow tasks, their vulnerability to adversarial perturbations and limitations in generalizing to OOD data remain concerns. FlowBench addresses this by providing a systematic and scalable evaluation across 89 models on three datasets and under seven types of adversarial attacks and 23 corruptions, making it one of the most comprehensive benchmarks for optical flow to date."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The work provides a wide-ranging benchmark covering multiple models, datasets, adversarial attacks, and common corruptions. This expansive scope allows researchers to evaluate optical flow models comprehensively. In addition, by focusing on robustness—vital for real-world applications like autonomous driving and medical imaging—it directly addresses the gap between research advancements and deployable technology, which is quite important."
+        },
+        "weaknesses": {
+          "value": "A limitation of FlowBench lies in its evaluation scope, which, while robust, could benefit from a broader range of real-world data to fully capture the variability that optical flow models encounter in practical applications. The three datasets used provide valuable insights but may not represent the complete spectrum of challenges seen in diverse environments, such as varying lighting and extreme motion scenarios. \n\nFurthermore, the analysis correlating robustness with model parameter count, though insightful, stops short of examining deeper architectural factors, such as layer structure or feature extraction mechanisms, which may also significantly impact robustness. To make this analysis more actionable, the authors could explore specific architectural aspects, such as comparing various attention mechanisms (e.g., FlowFormer vs. FlowFormer++) or different convolutional architectures used in optical flow models. \n\nLastly, the emphasis on adversarial robustness, while essential, could be complemented by additional real-world stressors to offer a more holistic view of model performance, moving beyond adversarial scenarios to include conditions that challenge models in everyday applications. For example, evaluating performance under specific conditions such as varying lighting, motion blur, or partial occlusions—common in real-world scenarios but not fully captured by the current corruption set—could help round out the analysis."
+        },
+        "questions": {
+          "value": "Given that state-of-the-art models on i.i.d. benchmarks often underperform under adversarial attacks and corruptions, how might FlowBench be extended to offer predictive insights into robustness? Could specific patterns in initial evaluations serve as indicators of a model's robustness, potentially reducing the need for exhaustive testing and saving computational resources? For example, the authors could explore correlations between performance on specific corruption types and overall robustness, or investigate whether particular architectural features consistently predict stronger robustness across models. Developing such predictive indicators could reduce the need for exhaustive testing and conserve computational resources.\n\nAdditionally, the claim of comprehensiveness is somewhat compromised, as several concurrent models are omitted, including some with available code for KITTI and Sintel datasets."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "mv2P9znj8l",
+      "forum": "S4jzvOBs9m",
+      "replyto": "S4jzvOBs9m",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_F85d"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_F85d"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1055/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730052228248,
+      "cdate": 1730052228248,
+      "tmdate": 1731427365841,
+      "mdate": 1731427365841,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a benchmark, FlowBench, to evaluate the robustness of current optical flow methods. FlowBench is built on KITTI-2015 and MPI-Sintel. It mainly focuses on the EPE metric and provides an easy-to-use API for attacking optical flow models. Besides, it includes the performance analysis."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "Main Strength:\n- Engineering: FlowBench provides an easy-to-use API for further study and analyzes the reliability/generalization of current methods.\n\n\nMinor Strength:\n- Novelty (in Optical Flow): To my best knowledge, the robustness of optical flow has not been discussed for a long time. It is good to have a benchmark of current methods."
+        },
+        "weaknesses": {
+          "value": "Main Weakness:\n- Lack of technical contribution: the whole benchmark is built on existing datasets. Besides, the attack techniques are from existing papers, not domain-specific. It is good to see some analysis of the performance. However, there is no solution provided to mitigate the issue. That makes me feel the paper is mainly engineering.\n\n\nMinor Weakness:\n- EPE is not the only metric in optical flow. The paper should analyze more on 1px-outlier rate, WAUC, etc.\n- The writing is not clear. I find it hard to understand the main points in the paper.\n\nAs an outsider of adversarial attacks, I may misunderstand the technical contributions in this paper. I am happy to raise the score if the authors can provide explanations in detail, and correct me if I am wrong."
+        },
+        "questions": {
+          "value": "See weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ms9410gudP",
+      "forum": "S4jzvOBs9m",
+      "replyto": "S4jzvOBs9m",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_GPBg"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1055/Reviewer_GPBg"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1055/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729905971206,
+      "cdate": 1729905971206,
+      "tmdate": 1732225639254,
+      "mdate": 1732225639254,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FLOWBENCH proposes a unified optical-flow robustness benchmark spanning adversarial attacks and common corruptions, with 91 checkpoints from 36 architectures. The scale and topic are valuable, but the central robustness measures and comparative conclusions are substantially confounded, and the core software/results are not available for verification within the submission.",
+        "strengths": [
+          "The benchmark targets an important, underexplored problem and combines adversarial and corruption evaluation in one interface (pp. 2–5).",
+          "The empirical coverage is unusually broad, including three evaluation datasets, many architectures, several attack families, and 23 corruptions (pp. 25–26, 31, 33–60).",
+          "The appendix documents attack configurations and includes limited repeated-seed checks, which support numerical stability for the tested RAFT/CosPGD and corruption settings (pp. 61–62)."
+        ],
+        "weaknesses": [
+          "The proposed NARE/TARE/GAE measures use worst-case raw EPE rather than degradation relative to clean performance, so rankings are confounded by baseline accuracy, flow magnitude, dataset scale, and target distance. Definitions are also inconsistent: GAE is a maximum on pp. 5–6 but the tool reports a mean on pp. 32–33, while the Fig. 2 caption reverses the stated TARE reliability direction (pp. 6–7).",
+          "Most headline correlation and architectural-family claims are based on visual scatter plots without coefficients, uncertainty, significance tests, or controls for checkpoint training data and correlated model variants (pp. 7–10). The claimed ground-truth-free attack result is shown mainly for ten models on KITTI and is close to the established clean-output divergence formulation acknowledged on pp. 9–10.",
+          "Real-world generalization is not demonstrated: synthetic corruptions are justified by transferring a semantic-segmentation correlation to optical flow (pp. 19–20), and temporal consistency of corruptions across frame pairs is unspecified. Moreover, the core artifact and full logs are promised only after acceptance (p. 11), leaving uncertainty about implementation correctness and reproducibility."
+        ],
+        "score_rationale": "The work offers a potentially useful and large benchmarking resource, but its main scientific conclusions do not yet rest on well-controlled or consistently defined robustness metrics. Given the unavailable artifact, weak statistical analysis, and unsupported real-world interpretation, the current evidence falls below acceptance despite strong scope and practical relevance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FLOWBENCH unifies adversarial-attack and common-corruption evaluation for optical flow and reports a broad empirical study across many checkpoints. The infrastructure and experimental scale are potentially valuable, but the proposed aggregate metrics and several headline conclusions are insufficiently validated, making this marginally below the ICLR acceptance bar.",
+        "strengths": [
+          "Broad scope: the benchmark covers diverse attack types, 23 corruptions, three evaluated datasets, and many architectures/checkpoints (pp. 2, 25–26, 31).",
+          "The paper examines targeted and untargeted attacks, multiple norm constraints, corruption robustness, architectural families, and parameter count; the extensive appendix exposes per-setting results rather than only aggregate claims (pp. 7–9, 33–60).",
+          "Reproducibility checks across seeds are reported, albeit for only RAFT, and generally show modest variance (pp. 61–62)."
+        ],
+        "weaknesses": [
+          "GAE/NARE/TARE rely largely on worst-case raw EPE (pp. 5–6), which confounds robustness with clean accuracy, dataset flow scale, and the most extreme corruption. There are no normalized degradation measures or robustness–accuracy trade-off analyses, so rankings and correlations are difficult to interpret fairly.",
+          "Many central conclusions are based on visual scatterplots without correlation coefficients, uncertainty, significance tests, or controls for checkpoint training data. The text is also internally inconsistent: it reports a reliability–generalization correlation on p. 7 but concludes that no apparent correlation exists on p. 10.",
+          "Real-world relevance and reproducibility remain uncertain: synthetic corruptions are justified by transferring evidence from semantic segmentation to optical flow (pp. 19–20), temporal consistency of paired-frame corruptions is not adequately specified, and the claimed tool/checkpoints are promised only after acceptance (p. 11), preventing verification from the supplied material."
+        ],
+        "score_rationale": "The scale and unified tooling are useful and somewhat novel, but this is primarily an integration/benchmark contribution whose key scientific findings rest on questionable aggregate metrics and qualitative correlation claims. Without accessible code or stronger statistical and normalized analyses, the evidence does not yet support the broad reliability and generalization conclusions."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FLOWBENCH consolidates adversarial and corruption-based evaluation for optical flow and reports a broad empirical study of many existing checkpoints. The scope is useful, but the proposed aggregate metrics and several central conclusions are insufficiently controlled or statistically substantiated, while the promised code and logs are unavailable for verification.",
+        "strengths": [
+          "Broad empirical coverage: the benchmark spans many checkpoints, three evaluation datasets, multiple white-box attacks, and 23 corruptions, with extensive per-attack results in the appendix (pp. 25–26, 33–60).",
+          "A unified interface and model zoo could materially reduce the engineering burden of robustness evaluation for optical flow (pp. 4–5, 30–33).",
+          "The paper examines several practically relevant axes, including targeted versus non-targeted attacks, architecture families, parameter count, and attacks optimized without ground truth (pp. 7–10)."
+        ],
+        "weaknesses": [
+          "GAE and the reliability errors use worst-case raw EPE across heterogeneous datasets, attacks, and corruptions (pp. 5–6, 25). Raw EPE depends strongly on dataset motion scale and clean accuracy, while maxima are outlier-sensitive; no normalization, uncertainty, or alternative aggregation is provided, so rankings do not cleanly isolate robustness.",
+          "Many headline findings rely on visual scatterplots without correlation coefficients, significance tests, or controls for checkpoint training data and clean performance (pp. 7–10). In particular, the ground-truth-free attack claim is demonstrated only on ten selected models on KITTI2015, and the real-world validity of synthetic corruptions is inferred from a semantic-segmentation result rather than optical flow evidence (pp. 9–10, 19–20).",
+          "Reproducibility is presently limited: code, weights, and logs are promised only after acceptance (p. 11), and stochasticity checks cover only RAFT/KITTI2015 (pp. 52, 61–62). The appendix mainly supplies dense, difficult-to-read plots rather than machine-verifiable tables, and the stated limitation discussion is very cursory (p. 51)."
+        ],
+        "score_rationale": "The benchmark's breadth and potential community utility place it near the acceptance boundary. However, unnormalized worst-case metrics, weak statistical support for the main comparative claims, limited controls, and the absence of a reviewable artifact prevent confidence that the reported rankings and conclusions are technically robust. I therefore lean marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FLOWBENCH consolidates adversarial and corruption-based evaluation for optical flow and reports a broad study of 91 checkpoints. The resource could be useful, but the proposed aggregate metrics and several headline conclusions are insufficiently validated or are confounded, leaving the work marginally below the acceptance bar.",
+        "strengths": [
+          "The benchmark has substantial breadth: 91 checkpoints, three evaluated datasets, seven attack types, and 23 corruptions, with extensive per-attack results in the appendices (pp. 2, 33–60).",
+          "It unifies targeted and non-targeted attacks with common-corruption evaluation in one optical-flow interface, addressing a practically important and underserved reliability problem (pp. 3–5).",
+          "The paper examines architecture families, model size, and attacks optimized without ground truth, and includes limited seed-variance checks (pp. 8–10, 61–62)."
+        ],
+        "weaknesses": [
+          "GAE and NARE/TARE use worst-case absolute EPE across heterogeneous datasets and conditions (pp. 5–6, 25), confounding robustness with clean accuracy, motion scale, and one extreme corruption. No normalized degradation, confidence intervals, or formal correlation coefficients support the many claimed correlations.",
+          "Real-world relevance is weakly established: the justification for synthetic corruptions simply extrapolates a semantic-segmentation result to optical flow and calls this a “safe assumption” (pp. 19–20). Temporal consistency of paired-frame corruptions and important 3D-corruption generation details are also unclear.",
+          "Comparisons mix checkpoints with heterogeneous training and fine-tuning regimes (pp. 20–24, 31), while the code, logs, and weights are promised only after acceptance (p. 11). This prevents verification, and some conclusions are internally inconsistent—for example, reliability and generalization are described as correlated on p. 7 but as having no apparent correlation on p. 10."
+        ],
+        "score_rationale": "The scale and potential community value are notable, but novelty is mainly integration, and the central metrics and empirical interpretations lack the normalization, statistical analysis, controlled comparisons, and artifact availability needed for a convincing ICLR benchmark paper. I am somewhat uncertain because the promised implementation could resolve some ambiguities, but it is not part of the supplied evidence."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FLOWBENCH consolidates adversarial attacks, common corruptions, datasets, and many optical-flow checkpoints into a unified robustness benchmark. The scale and potential utility are substantial, but the main scientific conclusions rely on weak aggregate metrics and largely qualitative correlation analyses, while the promised artifact is unavailable for verification.",
+        "strengths": [
+          "Broad empirical coverage: the paper reports 91 model–dataset checkpoints, three principal evaluation datasets, seven attacks, and 23 corruptions, with extensive per-setting results in the appendix (pp. 25–26, 31, 33–60).",
+          "The unified interface and model zoo could materially reduce the engineering burden of evaluating optical-flow robustness (pp. 4–5, 30–33).",
+          "The study considers both targeted and non-targeted attacks, multiple norm constraints, corruption robustness, and repeated-seed checks rather than only clean benchmark accuracy (pp. 6–10, 61–62)."
+        ],
+        "weaknesses": [
+          "The proposed GAE/NARE/TARE summaries use worst-case EPE across heterogeneous datasets, attacks, or corruptions without normalization for clean error or dataset flow scale; this can confound robustness with baseline accuracy and a single extreme condition (pp. 5–6).",
+          "Many headline “correlations” and architectural conclusions are inferred visually without coefficients, uncertainty, significance tests, or controls for checkpoint training data/protocol; the paper itself notes highly heterogeneous training procedures (pp. 7–9, 20–24).",
+          "The real-world relevance and ground-truth-free attack claims are overstated: synthetic-corruption validity is transferred from semantic segmentation rather than demonstrated for optical flow (pp. 19–20), and the proxy-attack result covers only selected models with no quantitative agreement statistic (pp. 9–10). The code, logs, weights, and website are deferred until acceptance, preventing verification (pp. 11, 51, 60)."
+        ],
+        "score_rationale": "The benchmark has clear community value and unusually broad coverage, but its novelty is primarily integration of existing tools, and central findings are not supported by sufficiently controlled or quantitative analysis. The unavailable artifact and metric confounds place it marginally below the acceptance bar, though a released, validated benchmark with normalized robustness measures and statistical analyses could change this assessment."
+      }
+    }
+  ]
+}

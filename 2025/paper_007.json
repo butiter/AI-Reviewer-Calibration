@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_007",
+  "paper_id": "2Oh2EOcFSO",
+  "number": 424,
+  "title": "Can a Bayesian oracle prevent harm from an agent?",
+  "authors": "Yoshua Bengio; Michael K. Cohen; Nikolay Malkin; Matt MacDermott; Damiano Fornasiere; Pietro Greiner; Younesse Kaddar",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "AI safety; probabilistic guarantees; guardrails; safe-by-design AI; Bayesian inference; posterior convergence",
+  "forum_url": "https://openreview.net/forum?id=2Oh2EOcFSO",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    5,
+    6,
+    5
+  ],
+  "human_mean_rating": 5.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores the problem of designing AI systems that satisfy probabilistic safety guarantees. Within a Bayesian framework and given the safety specifications (as a probability), the authors provide risk bounds for potentially harmful decisions, showing that the probability of harm can be upper-bounded by a probability that can be estimated by approximating Bayseian posterior over theories given the observed data. They study two settings: i.i.d case and non i.i.d case and provide a simple experiment to evaluate the performance of safety guardrails."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This is a very well written paper, and it is easy to follow. \n\nThe proposed approach represents a promising initial step toward designing AI systems that ensure safety through built-in probabilistic guarantees, rather than relying solely on external safety mechanisms.\n\nThe authors also outline several open problems for future work."
+        },
+        "weaknesses": {
+          "value": "The authors present an upper bound on the harm probability, though it appears to be highly conservative. It would be valuable if they could offer a convergence rate or practical guarantees to make the framework more usable. Additionally, it is unclear how this approach compares to other conservative methods for preventing harm. \n\nSince the theoretical results lack practical assurances, I would have appreciated more experimental validation, especially in complex and realistic settings. \n\nObtaining a Bayesian oracle could be very challenging (posterior distribution). \n\nOverall, while the paper introduces a promising method for designing safer AI systems, it would greatly benefit from additional components (both theoretical and experimental) before publication."
+        },
+        "questions": {
+          "value": "None."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "JvzstXgFIj",
+      "forum": "2Oh2EOcFSO",
+      "replyto": "2Oh2EOcFSO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_n2RR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_n2RR"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission424/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730774214463,
+      "cdate": 1730774214463,
+      "tmdate": 1731427254415,
+      "mdate": 1731427254415,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies the problem of bounding the probability of some event in the context of an unknown but consistent distribution and a Bayesian setting. \n\nThe paper is motivated by the prevention of harm by AI agents. In short, harm is inherently unavoidable since in real applications we have no direct access to the distribution governing the environment. However, if we assume a fixed distribution, and a prior assumption of that distribution, we can get better and better approximations when data is presented to us, by using the data to update our prior knowledge of the distribution. With this, we can theoretically bound the probability of doing harm. In deployment, actions whose probability of harm is larger than some threshold can be blocked.\n\nThe paper explores two cases: incoming data as iid and non iid, and obtains bounds on the probability of harm in both cases.\n\nThe paper presents an experimental evaluation on a multi-armed bandits example, blocking actions that are considered unsafe according to the different bounds obtained as well as a baseline (with an unrealistic assumption of the underlying model). The paper ends with a discussion of the open problems still to be solved to be able to use this method as a reliable guardrails for AI agents."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "S1. The topic of AI safety is timely and relevant for ICLR.\n\nS2. The theoretical results (as far as I could check) are sound.\n\nS3. The experimental evaluation serves to showcase how these bounds could be used in a realistic scenario."
+        },
+        "weaknesses": {
+          "value": "W1. I understand the appeal to frame this work in the context of harm by an AI agent, and I think it is an interesting point. However, there is nothing inherent to \"harm\" in the concept presented. The concept of \"harm\" could be substituted by \"reward at a state\" and we could be discussing the same results in a different light. I think the paper may benefit from a more general motivation.\n\nW2. While the experimental evaluation is welcome, it is a very simple example, and one wonders if these theoretical bounds would find applicability in problems that are more complex and close to the real applications of guardrails.\n\nW3. The concept of guardrails presented here, as an algorithm that blocks an action if it shows an expected harm larger than some threshold, is very similar to the concept of probabilistic shielding in MDPs [1] (which is essentially the \"cheating guardrail in Sec. 5), and this can be extended to partially observable MDPs to eliminate the (unrealistic) assumption of having full knowledge of the ground truth [2]. The paper would benefit from comparing to these methods, especially with [2].\n\nW4. The paper does not engage in some recent work on defining harm in similar scenarios, see for example [3] or [4]. It could be useful to understand, in light of different definitions of harm, whether the results are specific to harm prevention, or can be framed in a more general understanding of bounds over rewards.\n\n\n\nOTHER (MINOR) REMARKS\n\nR1. The paper is mathematically dense and difficult to follow in parts. I'm not sure whether this is a weakness on its own, but I have the feeling that the ideas conveyed are simpler than the dense mathematical presentation seems to suggest. \n\n\nREFERENCES\n\n[1] N. Jansen et al. Safe Reinforcement Learning Using Probabilistic Shields. CONCUR 2020.\n\n[2] S. Carr et al. Safe Reinforcement Learning via Shielding under Partial Observability. AAAI 2024.\n\n[3] S. Beckers et al. Quantifying Harm. IJCAI 2023.\n\n[4] J. G. Richens. Counterfactual harm. NeurIPS 2022."
+        },
+        "questions": {
+          "value": "Q1. How do you envision these guardrails to be applied in realistic scenarios? For example, consider the situation of a language model trying to obtain your passwords, or an autonomous car trying to crash with another vehicle. Could this notion of harm be applied efficiently to these realistic scenarios?\n\nQ2. How sensitive are the results to the choice of priors in the Bayesian framework? Can the authors discuss the robustness of the proposed approach under different prior choices?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "DgWvP835G1",
+      "forum": "2Oh2EOcFSO",
+      "replyto": "2Oh2EOcFSO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_pbrg"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_pbrg"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission424/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730669454268,
+      "cdate": 1730669454268,
+      "tmdate": 1731427254552,
+      "mdate": 1731427254552,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies the problem of evaluating an unknown world model from observed data to determine whether it satisfies a certain safety metric. The safety metric, or guardrail, is a binary variable $H$, taking other variables in the world model as input. The authors utilize a Bayesian approach. It assumes access to the actual prior distribution over the groundtruth world model. The authors first prove that under certain parametric assumptions, the posterior distribution over candidate models will uniquely converge to the ground-truth model at the limit of large samples. Building on this concentration results, the authors derive an upper bound over the posterior probability of the harmful event $H = 1$ conditioning on the observed data. This concentration bound is then extended to non-i.i.d settings where observed samples are correlated. Finally, simulations were performed, and results supported the proposed theory."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper is well-organized and clearly written. All the theoretical assumptions have been stated.\n- The proposed concentration results seem reasonable. The derivations seem technically sound.\n- Training large AI systems to satisfy certain safety criteria (i.e., with guardrails) is an exciting problem. This paper formulates this problem as a hypothesis-testing problem and presents non-trivial algorithms to perform the test. This problem formulation could be inspiring for other AI researchers across domains."
+        },
+        "weaknesses": {
+          "value": "- The concentration result in Prop. 3.1 assumes \"all theories in $M$ are distinct as probability measures.\" This assumption does not seem to hold many common probabilistic models. For instance, in the linear component analysis, the number of independent components is generally not uniquely discernible (i.e., not identifiable) with non-linear mixing functions. Also, the number of latent components in Gaussian mixtures is generally not identifiable from the observed data. This seems to suggest that the application of the proposed concentration results might be limited.\n- The proposed concentration results also assume access to the actual prior distribution generating the ground-truth world model. It is unclear whether the upper bound could still hold when the prior distribution is unknown and misspecified.\n- Other concentration bounds exist over the target estimates using Baysian methods. Generally, one should be able to translate empirical concentration bounds to the Bayesian settings. For instance, (Osband & Van Roy, ICML'17) translates the concentration bounds for online reinforcement learning to Bayesian regret. How does the proposed method compare to other related work? This paper should include a section discussing related work in large deviation theory and how this paper is situated in the existing literature.\n\n- Reference: _\"Osband, Ian, and Benjamin Van Roy. \"Why is posterior sampling better than optimism for reinforcement learning?.\" International conference on machine learning. PMLR, 2017.\"_"
+        },
+        "questions": {
+          "value": "1. How does the upper bound in Prop. 3.4 apply if the prior distribution $P$ is misspecified?\n2. How does this work compare to the existing literature on concentration bounds in the Bayesian setting? For instance, these methods could include analysis of Bayesian regret in RL, and PAC Bayes."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "gnvSTQYFLn",
+      "forum": "2Oh2EOcFSO",
+      "replyto": "2Oh2EOcFSO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_ADYh"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_ADYh"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission424/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730662190505,
+      "cdate": 1730662190505,
+      "tmdate": 1731427254701,
+      "mdate": 1731427254701,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper is tackling the problem of safety in AI. The authors take the view of defining safety as avoiding certain undesirable states in specific contexts.\nThey introduce a framework based on Bayesian inference from which an agent can derive safe policies that come with (probabilistic) guarantees of preventing harm.\nThe approach is safe-by-design, i.e. able to prevent undesired outcomes even if no concrete example of harmful states was ever observed in the system."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The main strength of the paper is the introduction of a (as far as I am aware) novel view at safe-by-design in AI at runtime and opening the possibilities for future Bayesian methods to utilize the safety guarantees shown in the paper. Allowing for safety guarantees and steering future work in a direction that empashizes those is a significant problem in AI.\nI especially appreciate the discussion on open problems of the approach in the conclusion.\n\nThe theory being developed is also quite general and spans over a wide range of possible systems/problems.\n\nThe paper is well motivated and generally well structured, introducing formal concepts as needed in the respective sections. A small experimental evaluation is performed and well discussed. Proofs are provided in the appendix and I could not find any mistakes."
+        },
+        "weaknesses": {
+          "value": "My main critique points of the paper are the lack of technical novelty (or at least it is not clarified enough if there are new results) and questions on applicability.\n\nFor the former, essentially all Propositions and Lemmata are either adaptations of well known results (Prop 3.1), taken from previous literature (Lemma 4.1, Prop 4.2), or rather simple Corollary derived from them (Lemma 3.3, Props. 3.4, 4.4, 4.5, 4.6). For Prop. 4.2 is is shown that the result is tight (Remark 4.3). To me it did not became clear whether this is a known result or a new contribution. It is also not clear whether the derived results (Props. 4.4, 4.5, 4.6) are also tight as a consequence or whether there is room for improvement.\nFor Prop. 4.5 and 4.6 in particular, restricting the possible world models indeces to $\\mathcal{I}^{\\alpha}_{1\\colon t}$ is essential, however, the choice of definition of $\\mathcal{I}^{\\alpha}$ is not really motivated. At the same time, Fig. 2(a) shows a substantial gap between applying Prop 4.6 in practice, and the theoretical optimum. This begs the question whether a different definition of $\\mathcal{I}^{\\alpha}$ (e.g. a simple cutoff, or requiring $\\mathcal{I}^{\\alpha}$ to have a certain probability mass) has potential to yield tighter bounds. However, as the definition of $\\mathcal{I}^{\\alpha}$ is not motivated, these questions remain unadressed.\n\nFor the applicability, my core concern is that the main problem in AI is not providing safety guarantees under certain assumptions, but rather designing a Bayesian agent that actually works well for a given problem while satisfying these assumptions. To go into detail, section 3 only provides \"law of large numbers\"-style guarantees which are not useful in practice. A small paragraph on the rate of convergence (which would be very helpful to know) is included but essentially is very problem-dependent and thus not discussed in detail in this more general framework. In the experimental evaluation, where Prop. 3.4 is utilized, it is not even clear whether $t$ is large enough for the guarantee statement of Prop. 3.4 to hold (on top of Prop 3.4 not being applicable due to non-i.i.d. as the authors mention themselves). Section 4 then relaxes to probabilistic guarantees, which is a more practical approach. However, to apply the results of section 4 in practice it ultimately relies on defining a hyperparameter alpha. On the theoretical side, the guarantees in section 4 only hold if alpha is chosen small enough (which is impossible to know without knowing the system in the first place) and on the practical side, the evaluation in section 5 shows that choosing alpha too large can have catastrophic consequences, even for the simple bandit system considered in section 5. In summary, I do not see any immediate way to take advantage of the theoretical results the paper provides. This is also amplified by the fact that the main body essentially does not discuss related work, and how existing approaches can be embedded into the framework.\n\n*These weaknesses make the paper feel like more of a statement paper with some additional mathematical background, rather than a fully fletched research paper.*\n\nAs a minor comment, from a reader's POV, the paper can be hard to follow at times, especially in the formal sections. Many paragraphs are written in a very technical way, assuming a deep mathematical background. While this surely can be expected from an audience like ICLR, I feel like many sections disrupt the flow of the paper, e.g. the two paragraphs \"Setting\" (l.155ff and l. 268ff). While these are defnitely important to make the paper rigorous, they are not strictly required to convey the main ideas of the paper. In the interest of readability, it might be advantageous to instead outsource the technical definitions to a separate section."
+        },
+        "questions": {
+          "value": "1. Can you detail how you can utilize the CLT to obtain convergence rates (line 238ff)? If you applied this to the example in seciton 5, would it yield practical bounds?\n\n2. Are the results in Propositions 4.4 to 4.6 tight (in a similar vein as Remark 4.3 shows for Proposition 4.2)?\n\n3. How do you motivate the definition of $\\mathcal{I}^{\\alpha}_{1\\colon t}$ and have you considered different approaches?\n\n4. Can you provide some heuristics on choosing a safe, yet effective $\\alpha$ a priori? Which information might be helpful for this from e.g. which model paramteres have the biggest impact on $\\alpha$ and what information from a domain expert could be incorporated?\n\n5. Can you make any predictions on how you proposed guardrails perform on larger, more complex models? In particular, how do you expect the overestimation of harm (see Fig. 2) to be affected?\n\n6. Are there any existing works in which your framework fits, i.e. for which you can give (probabilistic) guarantees where they were previously unavailable?\nIf not, are there certain settings in which you can make reasonable a priori assumptions such that your framework is applicable and concrete guarantees can be derived for a given data set?\n\nminor comments:\n- line 96: explain what $q$ is\n- line 193: introduce delta as dirac notation beforehand\n- the axis and legends in the figures in section 5 are barely readable"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ivJJB5uIzs",
+      "forum": "2Oh2EOcFSO",
+      "replyto": "2Oh2EOcFSO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_bi5T"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission424/Reviewer_bi5T"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission424/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730132722435,
+      "cdate": 1730132722435,
+      "tmdate": 1731427254805,
+      "mdate": 1731427254805,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper derives conservative harm-probability estimates by ensuring that a set of posterior-plausible theories contains the true theory. The i.i.d. result follows from posterior consistency, while the non-i.i.d. result combines a posterior martingale bound with maximization over a credible theory set. The direction is relevant, but the main guarantees are close corollaries of known Bayesian results, rely on assumptions that make them weak as operational safety guarantees, and receive only limited toy validation.",
+        "strengths": [
+          "The paper gives a clear formal connection between Bayesian uncertainty and runtime rejection rules, including an anytime non-i.i.d. guarantee rather than relying only on posterior concentration (pp. 6–7).",
+          "Key assumptions—realizability, positive prior mass, exact posterior quantities, and countability—are mostly stated openly, and the discussion identifies substantial deployment obstacles such as approximation error and harm specification (pp. 3–5, 10).",
+          "The exploding-bandit study illustrates the expected safety–utility trade-off and shows that the proposed estimator can become either highly conservative or unsafe as alpha changes (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The non-i.i.d. measure-theoretic setup is not sound as written: a canonical sigma-finite infinite product measure mu^infinity generally does not exist for an arbitrary sigma-finite mu (notably counting or Lebesgue measure), contrary to the construction on p. 6. The results could likely be reformulated using finite-dimensional likelihoods or mixture domination, but the stated theorem framework needs repair.",
+          "The practical guarantee requires alpha < delta P(i*), although the identity and prior mass of the true theory are unknown; for a general countable class there need be no positive uniform lower bound. Likewise, the i.i.d. bound holds only after an unknown random N and supplies no finite-sample certificate (pp. 5–7). These limitations substantially undermine the proposed runtime-verification interpretation.",
+          "Novelty and evidence are limited: the bounds largely follow by observing that the true theory belongs to a posterior-controlled set, while the sole experiment is a small realizable 10-arm bandit with exact enumeration. Much of the plotted alpha range has no nontrivial Proposition 4.6 guarantee, and the Proposition 3.4 baseline is explicitly used outside its assumptions (pp. 8–10)."
+        ],
+        "score_rationale": "The core posterior-martingale idea appears basically correct and relevant, but the formal non-i.i.d. setup contains a real technical defect, and the guarantees become operationally weak without known lower bounds on true-theory prior mass or computable finite-sample thresholds. Given the modest novelty and narrow toy evidence, this is below the ICLR acceptance bar, though potentially salvageable with corrected foundations and stronger finite-sample/practical results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper reframes Bayesian posterior guarantees as runtime upper bounds on action-dependent harm. The core countable-model arguments are plausible and the non-i.i.d. result is appealingly time-uniform, but the theoretical novelty is modest, the non-i.i.d. measure-theoretic setup contains substantive errors, and the empirical evidence is limited to a small synthetic bandit. Overall, this is an interesting position/theory paper but currently falls marginally below the ICLR acceptance bar.",
+        "strengths": [
+          "The paper gives a clear safety-motivated interpretation of posterior consistency and derives simple harm bounds for both i.i.d. and adaptive/non-i.i.d. observations (pp. 5–7).",
+          "Proposition 4.6 provides a simultaneous-over-time guarantee rather than merely a pointwise statement, and the paper openly exposes its dependence on the true theory's prior mass (p. 7).",
+          "The exploding-bandit experiment illustrates the expected safety–utility trade-off and conservatism of the proposed guardrail rather than claiming unrealistic practical success (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The non-i.i.d. setup incorrectly treats a general infinite product of a sigma-finite measure as a well-defined sigma-finite projective-limit measure and claims that domination of every finite marginal is equivalent to domination on the infinite sequence space; finite-dimensional absolute continuity does not generally imply infinite-dimensional absolute continuity (p. 6). The results may be repairable using only finite-prefix measures, but the current formalization is unsound.",
+          "The main results are close corollaries of standard posterior consistency and Ville's inequality: once the true theory is retained in a candidate set, maximizing harm over that set yields the bound almost tautologically (pp. 14–15). Proposition 4.5's written proof also establishes fixed-time probabilities and then asserts the all-times conclusion, although that conclusion could instead be recovered directly from Proposition 4.2 (p. 15).",
+          "Practical relevance remains highly conditional: the true theory and harm semantics must be exactly represented, exact posterior/candidate-set optimization is assumed, and choosing alpha requires knowledge or a lower bound on the unknown true theory's prior mass. The sole experiment uses an exactly enumerable 10-dimensional synthetic bandit, with one baseline deliberately violating its assumptions (pp. 8–10)."
+        ],
+        "score_rationale": "The safety framing and time-uniform Bayesian bound are worthwhile, but the contribution is technically elementary under very strong realizability and oracle-computation assumptions. The incorrect infinite-sequence measure construction is a meaningful soundness issue, while the toy experiment does little to establish usefulness beyond the exact finite setting. I am somewhat uncertain whether the venue would value the conceptual framing enough to offset these limitations."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper derives Bayesian upper bounds on context-dependent harm probabilities by retaining sufficiently plausible hypotheses, with asymptotic i.i.d. and anytime non-i.i.d. variants. The central idea is relevant to safe-by-design AI, but the guarantees are elementary consequences of posterior consistency/Ville’s inequality and depend on assumptions that substantially limit their operational meaning.",
+        "strengths": [
+          "The non-i.i.d. bound is an anytime statement covering all timesteps and contexts on one high-probability event, which is the appropriate form for runtime guardrails (pp. 6–7).",
+          "The paper clearly exposes major practical obstacles—tractability, overconservatism, harm specification, and approximation error—rather than presenting the result as a complete safety solution (p. 10).",
+          "The exploding-bandit experiment illustrates the conservatism–utility tradeoff and shows that nominal overestimation frequency can conceal underestimation on dangerous actions (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The guarantee requires the exact true theory to be in a countable class with positive prior mass, and Proposition 4.6 requires choosing alpha below delta times the generally unknown prior mass of that true index. Exact posterior and theory-conditional harm probabilities are also assumed, so the proposed verifier is not presently operational (pp. 3–7).",
+          "The main results add limited technical novelty: Proposition 3.4 follows almost immediately from eventual posterior-mode dominance, while Propositions 4.4–4.6 are short corollaries of a standard likelihood-ratio/Ville bound. The experiment is a small synthetic bandit and does not validate robustness to misspecification, approximate inference, or learned harm models (pp. 5–10, 14–15).",
+          "The non-i.i.d. measure-theoretic setup is not fully sound as written: an infinite product sigma-finite measure with finite-dimensional marginals mu^tensor t is not generally available unless additional normalization/consistency conditions hold (p. 6). In addition, the written proof of Proposition 4.5 argues separately for each fixed t before asserting a simultaneous all-t result, although this can be repaired by directly using the event in Proposition 4.2 (p. 15)."
+        ],
+        "score_rationale": "The conceptual framing is useful and the intended discrete-model bounds appear largely correct, but the contribution is technically modest, contains a formal setup gap, and rests on strong realizability and exact-computation assumptions. Combined with only toy evidence, this places it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes Bayesian guardrails that upper-bound harm under a realizable, countable theory class. The i.i.d. result follows from eventual posterior concentration, while the non-i.i.d. result uses a time-uniform lower bound on the true theory’s posterior to retain it in a cautious credible set. The core idea is interesting, but the contribution is largely a direct application of known posterior/martingale results, and the guarantees remain far from operational safety guarantees.",
+        "strengths": [
+          "The non-i.i.d. bound is time-uniform and applies simultaneously across contexts once the true theory belongs to the retained set (pp. 6–7, 15).",
+          "The paper clearly exposes strong assumptions and practical obstacles, including misspecification, computational tractability, overcautiousness, harm specification, and approximation error (pp. 5, 10).",
+          "The exploding-bandit experiment illustrates the central safety–utility tradeoff and empirically examines bound tightness rather than reporting reward alone (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: Proposition 3.4 is an elementary consequence of posterior consistency, and Propositions 4.5–4.6 are described as a variant and direct corollary of prior martingale work (pp. 5–7, 14–15). The i.i.d. guarantee also has no finite-sample burn-in bound, making it unusable at runtime.",
+          "The non-i.i.d. measure-theoretic setup is problematic: it assumes a sigma-finite infinite product measure and claims finite-marginal absolute continuity is equivalent to path-space absolute continuity (p. 6), neither of which generally holds for the stated counting/Lebesgue examples. The results appear repairable using finite-history likelihoods, but the current formulation is not sound.",
+          "Practical safety requires exact realizability, exact Bayesian posteriors and harm probabilities, and knowledge or a lower bound on the unknown true theory’s prior mass because α must satisfy α<δP(i*) (p. 7). The toy experiment uses only an exactly specified 1024-model class and offers limited reproducibility or evidence under misspecification/approximation (pp. 8–10)."
+        ],
+        "score_rationale": "The manuscript has a coherent safety-motivated perspective and mostly plausible core inequalities, but its main results are straightforward corollaries of known theory, the non-i.i.d. formalization contains a significant measure-theoretic defect, and the empirical evidence is too narrow to bridge the gap to practical guardrails. I therefore rate it below the ICLR acceptance threshold; uncertainty remains because the path-space issue seems fixable without changing the principal finite-history result."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper reframes Bayesian posterior-consistency and martingale results as runtime upper bounds on an agent’s harm probability, treating both i.i.d. and general sequential observations. The bounds are conceptually interesting, but their practical safety significance is limited by strong realizability, prior-mass, exact-inference, and harm-model assumptions; the empirical evidence is only a small synthetic bandit demonstration.",
+        "strengths": [
+          "The paper gives a clear conceptual connection between Bayesian uncertainty over world models and conservative action filtering, with explicit assumptions and mostly simple, interpretable bounds (pp. 4–7).",
+          "The non-i.i.d. result is time-uniform and applies to arbitrary contexts once the true index remains in the selected posterior set, which is relevant to adaptive agents (Prop. 4.6, p. 7).",
+          "The exploding-bandit experiment illustrates the central safety–utility trade-off and shows how conservatism varies with alpha rather than presenting only theoretical claims (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The main mathematical contributions are largely direct corollaries of established posterior consistency, Ville’s inequality, and a cited prior theorem; the genuinely new technical content appears limited (pp. 4–7, 14–15).",
+          "The guarantees require the exact true theory to be in a countable class with positive—and effectively usable—prior mass, plus correct theory-specific harm probabilities and exact posterior/set computation. In Prop. 4.6, alpha must satisfy alpha < delta P(i*), although P(i*) is unavailable when the truth is unknown and may be extremely small (p. 7). These assumptions substantially weaken the claimed guardrail interpretation.",
+          "The non-i.i.d. measure-theoretic setup asserts a sigma-finite infinite product measure for an arbitrary sigma-finite base measure and treats it as a projective limit (p. 6); this is generally problematic for examples such as Lebesgue or counting measure. Moreover, the experiment varies alpha mostly outside the certified regime and evaluates pointwise overestimation rather than the proposition’s simultaneous trajectory event (pp. 9–10), so it offers little evidence for practical guarantees."
+        ],
+        "score_rationale": "This is a thoughtful and relevant framing with apparently valid core probabilistic ideas, but novelty is modest, the sequential formalization needs correction or clarification, and the guarantees become weak or non-operational under realistic model uncertainty. The toy experiment does not close that gap, placing the work marginally below the acceptance bar."
+      }
+    }
+  ]
+}

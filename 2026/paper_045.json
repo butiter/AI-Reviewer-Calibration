@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_045",
+  "paper_id": "M34Eyawzm5",
+  "number": 10751,
+  "title": "Autonomous Urban Region Representation with LLM-informed Reinforcement Learning",
+  "authors": [
+    "Yuanlong Chen",
+    "YI LI",
+    "Miao Xie",
+    "Ning Cao",
+    "Wee Siong Ng",
+    "Gao Cong"
+  ],
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": [
+    "Urban Representation Learning",
+    "Reinforcement Learning",
+    "Large Language Models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=M34Eyawzm5",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    0
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "CAFLFh5utI",
+      "forum": "M34Eyawzm5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10751/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761925395208,
+      "tmdate": 1762921972260,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "Ra74Q4TNwL",
+      "forum": "M34Eyawzm5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10751/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761455524044,
+      "tmdate": 1762921972945,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "UwUjXT0WKc",
+      "forum": "M34Eyawzm5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10751/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761979073613,
+      "tmdate": 1762921971694,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "gUYaZHkgBU",
+      "forum": "M34Eyawzm5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10751/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761875971184,
+      "tmdate": 1762921972550,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "SubUrban combines LLM-based POI filtering, CEM, and an RL-style hypernode expansion policy for urban-region embeddings. The reported results are broad and often strong, but the central technical formulation and evaluation protocol do not support the paper’s claims of submodularity, autonomous representation learning, or cross-task/cross-city transfer.",
+        "strengths": [
+          "The empirical study covers four cities, several socioeconomic targets, multiple predictors, sparse-region analysis, runtime, and several ablations (pp. 7–9, 16–23).",
+          "The proposed combination of adaptive POI expansion, semantic filtering, and category-weight optimization is practically motivated and moderately novel (pp. 3–7).",
+          "The appendix reports useful LLM cost, stability, and model-choice analyses rather than treating the LLM component as cost-free (pp. 19–22)."
+        ],
+        "weaknesses": [
+          "The method is not technically established as submodular RL. Coverage/entropy/downstream-score rewards are not shown to be submodular set functions; the post-hoc marginal gains are non-monotone and even negative, which cannot establish submodularity (pp. 5–6, 19). Moreover, the GAT/projection update in Eq. 13 has no parameter-dependent loss, while MHA targets and PPO action probabilities are unspecified (p. 6).",
+          "The evaluation appears to optimize selection directly using downstream validation performance, including a mixed population/price/GDP reward (pp. 5–7, 15), then evaluate those same tasks against largely unsupervised baselines. Fold isolation, reward-label splits, and whether embeddings are retrained per task/city are unclear, creating serious leakage and supervision-budget concerns. Consequently, the experiments do not demonstrate universal or genuinely cross-task/cross-city transfer.",
+          "Several headline interpretations are unsupported or inconsistent: separate per-city results are called transfer; “90% less data” conflates 10% feedback regions with POI usage (pp. 7, 14); reward components of 45, 35, and 0.288 are described as balanced (p. 17); and GPT-4 is called strongest although GPT-3.5 has the higher final reward (p. 21). Statistical significance and matched-compute/supervision comparisons are also absent."
+        ],
+        "score_rationale": "The application is interesting and the empirical coverage is substantial, but the undefined learning objectives, lack of a valid submodularity argument, and likely task-label/validation leakage undermine both soundness and the main empirical claims. These are fundamental rather than presentation-only issues, warranting rejection despite promising results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "SubUrban combines LLM-guided POI retrieval, CEM category weighting, and reinforcement-learning-based regional expansion. The empirical tables report sizable gains across cities and socioeconomic tasks, but the central submodular/RL formulation is not technically established, and the downstream-label-dependent optimization creates serious ambiguity about leakage, task independence, and fair evaluation.",
+        "strengths": [
+          "The combination of adaptive POI expansion, semantic initialization, and category-weight optimization is a potentially useful direction beyond fixed geographic heuristics (pp. 3–7).",
+          "Experiments cover four cities and several targets, with generally substantial improvements over the strongest reported baseline (pp. 7–8, 16–18).",
+          "The appendices include useful ablations on predictors, LLM choices, preprocessing, costs, partitions, and hyperparameters (pp. 18–23)."
+        ],
+        "weaknesses": [
+          "The claimed submodular foundation is unsupported: the actual rewards are not proved to be submodular set functions, and the reported marginal gains increase again in rounds 6–7, contradicting diminishing returns rather than demonstrating them (pp. 5–6, 19).",
+          "The RL optimization is insufficiently specified or mathematically questionable: Eq. 13 lacks an objective/policy likelihood, the MHA cross-entropy targets are undefined, and actions, trajectories, and module-specific credit assignment are unclear (pp. 5–7).",
+          "Evaluation validity is unclear because downstream validation performance directly trains selection and CEM, expansion is also said to occur during testing, and the paper does not precisely nest this process within folds. Thus leakage is possible, the embeddings are task-supervised rather than universal, and the 10%-data comparison against baselines using different supervision/data regimes is not demonstrably fair (pp. 6–8, 14, 19)."
+        ],
+        "score_rationale": "The broad results and novel system combination are promising, but the unsupported core submodularity claim, underspecified RL learning rules, and unresolved evaluation/leakage issues prevent confidence that the reported gains establish a sound, task-general method. These are fundamental rather than presentation-only problems, warranting rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "SubUrban combines LLM-based POI preprocessing, CEM-tuned category weights, and an RL policy that expands regional POI sets. Reported results are strong across cities and socioeconomic tasks, but the central submodular-RL characterization is not technically established, and the downstream-label-driven training/evaluation protocol makes comparisons with largely self-supervised baselines difficult to interpret.",
+        "strengths": [
+          "The paper targets an important practical problem and proposes an interesting integration of semantic POI filtering, adaptive neighborhood expansion, and task-aware feature selection (pp. 3–7).",
+          "Experiments cover four cities, several tasks, multiple predictors, sparsity settings, runtime, and several ablations; the reported main-table gains are substantial (pp. 7–9, 16–23).",
+          "The appendices provide useful analyses of LLM costs, keyword stability, alternative region partitions, and qualitative expansion behavior (pp. 18–24)."
+        ],
+        "weaknesses": [
+          "The claimed submodularity lacks a valid theoretical or empirical demonstration. Downstream prediction performance is not shown to be a submodular set function, and decreasing gains along one trajectory do not establish the defining inequality; the gains even increase again in rounds 6–7 (pp. 3, 19).",
+          "The RL formulation is underspecified and appears mathematically incomplete: the GAT/projection update in Eq. 13 has no parameter-dependent loss or policy likelihood, the MHA cross-entropy target is unspecified, and PPO action probabilities are unexplained for the deterministic buffer MLP (pp. 4–7). Essential optimization and architectural details are also missing (p. 14).",
+          "Representations and CEM weights are optimized using downstream validation performance and mixed task labels (pp. 5–7, 15), while most baselines are self-supervised. The 4:1 split plus five-fold CV is ambiguous, no nested or spatial split is documented, and expansion is performed during testing (p. 14), creating substantial uncertainty about tuning leakage, spatial leakage, and the fairness of the claimed transfer/data-efficiency gains."
+        ],
+        "score_rationale": "The empirical breadth and reported gains are promising, but the paper's core technical framing is unsupported and the label-driven, ambiguously separated evaluation could explain much of the advantage. These are fundamental soundness and fairness issues rather than minor presentation gaps, so I lean reject despite uncertainty about implementation details not fully specified in the manuscript."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "SubUrban combines LLM-based POI retrieval, CEM-tuned category weights, and an RL-style hypernode expansion procedure for urban-region embeddings. The reported gains are broad and sizable, but the central submodular/RL formulation is not technically established, and the label-dependent selection protocol leaves serious uncertainty about leakage and fair evaluation.",
+        "strengths": [
+          "The evaluation spans four cities and several socioeconomic prediction tasks, with consistently strong reported results against multiple baselines (pp. 7–8, 16–18).",
+          "The appendices include useful analyses of runtime, LLM cost and stability, predictor choice, embedding dimensionality, region partitions, and parameter sensitivity (pp. 18–23).",
+          "The proposed combination of semantic initialization and adaptive POI expansion is practically motivated, and component ablations indicate that both RL expansion and CEM contribute (p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed submodular foundation is unsupported: the task-dependent reward is not shown to be a submodular set function, and the authors explicitly substitute a single empirical, partly non-monotone marginal-gain trajectory for a proof (p. 19). Coverage alone being submodular does not establish submodularity of the full learned reward.",
+          "The optimization is insufficiently specified or justified as RL. Hard threshold/Top-K selections are nondifferentiable, Eq. 12 gives no targets for its cross-entropy, and Eq. 13 applies an advantage directly without a policy likelihood or defined loss. Thus it is unclear how the GAT, projection, and attention modules receive valid policy gradients (pp. 5–6).",
+          "Downstream validation performance directly drives RL and CEM selection, yet the paper only states a 4:1 split and five-fold evaluation without explaining nested folds or separation of policy/CEM feedback from final evaluation (pp. 5–7, 14–15). This creates substantial leakage/overfitting risk and also weakens the claim of universal cross-task embeddings; the reported cross-city experiments train/evaluate within each city rather than demonstrating transfer (pp. 7–8)."
+        ],
+        "score_rationale": "The empirical scope and apparent gains are promising, but the paper's defining technical claim is not established and key learning/evaluation details could invalidate the results. These are more than presentation issues and require major methodological clarification and leakage-controlled experiments, placing the work below the acceptance threshold despite its practical potential."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "SubUrban combines LLM-based POI retrieval, sequential hypernode expansion, and CEM/RL optimization for urban-region embeddings. The reported gains are broad and sizable, but the central submodularity claim is unsupported and the downstream-label-dependent optimization makes the evaluation potentially circular and unfair to self-supervised baselines.",
+        "strengths": [
+          "The framework addresses a practically important problem and combines spatial coverage, semantic diversity, and adaptive POI selection in a novel system design (pp. 3–7).",
+          "Experiments cover four cities and three socioeconomic tasks, with consistently strong headline results and several additional robustness comparisons (pp. 7–9, 16–18).",
+          "The appendices report useful analyses of runtime, LLM cost and stability, alternative predictors, dimensionality, and region partitions (pp. 18–23)."
+        ],
+        "weaknesses": [
+          "The method is called submodular, but no reward/set function is proved submodular. A declining reward sequence along one trajectory is insufficient to establish diminishing returns for all A⊆B and candidate elements, and the observed gains even increase again in rounds 6–7 (p. 19).",
+          "The representation policy and CEM explicitly optimize downstream validation performance, including a mixed reward from all three target tasks (pp. 5–7, 15), while baselines are largely unsupervised. The manuscript does not clearly specify fold-local policy training or guarantee that test-region labels never influence expansion; it even states that expansion occurs in both training and testing phases (p. 14). This creates serious leakage/circularity and fairness concerns, undermining the main empirical conclusions.",
+          "Core optimization details are mathematically underspecified or inconsistent: the GAT/projection update in Eq. 13 has no explicit parameter-dependent loss, MHA cross-entropy targets and action probabilities are undefined, and deterministic threshold selection is not connected clearly to the PPO policy (pp. 5–6). Related claims are also overstated or inconsistent—for example, GPT-3.5 has the highest final reward although GPT-4 is called strongest (p. 21)."
+        ],
+        "score_rationale": "The task breadth and empirical gains are promising, but the unsupported submodularity characterization, unclear RL objective, and especially possible downstream-label leakage are central validity failures rather than minor presentation issues. Without a strictly nested evaluation and fair supervised baselines, the reported improvements cannot substantiate the paper’s main claims."
+      }
+    }
+  ]
+}

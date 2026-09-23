@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_082",
+  "paper_id": "5RUM1aIdok",
+  "number": 11021,
+  "title": "GraphEval: A Lightweight Graph-Based LLM Framework for Idea Evaluation",
+  "authors": "Tao Feng; Yihang Sun; Jiaxuan You",
+  "primary_area": "learning on graphs and other geometries & topologies",
+  "keywords": "Idea Evaluation; View-graph; Lightweight model; Label propagation; Graph prediction",
+  "forum_url": "https://openreview.net/forum?id=5RUM1aIdok",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    5,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper aims to develop a graph-based LLM framework for evaluating research ideas. Specifically, the authors first break down a whole idea into multiple viewpoints (nodes) and then connect them (making edges) based on their embedding-level similarity as well as the relation extraction approach, from which the authors construct the viewpoint graph. Then, by utilizing this viewpoint graph through simple label propagation or GNNs, the proposed approach predicts the quality of the research ideas. In addition to this, the authors propose the simple trick to evaluate the novelty of the ideas, by generating the labels for them and then training the GNN with them. The authors show that the proposed approach can not only predict the quality of the research ideas better than existing methods but also it can predict the novelty of the ideas."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "* The proposed approach of evaluating the research ideas over the graph-structure (by breaking down them into multiple sub-ideas connected with other sub-ideas) is novel and sound.\n* The proposed approach is superior to other research idea evaluation methods.\n* This paper is very well-written and easy to follow."
+        },
+        "weaknesses": {
+          "value": "I don't see any major weaknesses. But, there are some points that can make this paper more solid:\n* The authors mainly evaluate the proposed method on only the research idea evaluation task, and, while this task is very important and less explored, this point may limit its generalizability to other tasks and domains (i.e., I believe it can be well applicable to other tasks related to evaluating long text and it is worth trying it).\n* The authors can discuss some works on evaluating the long-form text [1, 2], as some of them tend to divide the long text into multiple subsets (similar to the proposed approach) and evaluate each of them. \n* The authors can incorporate more analyses, to showcase the efficacy of the proposed approach more. One experiment that is worthwhile to try is, to showcase the generalizability of the proposed approach (or the constructed viewpoint graph) to new papers in 2023 by training it with papers before 2022.\n\n---\n\n[1] FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation, EMNLP 2023.\n\n[2] Let's Verify Step by Step, arXiv 2023."
+        },
+        "questions": {
+          "value": "Please see the weaknesses above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "htzCcSPPBI",
+      "forum": "5RUM1aIdok",
+      "replyto": "5RUM1aIdok",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_zpR7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_zpR7"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11021/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730512768252,
+      "cdate": 1730512768252,
+      "tmdate": 1731429502280,
+      "mdate": 1731429502280,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a framework addressing the limitations of LLMs in evaluating research ideas, focusing on stability, semantic comprehension, and objectivity. The authors introduce two core methods—GraphEval-LP (label propagation) and GraphEval-GNN (a GNN-based approach). Both are lightweight, with GraphEval-GNN incorporating a novelty detection component to assess plagiarism risks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The viewpoint-graph breaks down complex ideas into interconnected, evaluable components."
+        },
+        "weaknesses": {
+          "value": "1. Some components of model lack clear explanations.\n2. The experimental evaluation is limited; for instance, there is no ablation study, and the dataset size is small.\n3. The construction of the graph relies solely on textual information. Evaluating a paper’s acceptance potential based exclusively on textual relevance is not entirely reasonable."
+        },
+        "questions": {
+          "value": "1. In the domain of automated paper review generation, several existing works relevant to this field are missing from the discussion [1-3].\n\n2. The paper contains informal language in some variable names, such as \"max_iters\" and \"cos sim\".\n\n3. The framework represents edges between viewpoints within a single document and across multiple documents as undirected. Could the authors clarify how (or if) temporal edges are integrated into the graph?\n\n4. In line 288, what is $n$ when predicting the label $\\hat{y}$?\n\n5. Lines 270-274 describe the initialization process is ambiguous. The initialization node features are formed with node labels? Could the authors clarify this initialization procedure?\n\n6. The task tackled in this study does not appear complex but the dataset used for evaluation is quite small. Given the availability of larger, relevant datasets (e.g., provided by ReviewAdvisor [1], which covers ICLR and NeurIPS), could the authors explain why a larger dataset was not employed?\n\n7. What is the ratio of positive to negative samples in the dataset? The authors note that LLMs are inclined to accept most papers, yet the baseline methods report very low accuracy (below 20% on the ICLR dataset), suggesting a high prevalence of negative samples. Could the authors provide details on dataset composition and how they ensured a fair experimental comparison?\n\n8. The paper lacks implementation details, and no code or datasets are available.\n\n9. Could the authors specify the exact prompts used in the CoT and ToT baselines?\n\n10. GraphEval framework relies on a 7B parameter LLM while Fine-tuning BERT (with much fewer parameters) achieves comparable performance. How about the performance of fine-tuning 7B models?\n---\n\n[1] Yuan, Weizhe, Pengfei Liu, and Graham Neubig. \"Can we automate scientific reviewing?.\" Journal of Artificial Intelligence Research 75 (2022): 171-212.\n\n[2] Du, Jiangshu, et al. \"Llms assist nlp researchers: Critique paper (meta-) reviewing.\" arXiv preprint arXiv:2406.16253 (2024).\n\n[3] Lin, Jialiang, et al. \"Automated scholarly paper review: concepts, technologies, and challenges.\" Information fusion 98 (2023): 101830."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jGYVQ7ptZF",
+      "forum": "5RUM1aIdok",
+      "replyto": "5RUM1aIdok",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_oRRW"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_oRRW"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11021/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730510033890,
+      "cdate": 1730510033890,
+      "tmdate": 1732515033511,
+      "mdate": 1732515033511,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes GraphEval, a lightweight graph-based LLM framework for idea evaluation, which utilizes LLM's summarization and abstraction capabilities for improving idea evaluation. Through the viewpoint graph extraction, label propagation or GNN algorithms, and plagiarism detection mechanism, GraphEval breaks down complex ideas into multiple simple viewpoints, connects the viewpoints into an entire viewpoint-graph, and evaluates ideas via label propagation or a weighted GNN. Extensive experiments on two datasets demonstrate that GraphEval can significantly enhance the accuracy of idea evaluation while effectively detecting plagiarized ideas to provide a fair evaluation."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "1. This paper introduces an innovative method for idea evaluation with a lightweight graph-enhanced LLM framework, addressing the inherent complexities and subjectivity of this task.\n2. This paper breaks down complex ideas into simpler viewpoints to construct viewpoint-graphs and evaluates ideas with label propagation or GNN algorithms under the low computation and API costs. Meanwhile, the proposed plagiarism detection mechanism integrates the temporal information for more accurate and fair idea evaluation.\n3. The paper is well-written and organized, with a clear problem setup, methodology, and experimental evaluation."
+        },
+        "weaknesses": {
+          "value": "1. The paper lacks a thorough theoretical analysis or justification for the proposed mechanisms, such as the viewpoint-graphs extraction and the plagiarism detection mechanism. Whether viewpoints extracted by LLMs are reasonable? If so, how to verify the accuracy of these viewpoints? Is there an overlap between viewpoints from different complex ideas? How are the inherent LLM issues—like hallucinations and token limitations—addressed or mitigated in this framework?\n2. The paper does not provide comprehensive ablation and hyperparameter studies, such as the impact of different LLMs/GNNs and varying values of $k$ and $m$ (c.f., line 247 and line 255). Moreover, it is beneficial to provide an analysis of the computational complexity, efficiency, and resource requirements of the proposed framework, including training/inference time, which would be helpful in assessing its scalability and practical applicability. \n3. The paper seems to underutilize the reasoning and generative capabilities of LLMs, which could improve GraphEval’s interpretability and effectiveness in idea evaluation tasks.\n4. Several typos are present in the paper. For example, In line 302, \"... As illustrated in Sec 3, ...\" lacks a period after \"Sec\". In lines 414-422, the use of **macro** F1 score to evaluate the accuracy is inconsistent with the content \"..., and **micro** F1 score ....\" (in lines 399-401)."
+        },
+        "questions": {
+          "value": "1. Could the authors discuss the similarities and differences between GraphEval and GraphRAG [1]? GraphRAG breaks a document into chunks, extracts a knowledge graph from raw text, builds a community hierarchy, generates summaries for these communities, and leverages these structures in RAG tasks. This seems similar to the viewpoint-graph extraction proposed here.\n2. In the left of Figure 1, are the colors of the positive and negative prompts correctly marked? Specifically, is \"If a paper is good or you are unsure, give it good scores and accept it.\" intended as a negative prompt?\n\n**Reference**  \n[1] From Local to Global: A Graph RAG Approach to Query-Focused Summarization, 2024."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1xMbCnn7ZL",
+      "forum": "5RUM1aIdok",
+      "replyto": "5RUM1aIdok",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_d4yk"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_d4yk"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11021/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730482095156,
+      "cdate": 1730482095156,
+      "tmdate": 1732776036364,
+      "mdate": 1732776036364,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a novel framework that leverages graph structures to enhance large language models in the evaluation of complex research ideas. The authors propose two core methods: GraphEval-LP, a label propagation-based approach, and GraphEval-GNN, a GNN model for predicting evaluation scores. The framework addresses known limitations in LLM-based evaluation, such as sensitivity to prompts and biases toward positive feedback, by breaking down ideas into viewpoint nodes and constructing graphs to propagate scores across these nodes. Experiments on two datasets demonstrate that GraphEval improves F1 scores compared to baselines, while also detecting plagiarized ideas."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The introduction of graph-based methods to enhance LLMs in research idea evaluation is innovative.\n2. The methodology is explained in detail, with clear steps for viewpoint extraction, relation identification, and the integration of label propagation and GNN techniques.\n3. The results demonstrate significant improvements in F1 scores over multiple baselines."
+        },
+        "weaknesses": {
+          "value": "1. While the approach works well on specific datasets (ICLR Papers and AI Researcher), the generalizability to other domains or different types of research content is unclear. Given the topic of the paper is research idea validation, the experiment turned out to detect whether this paper will be accepted. The claim and experiment are a bit stretched.\n2. The paper mentions that the LLM-based relation extraction yields sparse edges between viewpoint nodes (with a 10.73% edge density on average). This sparsity may limit the effectiveness of GraphEval in certain scenarios, particularly where relationships between ideas are less explicit. The authors address this by using BERT embeddings, but further experiments with alternative relation extraction methods could improve robustness.\n3. While GraphEval-GNN offers significant improvements in performance, its scalability is questionable for larger datasets. Training GNNs on extensive viewpoint-subgraphs may become computationally prohibitive, especially if the graph structure grows significantly."
+        },
+        "questions": {
+          "value": "Is it possible to try alternative methods for relation extraction, such as unsupervised learning or hybrid approaches, which might address the sparsity issue in graph construction, especially when dealing with less structured idea content?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Z1h9IGqDva",
+      "forum": "5RUM1aIdok",
+      "replyto": "5RUM1aIdok",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_5M8a"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11021/Reviewer_5M8a"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11021/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730162708759,
+      "cdate": 1730162708759,
+      "tmdate": 1732634804163,
+      "mdate": 1732634804163,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes decomposing paper abstracts into LLM-extracted viewpoints, connecting them through embedding similarity, and predicting venue decisions using label propagation or a GNN. This is a potentially useful combination of standard components, but the experimental design does not convincingly establish robust idea evaluation rather than dataset-specific decision prediction.",
+        "strengths": [
+          "The viewpoint-graph formulation is intuitive and yields two lightweight implementations, including a training-free label-propagation variant (pp. 4–7).",
+          "The paper reports resource usage, multiple prompting baselines, and several appendix experiments on temporal transfer, scale, and viewpoint consistency (pp. 8, 19–21, 28–29).",
+          "Reported macro-F1 improvements over the implemented baselines are substantial on the principal datasets (p. 9)."
+        ],
+        "weaknesses": [
+          "The main ICLR test set has only 50 examples and 64% rejects, yet no majority-class or simple similarity/kNN baseline is reported; 76% accuracy is therefore only 12 points above the trivial accuracy baseline. The extraordinarily poor prompted baselines further make the claimed gains difficult to interpret (pp. 7, 9, 17).",
+          "Comparisons are not consistently controlled: on AI Researcher, prompt methods use the entire dataset while learned methods use repeated 85/15 splits (p. 17), and GraphEval-GNN metrics for the same stated ICLR setting differ materially between Tables 2 and 22–23 (pp. 9, 29). Variance, seeds, significance tests, and sufficient split details are absent.",
+          "The novelty assessment is evaluated only on artificial plagiarisms generated by the same three mechanisms used to construct training negatives, with merely 10 negative training ideas; this does not support claims of real plagiarism or novelty detection (pp. 7, 10)."
+        ],
+        "score_rationale": "The graph-based decomposition is coherent but only moderately novel, largely combining LLM extraction, embedding kNN graphs, label propagation, and a conventional GNN. More importantly, tiny and imbalanced tests, missing trivial/graph-retrieval controls, inconsistent protocols and reported values, and a synthetic novelty experiment leave the central empirical claims insufficiently supported. I am uncertain whether the inconsistencies are reporting errors or deeper evaluation problems, but they are decisive enough for rejection."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "GraphEval decomposes paper abstracts into atomic viewpoints, links them using embedding similarity, and predicts acceptance labels with label propagation or a small GNN; an additional synthetic-data mechanism targets plagiarism. The graph formulation is intuitive and inexpensive, but the evidence does not establish reliable evaluation of scientific quality or novelty.",
+        "strengths": [
+          "The framework is clearly motivated and offers both training-free and lightweight learned variants, with explicit resource measurements (pp. 4–8).",
+          "Reported performance is substantially above the included baselines on the main datasets, with additional temporal, larger-scale, and fact-verification experiments (pp. 9, 28–29).",
+          "The appendices provide prompts, graph hyperparameters, dataset distributions, and checks of viewpoint faithfulness (pp. 17–18, 21–29)."
+        ],
+        "weaknesses": [
+          "The experiments are statistically weak and partly incomparable: the main ICLR test set has only 50 papers, the AI Researcher test split is roughly 10 papers while prompt methods use the entire dataset, and no uncertainty, seeds, or significance tests are reported (pp. 7, 17). Metrics for the same GraphEval-GNN setting also differ between Tables 2 and 22 (pp. 9, 29).",
+          "The method largely predicts historical acceptance from semantic similarity: every viewpoint inherits its paper-level decision, cosine-similar nodes are treated as useful relations regardless of support or contradiction, and train and test subgraphs are joined. This may exploit topic, venue, or temporal correlations rather than assess correctness, rigor, or novelty (pp. 5–7).",
+          "Novelty evidence is restricted to artificially copied or recombined high-rated ideas, with only 10 constructed negatives used for training; it therefore does not support the broader claim of objective novelty or real plagiarism detection (p. 10). The ASAP experiment is additionally confounded by assigning every NeurIPS paper a poster label (p. 21)."
+        ],
+        "score_rationale": "The viewpoint-graph representation is a useful engineering idea and the reported gains are promising, but novelty is incremental and decisive evaluation flaws—tiny/incomparable splits, missing variance, metric inconsistencies, semantic-label leakage risks, and synthetic plagiarism tests—prevent the strong claims from being technically supported. I therefore rate it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes decomposing paper abstracts into LLM-extracted viewpoints, linking them by embedding similarity, and predicting acceptance labels using label propagation or a GNN. The representation is intuitive and computationally light, but the experimental design does not establish that the model evaluates idea quality rather than exploiting topical, temporal, venue, or near-neighbor correlations in historical decisions.",
+        "strengths": [
+          "The viewpoint-graph formulation and paired LP/GNN implementations provide a simple, practically motivated combination of atomic decomposition and graph-based semi-supervision (pp. 4–7).",
+          "The paper reports resource usage and includes additional temporal, large-scale, architecture, relation-extraction, and viewpoint-consistency experiments (pp. 8, 19–21, 28–29).",
+          "Reported gains over the included baselines are substantial, especially in macro F1 on the main datasets (pp. 9, 29)."
+        ],
+        "weaknesses": [
+          "Evaluation validity is weak: the main ICLR test contains only 50 papers, the AI Researcher learned-method test is roughly 10 papers after an 85/15 split, uncertainty and repeated-split details are absent, and prompt methods are evaluated on a different portion of that dataset (pp. 7, 17). Extremely poor prompted-baseline accuracy despite reject-majority data also warrants parsing and confusion-matrix diagnostics (pp. 9, 17).",
+          "Randomly connecting train and test papers by semantic similarity can reward topic, venue, year, or near-duplicate correlations rather than idea quality. The ASAP experiment further assigns every NeurIPS paper an artificial Poster label, creating strong dataset/source shortcuts; no venue-held-out, topic-held-out, nearest-neighbor, or graph-edge control addresses this (pp. 5, 21, 29).",
+          "The evidence and specification contain important inconsistencies: the same GraphEval-GNN setting has conflicting precision/recall/F1 values across Tables 2 and 22–23 (pp. 9, 29); the novelty claim is tested only on synthetic copies with ten constructed training negatives and no real plagiarism benchmark (p. 10); and several training/LP details are too ambiguous for rigorous reproduction (pp. 5–7)."
+        ],
+        "score_rationale": "The core idea is moderately novel and potentially useful, but decisive claims of robust idea evaluation and novelty detection are not supported by sufficiently controlled or statistically reliable evidence. Dataset shortcuts, tiny/incomparable test protocols, contradictory reported metrics, and synthetic-only novelty evaluation are major soundness concerns, placing the work clearly below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "GraphEval decomposes paper abstracts into LLM-extracted viewpoints, links them by embedding similarity, and predicts decisions using label propagation or a GNN. The representation is interesting and inexpensive, but the current evidence does not establish robust evaluation of idea quality or novelty.",
+        "strengths": [
+          "The combination of atomic viewpoint extraction with cross-document graph prediction is a useful, reasonably novel formulation, with both training-free and learned variants (pp. 4–7).",
+          "The paper compares multiple prompting and learned baselines and reports resource usage, temporal evaluation, larger-scale experiments, and representation-fidelity checks (pp. 8–9, 19–21, 28–29).",
+          "GraphEval improves macro F1 over the reported baselines on both principal datasets, while its small GNN has low stated memory usage (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The principal ICLR test set contains only 50 papers and is 64% Reject; a majority baseline would already achieve 64% accuracy versus 76% for GraphEval-GNN. There are no confidence intervals, repeated-split statistics, or key ablations isolating decomposition and cross-paper edges (pp. 7, 9, 17).",
+          "The evaluation has serious consistency and validity concerns: the same GraphEval-GNN setting is reported with conflicting precision/recall/F1 values in Tables 2 and 22, while ASAP assigns every NeurIPS paper the Poster label, enabling source/venue shortcuts rather than quality prediction (pp. 9, 21, 29).",
+          "The novelty claim is supported only by synthetic copies or recombinations derived from the same graph, with ten constructed negatives used for training; this does not demonstrate real plagiarism or novelty assessment. The label-propagation update also leaves normalization, label clamping, and convergence insufficiently specified (pp. 5–7, 10, 18)."
+        ],
+        "score_rationale": "The graph-based formulation is promising, but small and potentially shortcut-prone evaluations, inconsistent reported metrics, weak controls, and an artificial novelty experiment prevent the strong claims from being technically substantiated. I therefore rate it below the acceptance threshold, with some uncertainty because code could clarify implementation details."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes decomposing paper abstracts into LLM-extracted viewpoint nodes, linking them by embedding similarity, and predicting venue decisions using label propagation or a GNN. The representation is intuitive and inexpensive, but the empirical design and technical specification do not substantiate the strong claims about robust, fair, or objective idea evaluation.",
+        "strengths": [
+          "The viewpoint-graph formulation is intuitive and combines atomic decomposition with two lightweight inference options (pp. 4–7).",
+          "The paper reports several resource metrics, additional datasets, temporal evaluation, and graph-architecture/relation-extraction comparisons (pp. 8, 19–21, 28–29).",
+          "Appendices provide prompts and key graph hyperparameters, improving partial reproducibility (pp. 17–18, 22–28)."
+        ],
+        "weaknesses": [
+          "The evaluation is too weak for the claims: the main ICLR test has only 50 papers, no uncertainty or significance estimates, and the AI Researcher learned-method test is roughly 15% of 66 examples; prompt methods are evaluated on the entire dataset instead, making comparisons non-equivalent (pp. 7, 17).",
+          "Reported results raise reliability concerns. Prompt baselines achieve implausibly poor 4–20% accuracy despite being given label distributions, yet there is no majority, k-NN, or stronger scientific-document baseline; moreover, GraphEval-GNN metrics for the same stated ICLR setting differ between Tables 2 and 22/23 (pp. 9, 20, 29).",
+          "Technical and novelty claims are overstated: the method is largely LLM decomposition followed by a similarity k-NN graph and standard LP/GNN, while LP normalization, label clamping, convergence, data splitting, tuning, and repeated-run procedures are insufficiently specified. The plagiarism result uses synthetic copies for both training and testing and therefore does not establish real novelty assessment or fairness (pp. 5–7, 10)."
+        ],
+        "score_rationale": "The graph representation is potentially useful, but the contribution is methodologically incremental and the central performance evidence is small, inconsistently reported, and not supported by adequate controls or statistical analysis. Synthetic plagiarism experiments also cannot justify the paper's broad novelty-detection claims. These issues require substantial new experimentation and clarification, placing the work clearly below the acceptance threshold."
+      }
+    }
+  ]
+}

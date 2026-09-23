@@ -1,0 +1,387 @@
+{
+  "year": 2025,
+  "package_id": "paper_031",
+  "paper_id": "aaePIQsAdq",
+  "number": 3981,
+  "title": "Deep Linear Hawkes Processes",
+  "authors": "Yuxin Chang; Alex James Boyd; Cao Xiao; Taha Kass-Hout; Parminder Bhatia; Padhraic Smyth; Andrew Warrington",
+  "primary_area": "probabilistic methods (Bayesian methods, variational inference, sampling, UQ, etc.)",
+  "keywords": "Marked temporal point processes; state-space models; Hawkes processes",
+  "forum_url": "https://openreview.net/forum?id=aaePIQsAdq",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    6,
+    5,
+    6
+  ],
+  "human_mean_rating": 5.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a new marked temporal point process (MTPP) model known as the deep linear Hawkes process (DLHP), which is developed by integrating deep state-space models (SSMs) and linear Hawkes processes (LHPs). Through the use of diagonalization and discretization techniques, the DLHP enables efficient implementation of closed-form update. The model has been shown to surpass current methods in terms of performance on a variety of benchmark tasks, excelling in metrics such as log-likelihood and runtime across different sequence lengths. A key contribution of the research is pioneering the use of SSMs' unique architecture to develop a new class of MTPP models, positioning the DLHP as a competitive model in applications."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This work stands out for being the first effort in harnessing the distinctive architectural features of deep state-space models (SSMs) to develop marked temporal point process (MTPP) models. \n2. Efficient Implementation: the DLHP has demonstrated robustness, performance, computational efficiency, and extensibility in experiments. These qualities seem to make the DLHP a competitive contender as an out-of-the-box model for a variety of applications. \n3. Clear presentation: This paper presents its idea clearly."
+        },
+        "weaknesses": {
+          "value": "1. As the authors clarified, DLHP has a higher implementation complexity, and the model architectures for DLHP tends to be more complex compared to other models. Does the enhancement in performance contributes to this increased complexity (since increased model complexity may lead to higher model likelihood value)? It would be better to provide necessary analysis regarding this issue and add some experiments for illustration if possible.\n2. The proposed method sacrifices some of the interpretability of latent dynamics and parameters that are characteristic of LHPs, which could impact the model's transparency and understanding, and limit its usability for high-stakes applications where understanding event interactions is crucial. Would you discuss possible solutions or ideas regarding this issue? The motivation stated in line 201-214 of page 4 may provide some clues and could be discussed more deeply."
+        },
+        "questions": {
+          "value": "The authors may also pay attention to the paper titled with “Mamba Hawkes Process”（https://arxiv.org/abs/2407.05302）and do a detailed comparison with it, also to further confirm the statement \"the first instance of the unique architectural capabilities of SSMs being leveraged to construct a new class of MTPP models\" in the paper.\n\nSee the weaknesses for other questions."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "-"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "KtgR9m8c3x",
+      "forum": "aaePIQsAdq",
+      "replyto": "aaePIQsAdq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_PxVB"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_PxVB"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3981/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730709901381,
+      "cdate": 1730709901381,
+      "tmdate": 1731428001968,
+      "mdate": 1731428001968,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents an interesting idea of using deep state-space models (SSMs) to model marked temporal point processes. The authors draw a connection between the SSMs and linear Hawkes processes via their stochastic differential equations, and develop a tailored model that enjoys comparable or superior performance against neural marked TPP baselines. The overall presentation is clear and easy to follow."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The idea of combining the deep SSMs with marked temporal point processes is interesting. The methodology/model architecture is well presented, easy for the readers to understand how these models are integrated together, via techniques like diagoalization, discretization, input-dependent parameters, etc. Meanwhile, the new model enjoys a better computational efficiency than other baselines when implemented with parallel scan."
+        },
+        "weaknesses": {
+          "value": "Though I enjoyed reading the paper, there are still a few aspects of the paper that I think can be improved or answered by the authors:\n\n*Methodology*:\n\n1. I am not very convinced about the use of the Hawkes-process-like mechanism in each layer. I understand the connection between a linear Hawkes process and the SSM via the stochastic differential equation, but what is the need/meaning/interpretation of using this connection in the model? Why use $AB$ instead of one matrix of size $P\\times H$ (or use $E\\alpha$ instead of one $P*K$ matrix) as the parameters in Equation 10? If the idea is to inherit or imitate the parameter structure in the linear Hawkes process, this structure of parameters is overwritten/ignored since there are multiple layers and non-linear transformations stacked together.\n\n2. On the other hand, if the authors do want to imitate the parameter structure of the linear Hawkes process, then the diagonalization would assume no influence between different marks, which is unrealistic in practice. And there is also no interpretation of the learned $\\Lambda$ and $\\alpha$ in the experiments.\n\n*Experiments*:\n\n3. I would suggest that the authors conduct more synthetic data experiments and results to validate the model’s ability to recover the ground truth. Only one simple Poisson process example is not enough, and the real data experiments are not straightforward in terms of interpreting the model's effectiveness.\n\n4. No standard deviation was reported for the metrics in the tables/figures. The results of DLHP look like a random win against baselines given no reported standard deviation, especially only on real-world datasets with no ground truth.\n\n5. It would be better if there was a rigorous computational complexity analysis of the model and baselines since the authors claim that it is one of the main strengths of using SSMs in modeling marked TPPs."
+        },
+        "questions": {
+          "value": "1. The main text says $u_t^{(1)} = 0$ (line 231), but in figure 2 it says $u_t^{(1)}$ is the event embedding. I am confused about this.\n\n2. Do the authors have any insights on how to choose the model architecture, given the performance discrepancy of the model using forward and backward mechanisms?\n\n3. What do the authors mean by 1.4 times improvement from baselines in line 92? If it refers to the average rank of the DLHP, does it mean a lower number is better?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "3z2wizKxKQ",
+      "forum": "aaePIQsAdq",
+      "replyto": "aaePIQsAdq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_CrNn"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_CrNn"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3981/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730685428658,
+      "cdate": 1730685428658,
+      "tmdate": 1732692329205,
+      "mdate": 1732692329205,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This research paper introduces the Deep Linear Hawkes Process (DLHP), a novel approach to modeling Marked Temporal Point Processes (MTPPs) that bridges the gap between deep state-space models and MTPPs. The benefits of state space models (SSMs) compared to attention-based model were emphasized. The innovation lies in modifying stochastic jump differential equations that describes the intensity function $\\lambda$ of MTPP to become linear differential equations in deep state-space models. Its applicability was tested on various benchmark dataset. Notably, this work marks the first successful adaptation of state-space model architectural features to create a new category of MTPP models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper introduces a new family of MTPP models that leverages SSM layers. Also, the stochastic jump differential equation was translated in terms of SSM. By stacking multiple layers more flexible intensity function can be generated, while input dependent characteristic enabled more complex behavior."
+        },
+        "weaknesses": {
+          "value": "Only NLL was used as an evaluation metric, whereas RMSE and accuracy is commonly used in prior works. Also, as a method for modeling a stochastic process, simulation study can help showing the effectiveness of the method."
+        },
+        "questions": {
+          "value": "- In Fig. 4, THP and IFTPP shows faster runtime when implemented in JAX. Is DLHP still faster when they are all implemented using JAX?\n- Demonstration of the simulation study might be helpful to see wether the discretization of DLHP does not hurt the expressivity."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Pb2dAZcTlE",
+      "forum": "aaePIQsAdq",
+      "replyto": "aaePIQsAdq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_15be"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_15be"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3981/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730255079539,
+      "cdate": 1730255079539,
+      "tmdate": 1731428002280,
+      "mdate": 1731428002280,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a novel marked temporal point process (MTPP) model called DLHP by drawing connections between linear Hawkes processes (LHPs) and deep state-space models (SSMs). Based on the SDE form of LHPs, DLHP models the intensity function by utilizing parameterization and parallelization techniques within SSMs. This approach achieves linear scalability and enables parallel processing, addressing the shortcomings of existing MTPP models. Experimental results demonstrate the effectiveness of DLHP."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Modeling the intensity function with the proposed latent linear Hawkes (LLH) layer is a novel and promising idea. The proposed model has the advantages of linear scalability and parallelism, addressing the shortcomings of existing marked TPPs.\n2. The background and the proposed method are presented clearly. The paper is well-written and easy to follow.\n3. Experiments are conducted to evaluate the model's predictive performance in terms of log-likelihood and computational efficiency."
+        },
+        "weaknesses": {
+          "value": "1. While log-likelihood is an important metric for evaluating TPP model performance, this paper does not include experiments on the RMSE of time prediction—a metric commonly used in most baseline studies, such as RMTPP, SAHP, and THP.\n2. Performing intensity recovery only on an inhomogeneous Poisson process is insufficient; it is also necessary to include recovery for other traditional TPPs, such as the Hawkes process.\n\nMinor: The per-event log-likelihood in line 359 needs to be divided by the number of events N."
+        },
+        "questions": {
+          "value": "1. If the background intensity is directly extended to be a function of time t, can the existence of a positive solution for Eq.(9) still be ensured?\n2. Is it possible to use other numerical methods, such as the Euler method, to discretize the proposed LLH layer?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "None."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "CBpEE1yF2R",
+      "forum": "aaePIQsAdq",
+      "replyto": "aaePIQsAdq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_AFMw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission3981/Reviewer_AFMw"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission3981/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730170684234,
+      "cdate": 1730170684234,
+      "tmdate": 1732599304099,
+      "mdate": 1732599304099,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper introduces an SSM-inspired marked temporal point process whose jump-linear recurrences admit parallel scans. The construction is interesting and empirically strong, but the continuous-time interpretation is only approximate in deeper layers, and several likelihood-algorithm inconsistencies plus incomplete efficiency/baseline comparisons weaken the technical case.",
+        "strengths": [
+          "A novel and useful synthesis of Hawkes-style event impulses with deep SSM recurrences, yielding linear work and logarithmic idealized parallel depth (pp. 4–7, 18–19).",
+          "Broad evaluation over eight datasets and five seeds shows consistently strong held-out likelihood, especially on the large EHRShot and MIMIC-II improvements (pp. 8–9, 20–24).",
+          "Synthetic recovery, ablations, calibration, and runtime studies provide evidence beyond a single headline metric (pp. 25–33)."
+        ],
+        "weaknesses": [
+          "The deeper-layer ZOH update substitutes an endpoint input for an input that varies throughout the interval; consequently, evaluations can depend on the chosen interval partition and are not generally trajectories of the stated coupled continuous-time equations. This approximation is acknowledged but not theoretically characterized (pp. 6, 17–18).",
+          "The likelihood presentation contains consequential inconsistencies: p. 5 writes the compensator with dN rather than ds, while Algorithm 3 appears to add rather than subtract the integral and ambiguously evolves an already indexed right state by another inter-event interval (p. 16). Even if typographical, these errors impede verification.",
+          "The efficiency evidence mixes JAX DLHP with mostly PyTorch baselines and random inputs, without optimized scan/attention baselines or training-time measurements (pp. 9–10). Moreover, the acknowledged concurrent Mamba Hawkes model is not evaluated, leaving uncertainty about novelty and performance relative to the closest prior work (p. 7)."
+        ],
+        "score_rationale": "The architecture and extensive likelihood results are promising enough for marginal acceptance, but not a clear accept because the claimed continuous-time model is only approximately implemented, the core likelihood pseudocode has apparent errors, and the closest baseline and efficiency controls are incomplete. I am reasonably confident, although supplied code could show that the algorithmic issues are only transcription mistakes."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper introduces an SSM-inspired marked temporal point process whose jump-linear latent recurrences admit parallel scans and whose continuously evolved states directly parameterize intensities. The approach is novel and empirically promising, but important inconsistencies in the stated likelihood algorithm and the interpretation of the discretized dynamics prevent a stronger rating.",
+        "strengths": [
+          "The combination of event-driven jump dynamics, deep SSM layers, and parallel scans is a meaningful architectural contribution beyond simply using an SSM as an encoder (pp. 4–7).",
+          "Experiments are broad: eight real datasets, five seeds, likelihood decomposition, calibration, ablations, and synthetic recovery tests generally show competitive or leading performance (pp. 8–9, 23–33).",
+          "The runtime study supports the central scalability motivation, with the JAX scan implementation scaling to sequences of up to one million events (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Algorithm 3 appears mathematically incorrect as written: it evolves from the right state at t_n by Δt_n when evaluating the intensity at t_n, similarly anchors integration samples to the wrong endpoint, adds rather than subtracts the compensator, and omits any terminal interval [t_N,T] (p. 16). These conflict with Eq. (2) and materially undermine reproducibility; it is unclear whether they are only pseudocode errors.",
+          "For layers beyond the first, the input varies continuously, so backward ZOH is not an exact solution of the presented jump differential equation. Endpoint-dependent backward approximations also lack an evident semigroup-consistent continuous trajectory. The paper acknowledges approximation but does not clearly distinguish the resulting discrete model from the claimed continuous-time SDE (pp. 6, 17–18).",
+          "Some evidence needs tighter controls: the headline speed comparison mixes JAX and PyTorch implementations, test-time Monte Carlo precision is unspecified, and random monthly-sequence splitting for Last.fm may allow the same users across splits (pp. 9–10, 20–21)."
+        ],
+        "score_rationale": "The core idea is useful, reasonably novel, and supported by extensive favorable experiments, placing it slightly above the acceptance threshold. However, the likelihood pseudocode contains several consequential errors, and the continuous-time interpretation is not fully justified. My score assumes the implementation follows Eq. (2), not Algorithm 3; otherwise the evaluation would warrant a lower score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes DLHP, an SSM-inspired marked temporal point process whose jump-linear recurrences admit parallel scans. The idea is relevant and empirically promising, but substantive inconsistencies in the mathematical exposition, likelihood algorithm, and reported tables prevent confidence in the current results.",
+        "strengths": [
+          "The combination of event-triggered jumps, stable diagonal SSM dynamics, nonlinear depth, and parallel scans is a useful and moderately novel MTPP construction (pp. 4–7).",
+          "Evaluation is broad: eight real datasets, five seeds, likelihood decomposition, calibration, ablations, synthetic recovery, and long-sequence timing experiments are reported (pp. 8–10, 23–33).",
+          "DLHP obtains strong likelihood rankings, especially on the largest EHRShot benchmark, while the JAX implementation shows favorable scaling to long sequences (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Algorithm 3 appears causally/index-wise incorrect: it computes intensity within interval n by evolving the right-limit state at t_n, which already includes event n, rather than the preceding right-limit state; even event-time intensity is obtained by evolving x_{t_n} by Δt_n (p. 16). This conflicts with the left-limit definition and could leak the current event unless it is only a pseudocode error.",
+          "The marked Hawkes formulation is not sound as stated: entrywise nonnegative dense β in dλ=-β(λ-ν)dt+αdN neither guarantees positive intensities nor stable decay (p. 3). This also makes the full iid β matrix used for the synthetic Hawkes experiment ambiguous relative to standard pair-specific exponential kernels (p. 31).",
+          "There are concerning reporting/validation issues: SAHP and THP have exactly duplicated Taobao and Last.fm time, mark, and total likelihood values despite distinct datasets (pp. 23–24). Moreover, the speed comparison mixes a specialized JAX DLHP with mostly PyTorch baselines and random inputs, limiting the strength of the practical-efficiency claim (pp. 9–10)."
+        ],
+        "score_rationale": "The core architecture and breadth of experiments are promising enough to avoid rejection on novelty alone. However, the apparently invalid published likelihood algorithm, questionable Hawkes mathematics, and duplicated benchmark entries undermine technical soundness and reproducibility. I therefore rate it marginally below acceptance; uncertainty remains because these issues might be exposition/table errors rather than errors in the released implementation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes DLHP, an SSM-inspired marked temporal point process whose jump-driven linear recurrences admit parallel scans. The approach is promising and empirically strong, but important specification and algorithmic inconsistencies prevent a confident higher score.",
+        "strengths": [
+          "A useful and reasonably novel synthesis of Hawkes-style jumps with deep SSM recurrences, enabling linear work and logarithmic parallel depth; the distinction from concurrent Mamba Hawkes work is explained (pp. 4–7, 18–19).",
+          "Broad evaluation across eight datasets reports consistently strong likelihood results, including substantial gains on MIMIC-II and EHRShot, with five-seed variability and likelihood decomposition (pp. 8–9, 23–24).",
+          "The appendices provide extensive ablations, synthetic recovery experiments, calibration results, hyperparameter grids, dataset details, and runtime scaling evidence (pp. 20–33)."
+        ],
+        "weaknesses": [
+          "Algorithm 3 appears mathematically incorrect as written: it advances the already computed right state at t_n by another Δt_n when evaluating λ_{t_n}, and adds rather than subtracts the compensator (p. 16), contradicting the likelihood in Eq. 2 (p. 3). This leaves uncertainty about whether the experiments used the intended computation.",
+          "The complex-valued diagonal parameterization is underspecified: directly learned complex Λ, B, C, and E can yield complex outputs, yet the paper does not state conjugate-pair or real-projection constraints needed before GELU, LayerNorm, and intensity decoding (pp. 5–6, 16).",
+          "Some evidence is less conclusive than claimed: the speed study mixes frameworks and uses one synthetic architecture (pp. 9–10), while EHRShot relies on arbitrary jitter/order for simultaneous medical codes (p. 21). The ablation also shows input dependence hurting Last.fm and EHRShot despite the claim of reliable improvement (p. 27)."
+        ],
+        "score_rationale": "The core architectural idea and empirical likelihood results are strong enough for marginal acceptance. However, the erroneous likelihood pseudocode and missing treatment of complex-valued states are significant reproducibility and soundness concerns; I assume these may be presentation errors rather than flaws in the implementation, which limits confidence and keeps the score at 6."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes an SSM-inspired marked temporal point process whose jump-linear recurrences admit parallel scans. The architectural idea is useful and empirically promising, with strong likelihood results across eight datasets and favorable long-sequence scaling. However, mathematical and algorithmic inconsistencies weaken confidence in the claimed continuous-time formulation, and the efficiency comparison and baseline coverage are not fully convincing.",
+        "strengths": [
+          "A novel and practically relevant synthesis of jump-driven point processes with deep SSM recurrences, yielding linear work and logarithmic parallel depth in sequence length (pp. 4–7, 18–19).",
+          "Broad empirical evaluation: five-seed likelihood results on eight datasets are consistently strong, with DLHP ranked first or second throughout (pp. 8–9, 23–24).",
+          "The appendices provide useful ablations, calibration analysis, synthetic recovery tests, architectures, and preprocessing details (pp. 20–33)."
+        ],
+        "weaknesses": [
+          "There are consequential formal inconsistencies: the multivariate LHP equation does not generally represent mark-pair-specific exponential decay and nonnegative matrices alone do not ensure nonnegative/stable intensities (p. 3); moreover Algorithm 3 appears to evolve from x at t_n rather than t_{n-1} and adds rather than subtracts the compensator (p. 16). These may be documentation errors, but the paper does not establish that the implementation differs.",
+          "For deeper layers the ZOH input is not actually constant, and the chosen endpoint-based update is query/discretization dependent; the paper acknowledges this but treats the alternatives as model families rather than quantifying approximation error or establishing a coherent underlying continuous-time SDE (pp. 6, 17–18).",
+          "Efficiency evidence is partly confounded by framework and implementation differences (JAX parallel scan versus mostly PyTorch baselines), while the closest concurrent SSM-based MTPP is discussed but not evaluated; the large EHR gains also rely on random jittering of simultaneous clinical codes, which may create artificial order/timing structure (pp. 7, 9–10, 21)."
+        ],
+        "score_rationale": "The core architecture is sufficiently novel and the empirical likelihood evidence is strong enough for marginal acceptance. I stop at 6 because the stated likelihood algorithm and LHP mathematics contain apparent errors, the continuous-time interpretation is under-justified, and the runtime comparison does not cleanly isolate architectural gains. Some uncertainty remains because the reported results likely came from a correct implementation despite the pseudocode errors."
+      }
+    }
+  ]
+}

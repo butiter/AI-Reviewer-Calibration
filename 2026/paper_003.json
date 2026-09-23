@@ -1,0 +1,237 @@
+{
+  "year": 2026,
+  "package_id": "paper_003",
+  "paper_id": "ykgeXlyWDU",
+  "number": 1506,
+  "title": "Adaptive Symmetrization of the KL Divergence",
+  "authors": [
+    "Omri Ben-Dov",
+    "Luiz F. O. Chamon"
+  ],
+  "primary_area": "probabilistic methods (Bayesian methods, variational inference, sampling, UQ, etc.)",
+  "keywords": [
+    "KL Divergence",
+    "Generative adversarial networks",
+    "Normalizing flow",
+    "Energy-based models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=ykgeXlyWDU",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    8,
+    2,
+    2
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "I13155aqWK",
+      "forum": "ykgeXlyWDU",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1506/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761852742908,
+      "tmdate": 1762915786786,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    },
+    {
+      "review_id": "Nza0OR66FN",
+      "forum": "ykgeXlyWDU",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1506/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761368298315,
+      "tmdate": 1762915787036,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "jqfBTEWLLO",
+      "forum": "ykgeXlyWDU",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1506/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761659915420,
+      "tmdate": 1762915786894,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "sw1WL0SVno",
+      "forum": "ykgeXlyWDU",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1506/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761985843050,
+      "tmdate": 1764357991176,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 1
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes jointly training a normalizing flow and an EBM proxy through an adaptive constrained formulation intended to approximate the Jeffreys divergence. The collaborative construction is interesting, but the principal theoretical claim is insufficiently justified and the experiments do not establish that the method actually improves Jeffreys divergence or scales beyond simple settings.",
+        "strengths": [
+          "The collaborative NF–EBM formulation and adaptive primal-dual weighting provide an intuitive alternative to fixed loss weights and adversarial training (pp. 4–6).",
+          "Experiments cover density estimation, image generation, and simulation-based inference, with multiple-seed results for the toy density and SBI tasks (pp. 7–9, 23–25).",
+          "The appendices expose many architectural, optimization, and computational details, including the importance-sampling estimator and runtime study (pp. 16–25)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is not adequately supported: strict positivity alone does not make log-density or KL losses Lipschitz, no uniform lower-density bound is assumed, and an optimal-value duality-gap result does not imply convergence of the proposed nonconvex GDA algorithm (p. 5).",
+          "Evidence is weak relative to the claims. The main comparisons are against a plain NF and one WGAN configuration; the CelebA result is essentially tied with NF (FID 48.07 versus 48.99), while SBI uses only two toy benchmarks and reports the best checkpoint. Even where the true synthetic density is available, reverse KL or Jeffreys divergence is never measured (pp. 6–9).",
+          "There are consequential specification inconsistencies: the proxy multiplier gradient uses generated yi rather than data xi (p. 18), and the stated 64×64 CelebA decoder has only three upsampling layers from 4×4, apparently producing 32×32 outputs (p. 22). Importance-sampling reliability in 100 dimensions is also unsupported by ESS or variance diagnostics (pp. 8, 24)."
+        ],
+        "score_rationale": "The core idea has moderate novelty and promising toy behavior, but the unsupported theorem application, lack of convergence analysis, limited baselines, and inconclusive high-dimensional evidence are major issues requiring more than a minor revision."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes jointly training an NF and an EBM proxy through primal-dual optimization to approximate forward and reverse KL terms, with applications to density estimation, image generation, and SBI. The collaborative NF–EBM construction is interesting, but the claimed connection to Jeffreys-divergence minimization is not adequately justified, and the empirical evidence is too limited for the breadth of the claims.",
+        "strengths": [
+          "The collaborative NF–EBM design is a potentially useful alternative to adversarial training, combining tractable NF sampling/densities with a more expressive proxy (pp. 4–6).",
+          "The paper provides extensive algorithmic and implementation details, including gradients, conditional extensions, and high-dimensional stabilization heuristics (pp. 16–25).",
+          "Results across several 2D datasets show consistent improvements over the matched NF baseline over five seeds (pp. 7–8, 23–24)."
+        ],
+        "weaknesses": [
+          "The theoretical bridge to Jeffreys divergence is weak: fitting q by forward KL/NLL does not control the error incurred when replacing D_KL(p||π) by D_KL(p||q), especially off the data support. Moreover, replacing KL constraints by entropy-shifted empirical NLL inside a squared-slack objective is not an innocuous constant shift (pp. 4–5, 19–20).",
+          "Theorem 1 is not convincingly applicable: strict positivity alone does not make log loss or KL Lipschitz without uniform density bounds, and the convex-hull approximation assumption is neither verified nor quantified for the chosen neural models, making the stated bound potentially vacuous (p. 5).",
+          "Evidence is modest and selectively reported: most gains are on simple 2D tasks; CelebA only matches an NF in a pretrained 100D autoencoder space, SBI covers two benchmarks and reports the best checkpoint, and comparisons omit stronger density-estimation/generative baselines and broad sensitivity analysis (pp. 7–9, 22–25)."
+        ],
+        "score_rationale": "The NF–EBM collaboration and adaptive weighting idea are promising, but central theoretical claims are unsupported under the stated assumptions and the experiments do not establish competitive high-dimensional performance. I therefore view this as a reject-level submission requiring substantial theoretical correction and stronger evaluation."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes collaborative training of a normalizing flow and an EBM proxy through a constrained primal-dual objective intended to adaptively balance forward KL, proxy-based reverse KL, and proxy fitting. The idea is interesting, but the central theoretical justification is not established under the stated assumptions, and the experiments do not convincingly demonstrate optimization of Jeffreys divergence or competitive high-dimensional performance.",
+        "strengths": [
+          "The collaborative NF–EBM formulation and adaptive weighting offer an intuitively appealing alternative to fixed-weight or adversarial objectives (pp. 4–6).",
+          "The paper covers density estimation, image generation, and simulation-based inference, with seeded results for several experiments (pp. 7–9, 23–25).",
+          "The appendices provide substantial architectural, optimization, and computational detail (pp. 16–25)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is inadequately justified: strict positivity alone does not make log-density or KL losses Lipschitz in total variation, since densities may approach zero. Thus the claimed finite duality-gap bound does not follow from the stated assumptions, and the proof is only a brief appeal to prior results (p. 5).",
+          "There are consequential formulation and reproducibility inconsistencies. In particular, the proxy NLL constraint uses data samples xi on p. 16, whereas its stated multiplier gradient uses generated samples yi on p. 18; the conditional formulation also appears to index the partition function by β rather than the conditioning variable u (p. 19).",
+          "The evidence is limited and sometimes weakly selected: no direct Jeffreys/reverse-KL evaluation is reported even where the synthetic density is known; results emphasize best test NLL during training; CelebA merely matches a weak NF baseline with FID around 48 after autoencoding; and the SBI rejection-sampling tolerance is unspecified (pp. 7–9, 24–25)."
+        ],
+        "score_rationale": "The core idea has some novelty and empirical promise, but the unsupported central theorem, algorithmic inconsistencies, and insufficient evaluation of the claimed divergence objective are major issues. The high-dimensional result is only comparable to a basic baseline, so the submission currently falls clearly below the acceptance bar."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes jointly training a normalizing flow and an EBM proxy through a constrained primal-dual objective intended to adaptively balance forward KL, proxy reverse KL, and proxy fitting. The idea is interesting, but the claimed connection to Jeffreys-divergence minimization is not adequately established, and the experimental evidence is too limited to compensate for the theoretical problems.",
+        "strengths": [
+          "The collaborative NF–EBM construction and adaptive weighting perspective are intuitively appealing and potentially useful (pp. 4–6).",
+          "The paper provides extensive algorithmic and architectural details, including conditional and higher-dimensional variants (pp. 16–24).",
+          "The method shows consistent improvements over a matched plain flow on several low-dimensional synthetic tasks and two SBI benchmarks (pp. 7–9, 23–25)."
+        ],
+        "weaknesses": [
+          "The empirical objective is not equivalent to the stated divergence problem: absorbing the unknown entropy into each slack changes the squared-slack objective, not merely the constraint notation (pp. 4–5). The negative-NLL modification further changes the optimization problem (pp. 19–20), so the method cannot straightforwardly be claimed to optimize an adaptively symmetrized Jeffreys divergence.",
+          "Theorem 1 is insufficiently justified and appears false under its stated assumptions. Positivity alone does not make log loss or KL Lipschitz, and total-variation approximation does not control pointwise empirical log likelihood without densities bounded away from zero (p. 5). Moreover, the practical partition-function constraints depend on an unnormalized representation rather than solely on the distributions covered by the theorem (pp. 16–18).",
+          "Evidence is narrow: most results use simple 2D data and compare primarily with the same plain NF; the CelebA result is only a marginal FID difference in a pretrained 100D autoencoder space, with best-epoch reporting and no variance (p. 8, p. 24). SBI likewise reports the best score over training on only two benchmarks (p. 9). There is no direct evaluation of Jeffreys divergence, robust high-dimensional density modeling, or competitive modern baselines."
+        ],
+        "score_rationale": "The proxy-based constrained training idea has some novelty and encouraging synthetic results, but the entropy-shift mismatch and unsupported duality theorem undermine the central technical claim (pp. 4–5, 19–20). Together with limited and selectively reported empirical validation, this warrants rejection rather than a marginal score; some uncertainty remains because the practical heuristic may still be useful after reframing and stronger evaluation."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper proposes adaptively weighted joint training of a normalizing flow and an EBM proxy, using primal-dual constrained optimization to approximate Jeffreys-divergence minimization. The cooperative formulation is interesting and performs favorably on several low-dimensional tasks, but the central connection to Jeffreys divergence and the stated duality guarantee are not technically established. The high-dimensional evidence is also too limited to support the broad claims.",
+        "strengths": [
+          "The cooperative NF–EBM construction and adaptive primal-dual weighting form a coherent, potentially useful alternative to fixed-weight or adversarial training (pp. 4–6).",
+          "The paper provides broad experiments, with five-seed results showing consistent improvements over a plain NF on low-dimensional density estimation and SBI benchmarks (pp. 8–9, 23–25).",
+          "Implementation details, gradient derivations, architectures, hyperparameters, and compute analysis are unusually extensive (pp. 16–25)."
+        ],
+        "weaknesses": [
+          "The empirical objective is not shown to preserve the proposed Jeffreys objective: absorbing unknown entropy constants into optimized squared slacks changes the objective, and the negative-NLL modification further changes it (pp. 4–5, 19–20). Moreover, small D_KL(π||q) does not generally make D_KL(p||q) a controlled approximation of D_KL(p||π).",
+          "Theorem 1's proof is insufficient and appears incorrect: positivity alone does not make log-density/KL losses Lipschitz, and total-variation approximation does not control unbounded log losses without additional uniform density bounds (p. 5). The theorem also concerns the altered empirical problem rather than the claimed Jeffreys objective.",
+          "Evidence for the main mechanism is weak: no experiment directly measures recovered Jeffreys/reverse KL or the learned adaptive trade-off; most gains are on 2D data, while CelebA gives only a small best-checkpoint FID change (48.99 to 48.07) in an autoencoder latent space without variability estimates or competitive modern baselines (pp. 7–9, 24)."
+        ],
+        "score_rationale": "The method is reasonably novel as a constrained cooperative NF–EBM heuristic and the low-dimensional results are promising. However, the invalid entropy absorption, uncontrolled proxy substitution, and unsupported assumptions behind the main theorem undermine the paper's central technical claim. With only limited high-dimensional validation, these issues place it below the ICLR acceptance threshold."
+      }
+    }
+  ]
+}

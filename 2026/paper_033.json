@@ -1,0 +1,211 @@
+{
+  "year": 2026,
+  "package_id": "paper_033",
+  "paper_id": "qirGds1BmK",
+  "number": 9254,
+  "title": "Pretrain Value, Not Reward: Decoupled Value Policy Optimization",
+  "authors": [
+    "Chenghua Huang",
+    "Lu Wang",
+    "Fangkai Yang",
+    "Pu Zhao",
+    "Qingwei Lin",
+    "Dongmei Zhang",
+    "Saravan Rajmohan"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "LLM;RLHF;Value Model"
+  ],
+  "forum_url": "https://openreview.net/forum?id=qirGds1BmK",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    2,
+    8
+  ],
+  "human_mean_rating": 5.333333333333333,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "9a4483U1wX",
+      "forum": "qirGds1BmK",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9254/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760870740416,
+      "tmdate": 1762920905919,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "KEY30f6Dcs",
+      "forum": "qirGds1BmK",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9254/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760527649629,
+      "tmdate": 1762920906487,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    },
+    {
+      "review_id": "iK6AwiH9o0",
+      "forum": "qirGds1BmK",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9254/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761884938429,
+      "tmdate": 1762920905299,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "DVPO proposes replacing PPO’s jointly trained critic and reward model with a frozen, offline-pretrained global value model, aiming to provide token-level guidance at lower training cost. The idea is practically interesting and the reported benchmark gains are promising, but the central equivalence and optimization claims are not established, while crucial implementation details and empirical controls are insufficient to determine whether the method is technically sound or robust.",
+        "strengths": [
+          "The frozen-value-model formulation is a useful systems idea that could reduce actor–critic memory and update costs; measured reductions are substantial on the reported setup (pp. 9, 17).",
+          "The paper evaluates two model scales/settings and several alignment baselines on MT-Bench, Arena-Hard, and AlpacaEval, generally reporting competitive results (pp. 7–9).",
+          "The authors examine value-model accuracy, distribution shift, supervision formats, and KL sensitivity rather than reporting only end-policy scores (pp. 8–9, 16–19)."
+        ],
+        "weaknesses": [
+          "The equivalence lemma is largely circular: it assumes both the reward-induced value and GVM already approximate the same policy-dependent Q-function, then concludes their gradients are close. It neither proves that the same preference data can identify such a Q-function nor handles the changing policy; the appendix also incorrectly says the induced gradients remain constant despite their dependence on the evolving policy distribution and score function (pp. 5–6, 14–15). The asserted PPO monotonic-improvement inheritance is unsupported (p. 6).",
+          "The actual learning signal is unclear and potentially invalid: DVPO defines the advantage as exp(Q) without subtracting a state baseline, making every sampled action receive positive weight, while the policy-conditioning trajectory τ and how it is encoded or supplied for the evolving actor are not operationally specified. With γ=1 and only terminal rewards, the claimed fine-grained credit assignment also needs considerably more justification than the presented TD objective and one anecdotal token example (pp. 3–5, 16).",
+          "The evidence lacks uncertainty estimates, repeated runs, and controlled ablations separating frozen critic, token-level values, policy conditioning, and extra offline pretraining. There are also unresolved inconsistencies: the KL=0.05 MT-Bench result is 7.72 in the main table but 8.50 at KL=0.01, and the held-out comparison shows DVPO approximately tied with or slightly worse than PPO for 8B rather than clearly superior (pp. 8, 15, 18–19)."
+        ],
+        "score_rationale": "The paper contains a potentially useful and empirically promising efficiency idea, but the core theoretical result is tautological under strong assumptions, the policy objective and conditioning mechanism are insufficiently specified, and the empirical study lacks the controls and variance reporting needed to validate the causal claims. These are substantial soundness issues rather than presentation-only concerns, placing the work below the acceptance threshold despite encouraging headline results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "DVPO proposes replacing RLHF’s online critic with a frozen, offline-pretrained global value model. The idea is practically appealing and the reported benchmark and efficiency gains are promising, but the central equivalence claim is largely assumed rather than established, the learning objective is underspecified/internally inconsistent, and the experiments lack sufficient statistical and implementation detail to validate the conclusions.",
+        "strengths": [
+          "The frozen-critic formulation is simple and potentially useful, with a reasonably distinct emphasis on directly pretraining reusable value estimates rather than a scalar reward model (pp. 2–5).",
+          "Evaluation covers two model scales/settings and several standard instruction-following benchmarks, with DVPO generally outperforming the included baselines (pp. 7–9).",
+          "Measured training costs suggest meaningful memory and time savings relative to PPO, although some headline percentages are overstated (p. 17)."
+        ],
+        "weaknesses": [
+          "The main theory is essentially tautological: Lemma 3.1 assumes both the reward-induced value and GVM already approximate the same policy-specific Q-function, then bounds their gradient difference by those assumed errors. It does not show that preference data identify such a Q-function, that a frozen GVM remains accurate as the policy changes, or the asserted PPO monotonic-improvement result (pp. 5–6, 14–15). The statement that fixed models make induced gradients “constant over time” is also false because the policy and its state-action distribution change (p. 15).",
+          "The algorithm is not sufficiently well defined. GVM is introduced as policy-conditioned through an unrelated trajectory τ, but the construction and choice of τ for an evolving target policy are not explained; the reported training instead describes only token-level MSE with γ=1. Terminal-only scalar labels give every observed token the same Monte Carlo return, while TD bootstrapping details, terminal conditions, target detachment, and the exact advantage/baseline computation are omitted (pp. 3–5, 15–17).",
+          "The empirical evidence is difficult to assess: no seeds, error bars, significance tests, or controlled reward-budget analysis are reported; starred external and newly run results are mixed; several claimed deltas are inconsistent or mix percentages with percentage points; and the KL ablation produces an MT-Bench score of 8.50 that conflicts sharply with the main 7.72 result without explanation (pp. 7–8, 18–19). The qualitative token attribution and GPT-4 case study do not establish calibrated token-level credit assignment (pp. 16, 20–22)."
+        ],
+        "score_rationale": "The paper contains a promising efficiency idea and encouraging preliminary results, but its claimed theoretical justification does not support the central conclusion, key algorithmic details are missing, and the empirical presentation is not rigorous enough to rule out noise or unfair comparisons. These are central rather than readily cosmetic issues, warranting rejection despite the practical potential."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes DVPO, which pretrains and freezes a trajectory-conditioned value model, then uses it for policy-only PPO-style optimization. The idea is practically appealing and the reported benchmark/efficiency gains are promising, but the central equivalence theory is largely assumed rather than established, the optimization signal is insufficiently specified, and the empirical study lacks the controls needed to validate the main claims.",
+        "strengths": [
+          "Pretraining a reusable critic and removing online critic updates is a simple, potentially useful systems idea that directly targets actor–critic memory and stability costs (pp. 3–5).",
+          "The evaluation covers two model sizes/settings and several common alignment benchmarks, with DVPO generally outperforming the implemented baselines (pp. 7–9).",
+          "The paper reports concrete per-step memory and runtime measurements, showing meaningful savings over PPO under the stated hardware configurations (pp. 16–17)."
+        ],
+        "weaknesses": [
+          "The theoretical result is essentially circular: it assumes both the reward-derived value and GVM already approximate the same policy-specific Q-function, then bounds their difference. It does not show that preference data suffice to learn such a value for evolving policies. Moreover, the assertion that fixed models induce gradients that “remain constant” is false because policy/state distributions change, and the claimed PPO monotonic-improvement inheritance is not proved (pp. 5–6, 14–15).",
+          "The algorithm is technically ambiguous and potentially unsound. Values are policy-dependent even when terminal rewards are not; yet a fixed GVM is reused as the policy evolves. The paper does not clearly specify how conditioning trajectory τ is obtained during optimization, how TD targets are stabilized, or how a proper state baseline/advantage is computed—the displayed DVPO objective appears to use the raw value estimate directly (pp. 3–5). With γ=1 and only terminal rewards, the claimed fine-grained credit assignment is also not established by the training objective (pp. 3, 15–16).",
+          "The evidence is not sufficiently rigorous: benchmark results have no seeds, uncertainty, or significance tests; some baseline numbers are imported while others are newly run; training-budget and evaluator controls are unclear; and the illustrative GPT-4 judge accepts factual errors in DVPO’s response while awarding it 5/5 (pp. 8, 15, 18–22). Thus reward/judge exploitation and variance remain plausible explanations for the reported gains."
+        ],
+        "score_rationale": "The reusable frozen-value-model direction has practical merit and encouraging preliminary results, but foundational theory is invalid or tautological and essential algorithmic details are unresolved. Combined with weak statistical and evaluation controls, this prevents confidence in either correctness or the claimed superiority, warranting rejection despite the interesting premise."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes DVPO, which pretrains and freezes a global value model to replace PPO’s online critic. The practical idea is interesting and the reported benchmark and efficiency results are promising, but the central equivalence and convergence claims are not established, and important experimental details prevent reliable validation.",
+        "strengths": [
+          "The frozen-value formulation is a practically relevant approach to reducing RLHF memory and update cost, with measurements on two model scales showing appreciable per-step savings (pp. 17–18).",
+          "Evaluation covers multiple backbones, baselines, and common instruction-following benchmarks; DVPO generally performs well in the reported results (pp. 7–9).",
+          "The paper acknowledges coverage, distribution-shift, static-critic, and preference-bias limitations (p. 10)."
+        ],
+        "weaknesses": [
+          "The theoretical result is largely circular: it assumes both the reward-derived value and GVM approximate the same policy-dependent Q-function, which essentially assumes the desired equivalence. A fixed GVM cannot generally approximate Q for every evolving policy, while constructing the reward-derived value requires policy-dependent Bellman evaluation. The assertion that induced gradients remain constant is also false because the policy and visitation distribution change (pp. 5–6, 14–15). The claimed PPO monotonic-improvement inheritance is stated without a supporting proof and is stronger than justified (p. 6).",
+          "The operational method is underspecified or inconsistent. Policy conditioning uses an unrelated sampled trajectory τ, but how τ represents the continuously changing actor during DVPO is unclear; the displayed DVPO pipeline does not expose this conditioning. TD targets lack details such as target detachment or target networks, and using terminal-only rewards with γ=1 makes the claimed source of fine-grained token credit insufficiently explained (pp. 3–4, 15–16).",
+          "Evidence lacks multiple seeds, uncertainty intervals, significance tests, and sufficiently controlled tuning. Some comparisons mix reproduced and externally sourced results, GVM response-level aggregation is unspecified, and the stability plot compares differently scaled reward/value signals rather than a common evaluation metric (pp. 6–9, 18). End-to-end efficiency accounting also does not clearly incorporate all pretraining costs."
+        ],
+        "score_rationale": "Although the fixed pretrained critic is potentially useful and the empirical tables are encouraging, the paper’s main theoretical justification is invalid or tautological under its assumptions, and the method and evidence omit details needed to rule out confounding or reproduce the claimed gains. I therefore rate it a reject; uncertainty is mainly whether implementation details absent from the manuscript would resolve some methodological concerns."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes DVPO, which pretrains and freezes a global value model to guide PPO-style policy updates, aiming to remove online critic learning. The direction is practically interesting and reports efficiency and benchmark gains, but the algorithm is insufficiently specified and its central equivalence/convergence claims are not established.",
+        "strengths": [
+          "A frozen pretrained critic is a useful systems direction, and measured policy-training savings are substantial: roughly 23–34% lower memory and 32–44% lower time per step than PPO (p. 17).",
+          "The evaluation covers two model scales, base and instruction-tuned settings, several RLHF baselines, and three common benchmarks (pp. 7–9).",
+          "The paper includes distribution-shift evaluation, KL ablation, training curves, and a candid discussion of coverage and non-stationarity limitations (pp. 9–10, 18–19)."
+        ],
+        "weaknesses": [
+          "The equivalence result is largely assumed rather than proved: it presupposes that both constructions approximate the same policy-dependent Q^π, while a frozen GVM must serve evolving policies. The reward-derived value also depends on πθ, contradicting the claim that its induced gradient remains constant; the gradient bound omits necessary score-function bounds, and the asserted PPO monotonic-improvement guarantee is unsupported (pp. 5–6, 14–15).",
+          "Critical implementation details are unclear or inconsistent. The model is introduced as Q(τ,s,a), conditioned on unrelated trajectories representing a policy, but neither the conditioning architecture nor how τ is supplied for an evolving actor is specified. Moreover, the policy advantage is simply defined as Q rather than Q minus a state baseline or a TD residual, making the claimed token-level credit assignment questionable (pp. 3–5, 15).",
+          "The evidence lacks seeds, uncertainty, and significance tests, and contains reliability concerns: the held-out comparison is tie-dominated and does not favor DVPO over PPO for Llama-8B (p. 15); the KL ablation reports MT-Bench 8.50 versus 7.72 in the main table without explanation (pp. 8, 19); and the judge awards 5/5 to a response containing factual errors about Percy Jackson's magic system (p. 22)."
+        ],
+        "score_rationale": "The practical idea and reported efficiency are promising, but major theoretical errors, missing algorithmic specification, and insufficiently reliable empirical validation undermine the central claims. These issues require more than a minor revision."
+      }
+    }
+  ]
+}

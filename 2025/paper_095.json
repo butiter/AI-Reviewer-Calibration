@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_095",
+  "paper_id": "CrGfGLC2Ad",
+  "number": 13360,
+  "title": "Discovering Factor Level Preferences to Improve Human-Model Alignment",
+  "authors": "Juhyun Oh; Eunsu Kim; Jiseon Kim; Wenda Xu; Inha Cha; William Yang Wang; Alice Oh",
+  "primary_area": "interpretability and explainable AI",
+  "keywords": "human alignment; Large Language Model; explainability; generation; evaluation",
+  "forum_url": "https://openreview.net/forum?id=CrGfGLC2Ad",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    5,
+    6
+  ],
+  "human_mean_rating": 5.333333333333333,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies the preference discrepancy between human judgment and model judgment. Specifically, it investigates three RQs using a unified framework, PROFILE, to understand and enhance preference alignment at a fine-grained level (length, hallucination, etc). The authors conduct experiments on three datasets across two settings, and the results suggest misalignment in the generation setting. Their analysis highlights the potential of the proposed model to further improve alignment."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The idea of `enhancing' alignment by better understanding the preference discrepancy between human and model judgment through more fine-grained factors is both interesting and important.\n\n\nTheir findings and insights could be valuable for researchers interested in human alignment, LLMs, and explainable AI.\n\n\nI liked the overall organization of the paper, which consistent with the state of the field."
+        },
+        "weaknesses": {
+          "value": "The paper would benefit from more precise notation to improve clarity. I found the notation to be inconsistent and, at times, confusing, which impacts readability. For example:\n\n- L134-135: The notation of score level s and Score(r) is confusing. If Score(r) already equals s, what is the purpose of having the model assign a score again?\n\nThe writing quality could also be improved. The core value of this paper lies in the exploration of the preference discrepancy between human and model judgment, yet the novelty and key ideas are not clearly articulated. Some concepts and terms are introduced without sufficient explanation, leading to confusion. For example:\n\n- L40-41: “considering their alignment not only as generators but also as evaluators becomes crucial”\n\nA better discussion and analysis are needed. Some findings and conclusions lack depth and specificity. For example:\n\n- L471: \"… engage in reward hacking by generating overly lengthy outputs…\"  it is unclear how these conclusions were reached. The proposed method does not appear to involve RLHF/DPO training (correct me if I’m wrong).\n\nThe so-called \"generalizability\" conclusion seems to be derived solely from the summarization experiment, which may not provide sufficient support.”"
+        },
+        "questions": {
+          "value": "What factors should we consider regarding preference discrepancies in other tasks, such as math and coding?\n\nAside from reward models, how do you think RLHF/DPO contributes to alignment?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "L1u0ZimdbQ",
+      "forum": "CrGfGLC2Ad",
+      "replyto": "CrGfGLC2Ad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13360/Reviewer_gJUL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13360/Reviewer_gJUL"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730930961685,
+      "cdate": 1730930961685,
+      "tmdate": 1731429404972,
+      "mdate": 1731429404972,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a framework called PROFILE, designed for fine-grained factor analysis of LLM alignment. PROFILE reveals the discrepancies between human and AI preferences, pinpointing specific areas of divergence. By quantifying the influence of various factors, this framework provides new insights into the interpretability and improvement of models."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- **Comprehensive Analysis from a Unique Perspective**: The paper conducts a detailed analysis of the underlying factors affecting human and AI preferences, providing a comprehensive view into the mechanisms of preference alignment.\n- **Interpretability**: By performing factor-level preference analysis, PROFILE helps identify specific reasons for human-model preference divergence, offering clear directions for model optimization."
+        },
+        "weaknesses": {
+          "value": "- **Unclear Justification for Multi-level Factor Classification**: While the paper proposes a three-level factor classification system, it does not sufficiently explain the basis for each factor level, the scientific soundness of the classification, or its handling of task complexity. This raises concerns about whether the framework can accurately reflect human-model preference differences.\n- **Potential Issues in the Analytical Approach**: The study uses GPT-4o for factor quantification while examining human-AI preference alignment, which may introduce new biases, potentially affecting the objectivity of the analysis.\n- **Limitations in Experimental Design**: The paper validates the PROFILE framework on a limited set of public datasets, which restricts its demonstration of applicability to other tasks. Moreover, it lacks sufficient ablation studies to analyze the contribution of each factor, making it difficult to understand their impact across tasks.\n- **Weak Correspondence between Results and Conclusions**: Although the experiments showcase preference alignment in some tasks, they lack clear methodological and empirical support for guiding improvements in human-AI alignment. The paper does not clarify how PROFILE contributes to enhancing model performance or its impact on generation quality in practical applications.\n- **Over-reliance on Quantitative Metrics in Analysis**: The paper's analysis mostly depends on correlation and quantitative scores, lacking qualitative insights into why the model exhibits inconsistencies with human preferences for certain factors. This approach results in a somewhat superficial view that fails to reveal the deeper reasons behind the observed divergences."
+        },
+        "questions": {
+          "value": "1. I am curious about the correlations between different factors. Could you provide an analysis on this?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "HYbxFd3Yk3",
+      "forum": "CrGfGLC2Ad",
+      "replyto": "CrGfGLC2Ad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13360/Reviewer_ZMM8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13360/Reviewer_ZMM8"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730718731923,
+      "cdate": 1730718731923,
+      "tmdate": 1732077015929,
+      "mdate": 1732077015929,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces PROFILE, a framework designed to uncover and quantify the specific factors influencing both human and LLM preferences in language generation tasks. It addresses the problem of misalignment between LLM outputs and human preferences by providing a granular, factor-level analysis rather than relying on coarse-grained comparisons. The main contributions include the development of PROFILE, its application across three tasks (TLDR summarization, helpful response generation, and WebGPT document-based QA), and demonstrating how factor-level insights can improve human-LLM alignment"
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "● The paper presents an explainable framework that enhances understanding of human-model preference alignment at a granular level.\n● It addresses a significant gap in current methods by focusing on specific factors influencing preferences, which can guide improvements in LLM training.\n● Demonstrating that leveraging factor-level insights can improve alignment has practical implications for developing more human-aligned LLMs."
+        },
+        "weaknesses": {
+          "value": "● The paper might not thoroughly compare with existing methods, leaving questions about its relative advantages.\n● The paper may lack sufficient empirical validation due to limited experiments or datasets, potentially affecting the generalizability of its conclusions. \n● There might be concerns about the scalability of the proposed framework without fine-grained human annotations, impacting its practicality."
+        },
+        "questions": {
+          "value": "1. How does your approach compare quantitatively and qualitatively with existing methods in preference alignment? Such as all kinds of llm-as-a-judge methods / G-Eval / ... etc\n\n2. Can you provide more details on how the framework performs when applied to tasks beyond the three studied, and are there limitations to its generalizability? Such as creative writing, role-playing, and coding.\n\n3.  The boundary between Receptiveness / Intent Align / Helpfulness is vague and not independent of each other."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "yaB3NDoi36",
+      "forum": "CrGfGLC2Ad",
+      "replyto": "CrGfGLC2Ad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13360/Reviewer_vTJd"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13360/Reviewer_vTJd"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730700668960,
+      "cdate": 1730700668960,
+      "tmdate": 1731429404740,
+      "mdate": 1731429404740,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PROFILE offers an interpretable descriptive analysis of factor–preference associations across three tasks and several LLMs. The reported generation–evaluation gap is interesting, but the central operationalization does not convincingly measure models’ native generation preferences, and the improvement experiments do not establish improved human alignment.",
+        "strengths": [
+          "The paper studies a relevant problem and provides an intuitive taxonomy and unified factor-level analysis spanning generation and evaluation (pp. 3–6).",
+          "The empirical scope is reasonably broad, covering three tasks and multiple proprietary and open models; the full factor tables and prompts improve transparency (pp. 18–28).",
+          "The contrast between response-level agreement and factor-ranking agreement is potentially useful diagnostically, as illustrated in Table 1 (p. 8)."
+        ],
+        "weaknesses": [
+          "The generation analysis defines preference by asking a model to deliberately produce outputs for scores 1–5 (pp. 3, 21–22). Thus, the dominant length trend may reflect the model’s interpretation of this artificial prompt rather than its ordinary generation policy. Cosine similarity between direct outputs and score-conditioned outputs (pp. 26, 28) neither validates the inferred ordering nor shows that direct generation prioritizes the same factors.",
+          "PROFILE estimates marginal correlations and calls them factor “influence,” despite strong inter-factor correlations such as length, fact count, and coverage (pp. 25, 28). Ranking only 9–10 correlated, noisily extracted factors without uncertainty estimates, significance tests, or robustness to extractor error makes the reported alignment correlations difficult to interpret. GPT-4o also supplies many factor labels, while its validation is small and sometimes weak (e.g., 70% atomic-fact precision for misinformation; p. 21).",
+          "The alignment-improvement evidence is preliminary and overclaimed. GuideMis gains are small, tested on only 200 pairs, and called significant without statistical testing (p. 8). The generation experiment assumes a rewritten response is an “improvement” and evaluates only whether its factor-change ranking correlates with aggregate preferences, rather than obtaining human judgments that output quality actually improved (pp. 9, 23–24)."
+        ],
+        "score_rationale": "The paper has a useful diagnostic motivation and substantial descriptive experiments, but its main generation construct is prompt-induced rather than a defensible measure of native model preference, while correlated factors and missing uncertainty weaken the claimed explanatory interpretation. The intervention studies do not adequately demonstrate improved human alignment. These are central validity issues rather than minor presentation problems, placing the work below the acceptance threshold despite its promising framing."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PROFILE is a potentially useful diagnostic framework that ranks factors associated with human and LLM choices across three tasks. The paper reports an interesting generation–evaluation gap, but the central generation analysis does not convincingly identify models’ latent preferences: prompting a model to deliberately produce outputs at scores 1–5 can induce an artificial quality/length ladder. Combined with dependent comparisons, limited uncertainty analysis, and evaluator circularity, this substantially weakens the main conclusions.",
+        "strengths": [
+          "The paper studies a relevant question and provides an interpretable taxonomy spanning summarization, helpful response generation, and document-based QA (pp. 4–6).",
+          "It evaluates several open and proprietary models and reports both factor-level and response-level results, exposing differences that aggregate agreement can conceal (pp. 7–8, 25–27).",
+          "Prompts, extraction procedures, qualitative examples, and additional results are documented extensively in the appendices (pp. 15–28)."
+        ],
+        "weaknesses": [
+          "The generation setting operationalizes preference by asking each model to generate responses explicitly corresponding to scores 1–5 (pp. 3, 21–22). This primarily measures how the model constructs a prompted quality scale, not necessarily what it prefers under ordinary generation; cosine similarity of direct outputs to score-5 outputs (pp. 26, 28) does not validate the ordering or inferred factor influences.",
+          "Statistical support is inadequate. Factor rankings contain only about 9–10 correlated factors, all within-input response pairs are reused despite dependence, and the paper gives no confidence intervals, significance tests, or sensitivity analyses for the headline correlations. The claimed significant guidance improvement is based on 200 pairs with small changes such as 0.651 to 0.664 and no reported test (p. 8).",
+          "Measurement and generalization are fragile: GPT-4o extracts many factors while GPT-4o is also a studied generator/evaluator, potentially introducing shared-model bias (pp. 5, 19–21); some extraction accuracy is only 70% at the atomic-fact level (p. 21); and the improvement study is limited to 100 summarization examples, with feedback validation performed by one author on 30 samples (pp. 8–10, 24)."
+        ],
+        "score_rationale": "The factor-level perspective and broad empirical presentation offer moderate novelty over prior fine-grained preference analysis. However, the score-conditioned generation proxy is a foundational confound, and missing uncertainty controls make the reported correlations and improvements difficult to trust. The work is promising but currently below the technical-evidence standard for acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PROFILE is an interpretable factor-level analysis of human and LLM preferences across three tasks, with an interesting reported generation–evaluation gap. However, the central generation analysis measures behavior elicited by artificial score-conditioned prompting rather than independently observed model preferences, and the improvement studies do not establish actual human-preference gains. Several unsupported significance claims and contradictory appendix results further weaken the conclusions.",
+        "strengths": [
+          "The factor taxonomy and rank-based diagnostic provide a useful, interpretable complement to aggregate pairwise agreement (pp. 4–5).",
+          "The study covers multiple tasks and diverse open/proprietary models, and reports extensive factor-level results rather than only selected examples (pp. 6–9, 25–28).",
+          "The generation–evaluation comparison is a potentially valuable empirical direction, with striking summarization results for stronger models (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "The key operationalization is questionable: a model is prompted to generate outputs explicitly labeled scores 1–5, and those prompt-imposed labels are then treated as its preferences (pp. 3, 21–22). Similarity of score-5 and direct outputs does not validate the ordering of scores 1–4 or show that the measured factors drive ordinary generation (pp. 26, 28).",
+          "Evidence for improvement is weak: the guidance experiment has only 200 pairs, calls increases “significant” without statistical tests, and shows a small Mixtral gain; the generation experiment evaluates inferred factor-score correlations rather than human preference or output quality (pp. 8–9, 23–24). Thus it does not substantiate the claim that PROFILE improves human alignment.",
+          "The broad claim that evaluation alignment is consistently higher is contradicted by Appendix Table 9: Mixtral falls from 0.667 to 0.556 on helpfulness and from 0.778 to -0.200 on document QA (p. 27). Results also rely heavily on GPT-4o factor extraction with limited validation and some low atomic-level precision, creating evaluator dependence and uncertainty (pp. 5, 21)."
+        ],
+        "score_rationale": "The paper offers a clear diagnostic framing and useful exploratory observations, but its main conclusions depend on a confounded proxy for generative preference, limited validation, and improvement experiments that do not directly demonstrate better human alignment. The appendix contradiction materially undermines the claimed generality, placing the work below the acceptance threshold despite its promising idea."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PROFILE estimates factor–preference associations and compares their rankings across humans and eight LLMs on three tasks. The paper reports substantial generation-side misalignment, stronger evaluator-side alignment, and preliminary gains from factor guidance or evaluator feedback. The diagnostic question is useful, but the central generation operationalization and experimental validation do not yet support the paper’s broader alignment claims.",
+        "strengths": [
+          "The factor-level perspective is useful and more interpretable than reporting only pairwise agreement; the generation/evaluation comparison exposes potentially actionable differences (pp. 6–8).",
+          "The study covers three tasks and multiple proprietary and open models, and provides prompts, factor definitions, extraction details, and extensive factor-score tables (pp. 18–28).",
+          "The paper includes some validation of automatic factor extraction and a small human study rather than relying entirely on unverified LLM judgments (pp. 15–16, 21)."
+        ],
+        "weaknesses": [
+          "The key notion of a model's generation preference is not directly observed: models are instructed to produce outputs that would receive scores 1–5, and those requested scores are then treated as the model's preferences (pp. 3, 21–22). This can primarily measure prompt compliance or the model's verbalized quality theory, and human/model factor rankings are also computed over different output distributions. Similarity of direct outputs to score-5 outputs does not validate the entire induced ranking (pp. 9–10, 26–28).",
+          "Statistical support is inadequate. Dataset/sample sizes, uncertainty intervals, repeated-run variability, and significance tests are generally absent; nevertheless, very small changes such as Mixtral 0.651 to 0.664 on only 200 pairs are called significant (p. 8). Rank correlations over merely 9–10 correlated factors are unstable, and factor correlations shown on pp. 25–28 further undermine interpreting rankings as independent latent influences.",
+          "The improvement evidence is preliminary and partly circular: GPT-4o extracts many factors and is also evaluated as generator/evaluator; GuideMis selection and evaluation-split separation are unclear; and feedback-based improvements are assessed through factor-score correlations rather than blinded human judgments of improved quality (pp. 8–9, 21, 23–24). Some appendix results also appear internally inconsistent, notably Tulu WebGPT generation/evaluation columns versus the claimed universal generation-length effect (p. 27)."
+        ],
+        "score_rationale": "The paper offers a worthwhile and reasonably broad diagnostic framework, but its headline generation result rests on a questionable score-conditioned proxy for preference, while missing uncertainty analysis and direct human validation weaken both the descriptive and intervention claims. These are substantial technical issues rather than presentation-only concerns, placing the work below the acceptance threshold despite its useful motivation and extensive experiments."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PROFILE offers an interpretable factor-level view of human–LLM preference alignment across three tasks and reports an interesting generation–evaluation gap. However, the central generation analysis does not convincingly identify models’ latent preferences: it treats outputs explicitly requested at scores 1–5 as revealed preferences, and the downstream improvement evidence is limited and largely evaluated through the same automatic factor pipeline.",
+        "strengths": [
+          "The paper asks a practically important question and presents a clear taxonomy and unified factor-scoring framework spanning summarization, helpful responses, and document-based QA (pp. 3–6).",
+          "The breadth across multiple open and proprietary models and both generation and evaluation settings yields useful descriptive findings, notably the recurring length effect and generation–evaluation discrepancy (pp. 6–9, 25–27).",
+          "The appendices provide prompts, extraction definitions, examples, and partial validation of GPT-4o-based factor extraction, improving transparency (pp. 15–24)."
+        ],
+        "weaknesses": [
+          "The key operationalization is questionable: outputs prompted to receive scores 1–5 are ordered by those requested scores and treated as the model’s own pairwise preferences (pp. 3, 21–22). This measures compliance with an artificial quality ladder, potentially with within-prompt contrast and ordering effects, rather than preference under ordinary generation; cosine similarity of direct outputs to score-5 outputs does not validate the full inferred ranking (pp. 9–10, 26–28).",
+          "The analysis has substantial dependence and uncertainty issues. GPT-4o extracts many factors while also being one evaluated agent, creating possible shared-model bias; alignment correlations rank only about 9–10 correlated factors, yet confidence intervals, sensitivity analyses, and statistical tests are absent (pp. 4–5, 19–21, 25–28). The claim of a “significant” guidance improvement is unsupported by testing, and Mixtral improves only from 0.651 to 0.664 on 200 pairs (p. 8).",
+          "Evidence that PROFILE improves alignment is preliminary. The feedback experiment uses only 100 summarization samples and measures automatically extracted factor-change correlations rather than human preference for the improved outputs (pp. 8–9, 23–24). Moreover, apparent table inconsistencies—e.g., Tulu WebGPT columns showing very high evaluation length scores despite the narrative that length dominates generation—reduce confidence in the reported results (p. 27)."
+        ],
+        "score_rationale": "The taxonomy and broad descriptive study are useful, but novelty over prior factor probing is incremental and the main conclusions rely on an artificial score-conditioned generation proxy with limited statistical treatment. The intervention experiments do not establish improved human alignment directly, so the work is not yet technically or empirically strong enough for ICLR acceptance."
+      }
+    }
+  ]
+}

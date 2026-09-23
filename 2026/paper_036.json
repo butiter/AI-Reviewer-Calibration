@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_036",
+  "paper_id": "IPmRcJkvuv",
+  "number": 9558,
+  "title": "Evolutionary Architecture Search Through Grammar-based Sequence Alignment",
+  "authors": [
+    "Adri Gómez",
+    "Felix Möller",
+    "Steven McDonagh",
+    "Monica Abella",
+    "Manuel Desco",
+    "Elliot J. Crowley",
+    "Aaron Klein",
+    "Linus Ericsson"
+  ],
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": [
+    "Neural networks",
+    "search",
+    "neural architecture search",
+    "representations of neural networks"
+  ],
+  "forum_url": "https://openreview.net/forum?id=IPmRcJkvuv",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0vv28GrtdX",
+      "forum": "IPmRcJkvuv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9558/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762153018351,
+      "tmdate": 1762921113492,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "QK8sPEu97C",
+      "forum": "IPmRcJkvuv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9558/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761121828306,
+      "tmdate": 1762921114520,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "Z7h43L9Pau",
+      "forum": "IPmRcJkvuv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9558/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761876820452,
+      "tmdate": 1762921113865,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "x5UPqc2B06",
+      "forum": "IPmRcJkvuv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9558/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761548263347,
+      "tmdate": 1762921114098,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes constrained sequence-alignment operators for crossover and distance computation in grammar-based NAS. The grammar-aware alignment idea is useful and the runtime study shows substantial practical gains over exact graph-edit crossover on sampled architectures. However, central optimality and metric claims are insufficiently justified, and the NAS experiments do not demonstrate a statistically significant advantage over standard subtree crossover or mutation-only search.",
+        "strengths": [
+          "A practically motivated combination of sequence alignment, grammar constraints, and recursive handling of branch permutations, with substantially lower measured runtime than SEPX on the sampled models (pp. 4–8).",
+          "The evaluation covers seven datasets, five seeds, runtime scaling, sensitivity to edit costs, and landscape-analysis applications (pp. 7–10, 20–21).",
+          "The appendices provide extensive pseudocode, examples, and an unusually candid report that no search method differs significantly under the tested setup (pp. 13–20, 28)."
+        ],
+        "weaknesses": [
+          "The core theoretical guarantees are not established. Validity depends on a single predecessor stored per DP cell, while grammar constraints are path-dependent; likewise, cell-wise collapsing across branch permutations may combine incompatible partial paths. No proof supports global optimality or equivalence to GED/SEPX (pp. 5–6, 17–19).",
+          "The claimed metric on functional architectures is overstated: RCSWX handles specified branch permutations, not general neural-network functional equivalence, so the biconditional in Eq. 5 and identity-of-indiscernibles claim do not follow. The triangle-inequality argument also assumes closure under concatenating constrained paths without proving it (p. 6).",
+          "Empirical search evidence is weak for the claimed improvement: STX has the best average test accuracy, proposed methods win only selected datasets, and all four methods are statistically indistinguishable (pp. 7, 28). Moreover, offspring selection enumerates up to 2^k operation subsets, an omitted scalability bottleneck (p. 20), while a larger example takes 741.57 minutes (p. 22)."
+        ],
+        "score_rationale": "The method is moderately novel and potentially useful, especially as an engineering tool, but unresolved correctness issues affect its principal shortest-path and metric claims. Since the proposed searches do not significantly outperform simple baselines and scalability excludes an exponential offspring-selection step, the current evidence is below the ICLR acceptance threshold. Some uncertainty remains because executable verification is unavailable from the supplied text."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes grammar-constrained sequence alignment (CSWX) and a recursive permutation-aware variant (RCSWX) for architecture distance and evolutionary crossover. The approach is potentially useful and appears substantially faster than the tested graph-edit implementation, but major theoretical claims are unsupported, the full crossover complexity is understated, and experiments do not establish a search-performance advantage.",
+        "strengths": [
+          "The grammar-aware alignment and resulting crossover operator are practically motivated and more structurally informed than ordinary sequence or subtree crossover (pp. 3–5).",
+          "The runtime study shows a substantial practical advantage over the tested SEPX implementation for the sampled architectures, with additional large-model examples exposing relevant scaling limitations (pp. 8, 22–25).",
+          "The paper provides extensive pseudocode, examples, sensitivity analysis, and landscape/diversity applications, making the intended mechanism relatively concrete (pp. 15–21)."
+        ],
+        "weaknesses": [
+          "The main theory is not convincing. Valid transitions depend on alignment history, yet Algorithms 1 and 6 retain only one predecessor per cell, so standard dynamic-programming optimality does not immediately apply; likewise, cell-wise collapsing across permutations need not correspond to one globally consistent permutation. Consequently, the claimed shortest paths, equivalence to SEPX/GED, and metric proof are not established (pp. 5–6, 8, 17–19). The semantic identity claim is also much broader than the handled branch-order equivalences.",
+          "The complexity analysis omits costly components: ValidPath traces backward through paths, while SelectOperations explicitly considers operation subsets and can be exponential in the edit-path length (p. 20). Thus the stated O(n1n2) CSWX complexity covers neither the presented DP implementation nor complete offspring generation; RCSWX also reaches 741.57 minutes on one moderate predefined pair (p. 22). Several pseudocode inconsistencies further impede verification, including the TraceBack condition “i>0 or j>j” (p. 19).",
+          "The empirical evidence does not support superiority: STX has the best reported average test score, and neither the Friedman test nor any corrected pairwise comparison is significant (pp. 7, 28). The landscape conclusions use architectures from only one search trajectory per dataset, UMAP can distort structure, and the nearly flat Isabella semivariogram is interpreted inconsistently as both persistent correlation and no distance effect (pp. 8–10)."
+        ],
+        "score_rationale": "The constrained alignment idea has moderate novelty and promising runtime evidence, but the unproven optimality/metric assertions and omitted exponential crossover cost affect the central contribution. Since search gains are statistically inconclusive and some landscape claims overreach the evidence, the manuscript is presently below the acceptance threshold, though a corrected and more carefully validated version could be competitive."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes grammar-aware sequence alignment for architecture distance and crossover, with a recursive variant intended to handle branch permutations. The idea is relevant and the runtime study is promising, but central optimality, metric, scalability, and empirical-superiority claims are not adequately supported.",
+        "strengths": [
+          "Addresses an important scalability barrier for crossover and distance computation in expressive grammar-based NAS spaces (pp. 1–4).",
+          "The grammar-aware serialization and explicit handling of branch permutations are practically motivated, and runtime measurements show substantial gains over the chosen exact-GED implementation on moderate architectures (pp. 5, 8).",
+          "The evaluation spans seven datasets, includes mutation and subtree-crossover baselines, and transparently reports nonsignificant aggregate differences (pp. 7, 28)."
+        ],
+        "weaknesses": [
+          "The core theory is unsound or incomplete: validity of future transitions depends on path history, yet Algorithm 1 retains only one path per matrix cell, so standard optimal substructure and global minimality do not follow. Consequently, the shortest-path and triangle-inequality arguments are unproven; moreover, RCSWX only handles specified branch permutations and cannot justify identity over all functionally equivalent architectures (pp. 5–6, 17–20).",
+          "The claimed scalability omits the exponential enumeration of operation subsets in SelectOperations (Algorithm 8), while RCSWX itself remains exponential and takes 741.57 minutes for one larger pair. The statement that it is faster than SEPX in all cases is therefore unjustified (pp. 6, 20, 22).",
+          "The evidence does not establish improved search: STX has the best reported mean, Friedman and corrected pairwise tests find no significant differences, and the loss-landscape conclusions rely on one run per dataset plus an arbitrary cost matrix whose effect is only hypothesized rather than experimentally validated (pp. 7–10, 21, 28)."
+        ],
+        "score_rationale": "The tailored alignment construction has useful potential and apparent runtime benefits, but multiple central claims—exact shortest paths, a semantic metric, tractable crossover, and outperforming alternatives—are contradicted or left without sufficient proof or evidence. Some uncertainty remains because executable code is unavailable and the pseudocode may not fully reflect the implementation, but the manuscript as supplied requires major technical correction."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes grammar-aware sequence-alignment operators, CSWX and permutation-aware RCSWX, for architecture distance and crossover. The practical motivation is strong and the runtime results are promising, but central optimality, metric, and equivalence claims are insufficiently justified, while the NAS experiments show no statistically significant improvement.",
+        "strengths": [
+          "Addresses an important scalability obstacle for crossover and distance computation in expressive grammar-based NAS spaces (pp. 1–4).",
+          "The syntax-aware serialization and validity constraints are intuitive, with helpful algorithms and visual examples (pp. 4–5, 15–20).",
+          "Evaluation covers seven datasets and demonstrates large empirical runtime improvements over the tested SEPX implementation for typical sampled architectures (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "The dynamic program retains only one predecessor per cell although ValidPath depends on the entire preceding path; optimal substructure is therefore not established. Likewise, cell-wise collapsing across branch permutations may combine incompatible states. No proof or sufficiently precise RCSWX algorithm supports the claimed global optimum (pp. 5, 17–20).",
+          "The claim that RCSWX is a metric over functional architectures is overstated: permutation invariance does not establish zero distance exactly for all functionally equivalent architectures. Its asserted equivalence to unrestricted graph edit distance/SEPX is also only checked empirically and is not theoretically demonstrated (pp. 6, 8).",
+          "Search evidence is weak: STX has the best reported average, the Friedman test finds no significant difference, and only five seeds are used (pp. 7, 28). Moreover, offspring selection appears to enumerate all valid operation subsets, introducing an unaddressed exponential cost, while the landscape conclusions rely on one trajectory per dataset (pp. 8–9, 20)."
+        ],
+        "score_rationale": "The grammar-aware alignment idea is useful and potentially publishable, but the paper's main theoretical guarantees appear unsupported and the empirical results do not establish a search advantage. These are substantial rather than merely presentational issues, placing the work below the acceptance threshold despite promising runtime evidence."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes constrained sequence-alignment operators for crossover and distance computation in grammar-based NAS. The core idea is interesting and potentially useful, but key metric/optimality claims are insufficiently established, the scalability story omits important exponential costs, and the experiments do not demonstrate a significant search advantage.",
+        "strengths": [
+          "A novel, practically motivated combination of grammar-aware alignment and recursive handling of branch permutations, with extensive pseudocode and examples (pp. 4–6, 15–20).",
+          "Runtime comparisons indicate substantial gains over the evaluated SEPX implementation for small-to-medium sampled architectures (p. 8).",
+          "The distance enables exploratory analyses of population diversity and fitness locality that could support future NAS methods (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The theoretical claims are overstated. RCSWX only quotients selected branch permutations, not general functional equivalence, so the asserted metric on semantic architectures is unsupported; moreover, cell-wise retention of minimum paths under path-dependent grammar constraints is not proved globally optimal (pp. 5–6, 17–20).",
+          "The scalability analysis excludes offspring selection, which appears to enumerate operation subsets, and large examples reach 741.57 minutes; this substantially qualifies claims of efficient crossover on large architectures (pp. 20, 22–25).",
+          "Empirical superiority is not demonstrated: STX has the best average test score, results vary strongly by dataset, and neither the Friedman nor corrected pairwise tests finds significance (pp. 7, 28). The loss-landscape conclusions also rely on architectures from single search trajectories and UMAP projections, limiting claims about the global space (pp. 8–10)."
+        ],
+        "score_rationale": "The grammar-aware alignment mechanism has meaningful novelty and promising runtime behavior in typical sampled cases. However, central claims of semantic metric validity, shortest-path equivalence, scalability, and outperforming competitors are not adequately supported or are contradicted by the appendices and significance tests. These issues place the work below the ICLR acceptance threshold, though the underlying tool is promising."
+      }
+    }
+  ]
+}

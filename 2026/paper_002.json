@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_002",
+  "paper_id": "0sXt3wT22y",
+  "number": 741,
+  "title": "DNON: A Brain-Inspired Architecture for Multi-Domain Reasoning with Specialized Neural Modules",
+  "authors": [
+    "Munish Singh",
+    "Namita Mittal",
+    "Arvind Ramachandra"
+  ],
+  "primary_area": "neurosymbolic & hybrid AI systems (physics-informed, logic & formal reasoning, etc.)",
+  "keywords": [
+    "Neural orchestration",
+    "Information geometry",
+    "Brain-inspired architecture",
+    "Multi-tier memory",
+    "Lyapunov stability",
+    "Modular language models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=0sXt3wT22y",
+  "venue": "ICLR 2026 Conference Desk Rejected Submission",
+  "status": "desk_rejected",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    2,
+    0
+  ],
+  "human_mean_rating": 1.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "5KSvmAte31",
+      "forum": "0sXt3wT22y",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission741/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762066530269,
+      "tmdate": 1762915594436,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "7dD5zIpJF9",
+      "forum": "0sXt3wT22y",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission741/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761400510029,
+      "tmdate": 1762915594794,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "UNMofLK8Yq",
+      "forum": "0sXt3wT22y",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission741/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761819918534,
+      "tmdate": 1764360517137,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "wQXhU9Fc3l",
+      "forum": "0sXt3wT22y",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission741/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762221550189,
+      "tmdate": 1762915594295,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes a modular LLM orchestration pipeline with perception, memory, reasoning, and executive roles, routed using purported mutual-information objectives. Although the architecture is ambitious and extensively documented, the central technical claims are not supported: the theory contains invalid arguments, the implementation-to-mathematics mapping is unclear, and numerous experimental inconsistencies make the reported gains unreliable.",
+        "strengths": [
+          "The paper explores a potentially useful systems direction: coordinating frozen LLM calls through explicit functional modules and persistent memory rather than fine-tuning the backbone (pp. 3–5).",
+          "It reports multiple datasets, memory ablations, runtime breakdowns, and a second foundation-model experiment, showing an effort toward broad evaluation (pp. 7–9, 29–38).",
+          "Prompts, hyperparameters, and pseudocode are unusually extensive, which provides some transparency about the intended pipeline (pp. 25–29, 52–57)."
+        ],
+        "weaknesses": [
+          "The theoretical results are unsound. The Information Partitioning proof infers greater task mutual information from greater representation entropy using only an upper bound, while assuming without justification that modular parameter allocation increases entropy (pp. 17–18). The specialization and memory “proofs” largely assume their conclusions, and the convergence derivation omits uncontrolled transfer/coupling terms and mishandles stochastic noise (pp. 18–20).",
+          "The claimed MI routing is insufficiently defined and appears nearly inactive. The text says module outputs are scored for informativeness “with respect to the target,” raising label-access concerns at inference (pp. 5, 7–8), while the AIME weights remain approximately uniform at 0.333 with entropy 1.0 and show essentially no success correlation (pp. 47–51). This directly weakens claims of dynamic specialization and information-theoretic orchestration.",
+          "The empirical record is internally inconsistent and does not establish a fair controlled comparison. Table 2 reports RAG MultiArith 86.4 and DNON HotpotQA 94.4, whereas nearby prose gives 76.4 and 96.2 (pp. 7, 30–31); HotpotQA baseline/trained and fine-grained accuracies also conflict across pp. 7, 34–35, and 43. Metrics are ambiguously called “accuracy” for SQuAD/HotpotQA, significance procedures and fold usage are inadequately specified, and DNON uses multiple specialized API calls and strong task-specific prompts against weaker single-prompt baselines (pp. 6–8, 25–29)."
+        ],
+        "score_rationale": "The modular prompting idea has some practical interest, but decisive claims of principled MI routing, convergence, specialization, and memory complementarity are not technically established. Near-uniform routing, questionable target dependence, unfairly controlled baselines, and pervasive numerical contradictions prevent confidence in the reported improvements. I therefore rate it well below the acceptance threshold; uncertainty is low because these issues are visible in the supplied manuscript itself."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes orchestrating frozen LLMs through mutual-information routing and a three-tier memory system. Although the modular goal is interesting, the implementation does not convincingly realize the claimed dynamic architecture, the theoretical guarantees are invalid or unsupported, and extensive numerical inconsistencies make the empirical conclusions unreliable.",
+        "strengths": [
+          "The modular decomposition and attempt to train only lightweight orchestration around frozen models address a relevant efficiency and interpretability problem (pp. 3–5).",
+          "The manuscript reports multiple datasets, memory ablations, timing breakdowns, prompts, and pseudocode, reflecting an effort toward broad evaluation and implementation transparency (pp. 6–9, 25–29, 52–57).",
+          "The AIME evaluation adds a more challenging benchmark and includes problem-level routing and runtime statistics (pp. 47–51)."
+        ],
+        "weaknesses": [
+          "The claimed theory is not sound. Theorem 1 uses an incorrect/insufficient entropy decomposition and turns an upper bound into a performance conclusion; Theorems 2 and 4 largely assume the desired specialization; and Theorem 3 ignores transfer terms, chooses an unjustified contraction constant, and mishandles stochastic noise (pp. 17–20). The implemented moving-average diagnostic is not evidence for that convergence theorem (p. 57).",
+          "The practical system runs Perception, Memory, and Reasoning in a fixed sequence before routing, so it is not conditional computation and cannot avoid their cost (p. 5). Routing is defined using target information without a clear target-free inference procedure (pp. 5, 7–8), while weights are almost uniform and entropy is approximately maximal on AIME (pp. 47–51), contradicting strong claims of specialization. Moreover, module roles are explicitly imposed by highly task-specific prompts, despite claims that specialization emerges without supervision (pp. 26–27).",
+          "The evidence is internally inconsistent and inadequately controlled: RAG MultiArith is 86.4% in Table 2 but 76.4% in prose; HotpotQA is variously 94.4%, 96.2%, 83.2%, and 82.03%; runtime values also conflict (pp. 7, 30–35, 43). Table 4 duplicates suspicious counts across MultiArith and SQuAD and contradicts the stated MultiArith dominance (p. 37). Comparisons use several LLM calls and specialized prompts against weaker single-prompt baselines, statistical testing and split construction are insufficiently specified, and the “Only Routing” ablation still reports substantial memory time (p. 38)."
+        ],
+        "score_rationale": "The high-level orchestration idea has some potential, but the paper's central contributions—MI-optimal dynamic routing, emergent specialization, convergence guarantees, efficiency, and empirical superiority—are not supported by the supplied evidence. The invalid proofs, nearly uniform routing, fixed multi-call execution, unfair or unclear controls, and pervasive result inconsistencies are decisive flaws. Verification uncertainty remains because the referenced code is not part of the supplied manuscript, but the manuscript itself already contains enough contradictions to warrant a very low score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "DNON proposes a modular four-role LLM pipeline with three memory stores and mutual-information-based routing. The high-level combination is potentially interesting, but the supplied manuscript does not establish that its learned router, memory dynamics, or theoretical machinery cause the reported gains. The implementation appears largely to be sequential, task-specific prompting of frozen API models, while crucial training and evaluation details are inconsistent or circular.",
+        "strengths": [
+          "The paper explores a relevant direction: coordinating frozen foundation models through modular routing and explicit memory rather than fine-tuning every model (pp. 3–5).",
+          "It reports several baselines, component ablations, runtime breakdowns, and a second foundation-model implementation, indicating an effort toward broad empirical evaluation (pp. 7–9, 29–38).",
+          "Prompts, hyperparameters, pseudocode, and problem-level AIME outputs are extensively documented in the appendices (pp. 25–29, 47–57)."
+        ],
+        "weaknesses": [
+          "The technical foundation is unsound. Theorem 1 uses an invalid entropy decomposition and then infers greater task mutual information from representation entropy; Theorems 2 and 4 largely assume their conclusions; and the convergence proof drops routing/transfer terms and mishandles contraction and stochastic noise (pp. 17–20). Algorithm 1 also updates LLM parameters despite repeated claims that API LLMs are frozen, and end-to-end differentiability through generated text/API calls is not explained (pp. 5–6, 52).",
+          "The experiments do not isolate the proposed mechanism. DNON receives multiple specialized calls and strongly task-specific prompts containing answer heuristics, whereas baselines use much simpler prompts (pp. 26–28). Routing is nearly uniform—especially on AIME, where weights are approximately 1/3, entropy is 1.000, and correct versus incorrect routing is essentially identical—contradicting claims of meaningful specialization (pp. 47–51). Moreover, estimating informativeness with respect to target Y raises an unresolved label-leakage/inference-time circularity concern (pp. 5, 7–8).",
+          "Reported evidence is internally inconsistent and lacks a reliable evaluation protocol. Table 2 conflicts with the prose on RAG and DNON scores (pp. 7–8), timing values vary across sections (pp. 7, 31, 34–35), and module distributions conflict across Tables/Figures and text (pp. 29–30, 37). Metrics and standard splits are insufficiently specified, statistical tests are not defined, and five-fold evaluation over 500-item subsets is unclear for established benchmarks (pp. 6–7, 30)."
+        ],
+        "score_rationale": "The modular idea has some promise and the appendices are extensive, but the claimed theory contains fundamental errors and the empirical comparison is confounded, inconsistent, and does not demonstrate effective information-theoretic routing. These issues undermine both soundness and the central novelty claim, warranting a strong reject."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "DNON proposes a four-module frozen-LLM orchestration system with mutual-information routing and three memory tiers. The presentation is extensive, but the claimed routing, theoretical guarantees, and empirical advantages are not supported by a coherent or reliable evaluation.",
+        "strengths": [
+          "The modular orchestration objective is ambitious and combines routing, explicit memory, and heterogeneous frozen models in a potentially useful system design (pp. 3–5).",
+          "The appendices provide prompts, hyperparameters, pseudocode, timing breakdowns, ablations, and an attempted second-backend evaluation, offering more implementation detail than the main text alone (pp. 25–38, 52–57).",
+          "The paper attempts broad evaluation across arithmetic, extraction, multi-hop QA, and AIME rather than relying on a single benchmark (pp. 6–9, 47–51)."
+        ],
+        "weaknesses": [
+          "The mathematical results are invalid or unsupported: Theorem 1 uses an incorrect entropy decomposition and unjustified entropy-to-task-information inference; Theorem 3 drops routing/transfer terms and mishandles stochastic noise; Theorem 4 merely asserts specialization from random initialization (pp. 17–20). Thus the advertised convergence and optimality guarantees do not follow.",
+          "The implementation/evaluation does not isolate the proposed mechanism. Routing is described using information about target Y, creating ambiguity or possible label leakage (pp. 5, 7–8), while gradients cannot propagate through frozen API-generated text as claimed without a clearly specified surrogate. DNON also receives multiple specialized, task-specific LLM calls and prompts versus much weaker single-prompt baselines, with no matched-call/token control (pp. 5–7, 26–29).",
+          "The evidence is internally inconsistent and often contradicts the conclusions: RAG MultiArith is reported as 86.4% in Table 2 but 76.4% elsewhere, HotpotQA as 94.4% versus 96.2%, and SQuAD uses incompatible accuracy/EM/F1 figures (pp. 7, 30–31). Moreover, AIME routing weights are essentially uniform, entropy is 1.000, and correct versus incorrect cases have nearly identical weights, directly undermining claims of meaningful dynamic specialization (pp. 47–51)."
+        ],
+        "score_rationale": "The core idea has some architectural interest, but decisive theoretical errors, unclear target-dependent routing, unfair baseline budgets, pervasive result inconsistencies, and nearly uniform observed routing make the main claims technically unsound. These issues require a fundamental redesign and re-evaluation rather than a routine revision."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "DNON orchestrates frozen LLM calls through purported mutual-information routing and three memory tiers. Although the modular engineering idea is potentially interesting, the manuscript does not establish that its proposed information-theoretic machinery—rather than extra calls, prompts, or target leakage—causes the reported gains. Major theoretical errors, inconsistent results, and weak controls make the central claims unsupported.",
+        "strengths": [
+          "The paper explores a practically relevant direction: improving frozen foundation models through modular orchestration rather than parameter-intensive fine-tuning (pp. 3–5).",
+          "It reports several datasets, component ablations, runtime measurements, prompts, and extensive implementation-oriented pseudocode (pp. 7–9, 25–29, 52–57).",
+          "The AIME evaluation adds a more difficult benchmark and includes per-question outcomes and timing (pp. 47–51)."
+        ],
+        "weaknesses": [
+          "The theory is not sound. The entropy identity and DPI argument in Theorem 1 do not imply superiority over a monolithic model; Theorems 2 and 4 largely assume or assert their conclusions; and the convergence proof drops routing/transfer terms and uses an unjustified contraction bound (pp. 17–20). Thus the advertised guarantees are not established.",
+          "The experimental design does not isolate DNON. Routing is described as measuring informativeness with respect to the target, but how this avoids label use at inference is unclear (pp. 5, 7–8). Dataset-specific prompts encode answer-relevant heuristics (pp. 26–27), and there is no matched multi-call/prompt-ensemble baseline, despite DNON invoking several expensive LLM modules. AIME routing is essentially uniform (weights near 1/3 and entropy 1.000), yet its gain is attributed to dynamic specialization (pp. 47–51).",
+          "Reporting is internally inconsistent and undermines reproducibility: MultiArith RAG is 86.4% in Table 2 but 76.4% elsewhere (pp. 7, 30); SQuAD metrics and timings vary across sections (pp. 7, 30–35); Table 4 conflicts with surrounding module counts (p. 37); Algorithm 1 updates LLM parameters despite repeated frozen-model claims (pp. 3–6, 52). The abstract's reduced-cost claim also conflicts with the reported 2–16× slowdown versus RAG (pp. 1, 7)."
+        ],
+        "score_rationale": "The high-level modular orchestration concept has some merit, but the decisive novelty and soundness claims depend on invalid proofs and experiments lacking leakage-resistant, compute-matched controls. Extensive appendices do not resolve the contradictions; substantial rederivation and reevaluation would be required."
+      }
+    }
+  ]
+}

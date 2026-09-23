@@ -1,0 +1,581 @@
+{
+  "year": 2025,
+  "package_id": "paper_021",
+  "paper_id": "hXA8wqRdyV",
+  "number": 1621,
+  "title": "Jailbreaking Leading Safety-Aligned LLMs with Simple Adaptive Attacks",
+  "authors": "Maksym Andriushchenko; Francesco Croce; Nicolas Flammarion",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "Jailbreaking; adversarial attacks; adversarial robustness; AI safety",
+  "forum_url": "https://openreview.net/forum?id=hXA8wqRdyV",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    6,
+    6,
+    6,
+    5,
+    6
+  ],
+  "human_mean_rating": 6.142857142857143,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "In their study, the authors explore the vulnerability of safety-aligned Large Language Models (LLMs) to adaptive jailbreaking attacks, demonstrating that even models designed for robustness against harmful prompts can be compromised. They employ a methodology based on modifying adversarial prompts and optimizing suffixes via random search to maximize target log probabilities, achieving a 100% success rate across several LLMs including Vicuna-13B, Mistral-7B, and different versions of GPT and Claude. This paper underscores the adaptability required in attack strategies, tailored to exploit specific model vulnerabilities and interfaces, and extends their findings to the detection of trojan strings in poisoned models, highlighting significant security concerns for real-world applications of LLMs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- This paper raises an interesting perspective on the safety vulnerabilities in LLMs, highlighting the critical need for ongoing advancements in AI security to effectively address these emerging threats.\n\n- This paper is commendable for its extensive experimental coverage, which spans a wide array of popular LLMs, providing a comprehensive understanding of the techniques’ effectiveness across different model architectures and configurations."
+        },
+        "weaknesses": {
+          "value": "- The paper heavily utilizes custom prompt templates that instruct the LLM to bypass safety mechanisms by avoiding certain words and phrases, which appears to significantly contribute to the success of the attacks. However, the roles and effectiveness of random search and self-transfer techniques are not thoroughly discussed beyond demonstrating an increase in attack success rates. A deeper exploration of how these methods specifically enhance the attacks could provide a clearer picture of their contribution and potential for generalization across different models.\n\n - While the paper provides interesting insights into exploiting LLM vulnerabilities through prompt engineering, it seems to lack depth in novel algorithmic development or thorough analytical rigor."
+        },
+        "questions": {
+          "value": "- Can the authors provide more detailed explanations of how the adversarial suffixes were optimized? What specific characteristics of these suffixes make them effective in bypassing the safety mechanisms of LLMs?\n\n- The study employs a variety of custom prompts combined with different techniques across several LLMs, leading to diverse outcomes. Can the authors provide a deeper analysis or discussion on how different prompt configurations influenced the effectiveness of attacks across the models tested?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "m5tBHPrsKB",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_dr4H"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_dr4H"
+      ],
+      "number": 7,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731432152101,
+      "cdate": 1731432152101,
+      "tmdate": 1732582262602,
+      "mdate": 1732582262602,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents results for adaptive attacks on a variety of models. They demonstrate that it is possible to circumvent existing defenses by using attacks targeted to the model/defense. Their attack uses a random search based attack to generate an adversarial suffix, in addition to a prompt customized to the model being attacked. They demonstrate that their attack can successfully attack GPT-4o and other closed source models, in addition to a range of open source models."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper demonstrates that existing defenses are quite easy to circumvent using adaptive attacks. The combination of prompt engineering and adversarial suffix search is a good demonstration of how different techniques may be combined to effectively attack models.\n\n2. Especially as research on defenses and attacks progress, adaptive attacks become more realistic possibilities. This is a good demonstration of their effectiveness.\n\n3. Experiments are performed on a wide range of models, both open and closed source.\n\n4. The efficacy of the random-search based attack is important, and demonstrates that closed-source models are more vulnerable than previously thought."
+        },
+        "weaknesses": {
+          "value": "Most weaknesses in this paper have to do with organization or comparison to prior results. However, they are significant enough that I am not comfortable accepting the paper without these points resolved:\n\n## 1. Comparison to prior work\n\nMy main concern is that the evaluation comparisons are very inconsistent. Whereas this work presents their own evaluations using a split of 50 samples from AdvBench, they present comparisons to prior work using different data and evaluation methods. While there are notes on this in the text, this is not a fair comparison of results. While the results presented are convincing, the lack of adequate comparison makes it very hard to situate this work in existing literature and will make it very hard to build upon. The prior attacks are also not clearly referenced in the main summary in Table 1, making it impossible to see what is being compared against. Comparisons between this work and prior work needs to be standardized.\n\n## 2. Organization\nThe organization of the paper is somewhat hard to follow, particularly when it comes to Section 5. It was not entirely clear to me how this section fits with other results in the paper, and I feel that it could be better contextualized.\n\n## 3. Data documentation\nDocumentation on data used for training and testing is vague. For Table 1, it says results are reported on a subset of 50 samples from AdvBench, however it is not clear what this subset is, or whether this is the set of 50 that is used to train the attack."
+        },
+        "questions": {
+          "value": "1. What is considered a significant number of false positives by the LLM judge?\n\n2. Is the training and test data distinct for this attack? It is not clear from the text, which mentions a set of 50 samples from AdvBench for both."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "FQ1EsWYsOi",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_v3C3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_v3C3"
+      ],
+      "number": 6,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730715422642,
+      "cdate": 1730715422642,
+      "tmdate": 1732530318075,
+      "mdate": 1732530318075,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes an adaptive jailbreaking attack, which aims at attacking safety-aligned language models (LLMs), demonstrating that even the latest models are vulnerable to these attacks. The authors use targeted prompts and random search methods to bypass safety measures in models, achieving a 100% attack success rate across multiple models with additional enhanced methods. The experimental results include a range of models and APIs, showing that approaches like self-transfer, prefilling, and targeted adversarial suffixes effectively achieve jailbreaks across various LLMs. Additionally, the paper reports success in trojan detection by applying similar techniques."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. This paper focuses on black-box models. The proposed method can have a very high attack success rate on close-source LLMs such as GPT and Claude.\n\n2. The analysis of self-transfer is insightful. \n\n3. Beyond jailbreaking, the paper successfully applies its adaptive techniques to trojan detection."
+        },
+        "weaknesses": {
+          "value": "1. Though the proposed method is designed for black-box models, attacking black-box models such as GPT4o highly relies on the powerful initial prompt. And in the paper, the authors use a custom prompt for GPT4o, which restricts the usage of the proposed method.\n\n2. The search space for the proposed method is very large, how to effectively search the replaced token is a problem that this paper does not discuss (for jailbreaking).\n\n3. The attack strategies are tailored to individual models, which limits their generalizability and may require frequent updates as models evolve."
+        },
+        "questions": {
+          "value": "1. How do the authors guarantee the effectiveness of random search?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LwsHY6Hrx2",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_LQ5H"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_LQ5H"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730684134258,
+      "cdate": 1730684134258,
+      "tmdate": 1732819381229,
+      "mdate": 1732819381229,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper discusses methods for jailbreaking different frontier LLMs, achieving high success rates across many LLMs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The results are fairly strong, but the insights from the paper are not so clear. The paper also has missing baselines and overclaim at points (see my review). To the authors: if you fix those, I would be happy to recommend acceptance.\n\n- The results overall seem strong in terms of ASR, especially with the range of models tested. Good job.\n- I like the self-transfer approach, this makes sense."
+        },
+        "weaknesses": {
+          "value": "- I'm left uncertain what the main message or contribution of the paper is. Prefill? Log-prob random search? Adaptivity? I'd suggest trying to focus more on some key take aways, and linking the different sections of the paper. I also don't really understand how the backdoor / trojan section links to the rest of the paper. Though the approach in that section made sense.\n- One weakness with the attack is that it would be extremely easy to detect with monitoring. E.g., the user making the request \"don't start with \"I can't assist with that\"\" is suspicious. I think this is fine, but please discuss this in the paper.\n- There are many missing baselines, such as Many Shot Jailbreaking, AutoDAN. I think MSJ is likely to be an effective attack in particular, and I would expect it to get 100% success rate? Is there are reason you didn't include this?"
+        },
+        "questions": {
+          "value": "- *Pg 3: why are system prompt changes made for Claude? Are the results in Table 1 made with the modified system prompt? If so, Table 1 seems to be overclaiming.\n- In table 1, I don't fully understand what the \"prev\" and \"Ours\" is? Because there are e.g., known jailbreaks on Claude Opus (Many Shot Jailbreaking, Pliny's Attacks). As a result, Table 1 seems to be overclaiming to me.\n- How sensitivity are the results to the 10/10 GPT-4 Jailbreak Score?\n- Do you search for universal adversarial suffixes? Or single ones?\n- Line 220: the self-transfer approaches makes sense to me, I like it. The main question I have is how you are choosing / ranking the difficulty of different prompts?\n- \"Recent work showed the possibility of implanting backdoor attacks during the RLHF training\nof LLMs by poisoning a small percentage of the preference data with a universal suffix.\" Please add citations."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "It3je0bsKW",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_82AN"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_82AN"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730588580102,
+      "cdate": 1730588580102,
+      "tmdate": 1733164135791,
+      "mdate": 1733164135791,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper develops a prompt template that is modified with an adversarial suffix found through random search that jailbreaks all investigated models on nearly all investigated harmful requests. Furthermore, the random search is proposed to be initialized on adversarial suffixes found on easier-to-jailbreak requests. For Claude models where random search can't be performed because there is no access to the logprobs, a prefilling attack is proposed. Lastly, the paper provides a simple method to find triggers in models trained with backdoors."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "* The paper is very well written and easy to follow.\n* The proposed method outperforms the state-of-the-art in jailbreaking for a wide-range of current LLM models.\n* The proposed method on finding triggers in backdoored models is simple and won a recent competition.  \n* The code is included in the submission."
+        },
+        "weaknesses": {
+          "value": "1. The cornerstone of the method seems to be the static prompt template from Fig. 1, which is then slightly adapted with an adversarial suffix found through random search. Here, I wonder what is the actual scientific value and contributions to the scientific community. In particular, it was already known that safety-aligned LLMs can be jailbreaked and it's not surprising that with more engineering effort, the jailbreaking percentage can be further increased. In particular, there are no guidelines (or systematic method) presented on how the prompt template was created or could be adapted for other models. Such insights/guidelines for adaptive attack generation are e.g., provided by Tramèr et al. (2020) for image classification. That such insights will be given is mentioned in lines 93-98 in the main draft, however, I could not find such insights in the subsequent text. \n2. The adaptivity of the attack is limited. This is related to the above point that it is based on a static prompt template reused for most models (except e.g., GPT-4o which has its own prompt template). While the random search of course adapts the method slightly to each model, an adaptive prompt design seems crucial (given e.g. 100% ASR of the prompt alone on GPT-3.5 Turbo, for which it was developed, and close to 0% on the other models).\n3. The part on trojan detection seems rather disparate from the rest of the paper. In particular, in the related work, backdoor attacks for LLMs are not discussed and no single work on detecting triggers or on backdoor attacks in general is cited. (Backdooring is also never explained.)\n4. I'm missing some experimental details and refer to the questions for this.\n\nMinor weakness:  \n5. Slight overstatement. In line 82/83 and TL;DR 100% attack success rate is claimed on all leading safety-aligned LLMs. GPT-3.5 Turbo is defined as one of such leading safety-aligned LLMs. However, GPT-4 Turbo has an attack success rate of 96%."
+        },
+        "questions": {
+          "value": "1. Self-transfer: I wonder how the authors concretely define a simple example? 100% ASR with pure RS? What if no sample has 100% ASR? Which of the \"simple examples\" do you choose to use to initialize the RS for the hard examples? Does it make a difference which ones you choose?\n2. Prefilling: Can you provide details on how the prefilling option is exactly used? \n3. From combinatorial optimization, it is known that initialization for random search is important (or for any local search algorithm). However, for me, it is not clear if the benefit is actually from the initialization point, or because the random search is given now \"twice the budget\". I.e., it can first search an adversarial suffix with N=10.000 and then optimize it for another prompt again with N=10.000.\n4. What is the effectivity of the random search + self transfer without using the particular static prompt template? E.g., just providing the goal and adv_suffix? Connected, have you ablated parts of the prompt template?\n\nMinor\n* Link Appendix A.2 in Section 5, I was wondering what k you chose and by accident discovered you give the details there. I think, one could probably already include this information in the main text.\n* Line 423: Abbreviation RLHF never introduced before.\n* Figure 4 (Appendix B) is not color-blind friendly. I can't distinguish 15 from 25 tokens and 5 from 60 tokens.\n\nGiven the weaknesses and questions are appropriately addressed, I'm considering adapting my score.\n\n**References**.  \nTramèr et al. \"On adaptive attacks to adversarial example defense\", NeurIPS 2020"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9QhLfP020q",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_pkoY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_pkoY"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730546702333,
+      "cdate": 1730546702333,
+      "tmdate": 1733162453696,
+      "mdate": 1733162453696,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes an adaptive attack that specifies a set of prompt templates and uses a random search algorithm to iteratively craft jailbreaking prompts based on the templates till it leads to successful jailbreaking. The paper also tests the transferability of the attack and a direct prefilling attack. The paper evaluates a large number of models in the evaluation section."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "+ The evaluation section covers a large number of models.\n\n+ The paper summarizes key findings and provides recommendations for better model robustness."
+        },
+        "weaknesses": {
+          "value": "- I have concerns regarding the technical novelty of the proposed technique. In addition, the proposed method's effectiveness relies on the proposed adversarial prompt templates, where the authors do not provide a scientific way of obtaining them. Overall, the paper is more like a technical report with a set of methods that the authors find useful after a large number of trials. It lacks the rigorous scientific designs, challenges, and solutions that are required and valued in a research paper. \n\n- Although discussing them, the paper does not compare the proposed method with the key-related work. It again is a concern for a research paper. To demonstrate that the proposed method is effective, IMOH, I think it is necessary to compare it with existing works. \n\n- The evaluation setup is not clear. For example, it is not clear what is the tasks and data for jailbreaking each model. Not sure if the goal of attacking each model is to force the model to answer harmful questions or output toxic or biased outputs regardless of input. It should affect the judgment model as well, which is also not specified in the paper. The setup of the trojan attack is clear, not sure if the attack above shares the same setups and goals as the trojan attacks. \n\n- The proposed attack is still heavily emphasized on appending prefix or suffix tokens, which is not diverse or realistic enough."
+        },
+        "questions": {
+          "value": "1. What are the key technical challenges and contributions of the proposed method?\n\n2. How to come up with the adversarial prompt templates? How much the proposed method will affect in performance of the template changes? \n\n3. Can we improve the proposed attack by replacing random search with some more effective search, such as fuzzing or RL [1]?\n\n4. What are the setups of the jailbreaking attacks and what are the judgment models?\n\n5. How to justify that the proposed method can test the model comprehensively and provide realistic attack prompts? \n\n[1] When LLM Meets DRL: Advancing Jailbreaking Efficiency via DRL-guided Search"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "4cLJxaz3q6",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_2GYX"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_2GYX"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730484700584,
+      "cdate": 1730484700584,
+      "tmdate": 1731427453555,
+      "mdate": 1731427453555,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper uses the adaptive method based on logprob to jailbreak well-aligned LLMs, and achieves the near-perfect success rates."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "+ The method is straightforward and easy to understand\n+ The attack success ratio is impressive with such straightforward methods\n+ The evaluation is comprehensive, with many well-aligned models evaluated\n\n\nFirst of all, I think the method of the paper is very straightforward. However, with such a straightforward method, it could achieve a near-perfect attack success rate in the black-box setting. It shows the signal of attack saturation even in the black-box setting, which needs us to do more study on the defense side instead of on the attack side.\n\nTo be honest, I have seen and reviewed many jailbreak attack papers that are either too complicated with the agentic design or too simple that can be reduced to a new prompting trick, while most of them just achieve marginal improvement compared with old jailbreak papers such as PAIR. With those papers flooding into ML, AI, security and NLP domain, it not only degrades the quality of the conferences but also wastes the reviewer's efforts and makes it much more challenging to find a really impactful LLM alignment work. Since this work indicates the saturation of the attack success ratio, then it shows that the current defense or alignment is not comprehensive and the LLM security community should focus more on better alignment. Also, for those works with just some prompting diffs that could be somewhat effective and lead to higher (or not) attack success rate compared with old works, I wish this paper could act as the whistleblower. If the jailbreak attack success ratio is not even near-perfect, then we should let the community know it is better to reconsider whether to submit such work (or even consider whether to do such work before operation). I wish we could set a higher bar for the LLM security community, especially for the jailbreak attack works."
+        },
+        "weaknesses": {
+          "value": "- Lack of further discussion of the insights of the paper\n- Lack of baseline\n- Lack of potential defense\n- Lack of ethical consideration and response disclosure\n\nWhile I appreciate this work, I also have higher expectations for this work in our community, and thus I have identified some weaknesses that could make this work better. First, as discussed in the strengths, I think the discussion of this paper could go further to give better insights to the community. Second, I understand that for some models there are no established baselines and some baseline methods show significantly lower attack success rates, as a research paper, I still recommend having some well-known baselines reproduced instead of just directly referring to the reported numbers in prior works. It would make the evaluation more convincing. Also, I would suggest testing the attack with some defense approaches. I am curious how the attack would perform when there are defenses like SmoothLLM and RPO. Lastly, since it is an attack paper and it shows strong attack capability, I think there's a need for ethical concern discussion and what's your efforts to mitigate the ethical concern, such as response disclosure to the LLM developer you tested in your work.\n\nSome minor issues: some models' versions are not clear enough, like what's the specific version of gpt4o and llama-3."
+        },
+        "questions": {
+          "value": "See the weakness above, I **can raise the score** if the authors could address all these concerns"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "Yes, Potentially harmful insights, methodologies and applications"
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "This is a jailbreak attack and shows strong attack performance, which could be used with malicious intent."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "eSKd9SZAk2",
+      "forum": "hXA8wqRdyV",
+      "replyto": "hXA8wqRdyV",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_QTMV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1621/Reviewer_QTMV"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1621/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730403499280,
+      "cdate": 1730403499280,
+      "tmdate": 1732574845189,
+      "mdate": 1732574845189,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A broad empirical study showing that model-specific combinations of prompt templates, logprob-guided random search, self-transfer, and response prefilling can jailbreak many open and proprietary LLMs at very high rates. The work is practically significant and unusually comprehensive, though its strongest universal-sounding conclusions exceed what the evaluation establishes.",
+        "strengths": [
+          "Strong empirical breadth: the attacks reach near-perfect reported ASR across numerous model families, including adversarially trained R2D2 and frontier APIs (pp. 5–9, 28).",
+          "The model-adaptive case studies are informative: self-transfer materially improves optimization (p. 6), an in-context format defeats R2D2 (p. 7), and system-prompt placement/prefilling strongly affects Claude results (pp. 22–23).",
+          "Useful reproducibility and validation material includes an explicit algorithm, runtime discussion, ablations, output examples, multiple judges, and a direct same-benchmark baseline comparison (pp. 17, 21–27)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: random search, adversarial prompting, transfer, and response prefilling are individually simple or closely related to prior attacks; the main contribution is their careful adaptation and combination rather than a fundamentally new attack framework (pp. 3–5, 15–16).",
+          "The headline 100% results use only 50 requests and request-specific optimization, with no held-out behaviors; prompt/model choices and stopping are adaptively tuned, so the claim that models are “completely non-robust” is broader than the measured threat models support (pp. 3–5, 10).",
+          "Several comparisons are not controlled for dataset, judge, restarts, query budget, or access assumptions, as the paper itself flags (pp. 2, 6–9). Prefilling and editable system prompts also grant stronger interface access than ordinary users may have, while Claude 2.1’s 100% result contains substantial judge false positives (pp. 22, 25–26)."
+        ],
+        "score_rationale": "The paper offers compelling, reproducible evidence that adaptive evaluation exposes major safety failures, and the R2D2/Claude case studies provide clear practical insight. I lean accept because of the breadth and security relevance, but not strongly: methodological novelty is incremental, and limited held-out evaluation plus heterogeneous threat models and baseline protocols weaken the sweeping conclusions. Some uncertainty remains because proprietary checkpoints and APIs are inherently difficult to reproduce exactly."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "The paper presents a broad empirical study showing that model-specific combinations of prompt templates, logprob-guided random search, self-transfer, in-context prompting, and response prefilling can jailbreak many aligned LLMs. The central methodological lesson—that robustness evaluations require attacks adapted to the target interface and defense—is important, and the reported results are substantial, though the algorithmic novelty is moderate and several headline comparisons are not fully controlled.",
+        "strengths": [
+          "Broad and practically relevant evaluation: the attacks reach very high ASR across open-weight, proprietary, and adversarially trained models, with clear component ablations (pp. 5–9, 22–23, 28).",
+          "The attack components are simple, reproducible, and well described; Algorithm 1, convergence results, runtime discussion, and suffix-length ablation make the random-search procedure reasonably transparent (pp. 6, 17, 21–22).",
+          "Evidence is strengthened by multiple judges and a same-benchmark comparison against GCG, PAIR, and AIM, rather than relying solely on the main GPT-4 judge results (pp. 25–27)."
+        ],
+        "weaknesses": [
+          "Many prominent baseline comparisons use different request sets, judges, restart counts, and access assumptions, as the paper itself notes; therefore claims of outperforming prior methods and achieving robustness breakthroughs are not always apples-to-apples (pp. 2, 6–9, 28).",
+          "The 100% headline often results from request-specific optimization, self-transfer ordering, many queries or up to 100 stochastic restarts, without a consistently matched query/compute budget or repeated-trial uncertainty; the same fixed 50 behaviors are both attack targets and evaluation set (pp. 4–5, 8, 17, 22).",
+          "Novelty is somewhat limited: random token search, transfer, prompting, in-context attacks, and prefilling are individually straightforward or related to prior attacks. The broader claim that models are “completely non-robust” also overgeneralizes from one narrow benchmark and judge-defined threat model, especially given documented false positives for Claude 2.1 (pp. 10, 15–16, 25–26)."
+        ],
+        "score_rationale": "The paper offers a convincing and useful empirical demonstration that adaptive, interface-aware attacks expose failures missed by standardized attacks. Its breadth, artifacts, ablations, and multi-judge checks support acceptance. However, moderate algorithmic novelty, heterogeneous baseline conditions, uncontrolled attack budgets, and overbroad interpretation keep it below a clear high accept. Some uncertainty remains because proprietary checkpoints and APIs are time-sensitive and the supplied text alone cannot verify the released artifacts."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A strong empirical red-teaming study showing that model-specific combinations of prompt templates, logprob-guided random search, self-transfer, in-context examples, and response prefilling can jailbreak many open and proprietary LLMs. The breadth and reproducibility are valuable, though the core algorithms are simple and several headline claims rely on permissive or privileged threat models.",
+        "strengths": [
+          "Broad evaluation across model families, including adversarially trained R2D2, with striking gains over fixed attacks; the method reaches 100% GPT-4-judged ASR on many targets (pp. 6–9, 28).",
+          "Useful, reproducible methodology: the random-search algorithm is explicit, self-transfer materially improves convergence, and runtime is reported (pp. 6, 17, 21–22).",
+          "The authors investigate evaluator robustness using four judges and add a direct, same-benchmark comparison on 100 JailbreakBench behaviors, where their method remains substantially stronger on difficult targets (pp. 25–27)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: random search, adversarial prompt templates, transfer, and prefilling are individually straightforward; the main contribution is an effective model-specific combination rather than a fundamentally new attack principle (pp. 4–5, 15–16).",
+          "Some headline comparisons are not controlled: prior results often use different request sets or judges, while each suffix is request- and model-specific and may use up to 10,000 iterations and multiple restarts (pp. 5–9, 17). The cleaner JailbreakBench comparison yields 78–93%, not universal 100% (pp. 26–27).",
+          "The threat models vary substantially. Modifying system prompts or prefilling the assistant response grants capabilities unavailable to ordinary users in many deployments, weakening the broad claim that deployed models are “completely non-robust”; GPT-4 also produces acknowledged false positives, especially for Claude 2.1 (pp. 8–10, 22–26)."
+        ],
+        "score_rationale": "The paper provides convincing and practically important evidence that adaptive evaluation exposes failures missed by standardized attacks, with unusually broad experiments and useful ablations. However, the algorithmic novelty is incremental, the strongest claims conflate heterogeneous access assumptions, and some 100% results depend on costly per-request optimization, restarts, or imperfect judging. Overall, this is above the acceptance threshold but not an unqualified accept."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A broad empirical study showing that model-specific combinations of handcrafted prompts, logprob-guided random search, self-transfer, in-context prompting, and response prefilling can attain very high jailbreak rates across many open and proprietary LLMs. The central lesson—that robustness evaluations require attacks adapted to the target—is important, though the algorithmic novelty is moderate and the headline 100% rates need qualification.",
+        "strengths": [
+          "Impressive breadth: the attacks cover diverse open-weight and API models, including adversarially trained R2D2, and substantially improve over reported baselines in many settings (pp. 6–9, 28).",
+          "The methods are simple, clearly described, and practically relevant; the paper supplies an explicit random-search algorithm, convergence evidence, runtime information, and useful ablations (pp. 6, 17, 21–22).",
+          "Evaluation goes beyond one judge: additional rule-based, Llama-3-70B, and Llama Guard 2 results largely corroborate high attack success, while the authors explicitly document judge failures (pp. 25–26)."
+        ],
+        "weaknesses": [
+          "Several headline comparisons are not controlled: prior results sometimes use different request sets, judges, restart counts, or threat models, while the proposed attacks receive extensive model-specific adaptation and up to 10,000 iterations and multiple restarts (pp. 2, 4, 6–9). The direct comparison on a common benchmark is stronger but yields 78–93%, not universal 100% (pp. 26–27).",
+          "The evaluation uses only 50 curated behaviors for most claims, optimizes request-specific suffixes directly on every evaluated request, and has no held-out requests or systematic robustness analysis across API/model updates; hence it demonstrates attack existence more than generalizable attack performance (pp. 3, 5).",
+          "The 100% claim is partly judge- and restart-dependent: Claude 2.1 requires 100 restarts and exhibits substantial false positives, including empty template-like outputs rated 10/10 (pp. 22, 25–26). Prefilling also represents a privileged API capability rather than a broadly comparable jailbreak threat model."
+        ],
+        "score_rationale": "The work provides valuable, reproducible empirical evidence and a compelling evaluation message, with unusually broad coverage. However, modest methodological novelty, uneven baseline comparability, limited held-out evaluation, and judge/restart sensitivity prevent a stronger accept score. I am moderately confident, with some uncertainty about reproducibility of proprietary-model results over time."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A broad empirical study showing that model-specific combinations of prompt templates, logprob-guided random search, self-transfer, in-context prompting, and response prefilling can jailbreak many aligned LLMs. The results strongly support the practical message that robustness evaluation should include adaptive attacks, although the algorithmic novelty and evaluation comparability are more limited than the headline 100% rates suggest.",
+        "strengths": [
+          "Impressive breadth across open and proprietary models, including an adversarially trained model, with strong attack rates and useful model-specific adaptations (pp. 5–9, 28).",
+          "Clear, reproducible attack description, convergence evidence, runtime discussion, and meaningful ablations of suffix length, Claude prompt structure, and alternative judges (pp. 17, 21–23, 26).",
+          "The direct same-benchmark comparison substantially outperforms GCG, PAIR, and a template attack on difficult targets such as Llama-2-Chat-7B, supporting the core empirical claim (pp. 26–27)."
+        ],
+        "weaknesses": [
+          "The main 100% headline is obtained through request- and model-specific optimization with up to 10,000 iterations and multiple restarts, while many quoted prior results use different datasets, judges, or budgets; hence much of the main-table comparison is not controlled (pp. 5–7, 17, 28). The controlled JailbreakBench evaluation gives lower 78–93% rates (pp. 26–27).",
+          "Algorithmic novelty is modest: random token search and transfer attacks predate the work, while self-transfer and prefilling are simple heuristics/API exploitation. The definition of “adaptive” is also broad and inconsistently tied to knowledge of a particular defense rather than ordinary model-specific tuning (pp. 15–16).",
+          "Success remains judge-dependent and does not establish response correctness or operational usefulness. The paper documents severe false positives for Claude 2.1 and noticeable disagreement with rule-based/Llama Guard judgments, including 100% GPT-4 ASR versus 80% by the rule judge (pp. 25–26, 28)."
+        ],
+        "score_rationale": "The paper offers a valuable and unusually extensive empirical demonstration with reproducible artifacts and convincing evidence for the importance of model-adaptive evaluation. However, limited methodological novelty, high and uneven attack budgets, partially incomparable baselines, and judge validity concerns keep it below a clear accept-tier score of 8. I am moderately confident because the complete manuscript and appendices are available, though proprietary-model nondeterminism and unverifiable API conditions add uncertainty."
+      }
+    }
+  ]
+}

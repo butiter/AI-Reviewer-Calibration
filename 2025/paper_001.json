@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_001",
+  "paper_id": "Ha6RTeWMd0",
+  "number": 92,
+  "title": "SAM 2: Segment Anything in Images and Videos",
+  "authors": "Nikhila Ravi; Valentin Gabeur; Yuan-Ting Hu; Ronghang Hu; Chaitanya Ryali; Tengyu Ma; Haitham Khedr; Roman Rädle; Chloe Rolland; Laura Gustafson; Eric Mintun; Junting Pan; Kalyan Vasudev Alwala; Nicolas Carion; Chao-Yuan Wu; Ross Girshick; Piotr Dollar; Christoph Feichtenhofer",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "computer vision; video segmentation; image segmentation",
+  "forum_url": "https://openreview.net/forum?id=Ha6RTeWMd0",
+  "venue": "ICLR 2025 Oral",
+  "status": "accepted_oral",
+  "decision": "Accept (Oral)",
+  "human_ratings": [
+    10,
+    8,
+    8,
+    10
+  ],
+  "human_mean_rating": 9.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper, the authors build a data engine to generate a large-scale video segmentation dataset. Using the datasets, they train a strong yet efficient model."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. With the data engine pipeline, the paper provides an extremely large-scale video segmentation dataset compared to previous datasets. This will allow the researchers to tackle much more challenging tasks in video segmentation.\n\n2. Based on the experimental results, the trained SAM2 model outperforms the combination of SAM and existing state-of-the-art trackers by a large margin. Therefore, the data scaling-up with the data engine is effective, as described by the authors. The results also imply the potential of further data scaling up with the data engine.\n\n3. For image segmentation, the SAM2 model can also perform better, even with a much smaller computational cost. This will facilitate the applications of the SAM2 model. In a constrained platform, it is always better to have a good and efficient model.\n\n4. The paper provides detailed information about the implementations of the data engine and data distribution. It is also good that the authors release their data and models. It would be even better if the training code and data engine could be publicly available."
+        },
+        "weaknesses": {
+          "value": "1. Although this paper uses a simpler structure and performs well, it is still possible to use previous structures, such as Cutie [R1], to achieve even better performance with SAM2 data. It would be better if the structure could be explored.\n\n2. SAM2 cannot recognize segmented objects like previous models [R2, R3]. It would be better to discuss this since it may limit the application of this paper. It would also be better to discuss the difference with [R4], which supports image and video segmentation and can recognize the objects.\n\n\n[R1] Putting the Object Back into Video Object Segmentation.\n\n[R2] Open-Vocabulary SAM: Segment and Recognize Twenty-thousand Classes Interactively.\n\n[R3] Semantic-SAM: Segment and Recognize Anything at Any Granularity.\n\n[R4] OMG-Seg: Is One Model Good Enough For All Segmentation?"
+        },
+        "questions": {
+          "value": "NA"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "NA"
+        },
+        "rating": {
+          "value": 10
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "YTu5kFXmZ4",
+      "forum": "Ha6RTeWMd0",
+      "replyto": "Ha6RTeWMd0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_DAoa"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_DAoa"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission92/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730522506865,
+      "cdate": 1730522506865,
+      "tmdate": 1732741653483,
+      "mdate": 1732741653483,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposed a strong foundation model for promptable visual segmentation in images and videos. It proposed a new data engine  that enhances model and data through user interaction, creating the largest video segmentation dataset to date.  A streaming memory augmented transformer is proposed  for real-time video processing."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "1. This paper proposed a strong foundation model for the video and image segmentation. The data, model, and insights will serve\nas a significant milestone for video segmentation.\n\n2. The writing of the paper is good and the paper is easy to understand."
+        },
+        "weaknesses": {
+          "value": "1. More experiments should be conducted. For example, more interactive VOS methods should be compared.\n[1*] Modular interactive video object segmentation: Interaction-to-mask, propagation and difference-aware fusion. CVPR 2021\n[2*] Memory aggregation networks for efficient interactive video object segmentation. CVPR 2020\n\n2. More VOS datasets (e.g., VIPOSeg[4*]) should be included in this paper. \n[4*] Video Object Segmentation in Panoptic Wild Scenes. IJCAI 2023"
+        },
+        "questions": {
+          "value": "1. How is the annotation quality of the SA-V dataset, and how do you ensure the quality of the annotations? What is the difficulty level of this dataset (such as the movement of objects in the video, occlusions, etc.) compared to previous datasets?\n\n2. Has SAM 2 attempted stability testing for results on ultra-long videos? Is object tracking in long videos more prone to errors?\n\n\n3. If the memory bank is of fixed size, will it lead to forgetting when dealing with long videos?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "M5CFKoUyTa",
+      "forum": "Ha6RTeWMd0",
+      "replyto": "Ha6RTeWMd0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_DQTY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_DQTY"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission92/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730468091756,
+      "cdate": 1730468091756,
+      "tmdate": 1731427195152,
+      "mdate": 1731427195152,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work addresses promptable visual segmentation in both images and videos. The primary contributions include a new task that generalizes image segmentation to the video domain, a new unified model for video and image segmentation, and a new dataset consisting of 35.5M masks across 50.9K videos. EExtensive evaluations across diverse benchmarks demonstrate that SAM 2 achieves state-of-the-art performance, highlighting its potential to enable \"segment anything in videos.\""
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "* Compared to the original SAM model, SAM 2 improves segmentation accuracy, enabling more precise identification and segmentation of objects in images and videos.\n* The processing speed is approximately six times faster than its predecessor. This allows SAM 2 to generate segmentation masks more quickly, making it suitable for real-time applications.\n* SAM 2 exhibits strong zero-shot transfer capability.\n* The training dataset includes 11 million images and 11 billion masks, providing a robust foundation for new video segmentation tasks for the community.\n* The model and dataset are open-sourced."
+        },
+        "weaknesses": {
+          "value": "From my perspective, there is no obvious weakness in this work. If must to say:\n1. The claimed improvement in running speed is mainly due to the usage of the Hiera image encoder, which may not be viewed as a unique contribution of this study.\n2. The primary contribution lies in a large-scale dataset and pre-trained models, while the technical contribution is relatively limited."
+        },
+        "questions": {
+          "value": "N/A"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "TF56VsyKw5",
+      "forum": "Ha6RTeWMd0",
+      "replyto": "Ha6RTeWMd0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_vraf"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_vraf"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission92/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730447415789,
+      "cdate": 1730447415789,
+      "tmdate": 1731427195295,
+      "mdate": 1731427195295,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper extends SAM to video, which can segment anything in images and videos. This paper has three significant contributions:\n1. The paper expands SAM to video, enabling the segmentation of anything in video.\n2. The paper develops a data engine for promptable video segmentation and constructs a large-scale video segmentation dataset, SA-V.\n3. The paper designs a more efficient architecture for promptable image and video segmentation, demonstrating significant acceleration."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "1. The paper is well-written and easy to follow. \n2. The paper has significant contributions, including a more efficient model architecture, a large-scale SA-V dataset, and fantastic performance.\n3. The paper conducts comprehensive experiments and provides some valuable insights."
+        },
+        "weaknesses": {
+          "value": "The paper does not have significant weaknesses. My concerns and suggestions are listed in the ``Questions\" section."
+        },
+        "questions": {
+          "value": "1. How would existing SOTA VOS methods perform after finetuning on the SA-V dataset? The paper uses SAM+Cutie as a baseline; however, Cutie has not been trained on large-scale data like SA-V. Therefore, I am interested in Cutie's performance after training with the SA-V dataset. After finetuning with SA-V, would SAM+Cutie surpass SAM2? This would not affect the paper's significant contributions, regardless of the results, as SAM2 is an end-to-end model.\n\n2. I suggest the authors should cite some works from VIS [1, 2, 3, 4], VSS [5], and VPS [6, 7, 8] fields in the related works section, as these areas are also highly relevant to this paper.\n\n[1] Video instance segmentation\n\n[2] End-to-end video instance segmentation with transformers\n\n[3] Tube-Link: A flexible cross tube framework for universal video segmentation\n\n[4] DVIS: Decoupled video instance segmentation framework\n\n[5] Vspw: A large-scale dataset for video scene parsing in the wild\n\n[6] Video-kmax: A simple unified approach for online and near-online video panoptic segmentation\n\n[7] Video k-net: A simple, strong, and unified baseline for video segmentation\n\n[8] OMG-Seg: Is one model good enough for all segmentation?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 10
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dvmRgxnB6P",
+      "forum": "Ha6RTeWMd0",
+      "replyto": "Ha6RTeWMd0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_yeQ7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission92/Reviewer_yeQ7"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission92/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730285371267,
+      "cdate": 1730285371267,
+      "tmdate": 1732264389428,
+      "mdate": 1732264389428,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 8,
+        "confidence": 5,
+        "summary": "A highly significant foundation-model contribution that unifies promptable image and video segmentation through streaming memory and introduces the large SA-V dataset. Extensive evaluations show strong interactive, zero-shot, and conventional VOS performance, though some user-efficiency and reproducibility claims are less conclusive than the headline results.",
+        "strengths": [
+          "Strong system-level novelty and impact: the unified promptable task, memory-based architecture, and 35.5M-mask SA-V dataset substantially expand segmentation to videos (pp. 2, 5, 7–8).",
+          "Broad, compelling evidence: SAM 2 outperforms strong baselines across interactive evaluation, 17 zero-shot video datasets, established VOS benchmarks, and 37 image datasets (pp. 9–10, 29–35, 39).",
+          "The paper provides unusually extensive ablations, training details, limitations, dataset documentation, and evidence that SA-V also benefits another architecture (pp. 18–25, 36, 40–44)."
+        ],
+        "weaknesses": [
+          "The claimed >3× interaction advantage relies on simulated oracle interactions and assumed annotation times; frame selection, stopping, and corrective clicks use ground truth, and model tracking time is explicitly omitted (pp. 29–30). A real-user study would better substantiate the experience claim.",
+          "Exact reproducibility is limited because major reported models use a sizeable unreleased internal dataset; the released model is stated to be trained with that internal data, and there is no fully matched public-data-only final model comparison (pp. 8, 24, 39–40).",
+          "Architectural novelty is moderate relative to prior memory-based VOS: many components adapt SAM and established memory-attention ideas, while the strongest novelty and gains appear tied to data scale and engineering. A clearer controlled comparison isolating architecture from training data would strengthen the causal claim (pp. 4–5, 18–21, 36)."
+        ],
+        "score_rationale": "The scale, breadth of evaluation, strong performance, and likely community value merit acceptance. The principal reservations concern oracle-based interactive evaluation, dependence on private training data, and only moderate algorithmic novelty; these temper the score but do not outweigh the substantial empirical and dataset contributions."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 9,
+        "confidence": 5,
+        "summary": "A highly impactful unified foundation model for promptable image/video segmentation, paired with a very large video-mask dataset and data engine. The streaming-memory architecture is conceptually straightforward, but the combination of task formulation, scale, efficiency, and broad empirical performance constitutes a major contribution.",
+        "strengths": [
+          "Exceptional empirical scope and performance: SAM 2 improves interactive segmentation across nine datasets, outperforms strong VOS baselines across 17 datasets, and establishes large gains on standard VOS benchmarks while running in real time (pp. 9–10, 29–39).",
+          "The SA-V dataset and iterative model-in-the-loop annotation engine are substantial contributions: 50.9K videos and 35.5M masks, with controlled evidence of an 8.4× annotation-speed improvement and phase-wise downstream gains (pp. 6–8).",
+          "The paper is unusually complete: architecture/training details, extensive data and model ablations, cross-model dataset validation, limitations, cards, and release commitments materially support reproducibility and broader utility (pp. 18–26, 36, 40–44)."
+        ],
+        "weaknesses": [
+          "The core architectural novelty is moderate: it largely combines SAM-style prompting and decoding with established transformer memory-bank VOS ideas; several new components have limited or mixed ablation gains (e.g., memory count and object pointers on aggregate benchmarks, pp. 19–23).",
+          "Interactive evaluation uses ground truth to choose the worst frame, detect low-quality predictions, and place error-centered clicks; annotation-time estimates are assumption-based and exclude model tracking time, so the claimed interaction advantage may not fully represent real users (pp. 29–32).",
+          "Some evidence is less cleanly reproducible or independent than desired: training includes an unreleased internal dataset, SA-V is collected with the evaluated model in the loop, and at least one nominally zero-shot image benchmark is acknowledged as overlapping training data (pp. 8, 24, 35)."
+        ],
+        "score_rationale": "Despite moderate algorithmic novelty and caveats in the simulated interactive protocol, the work delivers a decisive advance in capability, scale, efficiency, and open resources. The breadth of benchmarks and ablations strongly supports the main claims, warranting a high accept score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 9,
+        "confidence": 5,
+        "summary": "A highly significant extension of promptable segmentation to video, combining a practical streaming-memory model, a very large open video-mask dataset, and extensive evaluation. The architectural ideas are evolutionary rather than fundamentally new, but the integrated system, data engine, scale, and empirical gains constitute a major contribution.",
+        "strengths": [
+          "Compelling task and system design: the unified model supports clicks, boxes, and masks on arbitrary frames while retaining prompted and recent-frame memories, with clear implementation and training details (pp. 3–5, 22–26).",
+          "Exceptionally broad evidence: SAM 2 substantially improves interactive and semi-supervised segmentation across many datasets and prompts, while remaining real-time; it also improves image segmentation efficiency and accuracy (pp. 8–10, 29–39).",
+          "The 50.9K-video, 35.5M-mask SA-V release and iterative data engine are substantial community contributions; controlled annotation measurements, scaling studies, and training another architecture on SA-V support both efficiency and broader dataset utility (pp. 6–8, 18–19, 36)."
+        ],
+        "weaknesses": [
+          "The headline interactive comparison relies on simulated, ground-truth-aware frame selection, stopping, and click placement, plus assumed annotation-time constants rather than a human user study; thus the claimed interaction advantage may not fully transfer to practice (pp. 29–32).",
+          "Architecture-versus-data attribution remains imperfect: the strongest models use massive proprietary/internal training data, and most baselines are not matched for data, capacity, or training compute. The Cutie+SA-V experiment helps but does not fully isolate these factors (pp. 8, 18–21, 24, 36).",
+          "“Segment anything” remains aspirational: failures include shot changes, crowded or similar-looking objects, long occlusions, long videos, and thin fast-moving structures; objects are processed independently without inter-object reasoning (p. 22)."
+        ],
+        "score_rationale": "The work delivers unusually strong empirical performance, scale, breadth, reproducibility commitments, and likely research utility. Although the model is largely a careful synthesis of established components and parts of the interactive evaluation are synthetic, the combined task, model, dataset, and evidence package clearly merits strong acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 9,
+        "confidence": 5,
+        "summary": "A highly impactful foundation-model contribution that unifies promptable image and video segmentation through a streaming memory architecture and introduces a very large video-mask dataset and data engine. The extensive zero-shot, interactive, VOS, efficiency, and ablation results provide unusually strong support for the main claims, although architectural novelty is more evolutionary than fundamentally new.",
+        "strengths": [
+          "The task/model/data package is substantial: PVS generalizes promptable segmentation to videos, while SA-V contains 50.9K videos and 35.5M masks, far exceeding prior VOS datasets (pp. 2–8).",
+          "Evidence is broad and compelling: SAM 2 consistently improves interactive segmentation, 17-dataset VOS transfer, standard VOS benchmarks, and image segmentation while reporting real-time video operation and large image-speed gains (pp. 9–10, 31–39).",
+          "The paper includes strong controlled analyses of data phases, data quantity/quality, architecture, memory design, and transfer of SA-V to another model, helping separate contributions of data and modeling (pp. 18–21, 36)."
+        ],
+        "weaknesses": [
+          "Most architectural ingredients—memory banks, transformer attention, mask propagation, and SAM-style decoding—are established; the novelty lies primarily in their effective integration and scale rather than a new technical principle (pp. 4–5, 22–25).",
+          "Interactive evaluation is simulated using ground-truth IoU to select correction frames and error regions, with annotation-time assumptions rather than an end-user study; consequently, the claimed interaction advantage may not fully translate to realistic use (pp. 29–32).",
+          "Reproducibility and generality are somewhat clouded by substantial proprietary internal training data, while documented failure modes include shot changes, crowded scenes, long occlusions, thin fast objects, and independent per-object processing (pp. 8, 22, 24)."
+        ],
+        "score_rationale": "The scale, release value, strong performance margins, breadth of evaluation, and careful ablations make this clearly acceptance-worthy and potentially field-shaping. I stop short of 10 because the core architecture is largely an incremental synthesis, realistic human-interaction evidence is limited, and some training data are unavailable. Uncertainty is low because the manuscript provides unusually comprehensive experiments and appendices."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 9,
+        "confidence": 5,
+        "summary": "A highly impactful unified system for promptable image and video segmentation, combining a streaming-memory transformer, a large model-in-the-loop video dataset, and extensive evaluation. The technical contribution is more evolutionary than conceptually radical, but the scale, integration, empirical gains, and released artifacts make this a very strong submission.",
+        "strengths": [
+          "Compelling task/model/data integration: SAM-style prompting is extended to videos with streaming memory, prompted-frame retention, object pointers, and occlusion handling, while preserving image operation (pp. 2, 4–5, 22–25).",
+          "Exceptionally broad evidence: SAM 2 substantially outperforms strong video baselines across interactive and first-frame-prompt settings, 17 zero-shot video datasets, and standard VOS benchmarks, while also improving image segmentation speed and accuracy (pp. 9–10, 31–35, 38–39).",
+          "The data engine and SA-V constitute a major resource contribution: controlled annotation-efficiency analysis, independent verification, data-scaling studies, and transfer gains to Cutie support the dataset's utility beyond the proposed model (pp. 6–8, 18–19, 28–29, 36)."
+        ],
+        "weaknesses": [
+          "Architectural novelty is moderate: most components are adaptations or combinations of established SAM, memory-attention, hierarchical-encoder, and VOS ideas; the strongest novelty lies in system construction and scale rather than a new learning principle (pp. 4–5, 20–23).",
+          "Reproducibility and attribution are complicated by substantial unavailable internal training data; the released model uses the internal dataset, and some headline comparisons do not isolate architecture, public data, and private data effects as cleanly as desirable (pp. 8, 24, 39–40).",
+          "Some evaluation claims need qualification: the interactive protocol uses ground truth to select correction frames or trigger pauses, comparison is concentrated on two composite baselines, one image benchmark is acknowledged as not strictly zero-shot, and SA-V is both model-in-the-loop collected and an emphasized benchmark (pp. 29–32, 35)."
+        ],
+        "score_rationale": "The paper delivers a broadly useful capability with unusually strong empirical support, large gains over competitive baselines, careful ablations, and valuable public artifacts. Moderate algorithmic novelty and dependence on internal data prevent a top score, but the demonstrated technical and community impact clearly supports acceptance."
+      }
+    }
+  ]
+}

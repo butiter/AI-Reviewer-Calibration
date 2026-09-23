@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_025",
+  "paper_id": "noidywkBba",
+  "number": 2040,
+  "title": "Chain-of-Focus Prompting: Leveraging Sequential Visual Cues to Prompt Large Autoregressive Vision Models",
+  "authors": "Jiyang Zheng; Jialiang Shen; Yu Yao; Min Wang; Yang Yang; Dadong Wang; Tongliang Liu",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "Visual In-context Learning",
+  "forum_url": "https://openreview.net/forum?id=noidywkBba",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    8,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces Chain-of-Focus (CoF) Prompting as a method to enhance large autoregressive vision models (LAVMs) for in-context learning (ICL) in computer vision. Drawing inspiration from Chain-of-Thought prompting in natural language processing, CoF Prompting enables vision models to perform step-by-step visual comprehension. It tackles the lack of logical structure in visual data by generating intermediate reasoning steps based on visual saliency. CoF Prompting also facilitates the creation of customized prompts by selecting the most contextually relevant ones, based on query similarity and target richness. The effectiveness of this method is supported by extensive experiments, demonstrating that it significantly improves the models' ability to make inferences on visual understanding tasks, leveraging the recent advancements in LAVMs that utilize purely visual inputs for ICL."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- This paper introduces the interesting method of Chain-of-Focus Prompting, with strong and reasonable motivation. \n\n- The experiments are comprehensive."
+        },
+        "weaknesses": {
+          "value": "- Compared to previous work, such as \"A Generalist Painter for In-Context Visual Learning,\" this paper only addresses two tasks: image segmentation and pose estimation. If this method does not work for other tasks, it could decrease the contribution of the paper.\n\n- I am somewhat skeptical about why this method works. For instance, would the model perform equally well if it viewed the same number of images within reasoning steps (not randomly selected, such as viewing the same number of final step reasoning images)?\n\n[1] Wang, Xinlong, et al. \"Images speak in images: A generalist painter for in-context visual learning.\" Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2023."
+        },
+        "questions": {
+          "value": "- Would the model perform equally well if it viewed the same number of images within reasoning steps (not randomly selected, such as viewing the same number of final step reasoning images)?\n\n- If you simply use this logic for Chain-of-Focus: each step of reasoning progresses from images of a single object to two, and then to multiple objects, where do you think the disadvantages lie compared to your method?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "pO5DyIMlHV",
+      "forum": "noidywkBba",
+      "replyto": "noidywkBba",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_CkD8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_CkD8"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2040/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730683007937,
+      "cdate": 1730683007937,
+      "tmdate": 1731427530776,
+      "mdate": 1731427530776,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper propose Chain-of-Focus(COF) Prompting, which enhances vision models by enabling step-by-step visual comprehension. CoF automates prompt design by selecting the most relevant and informative prompts from existing candidates and creates intermediate reasoning steps for prompt targets. Experiments on various downstream vision tasks demonstrate the effectiveness of the proposed method."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper is well written. The methods are innovative, the experimental results are significant, and the visualizations are intuitive."
+        },
+        "weaknesses": {
+          "value": "1. The candidate prompt pool comprises 50,000 training images and annotations, which raises concerns in specific scenarios due to its inability to ensure data privacy. Additionally, it necessitates significant resources for the storage and retrieval of prompts.\n2. Figure 3 does not include visualized results of the ground truth.\n3. There is no comparison of the computational complexity and resource overhead of the different methods."
+        },
+        "questions": {
+          "value": "Can CoF address the issue of distribution shift, that is, when there is no data related to the test data in the prompt pool?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xJ64LqFnVO",
+      "forum": "noidywkBba",
+      "replyto": "noidywkBba",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_eyXR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_eyXR"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2040/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730523242605,
+      "cdate": 1730523242605,
+      "tmdate": 1733377786988,
+      "mdate": 1733377786988,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper extends Large Autoregressive Vision Models (LAVMs) with the capability of in-context learning for visual inputs by proposing a chain-of-focus (CoF) prompting approach. The CoF decomposes a visual prompt to intermediate reasoning steps by ranking salient regions of the prompt image, as well as taking into account the visual similarity and annotation richness to the test image. The saliency scores are obtained by an off-the-shelf saliency detector. The relevance of queries is modeled by the Jaccard similarity index of the two sets of visual codebooks in VQ-GAN. The annotation richness is modeled by the number of unique indices in their codebooks. The proposed method has been evaluated on 4 vision tasks, e.g., image segmentation, object detection, image inpainting, and pose estimation, which show the effectiveness of the CoF prompting, upon two backbone LAVMs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1) The proposed CoF prompting method is well motivated, which shall interest many ICLR attendants.\n2) The proposed approaches, using the saliency score rank, the similarity of two sets of codebooks in VQ-GAN, are reasonable and easy to re-produce. \n3) The evaluation is fairly convincing to show the effectiveness of the proposed method, though not as significant as I expected.\n\nOverall, this is a descent work which may deserve to share with the community in time."
+        },
+        "weaknesses": {
+          "value": "1) The reasoning steps of 0, 1, 2 are evaluated in Fig.4. More steps (just 2) do not show clear advantage, which is a bit disappointing to validate the proposed CoF prompting. I wonder if just using more diverse visual prompts that are also relevant with enough annotations, the performance may match or even out-perform using intermediate reasoning steps of the visual prompts?  \n\n2) The comparison baseline is a random selection scheme, which may be too simple. The performance gain over this simple baseline is not that significant as I expected.\n\n3) The specific approaches, like the off-the-shelf saliency score and the number of unique indices in their codebooks, are somewhat simple and intuitive."
+        },
+        "questions": {
+          "value": "Please discuss the pros and cons of using more diverse visual prompt images or more intermediate reasoning steps of one prompt image.\n\nAny alternatives to the saliency scores to measure the reasoning steps? Some objects like faces, animals or intensive actions tend to capture visual attentions easily. \n\nSome relevant missing references, please discuss the differences:\n\nChain-of-Spot: Interactive Reasoning Improves Large Vision-language Models, 2024.\nAccelerating Pre-training of Multimodal LLMs via Chain-of-Sight, 2024.\n\nWhat is the subtle difference between image relevancy and relevance? ll.140 => an image retrieval framework; ll.216, in Fig.2, => query relevance or relevance of the queries; => target informativeness or informativeness of task objectives? Btw: informative and informativeness are very vague terms, please define them first."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PRhvPPUSuj",
+      "forum": "noidywkBba",
+      "replyto": "noidywkBba",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_GMfc"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_GMfc"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2040/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730217982019,
+      "cdate": 1730217982019,
+      "tmdate": 1733157127204,
+      "mdate": 1733157127204,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper aims to address an inherent challenge in the computer vision community, where, unlike language data, images lack clear logical structures. CoF prompting introduces intermediate steps in the visual learning process to enhance the ability of VLMs to understand and predict complex visual images. The authors propose using saliency maps to determine which parts of an image should be focused on sequentially, mimicking human cognitive processes. This method allows VLMs to perform better on fundamental vision tasks such as image segmentation, pose estimation, and object detection by progressively building a context around the test input. The authors comprehensively evaluated the proposed method across several models and datasets, with extensive experiments showing the efficacy of CoF prompting. It outperforms several baseline methods and demonstrates some improvements, such as Intersection over Union (IoU) and Pixel Accuracy (P-ACC). This paper also delves into ablation studies to assess the contributions of different components, providing insights into the role of cognitive reasoning, query relevance, and annotation diversity."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Innovative Adaptation of CoT for Vision: The introduction of Chain-of-Focus (CoF) prompting is a creative adaptation of chain-based reasoning, typically used in language models, for vision tasks. The authors contribute a novel and interesting insight into the inherent logical structures of images. Previously, we thought images contained visual redundancy, which was proposed and widely adopted in Masked Autoencoders pretraining. Such insights propose a new idea for visual modeling, which improves vision models to handle complex, multi-step tasks.\n\n2. Comprehensive Evaluation: The authors conducted thorough experiments across various models (e.g., LLaMA-300M, LLaMA-1B, and LLaMA-7B) and tasks (e.g., segmentation, pose estimation, object detection). This robust evaluation not only demonstrates the generalizability of the approach but also its effectiveness across different settings.\n\n3. Interesting Saliency-Based Reasoning: The use of visual saliency to create intermediate reasoning steps adds a cognitive layer to how models process visual data, mirroring human visual attention mechanisms. This results in more informed predictions, especially in tasks where spatial and object importance matters.\n\n4. Detailed Ablation Studies: The authors provide detailed ablation studies, which highlight the relative importance of different components of the proposed method (cognitive reasoning, query relevance, and annotation diversity). This adds clarity to which parts of the model drive the most significant improvements."
+        },
+        "weaknesses": {
+          "value": "1. Limited Exploration of Computational Complexity: While the method is novel, there is limited discussion on the computational overhead introduced by the saliency-based intermediate reasoning steps. Given that real-world applications demand efficient processing, an evaluation of the method’s scalability in terms of computational cost would have been valuable.\n\n2. Generalization Across Different Vision Tasks: While CoF prompting is tested on several vision tasks, the experiments are focused on a few select tasks, mainly segmentation and pose estimation. Broader evaluation on a wider range of tasks, such as video understanding or 3D object recognition, would further validate the method’s versatility. Therefore, I strongly suggest the authors try some experiments on video understanding to further elaborate on the effectiveness and commonality of this method.\n\n3. Handling Failure Cases: The authors acknowledge that VLMss can produce failures (such as pure black predictions), but the analysis of these failures remains surface-level. A deeper dive into understanding why these failures occur and how to mitigate them would strengthen the paper’s conclusions. This part could be integrated into the Conclusion and Limitation section, and it will also inspire follow-up research.\n\n4. Dependence on Saliency Detection: The success of CoF prompting is tied closely to the quality of the saliency detection model used. The authors briefly mention the model (U2-Net), but the sensitivity of the approach to variations in saliency detection quality is not explored. If the saliency model performs poorly, it could compromise the entire prompting process."
+        },
+        "questions": {
+          "value": "Please see the weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "OGNvDQ59Fu",
+      "forum": "noidywkBba",
+      "replyto": "noidywkBba",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_p93y"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2040/Reviewer_p93y"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2040/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730121599714,
+      "cdate": 1730121599714,
+      "tmdate": 1731427531129,
+      "mdate": 1731427531129,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Chain-of-Focus prompting for autoregressive vision models: retrieve examples using VQ-code similarity and target diversity, then expose progressively completed targets ordered by saliency. The approach is intuitive and often improves existing LAVMs, but the evidence does not yet establish that the gains arise from saliency-based visual reasoning rather than extra context, repeated queries, partial ground-truth supervision, or prompt familiarity.",
+        "strengths": [
+          "A simple inference-time method combines prompt retrieval with progressive target construction and applies without updating the LAVM (pp. 4–6).",
+          "Experiments cover three model scales and four tasks, with improvements over random prompting and SupPR in most reported metrics (pp. 7–9, 13–14).",
+          "Component, step-count, reversed-order, threshold, and saliency-detector studies provide useful robustness evidence (pp. 9–10, 14–16)."
+        ],
+        "weaknesses": [
+          "The central causal claim is under-controlled: CoF adds repeated queries and multiple partial ground-truth targets, but there is no matched-token/context baseline using random object order, random partial masks, or repeated full targets. Reversing the order still improves performance, weakening the claim that saliency creates meaningful reasoning (pp. 4–5, 15).",
+          "The evaluation has important confounds and reporting issues. Results are filtered using a black-rate criterion whose exact inclusion protocol is unclear (p. 8), the appendix reports strong dependence on whether prompts appeared during pretraining (p. 17), and the claimed inpainting percentage improvements do not match Table 6 (pp. 13–14).",
+          "Generality remains limited to COCO-derived tasks and a narrow family of pretrained LAVMs; pose IoUs are extremely low, detection relies on an insufficiently specified learned evaluator, and retrieval/saliency cost is not reported (pp. 7, 9, 14)."
+        ],
+        "score_rationale": "The method is practically interesting and the empirical gains are reasonably broad, supporting a borderline score. However, moderate novelty and missing matched-context controls prevent attributing improvements to the proposed saliency-based reasoning mechanism, while prompt-familiarity confounds and numerical/reporting inconsistencies reduce confidence in the conclusions. I therefore place it marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes Chain-of-Focus, a training-free prompting method for autoregressive vision models that retrieves examples using VQ-code similarity/target diversity and inserts progressively completed, saliency-ordered targets. Results suggest improvements across several tasks and model scales, but the evaluation does not yet establish that the gains arise from meaningful sequential visual reasoning rather than extra context, target repetition, or selective evaluation.",
+        "strengths": [
+          "The method is simple, compatible with pretrained LAVMs, and combines prompt retrieval with a novel form of progressively revealed visual supervision (pp. 4–6).",
+          "CoF generally improves segmentation and pose metrics across three model sizes, with particularly clear gains for the 7B segmentation setting, and also reduces reported failure rates (pp. 7–9).",
+          "The appendices include useful diagnostics on step order and alternative saliency detectors, showing some order sensitivity and limited detector sensitivity (pp. 15–16)."
+        ],
+        "weaknesses": [
+          "The central causal claim is under-controlled: intermediate steps repeat the query and expose progressively larger portions of the labeled target, increasing sequence length and supervision. There are no matched-length controls using repeated full targets, random region orders, or non-saliency partitions; reversing the order alone is insufficient (pp. 4, 10, 15).",
+          "Evaluation is nonstandard or potentially biased. Main segmentation results exclude predictions based on a black-rate threshold while failure rates remain extremely high, pose is evaluated as a binary mask rather than with standard keypoint metrics, and detection relies on an unvalidated learned box extractor (pp. 7–9, 14). These choices make practical effect sizes difficult to interpret.",
+          "Methodological and reporting details are incomplete or inconsistent: region masks required to build steps are only vaguely specified and their construction for detection/inpainting is unclear; the full three-component configuration is absent from the ablation table; and reported inpainting percentage improvements do not match Table 6 (pp. 5, 9, 13–14)."
+        ],
+        "score_rationale": "The idea is relevant and the reported gains are promising, but novelty is mainly a heuristic adaptation of CoT plus retrieval. More importantly, missing matched-context controls and questionable evaluation procedures prevent confident attribution and validation of the claimed reasoning benefit. I therefore rate it below the acceptance threshold, with some uncertainty because stronger controls could materially change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes Chain-of-Focus, a training-free visual prompting scheme for autoregressive vision models that retrieves examples using VQ-token overlap/target diversity and constructs progressive targets ordered by saliency. Results suggest improvements across several models and tasks, but the evidence does not establish that the gains arise from the claimed reasoning mechanism rather than extra context, repeated queries, or privileged annotation structure.",
+        "strengths": [
+          "A simple, practically compatible prompting method combines retrieval and progressive visual targets without modifying the LAVM (pp. 4–6).",
+          "Experiments cover three model scales and four tasks, with generally consistent improvements over random prompting and SupPR (pp. 7–9, 13–14).",
+          "The appendices test step order and two saliency detectors and acknowledge substantial LAVM failure rates (pp. 15–17)."
+        ],
+        "weaknesses": [
+          "The central causal claim is under-controlled: CoF repeats the prompt query and supplies multiple partial targets, increasing sequence length and exposure, but no matched-length controls using repeated full targets, random region order, random partitions, or nonsaliency curricula are reported (pp. 4–5, 9–10). Reversal alone remains better than a single full target (p. 15), reinforcing this confound.",
+          "Evaluation is weak or unclear: segmentation/pose are reduced to binary-mask IoU and pixel accuracy, detection uses an unspecified learned box extractor, results depend on a poorly explained black-rate filtering rule, and failure rates remain extremely high (pp. 7–9, 13–14). Statistical significance, seeds, and uncertainty for the ablations are absent.",
+          "Reproducibility and interpretation have gaps: intermediate regions rely on task-specific masks/bounding boxes and unspecified thresholds, summed saliency is biased toward large regions, the ablation table omits an explicit all-three-components row, and some reported improvement calculations are inconsistent with Table 6 (pp. 5, 9, 14)."
+        ],
+        "score_rationale": "The idea is intuitive and yields promising gains, but novelty is moderate and decisive controls are missing. Because the current experiments cannot separate saliency-based “reasoning” from additional/repeated contextual supervision, and several metrics and protocols are insufficiently specified, the manuscript falls below the ICLR acceptance bar despite potentially useful empirical observations."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Chain-of-Focus prompting for autoregressive vision models: retrieve demonstrations using VQ-token overlap and target diversity, then progressively reveal salient regions of a demonstration target. Results across segmentation, pose, detection, and inpainting suggest useful gains, but the method is better characterized as structured target revelation than visual reasoning, and important controls and evaluation details are missing.",
+        "strengths": [
+          "A simple, training-free prompting scheme that combines demonstration retrieval with progressive target construction and is applicable to several LAVM scales (pp. 4–7).",
+          "Experiments cover four tasks, three model sizes where supported, failure rates, component analyses, step counts, reversed ordering, and two saliency detectors (pp. 7–10, 13–16).",
+          "The largest segmentation gains are meaningful: LLaMA-7B improves from 49.41 to 52.53 IoU over the strongest listed baseline, with reduced variance (p. 7)."
+        ],
+        "weaknesses": [
+          "The central interpretation is overstated: intermediate steps are partial ground-truth annotations constructed using region masks, not inferred reasoning. There is no decisive control for repetition/extra context, random region orders, or nonsaliency progressive reveals; reversal alone does not isolate these effects (pp. 4–5, 10, 15).",
+          "Evidence is uneven and sometimes unclear: pose IoUs are extremely low, CoF is below SupPR on LLaMA-7B pose IoU, detection improves only 19.65 to 19.74, and the learned detection evaluator is insufficiently specified or validated (pp. 7, 9, 13–14). The reported inpainting percentage improvements also do not match Table 6.",
+          "Reproducibility and scope are limited: Equation 4 is malformed, thresholds and trial/variance protocols are underspecified, Table 5 omits an explicit all-three-components row, and the method relies on task-specific region information and costly retrieval from 50,000 candidates. The authors also acknowledge very high failure rates and sensitivity to whether prompts resemble pretraining data (pp. 5–10, 17)."
+        ],
+        "score_rationale": "The idea is intuitive and produces consistent segmentation improvements, with commendable supplementary analyses. However, limited novelty beyond retrieval plus progressive label revelation, missing causal controls, weak absolute performance on pose, marginal gains on detection, and reporting/reproducibility issues leave the evidence slightly below the bar. I am uncertain whether fuller implementation details would resolve the evaluation concerns."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes Chain-of-Focus prompting for autoregressive vision models: retrieve examples using VQ-code Jaccard similarity and target-code diversity, then expose progressively completed targets ordered by saliency. Results suggest improvements across several model sizes and four tasks, but the evidence does not establish that the gains arise from visual reasoning rather than added/repeated context, and important evaluation and implementation details are insufficiently controlled.",
+        "strengths": [
+          "The method is training-free, conceptually simple, and directly applicable to existing LAVMs; its retrieval and progressive-target construction are clearly motivated (pp. 4–6).",
+          "Experiments cover three model scales, with generally consistent segmentation and pose improvements, plus detection and inpainting results (pp. 7–9, 13–14).",
+          "Useful analyses examine component contributions, step count, reversed ordering, failure rates, and two saliency detectors (pp. 9–10, 15–16)."
+        ],
+        "weaknesses": [
+          "The central causal claim is under-supported: intermediate prompts add tokens, repeat the query, and reveal increasingly complete targets, but there is no length-/repetition-matched control using random region order, duplicated targets, or non-saliency partitions. Reversal remaining beneficial further suggests a generic extra-context effect rather than the claimed reasoning mechanism (pp. 4, 10, 15).",
+          "Reproducibility and evaluation are unclear. Region masks are assumed available, thresholds and region construction are underspecified, and it is unclear how the procedure applies to inpainting. Results also involve black-rate filtering and a learned box evaluator without enough detail to rule out bias (pp. 5, 7–8, 13–14).",
+          "The empirical comparison is narrow and some reporting is unreliable: only a few prompting baselines are used, no statistical significance tests are given, absolute pose/detection scores are very low, and the stated inpainting percentage improvements disagree substantially with Table 6 values (pp. 7, 9, 14)."
+        ],
+        "score_rationale": "The idea is potentially useful and the reported trends are encouraging, but novelty is moderate and the missing matched controls prevent attributing gains to saliency-based sequential reasoning. Evaluation ambiguities and numerical reporting errors further weaken confidence. I therefore place it below the acceptance threshold; uncertainty remains because stronger controls and fuller protocol details could materially improve the assessment."
+      }
+    }
+  ]
+}

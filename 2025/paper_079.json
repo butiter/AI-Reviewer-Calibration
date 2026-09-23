@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_079",
+  "paper_id": "LSp4KBhAom",
+  "number": 10864,
+  "title": "LoRA3D: Low-Rank Self-Calibration of 3D Geometric Foundation models",
+  "authors": "Ziqi Lu; Heng Yang; Danfei Xu; Boyi Li; Boris Ivanovic; Marco Pavone; Yue Wang",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "3D foundation model; model specialization; robust optimization; low rank adaptation; self-supervised learning",
+  "forum_url": "https://openreview.net/forum?id=LSp4KBhAom",
+  "venue": "ICLR 2025 Spotlight",
+  "status": "accepted_spotlight",
+  "decision": "Accept (Spotlight)",
+  "human_ratings": [
+    8,
+    8,
+    6,
+    8
+  ],
+  "human_mean_rating": 7.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes an approach for calibration 3D foundation model, particularly DUSt3R and MASt3R. Given a small sample of images, the paper extracts the most multi-view consistent 3D points (through a robust global optimisation and confidence calibration) and then feeds them to a LoRA-based fine-tune process."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "The paper is very well written and easy to understand.\n\nI very much appreciate the core calibration framework text section and underlying method, in that is it technically principled, produces strong state-of-the-art improvements, and is presented in an intuitive manor. This is a great example of how ML/CV papers should be written.\n\nIt is the first time I see LoRA used in the context of a 3D foundation model. I expect this to help greatly increase the potential impact of the paper.\n\nThe overall approach produces significantly improved results over the DUST3R baseline, and the small sizes of the LoRA could potentially lead to practical applications."
+        },
+        "weaknesses": {
+          "value": "I find little weakness with the paper. Mainly, I would have liked to see more experiments on MASt3R in the body of the main work, and perhaps an inclusion of the calibrated-confidence-based pseudo labelling in the MASt3R integration. This is perhaps the only point that stops me from recommending a strong accept."
+        },
+        "questions": {
+          "value": "-"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "biZvZoWOnd",
+      "forum": "LSp4KBhAom",
+      "replyto": "LSp4KBhAom",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_YtdK"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_YtdK"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731093119037,
+      "cdate": 1731093119037,
+      "tmdate": 1731429116852,
+      "mdate": 1731429116852,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents an effective and straightforward calibration method based on LoRA to fine-tune a 3D foundation model for specialization in a specific scene, achieving a notable performance increase of over 80%. Extensive experiments conducted across multiple datasets and downstream tasks, along with comparisons to various baselines, further validate the model's performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This task is quite intriguing, presenting an efficient and useful technique for calibrating pre-trained 3D models for specific 3D tasks. \nThe concept of calibration used to be employed in the field of uncertainty estimation to enhance output quality. Bringing calibration into a 3D foundation model presents a novel approach for \"making foundation models\" perform more effectively or align better with new or specialized tasks.\n\nThe techniques sound and are easy to follow. Despite some poor observations (e.g., low light), there are still sufficient quality observations from the same scene that can provide valuable constraints and useful signals to supervise the calibration process. \n\nThe focus on confidence is both interesting and beneficial, as it addresses ambiguity and enhances accuracy. Confidence metrics effectively aid in selecting precise components for fine-tuning during experiments, even facilitating dynamic scenarios.\n\nThe use of M-estimation for optimization, as opposed to traditional gradient descent, is another noteworthy aspect.\n\nIt is encouraging to see further extensions to Mask3R, which demonstrate the generalizability of this method.\n\nThe paper provides good details for reproducibility.\n\nThe experiments are extensive, covering various 3D downstream tasks and comparing results with state-of-the-art methods in each category. The results indicate that close to “fine-tuning” level performance can be achieved with minimal calibration."
+        },
+        "weaknesses": {
+          "value": "The system is designed to adapt to a single scene, which appears to be a limitation of the DUSt3R approach.\n\nTo evaluate performance, the methodology requires half of the test split data (1,000 images out of 2,000), which may limit practical applications. I am curious about the results if only 5%, 10%, or 30% of the data were available for calibration. Furthermore, it remains unclear what portion of the calibrated images comes from the TUM and Waymo datasets.\n\nFurther details are needed regarding the selection of the 161 test scenes. Is this selection consistent with common practices in previously published baselines?\n\nFrom Figure 6, it is evident that performance before calibration is already visually impressive, with significant improvements primarily noted in the corner regions. While the reported metrics are impressive, it remains unclear how the calibration contributes to more visually sensible performance."
+        },
+        "questions": {
+          "value": "Please refer to the questions outlined in the weaknesses section, which includes an ablation study on the portion of data used for calibration, details on how the scenes were selected, and clarification on the visually sensible improvements observed."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "smIVjGYwiT",
+      "forum": "LSp4KBhAom",
+      "replyto": "LSp4KBhAom",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_XhbG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_XhbG"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730674465492,
+      "cdate": 1730674465492,
+      "tmdate": 1732565390874,
+      "mdate": 1732565390874,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This submission proposes a method to finetune large 3D models such as Duster on individual scenes. The finetuned parameters include camera intrinsics, extrinsics, point maps, and scales. To avoid finetuning a large 3D model directly, the method proposes to finetune them with LoRA. As a result, the proposed method improves per-scene reconstruction quality and camera estimation accuracy in an efficient way.\n\nIn terms of weaknesses, my primary concerns are: 1) missing a straightforward global optimisation baseline that is also initialised from Duster predictions, and 2) unconvincing comparison with COLMAP and similar works.\n\nOverall, the paper offers an efficient approach to fine-tuning Duster for scene-specific applications, demonstrating notable gains in reconstruction and camera estimation accuracy. However, the unique advantages of this pipeline are not fully clear, especially given the missing global optimization baseline and the somewhat limited comparisons with similar works like COLMAP.\n\nMy initial recommendation leans toward a borderline reject, but I am open to adjusting my rating based on further discussion."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper presents an efficient method to finetune Duster for individual scenes, showing considerable improvements in terms of reconstruction and camera estimation accuracy."
+        },
+        "weaknesses": {
+          "value": "***Missing baseline.***\nA major weakness to me is missing a straightforward baseline, which is running a global optimisation that is similar to classical global bundle adjustment for all camera intrinsics, extrinsics, point maps, and scales, given initialisations from Dusters predictions. This baseline would also avoid finetuning Duster weights. I am curious about a fair comparison with this baseline, in terms of optimisation time, and per-scene optimisation accuracy.\n\n***The comparison with COLMAP and similar works is not convincing.***\nThe proposed DUSt3R-Self-Calib always has an initial solution from Duster. It would be more fair to other works if they started from Duster results too.\n\n***Writing (not affecting rating).***\n* The text between Sec 5 and Sec 5.1 should be better sectioned and formatted. Currently, tasks and baselines are mixed together.\n* In Eq. 7, the notation \"W\" is reused. It's already used for image size HW."
+        },
+        "questions": {
+          "value": "1. In Fig 3 and Fig 4, how do Duster predicted confidence maps look like?\n2. Fig 3d: this fig shows calibrated confidences are smaller than predictions. Two questions here:\n    1) Is it always desirable (better) to have a smaller calibrated confidence compared to Duster predicted confidence?\n    2) is there any example where the calibrated confidence is larger than Duster predicted confidence, but still leads to good finetuning results in terms of self-calibration and 3d reconstruction accuracy?\n3. Writing (not affecting rating):\n    1) L181, \"... the global point maps can be further re-parameterized via back-propagation\" -- What does “re-parameterized via back-propagation\" mean?\n    2) L222, \"second regularization term\" -- it seems like there is only one reg term?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "lEPJ5rFi20",
+      "forum": "LSp4KBhAom",
+      "replyto": "LSp4KBhAom",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_wgpq"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_wgpq"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730555841722,
+      "cdate": 1730555841722,
+      "tmdate": 1732545641028,
+      "mdate": 1732545641028,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a method for self-calibrating 3D geometric models. The authors utilize a pre-trained model to generate predicted point maps and their corresponding confidence scores for input images. To automatically identify and mitigate overconfident predictions that may adversely affect fine-tuning performance, they re-parameterize the confidence term as an optimizable weight. This approach effectively reduces the influence of multi-view inconsistent predictions during the optimization process. Ultimately, the refined point maps and calibrated confidence scores serve as pseudo-labels for fine-tuning the pre-trained DUSt3R model using low-rank adaptation (LoRA) techniques. The authors achieve performance enhancements while maintaining an acceptable increase in computational costs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1)\tThe paper has good writing and is easy to follow.\n2)\tThe authors present a simple but effective pipeline to take advantage of the LoRA technique to improve performance of the 3D foundation model in a self-calibration manner."
+        },
+        "weaknesses": {
+          "value": "The paper does not present major weaknesses."
+        },
+        "questions": {
+          "value": "1)\tDoes Figure 3 solely visualize the prediction confidence and error map of the original DUSt3R method? The caption for Figure 3 should be clarified to reduce ambiguity. Figures 3 and 4 are complementary but they are on separate pages. Readers cannot quickly grasp the points of Figure 3 (a) (b) (c).\n2)\tMinor issues: missing references in Line 817."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Uwc5qiMQTp",
+      "forum": "LSp4KBhAom",
+      "replyto": "LSp4KBhAom",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_3dh5"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10864/Reviewer_3dh5"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729846655200,
+      "cdate": 1729846655200,
+      "tmdate": 1731429115887,
+      "mdate": 1731429115887,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes scene-specific adaptation of 3D foundation models by robustly aligning multi-view predictions, recalibrating confidence for pseudo-label selection, and fine-tuning compact LoRA adapters. The approach is practical and generally improves DUSt3R across reconstruction, pose estimation, and rendering, though the methodological novelty and experimental isolation of its components are moderate.",
+        "strengths": [
+          "A coherent, label-free pipeline combines multi-view consistency, confidence recalibration, and parameter-efficient adaptation; the closed-form reweighting rule is clearly derived (pp. 5–6, 13–14).",
+          "Evaluation spans 161 scenes and multiple tasks/datasets, with consistent Replica reconstruction gains and improvements on 116/150 Waymo scenes (pp. 7–9, 18–23).",
+          "The method is operationally attractive: calibration reportedly takes under five minutes on one RTX 3090, uses under 20 GB memory, and produces 18 MB adapters (pp. 1, 6, 14)."
+        ],
+        "weaknesses": [
+          "The conceptual novelty is limited: the main pipeline combines established robust reweighting/pseudo-labeling with standard LoRA, while the extension beyond DUSt3R is tested on only four scenes and yields mostly marginal or mixed gains (pp. 15–16).",
+          "The ablations do not adequately isolate gains from robust geometric refinement, confidence calibration, pseudo-label filtering, and LoRA training; most sensitivity studies cover only one or two scenes, and no aggregate uncertainty or repeated-run statistics are reported (pp. 10, 16).",
+          "Evidence for broad robustness is uneven: novel-view rendering uses only three manually selected mostly static Waymo segments, several Waymo cases degrade, and dynamic-scene robustness is asserted more strongly than directly evaluated (pp. 6–9, 19–23)."
+        ],
+        "score_rationale": "The paper presents a useful, efficient adaptation system with substantial empirical breadth and credible gains, meriting a marginally positive score. However, its largely compositional novelty, limited component-level ablations, and selectively narrow evidence for some claims prevent a stronger recommendation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a practical scene-specific adaptation pipeline for DUSt3R: robust multi-view optimization recalibrates prediction confidence, selected predictions become pseudo-labels, and a compact LoRA adapter is trained without external supervision. The approach is technically plausible and generally improves reconstruction and camera estimation, but the evidence is weakened by limited aggregate reporting and incomplete ablations.",
+        "strengths": [
+          "A coherent and useful combination of confidence-aware robust alignment, pseudo-labeling, and parameter-efficient scene adaptation; the closed-form confidence update is derived clearly (pp. 5–6, 13–14).",
+          "Broad task coverage across Replica, TUM, and Waymo, with consistent improvements over pretrained DUSt3R in pairwise reconstruction and many multi-view cases (pp. 8–9, 14, 18–23).",
+          "The method is operationally attractive: adaptation reportedly takes under five minutes on one RTX 3090, uses under 20GB memory, and produces an 18MB adapter (pp. 1, 6, 14)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the main contribution combines established robust reweighting, self-training, and LoRA, while the claimed extension beyond DUSt3R is supported by only four MASt3R scenes with small or mixed gains (pp. 15–16).",
+          "The Waymo evaluation supplies extensive per-scene tables but no aggregate mean/median, dispersion, or statistical analysis; the headline “up to 88%” emphasizes a best case, and failures/degradations are visible across the full tables (pp. 9, 19–23).",
+          "Ablations are insufficiently comprehensive and mostly use individual scenes: there is no dataset-level isolation of robust geometry refinement versus fine-tuning, alternative robust estimators/calibration rules, or sensitivity to μ and optimization settings; novel-view rendering is evaluated on only three hand-selected mostly static segments (pp. 7, 9–10, 14)."
+        ],
+        "score_rationale": "The method is practical, technically reasonable, and supported by substantial empirical improvements, placing it slightly above the acceptance boundary. However, incremental novelty, weak aggregate/statistical reporting, and limited component-level validation prevent a stronger score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes scene-specific adaptation of DUSt3R using robust multi-view alignment, residual-based confidence reweighting, pseudo-labeling, and rank-16 LoRA. The approach is practical and generally improves reconstruction and camera estimation, but the novelty is primarily in combining established techniques, and the evaluation lacks aggregate reporting and several decisive ablations.",
+        "strengths": [
+          "A coherent label-free adaptation pipeline with a closed-form confidence-weight update and an efficient implementation requiring about five minutes and an 18 MB adapter (pp. 5–6, 14).",
+          "Consistent within-model gains on all eight Replica scenes for pairwise and multi-view reconstruction, supported by quantitative and qualitative results (pp. 8–9, 18).",
+          "Broad evaluation across 150 Waymo segments, with full per-segment results rather than only selected examples; the method improves pose estimation on a reported 116 segments (pp. 9, 19–23)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the method largely combines DUSt3R global alignment, a standard robust reweighting construction, pseudo-label self-training, and LoRA; extension beyond DUSt3R is demonstrated on only four MASt3R scenes with mostly marginal or mixed gains (pp. 3–6, 15–16).",
+          "Evidence presentation emphasizes best-case improvements but gives no aggregate mean/median, variance, or significance across the 150 Waymo scenes; the tables contain numerous regressions, and the claimed ground-truth 'upper limit' is sometimes worse than self-calibration or pretraining (pp. 7, 19–23).",
+          "Ablations are narrow and do not cleanly isolate global refinement, confidence reweighting, pseudo-label selection, and LoRA adaptation across datasets. Novel-view rendering uses only three hand-selected mostly static Waymo segments, while dynamic-scene robustness is asserted without a targeted evaluation (pp. 6–10)."
+        ],
+        "score_rationale": "The method is useful, efficient, technically plausible, and supported by substantial within-model improvements, meriting a marginally positive score. However, incremental novelty, missing aggregate statistics, limited component ablations, and selective downstream evaluation prevent a stronger recommendation. Some uncertainty remains because the extensive per-scene tables are not summarized statistically."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a practical scene-specific adaptation pipeline for DUSt3R: multi-view optimization produces pseudo-labels, residual-based confidence reweighting filters them, and rank-16 LoRA enables efficient fine-tuning. The idea is moderately novel rather than fundamentally new, but results indicate useful improvements across reconstruction and pose estimation. Evidence for broader model generality and some headline claims remains limited.",
+        "strengths": [
+          "The pipeline is coherent and practically useful, requiring only sparse uncalibrated images and reportedly completing adaptation in under five minutes with an 18MB adapter (pp. 2, 6).",
+          "Evaluation spans Replica, TUM, and 150 Waymo segments; reconstruction improves consistently on Replica (pp. 8–9, 18), and Waymo pose results cover substantially varied scenes (pp. 19–23).",
+          "Ablations support the importance of calibrated rather than raw confidence and examine image sampling, calibration-set size, and multi-scene training (pp. 10, 16–17)."
+        ],
+        "weaknesses": [
+          "The central weight-update derivation appears inconsistent with the stated objective: differentiating the first term of Eq. 7 introduces a factor of 1/2 absent from Eq. 14, so Eq. 15 does not exactly minimize the displayed loss unless the definition of μ is changed (pp. 5, 13–14). This weakens the technical justification, though the resulting robust weighting remains plausible.",
+          "Results emphasize per-scene maxima (e.g., “up to 88%”) without aggregate Waymo means/medians, uncertainty, or repeated-seed statistics; the random-seed ablation is shown for only one scene (pp. 8–10, 19–23).",
+          "Claims of generality and dynamic-scene robustness are under-supported: MASt3R is tested on only four scenes with small or mixed gains, while novel-view rendering uses only three manually selected mostly-static Waymo segments (pp. 7, 9, 15–16)."
+        ],
+        "score_rationale": "This is a useful, efficient combination of robust pseudo-label refinement and LoRA scene adaptation, backed by broad DUSt3R experiments. Moderate novelty, the apparent derivation error, and incomplete aggregate/generalization evidence prevent a clear accept, but the empirical contribution is strong enough for a marginally positive score."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a practical scene-specific adaptation pipeline for DUSt3R-like models: multi-view optimization refines geometry and reweights confidence, high-confidence outputs become pseudo-labels, and LoRA performs efficient fine-tuning. The method is technically plausible and improves reconstruction, pose estimation, and downstream rendering, but its novelty is primarily in integrating established robust reweighting, pseudo-labeling, and LoRA, while the evaluation lacks aggregate reporting and sufficiently isolating ablations.",
+        "strengths": [
+          "The confidence-reweighting objective has a coherent closed-form update, with the derivation supplied in the appendix (pp. 5–6, 13–14).",
+          "Evaluation spans 161 scenes and several tasks; Replica reconstruction improves consistently over pretrained DUSt3R, and the complete Waymo per-scene results are disclosed (pp. 8–9, 18–23).",
+          "The approach is practically attractive: it requires no labels or calibrated cameras, reportedly runs in under five minutes on one RTX 3090, and stores an 18MB adapter (pp. 1, 6, 14)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the main contribution combines DUSt3R global alignment, a standard robust auxiliary-weight construction, confidence-thresholded self-training, and LoRA; generalization beyond DUSt3R is demonstrated only weakly on four MASt3R scenes, with mostly marginal or mixed gains (pp. 15–16).",
+          "The 150-scene Waymo study is not summarized with mean/median errors, success rates per metric, dispersion, or statistical uncertainty. The headline “up to 88%” is a best-case figure, while the appendix contains numerous unchanged or degraded cases (pp. 9, 19–23).",
+          "Ablations do not cleanly isolate robust geometric refinement, confidence calibration, pseudo-label filtering, and LoRA adaptation, nor quantitatively validate confidence calibration. Claims of robustness to dynamics are asserted rather than tested against a controlled dynamic-scene baseline (pp. 6, 10)."
+        ],
+        "score_rationale": "This is a useful, efficient, and generally sound specialization method with broad empirical evidence and reproducible implementation details. However, the incremental methodological novelty, incomplete aggregate analysis, mixed per-scene outcomes, and limited component/dynamic-scene validation keep it at marginally above the acceptance threshold."
+      }
+    }
+  ]
+}

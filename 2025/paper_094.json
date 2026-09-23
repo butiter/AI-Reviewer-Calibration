@@ -1,0 +1,387 @@
+{
+  "year": 2025,
+  "package_id": "paper_094",
+  "paper_id": "GBIUbwW9D8",
+  "number": 13162,
+  "title": "ExACT: Teaching AI Agents to Explore with Reflective-MCTS and Exploratory Learning",
+  "authors": "Xiao Yu; Baolin Peng; Vineeth Vajipey; Hao Cheng; Michel Galley; Jianfeng Gao; Zhou Yu",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "AI agent; tree search; self-improvement",
+  "forum_url": "https://openreview.net/forum?id=GBIUbwW9D8",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    5,
+    6
+  ],
+  "human_mean_rating": 5.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper provides an overview of MCTS based methods for improved test-time (i.e. inference-time) algorithms for Visual Language Models and tested on the VisualWebArena benchmark for complex web environments. This benchmark is particularly important as it poses a substantial challenge, as VLMs have been shown to often fall short of human-level performance in such tasks, hence any progress in this space is important. The most performant variation of the search algorithm studied in this paper is R-MCTS, which leverages the well known benefits of the traditional Monte Carlo Tree Search (MCTS) algorithm, popular method for improving decision-making in long-horizon tasks with a large action space. Although MCTS has been used in other contacts with a learned world model, this paper is using the WebArena simulator to expand tree nodes. None of the results use the VLM or some other learned model for transitions. VLM is only used for policy and value functions.\n\nR-MCTS extends traditional MCTS by incorporating contrastive reflection and utilizing multi-agent debate. Contrastive reflection allows agents to learn from past interactions and dynamically improve their search efficiency. Perhaps the most impactful design choice is the Memorization of reflection. Reflection embeddings are stored in a vector database and, during inference, relevant reflections are retrieved from the database and appended to the agent's current context, enabling it to learn from past mistakes and improve future task executions. On the other hand, Multi-Agent Debate prompts multiple VLMs to generate individual value estimates, which are then aggregated to produce a final estimate. This approach aims to provide a more holistic view of the current state and encourage stronger reasoning through collaborative/adversarial incentives.\n\nExperiments performed on the VisualWebArena (VWA) benchmark, which evaluates multimodal agents' performance across various web navigation tasks, demonstrated the effectiveness of R-MCTS, with significant performance boosts over alternative search methods.\nMoreover, the authors demonstrate that the search trajectories can be effectively transferred back to base models via fine-tuning, resulting in improved performance without requiring search augmentation at test time."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Building agents that are capable of solving complex web navigation using methodologies that are as general as possible will prove to be among the most impactful contributions in the field of AI. The authors are doing a good job to emphasize this and they provide an important contribution in this area, properly aligned with many findings that emphasize the strong VLM capabilities in inference time reasoning and planning.Additionally, the authors demonstrated how easily integrated concepts drawn from human dialogue can be used to improve generic methods. They did this by pinpointing two intuitive modifications to MCTS: contrastive reflection and debating.The boost in performance with the proposed methods is also quite significant, raising the bar on the type of capabilities that can be achieved with the use of LLMs, while also demonstrating the strong potential of scaling up these methods (e.g. longer search horizons, more inference time computations). Lastly, I will point out that the paper is overall well contextualized with respect to the current literature on agentic LLM frameworks, search-based methods for LLMs/VLMs and other inference time algorithms. I would also like to applaud the contributions to SFT-based experiments and emphasizing the importance of generating quality synthetic data, given the cost and logistical challenges associated with human data collection"
+        },
+        "weaknesses": {
+          "value": "I will perhaps start with what I believe is one of the most important limitations of the work: the use of agent-environment interactions to generate and expand new nodes in the search tree. Unless there is something that I am missing, the search algorithm is based on Alpha-Zero and not Mu-Zero, which essentially means that the results rely heavily on access to a simulator at test time. This should be stated explicitly and the experimental work should be adjusted to account for this rather important detail. In particular, neither ReAct,  nor TreeOfThought (albeit it could be adapted to use the simulator) are presented as a way to enhance agent performance by using an exact simulator. It should be very clear for each of the methods in the experimental section whether the method uses the simulator and if so, to what extent (e.g. how many transitions). Note that I am a strong proponent of using a simulator when available and I also think this should be clarified as a distinct paradigm from a method similar to MuZero, which is fully devoted to a simulator, and hence much more generalizable. At the same time, having access to ground truth transitions can indeed make a huge difference in terms of access to important information, hence empirical results should be presented in a way that makes this use much more transparent. Note that many results in Reinforcement Learning, where agents similarly have access to a simulator, will always report results as functions of “episodes” or “epochs”, both of which are essentially reporting the amount of simulated interactions that an agent has access to. As such, comparing an agent such as ReAct that (AFAICT) doesn’t have access to these simulated transitions, or even another search agent for which readers have no clear understanding of how it works, can be quite misleading.\n\nFigure 1 (left) should be explained much more clearly and that should be done in the captions of the Figure, given that the figure is placed in on the first page. It is great that the reader is given the impact of the work as early as possible. I personally struggled to understand the result both when I first saw it on the first page and after I reached the experimental section and the Figure was explained. First, if the number of tokens for ReAct is not something that can be controlled, then the plot in Figure 1 (a) needs another baseline, e.g. MCTS, Search-Agent. As it stands, the result is stating that the more an agent has access to a simulator to learn about possible trajectories, the better the performance - but I imagine the authors want a stronger message. Similarly, for the Figure on the right side, the plot now discusses actions allowed and “unseen” success rate, which once again seems quite selective and there is no clear message takeaway message. Do you want to convey the fact that SFT on search trajectories allows the model to learn the shortest path?\n\nI would also like to raise concerns about the improvement step, which is essentially doubling down on the advantage of using a simulator by storing embeddings of reflections. This is akin to Replay buffers in Reinforcement Learning. Once again, this seems to be essential to your method, but there is no reason why this improvement step cannot be applied for the other search methods.\n\nGiven my take on the main results (i.e. Figure 1) and my comments on the simulator, I would encourage the authors to be more explicit about the significance of the work. As it stands, the message is mostly centered around R-MCTS_{MAD} improving SoTA on VWA, but focus should be given to agents that can utilize the simulator. Obvious candidates for these agents include algorithms like BFS, DFS, and MCTS, and the additional components the authors propose should then be clearly justified and ablated, especially when they can be applied independent of the search method. Note that the same I argument can be made for the multi-agent value function. \n\nFor experiments, perhaps testing more than two underlying models is necessary to better understand the phenomenon of search for VWA, albeit it is understandable if this incurs costs that are too high for their corresponding institution/s. Additionally, empirical results should be much more explicit on the number of simulations that were used in each case. Even for results on SFT where the number of simulations is perhaps irrelevant at test time, it should be clear how many simulations were necessary to build the datasets used for SFT.\n\nI noticed that there is a very clear emphasis on the number of tokens used by either of the methods. I wonder if the authors considered Best-on-N (i.e. generate many candidate trajectories without any search) as a baseline, and if so, why was it not included in the studies? To my point on scaling results such as those presented in Figure 1a, it is important to acknowledge that, as we increase the number of available tokens, there are things simpler than MCTS that could be done and search should only be justified when the performance gap is significant. Additionally, why can’t we increase the size of the search tree for ToT, Search-Agents, MCTS, to match the token consumption of R-MCTS? \n\nLastly, as far as novelty is concerned, I stand by my take that the paper is a very interesting study of search methods when a simulator for VWA is provided to the agent and the R-MCTS algorithm is a simple twist to the very popular MCTS. The modifications themselves, whether contrastive reflections, multi-agent debates, or self learning, are, as the authors already made clear, existing concepts with straightforward incorporation with MCTS on VLMs."
+        },
+        "questions": {
+          "value": "Since my stance on the paper is strongly grounded on my understanding that the trees for the search algorithms are built with full access to the VMA simulators, I would love if the authors are more descriptive on how experiments were conducted. For context, my assumption is based on the description of the MCTS algorithm in the Appendix, where $\\mathcal{T}$ is used to expand new nodes."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "kCwVBVfreo",
+      "forum": "GBIUbwW9D8",
+      "replyto": "GBIUbwW9D8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_Gidu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_Gidu"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731315087554,
+      "cdate": 1731315087554,
+      "tmdate": 1732044778885,
+      "mdate": 1732044778885,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a novel algorithm improving the capabilities of VLM agents in long-horizon exploration tasks via a combination of MCTS, and value function estimation by reflection and multi-agent debate. The authors show strong results in the VisualWebArena benchmark as well as showing these behaviors can be distilled back into GPT-4o to improve its base performance."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- Well-written and clearly presented paper\n- Strong motivation in improving VLM agents in long-horizon tasks\n- Novel contrastive reflection proposal that enables a VLM to in-context learn from errors in value estimation\n- Thorough ablations over two different value function constructions and individual components of the algorithm \n- Informative analysis of the types of errors the agent makes in Section 5.3."
+        },
+        "weaknesses": {
+          "value": "- Missing relevant multi-step exploration baselines including Reflexion [1] and Intelligent Go-Explore [2]\n- The baselines in the main evaluation are not fairly evaluated with equal compute, e.g. does R-MCTS beat ReAct’s 7-shot performance in Table 2? What about ToT’s 2-shot performance? This makes it impossible to evaluate the paper’s contribution. Equally for the self-learning results, would fine-tuning on the best-of-n ReAct trajectories deliver similar improvements in base performance? I would raise my score if the authors could show positive results for this.\n- Evaluation is limited to the VisualWebArena benchmark, focusing solely on web navigation tasks. Other VLM domains could include video games, etc.\n\nMinor: \n- Line 11: clarify what kind of autonomous agents, the authors clearly mean foundation model based rather than traditional RL\n- MCTS should be attributed to Coulom et al. 2006\n\n[1] Reflexion: Language Agents with Verbal Reinforcement Learning Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao.\n\n[2] Intelligent Go-Explore: Standing on the Shoulders of Giant Foundation Models Cong Lu, Shengran Hu, Jeff Clune."
+        },
+        "questions": {
+          "value": "- Why not also fine-tune GPT-4o instead of the in-context contrastive reflection approach?\n- Does the proposed algorithm beat the baselines with equal compute? \n- What is the impact of the size of the reflection database on value accuracy?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "BIjcdLFOJE",
+      "forum": "GBIUbwW9D8",
+      "replyto": "GBIUbwW9D8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_ddLD"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_ddLD"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730702709639,
+      "cdate": 1730702709639,
+      "tmdate": 1732346864222,
+      "mdate": 1732346864222,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose to improve autonomous AI agents with reflective tree search and self-learning. The authors introduce Reflective Monte Carlo Tree Search (R-MCTS), a test-time algorithm to explore decision space on the fly, with contrastive reflection and multi-agent debate. The authors fine-tune GPT-4o through self-learning, using tree traversals generated by R-MCTS, without any human-provided labels. The authors conduct experiments with VisualWebArena benchmark."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Reflective Monte Carlo Tree Search (R-MCTS) for test-time exploration of decision space\nfine-tuning GPT-4o through self-learning"
+        },
+        "weaknesses": {
+          "value": "A fundamental issue is: \nGiven that no LLMs are perfect, so that the data generated  and the evaluations conducted by LLMs are likely not fully reliable, although the algorithm may improve the performance.\nIt is desirable or a must to collect reliable training data and feedback for a healthy learning system."
+        },
+        "questions": {
+          "value": "Why it is valid to\nself-generate data from an imperfect LLM,\nself-reflect with an imperfect LLM, and\nfine-tune an imperfect LLM from data generated by itself?\nIs this based on some sound principle?\nAlthough the algorithm may improve the performance, what is the drawbacks and limitations of a learning system trained with data not fully reliable?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "NA"
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "qiBomg2JL4",
+      "forum": "GBIUbwW9D8",
+      "replyto": "GBIUbwW9D8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_XTzE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_XTzE"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729996822129,
+      "cdate": 1729996822129,
+      "tmdate": 1732766918783,
+      "mdate": 1732766918783,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a variation of MCTS that exploit the reasoning capabilities of VLMs and that can also be fine tuned."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. Incorporating VLMs reasoning capabilities into MCTS is a novel idea with great potential.\n2. The proposed methodology has been extensively evaluated on a challenging benchmark and significantly outperforms the baselines.\n3. Improvements of the benchmark with optimizations that will useful for future works."
+        },
+        "weaknesses": {
+          "value": "1. The presentation of the paper makes it hard to follow. For example, in the second paragraph of Section 3.1 the authors say that the mult-agent debate state estimation was introduced in Section 2.3 but in that section they say that the methodology will be described in the next section.\n2. The methodology seems to be specifically tailored for the web navigation task, and it is potentially unlikely to generalize to different tasks. A clearer explanation and a better contextualization would improve the clarity of the paper."
+        },
+        "questions": {
+          "value": "1. Why is the methodology only evaluated in web? Is it because it requires access to the model of the environment to run the MCTS?\n2. Can you please better explain how the simulation step carried out in the algorithm? In vanilla MCTS, it is carried out with random rollout. Is it different in the proposed methodology?\n2. In Table 2, you show the results for several search methodology with a different amount of tokens? Would it be possible to have a comparison with a fixed computational budget? I think it would be a more fair comparison with the baselines.\n3. I wasn't able to understand what the values in Training column from Table 3 means, can you clarify?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "No concerns."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "BX5xsM1ctG",
+      "forum": "GBIUbwW9D8",
+      "replyto": "GBIUbwW9D8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_SSY4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13162/Reviewer_SSY4"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729785912601,
+      "cdate": 1729785912601,
+      "tmdate": 1732449872452,
+      "mdate": 1732449872452,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EXACT combines MCTS, retrieved contrastive reflections, multi-agent value estimation, and supervision from flattened search traversals for web agents. The results are promising, but benchmark modifications and confounded learning comparisons prevent the evidence from fully supporting the state-of-the-art and generalization claims.",
+        "strengths": [
+          "The search-to-learning pipeline is practically interesting, especially Exploratory Learning’s use of explored actions, value estimates, and backtracking rather than only final actions (pp. 5–6).",
+          "The evaluation covers all 910 VisualWebArena tasks, additional WebArena/OSWorld domains, component ablations, difficulty breakdowns, and compute–accuracy trade-offs (pp. 7–9, 20–21).",
+          "Against the authors’ rerun baselines, R-MCTS consistently improves over plain MCTS, with further gains from multi-agent evaluation, including on harder tasks (pp. 7, 9)."
+        ],
+        "weaknesses": [
+          "The main VisualWebArena protocol changes 127 task instructions, producing very large score shifts, yet the paper presents a leaderboard alongside prior results apparently obtained on the original benchmark. This undermines the claimed direct state-of-the-art comparison (pp. 19–21).",
+          "The Exploratory Learning evidence is confounded: IL uses 65 training tasks while EL uses 35, so their “unseen” sets differ; EL is worse overall than IL, and the generalization claim rests on one domain, one fine-tuning run, and one qualitative example without uncertainty estimates (pp. 7–8).",
+          "Reflection memory is accumulated across benchmark tasks, making performance order-dependent and potentially transferring benchmark-specific information; the task order, database initialization/reset policy, and sensitivity are not reported. More generally, no confidence intervals or repeated trials establish whether the modest incremental gains are robust (pp. 17–18)."
+        ],
+        "score_rationale": "The work offers a useful combination of known search/reflection mechanisms and an interesting tree-traversal training idea, with substantial experiments. However, altered benchmark instructions, sequential cross-task memory, absent statistical uncertainty, and the confounded EL comparison are major empirical-validity issues. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EXACT combines MCTS with retrieved contrastive reflections and debate-based value estimation, then distills search traversals into GPT-4o. The approach is promising and empirically broad, but key evaluation and reproducibility weaknesses leave the central claims insufficiently established.",
+        "strengths": [
+          "R-MCTS consistently improves over rerun search baselines across three VisualWebArena domains and GitLab, with useful component ablations over all 910 VWA tasks (pp. 7, 9).",
+          "Exploratory Learning is an interesting way to supervise evaluation and backtracking rather than only imitate final actions; the qualitative example supports the intended behavior (pp. 5–8).",
+          "The paper reports compute costs, difficulty breakdowns, error analysis, and additional OSWorld evaluations rather than presenting success rate alone (pp. 7–9, 20–21)."
+        ],
+        "weaknesses": [
+          "Evaluation validity is uncertain: reflections accumulate across test tasks, but task order, database initialization, repeated runs, variance, and controls for cross-task information transfer are not reported. Moreover, 127 VWA task instructions were modified, making comparisons with the standard leaderboard potentially non-comparable (pp. 17–19, 21).",
+          "The learning evidence is limited to one website and only 65 IL/35 EL trajectories. Table 3's seen/unseen counts and overall EL rate are not transparently reconcilable with the stated 169 unseen tasks, and no matched untrained-GPT-4o unseen result is tabulated (pp. 7–8).",
+          "Technical specification is incomplete or inconsistent: Algorithm 2 leaves the choice of simulated action ambiguous, while Algorithm 1 updates Q by dividing by N before incrementing it, apparently risking division by zero. Statistical uncertainty is absent despite gains of only 0.8–3.5 points in several comparisons (pp. 7, 9, 16–18)."
+        ],
+        "score_rationale": "The combination is practically useful and the empirical scope is stronger than many agent papers, but novelty is mainly integrative and the online-reflection protocol, altered benchmark, missing uncertainty, and underspecified algorithms prevent confident acceptance. I therefore rate it marginally below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper combines MCTS, retrieved contrastive reflections, multi-agent value estimation, and supervised learning from search traversals for web agents. The empirical breadth is appealing, but the central gains are difficult to interpret because evaluation tasks provide persistent cross-task reflections, the benchmark instructions are modified, stochastic results lack uncertainty estimates, and the exploratory-learning comparison is not adequately controlled.",
+        "strengths": [
+          "R-MCTS is evaluated on all 910 VisualWebArena tasks and additionally on WebArena and OSWorld, providing broader evidence than a single-domain study (pp. 6–7, 20–21).",
+          "The paper reports useful compute/performance comparisons and component ablations; on VWA, policy reflection and multi-agent evaluation add gains beyond plain MCTS (pp. 7, 9).",
+          "Flattening search-tree traversals into demonstrations that explicitly include evaluation and backtracking is an interesting training-data construction, with a qualitative example of the resulting behavior (pp. 5–8)."
+        ],
+        "weaknesses": [
+          "R-MCTS persistently updates its reflection database after each evaluated task, so later test cases exploit information from earlier benchmark cases; task order, database initialization, and order sensitivity are not reported, making the claimed test-time performance hard to interpret as ordinary held-out evaluation (pp. 17–18).",
+          "The authors alter 127 VisualWebArena task instructions and show that this substantially changes success rates, yet present a combined leaderboard against prior results. This undermines the claimed state-of-the-art comparison unless every baseline is rerun under exactly the modified benchmark; no statistical uncertainty or repeated runs are reported either (pp. 19–21).",
+          "Evidence for Exploratory Learning is weakly controlled: EL and imitation learning use different numbers and forms of training trajectories (35 versus 65), EL is worse overall than imitation learning, and unseen-task results are not compared against a matched base-model split. Thus the claim that traversal supervision specifically improves generalizable search behavior is not established (pp. 7–9)."
+        ],
+        "score_rationale": "The integration is practically interesting and produces sizable benchmark gains, but most ingredients are established and the strongest scientific claims are weakened by cross-test adaptation, modified evaluation tasks, missing variance analysis, and an unmatched EL ablation. I therefore view it as promising but marginally below the ICLR acceptance bar; some uncertainty remains because exact task ordering and baseline rerun details are not fully specified."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper combines MCTS, retrieved contrastive reflections, multi-agent value estimation, and search-trace fine-tuning for web agents. Results are promising and broad, but evaluation-protocol concerns and a confounded learning comparison prevent the evidence from firmly supporting the headline claims.",
+        "strengths": [
+          "The study evaluates on all 910 VisualWebArena tasks, additional WebArena tasks, and OSWorld, with useful compute, difficulty, ablation, and error analyses (pp. 6–10, 20–21).",
+          "R-MCTS consistently improves over the authors’ rerun search baselines; policy reflection appears particularly useful, while multi-agent evaluation helps harder tasks (pp. 7, 9).",
+          "Flattening search traversals into training trajectories is a practical approach to teaching exploration and backtracking, and the fine-tuned model substantially exceeds untrained GPT-4o on unseen Classifieds tasks (pp. 5–8)."
+        ],
+        "weaknesses": [
+          "R-MCTS updates its reflection database after each evaluated task and retrieves those reflections for subsequent tasks, making results dependent on test-task order and effectively adapting on the evaluation set; no fixed-memory or held-out-task control isolates this effect (pp. 17–18).",
+          "Benchmark validity is unclear: the authors modify 127 VisualWebArena task instructions, with very large measured effects, yet still present a leaderboard containing prior results on the original benchmark. Moreover, browser backtracking is acknowledged to be non-reversible and stateful, while caching and ID remapping do not establish branch isolation for MCTS (pp. 19–21).",
+          "The Exploratory Learning evidence is small and confounded: EL uses only 35 trajectories versus 65 for imitation learning, yielding different seen/unseen partitions; it performs worse overall than imitation learning, and the behavioral claim is supported mainly by one qualitative example without repeated-run uncertainty (pp. 7–8)."
+        ],
+        "score_rationale": "The paper offers a useful engineering synthesis and encouraging empirical gains, but the main novelty is incremental and the cross-task adaptation, modified benchmark, and potentially non-isolated web search branches materially weaken causal and fair-comparison claims. I am uncertain how much the gains would persist under a fixed reflection database, original tasks, isolated environment snapshots, and repeated trials, so the work is marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EXACT combines MCTS, retrieved contrastive reflections, multi-agent value estimation, and trajectory-based fine-tuning for web agents. The results are promising and broad, but key evaluation and environment-validity issues make the claimed gains difficult to interpret reliably.",
+        "strengths": [
+          "Evaluates search methods on all 910 VisualWebArena tasks and extends testing to WebArena and OSWorld, with compute reporting and component ablations (pp. 7, 9, 20–21).",
+          "The exploratory-learning idea—flattening search traversals to teach evaluation and backtracking—is interesting, and unseen-task results favor it over imitation learning (pp. 5–8).",
+          "Includes useful difficulty breakdowns, qualitative error analysis, prompts, and substantial implementation detail (pp. 9, 16–27)."
+        ],
+        "weaknesses": [
+          "R-MCTS updates its reflection database after each evaluated task and uses it on subsequent tasks (pp. 17–18). Without task-order controls, frozen-memory comparisons, or multiple orderings, this online use of benchmark experience is not directly comparable to static baselines and may confound the reported gain.",
+          "Tree search assumes reversible branch simulation, yet the authors acknowledge that webpage/database state may not reset after backtracking and address mainly element-ID remapping (p. 19). Irreversible web actions can invalidate branch values and even alter later execution, but this issue is not rigorously controlled.",
+          "Exploratory Learning uses only 35 selected trajectories; its overall result is driven partly by 80% success on seen tasks, while the paper does not report matched unseen-only REACT/R-MCTS baselines, repeated runs, or uncertainty (pp. 7–8). Modified benchmark intents also complicate comparison with published leaderboard numbers (pp. 19–21)."
+        ],
+        "score_rationale": "The combination is practically promising and experimentally substantial, but novelty is largely compositional and the central evidence is weakened by cross-task online adaptation, potentially non-reversible search states, and an underpowered fine-tuning study. These issues place the work marginally below acceptance pending stronger controlled evaluation."
+      }
+    }
+  ]
+}

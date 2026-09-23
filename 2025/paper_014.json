@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_014",
+  "paper_id": "z1yI8uoVU3",
+  "number": 965,
+  "title": "Measuring Effects of Steered Representation in Large Language Models",
+  "authors": "Bumjin Park; Youngju Joung; Yeonjea Kim; Leejinsil; Jaesik Choi",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "in-context learning; activation steering; large language models",
+  "forum_url": "https://openreview.net/forum?id=z1yI8uoVU3",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    3,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents an evaluation framework for activation steering in language models, a technique that modifies the models’ hidden representations by adding task-specific vectors towards a certain direction. Activation steering is used to control the model generation with desired properties by manipulating the hidden states. The paper studies the effect of this particular way of influencing model generation on various axes such as whether output format is preserved, the success rate of steering, the side-effect rate on irrelevant tasks, and the position of steering vector injection in the prompt sequence. Experimental results show varying behaviors across different dataset and models."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The experimental design and results are well-presented, highlighting key observations effectively.\n\n- The paper proposes a robust evaluation framework for investigating the activation steering effect across various dimensions, encompassing both steering-related and unrelated dimensions.\n\n- The research explores the impact of steering position within a sequence, providing valuable insights into the technique and its implications."
+        },
+        "weaknesses": {
+          "value": "- The novelty of the paper may be limited. The paper conducts an analysis on LM representation steering and presents the observations. Although the comprehensive analysis results can be practically useful to guide the usage of representation steering, the contribution might be slim.\n\n- The paper presentation could become clearer by providing more background information of how activation steering is typically used (e.g. in the beginning sections). The paper studies a particular type of hidden representation modification, and it is better to contextualize the technique along with its variations.\n\n- There are many vague expressions that are not clearly defined and underspecified experimental choices, which affects the overall research clarity. For example, in the end of Introduction, “increase the concept of output” is confusing. For some other examples, see questions below."
+        },
+        "questions": {
+          "value": "1. What does “increase the concept of output” exactly mean in line 073? Providing more background and context of activation steering in the introduction could help.\n\n2. In Figure 1 bottom panel, the order of “steered output” and “additional prompt” is confusing. The prompt is not input after the output.\n\n3. In Figure 2, what are “in-context knowledge” and “parametric knowledge”? While I understand what they mean, what is the purpose of drawing them in the illustration of the evaluation prompt?\n\n4. Also in Figure 2, why are the activations on the same layer as the steered representations not affected by the steering, indicated by the darker color?\n\n5. What is the reason behind using [S] and [A] tokens introduced in line 131? If they are special tokens for some LLMs, or from other papers on activation steering, please explain.\n\n6. Typo: line 207, in the set for $\\mathrm{rel.fail}$, the second term $S_{y\\rightarrow y}$ should be $S_{y\\rightarrow *}$."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QTNWej6BgN",
+      "forum": "z1yI8uoVU3",
+      "replyto": "z1yI8uoVU3",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_7KLj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_7KLj"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission965/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731208513529,
+      "cdate": 1731208513529,
+      "tmdate": 1731427348159,
+      "mdate": 1731427348159,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores the impact of activation steering on the performance of large language models (LLMs). Activation steering involves modifying hidden representations during the forward pass to guide the output in a desired direction. The authors propose a counterfactual-based steering evaluation framework to compare the output of base and steered generations. The paper evaluates LLMs, including Llama3-8B, Llama2-7B, and Exaone-8B, and diverse datasets."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The authors introduce metrics, such as Format-Preserving Rate (FPR), Steering Success Rate (SSR), and Side-Effect Rate (SER), this can be useful for formalizing some of the properties desired in steerability. Given steerability is such a desirable property, having formalized metrics to understand this is meaningful.\n\nThe authors find that format preservation improves as steering is applied to higher layers. In contrast, steering to layers below the 0.4 percentile leads to significant format disruption. However, the authors find that \"The steering outcome can succeed or fail, regardless of whether the format is preserved\", so achieving high performance in one metric does not ensure positive directionality in the other. Furthermore, it appears the output form and the analysis of steering success depends on the normalization criteria -- \"That is, the\nanalysis of steering success can vary depending on the criteria used for normalization.\""
+        },
+        "weaknesses": {
+          "value": "Controllability tends to differ across models of different sizes, but this papers fails to include models above 8b or shows that findings generalize across different model sizes. This is important to understand the degree of generalization of the findings and metrics.\n\nEven within two models from the same lab, of similar sizes Llama3-8B, Llama2-7B – it would be helpful to have further clarification from the authors if the key findings generalize across both. As it appears the trends differ across datasets. A clear understanding of what metrics actually hold in generalization across datasets and models during rebuttals is important.\n\nAs is, the major weakness of this paper is that it appears the metrics remain sensitive to model, dataset and the normalization criteria used. An understanding of how sensitive steering success is to the choice of normalization would also be helpful. For example, the statement \" The normalization term can be chosen for the condition-specific measures.\" suggests that one needs to tailor the normalization -- which would require signficant hyperparameter turning and limit utility of the measures as generalizable."
+        },
+        "questions": {
+          "value": "How do these metrics generalize to larger models?\nClarify to the reviewers what metrics of those proposed produce consistent trends across all models and datasets (when using the same normalization term across all settings)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZqOQ7PgElU",
+      "forum": "z1yI8uoVU3",
+      "replyto": "z1yI8uoVU3",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_tNRc"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_tNRc"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission965/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730740438123,
+      "cdate": 1730740438123,
+      "tmdate": 1731427348248,
+      "mdate": 1731427348248,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Recently, many representation steering methods have been proposed to enhance alignment and task-specific performance. However, existing evaluations primarily rely on performance metrics, lacking a comprehensive framework for assessing their broader effects. To address this, this paper introduces a counterfactual-based steering evaluation framework that compares base and steered outputs, evaluating both steering success and potential side effects. The proposed framework uncovers model- and task-specific tendencies, including format preservation, query success rates, steering position effects, and impacts on irrelevant tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- This paper presents a novel evaluation framework for representation steering, studied independently from task-specific performance, which has not been done before.\n- The proposed framework captures critical aspects of representation steering, such as format preservation and the effect of unrelated tasks."
+        },
+        "weaknesses": {
+          "value": "- The experiments are limited to a few tasks and models. Adding more tasks would greatly strengthen the paper. Additionally, although many representation steering methods have been proposed, this paper evaluates only one specific type. While the experiments appear valid, the limited experimental settings raise questions about the generalizability of the findings produced by the proposed framework.\n- The motivation for studying steering methods in the context of in-context learning is somewhat unclear. Since steering methods are commonly applied outside few-shot settings, it would be helpful to clarify any specific reasons for focusing on in-context abilities.\n- Some evaluation aspects lack clarity. For example, providing examples or deeper discussion on what constitutes \"side effects\" would enhance the interpretability of the results."
+        },
+        "questions": {
+          "value": "- L268-269: Citations for Llama3-8B-inst and Exaone-8B seem broken.\n- Typically, I thought steering methods are applied to the last token of each generation step. Is steering at a single token a standard approach?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "yTZusscEcM",
+      "forum": "z1yI8uoVU3",
+      "replyto": "z1yI8uoVU3",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_9syU"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_9syU"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission965/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730352833743,
+      "cdate": 1730352833743,
+      "tmdate": 1731427348358,
+      "mdate": 1731427348358,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work looks at the problem of activation steering, which is notion of modifying hidden activations in order to guide the model towards a desired output. The work specifically looks at the direct effects of steering such activations on the consequence generation, which is the part of the generation that follows the steering. The authors develop a framework for this evaluation through the use of counterfactuals, showing how and when steering can have specific effects on the output."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The problem itself is relevant, particularly from the perspective of interpretability and faithfulness research. Being able to create direct links between how we prompt models and how they act can have particularly useful outcomes especially as these models continuously grow in scope."
+        },
+        "weaknesses": {
+          "value": "The work, despite the problem it investigates, does not feel like it is complete. The authors present some interesting results, but the actual contribution here is not very clear and it appears to be quite minimal since the primary difference with prior works is simply using some additional parameters to adjust intermediate hidden activations. Though the method is explained, there's a lack of clarity as to what problem its explicitly attempting to solve and there isn't enough of an exploration of different settings. Furthermore, evaluation is done solely through a lens of a self-defined metric, therefore there may be some direct biasing of the method towards these.\n\nFurthermore, sections 6.3 and 6.4 have been explored quite a bit in the past, such as through needle-in-the-haystack style tasks or simply other long-context problems. The particular link with steered representations here is not presented in a convincing enough way and therefore comes off as nothing more than simply the result of similar observations as those made in prior works with long-context reasoning."
+        },
+        "questions": {
+          "value": "- I suggest the authors test their steering method on open-ended settings; if it is robust I believe that they should be able to arbitrarily steer the model to any given set of possible labels rather than simply binary pairs.\n- I am skeptical that the counterfactual framework proposed is truly measuring the effects of the steering explicitly as there doesn't appear to be any specific controls put in place and therefore measuring there may be a correlation/causation issue here."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "6J8rY2Ig2L",
+      "forum": "z1yI8uoVU3",
+      "replyto": "z1yI8uoVU3",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_3mPC"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission965/Reviewer_3mPC"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission965/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730079577607,
+      "cdate": 1730079577607,
+      "tmdate": 1731427348456,
+      "mdate": 1731427348456,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper studies whether a single-token activation intervention persists through later relevant and irrelevant prompts, proposing transition-matrix metrics and evaluating three 7–8B models. The question is worthwhile, but the proposed metrics contain substantive inconsistencies and the experiments lack the controls and reporting needed to support broad claims about steering side effects.",
+        "strengths": [
+          "Addresses an important, underexplored issue: whether activation steering disrupts formatting or influences subsequent unrelated tasks (pp. 1–2).",
+          "The paired base-versus-steered transition matrix offers a simple, interpretable way to separate formatting, target-label changes, and other output changes (pp. 3–4).",
+          "Experiments cover several models, datasets, layers, steering strengths, context lengths, and irrelevant task families, revealing useful qualitative heterogeneity (pp. 5–9)."
+        ],
+        "weaknesses": [
+          "The central metrics are not technically coherent. The relevant-task failure set includes unchanged positive outputs (yes→yes), omits yes→other, and largely measures failure to reach yes rather than a genuine side effect; SSR+ is also described inconsistently as conditioning on base-no versus format-preserved cases (pp. 4, 7–8).",
+          "Evidence is insufficiently controlled and reported: there are no random/shuffled-vector or matched-context controls, uncertainty estimates, significance tests, repeated sampling analysis, or comparisons with existing side-effect-aware steering methods. Prompt construction, dataset-to-binary-label conversion, activation sampling, and normalization after Eq. 9 are underspecified (pp. 5–9).",
+          "The evaluation conflates concept steering with generic production of the token “yes,” and the broad instability conclusions exceed the narrow greedy-decoding, single-token, small-model setup. Relevant-task effects weaken with context while irrelevant-task changes rise, but the mechanism is not isolated and the claimed Appendix B.1 analysis is absent from the supplied manuscript (pp. 3–4, 8–10)."
+        ],
+        "score_rationale": "The paper has a relevant evaluation question and suggestive empirical observations, but its main contribution is a fairly elementary transition-count framework whose key definitions are flawed or inconsistent. Missing controls and incomplete methodological detail make the causal interpretation and reproducibility weak, placing it clearly below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes a 3×3 transition matrix and associated format-preservation, steering-success, and side-effect measures for comparing base and activation-steered generations. Experiments on three 7–8B models suggest that single-token steering is layer-sensitive, weakens on later same-task queries, yet can still alter subsequent nominally irrelevant yes/no tasks (pp. 5–9). The problem is relevant, but the evaluation definitions and experimental reporting are not sufficiently rigorous for the breadth of the conclusions.",
+        "strengths": [
+          "Studies an important and under-evaluated issue: whether activation steering preserves instructions and affects later, unrelated generations (pp. 1–2, 8–10).",
+          "The paired base-versus-steered transition matrix is simple and interpretable, separating format failure, intended changes, and unintended label changes (pp. 3–4).",
+          "Tests multiple model families, datasets, layers, steering magnitudes, and context lengths rather than presenting a single favorable configuration (pp. 5–9)."
+        ],
+        "weaknesses": [
+          "The metric definitions are internally problematic: relevant-task SER counts yes→yes as a failure while apparently omitting yes→*; SSR+ is described both as conditioning on base “no” and as normalization over format-preserving examples (pp. 4, 7–8). The promised Appendix B.1 clarification is absent from the supplied manuscript.",
+          "Experimental details and statistical support are inadequate: exact prompts, sampling/split construction, direction-estimation sample counts, aggregation over α in some plots, seeds, uncertainty tests, and numerical tables are missing or unclear (pp. 5–9). Thus sharp qualitative claims rely largely on plots without robustness evidence.",
+          "Novelty and scope are limited: the matrix is essentially a confusion/transition matrix, and all evaluations reduce behavior to yes/no/* under one additive, single-token intervention. The “irrelevant” tasks also use the same yes/no output space, making token/format transfer difficult to distinguish from broader conceptual side effects (pp. 3–6, 8–9)."
+        ],
+        "score_rationale": "The paper identifies a useful evaluation question and provides suggestive multi-model evidence, but low methodological novelty, inconsistent metric definitions, missing promised clarification, and insufficiently controlled/reportable experiments undermine technical soundness and the general claims. I therefore rate it below the acceptance threshold, while acknowledging uncertainty because exact numerical results and the referenced appendix are unavailable."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper studies whether a single-token activation intervention persists into later relevant and irrelevant prompts, introducing a 3×3 transition matrix and format/success/side-effect rates. The question is useful, but the proposed metrics are internally inconsistent and the experimental evidence is insufficiently specified or controlled to support the broad conclusions.",
+        "strengths": [
+          "Raises an important, underexplored safety question: activation steering may disrupt formatting or affect subsequent unrelated tasks (pp. 1–2, 8–10).",
+          "The paired base-versus-steered transition matrix is simple and potentially useful for separating target-label changes from format failures (pp. 3–4).",
+          "Tests multiple steering concepts and model families, and examines both intervention layer and context distance (pp. 5–9)."
+        ],
+        "weaknesses": [
+          "Core metrics are unclear or erroneous: relevant-task SER counts yes→yes as failure while apparently omitting yes→*; SSR+ is described both as conditioning on base “no” (p. 4) and on format preservation (p. 7). The promised Appendix B.1 clarification is absent from the supplied paper.",
+          "Experimental reproducibility and evidence are weak: prompts, binary-label construction, split sizes, steering-vector sample counts, irrelevant-task composition, and uncertainty estimates are missing; most findings are conveyed only through difficult-to-read plots (pp. 5–9). Key downstream results also omit Llama2 despite the stated three-model evaluation.",
+          "The “long-context” claim is overstated: experiments reach only 16 demonstrations for relevant tasks and four for irrelevant tasks, with no token-length analysis, random/control directions, alternative steering methods, or controls separating steering effects from ordinary prompt-order/context effects (pp. 8–10)."
+        ],
+        "score_rationale": "This is a relevant diagnostic direction with a sensible paired-evaluation intuition, but novelty is modest and metric-definition errors directly undermine the quantitative claims. Missing methodological detail, controls, statistical uncertainty, and the referenced appendix make the results difficult to validate; I therefore rate it a reject, with some uncertainty because exact values and implementation details may have been intended for the absent appendix."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper studies whether single-token activation steering preserves output format, persists across later relevant prompts, and spills over to irrelevant tasks. The question is useful, but the proposed metrics contain a serious definitional problem, and the narrow, incompletely specified experiments do not support broad conclusions about activation steering.",
+        "strengths": [
+          "Addresses an important practical concern: activation steering may disrupt instruction following or affect subsequent unrelated outputs (pp. 1–2).",
+          "Uses paired base/steered generations and examines layers, steering strengths, context lengths, three models, and multiple datasets (pp. 5–9).",
+          "The evaluation matrix and visual breakdown of format preservation versus target-label generation make several failure modes easy to inspect (pp. 4, 6–8)."
+        ],
+        "weaknesses": [
+          "The relevant-task SER is conceptually incorrect or unexplained: its failure set includes Sy→y, where an already-positive output remains positive, despite being described as failure to achieve the positive label (p. 4). SSR+ is also described inconsistently as conditioning on base “no” on p. 4 but as normalization over format-preserving examples on pp. 7–8. The promised Appendix B.1 clarification is absent from the complete 15-page manuscript.",
+          "Evidence is too narrow for the general claims: only additive mean-difference steering and artificial yes/no outputs are evaluated, without alternative steering methods, semantic/task-accuracy measures, random-vector or matched-norm controls, uncertainty estimates, or tests of realistic free-form generation (pp. 3, 5–9).",
+          "Experimental reproducibility and interpretation are weak: exact prompts, sampling/splits, vector-estimation counts, normalization details, and aggregation are insufficiently reported; Figure 9 summarizes only four irrelevant datasets as box plots, while observed changes are not analyzed for statistical reliability (pp. 5–9)."
+        ],
+        "score_rationale": "The work identifies a worthwhile evaluation problem and provides useful descriptive sweeps, but the modest novelty of the matrix/rates, a seemingly invalid central metric, inconsistent definitions, missing appendix, and limited controls undermine technical soundness and evidential strength. Substantial correction and broader validation are needed, yielding a reject score."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a paired base-versus-steered evaluation matrix and studies whether single-token activation steering preserves output format or affects later relevant and irrelevant binary tasks. The question is useful, but the proposed metrics are internally problematic and the experiments do not adequately support the broad conclusions about long-context steering.",
+        "strengths": [
+          "Studies an important and underexamined issue: unintended and persistent effects of activation steering (pp. 1–2, 8–10).",
+          "The paired steering matrix provides a simple way to separate format failure, intended label changes, and changes on irrelevant tasks (pp. 3–4).",
+          "Experiments cover several steering concepts and three model families, with paired base/steered generations (pp. 5–7)."
+        ],
+        "weaknesses": [
+          "The central metrics are not technically coherent. In particular, the relevant-task failure set counts yes→yes as a side effect but apparently omits yes→*; SSR+ is described inconsistently as both conditional on base=no and normalized over format-preserving examples (pp. 4, 7–8). This undermines interpretation of the main results.",
+          "Experimental reporting is insufficient and inconsistent: the text states that two- and four-shot datasets were constructed, while Figure 8 reports up to 16 shots; Figure 5 discusses six alpha values but displays no clear alpha aggregation; uncertainty, variance, prompt details, binary-label construction, and many per-model/dataset results are absent (pp. 5–8).",
+          "Novelty and evidence are limited: the matrix and rates are essentially confusion-matrix summaries, and conclusions about severe long-context effects rely on short few-shot binary tasks, greedy decoding, one steering construction, and only small subsets of the advertised models/datasets in the key figures (pp. 8–10)."
+        ],
+        "score_rationale": "The paper raises a worthwhile evaluation question and presents suggestive empirical observations, but errors and ambiguities in the defining metrics directly compromise the claimed contribution. Combined with incomplete, inconsistent, and statistically unsupported experiments, the work is not technically reliable enough for acceptance in its current form."
+      }
+    }
+  ]
+}

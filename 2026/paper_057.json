@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_057",
+  "paper_id": "Tf4Akz2WQx",
+  "number": 12864,
+  "title": "Learnable Spiking Neural P System with Interval Excitation",
+  "authors": [
+    "Cun-Xu Ou",
+    "Shen-Zhe Zhang",
+    "Zi-Ang Liu",
+    "Xu Ma",
+    "Zhao Wang",
+    "Shao-Qun Zhang"
+  ],
+  "primary_area": "applications to neuroscience & cognitive science",
+  "keywords": [
+    "Spiking Neural P systems",
+    "parallel distributed models",
+    "interval excitation",
+    "surrogate gradients",
+    "spiking computations",
+    "hardware-adapted learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=Tf4Akz2WQx",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "34RRJN6kUc",
+      "forum": "Tf4Akz2WQx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12864/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761613543728,
+      "tmdate": 1762923655090,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "Z6ziwtrt48",
+      "forum": "Tf4Akz2WQx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12864/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761637464782,
+      "tmdate": 1762923654466,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "sAG0nhqMZj",
+      "forum": "Tf4Akz2WQx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12864/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761964952915,
+      "tmdate": 1762923653737,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "vek4m4zyuW",
+      "forum": "Tf4Akz2WQx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12864/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761730034260,
+      "tmdate": 1762923653998,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper adapts weighted SN P systems to real-valued event classification using interval-based firing, normalization-like potential adjustment, and surrogate-gradient training. The idea is understandable and yields high accuracy on two digit-event datasets, but the method appears close to a conventional surrogate-trained spiking MLP, while its mathematical specification and empirical validation do not adequately support the broader novelty, scalability, or hardware claims.",
+        "strengths": [
+          "The interval excitation mechanism provides a simple way to avoid the near-zero firing probability of exact-equality rules for real-valued potentials (p. 4).",
+          "The paper reports five-run results and several useful diagnostic studies concerning initialization, decay, adjustment module M1, and surrogate choice (pp. 7–9, 15).",
+          "LSNP IE obtains respectable accuracy on N-MNIST and MNIST-DVS, including strong results across three MNIST-DVS scales (p. 8)."
+        ],
+        "weaknesses": [
+          "The technical formulation is inconsistent or incomplete: synaptic weights and potentials are declared nonnegative, yet signed Xavier weights and negative potentials are used (pp. 3, 7, 15); the stated gradient only includes a diagonal normalization derivative despite cross-neuron dependence and does not explicitly account for recurrent state paths through time (pp. 4–6). The discontinuities of G are also dismissed even though G has finite jumps at interval boundaries (pp. 4–6).",
+          "Evidence is limited to two relatively simple, closely related digit datasets. Baselines appear to be literature numbers under potentially different splits/scales, as the authors acknowledge, with no controlled modern comparison, energy/hardware evaluation, or tests on genuinely complex temporal tasks (pp. 7–9).",
+          "The central contributions are insufficiently isolated: there is no direct ablation of interval versus point excitation, no tolerance sensitivity, and no complete M2-specific ablation. Moreover, the claimed 99.80% MNIST-DVS result conflicts with the reported 99.60 ± 0.20% table entry, and the figure/text output procedures (mean/softmax versus highest membrane potential) are unclear (pp. 3, 7–9)."
+        ],
+        "score_rationale": "The paper presents a plausible niche extension and encouraging preliminary results, but substantial specification inconsistencies, weak isolation of the core mechanism, and narrow/non-controlled experiments prevent confidence in technical soundness and ICLR-level significance. I therefore lean reject, while allowing uncertainty because executable code could clarify whether some gradient issues are expositional rather than implementation errors."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper adapts weighted SN P systems to real-valued event data using interval excitation, normalization-like potential adjustment, and surrogate-gradient training. Although the direction is potentially useful, the formulation has substantial internal inconsistencies and the experiments do not establish advantages over standard trainable SNNs or support the hardware/scalability claims.",
+        "strengths": [
+          "The paper identifies a concrete obstacle in applying exact-threshold SN P rules to continuous potentials and proposes an intuitively motivated interval-based alternative (pp. 4–6).",
+          "The method is evaluated over five runs, and several choices—decay, initialization, the first adjustment module, and surrogate shape—receive empirical analysis (pp. 7–9).",
+          "Appendix diagnostics illustrate potential collapse/drift and help motivate the adjustment mechanism (p. 15)."
+        ],
+        "weaknesses": [
+          "The mathematical specification is internally inconsistent: potentials and synaptic weights are declared nonnegative, yet weights use zero-centered Xavier/uniform initialization and reported potentials are negative; moreover, the normalization derivative appears to retain only a diagonal term despite mean and standard deviation coupling all neurons, while temporal recurrence paths are not rigorously derived in the stated backpropagation rule (pp. 3, 5–7, 14–15).",
+          "Evidence is limited to two closely related, relatively easy digit datasets. Baseline numbers appear imported under potentially different splits/scales, as the authors acknowledge, and there are no matched implementations, compute/energy measurements, harder event datasets, or comparisons isolating the proposed neuron against standard surrogate-trained SNNs (pp. 7–9).",
+          "Key claims and reporting are inconsistent or insufficiently supported: MNIST-DVS is claimed to reach 99.80% although Table 2 reports 99.60%; the output is described as mean/softmax in Figure 1 but as maximum membrane potential in the text; and there is no clean ablation of interval excitation or M2 despite these being central contributions (pp. 3, 7–9)."
+        ],
+        "score_rationale": "The interval-excitation idea is understandable and the reported accuracies are promising, but the method currently lacks a sound, unambiguous mathematical and implementation specification. Combined with weak and partly incomparable empirical evidence, this prevents validation of the claimed novelty, scalability, hardware relevance, and performance gains; substantial revision is needed."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper adapts weighted SN P systems to real-valued event data using interval-based firing, potential normalization, and surrogate-gradient training. While the resulting MLP obtains reasonable accuracy on two digit benchmarks, the method appears close to a conventional surrogate-trained SNN with normalization, and substantial formal and empirical issues prevent the claims from being convincing.",
+        "strengths": [
+          "The paper identifies a concrete obstacle in point-triggered SN P systems and proposes a simple interval excitation rule that permits real-valued operation (pp. 4–6).",
+          "Experiments report five-run statistics and include limited studies of initialization, decay, one adjustment module, and surrogate choices (pp. 7–9).",
+          "The appendix provides useful potential-distribution diagnostics suggesting that normalization is important for training stability (p. 15)."
+        ],
+        "weaknesses": [
+          "The technical formulation is inconsistent or incomplete: weights and potentials are declared nonnegative although Xavier initialization produces negative weights/potentials; the normalization-based adjustment couples neurons, but Eq. 3 presents only elementwise derivative paths and does not clearly account for cross-neuron terms; and output computation differs between Figure 1 and the stated membrane-potential prediction rule (pp. 3–7).",
+          "Novelty relative to standard surrogate-gradient SNNs is limited: interval firing is a widened threshold window and the adjustment module resembles normalization. The paper does not establish what computational or hardware advantage remains uniquely attributable to the SN P formulation, despite strong parallelism, energy-efficiency, and hardware-adaptation claims (pp. 2–6, 9).",
+          "Evidence is too narrow and comparisons are not controlled. Only converted digit datasets are tested with a very large fully connected model; baseline results come from prior studies with potentially different splits, and the authors acknowledge scale/split ambiguity. There are also reporting inconsistencies (99.80% claimed versus 99.60% in Table 2, and 97.91% versus 97.93%), no full M2 ablation, and no efficiency or hardware measurements (pp. 7–10, 15)."
+        ],
+        "score_rationale": "The paper offers a plausible engineering adaptation and encouraging digit-classification results, but its modest conceptual novelty, unclear gradient formalism, inconsistent definitions/reporting, and insufficiently controlled evidence undermine both soundness and the broad hardware/scalability claims. I therefore lean reject rather than marginal acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper adapts weighted SN P systems to real-valued event classification using interval-based excitation, normalization-like potential adjustment, and surrogate-gradient training. The direction may help connect SN P systems with trainable spiking models, but the technical specification is internally inconsistent and the empirical evaluation is too narrow to establish either a substantive methodological advance or the claimed hardware/scalability benefits.",
+        "strengths": [
+          "The paper identifies a concrete obstacle in point-equality excitation for real-valued potentials and proposes an intuitive interval-based alternative (p. 4).",
+          "The method is evaluated over five runs and includes limited studies of initialization, decay, normalization, and surrogate choices (pp. 7–9, 15).",
+          "The presentation includes explicit excitation/update functions and an attempted end-to-end training description (pp. 4–6)."
+        ],
+        "weaknesses": [
+          "The formalism is inconsistent or incomplete: potentials and synaptic weights are defined as nonnegative, yet negative weights/potentials occur in initialization and reported ranges; the temporal fusion dynamics are not fully specified; and the normalization derivative appears to omit cross-neuron dependencies (pp. 3–7, 14–15). This prevents confident reproduction or verification of the claimed gradient.",
+          "Novelty over a conventional surrogate-gradient SNN with normalization is insufficiently established. There is no matched standard-SNN baseline, no ablation isolating interval excitation against alternative firing mechanisms, and no theoretical result showing that the resulting MLP retains a distinctive benefit of SN P systems (pp. 4–9).",
+          "Evidence is limited to two relatively easy MNIST-derived event datasets with mostly cross-paper baselines and acknowledged split/scale ambiguity. There are no compute, energy, hardware, scaling, or deeper-network results, while the reported MNIST-DVS maximum is 99.60% in Table 2 but described as 99.80% in the text (pp. 7–9)."
+        ],
+        "score_rationale": "The interval idea is understandable and results are promising within a niche framing, but major specification inconsistencies, modest differentiation from established surrogate-gradient SNN components, and weak comparative evidence undermine technical soundness and the broad claims. I therefore rate it a reject rather than a marginal acceptance; uncertainty remains because executable code could clarify whether some equation-level issues are presentation errors."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper reframes a surrogate-gradient spiking MLP as a learnable SN P system, adding interval-based firing and normalization-like potential adjustment. The direction may be useful for connecting membrane computing with trainable SNNs, but the technical formulation is inconsistent and the experiments do not isolate the claimed innovations or support the hardware/scalability claims.",
+        "strengths": [
+          "The interval excitation rule and potential-adjustment workflow are presented clearly at a high level, with explicit forward and surrogate-gradient definitions (pp. 3–6).",
+          "Experiments report five-run statistics and include limited studies of initialization, decay, M1, and surrogate choice (pp. 7–9).",
+          "Appendix diagnostics illustrate potential collapse/drift and distribution alignment, offering some motivation for the adjustment module (p. 15)."
+        ],
+        "weaknesses": [
+          "The mathematical specification is internally inconsistent: potentials and synaptic weights are defined as nonnegative, yet Xavier initialization permits negative weights and measured potentials are negative; the displayed gradient treatment also omits a clear account of cross-time state dependencies and normalization cross-couplings (pp. 3, 5–6, 14–15).",
+          "Novelty over standard surrogate-gradient SNNs appears modest: interval/boxcar firing plus normalization is not convincingly distinguished experimentally from ordinary trainable SNN components. There is no ablation of interval excitation itself, epsilon/threshold sensitivity, complete M2 ablation, matched standard-SNN implementation, firing-rate analysis, or hardware/energy evaluation (pp. 4, 8–9, 15).",
+          "Evidence is narrow and comparison validity is weak: only two closely related converted-digit datasets are used, baselines appear drawn from studies with potentially different splits, and the very large flattened MLP is not parameter-matched. Moreover, the claimed 99.80% MNIST-DVS result conflicts with the table maximum of 99.60%, undermining the asserted new benchmark (pp. 7–9)."
+        ],
+        "score_rationale": "The trainable SN P framing is potentially interesting, but substantial specification contradictions and insufficient controlled evidence prevent confidence in soundness or novelty. I therefore rate it a reject; uncertainty remains because code could clarify whether the problematic equations are only expository rather than implementation errors."
+      }
+    }
+  ]
+}

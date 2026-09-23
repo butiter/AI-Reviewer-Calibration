@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_069",
+  "paper_id": "pf9J3GNxSe",
+  "number": 9993,
+  "title": "Critical Phase Transition in Large Language Models",
+  "authors": "Kai Nakaishi; Yoshihiko Nishikawa; Koji Hukushima",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "natural language processing; large language models; statistical physics; phase transitions; critical phenomena; large-scale numerical experiments",
+  "forum_url": "https://openreview.net/forum?id=pf9J3GNxSe",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    6,
+    3
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes that qualitative changes in language model outputs can be analyzed as phase transitions—an analogy drawn from statistical physics. The authors empirically explore the shifts in characteristics of model-generated natural language that appear with sampling temperature scaling, which they posit may resemble phase transitions observed in physical systems. They observe a shift from what they characterize as an ordered to a disordered phases (i.e., the temporal structures in the different sets of sequences are statistically distinctive) as a result of changes in temperature. They conclude that LMs exhibit phase transition-like behavior around critical parameter values. They compare several quantitive attributes of the sequences generated at different temperatures to those of human generated text and find notable differences."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "* The motivation behind the paper is nice: the application of a well-studied concept from physics can perhaps allow us to use knowledge about/properties of that concept to better understand natural language and language models\n* The work provides a comparison of quantitative aspects of human- and machine-generated language, an approach that is more objective than the qualitative comparisons that are often done and thus perhaps a better ground from which to draw conclusions \n* The finding that the statistical properties of language at different sampling temperatures is interesting (anecdotally, at least)"
+        },
+        "weaknesses": {
+          "value": "* The paper is generally difficult to follow:\n    * There is confusing terminology that isnt defined/contextualized before it is used, e.g., “long-range correlation” in the introduction). This will likely confuse most readers (myself included)\n    * The implications of the observed critical properties are incredibly unclear. See subsequent questions for the parts that felt particularly unclear to me, although this is not comprehensive. As such, it is difficult to draw meaningful conclusions from the paper\n* The work only looks at changes in model behavior as a result of changing the temperature parameter. This is a very narrow exploration and also somewhat contrived since it's an external change to the model that doesn’t have any implications about what happens when internal model attributes vary\n* Only rather small models are used (on the scale of 100M parameters) and so results are not relevant for modern LLMs"
+        },
+        "questions": {
+          "value": "* In the introduction, the motivation that “the decay of correlation in natural languages follows a power law” is used. This is an incredibly vague statement. What are some concrete correlations in natural language that this applies to?\n* Terminological clarifications: \n    * What are “changes with a singularity”, both in a physics and POS sequence context?\n    * What is a concrete example of a ‘critical phenomenon’ in a physical system and what might be an example of one in natural language? \n    * What does it mean that “the high-temperature phase is not simply disordered”? What does this look like qualitatively in language? Does it tell us something about human-generated natural language? And what does it mean about a language model?\n* What are the implications of causality being broken for the conclusions that can be drawn? It seems as though this might invalidate results. I don’t see why the effect “shouldn’t matter”. I also don’t think it’s accurate to use the example of next characters as a situation where there are not dependency relationships. Anecdotally: language modeling can also be successful at the character-level. Perhaps I am not understanding something."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xO4p8C4Fpr",
+      "forum": "pf9J3GNxSe",
+      "replyto": "pf9J3GNxSe",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_LsMv"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_LsMv"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9993/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730966399088,
+      "cdate": 1730966399088,
+      "tmdate": 1731428041260,
+      "mdate": 1731428041260,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper argues that LM generations undergo a phase transition at temperature $T = 1$. Specifically, they generate texts from GPT-2 using different temperatures (conditioned on only the BOS token), and map each text into a sequence of POS tags (though the focus only on PROPN), and study three features of the POS tags.\n\n1. **Correlation between two tags:** The authors study whether PROPN tags are correlated at particular intervals in the text. They find the integrated correlation $\\\\tau$ between PROPN and PROPN saturates to a finite value for $T>1.0$, which means correlation decays faster than critical decay, whereas for $T<1.0$, $\\\\tau$ diverges, which means the correlation converges to a finite value. In other words, sequences with $T<1$ have long-range correlation between POS tags, and sequences above $T>1$ converge to zero correlation.\n2. **Power spectra of POS sequences**: The authors study whether there is periodic appearance of the PROPN tag via the power spectrum. Again, there appears to be long-range order at $T<1.0$, but at $T>1.0$ the spectrum is featureless.\n3. **Time evolution of POS sequences:** The authors study the probability of the PROPN tag at time $t$. They find that this probability converges quickly to a limiting value for $T<1.0$ and $T>1.0$, but converges much more slowly for values close to $T\\approx 1.0$."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This paper investigates whether LLMs go through phase transition with the temperature parameter. This (I believe) contrasts with much of the literature, which is about the possibility of a phase transition with the size of the model. The statistics that the authors introduce may have value for future work that aims to study structural features of LLM generations.\n\nThe writing and organization are clear, and the figures are clearly explained."
+        },
+        "weaknesses": {
+          "value": "- There are obvious empirical concerns: namely, in the main paper, the authors only study GPT-2 small, and all of the analysis is specifically about the structure of where the proper noun PROPN tag occurs in generated text. This must be quite narrow, and it would be more convincing if the authors could summarize the results for other models and other POS tags in the main paper (they are referenced as being in the Appendix, which I did not read).\n- This is very far from my area of expertise, but I am not convinced that there is truly *singularity* at $T=1.0$. In their analysis in §4.2 (power spectra) and §4.3 (time evolution), the model seems to demonstrate continuous behavior around $T=1.0$. In particular, I am looking at Figure 3 (A), where the peak in integrated correlation actually occurs at $T=1.1$, and Figure 5, where the values neighboring $T=1.0$ (from $0.9$ to $1.2$) all behave qualitatively similarly to $T=1.0$. This makes me worried that the paper is just showing that generations have structurally different qualities for small $T$ and large $T$, which is somewhat obviously true because $T$ directly controls the peakiness of the LM prediction, such that low $T$ will be highly redundant and high $T$ will be quite degenerate (esp. for GPT-2 era models).\n- It is not clear to me how important the authors' findings are for the community. They mention their results suggest \"a meaningful analogy between LLMs and natural phenomena,\" but the analogy was not clear to me from reading the paper. Are there practical insights about what LMs are learning or how we should build future LMs?\n- There seems to be [related work](https://community.wolfram.com/groups/-/m/t/2958851) from 2023 that also studies phase transition at $T=1.0$, which the authors mention, and the distinction in their contributions is not clear to me. This may lessen the novelty of their work."
+        },
+        "questions": {
+          "value": "- Can you help me interpret Equation (1)? My understanding is that $a$ and $b$ are POS tags, and $y_t$ is the particular POS tag at position $t$. Therefore, this is measuring whether there is a predictable relationship that when $y_t=a$, then $y_{t+\\\\Delta t}=b$. What is the purpose of the second term? Does it serve as some kind of normalization, to account for the base frequency of $y_t=a$ and $y_{t+\\\\Delta t}=b$? Why are there $18 \\\\times 17/2$ possible pairs $a$ and $b$? I would have assumed $18^2$?\n- L. 240: \"The plateau value increases with the position $t$ of the former tag.\" Is this true? It looks like the green line ($t=15$) is ordered between purple ($t=0$) and blue ($t=3$).\n- L. 244: What is \"the prefactor\" of the decay? I am again failing to see a reliable trend for $t$, since it seems like $t=0$, $t=63$, and $t=225$ all have extreme error bars, while $t=3$ and $t=15$ do not.\n- L. 301: What does it mean for a spectrum to be featureless?\n- For the power spectra analysis, I can see how the plots at different temperatures look different, but why is there *singular* behavior at $T=1.0$?\n- In Figure 5, doesn't $v(t)$ immediately reach its limiting value for $T=1.0$, contrary to what's written in the paper?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "aSNLROkZyD",
+      "forum": "pf9J3GNxSe",
+      "replyto": "pf9J3GNxSe",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_7ukK"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_7ukK"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9993/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730740899143,
+      "cdate": 1730740899143,
+      "tmdate": 1732584578615,
+      "mdate": 1732584578615,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates whether phase transitions occur in Large Language Models (LLMs). The authors conduct a statistical analysis of sequences generated by GPT-2 at various temperatures and found the phase transition occurs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The project fosters the understanding of LLMs from an interesting angle of phase transition.\n2. The experiments are well designed and cleared documented."
+        },
+        "weaknesses": {
+          "value": "1. While LLMs develop fast over the past few years, this work tests on GPT-2, instead of newer generations of models."
+        },
+        "questions": {
+          "value": "1. In what ways will the understanding of phase transition impact future LLM works?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "XOUP7D4kEl",
+      "forum": "pf9J3GNxSe",
+      "replyto": "pf9J3GNxSe",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_HR6F"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_HR6F"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9993/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730708317437,
+      "cdate": 1730708317437,
+      "tmdate": 1731428041481,
+      "mdate": 1731428041481,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper identifies a phase transition around temperature 1.0 when increasing the temperature parameter for LLM text generation. They focus on POS tags of generated sequences, finding a phase change in (1) the correlation of POS tags at two time points (for some time change $\\Delta t$) and (2) periodic behavior. Natural text seems to correspond to roughly temperature 1.0."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. Drawing a connection between statistical physics and LLM text generation is very interesting.\n2. The paper identifies a phase transition for multiple metrics (correlation between two tags, power spectra)."
+        },
+        "weaknesses": {
+          "value": "1. The results for periodic behavior are nicely quantified, but slightly unsurprising (degeneration into repeated sequences for low temperature, but not high temperature; e.g. https://arxiv.org/pdf/1904.09751). Looking at the specific types of repetitive loops that the model falls into could be more informative.\n2. The result that GPT-2 is closest to natural language text at T=1.0 is a bit unsurprising given that this leaves the probabilities unchanged from how they were trained. For example, we would likely expect lowest perplexity over a large corpus for T=1.0, because the model is trained to minimize loss (log-perplexity) for T=1.0."
+        },
+        "questions": {
+          "value": "1. What is the motivation behind the POS tag correlation on p. 5? It's not necessarily intuitive why a proper noun appearing at time t should be highly correlated with a proper noun appearing at time $t+\\Delta t$ for large $\\Delta t$ (e.g. 100 tokens later; Figure 2). What do these correlations tell us about the actual text that gets generated?\n2. Consider including the word temperature in the title; phase changes often refer to transitions over the course of pretraining (https://arxiv.org/abs/2209.11895) rather than varying the temperature parameter, so it would be helpful to clarify that this paper focuses on varying temperature."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "SFdhZEzRVe",
+      "forum": "pf9J3GNxSe",
+      "replyto": "pf9J3GNxSe",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_NkYN"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9993/Reviewer_NkYN"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9993/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730398815688,
+      "cdate": 1730398815688,
+      "tmdate": 1731428041150,
+      "mdate": 1731428041150,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents an interesting statistical-physics framing of temperature-dependent degeneration in autoregressive language models, supported by large-scale measurements of POS/character correlations, spectra, and transient dynamics. However, the evidence establishes a finite-scale crossover more convincingly than a genuine critical phase transition, making the central claim substantially overstated.",
+        "strengths": [
+          "The empirical study is unusually extensive: 320k samples per temperature for GPT-2, multiple sequence lengths and temperatures, and analyses of correlation, integrated correlation, spectra, and dynamics (pp. 5–9).",
+          "Robustness is explored across English and Japanese models, model sizes from 70M to 1B, POS and character mappings, and two natural-language corpora (pp. 30–37).",
+          "The connection between low-temperature repetition and growing nonzero-frequency spectral peaks is informative and clearly illustrated (pp. 7, 21–24)."
+        ],
+        "weaknesses": [
+          "A true singularity is not demonstrated: scaling reaches only N=512, the apparent boundary is broad, and the paper itself concedes that the claimed transition requires an infinite model/context/training-data limit not studied here (pp. 6, 9). No finite-size-scaling collapse or controlled extrapolation locates Tc or distinguishes a transition from a crossover.",
+          "The integrated correlation is computed for strongly nonstationary, BOS-conditioned sequences and equals N times the across-sequence variance of tag proportions (pp. 4, 6–8). Growth can therefore arise from persistent topic/trajectory heterogeneity or repetitive attractors rather than a diverging correlation length; this alternative is not adequately controlled.",
+          "Power-law and critical-slowing claims rely mainly on visual log-log trends and a threshold-based estimate, without fitted ranges, competing-model comparisons, or stable critical exponents (pp. 5–8, 19–20, 25). The natural-corpus comparison consequently does not independently validate criticality."
+        ],
+        "score_rationale": "The physics-inspired perspective and breadth of experiments are valuable, but the main novelty rests on calling the observed finite-length behavior a phase transition. Because the manuscript lacks the scaling and alternative-hypothesis controls needed to support that claim, I judge it marginally below the acceptance threshold, while acknowledging uncertainty about whether stronger supplemental analyses could resolve the issue."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper interprets temperature-dependent changes in autoregressive text generation as a critical phase transition, using POS/character correlations, integrated correlations, spectra, and transient dynamics. The empirical patterns are intriguing, but the finite-size evidence does not yet establish the claimed singular transition.",
+        "strengths": [
+          "Novel and potentially fruitful statistical-physics framing of temperature-dependent generation behavior, with several complementary observables (pp. 5–8).",
+          "Large-sample GPT-2 study and useful checks across sequence-selection procedures, POS pairs, and natural-language corpora (pp. 5, 15–18, 29–30).",
+          "Some robustness across Japanese GPT-2, Pythia 70M/1B, and a character mapping, although these tests are less extensive (pp. 31–37)."
+        ],
+        "weaknesses": [
+          "The central phase-transition claim is inferred from sizes only up to N=512, without finite-size scaling, a fitted critical point/exponents, or uncertainty over extrapolation; the paper itself concedes that a true transition requires an infinite context/model limit not studied here (pp. 6, 9–10).",
+          "The generated process is strongly nonstationary, yet the position-summed covariance is treated as a susceptibility. Growth with N can reflect transient position effects or sequence-level mixture/heterogeneity rather than criticality, and this alternative is not controlled (pp. 6–8).",
+          "Power laws and critical slowing are largely diagnosed visually: there are no comparisons against exponential/broken-power-law alternatives, and the transient exponent uses a threshold-dependent proxy with a reference slope rather than a reported fit (pp. 5–6, 19–20, 25)."
+        ],
+        "score_rationale": "The work offers a creative hypothesis and substantial exploratory evidence, but its headline assertion of a genuine critical phase transition is stronger than the finite-size, nonstationary analysis supports. I view it as promising but marginally below acceptance pending rigorous scaling/model-comparison tests and controls for heterogeneity."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents an interesting statistical-physics framing of temperature-dependent text generation. Large-sample experiments show a robust crossover near T≈1 between repetitive and decorrelated outputs, with broadly similar finite-size behavior across several models and mappings. However, the evidence does not establish the claimed critical phase transition: it is limited to N≤512, lacks rigorous scaling/model-selection analyses, and conflates correlations in a nonstationary autoregressive process with equilibrium susceptibility.",
+        "strengths": [
+          "The empirical study is extensive: 3.2×10^5 samples per temperature for GPT-2, finite-size comparisons, bootstrap intervals, and controls for length filtering (pp. 5, 15).",
+          "Several complementary observables—correlations, integrated correlations, spectra, and transient dynamics—consistently identify a qualitative temperature-dependent crossover (pp. 5–8).",
+          "The main finite-size pattern is reproduced across Japanese GPT-2, Pythia 70M/1B, POS and character mappings, while natural corpora provide useful comparisons (pp. 29–37)."
+        ],
+        "weaknesses": [
+          "A genuine phase transition requires an infinite-size singularity, but only N≤512 is tested; the authors themselves state that the true transition would require jointly unbounded context/model/training-text scales (p. 9). Thus the central claim is substantially stronger than the evidence.",
+          "Power-law criticality and divergence are asserted mostly from log-log plots without fitted exponents, goodness-of-fit, competing decay models, finite-size scaling collapse, or a stable estimate of Tc (pp. 5–6, 19–20, 25). The transient exponent estimate is particularly threshold-dependent and visually approximate (p. 25).",
+          "The physical interpretation is insufficiently justified: generated sequences are strongly nonstationary, and covariance across sampled continuations may reflect latent topic/trajectory heterogeneity rather than susceptibility or causal propagation. The claim that changing one word can influence the whole text does not follow from observational correlation (pp. 6–8)."
+        ],
+        "score_rationale": "The work offers a novel and potentially valuable empirical viewpoint, and the observed crossover appears real and reasonably robust. Nevertheless, the headline conclusion of a critical phase transition is not technically established, while the natural-language comparisons near T=1 are partly expected from calibration/training and do not resolve that gap (pp. 8–10). I therefore place it marginally below acceptance, with some uncertainty because stronger finite-size/model-selection analysis could materially improve the case."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a statistical-physics view of temperature sampling and reports a transition near T≈1 between repetitive and decorrelated text, using POS correlations, spectra, and positional dynamics. The empirical patterns are interesting, but the evidence establishes a finite-size crossover rather than the claimed critical phase transition.",
+        "strengths": [
+          "The correlation, integrated-correlation, spectral, and positional analyses offer an original and potentially useful characterization of temperature-induced generation changes (pp. 5–8).",
+          "The study uses unusually large sample counts and includes checks for sequence selection and aggregation across POS pairs (pp. 5, 15–18).",
+          "Qualitatively similar finite-size behavior is shown across English/Japanese models, Pythia sizes, POS/character mappings, and two natural-language corpora (pp. 29–37)."
+        ],
+        "weaknesses": [
+          "The central phase-transition claim is not technically established: only N≤512 is observed, no finite-size scaling/collapse or robust critical-point/exponent estimation is provided, and the paper acknowledges that the true N→∞ limit would require simultaneously unbounded context/model/data rather than the fixed models studied (pp. 6, 9–10, 25).",
+          "Power laws and divergence are largely inferred visually without fitted ranges, uncertainty on exponents/Tc, or comparison against plausible alternatives; even the transient exponent uses a threshold-dependent proxy with sparse points (pp. 5–6, 19–20, 25).",
+          "Several claimed physical interpretations are confounded by construction: generation starts from a fixed BOS and conditions on sequences surviving to length N, so position-dependent corpus/topic/termination mixtures can create nonstationarity and growing variance; calling positional relaxation “critical slowing down” is therefore insufficiently justified (pp. 4, 7–9, 15)."
+        ],
+        "score_rationale": "The paper has a novel framing, substantial computation, and useful robustness evidence, but its headline assertion of a genuine critical phase transition substantially exceeds what finite-context, finite-size descriptive plots demonstrate. I am uncertain whether stronger scaling and confound controls would validate the claim; in its current form this is marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents an original statistical-physics framing of temperature-dependent degeneration in language models, using POS correlations, spectra, and transient dynamics. The empirical crossover is interesting, but the central claim of a genuine critical phase transition is not established by the finite-size evidence, so the work currently falls marginally below acceptance.",
+        "strengths": [
+          "The correlation, integrated-correlation, spectral, and dynamical analyses provide several complementary views of the temperature-dependent change, backed by unusually large GPT-2 sampling (pp. 5–8).",
+          "The appendices test sequence-selection effects, aggregate over POS pairs, and extend the main observation to Japanese GPT-2, Pythia, and a character mapping (pp. 15–18, 31–37).",
+          "The comparison with OpenWebText and WikiText is potentially valuable and shows qualitative similarities between corpora and near-default-temperature generation (pp. 8–9, 29–30)."
+        ],
+        "weaknesses": [
+          "A singular thermodynamic limit is never demonstrated: all principal results stop at N=512, while the paper concedes that a true transition would require an undefined joint limit of context length, model size, and training-data length (pp. 6, 9). The results therefore support a finite-size crossover, not yet a phase transition in practical LLMs.",
+          "Claims of power-law decay, divergence, and critical slowing down rely mainly on visual trends. There are no systematic fits, exponent uncertainties, finite-size scaling collapse, or comparisons against exponential/stretched-exponential alternatives; the transient exponent additionally depends on arbitrary thresholds and fixes Tc=1 (pp. 5–8, 19–20, 25).",
+          "Corpus criticality may be confounded by document-position nonstationarity and heterogeneous topic/style mixtures. The strong dependence of POS frequencies on position is itself visible, yet shuffled, stationary, or matched-mixture controls are absent (pp. 8–9, 29–30)."
+        ],
+        "score_rationale": "The empirical phenomenon and broad robustness checks are promising and reasonably novel, but the paper's decisive claim is substantially stronger than its evidence. Without rigorous finite-size scaling and controls for nonstationarity/mixture effects, I would interpret the observations as an interesting crossover and degeneration analysis rather than strong evidence of criticality. I am moderately confident, with some uncertainty because larger-N scaling could potentially resolve the main issue."
+      }
+    }
+  ]
+}

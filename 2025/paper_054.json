@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_054",
+  "paper_id": "NmcOAwRyH5",
+  "number": 7076,
+  "title": "Understanding Virtual Nodes: Oversquashing and Node Heterogeneity",
+  "authors": "Joshua Southern; Francesco Di Giovanni; Michael M. Bronstein; Johannes F. Lutzeyer",
+  "primary_area": "learning on graphs and other geometries & topologies",
+  "keywords": "Graph Neural Networks; Message Passing; Virtual Nodes; Oversquashing; Graph Transformers",
+  "forum_url": "https://openreview.net/forum?id=NmcOAwRyH5",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    6,
+    6,
+    3,
+    5
+  ],
+  "human_mean_rating": 5.6,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper contains a theoretical examination of VNs and their ability to counteract the oversquashing frequently present in MPNNs and a juxtaposition with GT methods, leading to a justification for an intermediate heterogeneous VN approach, VN_\\textit{G}.\nA novel analysis shows that VNs impact on the commute time between nodes of a graph, as a function of the graph spectrum, can reduce oversquashing. Empirically, VNs are shown to reduce commute time compared to MPNNs on real graphs, though is possible for it to increase. Commute time in turn affects mixing a model can induce after \\textit{m} layers with mixing being the number of interactions between nodes needed to solve a task. When VNs reduce commute time, it is shown that strong mixing increases, reducing the size of \\textit{m} and reducing oversquashing.\n\nHowever, GTs can arbitrarily change commute time and further exceed the previous improvement, though they do incur significant overhead when compared to VNs. A novel sensitivity analysis of GTs and VNs follows which examines the Jacobian of both methods, showing that GTs allow for global heterogeneity via attention as each node depends on non-uniform functions of the values of all nodes at the previous layer. Contrary to this, VNs are independent for nodes further than 2 hops away and thus global information is applied homogeneously. It is worth noting that a full examination of the impact of GTs on commute time is left as a future research direction.\nThis leads to the proposal of VN_\\textit{G} to bridge the gap between VNs and GTs. This takes the form of sequential updates. First a local update on nodes, then VN update leveraging the previous nodes, and a final node update as a function of both local and VN updates for each node. An examination of the Jacobian shows that the sensitivity of each node to non-neighbors becomes a function of the topology while appearing to maintain local bias.\n\nThe need for heterogeneity in VN_\\textit{G} is empirically shown by examining the similarity of the attention matrix of a trained GT model on the nodes of several graphs. An increase in similarity implies reduced heterogeneity and therefore a reduced gap between the performance of GT and the (less) heterogeneous methods. The performance of models during experiments matches this observation.\nIn line with the discussion of the paper, experiments to compare MPNN + VN_\\textit{G} with other baselines for graph-level tasks demonstrates improved performance over MPNN + VN on tasks requiring heterogeneity and matching performance of GT methods, which has some implication for the impact of long-range dependencies for tasks.\n\nThe appendix of the piece also includes an examination of MPNN + VN with PairNorm and demonstrates that, for the linear case, the benefits of MPNN + VN are not due to its ability to produce the results of PairNorm to reduce oversmoothing. In fact, when MPNN + VN replicates PairNorm, its expressivity is reduced."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "The piece does an excellent job of addressing a shortcoming in the literature on when and why Virtual Node are helpful from a theoretical perspective. It provided an extensive juxtaposition with a competing method and identified a key component of the performance gap between the two in specific settings (graph-level tasks). An incremental approach that has begun to appear in other works is further discussed and the piece contains the first theoretical analysis to justify its use.\nAdditionally, with minimal additional work an appendix of the paper proving the benefit of VNs does not come from their ability to replicate PairNorm for the linear case, which is rather a hindrance."
+        },
+        "weaknesses": {
+          "value": "I do not believe that there are any significant weaknesses to this paper and find it to be acceptable. Minor changes may improve the piece, but also to an undue amount of additional work and conflict with length requirements.\n\nMPNN + VN can beat GTs as shown in Tables 1 and 3 with the observation that long-range dependencies may not play as large of a role for these tasks. This leads me to wonder about the role of the inductive bias from the locality of MPNN’s, though this is addressed Rampášek et al. which instead leads be to the impact of VN_\\textit{G} on mixing.\n\nI do not have a better alternative, but the empirical analysis to answer Q2 of Section 5.1 oddly seems self-justifying to me. In addition, GatedGCN+PE is shown in Table 2. to have superior performance to all the methods of Table 1. For Pept-Func while remaining competitive for Pept-Struct.\n\nIt seems that Appendix C concludes the proof of Theorem B.1 but only proves that there are filters which can be learned by MPNN but not MPNN-VN. The remainder in this seems mostly to be contained in Theorem C.1."
+        },
+        "questions": {
+          "value": "Beginning on line #1430 are what appear to be notes used to write Appendix C that were not removed. \n\nLine #373 refers to Theorem 3.4 and should instead be Corollary 3.4.\n\nIt would be nice to have the Jacobian of GT at least somewhere in the appendix.\n\nIn Table 1 what is the PE in GatedGCN+PE+VN? Also, in the text of 5.1 it is only referred to as GatedGCN+VN\n\nI was not able to discern what the arrows in the heading of each of the tables indicated.\n\nAppendix J seems unnecessary as Fig. 1 would be more useful in the main text, if it wasn’t so small."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dgbaDM3hhq",
+      "forum": "NmcOAwRyH5",
+      "replyto": "NmcOAwRyH5",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_JV8P"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_JV8P"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7076/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730899794371,
+      "cdate": 1730899794371,
+      "tmdate": 1731428804949,
+      "mdate": 1731428804949,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The goal of this paper is to exploit the use of a virtual node to improve the performance of graph neural networks. The focus is specifically on the problem of oversquashing brought forward by the use of message passing neural networks (MPNNs). The authors first analyze the performance of MPNNs when virtual nodes are used and, then, they propose a new approach that can help improve performance and address the oversquashing problem."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "+ The problem of oversquashing has been less studied in the prior art, and this work makes an important contribution towards this area\n+ The analysis of oversquashing and the use of virtual nodes is important. The result connecting improvements to the graph spectrum is meaningful and helps in improving designs of graph neural networks.\n+ The evaluation of performance compared to graph transformers is meaningful and shows how one can close the gap in performance."
+        },
+        "weaknesses": {
+          "value": "- The theoretical results, while relevant, seem to follow directly from prior works. It is not clear whether the contribution is significant theoretically, as opposed to being a merger of known prior results like those from Di Giovanni et al.\n- The argument for using MPNNs with virtual nodes compared to graph transformers is rather weak. I believe graph transformers may in fact remain the architecture of choice. The authors' discussion on this issue is not very convincing.\n- The cost of adding a virtual node is apparently assumed to be negligible or at least it is not discussed.\n- The performance gains do not seem significant enough"
+        },
+        "questions": {
+          "value": "- What is the cost of adding a virtual node? Are there hidden computing or performance costs? Can you provide concrete run-time or memory usage results while comparing the cases with and without virtual nodes?\n- How do you justify the significance of your final results given that the performance is very close to state of art? For example, can you discuss the practical implications of the performance improvements that you achieved.\n- Can you better articulate why MPNNs with virtual nodes are more effective than graph transformers?\n- What is the main theoretical contributions when it comes to your proofs? How does it differ from the papers from which you adapted the theory? Please provide a point-by-point comparison between your theoretical results and the most closely related prior works."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "61k9M6iRoW",
+      "forum": "NmcOAwRyH5",
+      "replyto": "NmcOAwRyH5",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_cijV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_cijV"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7076/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730646008358,
+      "cdate": 1730646008358,
+      "tmdate": 1731428805265,
+      "mdate": 1731428805265,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "(1) This paper studies the impact of Virtual Nodes (VNs) on oversquashing, showing that their improvements in network mixing can be bounded by the graph's spectrum.\n(2) This paper identifies a gap between VNs and GTs in capturing heterogeneous node importance, leading to the proposal of MPNN + VNG, which effectively learns heterogeneous node relevance without extra cost.\n(3) This paper validates its insights through experiments, demonstrating that MPNN + VNG consistently outperforms MPNN + VN, particularly in tasks where node heterogeneity is crucial."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Theoretical Contributions are good: (1) It offers the first comprehensive study of the impact of Virtual Nodes (VNs) on the oversquashing phenomenon, providing a foundational understanding of their role in enhancing network performance. (2) By employing sensitivity analysis of node features, the study identifies a significant gap between VNs and GTs regarding their ability to capture heterogeneous node importance, leading to deeper insights into their comparative strengths.\n2. It introduces a novel MPNN + VNG method, that effectively utilizes graph structure to learn a heterogeneous measure of node relevance without incurring additional computational costs.\n3. The paper validates its theoretical insights through extensive ablations and experiments, demonstrating that MPNN + VNG consistently outperforms the MPNN + VN, particularly in tasks where node heterogeneity is crucial."
+        },
+        "weaknesses": {
+          "value": "1. ‘To assess if and how a VN helps to mitigate oversquashing, we need to determine whether the commute time of Gvn is smaller than the commute time of the original graph G.’ So which Theorem below can prove this?\n2. Theorem 3.1 highlights how the impact of adding a VN can be determined in terms of the spectrum of the input graph. According to Theorem 3.1, how can it derive the claim of ‘adding a VN reduces the overall commute time’? Theoretically prove this is important.\n3. ‘The result in Corollary 3.4 shows that for real-world graphs where adding a VN significantly reduces the commute time—i.e., (5) is negative’. Please further explain this claim.\n4. ‘In our sensitivity analysis we will show MPNN + VNG to fall in between the fully homogeneous\nMPNN + VN and the potentially fully heterogeneous GTs.’ Please give a brief explain for this claim.\n5. ‘nodes that are more relevant to each of their neighbors, are more likely to contribute more to the global update, instead of weighting each node the same as for MPNN + VN.’ Which part of MPNN + VNG shows this property?\n6. The heterogeneity of nodes is important, for what kind of tasks?"
+        },
+        "questions": {
+          "value": "See the weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "bij3GcWXqu",
+      "forum": "NmcOAwRyH5",
+      "replyto": "NmcOAwRyH5",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_rwJ9"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_rwJ9"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7076/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730551456670,
+      "cdate": 1730551456670,
+      "tmdate": 1731428805431,
+      "mdate": 1731428805431,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Message passing neural networks (MPNNs) are known to be limited in their capability to capture long-range interactions between nodes, a problem known as oversquashing. This paper studies the effect of adding a virtual node (VN) on over-squashing, giving an exact characterization in terms of spectral properties of the network. \n\nOversquashing is the problem of fitting information in a constant-sized embedding vector from a neighborhood growing exponentially in terms of radius. This problem is known to occur between nodes at a high commute time from each other. The paper calculates the change in commute time from adding a virtual node, as a function of eigenvectors of the network Laplacian. The change in commute time is verified empirically. \n\nAdditionally, the paper does a brief comparison of MPNN + VN to Graph Transformers (GTs). In light of this comparison, the authors give (formalize) a slightly different VN architecture with interleaved node and VN updates. This architecture is claimed to be better because it incorporates graph structure before aggregating messages at the virtual node. This model is also tested in practice."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper gives a precise characterization of the difference in commute time when a virtual node is added. Combined with the results on commute time from previous work, this gives a clear insight into how VNs mitigate oversquashing. The difference in commute time is given for pairwise commute time, as well as the average commute time over the network. The result is also connected to the concept of mixing from earlier work, showing that MPNNs with a virtual node can require fewer layers to represent functions that require high mixing. \n\nThe experimental results align with the theoretical findings. The paper is also well written and easy to follow."
+        },
+        "weaknesses": {
+          "value": "The comparison of MPNN + VN to Graph Transformers (Section 4) feels somewhat superficial and does not offer significant new insights. The main observation is that graph transformer layer allows for heterogeneous node importance, while MPNN+VN treats nodes with homogeneous importance. \n\nThe authors propose MPNN + VN_G, a formulation with node updates interleaved with the VN update. This formulation is not new, and the authors also say it has been previously shown to improve performance in practice. The claim is that the update allows heterogeneous attention to different nodes, but this seems like a questionable claim. Heterogeneity is due to the different graph topologies: high-degree nodes affect a different number of neighbors proportional to their degree, before new states are aggregated to the VN. This is different from heterogeneity in GTs via the attention mechanism, where different importances can be learned. There is a note about this on line 349, but I feel like the section is still overselling its results. It is also worth mentioning that a traditional MPNN + VN is also capable of heterogeneous node importance in the weaker sense, just with at least 3 layers. \n\nOverall, the primary contribution of the paper seems to be Theorem 3.1. A downside of this theorem is its practical application. The authors mention that the change in commute time from adding a virtual node can sometimes be negative (e.g. in a complete graph). The experiments show significant avereage commute time reduction for some graph datasets, but the paper does not make it clear whether these experimental results can be reliably generalized in practical applications. \n\nGiven that commute time was already introduced in previous work, all we have now seems to be a formula. The formula is complicated and without real practical use. Theory is best if it is actually usable, but I don't know how to use this theory."
+        },
+        "questions": {
+          "value": "While the runtime of MPNN + VN_G is the same as MPNN + VN, could there be problems with vanishing gradients since the depth is essentially doubled? \n\nMinor comment: equation 14: \": j \\in V\" missing. same below on line 311"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "17kec04V21",
+      "forum": "NmcOAwRyH5",
+      "replyto": "NmcOAwRyH5",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_aG7n"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_aG7n"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7076/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730389882545,
+      "cdate": 1730389882545,
+      "tmdate": 1731428805573,
+      "mdate": 1731428805573,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper provides a comprehensive theoretical analysis of the role of virtual nodes in message passing neural networks, specifically addressing the oversquashing problem and long-range interaction limitations. The authors characterize how virtual nodes improve network mixing abilities and mitigate oversquashing based on underlying network topology. Additionally, they propose a variant of virtual nodes that can assign different importance to nodes based on graph structure, offering a more effective and computationally efficient solution for graph-level tasks compared to traditional approaches."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This paper provides a detailed theoretical analysis addressing the issues of \"oversquashing and node heterogeneity\". \nEach chapter of this paper presents a detailed problem statement, followed by a comprehensive theoretical analysis and the design of corresponding algorithms to tackle these issues."
+        },
+        "weaknesses": {
+          "value": "1.Although this paper provides a lot of theoretical analysis and derivation, the conclusions are unclear. For example, Theorem 3.1. The conclusion is a complex expression. Can the author further simplify it through approximation or other means?\n\n2.The experimental results of this paper show almost no improvement compared to other methods (Tables 1-3).\n\n3.Although the content of this paper is substantial, it lacks a framework diagram. Readers find it difficult to intuitively understand what contributions this paper has and the relationships between the various contributions.\n\n4.This paper attempts to highlight its experimental results through bright colors, but the bright green color makes readers uncomfortable. In addition, the excessive use of different colors makes the experimental results appear somewhat messy, for example in Table 2."
+        },
+        "questions": {
+          "value": "The MNIST and CIFAR10 datasets are both image datasets. Why are they being used in graph-related research or this paper?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "6M14J1TPBp",
+      "forum": "NmcOAwRyH5",
+      "replyto": "NmcOAwRyH5",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_kkhT"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7076/Reviewer_kkhT"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7076/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730384624080,
+      "cdate": 1730384624080,
+      "tmdate": 1731428805930,
+      "mdate": 1731428805930,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper analyzes virtual nodes through commute time and sensitivity, then proposes VNG, which aggregates locally updated node states to obtain a topology-dependent global update. The spectral commute-time result is useful and the empirical study is broad, but the central interpretation that VNG's gains arise from heterogeneous node importance is not adequately isolated, and several formal claims contain errors or overreach.",
+        "strengths": [
+          "Theorem 3.1 gives a clear, apparently correct spectral characterization of how adding a virtual node changes pairwise and average commute time, supported by a detailed derivation (PDF pp. 4, 18–20).",
+          "VNG is simple, retains linear asymptotic complexity on sparse graphs, and consistently improves over the reported VN baseline, with especially large gains on CIFAR10 (PDF pp. 6, 8–9, 28).",
+          "The evaluation spans molecular, image, code, and protein graph benchmarks, with seeds, parameter counts, hyperparameters, and hardware documented (PDF pp. 8–9, 23–25)."
+        ],
+        "weaknesses": [
+          "The oversquashing conclusion is overstated: reducing a necessary depth lower bound does not establish that the actual minimum sufficient depth decreases or that a model learns the target more successfully. The experiments only verify commute-time changes, not the claimed task-level causal mechanism (PDF pp. 5, 7, 20–21).",
+          "VNG performs local and global propagation sequentially within one layer, whereas the stated VN baseline is synchronous and needs two layers for the same communication path. Without matched-depth/compute controls or an asynchronous homogeneous baseline, gains cannot be attributed specifically to heterogeneous importance. The four-dataset attention correlation is also weak causal evidence and its scale is potentially graph-size dependent (PDF pp. 6–8).",
+          "There are nontrivial technical inconsistencies: Proposition 4.2 omits the Q matrix present in Eq. 14, and Proposition F.1 treats softmax as if attention entries differentiated independently, omitting normalization cross-terms and special query effects when k=i (PDF pp. 6, 22–23). The smoothing interpretation also appears inconsistent with the plotted cosine distances (PDF p. 27)."
+        ],
+        "score_rationale": "The exact commute-time analysis and strong empirical baseline are valuable, but the main mechanism behind VNG is confounded and parts of the sensitivity analysis are formally incorrect. These issues place the work marginally below the acceptance bar, though a revision with corrected mathematics and matched architectural ablations could change the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper gives a useful spectral characterization of how adding a virtual node changes commute times, then proposes VNG, which aggregates locally updated node representations to obtain source-dependent global sensitivity. The main commute-time result appears valuable, and VNG improves consistently over the standard VN baseline, but some sensitivity derivations and the causal interpretation of the experiments are insufficiently rigorous.",
+        "strengths": [
+          "The exact commute-time expression and its spectral derivation are a substantive theoretical contribution that clarifies when a VN can reduce graph bottlenecks (pp. 4–5, 18–20).",
+          "VNG is simple, retains linear asymptotic complexity on sparse graphs, and provides a sensible intermediate design between homogeneous VN broadcasts and full attention (pp. 6–7, 23–24).",
+          "Experiments cover diverse graph-level datasets and show consistent gains over the matched GatedGCN+VN baseline, including a large CIFAR10 gain (pp. 8–9, 28)."
+        ],
+        "weaknesses": [
+          "The sensitivity mathematics contains notable defects: Proposition 4.2 omits the Q matrix present in Eq. 14, while Proposition F.1 appears to differentiate attention as if softmax were scalar and omits cross-key normalization terms (pp. 6, 22–23). The qualitative conclusions may survive, but the stated formulas are not reliable.",
+          "The claim that attention heterogeneity explains the VN–GT performance gap is supported by only four datasets and a post-training correlation; the projection intervention is limited, and alternative explanations such as optimization or capacity are not controlled (pp. 7–8, 29).",
+          "VNG changes update scheduling and effective communication depth, not merely node weighting, and related asynchronous interleaving is acknowledged as prior work. The experiments do not isolate this scheduling advantage or report measured runtime/memory despite efficiency claims (pp. 6, 8–9)."
+        ],
+        "score_rationale": "This is a marginal accept: the commute-time analysis is novel and useful, and the empirical baseline is strong, but errors in the sensitivity derivations and weak isolation of the proposed mechanism prevent a higher score. I am somewhat uncertain about whether the omitted factors are merely presentation errors or affect broader claims."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper analyzes virtual nodes through commute time and sensitivity, then proposes VNG, which globally aggregates locally updated representations. The spectral commute-time identity is interesting and the benchmark results are promising, but the central oversquashing interpretation overstates what the derived lower bound proves, while the heterogeneity evidence is too weak and confounded to support the claimed mechanism.",
+        "strengths": [
+          "The exact spectral expression for how adding a virtual node changes pairwise and average commute time is a useful characterization, with a reasonably clear derivation (pp. 4, 18–20).",
+          "VNG is simple, asymptotically efficient, and motivated by a concrete sensitivity distinction between uniform VN aggregation and topology-dependent local updates (pp. 5–7).",
+          "The method improves over the reported VN baseline across diverse graph-level benchmarks, with especially substantial gains on CIFAR10 and competitive results elsewhere (pp. 8–9, 28)."
+        ],
+        "weaknesses": [
+          "The oversquashing conclusion is not technically justified as stated: reducing a necessary depth lower bound does not show that the minimal required depth actually decreases or that the corresponding functions become learnable at that depth. The paper repeatedly interprets this weakening of an obstruction as a positive learnability result (pp. 5, 20–21).",
+          "The claimed causal link between attention heterogeneity and the VN–GT performance gap rests on only four datasets and a scale-dependent first-layer attention statistic; attention magnitudes are affected by graph size, and the projection experiment does not isolate heterogeneity from other architectural effects (pp. 8, 29).",
+          "VNG largely implements previously noted asynchronous local/global interleaving, and its advantage may arise from allowing global communication within one nominal layer rather than from heterogeneous node importance alone. Fair depth/compute/runtime controls and stronger ablations separating these explanations are missing (pp. 6, 8, 24–25)."
+        ],
+        "score_rationale": "The paper offers a useful spectral identity and a practical, inexpensive model variant with encouraging results. However, the main theoretical narrative confuses a smaller necessary lower bound with demonstrated mitigation, and the experiments do not convincingly establish the proposed heterogeneity mechanism. These issues place it marginally below acceptance despite meaningful contributions."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper gives a useful spectral characterization of how adding a virtual node changes commute time and proposes VNG, which broadcasts locally updated representations to obtain topology-dependent global sensitivity. The direction is relevant and experiments are broad, but several conclusions exceed what the theory establishes, and the sensitivity analysis and empirical support contain important gaps.",
+        "strengths": [
+          "The exact commute-time expression in Theorem 3.1 is a clear and potentially useful characterization, with a largely self-contained spectral proof (pp. 4, 18–20).",
+          "VNG is simple, linear-time on sparse graphs, and consistently improves the matched GatedGCN+VN baseline across the main reported benchmarks, with especially large gains on CIFAR10 (pp. 8–9, 28).",
+          "The evaluation spans molecular, image-superpixel, peptide, protein, and large function-call graphs, with seeds, parameter counts, and training details reported (pp. 8–9, 23–25)."
+        ],
+        "weaknesses": [
+          "The central oversquashing interpretation is overstated: reducing a necessary depth lower bound based on commute time does not show that the augmented model can learn the functions at the reduced depth or that its realized mixing improves accordingly. Corollary 3.4 is presented as if the minimal required depth “becomes” the new bound (pp. 5, 20–21).",
+          "The sensitivity theory has technical and scope problems. Homogeneity is proved only for a mean-aggregating VN subclass, not general MPNN+VN; Proposition 4.2 and its proof drop the learned Q appearing in Eq. 14; and the stated attention Jacobian omits softmax-normalization effects through other keys/values and the query dependence when k=i (pp. 5–7, 21–23).",
+          "Evidence for the claimed heterogeneity mechanism is weak: raw attention-weight standard deviations are confounded by graph size, only four datasets are examined, and the projection correlation is not causal. Some auxiliary evidence is internally inconsistent—the text claims VN reduces cosine distance while the plotted VN curves are higher (pp. 8, 26–27, 29)."
+        ],
+        "score_rationale": "The commute-time result and broad empirical gains make the work promising, but the architectural novelty is modest and already related to cited interleaved local/global updates. More importantly, flawed sensitivity formulas, restricted assumptions presented broadly, and an unsupported leap from a smaller necessary lower bound to mitigation prevent a confident acceptance. I am somewhat uncertain about notation lost in text extraction, but the substantive issues remain visible in the appendix proofs."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper gives an exact spectral characterization of how adding a virtual node changes commute times, analyzes the homogeneous sensitivity of standard virtual nodes, and proposes a topology-aware variant, VNG. The work is interesting and empirically broad, but the central oversquashing conclusion is stronger than what the derived necessary bounds establish, while the claimed heterogeneity mechanism is supported mainly by a small correlational ablation.",
+        "strengths": [
+          "The exact effective-resistance/commute-time formula is clear, interpretable, and accompanied by a detailed derivation (pp. 4, 18–20).",
+          "VNG is simple, retains linear graph complexity, and consistently improves its matched VN baseline across the main benchmark tables, with especially large gains on CIFAR10 (pp. 8–9, 28).",
+          "The manuscript evaluates several graph domains and includes useful architectural, hyperparameter, and base-MPNN ablations (pp. 23–28)."
+        ],
+        "weaknesses": [
+          "A reduced necessary depth lower bound does not imply that the true minimum required depth decreases or that mixing ability improves; thus Corollary 3.4 is interpreted too strongly as demonstrating mitigation of oversquashing (pp. 5, 20–21). Applicability of the imported bound to multi-relational, differently normalized VN updates also needs tighter justification.",
+          "The node-heterogeneity explanation is largely correlational: it uses only four datasets, first-layer attention statistics, and a projection intervention, without establishing that this statistic causes VNG's gains or directly measuring VNG's learned sensitivities (pp. 7–8, 29).",
+          "The architectural novelty is limited because asynchronous local/global interleaving is explicitly acknowledged as previously used, and some appendix evidence is internally confusing: the cosine-distance plots increase for VN despite the text claiming VN reduces distance, and the final-layer distance is unexpectedly nonzero (pp. 6, 26–27)."
+        ],
+        "score_rationale": "The exact spectral result and consistent empirical improvements make this more than a routine empirical paper. However, the main theoretical narrative overinterprets a necessary lower bound, the proposed architecture is only modestly novel, and the causal evidence for the claimed heterogeneity mechanism is insufficient. I therefore place it marginally below acceptance, with some uncertainty about whether a tighter reading of the imported oversquashing theorem resolves the central concern."
+      }
+    }
+  ]
+}

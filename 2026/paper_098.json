@@ -1,0 +1,250 @@
+{
+  "year": 2026,
+  "package_id": "paper_098",
+  "paper_id": "hld4TzJsnD",
+  "number": 24578,
+  "title": "WebShaper: Agentically Data Synthesizing via Information-Seeking Formalization",
+  "authors": [
+    "Zhengwei Tao",
+    "Jialong Wu",
+    "Wenbiao Yin",
+    "Pu Wu",
+    "Junkai Zhang",
+    "Baixuan Li",
+    "Haiyang SHEN",
+    "Kuan Li",
+    "Liwen Zhang",
+    "Xinyu Wang",
+    "Wentao Zhang",
+    "Yong Jiang",
+    "Pengjun Xie",
+    "Fei Huang",
+    "Jingren Zhou"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "agent",
+    "information seeking",
+    "data synthesis",
+    "llm"
+  ],
+  "forum_url": "https://openreview.net/forum?id=hld4TzJsnD",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    6,
+    4
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0sdawDV60U",
+      "forum": "hld4TzJsnD",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24578/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761986204866,
+      "tmdate": 1762943126119,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "BXxsJDHxhM",
+      "forum": "hld4TzJsnD",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24578/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760546695102,
+      "tmdate": 1762943126340,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "szoTFUq0Pm",
+      "forum": "hld4TzJsnD",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24578/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761993672756,
+      "tmdate": 1762943125862,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "x0Z5dMd1wx",
+      "forum": "hld4TzJsnD",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24578/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761998462856,
+      "tmdate": 1762943125518,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "WebShaper proposes synthesizing web information-seeking trajectories by representing questions as compositions of set-valued relation projections and iteratively replacing leaf constants with retrieved subquestions. The framing is interesting and the reported downstream gains are promising, but the formalism is limited and several evaluation and reproducibility gaps prevent the results from convincingly supporting the broad claims.",
+        "strengths": [
+          "The formalization-first perspective and layer-wise expansion provide a useful, relatively novel way to control the structure of synthetic information-seeking tasks (pp. 2–5).",
+          "Reported results are broadly positive across three backbones and two benchmarks, with matched-size SFT data comparisons favoring WebShaper on GAIA (pp. 6–8, 18).",
+          "The paper includes relevant ablations of formalized versus natural-language expansion and layer-wise versus sequential expansion, as well as cost and tool-use analyses (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The claimed formalization is much narrower than general information seeking: it mainly represents existential conjunctive relation graphs with unions, omitting common operations such as direction-sensitive relations, negation, comparison, ordering, counting, and aggregation. Moreover, Eq. 1 makes every relation symmetric, which is problematic for directional relations such as hasTitle or writtenBy used later (pp. 3–5, 17).",
+          "Evidence for data correctness is weak and partly circular: factual accuracy is estimated by a QwQ solver given the formal structure rather than independent human verification, and only an unspecified “over 80%” result is reported without sample size, uncertainty, or error analysis (p. 9).",
+          "Experimental reproducibility and reliability are insufficient: the judge and RL reward are not specified adequately; no variance or statistical testing is reported despite coarse GAIA increments; Eq. 8 appears to optimize observation tokens despite saying they are masked; and the RL gains differ between text and Figure 4 (+7.8/+13.5 versus +8.8/+14.5) (pp. 7–8, 16–17)."
+        ],
+        "score_rationale": "The structural synthesis idea is worthwhile and the reported gains suggest potential, but technical limitations in the formalism, weak independent validation of synthesized QA correctness, and serious evaluation/reproducibility ambiguities place the work below the acceptance threshold. Some uncertainty remains because fuller implementation details or corrected equations could resolve part of these concerns."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "WebShaper proposes a formalization-first pipeline for synthesizing web information-seeking trajectories, using relational set projections and layer-wise expansion. The idea is useful and the reported downstream gains are substantial, but the manuscript does not convincingly establish factual correctness, leakage-free evaluation, or reproducibility, leaving it marginally below acceptance.",
+        "strengths": [
+          "The formalization-first perspective and layer-wise replacement of leaf constants provide a reasonably novel, interpretable mechanism for controlling synthesized reasoning structures (pp. 3–5).",
+          "Reported improvements are broad across multiple backbones and both GAIA and WebWalkerQA, with matched-size SFT comparisons also favoring WebShaper (pp. 6–8, 18).",
+          "Ablations separately compare formal versus natural-language expansion and layer-wise versus sequential structures, while cost and tool-use analyses add useful characterization (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The claimed correctness advantage is weakly validated: no human audit is provided, and the reported greater-than-80% factual accuracy uses a QwQ solver given the formalized reasoning structure, making the proxy potentially circular and not demonstrably reliable (p. 9).",
+          "Evaluation uncertainty is high: GAIA level scores move in coarse increments consistent with very small subsets, results use insufficiently specified LLM judges, and there are no confidence intervals, repeated runs, contamination/deduplication checks, or assurance that baseline tool conditions are comparable (pp. 6–7, 18).",
+          "Technical specification is incomplete or inconsistent. The symmetric definition of relations discards direction and the formalism covers only a limited class of positive relational queries (p. 3); moreover, Eq. 8 appears to optimize observation tokens despite claiming they are masked, the RL reward is unspecified, and Figure 4's gains disagree with the accompanying text (pp. 8, 16–17)."
+        ],
+        "score_rationale": "The paper has a promising synthesis concept and strong reported results, but its central claims of consistent, correct data and controlled reasoning are not supported by sufficiently independent validation. Evaluation and training ambiguities prevent firm conclusions about the magnitude and source of the gains; resolving these issues could move the work above the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "WebShaper synthesizes web information-seeking tasks by representing them as compositions of set-valued relational projections and recursively replacing constants through an agentic, layer-wise expansion process. The structured synthesis idea is promising and yields sizable reported gains, but the formal claims are broader than the actual representation and the empirical validation is insufficiently rigorous to establish data correctness or reproducibility.",
+        "strengths": [
+          "The formalization-first perspective and layer-wise expansion constitute a useful, moderately novel alternative to retrieval-first synthesis pipelines (pp. 2–5).",
+          "Reported downstream gains are substantial across three backbones and two benchmarks, with matched-size SFT data comparisons supporting the value of the synthesized data (pp. 6–8, 18).",
+          "Ablations compare formal versus natural-language expansion and layer-wise versus sequential structures across multiple backbones, consistently favoring the proposed choices (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The formalism is limited mainly to existential relational paths, intersections, and unions, yet is presented as a general IS formalization; moreover, Eq. 1 symmetrizes every relation and thus discards directionality essential to relations such as bornIn or authoredBy (pp. 3–5).",
+          "Data validity is not convincingly established: the only large-scale factuality test gives merely “over 80%” accuracy using a QwQ agent supplied with the generated formal reasoning itself, with no human audit, uncertainty analysis, or comparison against baseline datasets (p. 9).",
+          "Critical reproducibility and evaluation details are missing, including expansion settings/prompts, trajectory-generation models, filtering criteria, RL reward definition, training duration, and judge configuration. Results lack repeated runs or significance tests, and reported RL gains conflict between the figure and text (+8.8/+14.5 versus +7.8/+13.5) (pp. 6–8, 16–17)."
+        ],
+        "score_rationale": "The paper offers a worthwhile synthesis framework and encouraging multi-model results, but its central correctness and generality claims are not adequately supported. The circular factuality proxy, incomplete experimental specification, directional flaw in the formalization, and absence of statistical or human validation keep it marginally below acceptance despite promising empirical gains."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "WebShaper synthesizes web information-seeking trajectories by representing questions as compositions of set-valued relation projections and recursively replacing leaf constants with retrieved subquestions. The structured expansion idea is interesting and reported gains are substantial, but the formal claims, data-quality validation, and experimental controls are not strong enough to establish the claimed reliability or state of the art.",
+        "strengths": [
+          "The formalization-first, layer-wise expansion pipeline is a reasonably novel and intuitive approach to controlling synthetic question structure and avoiding obvious shortcuts (pp. 3–5).",
+          "Reported downstream gains are broad across three backbones and two benchmarks, including controlled equal-size SFT dataset comparisons (pp. 6–8, 18).",
+          "The paper includes useful ablations of formalized versus natural-language expansion and layer-wise versus sequential expansion, plus synthesis-cost disclosure (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The formalism is shallow and semantically problematic: Eq. 1 makes every relation undirected, losing argument roles, while the main proposition is an immediate property of relational image rather than a substantive guarantee. No proof connects this representation to structural diversity, absence of shortcuts, or QA correctness (pp. 3–5, 15).",
+          "Factual accuracy is evaluated circularly with a QwQ-based agent given the formalized reasoning path; only an unspecified “over 80%” is reported, without human auditing, sample size, uncertainty, or comparison to baselines. Thus many training labels may remain wrong (p. 9).",
+          "Evaluation reliability and reproducibility are insufficient: the LLM judge and RL reward are not specified, no variance or significance is reported despite very small GAIA level counts, contamination/overlap with public benchmarks is not checked, and numerical claims conflict with Figure 4 (+8.8/+14.5 versus +7.8/+13.5 in text) (pp. 6–8, 16–17)."
+        ],
+        "score_rationale": "The method offers a promising synthesis heuristic and encouraging performance, but its central correctness/controllability claims are not demonstrated, and weak factual validation plus underspecified, potentially contamination-sensitive evaluation materially undermine the empirical conclusions. I therefore rate it below the acceptance threshold, with some uncertainty because the reported gains could remain meaningful under stronger auditing."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "WebShaper proposes a structured, graph-like formalization for synthesizing compositional web information-seeking tasks and reports promising downstream gains. The application is interesting, but the formalism is mathematically modest and the empirical validation does not adequately establish factual correctness, leakage resistance, or reproducibility.",
+        "strengths": [
+          "The formalization-first, layer-wise expansion pipeline is a useful synthesis design that offers more explicit structural control than unconstrained natural-language expansion (pp. 3–6).",
+          "Results show substantial gains across three backbones and two agent benchmarks, alongside matched-size data comparisons and structural ablations (pp. 6–9, 18).",
+          "The paper includes cost, domain, tool-use, and case analyses that help characterize the resulting data (pp. 9, 15, 17)."
+        ],
+        "weaknesses": [
+          "The central correctness evidence is circular and underspecified: factual accuracy is inferred from a QwQ-based agent given the formal reasoning structure, with only an unexplained “over 80%” result and no independent human audit (p. 9). No benchmark-overlap or contamination analysis is reported.",
+          "The formalism is limited and potentially semantically lossy: relations are made direction-agnostic in Eq. 1, union compression relies partly on informal labels such as “90s,” and the main proposition is only the elementary distributivity of relational image over union (pp. 3–4, 15).",
+          "Important implementation and reporting details are inconsistent or missing. Eq. 8 appears to optimize observation tokens despite claiming they are masked; the RL reward is unspecified (p. 16), and the stated GAIA RL gains disagree with Figure 4 (+7.8/+13.5 versus +8.8/+14.5, p. 8)."
+        ],
+        "score_rationale": "The controlled synthesis idea and performance improvements are promising enough to avoid a clear reject, but the lack of independent data-quality validation, contamination checks, and reliable training specification prevents the strong claims about consistency and state-of-the-art agent training from being adequately supported."
+      }
+    }
+  ]
+}

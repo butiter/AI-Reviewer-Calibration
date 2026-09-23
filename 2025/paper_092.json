@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_092",
+  "paper_id": "XwUrzurG94",
+  "number": 12648,
+  "title": "Rapidly Adapting Policies to the Real-World via Simulation-Guided Fine-Tuning",
+  "authors": "Patrick Yin; Tyler Westenbroek; Ching-An Cheng; Andrey Kolobov; Abhishek Gupta",
+  "primary_area": "applications to robotics, autonomy, planning",
+  "keywords": "Robot Learning; Reinforcement Learning; Fine-Tuning",
+  "forum_url": "https://openreview.net/forum?id=XwUrzurG94",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    6,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents “Simulation-Guided Fine-Tuning” (SGFT), a framework aimed at improving sim-to-real adaptation by leveraging simulation-guided data augmentation and model-based reinforcement learning techniques. The paper uses real-world tasks like hammering, inserting, and puck pushing to test SGFT’s ability to adapt policies from simulation to reality with limited real-world data. The framework builds on a model-based RL backbone, specifically using SAC and TDMPC, to optimize policy adaptation with efficient data usage and a reward shaping mechanism."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper addresses the sim-to-real gap in reinforcement learning, an essential area in robotics research. Using a model-based framework with potential-based reward shaping provides an innovative approach to sim-to-real transfer.\n- SGFT’s modular design, integrating model-based learning with reward shaping, shows the potential for efficient adaptation without extensive real-world training. The authors provide theoretical analyses \n- The evaluation on dynamic, real-world tasks such as hammering and inserting presents a realistic testing ground for examining SGFT’s efficacy."
+        },
+        "weaknesses": {
+          "value": "1. Limited Task Scope and Complexity:\nThe evaluation primarily involves simple, structured tasks (hammering, inserting, and puck pushing), which limits the generalizability of the results. The tasks do not fully explore SGFT’s adaptability across a broader spectrum of real-world challenges or more complex environments. For example, the hammering task, despite involving contact dynamics, still relies on predefined, straightforward goals and does not include diverse object types or more intricate multi-step interactions. This narrow task set could mean that SGFT’s advantages may not scale effectively to more complex tasks .\n2. Baseline Comparison and Performance:\nWhile SGFT demonstrates some improvement in sample efficiency and asymptotic performance over baselines like SAC and domain randomization, the gains over TDMPC-2 and PBRS are limited. In Table 1, while SGFT performs comparably to these baselines in most cases, it does not consistently outperform them by a significant margin, raising questions about whether the added complexity of the SGFT approach is justified by these incremental improvements  .\n3. Heavy Dependence on Simulation Accuracy and Engineering Effort:\nSGFT’s approach requires a highly accurate simulation setup to guide policy learning effectively, which can be labor-intensive. The need for extensive domain randomization (e.g., Table 1 and 2 for hammering and puck pushing parameters) and environment-specific configurations could make SGFT less practical for tasks where precise dynamics modeling is challenging, such as interactions with liquids or deformable objects. This limitation suggests SGFT may struggle in scenarios where real-world dynamics differ significantly from the simulation environment  .\n4. Uncertain Performance on More Complex Dynamics:\nWhile the paper effectively adapts to straightforward tasks, its approach may not handle more nuanced dynamics. For instance, tasks involving materials with variable properties (like deformable objects or variable friction surfaces) may introduce unpredictable behaviors that SGFT, as presented, is unlikely to manage effectively. Thus, the scope of SGFT’s generalizability and flexibility across a broader range of robotics tasks remains unclear  ."
+        },
+        "questions": {
+          "value": "1. How would SGFT handle tasks involving more complex dynamics, such as fluid or deformable object manipulation, where precise dynamics modeling is difficult? Would this require substantial engineering modifications, or does SGFT have inherent limitations in these scenarios?\n2. Can the authors provide insights into the expected engineering effort for adapting SGFT to new environments? Given the dependency on extensive domain randomization and parameter tuning, how feasible is it to scale SGFT across a diverse set of real-world tasks?\n3. Are there specific plans to expand the evaluation to include more complex tasks or different robotic systems? Given the limited range of tasks tested, a broader evaluation could provide a more comprehensive understanding of SGFT’s robustness and adaptability."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1S2CPJAvBr",
+      "forum": "XwUrzurG94",
+      "replyto": "XwUrzurG94",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_ZMTP"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_ZMTP"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12648/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731014284616,
+      "cdate": 1731014284616,
+      "tmdate": 1731428675840,
+      "mdate": 1731428675840,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes a method that learns a robust transferred policy in sim-to-real settings by learning a value function, and then fixing it for H-step MPC. The deployed policy only needs to learn to optimize H step model rollouts with the assumption that even if the low level dynamics differ between simulation and the real world, the value function through temporal extension of H-steps is more reliable in deciding which are the target future states in the trajectory. The authors demonstrate both RL fast policy and MPC optimization based variants of the actor trained to optimize H step trajectories in the real environment. The method is tested on three simulation-to-real robot manipulation tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The method is simple and elegant, and the motivation for doing H step planning is clear.\n2. The assumption that the low level actions learnt in simulation can be incorrect, but the general value difference between states preserved is a reasonable assumption, and verified in the experiments.\n3. The value functions being frozen and just finetuning the policy is likely significantly more sample efficient than finetuning all components.\n3. The demonstration of TDMPC2 type model learning and planning in real world robot experiments is a great addition."
+        },
+        "weaknesses": {
+          "value": "1. The choice of hyperparameter H seems extremely important, and no ablations have been done here. All algorithms have hyperparameters, but atleast the most important ones should have ablation experiments.\n2. Following up on the previous point, a major weakness of the paper is the lack of extensive experiments. Considering that the proposed method is mainly an engineering improvement rather than a wholly unique algorithm, more experiments in other real world and simulated domains could have been appreciated. For example, within simulated domains there could have been experiments where the model is trained on perturbed dynamics (such as different mass of limbs for locomotion agents) and then transferred to an unperturbed environment. Other experiments could have been designed to show how the optimal values of H are related to different task types. For example it would be interesting to see if tasks that require higher precision control require higher H, which in turn makes the policy transfer more difficult.\n3. There is not much novelty in the method itself, and it might even be something that people already kind of do. Especially SGFT-SAC, the authors fix H=1 for the experiments and this just means that the value function is fixed after simulation and just the policy is finetuned. The TDMPC experiments are more interesting, but this is not then evaluated in the pushing task."
+        },
+        "questions": {
+          "value": "Questions:\n1. In Figure 4, why are many of the baseline methods not evaluated for the pushing task?\n2. What happens if you use smaller H for SGFT-TDMPC? What about larger H?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "L1xK1iM6vm",
+      "forum": "XwUrzurG94",
+      "replyto": "XwUrzurG94",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_q12p"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_q12p"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12648/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730692071845,
+      "cdate": 1730692071845,
+      "tmdate": 1732492926980,
+      "mdate": 1732492926980,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose a novel framework (SGFT) for sim-to-real transfer in robot learning by finetuning RL policies pre-trained in simulation efficiently and effectively on limited real-world interactions. In particular, SGFT changes the real-world MDP problem by (1) turning it into a finite and short-horizon MDP (H-step) and (2) reshaping the new MDP's rewards with a pre-trained critic in simulation. These two changes allow the method to quickly adapt pre-trained policies with real-world interactions, and be also used in combination with model-based RL to further improve data efficiency."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The paper uses a clear writing style, where the critical statements are repeated multiple times and highlighted.\n- The method demonstrates good results on contact-rich real-world tasks---which are highly relevant to the community---in 100-200 real rollouts.\n- Theoretical analysis of the proposed method is included\n- The method is relatively simple to implement."
+        },
+        "weaknesses": {
+          "value": "- Missing references to recent, related works: the authors discuss sim2real transfer works in the first paragraph of Sec. 2, but fail to include recent state-of-the-art methods as of 2023 and 2024 that \"adapt simulation parameters to real-world data\" (DROPO [1]), or that \"learn adaptive policies to account for changing real-world dynamics\" (DORAEMON [2]). I suggest skimming through these papers to make sure these two literature branches are well referenced and discussed. \n\n-  Limited experimental evaluation: I raise concerns over the main empirical findings in Fig. 4.\n\t- The SAC baseline seems to perform overly bad. To my understanding, this baseline essentially starts the same way as SGFT, but then diverges as finetuning goes on in that SAC also changes its own critic, whereas SGFT relies on a frozen initial critic (cf. my question below for further details). Also, in light of recent claims [3], one would expect off-policy algos to perform better if correctly finetuned.\n\t- In my opinion, the comparison to DR baselines should be done by pre-training them with omniscent critic (aka asymmetric actor-critic), as described in [4] and often done in recent works [5]. SGFT must be trained in simulation with unpriviliged critics, hence it's making a subtle further assumption that DR methods can, instead, relax and leverage. \n\t- the Recurrent policy + DR baseline seems to be missing from Fig. 4 pushing. Pushing is also a notorious benchmark task that has been used by DORAEMON [2] and Peng et al. [4] to showcase successful zero-shot transfer in their experiments, by randomizing similar properties (e.g. mass, friction coefficient). How are zero-shot DR baselines performing in this setting?\n\t- Recent state-of-the-art zero-shot transfer methods such as Doraemon [2] should be included in the experimental evaluation.\n    - Only experiments in the edge case H=1 are shown. This makes it hard to motivate the need for a more general framework.\n\n\n\n[1] Tiboni, G., Arndt K., and Kyrki V. \"DROPO: Sim-to-real transfer with offline domain randomization.\" Robotics and Autonomous Systems 166 (2023): 104432.\n\n[2] Tiboni, G. et al. \"Domain Randomization via Entropy Maximization.\" ICLR 2024.\n\n[3] Ball, Philip J., et al. \"Efficient online reinforcement learning with offline data.\" International Conference on Machine Learning. PMLR, 2023.\n\n[4] Peng, Xue Bin, et al. \"Sim-to-real transfer of robotic control with dynamics randomization.\" 2018 IEEE international conference on robotics and automation (ICRA). IEEE, 2018.\n\n[5] Handa, Ankur, et al. \"Dextreme: Transfer of agile in-hand manipulation from simulation to reality.\" 2023 IEEE International Conference on Robotics and Automation (ICRA). IEEE, 2023."
+        },
+        "questions": {
+          "value": "- When H=1, what is the difference between a standard actor-critic (AC) method with a frozen critic vs. your SGFT method? To me, it seems that an AC method with frozen pre-trained critic essentially describes the SGFT method. If so, this could yield further intuitions and explanations of the algorithm. In other words, when H=1, it seems to me like the finetuning problem is turned into a contextual bandit problem where no sequential decision making is involved.\n\n- I'm not convinced by the statement \"optimizing Equation (3) guides policy optimization algorithms towards policies which increase the value of V_sim over the H-step windows.\" in Sec. 4.3. To my understanding, as H increases, the algorithm actually gives more importance to real-world returns rather than increasing the value of V_sim. In other words, a final state S_H with lower V_sim(S_H) could be preferred if the real H-step return to get to that state is relatively higher than it was in sim. Conversely, the statement gets truer the lower the value of H."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xCe93HLf2I",
+      "forum": "XwUrzurG94",
+      "replyto": "XwUrzurG94",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_TjP5"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_TjP5"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12648/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730641697693,
+      "cdate": 1730641697693,
+      "tmdate": 1731428675717,
+      "mdate": 1731428675717,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the challenge of sim-to-real adaptation. It introduces a novel approach where the value function, learned in simulation, is used to reshape the reward signal, effectively guiding online reinforcement learning in real-world environments. The proposed method demonstrates superior performance compared to domain randomization and online system identification methods in three contact-rich and dynamic tasks: pushing, insertion, and hammering."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper is focusing on an important problem. \n - The proposed method is novel, built on the key observation that the value function from a well-performing policy learned in simulation can be used to effectively reshape the reward for online learning."
+        },
+        "weaknesses": {
+          "value": "- The introduction is hard to follow with the logic among paragraphs not clear.\n - The methodology and figure illustrations can be further improved. \n   - Figure 2 is confusing. According to RL literature conventions, V_s in general, means the value function, but it is labeled as the world model in Figure 2. \n   - How is the dynamic model learned? There is no description of learning the dynamics model in the main script or in the main algorithm, algorithm 1.\n\nTypos:\n - Line 19 in abstract, “is to inefficient” -> ”is too inefficient”"
+        },
+        "questions": {
+          "value": "Please refer to the weakness section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "06Rv9ZTe7y",
+      "forum": "XwUrzurG94",
+      "replyto": "XwUrzurG94",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_HzhY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12648/Reviewer_HzhY"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12648/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730609849359,
+      "cdate": 1730609849359,
+      "tmdate": 1731428675680,
+      "mdate": 1731428675680,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "SGFT transfers a simulation-trained value function to shape rewards and shorten the real-world optimization horizon. The method produces striking gains on five contact-rich manipulation tasks, but its conceptual novelty is moderate and the empirical and theoretical claims are stronger than the supplied evidence supports.",
+        "strengths": [
+          "Compelling real-robot scope: five dynamic/contact-rich tasks spanning hammering, insertion, and rigid/deformable pushing, with large apparent gains over numerous adaptation and sim-to-real baselines (pp. 9–10).",
+          "The framework is simple and broadly applicable, with both SAC/Dyna-style and TD-MPC2 instantiations demonstrating consistent qualitative benefits (pp. 5–10).",
+          "The paper clearly connects reward shaping, terminal simulation values, and short-horizon planning, and supplies an explicit analysis of their intended performance tradeoff (pp. 4–8)."
+        ],
+        "weaknesses": [
+          "The decisive real-world curves provide no confidence intervals, repeated-run counts, or independent evaluation protocol; they appear to be running averages from online rollouts, so statistical reliability and baseline variability cannot be assessed (pp. 9–10, 20).",
+          "The theoretical guarantee assumes both uniform closeness of V_sim to the optimal real value and global improvability under real dynamics, neither of which is empirically tested; these strong assumptions substantially weaken the claimed justification under large simulator misspecification. The theorem also hides important constants and leaves “H sufficiently small” unspecified (pp. 7–8, 16–18).",
+          "The ingredients are closely related to established potential-based shaping and MPC with a learned terminal value—the paper itself states the objective is equivalent to such MPC—so novelty lies mainly in the sim-to-real combination and validation rather than a fundamentally new algorithmic principle (pp. 4–6)."
+        ],
+        "score_rationale": "The real-world results are promising enough for marginal acceptance, and the method is practical and clearly motivated. However, missing statistical rigor in the key experiments, strong unvalidated theoretical assumptions, limited low-dimensional state-based perception, and moderate conceptual novelty prevent a confident accept."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes Simulation-Guided Fine-Tuning (SGFT), which uses a simulator-trained value function for potential-based reward shaping and as a terminal value for short-horizon real-world adaptation. The combination is technically intuitive and produces promising results on five contact-rich real-robot tasks, but the empirical protocol and theoretical claims need stronger support.",
+        "strengths": [
+          "The method is simple, broadly compatible with both SAC/Dyna-style learning and TD-MPC2, and connects reward shaping with short-horizon model-based adaptation in a practically useful way (pp. 4–8).",
+          "The five real-robot tasks include challenging insertion, hammering, and deformable-object pushing, with SGFT consistently outperforming numerous fine-tuning and sim-to-real baselines in the reported learning curves (pp. 9–10).",
+          "The paper provides substantial implementation detail, two algorithmic instantiations, and complementary sim-to-sim horizon ablations (pp. 18–22)."
+        ],
+        "weaknesses": [
+          "The real-world evidence lacks error bars, repeated-seed/trial statistics, confidence intervals, and a clearly separated evaluation protocol; smoothed running success curves alone make the magnitude and reliability of the gains difficult to assess (pp. 9–10).",
+          "The theoretical conclusion is stronger than its assumptions justify: Theorem 1 already assumes uniform closeness of Vsim to the optimal real-world value, while the claimed near-optimality for short H still contains an approximately ε-sized term. Improvability is also a strong global condition, and Lemma 3 uses a strict inequality whereas Theorem 1 invokes the weak Definition 1 condition (pp. 7–8, 16–18).",
+          "Key real-world ablations and fairness controls are missing. In particular, there is no real-world horizon sweep or clean isolation of terminal-value shaping versus model rollouts, while SGFT-SAC receives five hallucinated branches and a much larger effective batch than reported baselines (pp. 8, 20, 22)."
+        ],
+        "score_rationale": "This is a promising, practically relevant synthesis with unusually broad real-robot evidence, warranting a marginally positive score. However, absent statistical validation and incomplete real-world ablations substantially weaken the empirical conclusions, while the theory relies on assumptions that already encode much of the desired sim-to-real compatibility."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Simulation-Guided Fine-Tuning (SGFT), which transfers a simulator-trained value function as a shaping potential/terminal value and shortens the real-world optimization horizon. Real-robot results across five contact-rich manipulation tasks are promising, but the empirical protocol and theoretical claims are not sufficiently rigorous to support the paper’s strongest conclusions.",
+        "strengths": [
+          "The combination of simulator-derived value guidance with short-horizon real-world adaptation is intuitive, simple to integrate into SAC and TD-MPC2, and practically relevant (pp. 4–8).",
+          "The evaluation covers five genuinely challenging real-world tasks with substantial dynamics mismatch; SGFT reaches near-perfect performance on hammering and pushing and improves insertion performance (pp. 9–10).",
+          "Comparisons span model-free/model-based fine-tuning and several zero-shot sim-to-real approaches, while sim-to-sim horizon ablations qualitatively support the proposed bias–horizon tradeoff (pp. 9, 22)."
+        ],
+        "weaknesses": [
+          "The decisive real-world curves provide no uncertainty bands, independent-run counts, or statistical tests, and the meaning of the reported running averages is unclear. Moreover, 20 pre-collected real trajectories are used before fine-tuning, but it is unclear whether these are included on the sample-complexity axis (pp. 9, 20).",
+          "The theoretical guarantee relies on both uniform closeness of V_sim to the optimal real-world value and global improvability at every state, which are strong, unverified assumptions that substantially weaken claims about handling large sim-to-real gaps. The theorem also says only “H sufficiently small,” without an explicit condition, and the appendix contains notation/indexing inconsistencies that make verification difficult (pp. 7–8, 16–18).",
+          "Novelty is moderate: the core objective is explicitly equivalent to short-horizon MPC with a transferred terminal value, while potential-based shaping and critic-bootstrapped MPC are established ideas. Baseline tuning and matched implementation details are insufficiently documented to establish that gains come specifically from SGFT rather than implementation choices (pp. 4–6, 8–10, 19–20)."
+        ],
+        "score_rationale": "The real-world scope and gains are valuable and make the paper competitive, but missing replication/uncertainty information and potentially inconsistent sample accounting undermine the central efficiency evidence. Combined with strong theoretical assumptions and only moderate conceptual novelty, this places the work slightly below the acceptance threshold, though stronger experimental reporting could change the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes SGFT, which transfers a simulation-trained value function to shape rewards and bootstrap short-horizon real-world optimization. The idea is technically intuitive and supported by promising results on five contact-rich real-robot tasks, but the empirical protocol and theoretical guarantees are insufficiently rigorous for a clear accept.",
+        "strengths": [
+          "A simple, practically useful synthesis of simulation-derived terminal values, potential-based shaping, and short-horizon adaptation; it can be layered onto both SAC and TD-MPC2 (pp. 4–8).",
+          "The real-robot evaluation covers five challenging tasks with substantial dynamics mismatch, and SGFT shows large apparent gains over diverse fine-tuning and sim-to-real baselines (pp. 9–10).",
+          "The paper includes a theoretical attempt to characterize the bias–model-error tradeoff and supplementary horizon ablations consistent with its central intuition (pp. 8, 16–18, 22)."
+        ],
+        "weaknesses": [
+          "The decisive real-world curves report no number of seeds, confidence intervals, or clearly separated evaluation rollouts; the use of running success rates and unspecified baseline tuning makes statistical reliability and fairness difficult to assess (pp. 9–10, 20).",
+          "The guarantee relies not only on improvability but also on a uniform bound between V_sim and the optimal real-world value—potentially a very strong assumption precisely under large sim-to-real gaps. The theorem says only “H sufficiently small,” suppresses constants, and the appendix contains notation/indexing ambiguities, limiting the result's explanatory force (pp. 8, 16–18).",
+          "Novelty is moderate: the objective is explicitly equivalent to established MPC with a transferred terminal value, while potential-based shaping and short model rollouts are also known. Moreover, experiments use low-dimensional tracked object states and hand-designed rewards, leaving visual or less-instrumented settings unresolved (pp. 4–6, 10, 18–20)."
+        ],
+        "score_rationale": "The method is compelling and the breadth of real-robot demonstrations merits marginal acceptance. However, absent uncertainty estimates and sufficiently detailed evaluation methodology, the headline sample-efficiency gains cannot be judged robustly, while the theory depends on strong assumptions and offers limited novelty beyond known shaping/MPC principles."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SGFT uses a simulator-trained value function as a potential/terminal value while shortening real-world optimization horizons. The combination is intuitive and practically promising, with results on five contact-rich real-robot tasks, but the empirical protocol is insufficiently documented for strong conclusions and the theoretical presentation contains consequential gaps.",
+        "strengths": [
+          "The method is simple, compatible with both SAC/Dyna-style learning and TD-MPC2, and clearly connects reward shaping with short-horizon planning (pp. 4–8).",
+          "The real-world evaluation covers five meaningfully different contact-rich tasks, including hammering, insertion, and deformable-object pushing (pp. 9–10).",
+          "Reported learning curves show large practical gains over numerous fine-tuning and sim-to-real baselines, with useful horizon ablations in simulation (pp. 9, 22)."
+        ],
+        "weaknesses": [
+          "The decisive real-world curves provide no error bars, number of independent runs, evaluation-trial counts, or statistical tests; the meaning/window of “running average” is unspecified, making variability and significance impossible to assess (pp. 9–10).",
+          "The theoretical guarantee assumes uniform closeness of V_sim to the optimal real-world value, already a strong transfer condition, while the proof applies a strict-improvement lemma to the non-strict “improvable” assumption; Lemma 2 also appears to omit the model-error factor present in its derivation (pp. 8, 16–18).",
+          "Novelty is moderate because the core objective is acknowledged to be standard short-horizon MPC with a transferred terminal value, and the experiments do not fully isolate all ingredients such as model-generated augmentation, horizon truncation, and critic freezing with matched ablations (pp. 5–6, 8, 20)."
+        ],
+        "score_rationale": "The breadth of real-robot evidence and simplicity of SGFT make this promising, but absent replication/statistical reporting and weaknesses in the stated theorem prevent the work from meeting the bar for a confident acceptance. I therefore rate it marginally below acceptance."
+      }
+    }
+  ]
+}

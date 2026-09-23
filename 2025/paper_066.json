@@ -1,0 +1,446 @@
+{
+  "year": 2025,
+  "package_id": "paper_066",
+  "paper_id": "uiyljVIP0k",
+  "number": 9879,
+  "title": "UNIFYING LONG AND SHORT SPATIO-TEMPORAL FORECASTING WITH SPECTRAL GRAPH NEURAL NETWORKS",
+  "authors": "Xiang Li; Yanping Zheng; Zhewei Wei; Ye Yuan",
+  "primary_area": "learning on time series and dynamical systems",
+  "keywords": "multivariate time series forecasting; spatio-temporal graph neural network; spectral graph neural network",
+  "forum_url": "https://openreview.net/forum?id=uiyljVIP0k",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    8,
+    3,
+    5,
+    6
+  ],
+  "human_mean_rating": 5.4,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a method to integrate spatiao-temporal with long-term time series forecasting, tasks which were previously at odds with one another in terms of model capabilities (spatio-temporal models were usually unable to deal with long-term forecasting, while long-term forecasters were inherently incapable of handling complex variable relationships). The authors propose S2GNN (Spectral Spatio-Temporal Graph Neural Network), which unifies both approaches by the following innovations: \n\n1. Using spectral GNNs with learnable filters\n2. Incorporating scale-adaptive node embeddings\n3. Utilizing cross-correlation embeddings\n4. Adopting an adaptive graph structure\n\nExtensive experiments show SOTA performance over baseline models"
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. This paper solves an existing and urgent problem in time series forecasting by combining long-term and spatio-temporal forecasting;\n2. It utilizes novel model designs which reduces the length requirement on the input training sequence (is this the purported reason for its utility in LTSF?)\n3. Experiments generally show SOTA performance across a variety of metrics, although it is unclear how this model outperforms baselines on LTSF;"
+        },
+        "weaknesses": {
+          "value": "1. In the methodology section, it is not made explicit where the ability of the model to model long-term time series comes from, and how;\n2. Correspondingly, in the Experiments section, specifically in Fig. 8(b), visually, the performance of the model on long-term time series does not seem to be much better than baseline models, although the authors claim that the results show smaller fluctuations around the diagonal; \n3. In the Experiments section, to show superiority wrt long-term time series, the authors should compare with models that have been designed to deal with long-term time series; an example could have been the xLSTM;\n4. Ablation studies also do not quite illustrate which module is particularly responsible for utility on LTSF;"
+        },
+        "questions": {
+          "value": "1. Can the authors point out explicitly which part in the model design is responsible for the good performance on LTSF?\n2. Why is the visualization only provided for two other baseline models?\n3. Which part (ablation study) is responsible for LSTF?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "7xadT02tnR",
+      "forum": "uiyljVIP0k",
+      "replyto": "uiyljVIP0k",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_uMZs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_uMZs"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9879/-/Official_Review"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731430896812,
+      "cdate": 1731430896812,
+      "tmdate": 1731430896812,
+      "mdate": 1731430896812,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a spatiotemporal graph model composed of learnable graph filters and an MLP-based architecture, addressing the efficiency challenges faced by existing spatiotemporal graph models when processing long-sequence inputs. In addition, the authors propose two feature embedding methods that enhance the model's capability to handle data indistinguishability issues. Moreover, using spectral GNN with learnable filters, the author shows that low-pass and high-pass information must be considered when utilizing the adaptive graph in STF. Experimental results on eight datasets reveal that the model outperforms state-of-the-art models, achieving superior predictive capability while maintaining reasonable training efficiency."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The paper provides a comprehensive and clear definition of the studied problems.\n2. The paper is well-structured and easy to follow.\n3. The use of a spectral GNN framework and a simple MLP-based sequential model ensures that the model remains scalable and efficient, making it applicable to longer input as well as larger datasets.\n4. The experiments cover a wide range of public spatial-temporal and long-term time series datasets, showcasing the robustness and effectiveness of the proposed method.\n5. The use of learnable filters enhances the interpretability of the model, directly demonstrating that temporal data exhibit both homophily and heterophily.\n6. The scalability and efficiency problems are significant and practical for real-world traffic forecasting applications."
+        },
+        "weaknesses": {
+          "value": "1. The font is too small in Figures 2, making it hard to read.\n2. The paper lacks a comparison with other benchmark models in LTSF, such as the iTransformer[1].\n3. The paper lacks evaluation of large-scale spatiotemporal datasets and comparisons with models specifically designed for such datasets, such as BigST[2]. \n\n[1] iTransformer: Inverted Transformers Are Effective for Time Series Forecasting\n\n[2] BigST: Linear Complexity Spatio-Temporal Graph Neural Network for Traffic Forecasting on Large-Scale Road Networks"
+        },
+        "questions": {
+          "value": "See weakness"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9kq68jmXR0",
+      "forum": "uiyljVIP0k",
+      "replyto": "uiyljVIP0k",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_RbR3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_RbR3"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9879/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730601277321,
+      "cdate": 1730601277321,
+      "tmdate": 1731427856417,
+      "mdate": 1731427856417,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper focuses on **unifying long and short spatio-temporal forecasting**. The main research contribution lies in the design of **input embeddings**, introducing a **scale-adaptive node embedding method** and a **cross-correlation embedding method**. Experiments were conducted on both **STF datasets** and **LTSF datasets**. However, the overall motivation is not clear, the method lacks innovation, and the experiments fail to convincingly demonstrate that the approach is SOTA."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The main drawback of the STF method in the author's motivation is that it requires a lot of computing resources and the model is inefficient when performing LTSF tasks. As far as I know, such a problem does exist. The main research contribution lies in the design of **input embeddings**, introducing a **scale-adaptive node embedding method** and a **cross-correlation embedding method**."
+        },
+        "weaknesses": {
+          "value": "The overall motivation is not clear, the method lacks innovation, and the experiments fail to convincingly demonstrate that the approach is SOTA.\n\n**Motivation:** The author's motivation is that performing long-term spatio-temporal forecasting (LTSF) tasks requires substantial computational resources, and the model is inefficient. The author attempts to enhance model efficiency through sample indistinguishability, but the connection between sample indistinguishability and model efficiency is not clearly explained.\n\n**Originality:** The primary contribution lies in the design of embeddings, specifically a **scale-adaptive node embedding method** and a **cross-correlation embedding method**. However, the distinction between these embeddings and temporal or positional embeddings is unclear. As stated in Section 3.1, \"This value could be the node’s ID, the time of the day, or the day of the week.\" if the cross-correlation embedding method is a typical temporal embedding with an added node‘ ID？\n\n**Quality:** The writing quality is average, with several errors (e.g., in the explanation of Equation 2, \"Where c is a constant constant,\" there is a redundant \"constant\"). The figures are not sufficiently clear, with dimensions that are too small, and the explanations and labels for all figures lack clarity."
+        },
+        "questions": {
+          "value": "0.  My main concern is: The size of model does not appear to be related to the embedding design, as it is likely the GNN component that primarily influences model size. So **what is the connection between sample indistinguishability and model efficiency or size?**  Please provide a more detailed explanation of how addressing sample indistinguishability specifically contributes to improved model efficiency or reduced computational requirements.\n\n\n1. **Please use figures to explain your statement that \"existing methods for handling spatial distinguishability cannot adapt to changes in the number of nodes.\"**\n   - 1) Is your model inductive?\n   - 2) How does S2GNN handle changes in the number of nodes?\n   - 3) What types of node changes are you addressing? If the number of nodes in the test dataset exceeds that of the training dataset, can your model still make predictions accurately? Can it handle cases of missing or additional nodes?\n\n2. **As most TSF benchmarks achieve good performance within 10 epochs, why does your model require so many epochs, as shown in Figure 2?** Additionally, could you explain why the graph structure appears stable and lacks significant variation? Is it possible that this is simply the result of model convergence?\n\n3. **As stated in Section 3.1, \"This value could be the node’s ID, the time of the day, or the day of the week,\" is the cross-correlation embedding method just a typical temporal embedding with an added node ID?** Please provide a more detailed comparison between the proposed embedding methods and existing temporal/positional embeddings, highlighting the key differences and advantages. This would help clarify the novelty of S2GNN.\n\n4. **I don't see any components designed specifically to optimize both short- and long-term TSF tasks.** Could you concisely explain why your model qualifies as a unified model for both short- and long-term TSF?\n\n5. **The chosen baselines are not previous SOTA, which limits the credibility of your experimental comparisons.** Please add recent SOTA baselines, e.g. itransformer, forecastgrapher."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QQPILps905",
+      "forum": "uiyljVIP0k",
+      "replyto": "uiyljVIP0k",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_kyrF"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_kyrF"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9879/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730537424576,
+      "cdate": 1730537424576,
+      "tmdate": 1732326247525,
+      "mdate": 1732326247525,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors aimed to achieve efficient learning for GNNs to process both short- and long-term spatial-temporal dependencies for forecasting tasks. To achieve so, they proposed S2GNN, introducing learnable filters to process these dependencies."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1.\tThe addressed problem, achieving efficient learning while simultaneously capturing spatial-temporal information, is important.\n2.\tThe experiments are comprehensive, including multiple datasets for comparisons with SOTAs, ablation study, efficiency study etc."
+        },
+        "weaknesses": {
+          "value": "1.\tMotivation is unclear. I think the main motivation should be achieving efficient learning and meanwhile capturing the spatial-temporal information. However, the authors discuss a lot regarding the challenges in sample indistinguishability, which really confuse me. The authors should explain, why you adopted sample indistinguishability? what is its function in achieving training efficiency? Additionally, why adaptive graph structure is used? Still, what is its function in achieving training efficiency?\n2.\tContribution is insufficient and not novel enough. The contributions include scale-adaptive node embeddings and cross-correlation embeddings. (I don’t think the adaptive adjacent matrix is a contribution, because it just employs a trainable weight to each node.) I appreciate the contribution of the scale-adaptive node embeddings, which is interesting, although I don’t see its connection with RIP. But the contribution is not enough for ICLR. Regarding the cross-correlation embeddings, I don’t see how it can help to achieve more efficient learning to process both short and long term dependencies.\n3.\tWriting is quite poor. The manuscript does not sound logical. For example, the authors discuss a lot the pros of spatial GNN and the cons of spectral GNN, and then they adopted spectral GNN in this work. I dont think this is logical."
+        },
+        "questions": {
+          "value": "See above"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rPzFlm9r1M",
+      "forum": "uiyljVIP0k",
+      "replyto": "uiyljVIP0k",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_ejuH"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_ejuH"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9879/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730535286615,
+      "cdate": 1730535286615,
+      "tmdate": 1732760332872,
+      "mdate": 1732760332872,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a novel model, the Spectral Spatio-Temporal Graph Neural Network (S2GNN), aimed at unifying short-term and long-term multivariate time series forecasting. Current research in this area is primarily divided into Spatio-Temporal Forecasting (STF) and Long-term Time Series Forecasting (LTSF), which differ significantly in methods and benchmarks. S2GNN leverages the strengths of spectral graph neural networks and incorporates an adaptive graph structure to efficiently handle varying sequence lengths. By introducing scale-adaptive node embeddings and cross-correlation embeddings, S2GNN demonstrates superior performance across multiple public datasets, outperforming state-of-the-art models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1  The proposed S2GNN model effectively combines the advantages of short-term and long-term forecasting, addressing a significant gap between STF and LTSF research.\n2  Extensive experiments on eight public datasets show that S2GNN consistently outperforms existing models, indicating strong generalization capabilities.\n3  The use of an adaptive graph structure and learnable filters allows the model to flexibly accommodate different input lengths, enhancing its expressiveness.\n4  The paper clearly outlines the model's construction and its components' functionality, making it accessible for other researchers to understand and replicate."
+        },
+        "weaknesses": {
+          "value": "1  While S2GNN performs well across various datasets, its computational complexity may pose challenges in training on larger datasets.\n2  Despite introducing learnable filters, the internal mechanisms and decision-making processes of the model lack sufficient interpretability, which may affect trust in practical applications.\n3  The selection of baseline models for comparison is somewhat limited, potentially failing to fully showcase the advantages of S2GNN."
+        },
+        "questions": {
+          "value": "NAN"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rT7dq2sjSX",
+      "forum": "uiyljVIP0k",
+      "replyto": "uiyljVIP0k",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_zKgV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9879/Reviewer_zKgV"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9879/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730041645421,
+      "cdate": 1730041645421,
+      "tmdate": 1731427856209,
+      "mdate": 1731427856209,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "S2GNN combines a ChebNetII-style spectral filter, an adaptive cosine-similarity graph, feature embeddings, and residual MLPs to address both short- and long-horizon multivariate forecasting. The broad empirical results are promising, especially for long-horizon traffic forecasting, but the novelty is primarily integrative and important methodological and evaluation gaps prevent firm validation.",
+        "strengths": [
+          "The paper targets a useful gap between efficient long-sequence models and graph-based spatio-temporal models, with a simple unified architecture (pp. 1, 5–7).",
+          "Experiments cover eight datasets and both STF/LTSF regimes; the reported long-horizon STF gains are often substantial (p. 8), while learned-filter visualizations provide some interpretability (pp. 3, 13).",
+          "The efficiency study suggests that S2GNN's computational cost grows much less with input length than several STGNN baselines (pp. 9, 14)."
+        ],
+        "weaknesses": [
+          "The cross-correlation mechanism is technically underspecified: a hard argmax selects an embedding, so no gradient path to the convolution kernels is apparent, despite the kernels being described and visualized as learned (pp. 5–6, 15). The node-embedding description is also internally unclear about fixed versus trainable weights (pp. 5–6).",
+          "Evidence does not support several broad claims. S2GNN is not consistently best on LTSF—for example, it loses at longer Weather/Electricity horizons and has much worse Traffic MSE than iTransformer (p. 8). Several embedding ablations equal or improve LTSF results, while merely freezing the graph after epoch 50 does not establish the claimed spectral-stability argument (p. 9).",
+          "Evaluation rigor is limited: results mix reproduced and externally reported baselines, omit uncertainty despite three seeds, leave many STF baseline entries unavailable, and assess efficiency mainly through per-epoch FLOPs rather than runtime, memory, or total training cost (pp. 7–9, 14). Dataset splits, preprocessing, and sufficient implementation details are also absent."
+        ],
+        "score_rationale": "The problem and empirical breadth are worthwhile, and the long-horizon STF results merit attention. However, the contribution is a modest combination of existing components, the hard-argmax learning procedure appears incomplete as written, and the ablations and mixed-source comparisons do not robustly substantiate the central claims. I therefore rate it below the acceptance threshold, with some uncertainty because code might clarify the missing optimization details."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes S2GNN, combining a ChebNetII-style spectral filter on a learned graph with MLP forecasting and several distinguishing embeddings. The unified short-/long-horizon framing is useful and the reported long-horizon traffic results are often strong, but key components are underspecified or internally inconsistent, and the evidence does not support several broad claims.",
+        "strengths": [
+          "The paper targets a practically relevant gap between conventional short-horizon STGNNs and long-term forecasting models, with a comparatively simple unified architecture (pp. 1, 5–7).",
+          "The evaluation covers eight datasets and multiple input/output horizons; S2GNN shows substantial gains on many long-horizon PEMS settings (pp. 8, 14).",
+          "Learned-filter visualizations and graph-freezing experiments provide some preliminary interpretability and support for graph stabilization (pp. 8–9, 13)."
+        ],
+        "weaknesses": [
+          "The method is not technically reproducible as written: node embeddings are described as fixed in Eq. 3 but as trainable when constructing the adaptive graph in Eq. 5, dimensions and the RIP-derived sparsity rule are unclear, and hard argmax indexing in Eq. 4 seemingly prevents gradients from learning the displayed convolution kernels unless an unstated estimator is used (pp. 5–6).",
+          "The central spectral-modeling claim lacks a decisive ablation against spatial propagation, fixed filters, no graph, or a comparably sized MLP. Existing ablations only remove embeddings or freeze the graph, and some embeddings do not help on LTSF datasets (p. 9).",
+          "The empirical claims are overstated and incompletely documented: S2GNN is not consistently best on LTSF (e.g., Weather 336/720, Electricity 720, and Traffic MSE), results omit uncertainty despite three seeds, and dataset splits/preprocessing and wall-clock or memory comparisons are absent (pp. 7–9)."
+        ],
+        "score_rationale": "The unified perspective and promising PEMS results are valuable, but novelty is largely a combination of existing spectral filtering, adaptive graphs, embeddings, and MLPs. More importantly, the hard-argmax learning issue, contradictory graph construction, missing core ablations, and overclaimed LTSF results prevent confidence in technical soundness and empirical conclusions. I therefore lean reject, while allowing some uncertainty because code might clarify unstated implementation details."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "S2GNN combines an adaptive graph, ChebNetII-style spectral filtering, several identity/correlation embeddings, and residual MLPs to address both short- and long-horizon multivariate forecasting. Results are promising, especially for long-horizon traffic forecasting, but the novelty is largely compositional and methodological ambiguities plus incomplete experimental controls weaken the central claims.",
+        "strengths": [
+          "The paper targets a useful gap between STF and LTSF and presents a comparatively simple unified architecture (pp. 5–7).",
+          "Across five traffic datasets, the model is consistently strong at long horizons, often substantially outperforming the selected baselines (p. 8).",
+          "The paper includes efficiency comparisons, component ablations, learned-filter visualizations, and additional appendix results rather than relying on one aggregate benchmark (pp. 9, 13–16)."
+        ],
+        "weaknesses": [
+          "The core graph construction is internally unclear: node embeddings are described as fixed and non-trainable on p. 5, but as trainable weights producing a dynamic adjacency on p. 6. The RIP-based dimension formula is asserted without a derivation connecting it to this embedding construction, undermining reproducibility and the claimed scale adaptivity.",
+          "Evidence is not sufficiently controlled: some numbers are imported from CrossGNN because the authors' reproduction was worse, all methods apparently use a uniform 100-epoch setup, uncertainty over three seeds is not reported, and several expensive STF baselines are missing for long inputs (pp. 7–8, 14). No asymptotic or memory analysis addresses the dense adaptive graph's likely quadratic node cost.",
+          "Several conclusions exceed the evidence. Filter shape alone does not establish that the learned graph contains both homophily and heterophily, and kernel-selection counts do not demonstrate improved distinguishability (pp. 5–6, 8). Ablations are mixed on LTSF—removing embeddings sometimes improves results—and the model loses on several long-horizon LTSF settings (pp. 8–9)."
+        ],
+        "score_rationale": "The long-horizon traffic results and practical unified design are valuable, but this is mostly a combination of known spectral filtering, adaptive graphs, embeddings, and MLPs. Ambiguous definitions, weak justification of the RIP and interpretability claims, mixed LTSF ablations, and limited fairness/statistical reporting leave the paper marginally below the acceptance bar."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "S2GNN combines a ChebNetII-style spectral filter on a learned graph with lightweight MLP prediction and several embeddings, aiming to cover both short- and long-horizon multivariate forecasting. The traffic results are promising, but the conceptual justification, methodological specification, and experimental evidence do not yet substantiate the broad unification and consistent-superiority claims.",
+        "strengths": [
+          "The paper addresses a useful practical gap between STF and LTSF and proposes a relatively simple shared architecture rather than separate task-specific systems (pp. 3, 5–7).",
+          "Results on the five traffic datasets are generally strong, especially for long-horizon STF, with sizable improvements over many listed baselines (pp. 8, 14).",
+          "The learned-filter visualizations and graph-freezing ablation are useful initial attempts to examine the spectral mechanism rather than treating it entirely as a black box (pp. 8–9, 13)."
+        ],
+        "weaknesses": [
+          "The technical motivation is not established rigorously: late-stage graph stabilization does not justify applying a graph-sensitive spectral method throughout training, the reported graph differences remain roughly 13–38%, and no eigenspace-stability measurement or relevant control is provided. The RIP-based embedding equation and its connection to the proposed construction are also insufficiently derived (pp. 2, 5).",
+          "The empirical claims are overstated and internally mixed. S2GNN is not consistently best on LTSF—for example, it loses to iTransformer/CrossGNN on Weather at longer horizons and to iTransformer on Electricity-720—while its Traffic MAE advantage accompanies substantially worse MSE. Removing proposed embeddings sometimes improves LTSF results, contradicting their claimed general benefit (pp. 8–9).",
+          "Reproducibility and fairness are inadequate: splits, normalization, dimensions, embedding/kernel counts, constant and sparsity choices, and tuning procedures are missing; some baselines use copied rather than reproduced results; no uncertainty across the stated three seeds is reported; and dense adaptive-graph construction lacks memory/asymptotic analysis despite scalability claims (pp. 5–8)."
+        ],
+        "score_rationale": "The method is a potentially useful engineering combination with credible traffic-forecasting gains, but its novelty over existing spectral GNNs and embedding-based forecasters is moderate. More importantly, incomplete specification, weak support for the central spectral-stability argument, contradictory ablations, and non-uniform LTSF results make the broad conclusions unreliable. I therefore rate it below the acceptance threshold, while acknowledging uncertainty because the reported STF gains are substantial."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "S2GNN combines a ChebNetII-style spectral filter on a learned graph with MLP forecasting and several embeddings to cover short- and long-horizon multivariate forecasting. The broad evaluation is promising, especially on long-horizon traffic benchmarks, but a central embedding mechanism appears non-differentiable as written, and the evidence does not fully support several major claims.",
+        "strengths": [
+          "The paper addresses a useful gap between short-horizon spatio-temporal forecasting and long-term forecasting with a relatively simple unified architecture (pp. 1, 5–7).",
+          "Results are extensive across eight datasets, and long-horizon PEMS improvements are often large and consistent across horizons (p. 8).",
+          "Learned-filter visualizations and graph-freezing experiments provide useful exploratory evidence about adaptive graph behavior (pp. 2, 9, 13)."
+        ],
+        "weaknesses": [
+          "The cross-correlation kernels are claimed to be learned, but their only stated path to the loss is through a hard argmax followed by embedding lookup; this operation provides no gradient to the kernels, and no surrogate estimator or auxiliary objective is specified (pp. 5–6). This undermines a central methodological contribution and the interpretation of the kernel visualizations.",
+          "The empirical claims are overstated and incompletely isolated: S2GNN is not consistently best on LTSF (e.g., Weather 336/720, Electricity 720, and Traffic MSE), while ablations omit the spectral filter, adaptive graph, and suitable spatial-GNN/static-graph controls (pp. 8–9). Results use a mixture of reproduced and externally reported numbers without uncertainty intervals (pp. 7–9).",
+          "The theoretical and interpretive support is weak: the RIP-based dimension formula uses fractional sparsity without a clear derivation, the fixed versus trainable node-embedding description is ambiguous, and a U-shaped learned response alone does not establish that the learned graph contains both homophilic and heterophilic relations (pp. 3, 5–6, 8)."
+        ],
+        "score_rationale": "The unified scope and strong PEMS results make the work potentially valuable, but the unexplained non-differentiability of the proposed cross-correlation embedding is a substantive soundness issue. Together with incomplete ablations, mixed comparison provenance, and overclaimed LTSF/filter conclusions, this places the manuscript below the acceptance threshold. Some uncertainty remains because an omitted implementation detail could potentially resolve the gradient issue."
+      }
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_006",
+  "paper_id": "RYrJqz44p4",
+  "number": 404,
+  "title": "Unleashing the Power of Task-Specific Directions in Parameter Efficient Fine-tuning",
+  "authors": "Chongjie Si; Zhiyi Shi; Shifan Zhang; Xiaokang Yang; Hanspeter Pfister; Wei Shen",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "parameter efficient fine-tuning; low-rank adaptation; task-specific directions",
+  "forum_url": "https://openreview.net/forum?id=RYrJqz44p4",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    6,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a parameter-efficient fine-tuning (PEFT) approach, LoRA-Dash, that explicitly exploits task-specific directions to improve parameter-efficiency. The proposed method consists of two phases: in the pre-launch phase, LoRA fine-tuning is performed for a certain number of steps to identify task-specific directions, which are estimated as the core directions of the pre-trained matrix most amplified by the LoRA update matrix. In the dash phase, changes in these directions are explicitly parameterized alongside the LoRA matrices to further enhance task alignment. The authors empirically demonstrate that LoRA-Dash outperforms standard LoRA and recent PEFT methods across a range of tasks and base models and show the robustness of the estimated task-specific directions."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "A substantive assessment of the strengths of the paper, touching on each of the following dimensions: originality, quality, clarity, and significance. We encourage reviewers to be broad in their definitions of originality and significance. For example, originality may arise from a new definition or problem formulation, creative combinations of existing ideas, application to a new domain, or removing limitations from prior results. You can incorporate Markdown and Latex into your review. See https://openreview.net/faq.\n1. This paper introduces a novel framework for identifying task-specific directions in pre-trained models by projecting various task-related matrices onto the subspace of the original weight matrix, providing a consistent basis for analyzing task-specific adaptations.\n2. The proposed method effectively leverages task-specific directions, achieving significant improvements over LoRA with minimal computational overhead, demonstrating its practical advantage as a PEFT method.\n3. Empirical evaluations show that the task-specific directions derived from this approach align with those amplified by full fine-tuning, indicating that the method successfully identifies important directions for task adaptation."
+        },
+        "weaknesses": {
+          "value": "A substantive assessment of the weaknesses of the paper. Focus on constructive and actionable insights on how the work could improve towards its stated goals. Be specific, avoid generic remarks. For example, if you believe the contribution lacks novelty, provide references and an explanation as evidence; if you believe experiments are insufficient, explain why and exactly what is missing, etc.\n1. [Reliance on Preliminary Experiments for Hyperparameter Selection]\nThe proposed method relies on preliminary experiments to set key hyperparameters, such as the length of pre-launch phase and the number of dash directions. Although the chosen hyperparameters work well on the evaluated benchmarks, there is no guarantee that these settings generalize to other tasks and models. Moreover, the authors do not provide a systematic or principled approach for selecting these hyperparameters in varying scenarios.\n2. [Lack of Objective Evaluation for Diffusion Models]\nThe evaluation of diffusion models relies solely on subjective assessments, which introduces potential biases and limits reproducibility. Incorporating quantitative metrics for diffusion model performance would strengthen the evaluation and provide a more comprehensive view of the model’s effectiveness."
+        },
+        "questions": {
+          "value": "1. In Figure 5, the performance on OBQA with TSD in the left-most subplot does not match with Length of Pre-launch Phase set to 100 in the middle subplot. Why is this the case since both settings should correspond to the setting used in the main experiment?\n2. For subject-driven generation tasks, how do the task-specific directions correspond to the objects or features in the image?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "5BHqV49Vsw",
+      "forum": "RYrJqz44p4",
+      "replyto": "RYrJqz44p4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_93T4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_93T4"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission404/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730849814686,
+      "cdate": 1730849814686,
+      "tmdate": 1731427250277,
+      "mdate": 1731427250277,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper critiques LoRA's prior TSD exploration and provides a precise TSD definition to better understand their role in fine-tuning large language models. The authors introduce LoRA-Dash, which fully exploits TSDs potential, and demonstrate its significant advantages over conventional methods through extensive experimentation. The findings validate LoRA-Dash's effectiveness and highlight the importance of TSDs in parameter-efficient fine-tuning, aiming to inspire further advancements in natural language processing and beyond."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The authors observe that TSD can be predicted from delta W in LoRA-based fine-tuning, offering a new perspective on task-specific directions.\n2. This paper provides a precise definition of task-specific directions and explores their application in LoRA-based parameter-efficient fine-tuning.\n3. The authors propose the LoRA Dash algorithm, which proactively utilizes these influences to enhance the model fine-tuning process."
+        },
+        "weaknesses": {
+          "value": "See detailed questions."
+        },
+        "questions": {
+          "value": "Thanks for submitting to ICLR'25, I really enjoy reading your paper. I think your paper focuses on a hot and important topic. However, I have several further questions:\n\n1. The paper lacks evaluation of the algorithm's overhead on end-to-end fine-tuning time. Can LoRA-Dash accelerate the fine-tuning phase as suggested by its name?\n2. The benefits of the LoRA-Dash algorithm are unclear. Although it outperforms the vanilla LoRA approach when r is small, its improvement over the best fine-tuned LoRA model is minimal. Please clarify the real benefits of the LoRA-Dash algorithm.\n3. Can you provide insights on applying TSD observations to other parameter-efficient fine-tuning methods, such as adapter/P-tuning? Are these methods suitable for this approach?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rQOz3VUOFE",
+      "forum": "RYrJqz44p4",
+      "replyto": "RYrJqz44p4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_B9L3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_B9L3"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission404/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730687102146,
+      "cdate": 1730687102146,
+      "tmdate": 1731427250448,
+      "mdate": 1731427250448,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the resource-intensive issue of fully fine-tuning large language models. It focuses on task-specific directions (TSDs) in parameter-efficient fine-tuning (PEFT). LoRA is examined, and its lack of a clear TSD definition is noted. A framework is then introduced to define TSDs based on the relationship between pre-trained weights and optimal weights for specific tasks. The properties of TSDs are explored, and challenges in using them are identified. Despite the unknowns in practical fine-tuning, it's found that LoRA's ∆W can capture TSD information. The novel LoRA-Dash method is proposed, comprising pre-launch and dash phases. Experiments show that LoRA-Dash outperforms LoRA, is robust to parameter budgets, and excels in various tasks. It also enhances other PEFT methods and provides valuable insights for optimizing model fine-tuning."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- A task-aware approach for identifying critical gradient directions is proposed.\n\n- An effective task-specific fine-tuning scheme Lora-Dash has been introduced.\n\n- Theoretical analysis and extensive experiments have been conducted, providing comprehensive validation of the effectiveness of the proposed algorithm."
+        },
+        "weaknesses": {
+          "value": "- More justification is expected. For example, does fine-tuning a general-purpose model for a specific task risk compromising its generalization capability? It is essential to explore strategies that enable a model, even after fine-tuning, to retain the flexibility to handle a range of general tasks. Striking a balance between task-specific adaptation and broad applicability remains a key challenge in fine-tuning.\n\n- The experiments can use more perspectives. For example, the observations in Figure 1 are based solely on commonsense reasoning tasks in the LLama model. Further comparisons with other relevant methods (such as Lora-ga，dora) and other models (such as Qwen, Mistral) should be included for a more comprehensive analysis. \n\n- In the visualization part, as shown in Figure 4 and Figure 8, a comparison with the results from full fine-tuning should also be provided."
+        },
+        "questions": {
+          "value": "Mostly the above comments. Also some minors:\n\n- Is Lora-Dash applicable to multimodal models, such as LLaVA?\n\n- Why does the performance of LoRA-Dash decline when the rank increases beyond a certain point?\n\n- How can we address the issue of excessive memory requirements for SVD in the application of this method?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZCvkhprNHF",
+      "forum": "RYrJqz44p4",
+      "replyto": "RYrJqz44p4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_KtSW"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_KtSW"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission404/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730641797541,
+      "cdate": 1730641797541,
+      "tmdate": 1731427250551,
+      "mdate": 1731427250551,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "To enhance the prevalent parameter efficient fine-tuning (PEFT) strategies (e.g., LoRA) for large language models (LLMs), this paper delves into the concept of task-specific directions (TSDs) which are crucial for the adaptation of pre-trained LLMs to downstream tasks. Based on the proposed mathematical description of TSDs, a simple and effective scheme is designed to approximately identify TSDs from the parameter difference matrix obtained through LoRA. The model parameters derived from LoRA are then aligned with the estimated TSDs to enhance LoRA's performance. The results of extensive experiments confirm the validity of the mathematical description and the effectiveness of the proposed PEFT framework across diverse learning settings."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper is well organized and easy to follow.\n2. In contrast to the conceptual discussion of task-specific directions (TSDs) in existing parameter-efficient fine-tuning methods, this paper offers a deeper understanding by providing a mathematical description of TSDs, which is crucial for enhancing the performance of these parameter-efficient fine-tuning methods.  \n3. Te proposed TSDs identification and utilization method are simple and effective.\n4. Experimental results across diverse settings validate the significance of task-specific directions in fine-tuning large language models (LLMs), and demonstrate the effectiveness of the proposed LoRA-Dash compared to the prevalent LoRA algorithm."
+        },
+        "weaknesses": {
+          "value": "1. As a formal definition, the description of task-specific directions (i.e., “directions whose coordinate values exhibit significantly higher change rates $\\delta$ through alteration” in Definition 4) is somewhat vague. The term “significantly higher change rate” would benefit from a more precise definition, such as being specified with reference to a particular threshold.\n2. More discussions about how to select the value of hyper-parameter $s$ should be included, as the choice of $s$ directly determines the exact task-specific directions.\n3. The statement in Proposition 1 is supported solely by observations from experiments and is not accompanied by rigorous proof.\n4. The evaluation results of Fully FT method regarding LLaMA2-7B and LLaMA3-7B models are missed in Table 1.\n5. To thoroughly evaluate and compare the effects of task-specific directions and other core directions, it is recommended to include the vanilla LoRA as a baseline method in Figure 5a.\n6. The primary contribution of this paper is the proposal of a simple and effective improvement scheme for the LoRA algorithm and its variants. Although this contribution is commendable for acceptance, its impact on the broader research community is still limited, which hinders me from assigning a higher rating."
+        },
+        "questions": {
+          "value": "Please refer to weaknesses 1-5 listed in the section above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "JTI9hsC4dj",
+      "forum": "RYrJqz44p4",
+      "replyto": "RYrJqz44p4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_27u4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission404/Reviewer_27u4"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission404/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730551128333,
+      "cdate": 1730551128333,
+      "tmdate": 1731427250693,
+      "mdate": 1731427250693,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes LoRA-Dash: after a short LoRA warm-up, it identifies pretrained singular-vector pairs with large normalized projected updates and explicitly learns scalar updates along them. Results span commonsense reasoning, GLUE, and subject-driven generation, with several strong gains. However, the claimed TSD framework is not technically compelling as a general definition, and the evidence lacks the controlled, replicated comparisons needed to substantiate the unusually large improvements.",
+        "strengths": [
+          "LoRA-Dash is a simple, implementable extension that adds very few trainable scalars and is motivated by an interpretable warm-up/selection procedure (pp. 5–6, 17–19).",
+          "The evaluation covers multiple model families and modalities; reported gains are especially large for low-rank LLaMA-7B and remain competitive with recent PEFT methods (pp. 7, 31–32).",
+          "Ablations examine direction choice, warm-up duration, direction count, alignment with full-fine-tuning-derived directions, and convergence behavior (pp. 8–10, 27–31)."
+        ],
+        "weaknesses": [
+          "The TSD definition is ad hoc and unstable: it excludes all off-diagonal global bases, divides by potentially tiny singular values with an arbitrary epsilon, and depends on SVD bases that are non-unique under repeated singular values. Moreover, a fully fine-tuned solution is treated as the task optimum despite optimization and parameter-symmetry non-uniqueness (pp. 3–4, 18–19).",
+          "Experimental fairness and uncertainty are insufficient. LoRA-Dash learning rates are optimized while key LoRA results are cited from prior work, no seed counts/error bars or significance tests are reported, and the catastrophic low-rank LoRA numbers driving the largest gains are therefore difficult to interpret (pp. 7, 19, 21–22, 31–32).",
+          "Efficiency claims count trainable parameters but do not quantify the substantial full-SVD cost, memory, or wall-clock overhead across all adapted matrices. Several central claims are also stronger than the evidence: task specificity is mainly illustrated across diffusion subjects, and Eq. 4 omits the absolute value used in the defining change rate (pp. 5, 19, 30–31)."
+        ],
+        "score_rationale": "The method is novel enough and empirically promising, but the conceptual definition has significant invariance/stability issues and the experiments do not establish that gains persist under matched tuning and repeated runs. I therefore place it marginally below acceptance; uncertainty remains because properly controlled replication could make the practical contribution compelling."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes LoRA-Dash: after a short LoRA warm-up, it selects pretrained-weight singular directions with large normalized projected updates and trains additional scalar coefficients along them. Results span several language models, GLUE, commonsense reasoning, and subject-driven generation, but the conceptual framework is not technically convincing and the empirical comparisons lack sufficient controls.",
+        "strengths": [
+          "LoRA-Dash is simple, parameter-efficient, and can be merged into the base weights; its two-stage implementation is clearly specified (pp. 5–6, 17–19).",
+          "The evaluation covers multiple model families and modalities, with often substantial reported gains over LoRA, particularly at small ranks (pp. 7, 27, 32).",
+          "Ablations examine direction choice, warm-up length, number of selected directions, alignment, and convergence (pp. 8–10, 29–31)."
+        ],
+        "weaknesses": [
+          "The claimed TSD definition is ad hoc: an arbitrary W-to-W* update can occupy all nm global bases, contrary to the argument that only n core coordinates matter. Appendix B.3 excludes off-diagonal bases because relative changes from zero are inconvenient, not because they are task-irrelevant (pp. 3–4, 18–19). The definition also depends on a non-unique full-finetuned W*, SVD basis choices, and division by tiny singular values; Eq. 4 inconsistently omits the absolute value used in Eq. 3 (pp. 3–5).",
+          "The main numerical evidence has no seeds, uncertainty estimates, or statistical tests. LoRA baselines are cited from prior work while LoRA-Dash learning rates are optimized, and several LoRA results are anomalously catastrophic or non-monotonic, making the very large gains difficult to attribute cleanly to the proposed mechanism (pp. 7, 21–22, 32).",
+          "Practical and novelty claims are overstated. Full SVDs of every adapted large matrix are required, yet runtime and peak-memory overhead are not quantified; comparisons to cited singular/spectral adaptation methods are largely tabular rather than conceptually isolating novelty. The diffusion evidence has small metric gains and an underspecified aggregate user study (pp. 15, 19, 25, 27, 32)."
+        ],
+        "score_rationale": "The method is potentially useful and the breadth of reported results is promising, but the central theoretical framing does not justify restricting task-specific changes to core singular directions, while uncontrolled baselines and absent variance weaken the evidence. These are substantial soundness issues rather than presentation defects, so the work is below the acceptance threshold despite encouraging empirical results."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes LoRA-Dash: run LoRA briefly, identify pretrained singular-vector pairs with large relative projected updates, then train additional scalar updates along those directions. The idea is simple and potentially useful, and results span several language models, GLUE/commonsense tasks, and diffusion personalization. However, the claimed framework for task-specific directions is not technically compelling, and the experimental protocol leaves substantial uncertainty about whether the reported gains survive fully controlled comparisons.",
+        "strengths": [
+          "LoRA-Dash is straightforward, parameter-efficient, and easy to combine with existing low-rank adapters; its two-stage construction is clearly described (pp. 5–6, 17–19).",
+          "The evaluation is broad in model and task type, with strong reported gains on commonsense reasoning and GLUE and additional diffusion results (pp. 7–10, 24–28, 32).",
+          "The paper includes useful diagnostic experiments on direction selection, overlap with fully fine-tuned updates, hyperparameters, convergence, and alternative PEFT backbones (pp. 8–10, 20–21, 29–31)."
+        ],
+        "weaknesses": [
+          "The TSD definition is arbitrary and basis-dependent: it excludes all off-diagonal global bases because relative changes from zero are inconvenient, although these comprise most matrix directions; it also depends on a particular fully fine-tuned solution and becomes unstable/non-unique under small or repeated singular values (pp. 3–4, 18–19). Thus claims that TSDs are fixed, intrinsic task properties are not established.",
+          "The main comparisons are insufficiently controlled. LoRA baselines are cited from prior work while LoRA-Dash learning rates are optimized, the exceptionally poor low-rank LoRA numbers drive several headline gains, and no multi-seed variation or significance tests are reported (pp. 7, 21–22, 31–32). This materially weakens the empirical conclusion.",
+          "Important technical/practical details are unresolved: Eq. 4 drops the absolute value used in the defining change rate, potentially selecting positive rather than largest-magnitude changes; full SVDs of large weight matrices introduce unreported compute/memory overhead; and comparisons to closely related spectral PEFT methods are largely empirical rather than clarifying novelty (pp. 5, 15, 19, 28, 32)."
+        ],
+        "score_rationale": "The method is promising and supported by unusually broad experiments, so a clear reject would be too harsh. Nevertheless, the central theoretical framing is not sound enough to justify its claims, and baseline fairness, variance reporting, and SVD overhead are insufficiently addressed. I therefore place it marginally below acceptance, with some uncertainty because controlled reruns could validate the large reported gains."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper defines task-specific directions (TSDs) as pretrained singular directions with large relative coordinate changes, then proposes LoRA-Dash: estimate such directions after a short LoRA warm-up and train additional scalar coefficients along them. Results are often strong across commonsense reasoning, GLUE, and subject-driven generation, but the conceptual definition and empirical protocol leave substantial uncertainty about the claimed mechanism and comparative gains.",
+        "strengths": [
+          "LoRA-Dash is simple and parameter-efficient in terms of trainable scalars, with a clear two-stage construction and straightforward integration with LoRA (pp. 5–6, 17–19).",
+          "The reported task coverage is broad, spanning three LLaMA variants, two DeBERTaV3 sizes, GLUE, commonsense benchmarks, and SDXL generation; several tables show meaningful gains over LoRA and competitive PEFT methods (pp. 7, 27, 31–32).",
+          "The paper includes useful mechanism-oriented analyses, including direction overlap, alternative direction choices, hyperparameter sensitivity, convergence curves, and cross-task direction comparisons (pp. 8–10, 27–31)."
+        ],
+        "weaknesses": [
+          "The TSD framework is not technically well founded enough for its claims: W* may be non-unique, singular directions can be unstable or non-unique for clustered singular values, “significantly higher” change is undefined, and restricting attention to diagonal/core SVD bases is admitted to be a pragmatic choice rather than a principled characterization of task-relevant updates (pp. 3–4, 18–19). Dividing by σ also structurally favors low-singular-value directions, making some stated properties partly definitional.",
+          "The main comparison is not demonstrably controlled: LoRA-Dash learning rates are optimized while LoRA results are cited from prior work, no multiple seeds or uncertainty are reported, and the LoRA baseline behaves anomalously across ranks (e.g., averages 39.5, 40.7, 70.9, 74.7, then 65.8 on LLaMA-7B), undermining attribution of very large gains to TSDs (pp. 7, 21–22).",
+          "Efficiency claims count only trainable scalars and omit important costs: full SVDs and storage/use of selected singular vectors for every adapted matrix are not quantified, while the paper asserts near-ideal parameter efficiency and practical accessibility (pp. 19, 32–33). The diffusion evidence is also modest and incompletely specified despite subjective claims (pp. 24–27)."
+        ],
+        "score_rationale": "The method is plausible, easy to apply, and supported by unusually broad reported results, so it is not a clear reject. However, the central TSD interpretation is partly circular/arbitrary, and missing matched baselines, seeds, variance, and realistic SVD/storage accounting prevent confidence that the gains and mechanism are robust. I therefore place it marginally below acceptance; uncertainty remains because independently repeated, controlled experiments could materially improve the assessment."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes LoRA-Dash: after 100 LoRA steps, it identifies pretrained singular-vector pairs with large normalized projected updates and adds trainable coefficients along eight selected directions. The heuristic is simple and results are broad, but the claimed theoretical framework is not well founded and the strongest empirical gains are undermined by unstable baselines and incomplete statistical/cost reporting.",
+        "strengths": [
+          "The added mechanism is simple, parameter-efficient, and directly motivated by an observable early-training signal (pp. 5–6); it could be practically useful despite weaknesses in the interpretation.",
+          "Evaluation spans three LLaMA generations, two DeBERTa sizes, GLUE, commonsense reasoning, and SDXL subject generation, with generally positive results (pp. 7, 27, 31–32).",
+          "Ablations examine selected directions, pre-launch duration, direction count, alignment with full-fine-tuning updates, and extensions to AdaLoRA/FLoRA (pp. 8–10, 29–31)."
+        ],
+        "weaknesses": [
+          "The definition of TSDs is conceptually arbitrary: it restricts attention to diagonal/core SVD bases even though adaptation can occur in all cross-bases, normalizes by possibly tiny singular values, and depends on an ill-defined/non-unique fully fine-tuned optimum W* (pp. 3–4, 18–19). Thus it does not establish that the selected coordinates are intrinsically task-specific directions.",
+          "The main evidence lacks seeds, variances, or significance tests. Several LoRA baselines are implausibly unstable (e.g., averages 39.5/40.7 at ranks 4/8 and HellaSwag 17.6 at rank 64), while LoRA-Dash varies learning rates and baseline results are cited from prior work, making the dramatic gains difficult to attribute cleanly (pp. 7, 21–22).",
+          "The paper does not quantify the substantial one-time full-SVD cost, training memory for stored singular vectors, or wall-clock overhead across large matrices. Comparisons emphasize trainable parameter counts rather than total training resources, and direct comparisons with spectral alternatives are limited (pp. 19, 31–32)."
+        ],
+        "score_rationale": "LoRA-Dash is a plausible and potentially useful spectral adaptation heuristic with encouraging breadth of results. However, the central TSD formalization overclaims theoretical meaning, and missing replicated statistics, questionable baseline stability/fairness, and absent SVD resource accounting prevent the evidence from supporting acceptance with confidence. I therefore rate it marginally below acceptance; uncertainty remains because independently reproduced gains could materially improve the assessment."
+      }
+    }
+  ]
+}

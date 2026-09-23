@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_072",
+  "paper_id": "Wd1R0oxe5j",
+  "number": 10132,
+  "title": "Large Language Models for Explainability in Machine Learning",
+  "authors": "David Beamish; Georgios Exarchakis",
+  "primary_area": "interpretability and explainable AI",
+  "keywords": "XAI; explainability; large language models",
+  "forum_url": "https://openreview.net/forum?id=Wd1R0oxe5j",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    1,
+    3,
+    5,
+    5
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a systematic evaluation of Large Language Models (LLMs) for explainable AI (XAI) by assessing their ability to generate explanations against established properties of explainability. The authors evaluate six prominent LLMs (including GPT-4, LLaMA 3, and Gemma models) across two standard machine learning tasks - Adult Income classification and California Housing regression. They develop a comprehensive experimental framework examining eleven key XAI properties: accuracy, selectivity, fidelity, completeness, contrastness, certainty, degree of importance, consistency, stability, robustness, and comprehensibility. The evaluation uses conventional ML models and XAI methods like LIME, SHAP, and DiCE as benchmarks. The results reveal that while LLMs can generate human-comprehensible explanations, they struggle with crucial aspects like identifying influential features, maintaining consistency, and providing accurate model-behavior representations. The authors conclude that LLMs may be better suited as \"translators\" of conventional XAI methods rather than primary explainers."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- The evaluation spans eleven different XAI properties, providing a holistic assessment of LLM capabilities rather than focusing on narrow aspects.\n- The work provides actionable insights about how LLMs could be effectively integrated into XAI systems as translators rather than primary explainers."
+        },
+        "weaknesses": {
+          "value": "1. The paper's core methodology suffers from severe statistical inadequacy. Using only 1% of test sets (261 samples for Adult Income and 207 for California Housing) violates fundamental statistical principles for reliable model evaluation. For example, with the Adult Income dataset having 14 features and binary classification, 261 samples cannot adequately cover the feature space to evaluate explanation quality. Standard statistical power analysis suggests that for reliable feature importance evaluation with 14 variables, a minimum sample size of ~2000 would be needed (assuming medium effect size and 0.8 power level). The lack of statistical significance testing further compounds this issue - there's no way to determine if the reported differences between LLM and conventional methods are meaningful or just random variation. This is particularly problematic for metrics like stability, where only 20 instances are used, making it impossible to draw statistically valid conclusions about LLM explanation consistency.\n\n2. The paper's evaluation framework has fundamental conceptual flaws in how it measures explanation quality. For instance, using cosine similarity between LLM outputs and LIME/SHAP values as a metric for \"completeness\" and \"degree of importance\" is theoretically unsound. LIME and SHAP themselves are approximations with known limitations - LIME's local approximations can be unstable and SHAP values can be misleading when features are correlated. Using these as ground truth creates a circular evaluation where LLM explanations are considered \"good\" if they match potentially flawed approximations. The paper acknowledges these limitations in Section 2.1 but still uses them as benchmarks without justification. A more valid approach would require:\n\n- Formal theoretical framework for what constitutes a \"complete\" explanation\n- Multiple complementary metrics beyond simple vector similarity\n- Ground truth from domain experts or causal analysis\n- Evaluation of explanation correctness, not just similarity to other methods\n\n\n3. The paper fails to provide critical implementation details needed for reproducibility. Specifically:\n- ML Model Configurations: No hyperparameters or training details provided\n- LLM API Settings: Missing temperature, top-p, and other crucial parameters\n- Property Measurement Implementation: No code or detailed algorithms for metric calculations\n- Data Preprocessing: Unclear handling of categorical variables and scaling\n\nThe prompts shown in Appendix A.3 lack crucial details about how they were developed, tested, or optimized. Without these details, it's impossible to validate the results or build upon this work.\n\n5. The paper lacks fundamental theoretical justification for using LLMs as explainers. No formal framework is presented for:\n- Why language models should be capable of understanding and explaining ML model decisions\n- How LLM architectures relate to explanation generation\n- What properties a valid explanation should satisfy\n- How to verify explanation correctness\n\n6. The paper seems to ignore almost all of previous works in this space with the most prominent and closest work being \"Kroeger, Nicholas, et al. \"Are Large Language Models Post Hoc Explainers?.\" arXiv preprint arXiv:2310.05797 (2023).\"."
+        },
+        "questions": {
+          "value": "N/A"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "q2q9tMUlAk",
+      "forum": "Wd1R0oxe5j",
+      "replyto": "Wd1R0oxe5j",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_4fmb"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_4fmb"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10132/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730731819087,
+      "cdate": 1730731819087,
+      "tmdate": 1731428723685,
+      "mdate": 1731428723685,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work aims to evaluate whether LLMs are capable of providing explanations consistent with or comparable to established explainability criteria. The authors define (?) several orthogonal metrics of evaluation to compare LLM explanations and traditional XAI explanations. XAI methods used are LIME, SHAP, and DiCE Counterfactuals, as well as simpler prediction outputs and probabilities. The authors find that currently, LLMs show limited utility as explainers compared to traditional methods (though better benchmarks are needed), but still have promise as post-hoc explainers."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Clear introduction with specifically identified knowledge gap and important research goal: evaluating LLM-generated explanations against established explainability criteria – definitely of interest to the field. Attempts to define distinct evaluation criteria and make important connections between LLM capabilities and established XAI methods. Appendix contains details of experiments. Some salient and significant results, especially about LLMs underperforming on generating counterfactuals, capturing underlying reasoning of model decisions, and producing less accurate predictions than simpler classification models."
+        },
+        "weaknesses": {
+          "value": "Most weaknesses are regarding clarity and organization, plus care in performing experiments.\n\nLiterature survey: the long list of 17 metrics is presented in a confusing way. Is this list compiled by the authors? If so, its positioning in the literature survey is confusing and it should be made clear that this is a list curated by the authors. If it was previously presented by someone compiling the ideas from previous work, whoever compiled it should be clearly cited. Clarity is lacking.\n\nFurthermore, some of the definitions are unclear. E.g. Novelty sounds like a binary classification of whether a sample is novel, while Accuracy is “the ability of explanations to predict novel samples” – does this mean to *say they are novel* (binary classify?), does it mean *correctly predict outputs* for novel samples? It may make sense to define the list you actually use elsewhere (i.e. the one that includes the definition for Robustness, which you say you add – where can I currently see your official definition for Robustness? It should be given in the same format as the others, maybe in the Research Design section.) Overall, I found the organization of the paper weak, which led to this type of confusion.\n\nThe definitions are also inconsistent because some are about the produced “explanations,” while others are about the “explanatory method”.\n\nIn the explanatory method selection, you don’t give the 1:1 mapping of how you paired LLM-generated explanations with a similar benchmark method for comparison (it’s given later in the results section, but buried in the text - a table could help here).\n\nUsually, a few grammatical errors in the main text of a paper are understandable in an international research community where many are non-native English speakers. However, I see serious problems (consistency, grammar, formatting) with your actual definitions and LLM prompts, making me worry that the work was sloppily performed.\nThere is inconsistency in your prompt wording for no apparent reason: “Use your own reasoning and do not use implement code.” (ungrammatical) vs. “Use your own reasoning and do not use any code such as Python to implement a solution.” Also “there should an inner dictionary” (ungrammatical) vs. “There should be an inner dictionary.” Hopefully an LLM would not be too affected by these differences, but it is sloppy. I hope these errors are only in your Appendix typesetting and not in your actual study.\n\nTypo line 075 - “ability of human’s how an AI system…” – I assume you mean something like “ability of humans to understand how an AI system…”\n\nThe “future work” paragraph of the discussion is not particularly related to the authors’ own findings, though the paper abstract claims they are connected.\n\nThis is a relatively small scope project with mainly a negative result. However, it is also hard to conclude that LLMs are incapable of aligning with XAI (hard to fully believe the negative result in a study that was not carefully done). A very carefully designed and described study that found the same results would be an improvement."
+        },
+        "questions": {
+          "value": "Is the long list of 17 metrics presented in the literature survey compiled by the authors? Are these mostly your final definitions?\n\nWhy are you using the Adult dataset? Yes, the task is simple, but both Adult and CA Housing are very old datasets. Adult has a number of problems detailed in the well known NeurIPS Ding et al. 2021 paper, “Retiring Adult: New Datasets for Fair Machine Learning”: https://proceedings.neurips.cc/paper/2021/file/32e54441e6382a7fbacbbbaf3c450059-Paper.pdf. If you are already aware of the identified problems with the Adult dataset (especially with the $50K binary income threshold), I would like to know your justification for still using it; perhaps this information should be in the paper. (Also, it may be interesting for you to investigate whether the explanations align at all with the known limitations of the Adult dataset–but this is out of scope for my review.)\n\nAre there more visual ways of explaining your method or displaying your results? It could help make your paper easier to follow."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "mKFQW8gdQb",
+      "forum": "Wd1R0oxe5j",
+      "replyto": "Wd1R0oxe5j",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_9gjs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_9gjs"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10132/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730662730517,
+      "cdate": 1730662730517,
+      "tmdate": 1731428723134,
+      "mdate": 1731428723134,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors investigate the quality of LLM generated explanations for two classic tabular data machine learning problems (a) a classification problem (Adult data set) and (b) a regression problem (California Housing data set). Explanation quality has been evaluated along 11 dimensions, among them metrics which typically are used to evaluate explanations such as fidelity, and comprehensibility. Furthermore, predictive accuracy of the LLMs has been evaluated. For the investigated dimensions, specific well-known XAI methods have been used for comparison with LLM generated explanations, for instance, completeness have been evaluated by comparison with SHAP values, selectivity by comparison with DiCE counterfactuals. Evaluation scores have been obtained by cosine similarity metrics for most of the dimensions; comprehensibility of LLM generated explanations has been evaluated by  Flesch-Kincaid readability score. Results show that LLM generated explanations often lack accuracy, are prone to errors, and fail to offer meaningful insights into the inner workings of models."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "* The authors address a novel and interesting research question -- can LLMs generate explanations for machine learned models which fulfill quality standards which have been established in XAI research -- most important fidelity, robustness and comprehensibility.\n* The paper is well written and it is easy to follow.\n* The authors motivate their evaluation strategy in a plausible way and explicitly address short comings of the presented evaluation."
+        },
+        "weaknesses": {
+          "value": "* The evaluation is restricted to learned models for tabular data. In my opinion, for such data, the challenge for creating natural language explanations which are easy understandable to humans is not very high. One possibility would be, to first use a standard XAI methods such as SHAP or DiCE and than use an LLM to generate a short verbal description. However, there is no conclusive evidence from psychology, as far as I know, that verbal explanations are more helpful than the standard output of such XAI methods (for non ML experts such as domain experts or end-users).\n* Comparing LLM output to specific XAI methods, in my opinion, would be only a meaningful evaluation measure, if in addition, the respective XAI methods had been evaluated first themselves with respect to the usual quality dimensions (most important faithfulness). How might the results change if the baseline XAI methods were first evaluated for faithfulness? Could you suggest ways to incorporate this evaluation into the study design?"
+        },
+        "questions": {
+          "value": "* Enhancing XAI with LLMs is an interesting research topic, but using tabular data and classic ML approaches such as decision trees or linear regression, seems for me not the best choice to address this question. Such models are interpretable (and not black box) and therefore, explanations of why a model returns a specific class or value can be often given directly from the model application. Enhancing interpretable models with additional XAI methods have been proposed and you use established methods such as SHAP values and DiCE counterfactuals in your evaluation study. Nevertheless, in my opinion, it is an open question whether LLM generated verbal explanations are more helpful to humans than local explanation from the interpretable models themselves or using SHAP etc. Can you give arguments why you think that explanations for interpretable models learned from tabular data are an interesting choice to investigate LLM generated explanations? How might the results differ if applied to more complex, less interpretable models or non-tabular data? What are the potential drawbacks of using interpretable models for this evaluation?\n\n* You present a careful evaluation of explanation quality of LLM generated explanations along 11 dimensions. When you obtain quality metrics for LLMs by comparing their similarity to explanations generated by XAI methods like SHAP values or DiCE counterfactuals, in my opinion, it would have been crucial to first evaluate the quality of these methods themselves. What are your arguments to use use these methods without evaluating their quality as baseline? How would you propose evaluating the quality of the baseline XAI methods before using them as benchmarks? What impact might this have on the interpretation of your results?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rA4ZZEeKhG",
+      "forum": "Wd1R0oxe5j",
+      "replyto": "Wd1R0oxe5j",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_pnT1"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_pnT1"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10132/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730626287333,
+      "cdate": 1730626287333,
+      "tmdate": 1731428723106,
+      "mdate": 1731428723106,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work has experimentally evaluated explanations generated by 6 LLMs across 11 dimensions of explainability."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Collating the different dimensions along which one should evaluate explanations in one place is useful. \n- Initiating discussions/evaluations on the topic of using LLMs themselves to generate explanations of other ML models and attempting to figure out where LLMs might fit within an explanation system is useful."
+        },
+        "weaknesses": {
+          "value": "Both the experiments as well as the broader discussion on where LLMs might fit within an explanation system are currently limited. Authors have considered a classification and a regression problem and have attempted to evaluate it deeply. On the discussions front, it would help to assess how LLMs might fit broadly within an explanation system (e.g. conversation, customisation, etc.) beyond simply focusing on computing the explanations themselves."
+        },
+        "questions": {
+          "value": "1. Trust / black-box issues: Explanations are supposed to transparently explain the behavior of models. However wouldn't using LLMs or other opaque models raises the issue of when one could trust the explanations themselves. \n\n2. Would it not be valuable to discuss more broadly about the different places where LLMs might fit within an explanation system beyond computing the explanations. E.g. talkToModel (https://www.nature.com/articles/s42256-023-00692-8.pdf), customisation, etc."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Py1d2EMiKV",
+      "forum": "Wd1R0oxe5j",
+      "replyto": "Wd1R0oxe5j",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_8fMf"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10132/Reviewer_8fMf"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10132/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730522486347,
+      "cdate": 1730522486347,
+      "tmdate": 1731428723094,
+      "mdate": 1731428723094,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper benchmarks six LLMs on eleven proposed XAI properties across two tabular datasets and concludes that standalone LLMs are unreliable explainers but may serve as translators of conventional explanations. The question is relevant, but the experiments largely test whether an LLM can reconstruct an unseen predictive model from inputs and labels rather than whether it can explain a model, making the central conclusions weakly supported.",
+        "strengths": [
+          "Addresses a practically important question and evaluates multiple LLM, predictor, dataset, and explanation combinations (pp. 5–9).",
+          "Reports broadly negative findings rather than overstating LLM capabilities, and acknowledges scope, prompting, and benchmark limitations (pp. 9–10).",
+          "Provides detailed prompts, procedures, and disaggregated result tables in the appendix, facilitating methodological scrutiny (pp. 17–26)."
+        ],
+        "weaknesses": [
+          "The decisive validity flaw is that prompts generally provide only feature rows and predicted labels—not model parameters, executable access, training data, or conventional XAI outputs—yet ask the LLM to infer coefficients, marginal contributions, feature importance, and counterfactuals (pp. 24–26). Failure to recover an unidentified model is expected and does not establish inability to explain a model when given relevant evidence.",
+          "Several metrics and prompt constraints are misaligned with the claimed properties: DiCE feature overlap is treated as selectivity, LIME agreement as importance, and SHAP agreement as completeness; marginal contributions are constrained to be positive although SHAP values are signed. The California coefficient prompt also mistakenly requests logistic-regression coefficients and refers to an income target (pp. 18–19, 24).",
+          "Evidence is narrow and lacks uncertainty analysis, prompt/model sampling controls, or human-grounded evaluation. Readability formulas do not establish explanation correctness or usefulness, while high cross-model consistency may indicate generic, model-insensitive answers rather than a strength (pp. 6, 9, 19–23)."
+        ],
+        "score_rationale": "The broad benchmark and transparent reporting offer some value, but the experimental setup withholds the information needed to explain the target models, and several operationalizations structurally bias or ambiguously interpret outcomes. These are central technical-validity problems, not minor presentation issues, so the work falls substantially below the acceptance threshold despite a relevant topic and useful negative observations."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper benchmarks six LLMs on eleven proposed XAI properties across two tabular datasets and concludes that unaided LLMs are unreliable explainers but may serve as translators. The topic is relevant and the empirical scope is broad, but the central design often asks an LLM to recover model-specific quantities without supplying model parameters, training data, or sufficient behavioral observations, making poor performance largely predetermined rather than an informative evaluation of LLM-based XAI.",
+        "strengths": [
+          "The study targets an important question and evaluates multiple LLM families, predictive models, tasks, and explanation types under a common framework (pp. 5–7).",
+          "Prompts, experiment definitions, and detailed result tables are included, supporting inspection and partial reproducibility (pp. 17–26).",
+          "The paper reports largely negative findings and acknowledges resource, prompting, and benchmark limitations rather than overstating practical readiness (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The main experiments are not identifiable: prompts provide feature rows and predicted labels but ask LLMs to infer hidden coefficients, SHAP-like marginal contributions, feature importances, and counterfactuals without access to the fitted model or adequate queries (pp. 18–19, 24–26). Consequently, the results do not establish whether LLMs can explain models when used in a properly grounded XAI pipeline.",
+          "Several operationalizations are invalid or weakly justified. The marginal-contribution prompt requires all-positive values while SHAP values are signed; cosine similarity to DiCE/LIME is treated as ground truth; cross-model consistency may reward ignoring model differences; readability is equated with comprehensibility without human evaluation; and regression counterfactual quality is judged from an average percentage change rather than per-instance validity and minimality (pp. 7–9, 18–22).",
+          "There are consequential inconsistencies and prompt errors: the California coefficient prompt requests logistic regression and excludes an 'income' target; summary robustness values omit substantial row/column error rates; and the claim of zero errors for larger models conflicts with appendix tables showing nonzero formatting errors (pp. 8–9, 23–24)."
+        ],
+        "score_rationale": "The broad evaluation effort and transparency are useful, but fundamental task-construction and metric-validity problems undermine the technical conclusions. Because many tests measure unsupported guessing rather than grounded model explanation, substantial redesign is needed; this warrants rejection despite the relevant topic and extensive experiments."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper benchmarks six LLMs on eleven purported XAI properties across two tabular datasets and concludes that stand-alone LLMs are unreliable explainers but may be useful translators. The topic is relevant and the evaluation is broad, but the central setup often asks an LLM to reconstruct model-specific behavior without providing access to the trained model or a faithful representation of it. Several metric and prompt choices further confound the reported results, so the evidence does not support the paper’s general conclusions about LLM-based explanation.",
+        "strengths": [
+          "The study attempts an unusually broad, explicitly property-based evaluation spanning six LLMs, multiple predictors, two tasks, and eleven criteria (pp. 5–9).",
+          "The complete prompts and per-property procedures are disclosed, making important design choices inspectable (pp. 17–26).",
+          "The discussion is appropriately cautious about resource constraints, prompt dependence, and the possible role of LLMs as translators rather than autonomous explainers (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The fundamental comparison is ill-posed: prompts provide features and predicted labels but apparently not model parameters, training data, callable model access, or conventional XAI outputs, yet LLMs are judged on recovering model-specific coefficients, SHAP/LIME values, and counterfactual behavior (pp. 6–7, 24–26). This largely measures unsupported guessing rather than explanation capability.",
+          "Several operationalizations are invalid or strongly biased. Marginal contributions are forced to be positive in [0,1] and then compared with signed SHAP values; the California coefficient prompt incorrectly requests logistic regression and excludes an 'income' target; and cosine similarity over encoded/scaled feature values is not a clear measure of feature-selection agreement (pp. 18, 24–25).",
+          "Experimental reporting is insufficient and internally inconsistent: no uncertainty estimates or significance tests are provided; decoding settings and repeated-run sensitivity are absent; and the claim of zero errors for larger models conflicts with nonzero row-error rates, while the main robustness tables appear to report only invalid-output rates (pp. 8–9, 20, 23)."
+        ],
+        "score_rationale": "The breadth and transparency provide some value, but the central experiment does not give LLMs the information needed to explain the evaluated models, and multiple prompts and metrics mechanically distort the comparisons. These are foundational validity problems rather than minor presentation issues, placing the work clearly below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper benchmarks six LLMs on eleven proposed XAI properties across two tabular datasets. The question is relevant and the appendices expose prompts and detailed results, but the central evaluation is fundamentally ill-posed: LLMs are asked to reconstruct model-specific coefficients, SHAP values, and counterfactuals without receiving the trained model, its parameters, or sufficient behavioral observations (pp. 6, 18–19, 24–26). Consequently, low agreement largely measures unavailable information and prompt design rather than an LLM's capacity to explain a model.",
+        "strengths": [
+          "Addresses a timely question and evaluates multiple LLM families, predictive models, explanation types, and XAI properties (pp. 5–9).",
+          "Reports largely negative findings rather than overstating LLM performance, and recognizes limitations involving cost, prompts, and absent standardized benchmarks (pp. 9–10).",
+          "Provides extensive result tables, experimental definitions, and full prompt templates, improving auditability (pp. 17–26)."
+        ],
+        "weaknesses": [
+          "The main comparisons are not valid tests of model explanation: prompts provide feature rows and predicted labels but no model access, parameters, training examples, or querying mechanism, while asking for coefficients, feature attributions, and model-targeted counterfactuals (pp. 18–19, 24–26). The regression coefficient prompt even requests logistic-regression coefficients and excludes an nonexistent 'income' target (p. 24).",
+          "Several operationalizations are conceptually or mathematically confounded. Positive-only marginal contributions are compared with signed SHAP values; categorical features and missing entries are numerically encoded before cosine similarity; cross-model invariance is called consistency although it may show failure to respond to model differences; and readability formulas do not establish human comprehensibility (pp. 18–20, 24, 26).",
+          "Evidence is too narrow and inconsistently summarized: only two standard tabular datasets and a 1% test split are used, with no repeated prompts, uncertainty estimates, significance tests, or human evaluation (pp. 6, 9). Robustness summary values in Tables 1–2 also appear to omit the nonzero row/column error rates reported in Tables 16–17 (pp. 8, 23)."
+        ],
+        "score_rationale": "Despite useful transparency and a relevant empirical question, the experimental setup cannot support the claimed systematic assessment of LLM-generated model explanations. The LLMs lack the information needed to recover the benchmark explanations, and several metrics structurally bias or misinterpret agreement. These are central validity defects rather than minor presentation issues, so the work falls clearly below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper benchmarks six LLMs on eleven proposed XAI properties across two tabular datasets and reports generally poor alignment with conventional predictors and explanation methods. The topic is relevant and the experimental matrix is broad, but the central design does not validly test whether an LLM can explain a particular ML model: prompts provide samples and predicted labels while withholding the model behavior or explanatory evidence the LLM is supposed to recover. Consequently, many results measure unsupported guessing rather than explanation quality.",
+        "strengths": [
+          "The study covers multiple LLM families, five ML model types, classification and regression tasks, and a broad set of proposed properties (pp. 5–9).",
+          "Full prompts, experiment definitions, and disaggregated result tables are included, improving auditability (pp. 17–26).",
+          "The discussion is appropriately cautious about present limitations and proposes the more plausible role of translating conventional XAI outputs into natural language (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core comparison is ill-posed: prompts ask LLMs to infer model-specific coefficients, marginal contributions, feature importance, and counterfactuals from input rows and predicted labels without access to model parameters, queries, or XAI outputs (pp. 18–19, 24–26). This cannot establish whether LLMs can explain the underlying model.",
+          "Several metrics or prompt constraints invalidate interpretation: marginal contributions are forced to be positive although SHAP values are signed; cosine similarity over encoded/scaled feature values is a questionable measure of selected-feature agreement; and readability formulas do not establish human comprehensibility (pp. 18–19, 24, 26).",
+          "Reporting contains consequential inconsistencies: the main robustness values omit row/column error rates reported in the appendix, regression-table certainty duplicates the classification values despite certainty being classification-only, and Gemma comprehensibility values are swapped between the main and appendix tables (pp. 8, 19, 22–23). There are also no repeated-query uncertainty estimates or sensitivity analysis for prompts and decoding."
+        ],
+        "score_rationale": "The paper addresses a worthwhile and somewhat novel empirical question with unusually broad reporting. However, the withheld model information makes its principal fidelity and explanation experiments structurally incapable of measuring the stated construct, while metric validity and result inconsistencies further weaken the evidence. These are central rather than readily repairable presentation issues, supporting a reject score."
+      }
+    }
+  ]
+}

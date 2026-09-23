@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_020",
+  "paper_id": "IZbthMfqad",
+  "number": 1504,
+  "title": "Deep Koopman-layered Model with Universal Property Based on Toeplitz Matrices",
+  "authors": "Yuka Hashimoto; Tomoharu Iwata",
+  "primary_area": "learning theory",
+  "keywords": "Koopman operator; Toeplitz matrix; nonautonomous dynamical system",
+  "forum_url": "https://openreview.net/forum?id=IZbthMfqad",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    5,
+    5,
+    8
+  ],
+  "human_mean_rating": 5.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a novel deep Koopman-layered framework for modeling dynamical systems, particularly suited for nonautonomous time-series data. This approach integrates Koopman operator theory with Fourier functions and learnable Toeplitz matrices, enabling the simultaneous estimation of multiple Koopman operators to capture temporal dynamics. The model is theoretically robust and flexible, leveraging the universal and reproducing properties of Toeplitz matrices, which enhance its generalization capabilities. Efficient training is achieved through Krylov subspace methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. **Originality**\nThe paper introduces an innovative integration of deep learning techniques with Koopman operator theory. By proposing deep Koopman-layered models that utilize learnable Toeplitz matrices and Fourier functions, the authors offer a fresh perspective for analyzing nonautonomous systems, which are often challenging for traditional methods. The approach of simultaneously estimating multiple Koopman operators is a notable contribution that broadens the model's applicability.\n\n2. **Quality**\nThe authors provide a solid mathematical framework that substantiates their claims regarding the universality and generalization properties of the proposed model.\n\n3. **Clarity**\nThe paper is well-structured and almost clearly written. The authors effectively convey the motivations behind their approach and highlight the significance of Koopman operator theory.\n\n4. **Significance**\nThe significance of the paper lies in its potential impact on the fields of dynamical systems and machine learning. By bridging these two areas, the proposed deep Koopman-layered models could advance the analysis of time-series data from nonautonomous dynamical systems."
+        },
+        "weaknesses": {
+          "value": "1. To my understanding, the choice of the Fourier basis in the proposed deep Koopman-layered model is motivated by its universality in function representation, desirable theoretical properties for analyzing Koopman operators, flexibility in learning multiple operators simultaneously, and compatibility with efficient Krylov subspace methods for low computational cost. However, it is still unclear:\n\n- What specific properties of the Fourier basis make it particularly suitable for capturing the dynamics of nonautonomous systems compared to wavelet bases or polynomials?\n\n- How does the use of the Fourier basis influence the convergence rates of the learning algorithms employed in the deep Koopman-layered model?\n\n- Can the model's performance be enhanced by incorporating additional basis functions alongside the Fourier basis, and if so, how would this be implemented?\n\n- How does the choice of the Fourier basis compare to other potential basis functions in terms of computational efficiency and accuracy when modeling complex nonautonomous dynamical systems?\n\n2. The theoretical and numerical results in the paper are restricted to the torus. Although this has several advantages theoretically, it may limit the applicability of the theoretical results for many cases, especially for real-world scenarios. It would be great to know how the insights gained from the toroidal analysis may provide a foundational understanding to explore and develop models for more general cases, ultimately enhancing the applicability of the theoretical results to real-world scenarios. \n\n3. There are no experiments for chaotic dynamics. So, what happens if the training dynamics are more complex, such as in the case of (autonomous) chaotic dynamics with a **mixed Koopman spectrum**?\n\n4. The sentence \"By computing the eigenvalues of Koopman operators, we can understand the long-term behavior of the undelined dynamical systems\" in the Introduction, line 29, may be better if mentioned specifically for systems with a discrete Koopman spectrum, but not in general (for example, not for systems that exhibit a continuous spectrum rather than a purely discrete set of eigenvalues)."
+        },
+        "questions": {
+          "value": "I) What are some potential real-world applications of the deep Koopman-layered model? \n\nII)  The paper discusses the concept of multiple Koopman layers. What criteria should be used to determine the **optimal number of layers** in the model? Could you provide guidelines or heuristics for selecting the number of layers for different types of problems or datasets?\n\nPlease also see \"Weaknesses\"."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "There is no Ethics Concerns."
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZuGSOqY0s8",
+      "forum": "IZbthMfqad",
+      "replyto": "IZbthMfqad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_dHBH"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_dHBH"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1504/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731074897300,
+      "cdate": 1731074897300,
+      "tmdate": 1731427435852,
+      "mdate": 1731427435852,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors present an approach for learning Koopman representations of time-series datasets. The main idea is to transform the data into a new space using fourier functions where the dynamics can be approximated by a switching linear dynamical system. They also propose to use Krylov subspace methods to approximate the matrix exponentials which define the time evolution of the linear system."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Transforming the original space into the space of observables using fixed basis functions (as opposed to learning the space of observables like in Lusch 2017) allows the authors to develop a strong theoretical backing for their approach including showing universality and a generalization bound. I think the theoretical foundation of the work is its strongest feature.\n- A nice feature of the approach is that one can analyze the eigenvalues of the trained model to interpret the underlying system (for example whether it is measure preserving or not).\n- The idea of using Krylov subspace methods to approximate the matrix exponential matrix product in this context is novel as far as I'm aware."
+        },
+        "weaknesses": {
+          "value": "- Overall, I found it quite challenging to understand the details of your proposed learning algorithm and I am not confident that I would be able to reproduce your approach using your paper alone (that said, I appreciate the authors providing their code in the supplementary materials). It would have been helpful for me if you had included a section which provides a step-by-step summary or an algorithm block showing how your approach works for a given time-series dataset.\n- I think the claims you make in S7 (that your approach provides an alternative to neural ODE-based models or other deep Koopman based approaches) is not well-supported by your numerical studies. To put these claims on solid footing you need to include numerical studies showing your approach can provide equivalent performance on some common time-series benchmarks; for example see the numerical studies [1].\n- It wasn't clear to me how your approach can be used in time-series forecasting (i.e. making predictions for $t>t_J$.\n\n[1] Wang, R., Dong, Y., Arik, S. Ö., & Yu, R. (2022). Koopman neural forecaster for time series with temporal distribution shifts. arXiv preprint arXiv:2210.03675.\n\nOverall because the presentation of your approach was challenging to parse and because your numerical studies did not do a good job supporting some of your claims, I feel that I cannot recommend acceptance of your work at this time. \n\n*Minor comments which will not impact my decision*\n- I noticed a couple of spelling mistakes -- please run your draft through a spell checker for the next submission."
+        },
+        "questions": {
+          "value": "- In my understanding of your work, you learn an approximation to a time-series dataset over the time-window $t \\in [t_1, t_J]$. In most time-series forecasting problems, one goal is to generate forecasts beyond the time-window in which the observations were collected. With your approach how do you generate forecasts for $t \\geq t_J$?\n- It wasn't clear to me under which conditions the Toeplitz matrix will be sparse in practice. Can you discuss in which cases this will be true? How will your approach scale in cases where you cannot make this assumption?\n- My understanding is that you haven't placed requirements on your Fourier functions that they be invertible. In this case, is it possible to reconstruct the original space once you've made a forecast in the observable space?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "oQByeRo7Xu",
+      "forum": "IZbthMfqad",
+      "replyto": "IZbthMfqad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_V5co"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_V5co"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1504/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730666896103,
+      "cdate": 1730666896103,
+      "tmdate": 1732640406959,
+      "mdate": 1732640406959,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors introduce a concatenation of Koopman operator approximations (\"Deep Koopman model\") defined on a Fourier approximation of the L^2 space on an n-torus, for the approximation of nonlinear, nonautonomous dynamical systems.\nThey propose to learn the generator in each of the Koopman operators (i.e., in each \"layer\" of the model) as Toeplitz matrices, and then map the learned generators to the corresponding operator using matrix exponentials.\nThe model is analyzed regarding universal approximation and generalization, and compared to KDMD and EDMD on several numerical examples on the torus."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Constructing models for non-autonomous, non-linear dynamical systems is a very important and very challenging problem. On the n-torus, Fourier series provide a very efficient and useful dictioanry to approximate functions in L2, so the setting the authors chose to present their Koopman approximation is reasonable. The theoretical contributions cover most of the important, first aspects that should be treated when introducing a new model, and seem to be proven appropriately. The numerical examples are chosen well, and illustrate the efficacy of the new method. The connection to neural ODEs (or rather, approximation of ODE vector fields using neural networks) is interesting and should be explored further."
+        },
+        "weaknesses": {
+          "value": "The authors chose an extremely specific setting (systems on n-tori) and can therefore avoid the most challenging question in Koopman operator approximation - how to choose the proper dictionary for a given problem? The challenging aspect in their setting thus only comes from the fact that the chosen systems are non-autonomous, not that they are non-linear. Unfortunately, the authors do not discuss any existing methods for non-autonomous systems or compare their method in the numerical setting against them. In fact, the \"deep Koopman model\" proposed by the authors may not even be appropriate for general non-autonomous systems, because the number of internal \"layers\" may need to go to infinity for such systems, e.g. if the time-dependent part is not periodic (but, e.g., linear: $\\dot{x}= -x+t$). I list those concerns in more detail below.\n\n * One of the most challenging aspects of numerical Koopman operator approximation is the choice of function space and corresponding truncation. The authors only work on the n-torus, for which the Fourier basis is a good choice - but this also means that they do not discuss (at all) the issues arising when the base space is not an n-torus (which, I would argue, is a very common case in practice).\n\n * The authors should incorporate and discuss existing literature on learning dictionary functions and switched systems:\n   - Li, Qianxiao, Felix Dietrich, Erik M. Bollt, and Ioannis G. Kevrekidis. “Extended Dynamic Mode Decomposition with Dictionary Learning: A Data-Driven Adaptive Spectral Decomposition of the Koopman Operator.” Chaos: An Interdisciplinary Journal of Nonlinear Science 27, no. 10 (October 2017): 103111. https://doi.org/10.1063/1.4993854.\n   - Peitz, Sebastian, and Stefan Klus. “Koopman Operator-Based Model Reduction for Switched-System Control of PDEs.” Automatica 106 (August 2019): 184–91. https://doi.org/10.1016/j.automatica.2019.05.016.\n\n * Experiment 6.2.1 is not using proper dictionary functions for KDMD and EDMD, and hence the numerical results are unfavourable for these methods compared to the presented method. The authors should either learn Koopman operators separately for each subset, or use time-dependent dictionary functions for EDMD - the true model is periodic with period $2\\pi$, so it should be easily possible to properly encode the dynamics even with classical EDMD (and time-dependent dictionary)."
+        },
+        "questions": {
+          "value": "* I do not understand the sentence in the introduction: \"In addition, since each Koopman operator for a time window is estimated individually in these frameworks, we cannot take the information of other Koopman operators into account.\". A single system only has a single Koopman operator (family, if one considers one operator per time t). What do the authors mean by \"other Koopman operators\"? The family?\n\n * For proposition 5.1: is it not possible to use simple Monte-Carlo arguments to show that the variance of $h(x,y)$ goes to zero with $1/\\sqrt{S}$ (i.e., $1/S \\sum_i(h(x_i,y_i)$) converges to $E[h(x,y)]$ with the Monte-Carlo rate of $1/\\sqrt{S})$? The current bound involves operator norms which may be unbounded, correct?\n\n * l478 \"our framework provides numerical linear algebraic way to train Neural ODE-based models\" which part of the \"deep Koopman\" model represents the neural network from the Neural ODE? The neural ODE framework was introduced by Duvenaud and coauthors (Chen et al. (2018)) to mitigate the memory consumption of back-propagation through classical solvers, they propose instead to use the adjoint method. Where does the memory footprint come in with the new method? \"Finding the vector field of an ODE\" is not the novelty of Chen et al. (2018), it is finding it *efficiently* (without a lot of memory cost).\n\n * How many internal layers would one need to approxiamte the simple non-autonomous system \"\\dot{x} = -x+t\"?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "mgT7oGJkCT",
+      "forum": "IZbthMfqad",
+      "replyto": "IZbthMfqad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_naMD"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_naMD"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1504/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730643823388,
+      "cdate": 1730643823388,
+      "tmdate": 1732616738585,
+      "mdate": 1732616738585,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes a deep Koopman-layered model designed to analyze the dynamics of time-series data, particularly focusing on nonautonomous dynamical systems, where the system's behavior changes over time. The model leverages Koopman operator theory, which provides a linear framework for analyzing nonlinear dynamical systems, and it is structured as a series of \"Koopman layers\", each approximating a Koopman operator at a specific time point. These layers allow the model to capture the evolving dynamics of the system. Toeplitz matrices are utilized to construct the Koopman layers. Krylov subspace methods are utilized for efficient computation of the Koopman operators. The model further uses the Fourier basis functions as the representation space for the Koopman operators. This choice is justified by the theoretical properties of the Fourier basis, including its universality and the ability to derive generalization bounds for the model. The paper establishes the universality of the proposed model, meaning that it can approximate any function within the chosen representation space with arbitrary accuracy, given enough layers. Additionally, the authors derive a generalization bound, indicating the model's ability to perform well on unseen data."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The idea of using sequence of Toeplitz matrices to parameterize Koopman generator and leverage its universal property to prove the universality and generalization of the approximation scheme is novel and original. The work is solid in the sense that the framework allows explicit error control which is often missed in other Koopman operator learning literatures. Experimental results also confirms the importance of regularization as derived in the generalization bound and shows superior performance against some other approaches, in terms of the distribution of the identified eigenvalues (around the unit circle). Although the idea of “using a moving stencils method to compute the time-dependent Koopman operator (and in each local stencil, the dynamical system is assumed time invariant)” is not new (see eg. “Data-driven reduced-order modeling for nonautonomous dynamical systems in multiscale media” by Mengnan Li, Lijian Jiang), this work makes decent contribution to the workstream of Koopman operator learning for non-autonomous systems with theoretical basis."
+        },
+        "weaknesses": {
+          "value": "- I don’t agree with the statement “For existing Neural ODE-based models, we use numerical methods, such as Runge-Kutta methods, to solve the ODE  (Chen et al., 2018)” in section 7.1. In fact, one of the innovations in that work was the authors solved the adjoint equation backwards in time to obtain the gradients automatically for parameter updates, so that one can circumvent the memory issues caused by using other numerical methods, such as Runge-Kutta, although I do agree that using Krylov subspace methods to compute $e^{L_j u}$ in the work has similar potential too. \n\n- The notations are sometimes confusing or overloaded to digest. For example, page 3 line 161, it seems the notation of $x_k$ was not properly defined before its appearance? The superscripts and subscripts in equation (2), (3) are heavy, the authors may consider simplifying it with a bit abuse of notation OR show how it works 1D case and with 1 system so that j=1 and k=1 OR provide a more concrete examples to guide the readers through in appendix. \n\n- In addition, consider citing two papers from Mitsubishi lab\n  - \"Physics-Informed Koopman Network\"\n  - \"Physics-informed neural ODE (PINODE): embedding physics into models using collocation points\"\n\nThe spirit of this work aligns quite well with above two in that both proposes to learn the Koopman generator $L$. The difference lies in that this work is “data-driven” whereas the other two are “physics/equations-driven”."
+        },
+        "questions": {
+          "value": "- Page 7, line 358 - 359: \"according to Theorem 4.1, we may need more than one layer even for the autonomous systems.\" -- Indeed, the theorem asserts that \"there exists some positive integer $J$\", but it doesn't align w/ our understanding for autonomous systems - for which the Koopman operator (or generator) should be time-invariant as defined in section 2.3? Is the statement true? How do you explain the discrepancy?\n\n- Even for non-autonomous systems, do you have suggestions on how to choose $J$ (page 8, line 397-398) and the function $v$ beforehand? Any general guidelines? I can see because we construct the representation space  with the Fourier functions, so we could use sinusoidal functions for representing $v$ for simplicity, etc. But are there deeper reasons for why you choose $v(x,y)$ that way (page 7, line 350)?\n\n- Page 8, 416-417: what's the fundamental reason of seeing eigenvalues distributed on the unit circle in the deep Koopman-layered model? Why EDMD/KDMD failed? Since you are benchmarking against DMD methods on i) non-autonomous system (transient dynamics) and the goal is to ii) find stable eigenvalues, I strongly recommend (NOT required) you to compare against more relevant DMD variants below:\n  - \"Multi-Resolution Dynamic Mode Decomposition\" by J Kutz et al.\n  - \"Forward-Backward Extended DMD with an Asymptotic Stability Constraint\" by Forbes et al."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "XqzjjYPL6Z",
+      "forum": "IZbthMfqad",
+      "replyto": "IZbthMfqad",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_q7PE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1504/Reviewer_q7PE"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1504/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729706432072,
+      "cdate": 1729706432072,
+      "tmdate": 1731427436200,
+      "mdate": 1731427436200,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes Fourier/Toeplitz-parameterized layers whose matrix exponentials are trained as time-varying Koopman operators, with Krylov methods for computation. The combination is potentially interesting, but central universality and generalization claims either disconnect from genuine Koopman structure or contain serious mathematical defects, while the synthetic evidence does not establish reliable operator recovery.",
+        "strengths": [
+          "The Fourier/Toeplitz parameterization and Krylov matrix-exponential computation form an interesting bridge between Koopman modeling and numerical linear algebra (pp. 4–5).",
+          "The manuscript attempts an unusually broad theoretical treatment, including approximation, capacity, and computational considerations (pp. 5–7).",
+          "Experiments include nonautonomous synthetic systems and comparisons with EDMD, KDMD, learned dictionaries, and a neural ODE (pp. 8–10, 17–19)."
+        ],
+        "weaknesses": [
+          "The generalization analysis is not valid as stated: the complex kernel lacks the required conjugation/Hermitian form, the hypothesis class has unbounded parameters so the supremum of operator norms is generally infinite, and Proposition 5.1 contains sqrt(log(delta/2)), which is not real for the relevant delta (pp. 3, 6–7, 15).",
+          "The universality result follows by showing the permitted finite matrices equal all complex matrices, then invoking arbitrary GL transformations. This makes the result largely generic linear expressivity and does not show that the learned factors are consistent Koopman operators or flows; consequently, interpreting their spectra dynamically is insufficiently justified (pp. 5–6). There are also proof/formulation errors, including the generator limit t→infinity rather than t→0 (p. 3), an incorrect row/column construction in Lemma 4.8 (p. 15), and an N-independent claimed convergence rate with a problematic Fourier-decay assumption (p. 16).",
+          "Evidence is limited to small synthetic examples and qualitative eigenvalue plots, without ground-truth operator-error or forecasting evaluations. Several interpretations are questionable: Figure 2 visibly includes eigenvalues away from the unit circle, while additive forcing does not simply make damping weaker as asserted for Figure 3 (pp. 8–10). Baseline fairness and implementation details leave some empirical uncertainty."
+        ],
+        "score_rationale": "Although the proposed architecture and computational perspective are interesting, multiple central theoretical claims are invalid or vacuous, and the experiments do not compensate for these issues. Substantial correction and stronger operator-recovery evidence would be required, warranting a reject score."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes Fourier/Toeplitz-parameterized Koopman layers computed with Krylov methods for nonautonomous dynamics. The construction is interesting, but the central generalization result is invalid or vacuous, the universality result largely reduces the model to arbitrary finite matrices rather than establishing approximation by genuine Koopman flows, and the experiments do not justify the claimed spectral interpretations.",
+        "strengths": [
+          "The combination of structured Toeplitz generator matrices, matrix-exponential actions, and Krylov computation is a potentially useful modeling direction (pp. 4–5).",
+          "The manuscript attempts to connect approximation, generalization, and numerical implementation within one framework (pp. 5–7).",
+          "Experiments include several synthetic dynamical systems and comparisons with EDMD, KDMD, learned dictionaries, and a neural ODE (pp. 7–10, 17–19)."
+        ],
+        "weaknesses": [
+          "The generalization analysis has fundamental defects: the RKHS definitions omit complex conjugation, the loss is assumed bounded but not Lipschitz, the supremum over unrestricted layer matrices is infinite, and Proposition 5.1 even contains sqrt(log(delta/2)), which is non-real for the stated regime (pp. 3, 6–7, 15).",
+          "Universality follows by showing the proposed matrix class equals all complex matrices and then invoking transitivity of GL(N,C); this does not ensure the learned factors correspond to valid projected Koopman generators or flows, making the Koopman-specific claim weak. Related statements are erroneous, including a purported convergence rate independent of N and an invalid Fourier-decay condition for negative indices (pp. 5–6, 15–16).",
+          "The empirical spectral conclusions are not well supported: individual factors in a jointly trained product are non-identifiable, yet their eigenvalues are interpreted physically; the measure-preserving plots include eigenvalues off the unit circle, and the damping discussion incorrectly says a sinusoidal external force grows with time. Evidence is limited to synthetic examples without runtime, Krylov-accuracy, or substantive forecasting evaluation (pp. 8–10, 17–19)."
+        ],
+        "score_rationale": "Despite an interesting structured-model idea, multiple mathematical errors undermine the advertised theoretical foundation, while the synthetic experiments cannot validate the claimed physical interpretation of learned layer spectra. Substantial theoretical correction and stronger evaluation are required."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a Fourier/Toeplitz parameterization of layered Koopman-generator approximations, evaluated on synthetic autonomous and nonautonomous systems. The combination of Toeplitz products, matrix exponentials, and Krylov computation is potentially interesting, but the principal theoretical guarantees are either flawed or largely vacuous, and the experiments do not adequately validate forecasting accuracy, computational benefits, or reliable operator identification.",
+        "strengths": [
+          "The Fourier/Toeplitz construction and use of Krylov methods for exponential actions form an interesting bridge between Koopman modeling and numerical linear algebra (pp. 4–5).",
+          "The paper attempts to address both simultaneous estimation of time-varying operators and fixed-representation theoretical analysis, a relevant problem for nonautonomous dynamics (pp. 1–2).",
+          "The appendix includes comparisons with neural ODEs and learned-dictionary Koopman variants, beyond the main qualitative examples (pp. 17–19)."
+        ],
+        "weaknesses": [
+          "Several foundational mathematical issues undermine soundness: the generator is incorrectly defined using t→∞ rather than t→0 (p. 3); the complex RKHS definitions omit conjugation and the stated kernel is not established as Hermitian positive definite (pp. 3, 6); and the proof of Lemma 4.8 confuses rows and columns, so its construction does not yield CBv=u (p. 15).",
+          "The claimed guarantees are weak or vacuous. Lemma 4.6 makes the structured class equal to all matrices, so universality reduces to arbitrary GL action on one vector rather than approximation by dynamically consistent Koopman operators (pp. 5–6, 15). The generalization bound takes a supremum over unrestricted matrices and is therefore infinite; it also samples x and y separately rather than clearly from their joint distribution (pp. 6–7). The Fourier convergence statement is independent of the truncation size and mishandles negative indices (pp. 6, 16).",
+          "Evidence is limited to small synthetic examples. The key nonautonomous conclusions rely on qualitative eigenvalue plots without ground-truth operator errors or prediction metrics, while baselines are trained separately under different objectives (pp. 8–10, 18–19). There is no convincing runtime/scaling study or accounting for Krylov iterations and differentiation despite the efficiency claims."
+        ],
+        "score_rationale": "The structured model is conceptually promising, but errors in the generator/RKHS setup, a vacuous unrestricted-capacity bound, and limited qualitative evidence affect the central claims rather than peripheral details. Substantial theoretical correction and stronger controlled experiments are required, warranting a reject score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes Fourier-based Koopman layers whose generators are parameterized using products of Toeplitz matrices, with Krylov methods for exponential actions. The construction is interesting, but the central generalization result is invalid/vacuous as stated, the universality result offers limited support for the claimed dynamical interpretation, and the experiments do not establish that learned layer spectra recover true nonautonomous Koopman operators.",
+        "strengths": [
+          "The combination of fixed Fourier observables, structured Toeplitz parameterization, and Krylov exponential computations is conceptually interesting and potentially useful (pp. 4–5).",
+          "The manuscript attempts both approximation-theoretic and statistical analysis rather than presenting only an architecture (pp. 5–7).",
+          "Experiments include several synthetic systems, comparisons with EDMD/KDMD and learned dictionaries, and variability across three runs (pp. 8–10, 17–19)."
+        ],
+        "weaknesses": [
+          "The generalization theorem is not sound as written: the supremum over unrestricted layer matrices is infinite, no Lipschitz assumption justifies passing from the loss class to the predictor complexity, and the confidence term contains sqrt(log(delta/2)), which is not real for the stated delta range (pp. 6–7, 15). Complex RKHS definitions also omit the required conjugations (pp. 3, 6).",
+          "Universality follows by allowing the structured class to equal all complex matrices and then using arbitrary products of exponentials; it therefore does not show that the learned factors approximate valid Koopman generators or flows. Its required depth/Toeplitz-factor count is uncontrolled and differs substantially from the R=1 practical model (pp. 5–6, 14–15). Additional mathematical errors include defining the generator with t→∞ rather than t→0 (p. 3) and an alleged Fourier convergence rate independent of N with an invalid treatment of negative frequencies (pp. 6, 16).",
+          "The spectral evidence is not identifiable from losses that primarily constrain products of layers, so individual factor eigenvalues need not represent interval Koopman operators. The plots also show substantial deviations from the claimed unit circle, and the damping interpretation incorrectly says a sinusoidal external force grows with time (pp. 8–10). Evaluation is limited to synthetic examples, with no runtime/Krylov-accuracy study or convincing forecasting benchmark (pp. 7–10, 17–19)."
+        ],
+        "score_rationale": "The structured modeling idea has some novelty, but multiple decisive flaws undermine the main theoretical claims, while the experiments do not validate the proposed spectral interpretation. These issues require substantially more than a minor revision, warranting rejection despite the promising construction."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes Fourier-space Koopman layers whose generators are parameterized by products of Toeplitz matrices and evaluated with Krylov methods. This is an interesting structured modeling direction, but the principal theoretical guarantees are either vacuous for the practical architecture or incorrect as written, while the synthetic experiments do not establish accurate recovery of nonautonomous dynamics.",
+        "strengths": [
+          "The combination of fixed Fourier observables, Toeplitz-structured generator parameterization, and Krylov evaluation is conceptually interesting and potentially computationally useful (pp. 4–5).",
+          "The paper attempts to connect approximation, generalization, numerical linear algebra, Koopman methods, and neural ODEs within one framework (pp. 5–7, 10).",
+          "Experiments include depth and regularization studies, comparisons with EDMD/KDMD and a neural ODE, and learned-dictionary variants (pp. 8–10, 17–19)."
+        ],
+        "weaknesses": [
+          "The theory has serious defects: the Koopman generator is defined using t→∞ rather than t→0 (p. 3); the stated generalization bound contains sqrt(log(δ/2)), which is not real for the intended δ<1, takes an unbounded supremum over unconstrained matrices, and transfers a complexity bound through an arbitrary bounded loss without a Lipschitz assumption (pp. 6–7, 15). Thus it provides no meaningful finite guarantee.",
+          "The universality result mainly follows by defining the admissible generator class broadly enough to equal all complex matrices (Lemma 4.6), so it does not validate the fixed sparse architecture used experimentally or show that learned matrices approximate genuine Koopman generators. No truncation-error control is given between the projected differential operator and the restricted Toeplitz products (pp. 4–6, 15). The claimed Fourier convergence rate is also independent of N and its appendix derivation does not specify a growing index set (pp. 6, 16).",
+          "The evidence is limited to small synthetic systems. Spectral plots are interpreted as recovery of measure preservation or damping without comparison to ground-truth finite-dimensional Koopman spectra, uncertainty analysis, or predictive metrics; the jointly trained model and separately fitted EDMD/KDMD baselines are not clearly comparable (pp. 8–10). The forecasting application is only proposed, not evaluated (p. 18)."
+        ],
+        "score_rationale": "The structured Koopman/Toeplitz construction offers some novelty, but decisive errors and vacuity in the central generalization and universality claims (pp. 3, 5–7, 15–16), together with weak empirical validation, place the work clearly below the acceptance threshold. Some issues may be typographical, but the unbounded bound and mismatch between the theorem and practical architecture are substantive."
+      }
+    }
+  ]
+}

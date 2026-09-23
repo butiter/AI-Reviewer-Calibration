@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_072",
+  "paper_id": "QlIteJADE6",
+  "number": 17377,
+  "title": "Identity-Preserving Human Reconstruction from a Single Image via Explicit 3D Reasoning",
+  "authors": [
+    "Yanqi Bao",
+    "Jiaxiang Shang",
+    "Yang Gao",
+    "Yingchun Liu",
+    "Jing Huo",
+    "Jing Liao"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "Identity-Preserving Human Reconstruction from a Single Image via 3D Token Reasoning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=QlIteJADE6",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "3mCvBw0nGE",
+      "forum": "QlIteJADE6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17377/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761908505156,
+      "tmdate": 1762927285922,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "GFIh06yE2N",
+      "forum": "QlIteJADE6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17377/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761808367510,
+      "tmdate": 1762927286425,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "ILhOmCZffq",
+      "forum": "QlIteJADE6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17377/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761403531747,
+      "tmdate": 1762927286799,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "Y29fOt7oMv",
+      "forum": "QlIteJADE6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17377/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761988289287,
+      "tmdate": 1762927285591,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "IPRM proposes single-image clothed-human reconstruction using SMPL-aligned sparse voxel tokens, visibility-aware reasoning, and a parallel identity-conditioning branch, with outputs as 3D Gaussians or meshes. Reported benchmark quality and efficiency are strong, but incomplete experimental specification, weak identity-specific validation, and inconsistencies in the core method prevent the claims from being fully substantiated.",
+        "strengths": [
+          "The combination of sparse SMPL-space voxels, visible-to-invisible token reasoning, and token-level identity conditioning is a plausible and moderately novel alternative to 2D generation/reasoning pipelines (pp. 2–6).",
+          "Reported 3DGS results are substantially better than the listed baselines while using 0.61 s and about 9 GB, and mesh quality is competitive with an optimization-based method (pp. 6–8).",
+          "The paper evaluates both 3DGS and mesh outputs, includes component ablations and multi-view extensions, and provides extensive qualitative comparisons (pp. 8–9, 14–16)."
+        ],
+        "weaknesses": [
+          "The central mechanism is internally inconsistent: the text says attention preserves invisible tokens rather than visible identity tokens, while the stated equation derives the invisible human feature from visible tokens despite saying it uses reasoned invisible tokens (p. 5). This makes the actual computation and claimed identity guarantee unclear.",
+          "Identity evidence is insufficient: FC is not defined in the promised appendix, input-view PSNR can reward copying rather than 3D identity, and the adapter yields only a 0.14 dB PSNR(I) change with unchanged rounded SSIM/LPIPS; no face-recognition, cross-view identity, or human evaluation is reported (pp. 6–8, 12–13).",
+          "Reproducibility and robustness are underdeveloped: dataset sizes and precise splits are absent, comparisons mix unavailable entries and differently trained methods, and there is no controlled evaluation of SMPL/camera errors, occlusion, loose clothing, or the train–test gap from training the decoder on ground-truth multi-view features but testing on predicted features (pp. 6–8, 12–13)."
+        ],
+        "score_rationale": "The approach is promising and its reported efficiency and reconstruction gains could be impactful. However, the unclear core formulation and inadequate validation of the headline identity-preservation claim make the evidence below the acceptance threshold. I am moderately confident because the manuscript is complete, though missing implementation and split details leave uncertainty about reproducibility and fairness."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "IPRM proposes monocular clothed-human reconstruction using SMPL-aligned sparse voxel tokens, visibility-constrained 3D reasoning, and an identity-conditioning decoder branch. The reported quality and efficiency are promising, but central algorithmic ambiguities and insufficient identity-focused validation leave the main claims only partially supported.",
+        "strengths": [
+          "A coherent and practically relevant combination of sparse SMPL-space voxels, visible/invisible token reasoning, and a 3D identity adapter, with support for both 3DGS and meshes (pp. 4–6).",
+          "Strong reported 3DGS results across two synthetic benchmarks and CustomHuman, together with 0.61 s inference and approximately 9 GB memory (pp. 6, 8).",
+          "Mesh evaluation and extensive qualitative comparisons suggest competitive geometry and improved preservation of visible details (pp. 8–9, 14–16)."
+        ],
+        "weaknesses": [
+          "The method description is internally inconsistent: the visibility-masked attention is said to infer invisible tokens while preserving visible ones, but p. 5 states that invisible tokens remain unchanged; Eq. 1 also conditions the invisible human feature on visible tokens despite the prose stating it uses reasoned invisible tokens. This prevents confident assessment or reproduction of the core mechanism.",
+          "Evidence for the headline identity-preservation claim is weak. Input-view PSNR can reward copying rather than 3D identity, Face Consistency is not defined in the supplied appendix, and no standard face/person identity metric or multi-view identity study is reported (pp. 6–8, 12–13). The adapter gain is only 0.14 dB PSNR(I), with unchanged rounded SSIM/LPIPS (p. 8).",
+          "Experimental attribution and generalization are underdeveloped: dataset split sizes, model capacity, baseline retraining details, and uncertainty are absent; no robustness tests cover SMPL/camera errors, occlusion, loose clothing, or diverse in-the-wild inputs, despite dependence on estimated SMPL-X and normal-based visibility (pp. 5, 7, 12–13)."
+        ],
+        "score_rationale": "The reported numerical gains and speed make the work potentially impactful, and the sparse 3D-token formulation is a useful incremental contribution. However, contradictions in the defining reasoning operation and the lack of convincing, well-defined identity and robustness evaluation are substantial issues. I therefore place it marginally below acceptance, with some uncertainty because implementation details could resolve the textual inconsistencies."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "IPRM combines an SMPL-X-aligned sparse voxel space, visibility-masked 3D token reasoning, and a parallel identity-conditioning branch for fast single-image human reconstruction. The reported rendering, mesh, runtime, and memory results are promising, but ambiguities in the core formulation and insufficiently controlled identity/ablation evidence leave the main claims only partially substantiated.",
+        "strengths": [
+          "The visible/invisible voxel-token formulation and token-level identity conditioning form a coherent, moderately novel adaptation of sparse 3D latents to clothed-human reconstruction (pp. 4–6).",
+          "Reported gains are large across synthetic and THuman2.1 rendering metrics, with strong efficiency (0.61 s, approximately 9 GB), while mesh accuracy approaches optimization-based PSHuman (pp. 6–8).",
+          "The paper evaluates both 3DGS and mesh outputs and includes multi-view extensions plus extensive qualitative comparisons (pp. 8–9, 14–16)."
+        ],
+        "weaknesses": [
+          "The core reasoning description is internally inconsistent: it should infer invisible tokens while preserving visible ones, but states that attention reasons over visible tokens while preserving invisible tokens; Eq. (1) also defines the invisible feature from visible tokens rather than the reportedly reasoned invisible tokens (p. 5). This prevents precise assessment or reproduction.",
+          "Identity evidence is weak: input-view PSNR can reward copying, Face Consistency is not formally specified, and no standard face/identity embedding evaluation across novel views is reported. The adapter ablation is not cleanly isolated and changes PSNR only from 28.72 to 28.86 with unchanged SSIM/LPIPS (pp. 7–8).",
+          "Dataset sizes, exact train/test identities, preprocessing details, model size, voxel resolution, and robustness to erroneous SMPL/camera estimates are omitted; the appendix mainly repeats the pipeline, and the only stated limitation is overly narrow (pp. 7, 9, 12–13)."
+        ],
+        "score_rationale": "The approach is useful and the reported performance is compelling, but acceptance-level confidence is undermined by a contradictory method specification, incomplete identity validation, and limited reproducibility/failure analysis. I therefore place it marginally below acceptance, with some uncertainty because the claimed gains could become convincing after clarification and stronger controlled evaluation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "IPRM proposes single-image clothed-human reconstruction by projecting image features into an SMPL-X-aligned sparse voxel space, reasoning from visible to invisible tokens, and using a parallel identity-conditioning branch while decoding to 3DGS or meshes. The approach is practically appealing and reports strong speed and benchmark results, but key algorithmic ambiguities and insufficiently controlled evidence weaken the central identity-preservation and novelty claims.",
+        "strengths": [
+          "A coherent and useful combination of sparse 3D tokens, visibility-aware reasoning, and token-level decoder conditioning; supporting both 3DGS and mesh outputs is practically valuable (pp. 4–6).",
+          "Reported 3DGS results are substantially better than the listed baselines while inference is fast (0.61 s, approximately 9 GB), and mesh accuracy is competitive with an optimization-based method (pp. 6–8).",
+          "Qualitative comparisons cover varied poses and clothing and generally show improved appearance and structural consistency, including in the appendix (pp. 9, 14–16)."
+        ],
+        "weaknesses": [
+          "The method is internally inconsistent and underspecified: the text says invisible tokens TI are preserved rather than visible identity tokens TV, and Eq. (1) computes PI from TV although the prose says it uses reasoned TI. Precise attention masks, voxel construction/resolution, projection, occlusion handling, and losses/weights are not adequately defined (pp. 4–6, 13).",
+          "Evidence for the central identity claim is weak. Input-view PSNR can reward copying rather than 3D identity, Face Consistency is not defined in sufficient detail, and no established face/person identity embedding or human evaluation is reported. Moreover, the adapter ablation lacks a clearly labeled removal of the 3D ID Adapter and shows only small changes with identical rounded SSIM/LPIPS (pp. 6–8).",
+          "Experimental reproducibility and fairness are difficult to assess: dataset sizes and exact train/test identities are absent, robustness to SMPL/camera/segmentation errors is not tested despite reliance on preprocessing, and the point-versus-voxel and in-the-wild evidence is primarily selected qualitative imagery (pp. 7–9, 12–13)."
+        ],
+        "score_rationale": "The reported quality-efficiency tradeoff is promising and the 3D-token formulation has moderate novelty, supporting a borderline score. However, ambiguities in the core mechanism and inadequate identity-specific, robustness, and controlled ablation evidence prevent confidence in the paper’s main claims. I am also uncertain how much of the gain comes from the proposed modules versus training data and the TRELLIS initialization."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "IPRM proposes a feed-forward monocular human reconstruction pipeline that projects image features into an SMPL-X-aligned sparse voxel space, reasons about invisible tokens, and uses a parallel identity-conditioning branch when decoding to 3DGS or meshes. The approach is practically appealing and reports strong quality/efficiency, but central mechanism descriptions and evaluation details are insufficiently rigorous to substantiate the identity-preservation claims.",
+        "strengths": [
+          "The combination of sparse SMPL-aligned voxels, visibility-aware reasoning, and token-level decoder conditioning is a meaningful, moderately novel adaptation of prior reconstruction components (pp. 4–6).",
+          "Reported 3DGS results are strong across two benchmarks, with particularly compelling speed and memory figures; mesh results are competitive despite feed-forward inference (pp. 6–8).",
+          "The paper includes component ablations, multi-view extension results, and extensive qualitative comparisons that generally support practical effectiveness (pp. 8–9, 14–16)."
+        ],
+        "weaknesses": [
+          "The core reasoning formulation is internally inconsistent: the text says invisible tokens are inferred while visible tokens remain unchanged, but Sec. 3.4 states that attention reasons over visible tokens while preserving invisible tokens, and Eq. (1) derives the invisible human feature from visible tokens rather than the claimed reasoned invisible tokens (p. 5). This prevents confident assessment or reproduction.",
+          "Evidence for identity preservation is weak: input-view PSNR can reward copying visible appearance, Face Consistency is not defined despite the appendix promising metric details, and no established face/identity-recognition metric or human study is reported. The adapter gain in Table 5 is also only 0.14 dB, with rounded SSIM/LPIPS unchanged (pp. 6–8, 12–13).",
+          "Experimental protocol and robustness are under-specified: dataset sizes and exact identity-disjoint splits are absent, some key baselines have missing benchmark entries, and there is no quantitative analysis under SMPL/camera errors, occlusion, truncation, or difficult loose clothing, despite reliance on estimated SMPL-X and broad in-the-wild claims (pp. 6–7, 12–13)."
+        ],
+        "score_rationale": "The method has plausible novelty and impressive reported efficiency and reconstruction quality, placing it near the acceptance boundary. However, contradictions in the central algorithm and inadequate identity-specific and robustness evidence materially weaken technical soundness and the main claim; I therefore lean marginally below acceptance."
+      }
+    }
+  ]
+}

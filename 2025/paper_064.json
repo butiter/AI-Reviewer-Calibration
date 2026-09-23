@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_064",
+  "paper_id": "AeGrf1uY0p",
+  "number": 8896,
+  "title": "FinBench: Benchmarking LLMs in Complex Financial Problem Solving and Reasoning",
+  "authors": "Zhihan Zhang; Yixin Cao; Lizi Liao",
+  "primary_area": "datasets and benchmarks",
+  "keywords": "large language models; large multimodal models; financial reasoning; mathematical reasoning; foundation models and their evaluations",
+  "forum_url": "https://openreview.net/forum?id=AeGrf1uY0p",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    8,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces FinBench, a specialized benchmark designed to evaluate the capabilities of LLMs in handling complex, knowledge-intensive financial problem-solving tasks. The benchmark assesses LLMs across five core capabilities: terminology understanding, temporal reasoning, future forecasting, scenario planning, and numerical modeling. It consists of 4,235 graduate-level finance examples spanning statement judging, multiple-choice question answering, and financial calculations. It also includes a knowledge bank of 3,032 finance terms to support model performance through knowledge augmentation."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper is well-structured and easy to follow\n- The proposed benchmark could be valuable to the research community\n- The experiments are comprehensive, including many recently-relased LLMs"
+        },
+        "weaknesses": {
+          "value": "- The proposed benchmark heavily depends on GPT models for re-annotation and validation, which raises concerns about reliability and accuracy. Based on the prompts provided by the authors in the appendix, this process appears to involve numerous prompt-engineering techniques, which may introduce potential biases or inconsistencies in the generated problems. Although the authors report the human validation results of 1,000 examples. It is strongly encouraged to validate and correct each example by human expert evaluators.\n- The implementation details of the knowledge augmentation setup lack clarity in both the main text and the appendix. Specifically, it is unclear how many retrieved knowledge pieces are incorporated into the demonstration and what specific prompt is used. Providing these details would enhance understanding.\n- I have several concerns about the quality of the benchmark and the experimental setup, which are listed in the Questions section. Given the absence of provided code and data, my evaluation relies entirely on the content of the paper, limiting the depth of my assessment. I strongly encourage the authors to share at least the dataset, allowing reviewers to verify the paper."
+        },
+        "questions": {
+          "value": "- The table caption should be placed above the table content according to the ICLR format instruction\n- The term \"finance subject\" (e.g., in Figure 3) is not ideal; consider using \"finance concept\" instead, which more accurately conveys the intended meaning.\n- Section 2.1, \"Collection of Knowledge Bank\", lacks sufficient detail, making it challenging for readers to fully understand the methodology. For example, the phrase \"We then manually extract the definition of each term from the corresponding pages\" raises questions: Who are \"we\"? What process is used to extract each term's definition? Are the definitions text-only, or do they also include mathematical expressions or figures? Providing specific examples in the Appendix would help clarify the knowledge bank collection process for readers.\n- What are the qualifications and backgrounds of the annotators and evaluators? Are they experienced financial professionals, or are they the authors themselves?\n- Recent studies indicate that Chain-of-Thought (CoT) reasoning may not consistently enhance model performance on reasoning-intensive tasks [1]. This raises the question: how does CoT reasoning perform specifically within the context of FinBench, compared to directly answering the question.\n- Consider renaming the benchmark to differentiate it from existing works named FinBench [2-3]. This will help prevent confusion among future researchers and create a distinct identity for your contribution.\n\n\n\n[1] Sprague, Z., Yin, F., Rodriguez, J. D., Jiang, D., Wadhwa, M., Singhal, P., ... & Durrett, G. (2024). To CoT or not to CoT? Chain-of-thought helps mainly on math and symbolic reasoning. arXiv preprint arXiv:2409.12183.\n[2] Qi, S., Lin, H., Guo, Z., Szárnyas, G., Tong, B., Zhou, Y., ... & Steer, B. (2023). The LDBC Financial Benchmark. arXiv preprint arXiv:2306.15975.\n[3] FinPT: Financial Risk Prediction with Profile Tuning on Pretrained Foundation Models"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "Yes, Legal compliance (e.g., GDPR, copyright, terms of use)"
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "The paper uses problems collected from textbooks as examples, which may raise copyright concerns. However, the authors do not address these ethical considerations."
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LqHyZKvrvs",
+      "forum": "AeGrf1uY0p",
+      "replyto": "AeGrf1uY0p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_sBF6"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_sBF6"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8896/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730766151056,
+      "cdate": 1730766151056,
+      "tmdate": 1731429183682,
+      "mdate": 1731429183682,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces FINBENCH, a benchmark specifically designed to evaluate large language models (LLMs) in handling complex, knowledge-intensive financial problems across a range of graduate-level finance topics with multimodal contexts.\n\nIt assesses five core capabilities critical to financial problem-solving: terminology understanding, temporal reasoning, future forecasting, scenario planning, and numerical modeling. The dataset, comprising 4,235 questions from textbooks and 3,032 finance terms, is divided into three tasks: statement judging, multiple-choice question answering, and financial calculation. \n\nExperiments with 18 leading LLMs reveal that while the text-only model o1 achieves the highest accuracy among LLMs (67.3%), it remains significantly behind human expert performance, particularly in advanced reasoning tasks like temporal reasoning and scenario planning.\n\nThe authors also identify key performance challenges for LLMs, such as rounding errors in calculations and difficulties interpreting visual contexts."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Originality:  Unlike existing datasets that primarily focus on basic quantity extraction and mathematical reasoning, FINBENCH covers diverse graduate-level finance topics. This focus on complex, multimodal finance problems sets FINBENCH apart as an innovative contribution to the field.\n\n2. Quality: The paper demonstrates thorough methodology and attention to detail in data collection, annotation, and validation.\n\n3. Clarity: The paper is well-structured, with clear explanations of dataset construction, task classifications, evaluation metrics, and experimental setups. \n\n4. Significance: FINBENCH’s insights into specific model limitations (e.g., rounding errors, visual-context challenges) are valuable for guiding future AI developments, especially for applications in finance and other high-stakes fields."
+        },
+        "weaknesses": {
+          "value": "1. While FINBENCH is based on three classic finance textbooks, its range of topics may still lack full coverage of the broader finance domain. Expanding the dataset to include questions from additional, specialized finance areas would increase the benchmark’s applicability.\n\n2. Although FINBENCH distinguishes itself from existing finance-related datasets, the paper could strengthen its contributions by running some of the same models on related benchmarks (e.g., TAT-QA, FinQA) and comparing performance directly."
+        },
+        "questions": {
+          "value": "1. Do the authors plan to extend FINBENCH to include data with more diverse financial contexts or emerging topics?\n\n2. Could the authors provide further insights on the inconsistent improvement of advanced capabilities through knowledge augmentation?\n\n3. What specific steps could be taken to address common errors such as \"blindness\" in visual-context tasks?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9BvDIuWt54",
+      "forum": "AeGrf1uY0p",
+      "replyto": "AeGrf1uY0p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_xUpo"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_xUpo"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8896/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730714383787,
+      "cdate": 1730714383787,
+      "tmdate": 1731429183944,
+      "mdate": 1731429183944,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a benchmark called \"FINBENCH\" to test large language models (LLMs) on complex finance tasks like understanding terminology, reasoning over time, forecasting, scenario planning, and numerical modeling. It highlights the gap between LLM performance and human experts, especially in handling calculations and multimodal data, and suggests that adding finance-specific knowledge can improve LLM accuracy."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- **Originality**: The dataset is sourced from financial textbooks, supplemented with enhancements from GPT-4o\n- **Quality**: Human oversight in data collection and augmentation adds rigor, helping to ensure high data quality.\n- **Clarity**: Visual materials, including images and tables, are clearly presented and effectively organized.\n- **Significance**: This work offers a challenging multimodal benchmark for the financial domain"
+        },
+        "weaknesses": {
+          "value": "- Reliance on graduate-level textbooks as the only data source may limit diversity in data distribution. Have you considered some online resources, especially professional financial websites?\n- No dataset or code provided"
+        },
+        "questions": {
+          "value": "- **Benchmark Comparisons**: Could you include performance results on other established benchmarks for the same models? This would help underscore the distinct challenges and complexity of your benchmark. (listed in Table 1)\n- **Domain Comprehensiveness**: Given the specialized focus on finance, how does this benchmark ensure a comprehensive evaluation of a model’s financial knowledge, as well as its understanding and reasoning capabilities in this domain?\n- **Data Leakage Prevention**: What specific measures has your team implemented to mitigate the risk of data leakage?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "hYGfVJwWvh",
+      "forum": "AeGrf1uY0p",
+      "replyto": "AeGrf1uY0p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_CZE1"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_CZE1"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8896/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730558081434,
+      "cdate": 1730558081434,
+      "tmdate": 1733370655621,
+      "mdate": 1733370655621,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "FINBENCH introduces a benchmark designed to evaluate LLMs' capabilities in complex financial problem-solving. The dataset comprises 4,235 examples sourced from graduate-level finance textbooks, assessing five core capabilities: terminology understanding, temporal reasoning, future forecasting, scenario planning, and numerical modeling. The evaluation is structured across three tasks: statement judging, multi-choice question answering, and financial calculation. Results indicate that even the best-performing model, o1, achieves an overall accuracy of 67.3%, which still falls significantly behind human experts by 12.5 percentage points."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "First, the paper makes a significant contribution by introducing FINBENCH. It is the first comprehensive benchmark that extends beyond basic numerical calculations to evaluate advanced financial reasoning capabilities in LLMs. This represents a crucial step forward in understanding and improving AI systems' ability to handle complex financial tasks.\n\nSecond, the technical approach is robust and well-designed, featuring a systematic evaluation framework with five core capabilities and three distinct tasks. The methodology is strengthened by the inclusion of a substantial knowledge bank and the use of high-quality, graduate-level source material.\n\nThird, the empirical evaluation is thorough and insightful, with comprehensive experiments across 18 leading models and detailed error analysis. The comparison with human expert performance provides valuable context for understanding current model limitations and sets clear benchmarks for future improvements in the field."
+        },
+        "weaknesses": {
+          "value": "First, the paper lacks comprehensive comparisons with existing benchmarks in the financial domain. While specialized financial benchmarks may be limited, comparative analysis with recent benchmarks like MMLU-Pro and MMMU that include financial components would be valuable. A systematic comparison across dimensions such as task diversity, difficulty levels, and dataset size would help readers better understand FINBENCH's distinctive features and contributions to the field.\n\nSecond, the reliability of the ground truth labels raises concerns.  According to Section 2.3, the human expert sampling validation reveals an approximately 3% error rate in answer annotations, suggesting a potential uncertainty interval of around 6% in the leaderboard results.  Combined with the human expert accuracy of only 80%, the actual answer reliability could be even lower. The authors should consider conducting a complete manual verification of all 4,000+ questions to ensure benchmark quality and reliability.\n\nThird, given that LLMs are highly sensitive to prompting, the evaluation would benefit from experiments with different prompt templates. Including ablation studies on various prompting strategies would provide deeper insights into FINBENCH's robustness and help readers better understand how the benchmark performs under different evaluation conditions. This additional analysis would strengthen the benchmark's validity and usefulness for the research community."
+        },
+        "questions": {
+          "value": "1. Comparative Analysis:\nHow does FINBENCH compare to existing financial components in benchmarks like MMLU-Pro and MMMU? Could the authors provide a systematic comparison across dimensions such as task diversity, difficulty levels, and dataset size? This comparison would help readers better understand FINBENCH's unique contributions and positioning in the field of financial AI evaluation.\n\n2. Label Reliability:\nGiven that human expert sampling revealed a 3% error rate in answer annotations (leading to a 6% uncertainty interval) and human expert accuracy is only 80%, what measures are being considered to improve the reliability of ground truth labels? Have the authors considered conducting a complete manual verification of all 4,000+ questions? How might this impact the current leaderboard results and benchmark reliability?\n\n3. Prompt Sensitivity:\nConsidering the well-known sensitivity of LLMs to different prompting strategies, could the authors include experiments with various prompt templates? Specifically, how does FINBENCH performance vary across different prompting approaches? This analysis would provide valuable insights into the benchmark's robustness and help establish more reliable evaluation protocols."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "IKmMlNyjra",
+      "forum": "AeGrf1uY0p",
+      "replyto": "AeGrf1uY0p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_ukQH"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8896/Reviewer_ukQH"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8896/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730289654508,
+      "cdate": 1730289654508,
+      "tmdate": 1733078243845,
+      "mdate": 1733078243845,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "XFINBENCH is a sizeable graduate-finance benchmark with multimodal questions, a knowledge bank, broad baseline coverage, and useful error analyses. However, its claimed capability-level conclusions are weakened by task/capability confounding, limited multimodal coverage, possible textbook contamination, and visible annotation/evaluation inconsistencies.",
+        "strengths": [
+          "The benchmark combines 4,235 questions, three task formats, 28 finance concepts, and 3,032 finance terms, with human validation and detailed construction documentation (pp. 3–6, 25–27).",
+          "Evaluation covers 18 models, human experts, CoT/PoT, retrieval augmentation, prompt sensitivity, and comparisons with BizBench and KnowledgeFMATH (pp. 6–8, 28–30, 35).",
+          "The manually categorized analyses expose concrete failure modes in calculation, visual reasoning, and knowledge augmentation rather than reporting only aggregate accuracy (pp. 8–10, 31–34)."
+        ],
+        "weaknesses": [
+          "The five capabilities are strongly confounded with task: 89.5% of temporal, 88.6% of scenario-planning, and 98.8% of numerical-modelling examples are calculations, whereas 74.7% of terminology examples are statement judgments (p. 27). Thus capability scores may largely measure task format and arithmetic difficulty rather than distinct abilities.",
+          "Dataset validity and reproducibility have notable issues: questions and solutions come from widely distributed textbooks/manuals, but no contamination analysis is provided; GPT-4o both generates and verifies items; validation checks agreement with source solutions rather than independent correctness; and the appendices contain visibly erroneous or inconsistent examples/tables (e.g., contradictory “true” term-structure statements on p. 39 and mislabeled mathematical-reasoning columns on p. 29).",
+          "The multimodal claim is overstated: only 146 questions using 64 images are reported (p. 20), text-only and multimodal model aggregates are not directly comparable, and the visual error analysis uses only 100 GPT-4o responses (pp. 6–8, 31). The benchmark also lacks uncertainty estimates or repeated-run analysis despite small capability subsets such as 162 future-forecasting test items (p. 27)."
+        ],
+        "score_rationale": "The resource is potentially useful and experimentally broad, but the central interpretation as a benchmark of five distinct complex-reasoning capabilities is not adequately supported. Capability/task confounding, contamination risk, small visual coverage, and concrete annotation/reporting errors materially undermine soundness; these concerns outweigh the benchmark’s scale and analysis, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "XFINBENCH is a sizable finance benchmark built from three graduate-level textbooks, with 4,235 questions, a 3,032-term knowledge bank, and evaluations of 18 models. Its breadth and error analyses are useful, but substantial validity, data-quality, and contamination concerns weaken the conclusions.",
+        "strengths": [
+          "The benchmark combines conceptual judgment, multiple-choice reasoning, and numerical calculation, with human validation and extensive model coverage (pp. 3–7, 25–30).",
+          "The knowledge-augmentation and manually labeled failure analyses offer useful diagnostics beyond aggregate accuracy (pp. 7–10, 29–34).",
+          "The paper documents construction prompts, capability definitions, evaluation settings, and sensitivity experiments unusually thoroughly (pp. 17–31, 35–59)."
+        ],
+        "weaknesses": [
+          "Construct validity is weak: the capability categories overlap heavily and examples often do not match their names—e.g., qualitative comparative statics is called “future forecasting,” while routine option valuation is “scenario planning” (pp. 17–19, 27). Only 146 questions contain images, limiting claims about multimodal financial reasoning (pp. 6, 20).",
+          "There are conspicuous factual and annotation errors. A long put’s profit curve is labeled Line B although the plotted decreasing-then-flat Line A is appropriate (p. 21); purportedly true prompt examples contradict their own ordering c>a>b (p. 39); an “indirect costs” question explicitly supplies $250,000 but uses $17.75M as its gold answer (p. 33); and supplied monetary-policy knowledge reverses the effect of selling bonds on money supply (p. 34). These undermine the reported 98% answer-correctness validation.",
+          "The evaluation does not address contamination from widely used textbook questions and solutions, despite relying on only three established textbooks (pp. 3, 25). Results also contain unresolved inconsistencies, including knowledge-helpfulness rates of 91.2% versus 96.8% (pp. 5, 26) and a mislabeled mathematical-reasoning table (p. 29), while uncertainty or significance estimates are absent."
+        ],
+        "score_rationale": "The benchmark scale, documentation, and breadth of baselines constitute a potentially useful contribution. However, visible gold-answer and source-knowledge errors, questionable capability validity, sparse visual coverage, and no meaningful contamination analysis make the reported model comparisons insufficiently reliable. I am confident in this assessment because the decisive issues appear directly in the supplied examples and tables, although the prevalence of undetected errors in the full dataset remains uncertain."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "XFINBENCH is a sizable finance benchmark built from three graduate textbooks, covering judgment, multiple-choice, calculation, visual inputs, and knowledge augmentation. Its breadth and extensive baseline evaluation are useful, but serious validity concerns prevent the reported scores from cleanly measuring the claimed complex reasoning capabilities.",
+        "strengths": [
+          "Broad coverage: 4,235 questions, three task formats, 28 finance concepts, visual/tabular inputs, and an accompanying 3,032-term knowledge bank (pp. 5–6).",
+          "Evaluation spans 18 models, human experts, CoT/PoT prompting, retrieval augmentation, and comparisons with BizBench and KnowledgeFMATH (pp. 6–8).",
+          "The paper includes capability-level results, prompt sensitivity tests, filtering analyses, and manually categorized model errors (pp. 8–10, 26–35)."
+        ],
+        "weaknesses": [
+          "Benchmark validity is undermined by apparent annotation errors. For example, the long-put payoff figure has no line matching the stated answer B (p. 21), and multiple supposedly true generation exemplars contradict the stated ordering c>a>b or their source solution (pp. 39–40). These errors conflict with the claimed 98% answer correctness (pp. 5, 26).",
+          "Questions and solutions come from widely available textbook materials, yet no contamination or memorization analysis is provided. GPT-4o transformations often preserve distinctive wording and numbers, so performance cannot confidently be attributed to reasoning rather than training-data exposure (pp. 3–5, 25).",
+          "The five proposed capabilities are weakly operationalized and heavily confounded with task type: 89.5% of temporal, 88.6% of scenario-planning, and 98.8% of numerical-modeling items are calculation questions (p. 27). Human aggregation details and statistical uncertainty are also absent (p. 28)."
+        ],
+        "score_rationale": "The dataset scale, multimodal scope, and baseline coverage offer meaningful value, but the lack of contamination controls, task-capability confounding, and concrete label/content errors substantially weaken technical soundness and the interpretation of results. I therefore place it below the acceptance threshold, with some uncertainty about how representative the visible errors are of the full dataset."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "XFINBENCH is an ambitious finance benchmark built from graduate textbooks, spanning conceptual, multiple-choice, numerical, and limited visual reasoning. Its broad model evaluation and knowledge-augmentation/error analyses are potentially useful, but substantial dataset and reporting inconsistencies undermine confidence in the resulting scores.",
+        "strengths": [
+          "The benchmark covers 4,235 questions, three task formats, multiple finance areas, and an associated 3,032-term knowledge bank (pp. 3–6).",
+          "Evaluation includes 18 models, a finance-graduate human baseline, prompt sensitivity, retrieval augmentation, and comparisons with two existing finance benchmarks (pp. 6–8, 28–30, 35).",
+          "The paper provides unusually detailed construction prompts and manually annotated error analyses for calculation, visual reasoning, and knowledge augmentation (pp. 8–10, 31–59)."
+        ],
+        "weaknesses": [
+          "Dataset validity is questionable: multiple examples in the prompt for generating true statements are actually false relative to the supplied solution (e.g., the ordering claims on p. 39 and insider-trading claim on p. 40). Moreover, 6,227 generated questions with 35.2% discarded would yield about 4,035 rather than the reported 4,235 (p. 5), and quality percentages differ between pp. 5 and 26.",
+          "Key results are internally inconsistent or insufficiently specified. For example, Table 3 says calculation uses AccERR, yet its reported overall scores do not follow transparently from the displayed task scores and dataset counts (pp. 6–7); Table 15 claims mathematical-reasoning breakdowns but repeats financial-capability column labels (p. 29). Text-only and multimodal overall results also use different eligible question sets.",
+          "The benchmark draws from only three likely widely available textbooks, but provides no contamination or memorization analysis. Multimodality is represented by only 146 questions over 64 images (p. 20). The MCQ-generation prompt always puts the correct answer in choice (a), with no documented shuffling procedure (pp. 46–51), creating a potentially severe shortcut."
+        ],
+        "score_rationale": "The dataset breadth and experimental effort are valuable, but benchmark papers require exceptionally strong evidence of label correctness and evaluation integrity. The apparent mislabeled construction examples, arithmetic/reporting contradictions, undocumented answer-position handling, and lack of contamination controls are central validity threats, placing the work below the acceptance threshold despite its promising scope."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "XFINBENCH is a potentially useful graduate-level finance benchmark with 4,235 questions, multimodal items, a terminology bank, broad model evaluation, and human baselines. However, central validity concerns—especially a possible answer-position shortcut, textbook contamination, and visible annotation errors—undermine the reported conclusions.",
+        "strengths": [
+          "The benchmark combines conceptual judgment, multiple-choice reasoning, and numerical calculation, with 146 image-based and 330 tabular examples (pp. 5–6).",
+          "Evaluation covers 18 models, human experts, retrieval augmentation, prompt sensitivity, and comparisons with two existing finance benchmarks (pp. 6–8, 28–35).",
+          "Construction prompts, capability definitions, quality-control procedures, and error-labeling protocols are documented extensively (pp. 17–31, 35–59)."
+        ],
+        "weaknesses": [
+          "The multiple-choice generation prompt always places the correct answer in choice (a), and the paper never documents randomizing answer positions (pp. 46–51). If retained, this is a severe shortcut that could invalidate the very high MCQ accuracies.",
+          "All data derive from three well-known textbooks and solution manuals available online, yet there is no contamination analysis for pretrained models or convincing assessment of memorization versus reasoning (pp. 3, 25). Coverage is also narrower than the broad finance claims suggest.",
+          "Visible annotation and reporting errors weaken confidence in quality control: contradictory statements are labeled true in a generation example (p. 39), erroneous monetary-policy knowledge appears in an Oracle term (p. 34), and Table 15 is mislabeled with financial capabilities rather than mathematical reasoning types (p. 29)."
+        ],
+        "score_rationale": "The dataset scale, documentation, and baseline breadth are valuable, but the undocumented answer-position issue and lack of contamination controls threaten benchmark validity. The manuscript would need to demonstrate shuffled/balanced labels, audit generated items more rigorously, and quantify textbook memorization before its empirical conclusions are reliable."
+      }
+    }
+  ]
+}

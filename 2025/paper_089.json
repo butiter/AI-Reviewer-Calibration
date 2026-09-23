@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_089",
+  "paper_id": "VRbypIkXrt",
+  "number": 12451,
+  "title": "MetaOptimize: A Framework for Optimizing Step Sizes and Other Meta-parameters",
+  "authors": "Arsalan Sharifnassab; Saber Salehkaleybar; Richard S. Sutton",
+  "primary_area": "optimization",
+  "keywords": "Optimization; Automatic step-size optimization; Automatic hyperparameter optimization; Continual learning",
+  "forum_url": "https://openreview.net/forum?id=VRbypIkXrt",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    5,
+    5
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper provides a framework to dynamically update hyperparameters such as learning rate during training."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The proposed framework contains some existing algorithms as specials cases.\n\nTheir explanations are clear and facilitates easy understanding."
+        },
+        "weaknesses": {
+          "value": "While the explanations provided are clear and easy to understand, some aspects are not thoroughly covered, e.g. Equation (5) would benefit from additional intuition or theoretical support.\n\nThere are established lines of work on gradient-based hyperparameter optimization using bilevel optimization. Discussing the connection between the proposed method and these existing approaches would strengthen the paper."
+        },
+        "questions": {
+          "value": "Please discuss Equation (5) and the connection between the proposed method to bilevel optimization."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Ufwjw1Ie40",
+      "forum": "VRbypIkXrt",
+      "replyto": "VRbypIkXrt",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12451/Reviewer_rEs8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12451/Reviewer_rEs8"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12451/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730591580172,
+      "cdate": 1730591580172,
+      "tmdate": 1731428765539,
+      "mdate": 1731428765539,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The submission aims to adapt the learning rate while model training. By minimising the regret of the historical model training, the learning rate is updated by the meta gradient computed by a proposed MetaOptimise framework wrapped with the proposed approximation method to reduce the computational cost, especially that caused by the Hessian matrix. The method is empirically texted on both image and language datasets with learning curve and computational cost shown as demonstration for efficiency."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The motivation that learning learning rate is clear and practical. \n2. The operation details are discussed and given in the appendix for readers to have a broad insight."
+        },
+        "weaknesses": {
+          "value": "1. The paper is not presented clearly. \n2. The experiment results do not cover the generalisation performance of the trained models by different optimisations. For example, there is no direct comparison of the accuracy of the test set. The top 5 accuracy applied in the paper can reflect the performance of the optimisers but usually top 1 accuracy is more important. \n3. As learning rate learning is usually a special case of optimiser learning, some previous works are missing for comparison [1,2,3]. \n4. The proposed backward-view update is similar to the forward mode differentiation (FMD) in [1] and the follow-up study on learning rate learning paper [2]. In addition, Equation 1 only contains the training information, the motivation for optimising the learning rate against this objective function is not clear and a follow-up question can be what benefits are achieved by optimising this. \n5. I believe approximate Hessian with either diagonal matrix or block diagonal matrix is common in the precondition optimisation field, L-approximation is another special ly format which is parallel with the others. Stating it as containing existing algorithms as special cases may be overclaiming. Also, it could be interesting to know that with diagonal matrix approximation, the Meta-optimize works and it will definitely reduce computational cost. \n6. Suggestions: The reference format is a little mass, which does not affect my score for this paper.  For example, DoG is published in ICML 2023 while in the reference it is the arXiv version. \n\n[1] Khodak M, Balcan MF, Talwalkar AS. Adaptive gradient-based meta-learning methods. Advances in Neural Information Processing Systems. 2019;32.\n[2] Micaelli P, Storkey AJ. Gradient-based hyperparameter optimization over long horizons. Advances in Neural Information Processing Systems. 2021 Dec 6;34:10798-809.\n[3] Gao B, Gouk H, Lee HB, Hospedales TM. Meta mirror descent: Optimiser learning for fast convergence. arXiv preprint arXiv:2203.02711. 2022 Mar 5."
+        },
+        "questions": {
+          "value": "1. In terms of time-space complexity comparison, MetaOptimize does not show a significant advantage on ImageNet but on TinyStoires. Can the authorise explain why? \n\nAlso, see the weaknesses section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "K8FysFVd8u",
+      "forum": "VRbypIkXrt",
+      "replyto": "VRbypIkXrt",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12451/Reviewer_GWeq"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12451/Reviewer_GWeq"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12451/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730210758712,
+      "cdate": 1730210758712,
+      "tmdate": 1732801400640,
+      "mdate": 1732801400640,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a MetaOptimize framework that dynamically adjusts hyperparameters (like step size) of base algorithms (like SGD and Adam), to minimize a discounted sum of future losses. Specifically, this work adopts an idea similar to eligibility traces in reinforcement learning to construct the future loss, uses base algorithm to minimize this future loss to output the weight vectors, leverages the weight vectors to compute the Jacobian matrix, and finally takes the Jacobian matrix as input of a meta algorithm to update the hyperparameters across different tasks/times. Complexity-reduced variants of MetaOptimize (include approximation version and Hessian-free version) are also proposed. Experiments on classification and language tasks are further conducted to validate the effectiveness of the proposed MetaOptimize framework. I did not check the proof line by line, because all the proofs in the appendix are about derivative computation, and such computation is basic."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "(1)\tThis paper provides a novel MetaOptimize framework to meta-learn hyperparameters of base machine learning algorithms. In particular, the introduction of eligibility traces (from reinforcement learning) into the field of hyperparameter optimization is new.\n\n(2)\tThe further proposed approximation version and Hessian-free version make great efforts to reduce the complexity of the MetaOptimize framework.\n\n(3)\tThe proposed MetaOptimize framework in Algorithm 1 is general and really wraps around any first-order optimization algorithm.\n\n(4)\tExperiments on image classification and language modeling benchmarks are extensive, demonstrating the effectiveness of the proposed algorithm when compared with hand-crafted learning rate schedules."
+        },
+        "weaknesses": {
+          "value": "**Major**\n\n(1)\tI admire that the introduction of eligibility traces into hyperparameter optimization is novel. However, when introducing an existing technique (from reinforcement learning) into your research problem (hyperparameter optimization), some theoretical or insightful analysis should be provided. For example, what is the insightful relationship between the objective in Eq.(5) and the future loss in Eq.(1)? Minimizing the objective in Eq.(5) can provably minimize the future loss in Eq.(1)? Such theoretical analysis is necessary, otherwise the current version in my opinion looks more like a direct application of eligibility traces (i.e. Eq.(5)) into hyperparameter optimization, hence resulting in limited insights.\n\n(2)\tThe introduction of the Jacobian matrix $\\mathcal{H} _{t}$ in line 222 is novel, but the bilevel-optimization (i.e. base-meta algorithm optimization) framework in Algorithm 1 is not new for me. Besides, it will be better to utilize existing theoretical analysis for bilevel programming (e.g. [1] and references therein) to derive specific theoretical results (e.g. the stability or generalization guarantees) for the proposed MetaOptimize framework in Algorithm 1. \n\n\n**Minor** \n\n(3)\tThere exists too many blank spaces in the paper. For example, between Eq.(10) and Eq.(11), I would suggest use $(\\frac{\\mathrm{d}y _{t+1}}{\\mathrm{d} \\beta _{\\tau}}, \\frac{\\mathrm{d}x _{t+1}}{\\mathrm{d} \\beta _{\\tau }}, \\frac{\\mathrm{d}h _{t+1}}{\\mathrm{d} \\beta _{\\tau}})^{T} = G _{t}(\\frac{\\mathrm{d}y _{t}}{\\mathrm{d} \\beta _{\\tau}}, \\frac{\\mathrm{d}x _{t}}{\\mathrm{d} \\beta _{\\tau }}, \\frac{\\mathrm{d}h _{t}}{\\mathrm{d} \\beta _{\\tau}})^{T}$ to save space, and give more theoretical explanations. Similar problem also exists in Eqs.(12)-(16).\n\n(4)\tLine 075, sum of future loss -> sum of future losses\n\n(5)\tEq.(2) has a misleading typo: $x _{t} = Alg _{base} (x _{t}, \\nabla f _{t}(w _{t}), \\beta _{t})$?\n\n(6)\tThroughout the whole paper, the differential operator is $\\mathrm{d}$ (mathrm{d}), not $d$.\n\n(7)\tLine 138, times $\\tau > t$.) ->  times $\\tau > t$).\n\n(8)\tLine 206, two case\n\n(9)\tLine 208, what does $|H _{t}|$ mean?\n\n(10)\tLine 234, $d,x _{t+1}/d, h _{t}$.\n\n(11)\tLine 318, zeroed out; -> zeroed out, \n\n\nReference\n\n[1] Stability and Generalization of Bilevel Programming in Hyperparameter Optimization. NeurIPS2021."
+        },
+        "questions": {
+          "value": "(1)\tCan you give more theoretical explanations for why gradient descent in Eq.(5) can minimize the future loss defined in Eq.(1) ? Or can you give more theoretical analysis for the benefits of introduction of eligibility traces into hyperparameter optimization?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "du1S5Xer0N",
+      "forum": "VRbypIkXrt",
+      "replyto": "VRbypIkXrt",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12451/Reviewer_idAw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12451/Reviewer_idAw"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12451/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729842221954,
+      "cdate": 1729842221954,
+      "tmdate": 1731428764922,
+      "mdate": 1731428764922,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes MetaOptimize, an online meta-gradient framework for adapting learning rates by tracing their effects on future losses, together with Hessian-free approximations. The unifying perspective is interesting and experiments show promising optimization performance, but a central inconsistency between the discounted objective/derivation and the algorithms actually evaluated undermines the technical claim, while the empirical evidence is not sufficiently rigorous.",
+        "strengths": [
+          "The framework offers a reasonably novel unification of IDBD, hypergradient descent, and combinations of arbitrary base/meta optimizers, explicitly modeling meta-parameter dynamics through additional traces (pp. 3–6, 22–23).",
+          "The Hessian-free formulation is computationally practical and supports scalar or blockwise rates with several common optimizers (pp. 6–7).",
+          "Experiments span CIFAR-10, ImageNet, and language modeling and compare against several recent adaptive-learning-rate baselines; ImageNet test accuracy and TinyStories test loss are also reported (pp. 8, 25–26)."
+        ],
+        "weaknesses": [
+          "The core formulation assumes γ∈[0,1) and defines both the objective and traces with a factor 1−γ (pp. 2–4), yet every experiment sets γ=1 (pp. 9, 24–25). At γ=1 the stated objective/traces degenerate, whereas Algorithms 2–3 retain nonzero trace injections (pp. 6–7). Thus the evaluated method is not justified by the claimed discounted-regret derivation without an unstated limiting/rescaling argument.",
+          "Technical support is largely algebraic and informal: the forward/backward equivalence is only argued in the η→0 limit without a theorem or stability/error analysis (p. 3), while the practical method additionally drops Hessian and other Jacobian blocks based mainly on empirical intuition (pp. 5–6). Some appendix formulas also appear inconsistent, increasing uncertainty about correctness.",
+          "The experiments provide single curves without seeds, uncertainty, or final numerical tables; CIFAR-10 reports training rather than test performance (pp. 7–8), and optimizer combinations/hyperparameters are selected by sweeps while fixed-rate baselines use a coarse five-value grid (p. 24). This makes the claimed superiority and tuning-free robustness difficult to assess."
+        ],
+        "score_rationale": "The paper has a useful unifying idea and promising large-scale results, but the γ=1 mismatch directly disconnects all experiments from the stated objective and derivation. Combined with limited theoretical guarantees and weak statistical reporting, this places it clearly below acceptance, though the practical idea is substantial enough to avoid a strong reject. Confidence is moderately high, with some uncertainty because the extensive derivations were not executable-verified."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes a general online meta-gradient framework for adapting learning rates, including approximations compatible with several optimizers. The unifying perspective and empirical scope are promising, but the formal objective is inconsistent with the algorithm actually evaluated, and the experiments are insufficiently rigorous to support the broad performance and robustness claims.",
+        "strengths": [
+          "Provides a potentially useful unification of online learning-rate adaptation, relating the framework to IDBD and hypergradient descent (pp. 5, 22–23).",
+          "Supports multiple base/meta optimizers and scalar or blockwise rates; the Hessian-free implementation is practically motivated and has moderate measured overhead (pp. 6–8).",
+          "Experiments span CIFAR-10, ImageNet, and language modeling, with comparisons against several recent adaptive baselines (pp. 7–9, 24–26)."
+        ],
+        "weaknesses": [
+          "The central mathematics is internally inconsistent at the experimental setting γ=1: the objective and trace definitions contain a factor (1−γ) and assume γ<1 (pp. 2–4), which makes them zero at γ=1, while Algorithms 2–3 use nonzero, apparently rescaled traces and every experiment sets γ=1 (pp. 6–7, 9, 24). Thus the evaluated method is not clearly derived from the stated objective.",
+          "The derivations contain apparent errors and unsupported heuristic steps. For example, the Adam momentum update in Eq. 28 has derivative Lt with respect to ht, but Eq. 32 states ηLt (pp. 15–16); treating the derivative of Sign as zero makes the Lion construction Hessian-free but provides no treatment of its discontinuities or approximation validity (p. 6).",
+          "Evidence is weak for the breadth of the claims: plots generally lack repeated-run statistics/error bars, CIFAR-10 reports training rather than test performance, approximation ablations are absent, and optimizer variants/hyperparameters were selected by grid search despite claims of little tuning (pp. 7–9, 24–26)."
+        ],
+        "score_rationale": "The framework is interesting and experiments suggest practical promise, but the γ=1 inconsistency severs the main theoretical motivation from the reported algorithm, while derivation errors and limited statistical/ablation evidence prevent confidence in soundness. I therefore rate it below the acceptance threshold; uncertainty remains because the empirical method may work despite the flawed presentation."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes MetaOptimize, a general online meta-gradient framework for adapting learning rates through a backward-view surrogate for discounted future loss, together with tractable Hessian-free approximations. The framework is conceptually interesting and performs competitively on CIFAR-10, ImageNet, and TinyStories, but the formal objective and practical algorithm are insufficiently connected, and the empirical protocol does not establish the broad claims robustly.",
+        "strengths": [
+          "A unified formulation accommodates multiple base/meta optimizers and relates IDBD and hypergradient descent to particular approximations (pp. 2–6, 22–23).",
+          "The Hessian-free implementation is practically motivated and has moderate measured overhead relative to several competing tuners (pp. 6–8).",
+          "Experiments span vision and language modeling, with competitive ImageNet and TinyStories curves against several automatic adaptation methods (pp. 8–9, 25–26)."
+        ],
+        "weaknesses": [
+          "The theory is internally mismatched with the experiments: the discounted objective requires gamma in [0,1), yet every experiment uses gamma=1, where the normalized objective in Eq. 1 degenerates; no alternative finite-horizon objective or guarantee is supplied (pp. 2, 9, 24–25).",
+          "The practically evaluated Hessian-free approximations are heuristic and lack approximation-error, stability, convergence, or regret analysis; even the forward/backward equivalence is only informally argued in the infinitesimal meta-step regime (pp. 3, 5–6, 10).",
+          "Evidence is vulnerable to selection and tuning bias: only combinations that “showed better performance” are reported, fixed-LR baselines use a coarse five-value grid, results lack multiple seeds/error bars, and CIFAR-10 reports training rather than test performance (pp. 7–8, 24)."
+        ],
+        "score_rationale": "The unifying perspective and useful empirical results are promising, but the gamma=1 inconsistency undermines the stated regret objective, while heuristic approximations and under-controlled experiments leave technical soundness and generality uncertain. This places the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents MetaOptimize, a general online meta-gradient framework for adapting learning rates by tracing their effects on discounted future losses, together with practical Hessian-free approximations. The framework is conceptually interesting and empirically promising, but the connection between the formal objective and the evaluated algorithm is insufficiently sound, and the experiments lack the statistical and ablation evidence needed to support the broad claims.",
+        "strengths": [
+          "The forward/backward-view formulation and treatment of base- and meta-optimizer dynamics provide a reasonably novel unification of IDBD and hypergradient methods (pp. 2–5, 22–23).",
+          "The framework supports several base/meta optimizer combinations and scalar or blockwise learning rates, while its Hessian-free version has moderate reported overhead (pp. 6–8).",
+          "Results span CIFAR-10, ImageNet, and TinyStories and show competitive optimization behavior against several adaptive-learning-rate baselines (pp. 7–9, 25–26)."
+        ],
+        "weaknesses": [
+          "The objective is defined only for gamma<1 with a prefactor of 1-gamma, yet every experiment uses gamma=1 (pp. 2, 9, 24–25). At that value the stated objective and trace definitions are not directly valid, so the practical algorithm is not clearly optimizing the formal target.",
+          "There is no convergence, regret, or approximation-error analysis. The causal equivalence is only an informal eta→0 argument, while the 2x2 and Hessian-free approximations discard central derivative terms based largely on empirical intuition (pp. 3, 5–6, 10).",
+          "Evidence is limited: curves appear to be single runs without uncertainty; CIFAR-10 reports training rather than test accuracy; exact-versus-approximate and key trace-dynamics ablations are absent; and optimizer variants were selected after showing better performance (pp. 7–9, 24–26)."
+        ],
+        "score_rationale": "The unifying formulation and broad applicability are valuable, but the gamma=1 mismatch undermines the central formal motivation, and the practical approximations have neither theoretical control nor sufficiently rigorous empirical validation. I therefore rate it below the acceptance threshold, with some uncertainty because the reported large-scale trends are promising."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a general online meta-gradient framework for adapting learning rates around multiple first-order optimizers, together with practical Hessian-free approximations. The idea is promising and experiments span vision and language modeling, but the formal objective and derivation are inconsistent with the setting actually evaluated, while the empirical methodology is insufficiently rigorous to substantiate the broad claims.",
+        "strengths": [
+          "The framework cleanly separates base and meta optimizers and relates several earlier methods, including IDBD and hypergradient descent, to particular approximations (pp. 2–6, 22–23).",
+          "The Hessian-free formulation yields implementable scalar and blockwise algorithms with explicitly reported runtime and memory overheads (pp. 6–8).",
+          "Experiments cover CIFAR-10, ImageNet, and TinyStories and compare against several adaptive-learning-rate baselines; results are generally competitive, especially against fixed learning rates (pp. 7–9, 24–26)."
+        ],
+        "weaknesses": [
+          "The central mathematics has a serious boundary inconsistency: the objective and traces are defined with a factor (1−γ) for γ<1, which makes them zero at γ=1, yet every experiment uses γ=1; the practical updates also do not transparently follow from this degenerate objective (pp. 2–6, 9, 24–25). No limiting or alternative undiscounted formulation is supplied.",
+          "Despite framing the target as regret, the paper provides neither a comparator-based regret definition nor convergence/regret guarantees. The forward-to-backward equivalence is only an informal small-η argument, and the Hessian-free and matrix-dropping approximations central to the experiments lack error analysis (pp. 3, 5–6, 10).",
+          "The evidence lacks repeated trials, uncertainty estimates, final numerical metrics, and controlled ablations. Reported variants were selected because they “showed better performance,” optimizer parameters were grid-searched, and conclusions about universal η and robustness rest on few tasks and limited sensitivity plots (pp. 7–9, 24–26)."
+        ],
+        "score_rationale": "The work contains a useful, moderately novel unifying perspective and encouraging large-scale results. However, the γ=1 mismatch undermines the claimed formal foundation, and the absence of theoretical guarantees and statistically rigorous experiments leaves key effectiveness claims uncertain. I therefore place it marginally below acceptance."
+      }
+    }
+  ]
+}

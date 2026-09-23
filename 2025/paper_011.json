@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_011",
+  "paper_id": "zcx6rIMbbR",
+  "number": 726,
+  "title": "Efficient Fine-Tuning of Quantized LLMs via Three-Stage Optimization",
+  "authors": "Changhai Zhou; Shijie Han; Yuhua Zhou; Shiyang Zhang; Qian Qiao; Andrei Simion; WEIZHONG ZHANG",
+  "primary_area": "transfer learning, meta learning, and lifelong learning",
+  "keywords": "Efficient Fine-Tuning; NLP; Iterative Optimization; Layer-wise Quantization and Low-Rank Configuration",
+  "forum_url": "https://openreview.net/forum?id=zcx6rIMbbR",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    3,
+    6,
+    5,
+    8
+  ],
+  "human_mean_rating": 5.4,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "Based on the motivation that the performance of fine-tuning on the adjusted quantized models is even worse than using the original quantized models directly, the paper introduced QR-Adaptor that bypasses the network errors introduced by quantization and directly uses actual performance and memory as optimization targets. The experimental results are based on Llama 2 7B and 13B."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper presents the clear motivation that the performance of fine-tuning on the adjusted quantized models is even worse than using the original quantized models directly.\n\n- Low-precision models fine-tuned with QR-Adaptor can surpass the 16-bit fine-tuned models, while maintaining memory usage comparable to that of 4-bit quantized models."
+        },
+        "weaknesses": {
+          "value": "- It would be necessary to conduct experiments for Llama-3 family (e.g., Llama 3 8B), which are known to be harder to quantize.\n\n- The comparison of training time between QR-Adaptor and existing methods would be required because QR-Adaptor seems to take longer than previous methods due to the presence of bayesian optimization.\n\n- It would be more beneficial if prior methods are also done with 6.125-bit for Llama 2 13B and 5.875-bit for Llama 2 7B in Table 1."
+        },
+        "questions": {
+          "value": "NA"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "qpSUxTiVjL",
+      "forum": "zcx6rIMbbR",
+      "replyto": "zcx6rIMbbR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_RVp4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_RVp4"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission726/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730712418378,
+      "cdate": 1730712418378,
+      "tmdate": 1731427307926,
+      "mdate": 1731427307926,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Summary\nThe authors propose a novel method for fine-tuning quantization LLM. The core of this approach is a three-stage optimization process that selects quantization bit-widths and corresponding LoRA ranks for each layer of the model. Initially, the method computes layer-wise importance on a small dataset, which serves as the initial values for bit-widths and ranks. Subsequently, the authors employ their proposed Pareto Ranking Genetic Algorithm (PRGA) optimization method, followed by Bayesian optimization, to identify more optimal solutions. The efficacy of this method is demonstrated through experimental validation on datasets such as MMLU, showcasing its superiority in terms of both memory efficiency and performance metrics."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Strengths:\n1. Overall, the paper is well-organized and easily comprehensible. The motivation is effectively introduced, and the methodology is clearly described.\n2. The method's introduction of gradient-free optimization to the fine-tuning of quantized LLMs is noteworthy and provides valuable insights for future research in this area.\n3. The proposed approach demonstrates superior performance in terms of both memory efficiency and model performance compared to state-of-the-art works in the same domain."
+        },
+        "weaknesses": {
+          "value": "Weaknesses:\n1. The author claims that\"inspired us to develop the Pareto Ranking Genetic Algorithm (PRGA), a novel multi-objective optimization method.\"The proposed Pareto Ranking Genetic Algorithm (PRGA) bears a striking resemblance to the existing Non-dominated Sorting Genetic Algorithm II (NSGA-II), to the extent that they are virtually indistinguishable. However, the authors have failed to acknowledge or cite NSGA-II, instead claiming PRGA as a \"novel multi-objective optimization method\".PRGA and NSGA-II are almost identical, including key elements such as non-dominated sorting, crowding distance calculation, and elitist strategy. \n2. The novelty of this paper appears limited, as it primarily applies existing algorithms, namely NSGA-II and Bayesian Optimization, to the fine-tuning of quantized LLMs. \n3. The authors claim that previous methods relying on gradient norms to quantify layer importance fail to accurately represent a layer's contribution during inference. However, they do not substantiate this claim with ablation studies. \n4. The current ablation experiments are insufficient. Additional studies should be conducted to demonstrate the impact of iterations and population size on the results. \n[1]Deb K, Pratap A, Agarwal S, Meyarivan TAM. A fast and elitist multi-objective genetic algorithm: NSGA-II[J]. IEEE Transactions on Evolutionary Computation,2002, 6(2):182-197."
+        },
+        "questions": {
+          "value": "Question\n1. What are the differences between NSGA-II and PRGA?\n2. Is the proposed method sensitive to the selection of iterations and population size?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PHGwuS9NV9",
+      "forum": "zcx6rIMbbR",
+      "replyto": "zcx6rIMbbR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_htga"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_htga"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission726/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730557017382,
+      "cdate": 1730557017382,
+      "tmdate": 1731427308040,
+      "mdate": 1731427308040,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a framework called QR-Adaptor that combines parameter-efficient fine-tuning and quantization techniques to improve the performance of LLMs with reduced memory usage. The QR-Adaptor framework includes three stages: initialization based on task information, global exploration using Pareto Ranking Genetic Algorithm (PRGA), and local refinement with Bayesian optimization. Experimental results show that the method outperforms fine-tuned 16-bit models while maintaining the same memory usage as fine-tuning 4-bit models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1.This article proposes the use of gradient-free optimization methods to optimize the rank selection of layer-wise LoRA and the bit selection of layer-wise Quantization, which is quite novel.\n2.This method could be combined with other quantization methods to potentially achieve better performance.\n3.The results on datasets such as MMLU show that QR-Adaptor has achieved excellent performance in both memory and accuracy.\n4.Ablation studies indicate that the proposed three-stage optimization framework effectively yields superior solutions."
+        },
+        "weaknesses": {
+          "value": "1.The introduced multi-stage optimization process increases the time cost.\n2.The experiments in this article are limited, conducted only on Llama2, and the datasets used are not diverse enough. If considering expanding the experiments, one could refer to the experiments in the LoFTQ paper.\n3.There is a lack of experiments on the impact of PRGA hyperparameters on model performance.\n4.There is a lack of comparative experiments between the PRGA method and other multi-objective optimization methods.\n5.Figure 1 is somewhat difficult to understand and should not be placed on the first page."
+        },
+        "questions": {
+          "value": "In addition to the weaknesses, I have the following questions:\n1.I am curious about the effectiveness of directly applying the approach of this article to LLMs quantization, that is, using gradient-free optimization methods to select the quantization bit numbers for each layer's parameters.\n2.AdaLoRA is not specifically designed for quantized LLMs, and its direct performance may be poor. Therefore, concluding that dynamically adjusting rank is not suitable for fine-tuning quantized LLMs may not be sufficiently justified. Can we test AdaLoRA's performance on fine-tuning quantized LLMs again under the condition of Preserving quantized model parameters before fine-tuning?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "5nDUreGrFj",
+      "forum": "zcx6rIMbbR",
+      "replyto": "zcx6rIMbbR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_N96a"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_N96a"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission726/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730548054195,
+      "cdate": 1730548054195,
+      "tmdate": 1732499551361,
+      "mdate": 1732499551361,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses quantized parameter-efficient fine-tuning. It proposes two constraints: initializing LoRA parameters either as zero or using MSE initialization like LoftQ and LQ-LoRA, while fixing all trainable parameters. Additionally, it introduces mixed-precision quantization and mixed-rank LoRA, achieving higher performance with the same training memory footprint as 4-bit models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The framework is practically useful, allowing for higher-performance fine-tuned models with a 4-bit memory footprint.\n2. The paper is well-written and easy to follow."
+        },
+        "weaknesses": {
+          "value": "1. The constraints are derived from limited experiments in Figures 2 and 3. For instance, Figure 2 suggests careful LoRA initialization does not improve performance, yet LoftQ and LQ-LoRA demonstrate its effectiveness. LoRA initialization can mitigate quantization loss, crucial for models with significant quantiztaion loss, such as lower-bit quantizations or more challenging models like llama-3-8B. A deeper analysis with stronger experiments and detailed discussion on LoRA initialization is needed.\n\n2. The paper heavily focuses on the two constraints, which seem more like ablation studies and do not offer new insights or motivation for the final methods. The main contribution is achieving higher performance with the same memory footprint as 4-bit models. The paper should be reorganized to highlight its original contributions.\n\n3. The performance improvements could be attributed to higher-bit models and reduced memory footprint through adaptive LoRA rank reduction. Since small LoRA ranks may not perform well on large datasets, it's important to verify the method's effectiveness on larger datasets."
+        },
+        "questions": {
+          "value": "Why does QR-Adaptor consistently outperform LoRA fine-tuning with 16-bit models? Is the advantage due to adaptive LoRA ranks, considering FP16 models are typically more powerful than quantized models?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dAKsGGBxTS",
+      "forum": "zcx6rIMbbR",
+      "replyto": "zcx6rIMbbR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_8YsR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_8YsR"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission726/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730184028775,
+      "cdate": 1730184028775,
+      "tmdate": 1731427308291,
+      "mdate": 1731427308291,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "They bypasses the network errors introduced by quantization and directly uses actual performance and memory as optimization targets. Through initialization, extrapolation, and interpolation, they quickly solves the gradient-free bit-width and lora rank optimization problem of fine-tuned low-bit quantized models."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The framework outlined in Figure 1 is resonates. Figures 2 and 3 effectively illustrate the key observations and the rationale behind our approach."
+        },
+        "weaknesses": {
+          "value": "This paper is credible in its approach, but lacks a good logical structure in presenting the corresponding challenges. In the abstract \"We find that the performance of finetuning on the adjusted quantized models is even worse than using the original quantized models directly,  as the adjusted model is essentially a completely different model from the original quantized model. \", the adjusted quantized models is a vague statement, and these unclear statements affect my understanding. Therefore, I expect the authors to reformulate the three challenges of the necessity of init/search r and q layer-wise and adopting a gradient-independent strategy in Introduction."
+        },
+        "questions": {
+          "value": "1. My main concern was the extra time cost, could you provide comparisons with existing methods in terms of time cost? Can the computational cost of each stage be disclosed?\n2. The caption of the subfigure in Figure 7 needs to be supplemented.\n3. Will the bad performance affected by unfixed parameters mentioned in Figure 3 improve with longer fine-tuning epochs? This does not seem to be a very intuitive phenomenon, can the author provide more explanation?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Qy8D3Jo3PH",
+      "forum": "zcx6rIMbbR",
+      "replyto": "zcx6rIMbbR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_orhA"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission726/Reviewer_orhA"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission726/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729949116056,
+      "cdate": 1729949116056,
+      "tmdate": 1732787431192,
+      "mdate": 1732787431192,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "QR-Adaptor searches layer-wise quantization widths and LoRA ranks using importance-based initialization, an NSGA-II-style genetic search, and Bayesian refinement. The practical objective is relevant and results appear promising, but the evaluation protocol and underspecified methodology prevent the reported improvements from establishing effectiveness.",
+        "strengths": [
+          "Jointly optimizing layer-wise precision and adapter rank addresses a practically important performance–memory trade-off (pp. 4–8).",
+          "Experiments cover LLaMA-2 7B/13B and LLaMA-3.1 8B, several tasks, stronger-rank/larger-data settings, and some ablations (pp. 8–10, 16–20).",
+          "The paper reports memory, search time, and sensitivity to search budget rather than accuracy alone (pp. 8, 18, 20)."
+        ],
+        "weaknesses": [
+          "The optimization explicitly maximizes downstream evaluation performance on D_test, with task-specific searches and repeated candidate evaluation, but no held-out search-validation/test separation is documented (pp. 4, 7–9). This creates severe benchmark leakage/multiple-comparison risk and may explain the small gains.",
+          "Core components are insufficiently defined or justified: estimation of H(Y|X_l) is absent, its deterministic-network interpretation is unclear, the mapping from importance to configurations is unspecified, and an RBF Gaussian process over a very high-dimensional discrete space is used without validation (pp. 5–8).",
+          "Evidence lacks seeds, uncertainty, or significance tests, while resource comparisons are difficult to reconcile: QR-Adaptor averages bit-width and memory across task-specific models, omits total search cost from the main comparison, and reports roughly 6-bit models at nearly 4-bit memory (pp. 8–9, 16–20). The claimed guarantee that tuning will not hurt performance is also unsupported (p. 10)."
+        ],
+        "score_rationale": "The combination of established search techniques is a modestly novel engineering contribution, and the empirical scope is nontrivial. However, probable optimization on benchmark evaluation data, missing statistical evidence, unclear key definitions, and questionable resource accounting undermine the central claims. I therefore rate it a reject; confidence is not maximal because the exact candidate-validation split remains ambiguous."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes task-specific joint search over layer-wise quantization bits and LoRA ranks using importance initialization, an NSGA-II-style genetic stage, and Bayesian refinement. Although the empirical tables report modest gains at low memory, serious evaluation leakage and under-specified technical components make the central evidence unreliable.",
+        "strengths": [
+          "Jointly optimizing bit-width and adapter rank under a performance–memory objective is practically relevant, and the three-stage framework is conceptually easy to understand (pp. 4–8).",
+          "Experiments cover LLaMA-2 7B/13B and LLaMA-3.1 8B, multiple benchmarks, higher-rank training, and several PEFT/quantization baselines (pp. 8–9, 16–18).",
+          "The paper includes component, initialization-metric, and search-budget ablations and acknowledges search time as a limitation (pp. 10, 19–20)."
+        ],
+        "weaknesses": [
+          "The method explicitly optimizes configurations using performance on Dtest and repeatedly tests configurations to guide PRGA/BO (pp. 4, 7–8), while no separate search-validation split is described. Since configurations are task-specific, the reported benchmark scores appear adaptively selected on the evaluation sets, potentially invalidating the claimed improvements.",
+          "Core technical details are not soundly specified. The importance I(l)=H(Y)-H(Y|X_l) is unexplained and is degenerate if the model output Y is deterministic given an intermediate representation; the appendix instead calls it “relative entropy” without defining the estimator (pp. 5, 19–20). Moreover, crossover/mutation produce real values despite discrete integer bit/rank choices, with no rounding or feasibility procedure (pp. 6–7).",
+          "Evidence and reproducibility are insufficient: there are no seeds, variances, or significance tests despite small gains; end-to-end search cost is not fairly compared; and training settings conflict between learning rate 1e-4/effective batch 64 on p. 11 and 3e-4/batch 128 on p. 19. Claims that the constraints guarantee no degradation and that low precision exceeds full precision are consequently too strong (p. 10)."
+        ],
+        "score_rationale": "The practical idea and breadth of reported experiments provide some value, but novelty is largely a composition of established search techniques. More importantly, apparent optimization on test benchmarks, an ill-defined initialization metric, incomplete discrete-search mechanics, and weak statistical/reproducibility support undermine technical soundness and the main empirical claims. I therefore recommend rejection; uncertainty remains because the exact data splits and omitted implementation may resolve some ambiguities."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "QR-Adaptor searches layer-wise quantization bit-widths and LoRA ranks using task-informed initialization, an NSGA-II-like genetic search, and Bayesian refinement. The reported results are promising, but the contribution largely combines established optimization components, and serious evaluation and specification issues prevent the gains from supporting the paper’s broad claims.",
+        "strengths": [
+          "Jointly optimizing per-layer precision and adapter rank is practically relevant, and the three-stage framework provides a coherent performance–memory search procedure (pp. 4–8).",
+          "Experiments cover LLaMA-2 7B/13B and LLaMA-3.1 8B, multiple benchmarks, higher-rank/larger-data settings, and several PEFT/quantization baselines (pp. 8–9, 16–18).",
+          "The paper includes stage, initialization-metric, and search-budget ablations, and explicitly reports the search-time trade-off (pp. 10, 18, 19–20)."
+        ],
+        "weaknesses": [
+          "The method appears to optimize configurations using downstream evaluation performance: the formal objective uses Dtest (p. 4), and each candidate is repeatedly tested to drive PRGA/BO (pp. 7–8). No clear held-out search-validation/test protocol is given, creating potentially decisive benchmark leakage and giving QR-Adaptor a task-specific tuning advantage over fixed baselines.",
+          "Novelty is limited: initialization aside, PRGA is an adaptation of NSGA-II and the refinement is standard Gaussian-process Bayesian optimization; the proposed entropy importance H(Y)-H(Y|X_l) is not operationally defined or estimated for high-dimensional hidden states (pp. 5–7).",
+          "Evidence and claims are overstated: there are no seeds, uncertainty intervals, or significance tests for generally modest gains (pp. 8, 16–18); search compute is not fairly budget-matched; and the claim that the two constraints ensure performance is “at least not worse” lacks a theorem or adequate empirical support (p. 10). Reproducibility is further weakened by conflicting learning rates and setup descriptions (pp. 11, 19)."
+        ],
+        "score_rationale": "The idea is useful and the reported breadth is respectable, but possible test-set-driven architecture search, unclear importance estimation, weak statistical validation, and limited algorithmic novelty are substantial technical shortcomings. I therefore rate it as a reject rather than marginal acceptance; uncertainty remains because the exact candidate-validation split may exist in omitted code but is not specified in the manuscript."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "QR-Adaptor searches layer-wise quantization bit-widths and LoRA ranks using task-informed initialization, an NSGA-II-like genetic search, and Bayesian refinement. The resource-allocation problem is useful, but the core algorithm is largely a composition of standard methods, and serious evaluation and specification issues prevent the reported gains from establishing effectiveness.",
+        "strengths": [
+          "Jointly optimizing precision and adapter rank under a memory/performance trade-off is practically relevant, and the three-stage framework is intuitively organized (pp. 4–8).",
+          "Experiments cover LLaMA-2 and LLaMA-3.1, several benchmarks, ranks, and dataset sizes (pp. 8–9, 16–18).",
+          "The paper includes stage, initialization-metric, and search-budget ablations and acknowledges search-time overhead (pp. 10, 18, 19–20)."
+        ],
+        "weaknesses": [
+          "The method explicitly optimizes performance on downstream Dtest (p. 4), apparently finding a separate configuration for each benchmark (pp. 8–9). Unless an unreported held-out validation split was used, repeated search on benchmark test performance causes test-set leakage and gives QR-Adaptor an unfair selection advantage over fixed baselines.",
+          "The key initialization metric is technically underspecified and potentially degenerate: I(l)=H(Y)-H(Y|X_l) is stated without defining or estimating these high-dimensional entropies (p. 5). If Y is the deterministic model output, H(Y|X_l) should generally vanish; Appendix E instead calls the metric “relative entropy” without resolving the discrepancy (pp. 19–20).",
+          "Evidence is not statistically reliable: no seeds, error bars, or significance tests are reported despite small gains; baseline tuning/search-budget parity is unclear. The claimed guarantee that the constraints make performance “at least not worse” has neither proof nor adequate empirical support (p. 10), while discrete rounding, bounds, and mixed-precision implementation details remain incomplete (pp. 6–7, 16, 19)."
+        ],
+        "score_rationale": "The practical objective and empirical breadth are promising, but likely test-set optimization, an ill-defined importance measure, and weak statistical controls undermine the central evidence. The PRGA-plus-Bayesian-search construction also offers limited methodological novelty. I am uncertain whether a hidden validation protocol could resolve the leakage concern, but none is documented."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes task-specific, layer-wise joint selection of quantization bit-widths and LoRA ranks using entropy-based initialization, an NSGA-II-style genetic search, and Bayesian refinement. The problem is useful and the reported results are promising, but substantial methodological ambiguity, inconsistent memory accounting, and weak statistical evidence prevent the central claims from being trusted.",
+        "strengths": [
+          "Addresses a practically important joint performance–memory allocation problem and provides a reasonably clear three-stage framework (pp. 4–8).",
+          "Reports comparisons across LLaMA-2 and LLaMA-3.1, multiple tasks, ranks, and dataset sizes (pp. 8–9, 16–19).",
+          "Includes component and search-budget analyses rather than only headline accuracy results (pp. 10, 19–20)."
+        ],
+        "weaknesses": [
+          "The search/evaluation protocol risks benchmark leakage: the formal objective explicitly optimizes performance on Dtest (p. 4), while later descriptions inconsistently refer to validation on a training subset (pp. 7–9). It is therefore unclear whether reported benchmark sets influenced configuration selection.",
+          "Reported memory figures appear internally inconsistent. For LLaMA2-13B, an average 6.125-bit QR-Adaptor model uses 27.41 GB—essentially the same as 4-bit QLoRA at 27.30 GB and far below 8-bit QLoRA at 38.28 GB—without sufficient accounting to explain this (p. 8). Search cost is likewise incompletely reported (pp. 18, 20).",
+          "Technical support is incomplete: estimation of H(Y|X_l) is unspecified and later called “relative entropy” (pp. 5, 19–20); the method largely combines established NSGA-II and Bayesian optimization; results lack seeds, uncertainty, or significance tests; and the claimed guarantee that fine-tuning is “at least not worse” is unsupported (p. 10)."
+        ],
+        "score_rationale": "The joint mixed-precision/rank search is potentially useful and yields consistent point-estimate gains, but the novelty is incremental and the evidence does not establish that gains survive leakage-free selection or random variation. Ambiguous entropy computation, questionable memory comparisons, incomplete total-cost accounting, and unsupported guarantees are major soundness issues, warranting rejection despite promising experiments."
+      }
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+{
+  "year": 2025,
+  "package_id": "paper_013",
+  "paper_id": "ipQrjRsl11",
+  "number": 801,
+  "title": "Connecting Federated ADMM to Bayes",
+  "authors": "Siddharth Swaroop; Mohammad Emtiyaz Khan; Finale Doshi-Velez",
+  "primary_area": "probabilistic methods (Bayesian methods, variational inference, sampling, UQ, etc.)",
+  "keywords": "federated learning; bayesian; variational inference; admm",
+  "forum_url": "https://openreview.net/forum?id=ipQrjRsl11",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    5,
+    6,
+    6
+  ],
+  "human_mean_rating": 6.2,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The work provides a new link between two well-known federated learning approaches: i) Alternative Direction Methods of Multiplier (ADMM) and Partitioned Variational Inference (PVI). The driving idea is that PVI updates have a line-by-line correspondence to the ADMM algorithm, which is even more similar under the assumption of isotropic Gaussian distributions for the family $Q$ of variational densities. In this direction, the authors introduce FedLap, a Laplace-approximation based version of PVI. Such derivation suggests that there exists an almost identical duality between ADMM and the common Bayesian approach to the federated learning problem. Later, having established such a connection, two more variants of FedLap are introduced, the first one (FedLap-Cov) puts a bit more structure in the candidate set Q, such some improvement is observed given some increment in the computational cost. The second variant (FedLap-Func) extends ideas from (Khan & Swaroop, 2021) by allowing the FedLap update of the global server to be an optimization problem and assuming that some inputs are available between local and global servers. Empirical results confirm the hypotheses made and the improvement in the accuracy for the three new FedLap-based methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "**[S1]** - The work is clear, well-written, and polished. I particularly liked the spirit of first building the connection between ADMM and PVI, for later proposing three new methods/variants of FedLap that incrementally improve the accuracy performance. For those familiar with the probabilistic perspective of federated learning, PVI, and Laplace approximation, the work and particularly the contributions are easy to follow and nice to be proven on the empirical results.\n\n**[S2]** - The drawing of correspondence between ADMM and PVI is elegant, and for sure is a great novel contribution if it has not been done before (I think it hasn't). Despite the introduction of the diagonal covariance in FedLap-Cov made sense to me, and the adaptation of updates seemed also correct. I liked the final technique to ensure the positive definiteness of local and global precision matrices in the paragraphs after (14), quite interesting and useful.\n\n**[S3]** - Despite I did not particularly see the advantages of FedLap-Func in Section 3.4, I see its utility and the spirit of even improving a bit more the performance of FedLap. Here, my experience with such methods is that the ratio improvement/computational-cost-increment is not as favorable as in the FedLap-Cov. I imagine that could have limited the experiments to 10-100 clients only.. I could be wrong on this aspect, though."
+        },
+        "weaknesses": {
+          "value": "Despite the fact that I think the work has significant strengths in its current version for being accepted, I detect some unclear parts, or at least \"corners\" where there is not much light to understand what is going on. Some of these are:\n\n**[W1]** - Computational cost is for sure one. While reading the paper, the missing aspect of the computational cost always rings the bell of an average reader. I say this mainly because the connection between ADMM and PVI is fantastic, but once the improvement is made with FedLap and its variants, it is not explicitly indicated what are we paying to get that extra improvement in the performance. In this direction, I want to say that I am just missing the analysis and the clarity in that regard of the problem.\n\n**[W2]** - I'm fine with Eq. (15) and setting up the update as an optimization problem, but then I do not really know if sharing some soft labels or inputs between local clients and the central server is worth it.. It kind of modifies a bit the spirit of federated learning and introduces extra issues like privacy, etc, that are ignored imho.\n\n**[W3]** - It makes a lot of sense to put the work in the context of Laplace approximation methods, BNNs, etc where basically the parameter times parameter dimension of matrices is a huge problem for scalability. Some light-light indication of this is said around L224-225, but overall, I feel that all of this between Eq. 10 and Eq. 14 is ignored, or at least not being highlighted for the reader (the dimensionality problem, or an indication of what are we considering here). I am particularly concerned about V_k and the client updates.\n\n**[W4]** - Experiments are fine, but Table 1 is somehow limited. I basically missed some larger datasets, where there is not that much similarity or structure in the data as in MNIST or FMNIST (i.e. Imagenet or similar), and augmenting a bit the number of clients to see what is really the flexibility/resistance of new variants to such challenges."
+        },
+        "questions": {
+          "value": "Some minor questions that I thought about while reading and writing the review:\n\n**[Q1]** - I'm curious to know where the term ‘sites’ in L112 is coming from\n\n**[Q2]** - How does this delta approximation work in L185? How does this approximation affect the general problem?\n\n**[Q3]** - What is the dimension of the second auxiliary/dual variable? I'm always afraid of the use of preconditioning.. could the authors add a bit more details in that regard\n\n**[Q4]** - I didn't understand very well what is indicated in L309\n\n**[Q5]** - L342: M_k = null space, Isn’t this obvious?\n\n**[Q6]** - For Algorithm in Eq. 17. How many training steps per round and updates?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "N/A"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ozx4oC9ghc",
+      "forum": "ipQrjRsl11",
+      "replyto": "ipQrjRsl11",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_QNup"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_QNup"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission801/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731079143413,
+      "cdate": 1731079143413,
+      "tmdate": 1731427319466,
+      "mdate": 1731427319466,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Federated learning is the problem of training a model where training data is distributed over clients and due to privacy must stay on clients. Given $K$ clients and a parameterzed model with paramters $w$, each client can optimize its parameters $w_k$ for $k=1,..,K$ and we need to merge the information to learn a global model $w_g$.\n\nMany methods have been proposed and within which Alternative Direction Methods of Multiplier is a method that ensures the clients and the \nglobal model converge to the same stationary point, the clients send a $v_k$ vector to the server that (loosly) shows the weight change from the global model $w_k - w_g$, the global model aggregates and updates and replies with the new global model $w_g$.\n\nSimilarly Bayesian methods learn an approximate posterior distribution over weights $q(w)$ where clients have their learn their own model $q_k()$ send the server an approximate likelihood function $\\hat{t}(w)$. The server aggregates likelihoods, updates the global approximate posterior $q_g()$ and sends it back to the clients, Partitioned Variational Inference (PVI) is a recent work that constructs a common framework covering many prior work methods.\n\nThe paper describes the above frameworks. Then the authors show that for a particular choice of $q_k()$, $q_g()$ in the PVI framework, notably where they are Gaussian with a priori fixed variance so only the mean is learnt, corresponds almost exactly line by line with ADMM, i.e. ADMM is a MAP estimate of some specific Gaussian distributions. The authors propose FedLap-Cov that simply generalizes this observation by allowing learnable covariance matrices in the Gaussian distributions. Finally FedLap-func is proposed that effectively allows a subtle data sharing between client and server hence the server can perform weight optimization as well.\n\nExperiments are performed across a range of standard benchmarks showing FedLap variants outperform both poor (FedAvg) and strong (FedDyn) baselines."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "## Main Comments\n- __intuitive demonstration of equivalence__: models trained by minimizing a loss function and a regularizer are often easily shown to correspond to a log likelihood and a log prior hence correspond to a MAP estimate. This work shows the same connection in a less obvious setting.\n- __intuitive extension__: as corollary from above, generalizing the ADMM method for more general distributions makes perfect sense and allows a natural update equations, notably the precision matrix \"weighted sum\" of global and local models.\n- __well written__: the paper takes the reader on a well paced journey through prior works ADMM, PVI using very readable mathematical notation (more readable than the original works in my view). FedLap is then presented to specifically bridge the gap between the prior discussion and the new discussion of FedLap-Cov and FedLap-Func.\n- __extensive benchmarks__: UCI datasets, MNIST and Cifar10 experiments are provided and a deeper dive in to FedLap vs FedDyn is given in the appendix. Hyper-parameters were tuned for all methods.\n\n## Minor comments\n- I personally like that the authors avoid saying \"our method\" and opt for the more humble approach of using the method name \"FedLap\" throughout the paper."
+        },
+        "weaknesses": {
+          "value": "I felt the paper was very good and only have minor comments.\n\n### Minor Comments\n- __limitations__ I may have missed this but limitations do not seem to be clearly discussed\n- __computational complexity__ on P6 only discusses the diagonal covariance case which has linear added complexity. While if I understand correctly, the FedLap-Cov has a quadratic additional parameters, upper triangle of a cov matrix. A few concerns come to mind (1) one goal of federated learning is handling unstable client connections by minimising communication rounds, but presumably also minimising traffic, FedLap-Cov seems to add significant traffic (2) the scalability of the FedLap-Cov to many parameters is limited, e.g. resnet-50, although a quick look at past works suggest small applications like UCI datasets, Cifar10 and MNIST are common benchmarks (and not imagenet).\n- __final model is point estimate__ I may have misunderstood, but I could not find explicit mention about what weights at inference time, I assume a single set of weights $w_g$ was used, there was no marginalising. I.e. FedLap methods learn a Bayesian distribution over weights, but the benchmarks have just used a point estimate.\n- __Equation 13__: I apologize if I am mistaken but I was rather confused, the first $m_k$ may be a typo? As I understand, in a delta approximation, normally, we would make a 2nd order Taylor approximation of loss $l_k(w)$ around $w=m$. But to avoid headaches with a hessian term with both $m$ and $S$ interacting as we optimize, we freeze the hessian to a value from a prior iteration $w=m_{old}$ artificially removing the dependence on $m$, this is arguably not an accurate Taylor approximation anymore, is this a common practice?\n\n\n### Possible Typos\n- Equation after Eqn 9: $\\mathbb{E}[\\hat{t}_k(w)]$ missing $\\log()$\n- Equation 12 square brackets on the second term\n- Equation 13: first $l_k(m_k)$ -> $l_k(m)$"
+        },
+        "questions": {
+          "value": "- for the benchmarks, the weights used in to make predictions were just the MAP estimate? Was there any marginalising predictions over the distributions of weights?\n- Equation 13 uses gradients from a point in space that is not the centre of the Taylor approximation, is this principled or just a necessary hotfix?\n- Equation 16: can the authors provide some context as to why the new weight space term is subtracted?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "2fKhNoHX28",
+      "forum": "ipQrjRsl11",
+      "replyto": "ipQrjRsl11",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_8nbj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_8nbj"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission801/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731039594497,
+      "cdate": 1731039594497,
+      "tmdate": 1731427319594,
+      "mdate": 1731427319594,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors provide new insights connecting ADMM (Alternating Direction Method of Multipliers) and variational Bayesian (VB)-based approaches for federated learning. The main finding reveals that the dual variables utilized in ADMM naturally correspond to the 'site' parameters in VB."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. connections between ADMM and VB-based approaches may be interesting for federated learning."
+        },
+        "weaknesses": {
+          "value": "1. Whether the federated locals can be used to recover the global solution is not justified both theoretically and numerically.\n\n2. Why do you want to connect ADMM to Bayesian? Bayesian learning is known to be the go-to method for conducting uncertainty quantification and non-convex optimization. The algorithm is only evaluated in the optimization perspective. The Bayes interpretation is only used as a preconditioner. If this is the only purpose, the connections to Bayes are not needed at all.\n\n3. Bayes seems to be an important component in this paper. However, the connections to Bayes are not fully evaluated empirically. I recommend the authors to see how the uncertainty experiments are evaluated in [1,2,3].\n\n[1]. Federated Learning via Posterior Averaging: A New Perspective and Practical Algorithms. ICLR. 2021.\n\n[2]. On Convergence of Federated Averaging Langevin Dynamics. UAI 2024.\n\n[3]. Bayesian Federated Learning with Hamiltonian Monte Carlo: Algorithm and Theory. JCGS. 2024"
+        },
+        "questions": {
+          "value": "Missing important literatures in Bayes federated learning:\n\n[1]. Federated Learning via Posterior Averaging: A New Perspective and Practical Algorithms. ICLR. 2021.\n\n[2]. On Convergence of Federated Averaging Langevin Dynamics. UAI 2024.\n\n[3]. Bayesian Federated Learning with Hamiltonian Monte Carlo: Algorithm and Theory. JCGS. 2024"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ksVb4QkLU5",
+      "forum": "ipQrjRsl11",
+      "replyto": "ipQrjRsl11",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_GZSC"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_GZSC"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission801/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730655314074,
+      "cdate": 1730655314074,
+      "tmdate": 1732463894444,
+      "mdate": 1732463894444,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper provides a first connection between two federated learning approaches, one based on ADMM and another based on Variational Bayes (VB). Based on this connection, the paper proposes two variants that incorporate the full covariance information and functional regularization. The proposed methods improve the ADMM baseline in various benchmarks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The connection between ADMM and VB is novel and interesting, which opens up new avenues for improving the algorithm from a variational / Bayesian perspective. \n\n- The overall empirical results are convincing, showing improvements of the proposed methods against the baseline."
+        },
+        "weaknesses": {
+          "value": "The paper can be improved  by adding more discussions on complexity and limitations, as well as empirical results quantification. In particular, the key weaknesses are the following. \n\n\n- missing discussion on limitations. What is the complexity of the extended VB approaches against the baselines, in particular when full covariance estimates are considered. Additionally, FedLap-Func is used in the setting where some inputs are shared globally. Can you discuss the practical implication of that?\n\n- the empirical comparison needs more statistical rigorousness. Table 1 displays the average accuracy with standard deviation in parentheses, and top two performing algorithms are bolded. Can you elaborate how do you define the \"top two\"? A more standard practice in statistics is to highlight the top results within 2 *standard errors*, in that case I would imagine, for example, FedDyn and FedLap to be statistically equally performant on CIFAR10 with comm Round=50 (last row of the table 1)."
+        },
+        "questions": {
+          "value": "see the weakness section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "NA"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "3P0J3Kqomq",
+      "forum": "ipQrjRsl11",
+      "replyto": "ipQrjRsl11",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_E4hs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_E4hs"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission801/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730650870294,
+      "cdate": 1730650870294,
+      "tmdate": 1731427319854,
+      "mdate": 1731427319854,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper establishes the connection between federate learning and variational Bayes through the \"site\" parameters in partition variational inference (PVI). For particular choice of variational distribution in VB, PVI could (almost) be identified as an Alternative Direction Methods of Multiplier (ADMM), hence named FedLap. Base on such connection, the authors propose two improvements of FedLap (ADMM) by considering full covariances (FedLap-Cov) and function space (FedLap-Func) information coming from VB literature. Then multiple benchmark tests are carried out to demonstrate the superior performance of the proposed improvements compared with vanilla FedLap and competitive federate learning algorithms including FedAvg, FedProx, and FedDyn."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "A nice connection is drawn between federate learning and variational Bayes. Two algorithms improving upon ADMM are proposed based the newly discovered connection. There is good potential in proposed methods, both numerically and methodologically."
+        },
+        "weaknesses": {
+          "value": "FedLap-Func only provides marginal improvements over FedLap-Cov and sometimes even makes it worse. Did you explore other problems outside the benchmarks to seek possibly more appropriate applications?"
+        },
+        "questions": {
+          "value": "* Could you please include a paper outline at the end of Section 1?\n\n* Could you bring the definition of $\\hat t^*_k=\\frac{q_k}{q_g}$ from (5) to (4) where it appears for the first time? I guessed $\\hat t^*_k=\\frac{q_k}{p_0}$ while at equation (4).\n\n* `FedLap` seemingly indicates the Laplace variant of the PVI. But it is still Gaussian used as the variational distribution. Why is it called \"Lap\"? Would you please elaborate?\n\n* FedLap-Func only provides marginal improvements over FedLap-Cov and sometimes even makes it worse. Any explanation?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "NA"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "r06mjJenWc",
+      "forum": "ipQrjRsl11",
+      "replyto": "ipQrjRsl11",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_kAKo"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission801/Reviewer_kAKo"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission801/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730451789331,
+      "cdate": 1730451789331,
+      "tmdate": 1732718777226,
+      "mdate": 1732718777226,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper develops a useful conceptual bridge between partitioned variational inference and federated ADMM, then derives covariance- and function-space extensions. The idea is novel and promising, and experiments generally favor the proposed variants, but theoretical guarantees and experimental rigor are insufficient for an unambiguous accept.",
+        "strengths": [
+          "The identification of PVI site natural parameters with ADMM-like dual variables is conceptually interesting and presented through a clear sequence of updates (pp. 3–5).",
+          "FedLap-Cov gives a principled second-order extension with precision-weighted dual updates and preconditioning, including discussion of positive definiteness and implementable diagonal curvature (pp. 5–6, 14).",
+          "Experiments span tabular and image datasets, several model classes, heterogeneity settings, and 10/100-client cases; FedLap-Cov shows substantial gains in several settings (pp. 8–9, 19–20)."
+        ],
+        "weaknesses": [
+          "There is no convergence or stability analysis for FedLap or its nonconvex covariance/function-space variants; stationary-point correspondence alone does not establish that the proposed updates converge, and this is deferred to future work (p. 10).",
+          "The empirical protocol does not explain how hyperparameters are selected from extensive sweeps or clearly separate validation from final evaluation. Results use only three seeds, full client participation, mostly small/simple benchmarks, and omit runtime or communication-adjusted comparisons (pp. 8, 17–19).",
+          "FedLap-Func weakens the federated/privacy setting by sharing class-selected client examples, and its stated P+C² communication cost appears to overlook dissemination of information for all client-specific memory sets required by the client objective. Its improvements are also modest or inconsistent outside CIFAR-10 (pp. 7–9)."
+        ],
+        "score_rationale": "Marginally above acceptance: the PVI–ADMM connection and covariance-derived algorithm are sufficiently novel and empirically promising. However, the absence of convergence theory, unclear model-selection protocol, limited realistic federated evaluation, and unresolved FedLap-Func communication/privacy assumptions prevent a stronger score."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents an interesting conceptual bridge between partitioned variational inference and federated ADMM, then uses it to motivate covariance- and function-space variants. The derivations are generally plausible and the experiments show useful gains, but the strongest claims are not yet supported by convergence theory or sufficiently rigorous empirical comparisons.",
+        "strengths": [
+          "The correspondence between PVI site parameters and ADMM dual variables is clearly developed, including fixed-point reasoning and explicit update equations (pp. 3–5).",
+          "FedLap-Cov is a meaningful algorithmic consequence of the connection, incorporating diagonal curvature/uncertainty as preconditioning with positive-definiteness considerations (pp. 5–6, 14).",
+          "Experiments cover several datasets, model classes, heterogeneity settings, and up to 100 clients; FedLap-Cov often improves communication-round accuracy materially (pp. 8–9, 19–20)."
+        ],
+        "weaknesses": [
+          "The connection relies on restrictive Gaussian choices and delta/Laplace approximations, while FedLap-Cov additionally neglects Hessian dependence on the mean; no convergence or approximation-error analysis supports the nonconvex deep-learning claims (pp. 4–6, 10).",
+          "Experimental selection is insufficiently specified: extensive, unequal hyperparameter sweeps are reported without a clear validation/selection protocol, results use only three seeds, and comparisons omit stronger recent curvature-aware or distillation-based federated baselines (pp. 8, 17–19).",
+          "FedLap-Func partly departs from standard privacy assumptions by sharing client examples, has added server optimization cost, and yields modest or inconsistent improvements on several settings, limiting support for broad claims about the functional extension (pp. 7–9, 18–20)."
+        ],
+        "score_rationale": "This is a novel-looking and potentially useful synthesis with a well-motivated covariance extension and encouraging empirical results. However, missing convergence guarantees, strong approximations, and uncertainty about experimental model selection and baseline breadth make it only marginally above the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents an interesting correspondence between PVI Gaussian site parameters and primal-dual federated optimization, then proposes covariance- and function-space extensions. The core perspective is novel and the reported results are promising, but the claimed connection to ADMM is narrower than advertised, and the empirical and theoretical validation is not yet sufficiently decisive.",
+        "strengths": [
+          "The Gaussian-site derivation gives a clear, useful interpretation of dual-like variables and a concise FedLap update (pp. 3–5).",
+          "FedLap-Cov is a technically motivated extension that incorporates curvature through precision variables and preconditioning, with positive-definiteness considerations discussed (pp. 5–6, 14).",
+          "Experiments span tabular and image data, several model types, heterogeneous partitions, and 10/100-client settings; FedLap-Cov often improves substantially at fixed communication rounds (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The headline connection relies on a highly restricted Gaussian family and a delta approximation, and FedLap's server update materially differs from ADMM. No convergence or approximation-error analysis is supplied, especially for the non-convex setting emphasized by the paper (pp. 4–5, 10).",
+          "The experimental evidence uses only three seeds, broad method-specific hyperparameter sweeps without a clearly specified model-selection protocol, limited statistical analysis, and mostly basic/older baselines. All-client participation further limits support for practical federated-learning claims (pp. 8–10, 17–19).",
+          "FedLap-Func shares class-selected client examples, weakening the privacy motivation, and is not compared against the federated-distillation methods it cites. Its transition from discarding Hessian terms under the fixed-precision approximation to retaining exact nonlinear function losses also appears heuristic (pp. 7–8, 15–16)."
+        ],
+        "score_rationale": "The conceptual bridge and covariance method are promising and likely useful, but the ADMM claim is somewhat overstated and the lack of convergence analysis, stronger baselines, and rigorous evaluation leaves the work marginally below the ICLR acceptance bar. Some uncertainty remains because the main algebra appears plausible, but the functional derivation is not fully convincing."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes a conceptually interesting bridge between partitioned variational inference and federated ADMM, interpreting Gaussian site parameters as dual variables and deriving covariance-aware and function-space variants. The contribution appears promising and the experiments generally support improved communication-round performance, but a central derivational inconsistency and limited theoretical and empirical validation leave the case only moderately convincing.",
+        "strengths": [
+          "The connection between variational site natural parameters and ADMM dual variables is insightful and leads to concrete algorithms rather than only an analogy (pp. 3–6). Based solely on the supplied text, the exact novelty claim remains uncertain.",
+          "FedLap-Cov introduces uncertainty-dependent preconditioning and a second dual variable in a reasonably motivated way, with positive-definiteness addressed through PSD curvature approximations (pp. 5–6, 14).",
+          "Experiments span tabular and image datasets, several architectures, heterogeneous partitions, and 10- versus 100-client settings; FedLap-Cov shows fairly consistent gains on the harder settings (pp. 8–9, 19–20)."
+        ],
+        "weaknesses": [
+          "The core PVI presentation is internally inconsistent: Eq. 5 optimizes against q_g, whereas the extra E_q[log t_k] term in Eq. 6 would require the cavity distribution q_g/t_k. As written, Eq. 6 does not follow from Eq. 5, and the claimed fixed-point equality q_k=q_g is generally unsupported (pp. 3–4).",
+          "There is no convergence or stability analysis, even for FedLap, while FedLap-Cov relies on delta/Laplace approximations, treating the Hessian as mean-independent, and PSD curvature substitutions; FedLap-Func further becomes heuristic after discarding curvature while retaining function losses (pp. 5–7, 10, 15–16).",
+          "The evidence uses only three seeds, no statistical tests despite claims of significance, limited baselines, full client participation, and extensive method-specific tuning with an unclear model-selection protocol. FedLap-Func also shares client inputs with the server, weakening the standard federated setting (pp. 8–9, 17–19)."
+        ],
+        "score_rationale": "The conceptual contribution and generally positive results merit a marginally positive score. However, the inconsistency in the central PVI-to-ADMM derivation, absence of convergence guarantees, and modest experimental rigor prevent a clear accept-level assessment; the score assumes the Eq. 5 issue is repairable rather than fatal."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper develops an interesting connection between PVI site parameters and ADMM dual variables, then uses it to motivate covariance- and function-space extensions. The conceptual contribution is promising and experiments span several datasets and heterogeneity settings, but foundational notation inconsistencies, limited theory, and an evaluation that does not fully normalize added costs make the evidence only marginally sufficient.",
+        "strengths": [
+          "The site/dual-variable correspondence is conceptually novel and yields a clear line-by-line algorithmic interpretation, with the isotropic construction leading to FedLap and the covariance construction to precision-weighted updates (pp. 3–6).",
+          "FedLap-Cov is a meaningful methodological extension: it introduces a second dual variable, Mahalanobis regularization, and uncertainty-derived preconditioning while discussing positive-definiteness and practical diagonal approximations (pp. 5–6, 14).",
+          "Experiments cover tabular and image data, multiple model classes, heterogeneous splits, and 10/100-client settings; FedLap-Cov often improves accuracy and NLL over the reported baselines (pp. 8–9, 19–20)."
+        ],
+        "weaknesses": [
+          "The foundational PVI presentation is inconsistent: Eq. 5 optimizes against q_g, whereas Eq. 6 introduces an E_q[log t_k] term that would require a cavity distribution q_g/t_k. This is not a direct rewrite as claimed and should be corrected and justified (pp. 3–4).",
+          "There is no convergence or stability analysis, particularly for non-convex models and approximate/diagonal curvature. FedLap-Cov's guarantees depend on positive-semidefinite Hessian approximations, while FedLap-Func drops curvature corrections in a way that is only heuristically justified (pp. 6–7, 15–16).",
+          "Experimental fairness is incomplete: FedLap-Cov communicates roughly twice as much per round, FedLap-Func adds server optimization and shares client inputs, and extensive method-specific hyperparameter sweeps are reported without a clear validation/selection protocol. Results use only three seeds and comparisons omit curvature-aware and distillation baselines (pp. 6–9, 17–19)."
+        ],
+        "score_rationale": "The conceptual bridge and covariance extension are valuable and empirically encouraging, supporting a marginally positive score. However, the PVI equation inconsistency affects the central derivation as written, theoretical support is absent, and the empirical gains are not consistently compared at equal communication/privacy cost. Novelty relative to all prior work remains uncertain because this assessment is restricted to the supplied manuscript."
+      }
+    }
+  ]
+}

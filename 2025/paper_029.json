@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_029",
+  "paper_id": "e0rQRMUhs7",
+  "number": 2765,
+  "title": "Federated Residual Low-Rank Adaptation of Large Language Models",
+  "authors": "Yunlu Yan; Chun-Mei Feng; Wangmeng Zuo; Rick Siow Mong Goh; Yong Liu; Lei Zhu",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "Large Languagel model; Federated Learning; Parameter-Efficient Fine-Tuning",
+  "forum_url": "https://openreview.net/forum?id=e0rQRMUhs7",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    6,
+    6,
+    8,
+    8
+  ],
+  "human_mean_rating": 6.6,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces FRLoRA, a novel Federated Learning (FL) method that addresses limitations in global knowledge learning by combining residual low-rank adaptation with periodic recalibration of local models. FRLoRA expands the effective parameter space during global updates and mitigates client drift by reinitializing local model components with principal components from the pre-trained model.  Extensive experiments across various natural language processing tasks demonstrate FRLoRA's superior performance compared to existing FL methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper is clearly presented. The proposed method is sound. Experiment results are comprehensive and validate the quality improvement of the proposed method."
+        },
+        "weaknesses": {
+          "value": "This paper presents a novel Federated Learning method, FRLoRA, which aims to improve global knowledge learning. However, the paper's practical value is limited due to two main weaknesses:\n\nLack of a compelling use case: The authors fail to clearly motivate the need for their proposed method within a real-world application scenario. While the technical contributions may be sound, the lack of a clear practical context diminishes the paper's impact and relevance.\n\nHigh communication cost: Despite claims of efficiency, the method introduces significant communication overhead, hindering its practicality in real-world deployments, where many LoRA customers care about."
+        },
+        "questions": {
+          "value": "Can the authors should further explore and demonstrate the method's effectiveness in a specific application domain and address the communication cost limitations to enhance its practical value."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "VWJEfEiMWZ",
+      "forum": "e0rQRMUhs7",
+      "replyto": "e0rQRMUhs7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_RHQ7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_RHQ7"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2765/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731204588500,
+      "cdate": 1731204588500,
+      "tmdate": 1731427651869,
+      "mdate": 1731427651869,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a method known as FRLoRA (Federated Residual Low-Rank Adaption) to address the problem of Parameter-Efficient Fine-Tuning (PEFT) for Large Language Models (LLMs) in Federated Learning (FL) scenarios. FRLoRA updates global model parameters by introducing a residual low-rank matrix product and reinitializes local low-rank matrices in each training round to mitigate client drift. The paper compares FRLoRA with existing FL baseline methods across multiple datasets in natural language understanding and generation tasks, demonstrating its consistent superiority and validating the effectiveness of the proposed FRLoRA."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. FRLoRA effectively addresses the significant impact of data heterogeneity on PEFT in FL scenarios by accumulating the product of residual low-rank matrices, enabling the global model to learn more comprehensive knowledge.\n2. By reinitializing local low-rank matrices at each training round, FRLoRA alleviates client drift issues, enhancing the convergence and performance of the model.\n3. Extensive experiments validate the performance improvements of FRLoRA over existing methods across various natural language processing tasks."
+        },
+        "weaknesses": {
+          "value": "1. The updates derived from averaging the uploaded matrices A and B at the server differ from the averaged updates across clients, and this discrepancy is likely to amplify in heterogeneous data scenarios. [Improving LoRA in Privacy-preserving Federated Learning]\n2. Although the paper proposes extending the parameter space through residual updates, it does not clearly specify whether the rank of the model parameters is strictly improved after each residual update, lacking further explanation on how this mechanism operates, particularly regarding its impact on model rank and representational capacity."
+        },
+        "questions": {
+          "value": "See Weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PmNrbYXbAw",
+      "forum": "e0rQRMUhs7",
+      "replyto": "e0rQRMUhs7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_pHac"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_pHac"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2765/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730819999408,
+      "cdate": 1730819999408,
+      "tmdate": 1732882555827,
+      "mdate": 1732882555827,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents Federated Residual Low-Rank Adaptation (FRLoRA), a federated learning method that improves LoRA for LLMs. FRLoRA overcomes challenges like constrained parameter spaces and client drift by updating in a higher-rank parameter space and reinitializing local low-rank matrices based on the principal singular values of pre-trained weights. Experiments show that FRLoRA consistently outperforms existing federated learning methods across benchmarks in NLU and NLG tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper introduces a unique adaptation of LoRA for federated learning with residual low-rank updates and reinitialization in the principal singular space.\n\n2. Extensive experiments on multiple benchmarks confirm FRLoRA’s robust improvements across NLU and NLG tasks in various federated settings."
+        },
+        "weaknesses": {
+          "value": "1. The reinitialization of local low-rank matrices and the use of SVD may introduce significant computational overhead, particularly for large-scale models. An in-depth analysis of this aspect or potential optimizations would provide added value to the paper.\n\n2. Although the method shows performance improvements overall, in Table 3, the proposed approach does not appear to dominate across all evaluations. A similar pattern is observed in Table 4, indicating that while the method is strong, it may not consistently outperform existing baselines in certain subcases.\n\n3. While the paper briefly touches on SVD stability, it lacks a detailed analysis of potential impacts and does not explore alternative methods for scenarios where SVD might lead to convergence issues. Additional insights on this aspect could reinforce the robustness and general applicability of the approach."
+        },
+        "questions": {
+          "value": "Q1: Could the authors provide further analysis on the computational impact of using SVD for reinitialization in terms of time and memory requirements?\n\nQ2: Could the authors provide further analysis on the behaviour on Table 3 and 4?\n\nQ2:How does FRLoRA handle scenarios where singular value decomposition may be unstable? Are there alternative initialization strategies?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Vj6t6lPaxA",
+      "forum": "e0rQRMUhs7",
+      "replyto": "e0rQRMUhs7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_vtoo"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_vtoo"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2765/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730720037392,
+      "cdate": 1730720037392,
+      "tmdate": 1731427652136,
+      "mdate": 1731427652136,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores the challenges of using LoRA in Federated Learning (FL) for fine-tuning large language models (LLMs) on non-IID data. The authors identify that LoRA in FL struggles to learn global knowledge due to two key issues: extrinsic client drift and an intrinsic constrained update space. The authors propose FRLoRA (Federated Residual Low-Rank Adaptation) to overcome these challenges. FRLoRA initializes the LoRA matrices  $A$  and  $B$  using the Singular Value Decomposition (SVD) of the initial weights  $W_0$, while freezing the residual initial weight. During training, the locally updated LoRA matrices are aggregated and combined with the residual weight, creating the initial model for the next training round. This method addresses both client drift and limited update space, of which theoretical justification is presented. The experiments on nine language model benchmarks show that FRLoRA consistently outperforms various baseline methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "**Addressing Non-IID Challenges in FL with LoRA:** FRLoRA tackles an important challenge in federated fine-tuning of LLMs by addressing both client drift and constrained parameter space through aggregated $\\Delta W$ updates via SVD.\n\n**Theoretical Justification:** The authors provide a simple theoretical justification of FRLoRA using a rank analysis of the parameter space, although the rank analysis can be far from the practice.\n\n**Comprehensive Evaluation:** The study provides extensive experiments across nine benchmarks, covering Natural Language Understanding and Generation, validating FRLoRA’s efficacy in terms of performance and communication cost."
+        },
+        "weaknesses": {
+          "value": "**Insufficient Evidence on the Problem Formulation:** The authors characterize the client drift using Figure 1 (c-d) but it is not convincing. To be specific, the norm of $\\Delta W$ and the standard deviation can be simply reduced by the other factors, e.g., learning rate. Perhaps, it would be better to (i) focus on a single round rather than the sequence of rounds and (ii) observe the distribution of cosine similarity rather than the standard deviation. It is also helpful to analyze the other FL methods.\n\nIn addition, the authors claim that the constrained parameter space is one of the major problems in the naive method (FedAVG + LoRA). The simple rank analysis supports this claim. However, it is not thoroughly studied in empirical analysis. Hypothetically, the constrained parameter space problem can be simply addressed by employing large rank $r$.\n\n\n\n**Limitations in Non-IID Testing Scenarios:** Experiments use a Dirichlet (0.5) Non-IID setting with five clients for binary classification, while NLG tests are performed on IID data. Broader Non-IID experiments would better showcase FRLoRA's robustness instead of just increasing the number of benchmarks.\n\n\n**Limited Comparision to Existing Works:** The baselines used for comparison, such as FedYogi, FedAdam, and FedProx, do not integrate LoRA, making comparisons with these methods less relevant. Only FFA-LoRA offers a directly comparable baseline. Apparently, there is another LoRA method for FL, FlexLoRA (https://arxiv.org/abs/2402.11505, Feb 2024), in which a similar idea of using SVD per round is proposed. In addition, the idea of using the residual is analog to the one in Chain of LoRA (https://arxiv.org/abs/2401.04151, Jan 2024), which needs to be discussed."
+        },
+        "questions": {
+          "value": "## Questions \n**Does FRLoRA Fully Address the Intrinsic Challenge?**: While FRLoRA expands the parameter space globally, it does not necessarily address the constrained optimization space at the local level. Can the expanded global space fully mitigate intrinsic issues without modifying local optimization constraints?\n\n**Catastrophic Forgetting at Low Ranks**: Direct updates to $W_0$ in a low-rank context may risk catastrophic forgetting. Can FRLoRA’s SVD initialization mitigate this risk, or could additional ablation studies on learning rates clarify this?\n\n**Comparison to Chain of LoRA’s Residual Framework**: Both FRLoRA and Chain of LoRA use residual structures for fine-tuning. How does FRLoRA’s SVD-based initialization impact its effectiveness relative to the iterative approach of Chain of LoRA? Further analysis of residual efficacy could enhance the comparative evaluation.\n\n**More Diverse Data Heterogeneity**: Is there an empirical study for NLG with severe heterogeneity?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Yu4OQH7pPW",
+      "forum": "e0rQRMUhs7",
+      "replyto": "e0rQRMUhs7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_Acqq"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_Acqq"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2765/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730534345526,
+      "cdate": 1730534345526,
+      "tmdate": 1732527627040,
+      "mdate": 1732527627040,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper, the author proposes a novel framework named federated residual low-rank adaption to effectively fine-tune the pretrained large language model in a privacy-preserving manner. The proposed method addresses both the intrinsic problem caused by constrained parameter space and the extrinsic problem caused by the drift among clients. Extensive experiments on several datasets have shown the effectiveness of the proposed method."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The idea of enlarging the parameter space when finetuning large laugunge model in federated learning is promising.\n2. The paper is well organized and the related works are thoroughly summarized.\n3. The discussion of the weakness of exsiting related works and the novelty of the proposed method are clear.\n4. The author conducts comprehensive experiments to demonstrate the effectiveness of the proposed method, which is convincing."
+        },
+        "weaknesses": {
+          "value": "1. In Eqs. (6) and (7), the author initializes the local low-rank matrices by the low-rank matrices reconstructed from the top singular values, while remaining the residual part as the global model . In my opinion, this makes the low-rank matrices retain the most information in the pretrained model, while the information remained in the global model can be significanly reduces.  However, in FL, the global model should contain more generalized information from the pre-trained model, which is contrast to the above parameter decoupling operation. So I am curious that whether this operation can reduce the generalization capacity or convergence speed of FL?\n\n2. The motivation of the proposed low-rank matrice initilization lacks further discussion. Can the author provide more detailed discussion about this by such as landscape visualization?\n\n3. Why the global model are initialized by the residual matrice? It seems that directly using the pre-trained model parameters as the global model can provide a more generalized initialization during the FL training. Can the author provide a more detailed discussion about this?\n\n4. In Eqs. (13) and (14),  the author claims that by using residual accumulation, the model fine-tuned space can be expanded. However, Eq. (14) seems to only give a upper bound of the summed matrices rather than increasing its lowe bounder of the summed matrices. So it can not guarantee that the rank of the summed matrices can be increased by such a residual accumulation operation. Can the author provide a more in-depth discussion about this?\n\n5. Actually, the standard PEFT by LoRa in FL can also be formulated as Eq. (13), with $\\delta W^t$ as the global update of the LoRa parts at each global round. So what is the real differences between the standard method and the proposed FRLoRA?"
+        },
+        "questions": {
+          "value": "The items listed in the weaknesses. If the author can address or partially address these problems, I will be pleasure to improve my score."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "e0HySPmWID",
+      "forum": "e0rQRMUhs7",
+      "replyto": "e0rQRMUhs7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_Ddf1"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2765/Reviewer_Ddf1"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2765/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730293204878,
+      "cdate": 1730293204878,
+      "tmdate": 1732858629914,
+      "mdate": 1732858629914,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FRLoRA accumulates per-round low-rank residuals into the backbone and reinitializes adapters using a fixed principal-SVD initialization. The approach is practically plausible and reports broad gains, but its central rank argument is mathematically invalid and the empirical evidence contains notable reliability and reporting problems.",
+        "strengths": [
+          "The method is simple, clearly motivated, and combines residual accumulation with SVD-based reinitialization in a way that is readily implementable (pp. 5–6).",
+          "Experiments cover nine NLU/NLG datasets, heterogeneous and IID partitions, partial participation, several model families, and multiple ranks (pp. 7–10, 17–24).",
+          "Ablations separately examine the residual update and initialization mechanisms, with consistent reported gains for their combination (p. 10)."
+        ],
+        "weaknesses": [
+          "The main theoretical conclusion does not follow: an upper bound on rank does not imply that rank increases with rounds (p. 6), and Appendix D's claim that FRLoRA's update rank is at least FedAvg's is false because summed low-rank matrices can cancel or share subspaces (p. 25). Likewise, freely trained factors are not shown to remain in the initial principal singular space.",
+          "Evidence lacks seeds, error bars, or significance tests, despite small evaluation sets and stochastic client selection. GPT-4 judging is especially questionable: it rates the FRLoRA answer on p. 22 as accurate even though it falsely describes Python variables as having fixed types and JavaScript functions as second-class.",
+          "Several inconsistencies undermine reproducibility: batch size is 64 on p. 7 but 32 in Table 8 (p. 18); the NLU metric description is reversed on p. 18; and FedAdam's r=64 average in Table 10 is reported as 39.44 although the displayed component scores average to 19.72 (p. 20)."
+        ],
+        "score_rationale": "The broad empirical improvements make the method potentially useful, but the claimed theoretical justification is incorrect and the absence of uncertainty estimates, unreliable judge example, and multiple numerical/configuration inconsistencies prevent confidence in the reported advantage. This places the work below the ICLR acceptance threshold despite its promising practical idea."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FRLoRA repeatedly merges an aggregated low-rank residual into the base weights and reinitializes adapters in the pretrained model’s principal singular space. The method is simple and empirically promising, but its central rank analysis is invalid as stated, while numerical/reporting errors and missing uncertainty weaken the otherwise broad evaluation.",
+        "strengths": [
+          "The method is practically understandable and combines cumulative residual merging with a shared initialization intended to address both limited adapter rank and heterogeneous-client drift (pp. 5–6).",
+          "Experiments span four NLU and five NLG datasets, multiple participation regimes, three model families, several ranks, and relevant FL/LoRA baselines (pp. 7–10, 20–24).",
+          "Ablations separately examine residual accumulation and initialization, and generally support their complementarity (p. 10)."
+        ],
+        "weaknesses": [
+          "The main theoretical conclusion does not follow: the additive-rank inequality only supplies an upper bound and cannot show that rank increases with rounds (p. 6); the appendix’s claim that FRLoRA’s update rank is always at least FedAvg’s is false without strong independence/non-cancellation assumptions (p. 25).",
+          "Experimental reliability is limited by no reported seeds, variances, or significance tests, despite small evaluation sets and GPT-4 judging. There are also concrete inconsistencies/errors: batch size differs between pp. 7 and 18, the 20NG/CoLA metric description is reversed on p. 18, and FedAdam’s r=64 average is incorrectly reported as 39.44 on p. 20.",
+          "Novelty and systems evidence are incomplete: the work does not adequately distinguish its cumulative merge-and-reinitialize strategy from straightforward periodic adapter merging, and partial participation raises per-round communication from 16.77 MB to 92.26 MB without latency or wall-clock analysis (p. 23)."
+        ],
+        "score_rationale": "The broad, consistently favorable experiments make the approach potentially useful, but the false central rank claim and insufficiently reliable quantitative evidence prevent acceptance in its current form. I therefore rate it marginally below the acceptance threshold, with some uncertainty because repeated-run results could materially change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FRLoRA combines per-round residual low-rank updates with fixed principal-singular-space reinitialization for federated LLM adaptation. The method is simple and empirically promising, but its central theoretical claims are incorrect and the experimental reporting lacks enough statistical rigor to establish the broad conclusions.",
+        "strengths": [
+          "The residual-update and reinitialization scheme is practically simple and offers a moderately novel adaptation of low-rank federated training (pp. 5–6).",
+          "The evaluation spans nine NLU/NLG datasets, heterogeneous and IID settings, partial participation, multiple ranks, and several model families (pp. 7–10, 17–20).",
+          "Reported improvements are often substantial, and the ablations separately examine residual accumulation and initialization (p. 10)."
+        ],
+        "weaknesses": [
+          "The main rank argument is invalid: an additive-rank upper bound does not imply that rank increases with rounds (p. 6), and the claimed inequality rank(FRLoRA) ≥ rank(FedAvg) is false without strong assumptions (p. 25). Thus the stated theoretical justification is not established.",
+          "Results provide no seeds, error bars, significance tests, or robustness of GPT-based judging. Indeed, the judge labels an objectively inaccurate response as “accurate” (e.g., the false claim that JavaScript functions are second-class citizens, p. 22), weakening key NLG evidence.",
+          "There are material reporting inconsistencies/errors: the appendix swaps the CoLA/20NG metrics (p. 18), Table 10 reports an impossible FedAdam average of 39.44 instead of about 19.72 (p. 20), and the claimed sub-1 MB peak memory for LLaMA-2-7B SVD is insufficiently explained (p. 23)."
+        ],
+        "score_rationale": "The broad empirical gains make the approach potentially useful, but the paper overstates its theoretical support and lacks variance-controlled evidence. Evaluation and numerical inconsistencies further reduce confidence. I therefore place it marginally below acceptance, with some uncertainty because the reported gains could remain valid after correction and stronger replication."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FRLoRA accumulates per-round low-rank residuals into the frozen backbone and reinitializes LoRA factors using the pretrained weights’ principal singular components. The method is moderately novel and reports broad, generally favorable results, but central theoretical claims are invalid and the empirical evidence lacks sufficient reliability checks.",
+        "strengths": [
+          "The residual-accumulation plus fixed principal-space reinitialization design is simple, practically relevant, and distinct from straightforward FedAvg+LoRA (pp. 5–6).",
+          "Experiments cover nine NLU/NLG datasets, heterogeneous and IID partitions, partial participation, multiple ranks and model families, with component ablations (pp. 7–10, 17–24).",
+          "Reported gains are often substantial, including on MetaMathQA and across alternative LLMs (pp. 8, 20)."
+        ],
+        "weaknesses": [
+          "The main theory is incorrect: an additive-rank upper bound does not establish that rank increases, independence is merely asserted, and the claimed inequality rank(FRLoRA update) ≥ rank(FedAvg update) is false in general (pp. 6, 25).",
+          "Averaging B and A separately and then multiplying introduces cross-client terms and is not the average client update; consequently, interpreting the resulting residual as the global gradient or as analogous to FFT FedAvg is insufficiently justified (pp. 4–6).",
+          "Evidence has no seeds, error bars, or significance tests, and GPT-4 judging is visibly unreliable: responses containing factual/arithmetic errors receive scores of 9 (pp. 21–22). There are also reproducibility inconsistencies, such as batch size 64 versus 32 (pp. 7, 18) and an erroneous average in Table 10 (p. 20)."
+        ],
+        "score_rationale": "The method is promising and empirically broad, with meaningful reported improvements and useful ablations. However, its theoretical justification contains a decisive false claim, while parameter aggregation and evaluation reliability remain under-analyzed. I therefore place it marginally below acceptance; uncertainty remains because repeated-run statistics could materially change confidence in the empirical gains."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FRLoRA accumulates per-round LoRA residuals into the frozen backbone and resets adapters using a fixed principal-SVD initialization. The approach is simple and empirically promising across multiple NLU/NLG settings, but its central theoretical justification is incorrect and the experimental reporting contains enough inconsistencies to weaken confidence in the claimed gains.",
+        "strengths": [
+          "The residual-update construction is practically simple and preserves parameter-efficient client-to-server updates while allowing accumulated updates to exceed rank r (pp. 5–6).",
+          "The evaluation spans nine NLU/NLG datasets, IID and heterogeneous partitions, partial participation, several ranks, and three model families (pp. 7–10, 17–24).",
+          "Ablations separately examine residual accumulation and initialization, with the full method generally outperforming both components alone (p. 10)."
+        ],
+        "weaknesses": [
+          "The rank analysis is unsound: the additive rank inequality provides only an upper bound and does not imply that rank increases with rounds (p. 6); the asserted lower bound rank(FRLoRA) ≥ rank(FedAvg) is false in general, while the claimed linear independence is neither established nor generally plausible (p. 25).",
+          "Results lack repeated-run uncertainty or significance tests, and GPT-4 evaluation reliability is concerning: an FRLoRA answer incorrectly calls JavaScript functions second-class yet receives 9/10 (p. 22). Comparisons copied from prior work are also insufficiently documented for exact checkpoint/evaluation comparability (pp. 8–9).",
+          "There are material reporting errors and inconsistencies: FedAdam's r=64 average is listed as 39.44 although 34.26 and 5.18 average to 19.72 (p. 20); batch size is 64 in the main text but 32 in Table 8 (pp. 7, 18); and the appendix swaps the stated CoLA/20NG metrics (p. 18)."
+        ],
+        "score_rationale": "The broad empirical improvements make the idea potentially useful, but the false central theorem, lack of statistical validation, questionable judge evidence, and multiple numerical/setup inconsistencies prevent acceptance in its current form. I am somewhat uncertain about reproducibility because only the supplied manuscript is available."
+      }
+    }
+  ]
+}

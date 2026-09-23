@@ -1,0 +1,212 @@
+{
+  "year": 2026,
+  "package_id": "paper_056",
+  "paper_id": "oKGe5wcMbt",
+  "number": 12511,
+  "title": "Dual-Robust Cross-Domain Offline Reinforcement Learning Against Dynamics Shifts",
+  "authors": [
+    "Zhongjian Qiao",
+    "Rui Yang",
+    "Jiafei Lyu",
+    "Xiu Li",
+    "Zhongxiang Dai",
+    "Zhuoran Yang",
+    "Siyang Gao",
+    "Shuang Qiu"
+  ],
+  "primary_area": "reinforcement learning",
+  "keywords": [
+    "Offline Reinforcement Learning; Cross-domain Policy Adaptation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=oKGe5wcMbt",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    4,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.333333333333333,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "CbITPMfjBN",
+      "forum": "oKGe5wcMbt",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12511/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761586988530,
+      "tmdate": 1762923380195,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "NAYhSwThTL",
+      "forum": "oKGe5wcMbt",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12511/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761679756610,
+      "tmdate": 1762923379905,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "kCslrlnJvA",
+      "forum": "oKGe5wcMbt",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12511/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761548671371,
+      "tmdate": 1762923380509,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces DROCO for jointly handling source–target dynamics mismatch and deployment-time perturbations in cross-domain offline RL. The problem is worthwhile and the MuJoCo study is broad, but the central theoretical justification contains serious errors, while the empirical protocol does not adequately isolate or fairly validate the claimed robustness gains.",
+        "strengths": [
+          "The paper identifies a practically relevant gap—test-time dynamics robustness under scarce target data—and motivates it empirically (pp. 3, 28).",
+          "Experiments cover four locomotion tasks, two training-shift families, several dataset qualities, five seeds, and useful component/sensitivity studies (pp. 7, 28–35).",
+          "DROCO generally obtains strong clean-target performance and favorable perturbation curves relative to IGDF and OTDF (pp. 7–8, 29–31)."
+        ],
+        "weaknesses": [
+          "Proposition 4.2 is generally false: a Wasserstein ball over transition distributions is not equivalent to independently restricting every perturbed next state to an ε-ball. The correct distributionally robust dual retains an optimization over a Lagrange multiplier; Eq. 21 does not establish Eq. 17 (pp. 4, 16–18). This also undermines Proposition 4.5, where a Wasserstein bound is treated as a pointwise coupling/support guarantee (pp. 5, 20).",
+          "Proposition 4.4's proof compares maxima over behavior-policy supports at different states using one action, although that action need not be supported at both states. Lipschitz continuity of Q for each fixed action does not repair this, and the resulting Q bound does not itself guarantee policy-level train-time robustness (pp. 5, 18–20).",
+          "The robustness evidence compares only against IGDF and OTDF, lacks uncertainty bars in the decisive perturbation plots, and largely uses expert-quality source datasets (pp. 8, 29–31). Moreover, β and δ are selected separately for each dataset without a stated offline validation protocol, creating substantial tuning uncertainty (pp. 9, 38)."
+        ],
+        "score_rationale": "The problem and empirical breadth are valuable, and the practical heuristic appears promising. However, multiple core propositions supporting the claimed dual-robustness guarantee are invalid, and the robustness evaluation lacks sufficiently strong controls and a credible hyperparameter-selection protocol. These issues place the work below the acceptance threshold despite encouraging results; uncertainty remains because code-level reproduction could clarify the empirical protocol."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "DROCO targets the useful but underexplored problem of simultaneous train- and test-time dynamics robustness in cross-domain offline RL. It combines a pessimistic source-domain backup, target-dynamics ensembles, a tunable value penalty, and Huber loss. The empirical results are promising, but the central theoretical equivalences and robustness guarantees appear invalid, while the evaluation and tuning protocol do not yet establish the claimed general robustness.",
+        "strengths": [
+          "The dual-robustness problem formulation is practically relevant, and explicitly studying deployment-time dynamics shifts in cross-domain offline RL is a useful contribution (pp. 1–3).",
+          "DROCO obtains strong aggregate clean-target performance across 32 kinematic and morphology settings, with five-seed results for the proposed method and several baselines (pp. 7, 28–29).",
+          "The appendices provide extensive perturbation, ablation, sensitivity, dataset-size, and distinct-behavior-policy experiments (pp. 29–37)."
+        ],
+        "weaknesses": [
+          "The theoretical foundation has major errors. A Wasserstein-ball distributional optimization is not generally equivalent to independently constraining every perturbed next state to an epsilon-ball as claimed in Proposition 4.2; the correct dual retains a Lagrange multiplier and an average transport budget. The assertion that Eq. 21 is exactly Eq. 17 is unjustified (pp. 4, 16–18). Likewise, W(Pper,Ptar)≤c does not imply an almost-sure c-bounded perturbation, invalidating the key inequality in Proposition 4.5 (pp. 5, 20).",
+          "Other formal gaps further weaken the guarantees: the operator branches on the data's domain and can assign two backups to the same state-action pair, so it is not clearly a single operator on the claimed state-action space; Proposition 4.4 compares maxima whose behavior-policy supports vary by state; and the practical target-model ensemble does not satisfy the support-covering assumptions used by the theory (pp. 3–6, 18–20).",
+          "The empirical evidence is not sufficiently controlled for the broad robustness claim. Test-time comparisons include only IGDF and OTDF rather than robust offline-RL baselines, perturbation plots omit uncertainty bars, min-Q attack implementation is underspecified, and beta/delta are selected separately for nearly every dataset without a validation protocol, raising oracle-tuning concerns (pp. 8, 29–35, 38)."
+        ],
+        "score_rationale": "The problem and empirical breadth are valuable, and the reported performance is encouraging. However, the claimed theoretical dual robustness rests on incorrect Wasserstein reasoning, while substantial per-task tuning and limited robustness baselines make the empirical advantage less conclusive. I therefore rate it below the acceptance threshold; uncertainty remains because corrected theory or a clearly held-out tuning protocol could materially improve the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper studies an important, underexplored combination of train-time and deployment-time dynamics robustness in cross-domain offline RL. DROCO combines a pessimistic source-domain backup, a target-dynamics ensemble, a value penalty, and Huber loss, and reports broad clean-environment gains plus encouraging perturbation results. However, the central theoretical bridge is incorrect: a Wasserstein ball constrains expected transport cost and is not generally equivalent to independently restricting every transported state to an ε-ball. Consequently, the claimed dual reformulation and downstream robustness guarantee do not hold as stated, while the practical algorithm also departs substantially from the analyzed operator.",
+        "strengths": [
+          "The dual-robustness problem is practically relevant and clearly motivated, including evidence that limited target data worsens deployment fragility (pp. 3 and 28).",
+          "Clean-target experiments cover four MuJoCo agents, two source-shift families, and four dataset qualities; DROCO obtains strong aggregate results (pp. 7 and 28–29).",
+          "Appendices provide substantial implementation detail, component ablations, sensitivity studies, and experiments with differing behavior policies (pp. 24–38)."
+        ],
+        "weaknesses": [
+          "Proposition 4.2 is generally false: Wasserstein distance imposes an average coupling-cost constraint, whereas Eq. 17 imposes a pointwise constraint d(s′,s̄)≤ε. The correct dual shown in Eq. 21 retains optimization over a Lagrange multiplier and does not establish Eq. 17; Proposition 4.5 relies on the same invalid implication (pp. 4, 18, and 20).",
+          "The implemented ensemble minimum is not the analyzed state/Wasserstein uncertainty set and cannot cover transition support with finitely many samples. Thus the theoretical dual-robustness results do not justify DROCO; Proposition 4.6 only gives a loose one-sided estimate under a uniform TV-error assumption unlikely with scarce target data (pp. 5–6 and 21).",
+          "Test-time evidence is incomplete: comparisons include only IGDF and OTDF rather than robust-offline-RL baselines, focus mainly on expert datasets, often lack uncertainty/error bars, and use dataset-specific β and δ values that raise model-selection and fairness concerns (pp. 8, 29–35, and 38)."
+        ],
+        "score_rationale": "The problem and empirical effort are valuable, and the reported results suggest a potentially useful heuristic. Nevertheless, the principal novelty is presented as a theoretically justified robust Bellman operator, and its key Wasserstein reformulation—and therefore the claimed test-time guarantee—is invalid. Combined with limited robustness baselines and per-dataset tuning, this is a major rather than minor correctable issue, placing the work below the acceptance threshold despite promising empirical performance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper studies train- and test-time robustness in cross-domain offline RL and proposes DROCO, combining pessimistic backups through target-dynamics ensembles, a tunable value penalty, and Huber critic loss. The empirical scope is substantial, but the central distributionally robust derivation appears incorrect, and the evaluation protocol leaves important tuning and baseline concerns unresolved.",
+        "strengths": [
+          "The dual-robustness problem is practically relevant and clearly motivated by degradation under deployment-time dynamics shifts (pp. 3, 28).",
+          "Experiments cover four MuJoCo agents, two training-shift types, several dataset qualities, multiple test perturbations, and five seeds for DROCO and selected baselines (pp. 7–8, 28–31).",
+          "The appendices provide useful implementation details, component ablations, sensitivity studies, hyperparameters, and compute costs (pp. 24–39)."
+        ],
+        "weaknesses": [
+          "Proposition 4.2 is generally false: a Wasserstein-ball constraint imposes an average transport-cost budget, not an independent pointwise constraint d(s',s̄)≤ε. The valid dual retains optimization over a Lagrange multiplier, so Eq. 21 is not equivalent to Eq. 17 as claimed (pp. 4, 16–18). This also undermines the practical-operator interpretation and the test-time guarantee, whose proof similarly treats Wasserstein distance as a per-transition bounded perturbation (pp. 5, 20).",
+          "The practical algorithm is only loosely connected to the theory: a finite ensemble trained on scarce target data neither constructs nor covers the assumed uncertainty sets, and Proposition 4.6 supplies only a weak one-sided estimate under a uniform model-error assumption rather than a policy-performance guarantee (pp. 5–6, 21).",
+          "Empirical conclusions are vulnerable to selection bias: β and δ are chosen separately for every dataset without a stated offline validation protocol (p. 38), test-time comparisons include only IGDF and OTDF rather than robust-offline-RL baselines (pp. 8, 29–31), and perturbation plots lack uncertainty bars. Some baseline table entries also omit variances despite the stated five-seed protocol (pp. 7, 29)."
+        ],
+        "score_rationale": "The problem formulation and broad empirical results are promising, and DROCO may be practically useful. However, the claimed theoretical foundation contains a decisive Wasserstein-reformulation error, while per-task hyperparameter selection and incomplete robustness comparisons weaken the evidence. These issues put the work below the acceptance threshold despite its empirical breadth."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces DROCO for simultaneous train-time and deployment-time robustness in cross-domain offline RL. The setting is worthwhile and the MuJoCo results are promising, but the central theoretical equivalence and robustness guarantees appear invalid under the stated Wasserstein distance, while the robustness evaluation and hyperparameter protocol leave important empirical uncertainty.",
+        "strengths": [
+          "The dual-robustness problem is practically motivated, and the paper clearly demonstrates increased sensitivity when target-domain data are scarce (pp. 3, 28).",
+          "Experiments cover 32 source-target dataset pairs, two training-shift families, five seeds, multiple target-data sizes, and useful component ablations (pp. 7, 28–35).",
+          "DROCO often produces sizable empirical gains in both clean-target performance and perturbation curves, especially relative to IGDF and OTDF (pp. 7–8, 29–31)."
+        ],
+        "weaknesses": [
+          "Proposition 4.2 is not a valid equivalence for the stated Wasserstein-1 uncertainty set: a distribution-level expected transport budget yields a Lagrangian dual, not an independent pointwise constraint d(s',s̄)≤ε. The proof jumps from the correct dual expression to this inequivalent constraint (pp. 4, 16–18). Proposition 4.5 similarly treats a Wasserstein bound as an almost-sure per-transition perturbation bound (pp. 5, 20), undermining the claimed theoretical dual robustness.",
+          "Proposition 4.6 also appears unjustified: total-variation closeness does not make model samples conditioned on the target support distributed as Ptar, so the displayed expectation bound does not follow merely by controlling out-of-support mass (pp. 6, 21). Moreover, the practical ensemble/penalty algorithm no longer satisfies the support-coverage assumptions used by the theory.",
+          "Test-time robustness is reported mainly on four expert-data configurations, against only IGDF and OTDF, generally without uncertainty bars; the min-Q attack is policy/value-dependent and may not give comparable perturbations across methods (pp. 8, 29–31). Separately tuned β and δ values for every dataset, including 32 configurations, are listed without a validation or selection protocol (p. 38), creating test-tuning and fairness concerns."
+        ],
+        "score_rationale": "The paper has a useful problem formulation, substantial experiments, and encouraging results. However, the claimed theoretical foundation contains central errors, and the restricted/tuned robustness evaluation is insufficient to compensate. The contribution therefore falls below the acceptance bar despite empirical promise."
+      }
+    }
+  ]
+}

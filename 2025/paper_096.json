@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_096",
+  "paper_id": "PLgHiJOjcH",
+  "number": 13468,
+  "title": "LISA: UNLEASHING 2D DIFFUSION FOR 3D GENERATION VIA LIGHTWEIGHT IMAGE SPLATS ADAPTATION",
+  "authors": "Zexin Yin; jian Yang; Shenlong Wang; Jin Xie",
+  "primary_area": "generative models",
+  "keywords": "3D asset creation; lightweight adapter; Gaussian Splats",
+  "forum_url": "https://openreview.net/forum?id=PLgHiJOjcH",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    5,
+    5,
+    5,
+    3
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposed a method to adapt features from pre-trained 2D diffusion models to 3D asset represented by Gaussian Splatting."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1) The proposed method is light-weight and easy to implement.  As described in the paper, the training is done just on RTX 3090 GPU within 1 day.\n2) The proposed method can be extended to in-cooperate other priors as described in Sec 3.3.\n3) The experiments results demonstrate that the proposed method is effective in text-to-3d tasks, as well as the relighting tasks."
+        },
+        "weaknesses": {
+          "value": "1) The authors claim that they exploit 2D diffusion prior for 3d generation. Specifically, it depends on a multi-view 2D diffusion model. The difficulties to use 2D diffusion model / multi-view 2D diffusion model are totally different. When a set of multi-view image is ready, the 3D asset is almost off-the-shelf. There are many works employ 2D multi-view model to generate 3D assets. For example, cat3d[1], mvssplat[2]. So why do we need to design a adapter to transform the multi-view diffusion features to 3D?\n\n2) Following 1),  If the proposed method is superior or can be used to improve the base model of multi-view-to-3d methods, more comparisons are necessary. Currently, only experiments on MVSDream is provided.\n\n3) Maybe more generated samples are helpful to prove the effectiveness of the proposed method. And the multi-view rgb images from the 2D diffusion model are needed for comparison.\n\n4) Too many typos in writing. e.g. Figure 4(b) in line 283-284. where is Fig 4b? ; line 269, Tough-> Though;...\n\n[1]Gao, Ruiqi, et al. \"Cat3d: Create anything in 3d with multi-view diffusion models.\" arXiv preprint arXiv:2405.10314 (2024).\n\n[2]Chen, Yuedong, et al. \"Mvsplat: Efficient 3d gaussian splatting from sparse multi-view images.\" arXiv preprint arXiv:2403.14627 (2024)."
+        },
+        "questions": {
+          "value": "1) Any possibility to use single view 2D diffusion models as the base model? It should be a big step if it works, compared with the time-consuming SDS-based methods.\n2)  The paper mentioned in line 296 \"we leverage pre-trained a lightweight super-resolution model Wang et al. (2021b) to upsample the\nfeature maps\". Does it make sense that the model pre-trained on natural images can be used to upsample the features in your work?\n3) Please see the weaknesses I proposed before."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QIvrl0sQtz",
+      "forum": "PLgHiJOjcH",
+      "replyto": "PLgHiJOjcH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_syqm"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_syqm"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13468/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730638887527,
+      "cdate": 1730638887527,
+      "tmdate": 1731428972620,
+      "mdate": 1731428972620,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents LISA (Lightweight Image Splats Adaptation), an approach to leverage 2D diffusion models for 3D asset generation. The key idea is to integrate a lightweight adapter into a frozen 2D diffusion model's decoder to simultaneously generate RGB images, Gaussian splats, and physics-based rendering material maps. The method enables direct feed-forward generation of relightable Gaussian splats, which can be converted into 3D meshes through inverse rendering."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- the method is leveraging a pre-trained 2D diffusion model as prior for its 3D generation task \n- the integration of physics-based rendering material maps adds utility for graphics pipeline integration \n- feed-forward generation could potentially enable faster 3D asset generation"
+        },
+        "weaknesses": {
+          "value": "- the novelty is incremental given the recent surge of papers combining 2D diffusion models with 3D generation\n- limited discussion of failure cases and limitations\n- the paper would benefit from more ablation studies on the adapter architecture choices"
+        },
+        "questions": {
+          "value": "- how sensitive is the method to the choice of the base 2D diffusion model? \n- what are the limitations in terms of geometry complexity that can be handled? \n- how the material maps can be reconstructed well, given the material-lighting ambiguities? \n- how does the method handle multi-view consistency, especially for complex objects?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "2xz7iVBCZy",
+      "forum": "PLgHiJOjcH",
+      "replyto": "PLgHiJOjcH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_VZCR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_VZCR"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13468/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730609534624,
+      "cdate": 1730609534624,
+      "tmdate": 1731428972922,
+      "mdate": 1731428972922,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents an efficient framework for adapting a multi-view diffusion model to generate 3D assets represented through Gaussian Splatting. Unlike previous approaches, this method reuses feature maps from a pre-trained, frozen diffusion model, resulting in more efficient training and a lightweight model design. Additionally, the paper explores improved mesh extraction using 2D Gaussian Splatting (2DGS) and Physically-Based Rendering (PBR) materials, guided by multiple diffusion priors. Experimental results validate these claims, showcasing the method’s enhanced performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "* The proposed lightweight 3D adaptor is both novel and effective, offering a new approach to leveraging 3D information within a multi-view 2D diffusion model.\n* The method’s efficiency significantly reduces the compute requirements and training time.\n* Extensive experiments are conducted to validate and support the proposed contributions."
+        },
+        "weaknesses": {
+          "value": "* The methodology section lacks clarity, making it difficult to understand or reproduce. Since diffusion inference involves multiple steps, it remains unclear how the adaptor manages each step and how the final Gaussian Splatting (GS) is generated.\n* Certain design choices are insufficiently explained or lack ablation studies. For example, why is only noise level under 80 used, and why are 16 groups of Gaussians selected?\n* The paper contains several formatting and writing issues. For instance:\n  * Many citations are missing parentheses (should use \\citep{} instead of \\cite{}).\n  * Line 319: \"gradient checkpointing\" is a memory reduction method, I guess \"gradient accumulation\" may be what the authors intended.\n  * Line 269: \"Tough\" should be corrected to \"Though.\""
+        },
+        "questions": {
+          "value": "* The process by which the model predicts the final Gaussian Splatting (GS) from the diffusion steps is unclear:\n  * In Equation 1, it’s ambiguous what $i$ represents. Since there are multiple diffusion steps $t$ throughout the generation process, does $i$ correspond to different noise levels?\n  * The rationale behind having 16 embedding vectors is also unclear. The paper mentions that only features from noise levels lower than 80 are used, does this imply that 16 diffusion steps are involved?\n  * What distinguishes these 16 pairs of GS? Additionally, there is no explanation or ablation study on how this number was chosen.\n* I’m also curious about the differences between the model in Figure 4 (trained on 2 RTX 3090 GPUs) and the final model (using 8 RTX 3090 GPUs). The initial model seems to perform well; how do extended training time and additional data contribute to improvements?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LsD0L2FjLc",
+      "forum": "PLgHiJOjcH",
+      "replyto": "PLgHiJOjcH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_8cnp"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_8cnp"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13468/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730432967713,
+      "cdate": 1730432967713,
+      "tmdate": 1731428972911,
+      "mdate": 1731428972911,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper focuses on text-to-3d generation with 2d diffusion prior. Previous methods often apply score distillation or adapt pretrained 2d diffusion model for multi-view generation. In contrast, this work proposed to adapt pretrained multi-view diffusion for direct generation of image splatting that has been used in LGM. However, this idea is not new, as [1] [2] and many other works have tried to adapt stable diffusion for direct triplane generation. There is a lack of discussion and comparisons with them. Also, the quality of generated results, including both geometry and PBR are not promising.\n\n[1] PI3D: Efficient Text-to-3D Generation with Pseudo-Image Diffusion\n[2] HexaGen3D: StableDiffusion is one step away from Fast and Diverse Text-to-3D Generation"
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The idea of the paper is straight, and the writing is easy to follow."
+        },
+        "weaknesses": {
+          "value": "- Discussion of novelty. The main claim of this paper is to adapt an image diffusion model for direct 3D generation. However, this idea is not new, as [1] [2] and many other works have tried to adapt stable diffusion for direct triplane generation. There is a lack of discussion and comparisons with them. The difference is 3D representation, where this paper uses an image splatter for Gaussian splattings. But this representation has been widely used in 3D generation, such as LGM, so this is not new, either.\n\n[1] PI3D: Efficient Text-to-3D Generation with Pseudo-Image Diffusion \n\n[2] HexaGen3D: StableDiffusion is one step away from Fast and Diverse Text-to-3D Generation\n\n- Quality and evaluation. The quality of generated results, including both geometry and PBR, is not promising. For example, in Fig. 1, the albedos of both owl and panda are entangled with shadows, which are also presented in relit results. Also, the predicted metallic map contains metal parts in a wooden owl, which does not make sense. The generated geometry lacks details. These issues are common in shown results in the main paper. Also, all shown cases are very simple objects, which have been well addressed by existing methods. It also lack comparison with state-of-the-art methods like CLAY or rodin gen.\n\n- Quantitative results. Why table 1 (a) only gives comparison with mvdream? How about FID and clip score of LGM and other SOTA methods? How about the metrics of the ablation study?\n\n- Motivation and method. It should involve more analysis and insights of the proposed method. Why pretrained image diffusion model help the generation of splatter image? Gaussian splatting images are quite different from natural images in pretrained diffusion. so would the prior still help? I suggest comparing LISA  with a trained-from-scratch model and directly fine-tuning mode to examine whether the pertaining helps."
+        },
+        "questions": {
+          "value": "- How about failure cases? How about the limitations?\n- The proposed method involves a texture refinement process. How about the computing time? Is this important for the results? If yes, it needs some ablation study.\n- The citation formats in this paper are wrong. All citations lack \"()\". It should use \\citet or \\citep instead of \\cite."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "CW0yvtkfaT",
+      "forum": "PLgHiJOjcH",
+      "replyto": "PLgHiJOjcH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_JPgj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13468/Reviewer_JPgj"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13468/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729576220128,
+      "cdate": 1729576220128,
+      "tmdate": 1731428972532,
+      "mdate": 1731428972532,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "LISA adapts frozen multi-view diffusion decoders with lightweight trainable branches to generate multi-view 2D Gaussian attributes and PBR maps, followed by mesh extraction and inverse-rendering refinement. The approach is interesting and visually promising, but the empirical evidence is too limited to establish its broad quality, efficiency, or PBR claims.",
+        "strengths": [
+          "The decoder-side adaptation of existing multi-view diffusion priors to directly predict Gaussian-splat attributes is a useful and reasonably novel design, including fusion of appearance and normal/depth priors (pp. 4–6).",
+          "The pipeline produces meshes with separated albedo, metallic, and roughness maps, and the supplied examples show appealing geometry and appearance (pp. 8–10).",
+          "Training is comparatively resource-conscious: the reported model uses about 46K objects and commodity RTX 3090 GPUs (p. 8)."
+        ],
+        "weaknesses": [
+          "The evaluation is not sufficiently comprehensive: quantitative metrics compare primarily with MVDream rather than competitive text-to-3D systems, while evidence against LGM and LaRa is limited to a user study with an unclear sampling/aggregation protocol; commercial comparisons are qualitative only (pp. 8–9).",
+          "Key claims are not isolated or verified. There is no ablation of frozen-prior reuse versus training the same decoder from scratch, the LISA switchers, the second diffusion prior, or the mesh/PBR refinement stages; PBR accuracy and relighting quality receive no quantitative evaluation (pp. 6–10).",
+          "The framing overstates direct 2D-to-3D transfer: both main priors were already trained for multi-view geometry using 3D-rendered data, and the final mesh requires TSDF fusion plus 100 remeshing iterations and differentiable texture refinement. The claimed sub-30-second runtime lacks a stage-wise timing or baseline comparison (pp. 2, 7)."
+        ],
+        "score_rationale": "The core adaptation idea and visual results are promising, but missing controlled ablations, rigorous SOTA comparisons, PBR/relighting measurements, and runtime substantiation leave central claims under-supported. I therefore rate it marginally below acceptance; uncertainty remains because videos and the linked project material are unavailable under the supplied-input-only review setting."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "LISA proposes adapting frozen multi-view diffusion priors with a lightweight decoder to directly predict multi-view 2D Gaussian-splat attributes and PBR maps, followed by mesh extraction and inverse-rendering refinement. The architectural idea is interesting and potentially useful, but the supplied evidence does not adequately substantiate the broad claims of superior 3D geometry, physically meaningful materials, or data-efficient reuse of 2D priors.",
+        "strengths": [
+          "The decoder/switcher design for extracting Gaussian attributes from one or multiple pretrained diffusion networks is a novel and practically motivated alternative to SDS and separate reconstruction models (pp. 4–6).",
+          "The pipeline produces meshes with decomposed albedo, metallic, and roughness maps, and its reported training and inference requirements are attractive for consumer-grade hardware (pp. 7–8).",
+          "Qualitative results are generally compelling, and the user study indicates a strong preference over LGM and LaRa for both appearance and geometry (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Evaluation is insufficient for the main claims: there are no objective 3D geometry metrics, held-out benchmark details, relighting/material accuracy tests, or timing breakdowns; the FID/IS/CLIP experiment uses 1,000 prompts sampled from the training set and offers little direct evidence of 3D quality (pp. 8–9).",
+          "The claimed exploitation of broadly learned 2D knowledge is confounded because both adopted priors were already trained or fine-tuned using multi-view 3D-derived data. The plant-only generalization experiment is qualitative, and there is no comparison against training equivalent decoder architectures from scratch or fully fine-tuning them (pp. 2, 5–6).",
+          "Important reproducibility and validity details are unclear: the exact trainable parameter count and freezing/copying behavior are ambiguous, the user-study protocol lacks participant-level statistics, and convex-hull filling plus optimization against generated views may create unsupported geometry or nonphysical PBR decomposition (pp. 4–7, 9)."
+        ],
+        "score_rationale": "The core adaptation mechanism is promising and the visual results suggest practical value, but the paper lacks decisive controlled ablations and rigorous 3D/PBR evaluation. I therefore place it marginally below acceptance; uncertainty remains because videos, released models, and supplemental quantitative results are not included in the supplied manuscript."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "LISA adapts frozen multi-view diffusion priors with lightweight decoder branches to directly predict multi-view 2D Gaussian splats and PBR attributes, followed by mesh extraction and inverse-rendering refinement. The core reuse-of-priors idea is interesting and the visual results are promising, but the evaluation does not adequately substantiate the paper’s broad quality, generalization, efficiency, or relightability claims.",
+        "strengths": [
+          "The decoder/switcher design offers a plausible and relatively novel route for reusing frozen 2D diffusion features for direct 3D prediction, rather than relying on SDS or a separately trained reconstruction model (pp. 4–6).",
+          "The method produces a practically useful combination of geometry, albedo, metallic, and roughness, with visually appealing examples and explicit material decompositions (pp. 8–10).",
+          "Reported training requirements are modest for this problem—46K total objects and commodity RTX 3090 hardware—and the plant-only experiment suggests useful transfer from pretrained priors (pp. 5–6, 8)."
+        ],
+        "weaknesses": [
+          "The main quantitative evaluation uses 1,000 prompts sampled from the training set, provides no held-out benchmark against modern text-to-3D systems, and reports only image-distribution/semantic metrics that do not directly assess 3D geometry, consistency, or PBR accuracy (pp. 8–9).",
+          "Relightability and material decomposition are not quantitatively validated under novel illumination or against ground-truth BRDF/materials; the ablation is qualitative, and the user-study protocol lacks participant counts, uncertainty, significance tests, and sufficiently clear trial accounting (p. 9).",
+          "Reproducibility and attribution are incomplete: architectural sizes/parameter counts and optimizer details are missing, the claimed sub-30-second runtime has no stage-wise measurements, and no ablation isolates the LISA adaptation from the strong pretrained priors or substantial TSDF/remeshing/inverse-rendering post-processing (pp. 6–9)."
+        ],
+        "score_rationale": "The paper has a compelling practical idea and strong-looking demonstrations, but its decisive claims rest on weak, partly training-set-based evaluation with little objective evidence for 3D quality or PBR relightability. I am therefore marginally below acceptance; uncertainty remains because the supplied qualitative results may understate real performance, but the missing validation is central."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "LISA adapts frozen multi-view diffusion priors with lightweight decoder branches to directly generate 2D Gaussian splats and PBR attributes, followed by mesh extraction and inverse-rendering refinement. The core adaptation idea is interesting and potentially useful, but the manuscript does not provide sufficiently rigorous evidence for its broad quality, generalization, relighting, and efficiency claims.",
+        "strengths": [
+          "A novel and practically motivated alternative to SDS and conventional generate-then-reconstruct pipelines, using zero-convolution-adapted decoder branches to expose 3D outputs from multi-view diffusion features (pp. 4–6).",
+          "The system produces explicit meshes with decomposed albedo, metallic, and roughness maps, and the supplied qualitative examples are generally compelling (pp. 8–10).",
+          "Training uses about 45K assets and modest hardware/time, suggesting meaningful data and compute efficiency relative to large reconstruction models (p. 8)."
+        ],
+        "weaknesses": [
+          "The quantitative evaluation is weak: its 1,000 prompts are sampled from the training set, reported image metrics do not directly assess 3D geometry or cross-view consistency, and no quantitative PBR/relighting accuracy is measured (pp. 8–9).",
+          "Comparisons are incomplete and potentially confounded: the user study only covers LGM and LaRa, while commercial systems are compared qualitatively on three selected prompts; study protocol, participant statistics, significance, and failure cases are insufficiently documented (pp. 8–9).",
+          "Key claims lack controlled support: the plants-only transfer result is purely qualitative, ablations omit the multiple-prior/switcher and frozen-prior design, and the claimed sub-30-second runtime has no stage-wise timing or clear accounting for mesh and texture optimization (pp. 5–7, 9–10)."
+        ],
+        "score_rationale": "The direct diffusion-to-splats adaptation is a worthwhile contribution with promising visuals and efficiency, but the evidence falls below the standard needed to substantiate superiority and generalization. Training-set evaluation, absent geometric/material benchmarks, limited ablations, and unclear end-to-end timing make this marginally below acceptance; uncertainty remains because videos, code, and broader supplementary results are not supplied."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "LISA adapts frozen multi-view diffusion priors with trainable decoder branches to directly generate multi-view 2D Gaussian attribute maps, including coarse PBR materials, followed by mesh extraction and inverse-rendering refinement. The central reuse-of-priors idea is interesting and the reported runtime/training budget is attractive, but the empirical evidence is too limited to establish the broad superiority and efficiency claims.",
+        "strengths": [
+          "The lightweight adaptation of pre-trained multi-view diffusion decoders for direct Gaussian-splat generation is a useful and reasonably novel alternative to SDS and separate reconstruction models (pp. 4–6).",
+          "The pipeline targets practically valuable outputs—meshes with albedo, metallic, and roughness maps—and combines geometry-aware and appearance-aware diffusion priors in a coherent design (pp. 6–7).",
+          "Qualitative results are appealing, and the reported training setup (46K objects, commodity GPUs) suggests meaningful data and compute efficiency if independently confirmed (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Evaluation is not sufficiently rigorous: automatic metrics use 1,000 prompts sampled from the training set, omit strong end-to-end 3D baselines, and show only modest or mixed differences from MVDream; the user study compares only LGM and LaRa, with limited procedural/statistical detail (pp. 8–9).",
+          "Key claims lack controlled support: there is no quantitative geometry, multi-view consistency, relighting, or PBR-decomposition evaluation; ablations are qualitative and do not isolate multiple priors, switchers, frozen-prior reuse, data scale, or post-processing contributions (pp. 9–10).",
+          "Reproducibility and limitations are underdeveloped: trainable parameter counts and precise architecture are absent, the claimed sub-30-second runtime has no stage breakdown, texture-refinement optimization details are incomplete, and failure cases or limitations of convex-hull/remeshing and material disentanglement are not discussed (pp. 4–8)."
+        ],
+        "score_rationale": "The method has a promising adaptation idea and visually plausible outputs, but the paper does not provide enough quantitative, out-of-distribution, or component-level evidence to validate its strongest quality, PBR, and efficiency claims. I therefore place it marginally below acceptance; uncertainty remains because stronger unseen benchmark results or implementation details could materially change the assessment."
+      }
+    }
+  ]
+}

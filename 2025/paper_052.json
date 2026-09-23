@@ -1,0 +1,387 @@
+{
+  "year": 2025,
+  "package_id": "paper_052",
+  "paper_id": "vsLohTBH4h",
+  "number": 6705,
+  "title": "Refined Generalization Analysis of the Deep Ritz Method and Physics-Informed Neural Networks",
+  "authors": "Xianliang Xu; Zhongyi Huang",
+  "primary_area": "learning theory",
+  "keywords": "Deep Ritz Method; Physics-Informed Neural Networks; Generalization analysis; Fast Rate",
+  "forum_url": "https://openreview.net/forum?id=vsLohTBH4h",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    3,
+    5,
+    5
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "Authors utilize the localized analysis to refine generalization bounds for both the Deep Ritz Method (DRM) and Physics-Informed Neural Networks (PINNs). For the DRM, authors provide theoretical results for the Poisson and Schrödinger equations. For PINN, the theoretical results obtained for the linear second order elliptic equation."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "* The proposed theoretical results show that the function $\\mathcal{B}^2$ can be well approximated in the $H^1$ norm by MLP (two hidden layers with ReLU as the activation function) network with controlled weights.  \n* For the DRM, authors obtain more precise generalization bounds for the Poisson and Schrödinger equations with Neumann boundary condition, irrespective of whether the solutions are in Barron spaces or Sobolev spaces.\n* For the PINNs, authors provide a generalization error for PINN loss of the linear second order elliptic equation in the $H^{1/2}$ norm. \n* Theoretical estimations for both methods with neural networks are correct for both cases if the PDE solution is in the Barron space or the Sobolev space."
+        },
+        "weaknesses": {
+          "value": "* Considering PDEs(the Poisson equation and the static Schrödinger equation with Neumann boundary condition) defined on d-dimensional cube are simple and not interested in community. Is it possible to extend the list of PDEs where proposed theory can be used?\n* It will be good for understanding to add some numerical experiments."
+        },
+        "questions": {
+          "value": "See the weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "M91IZgclOi",
+      "forum": "vsLohTBH4h",
+      "replyto": "vsLohTBH4h",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_5WcL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_5WcL"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6705/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730685610962,
+      "cdate": 1730685610962,
+      "tmdate": 1731427812712,
+      "mdate": 1731427812712,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper theoretically analyzes the generalization error of two prominent deep learning methods for solving PDEs: the Deep Ritz method and PINNs. The analysis is conducted on simple second-order linear PDEs, and under certain assumptions, they obtain tighter bounds compared to previous studies. However, the assumptions made are somewhat impractical, and the results raise questions about the significance of this research beyond its mathematical implications and what it contributes to the field of deep learning."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The authors have performed a mathematical analysis of the Deep Ritz method and PINNs, which continue to attract considerable interest. This mathematical analysis can aid in understanding the characteristics of the models."
+        },
+        "weaknesses": {
+          "value": "A robust mathematical analysis can be more powerful than empirical observations. However, there are several areas of concern in this study:\n\n1.\tWhat is the intention behind studying the two methods using different mathematical tools for different PDEs? There is no connection drawn between the two methods within the paper, which leads to confusion about the main message of the study.\n\n2.\tDue to the complexity of deep learning models, it is a natural approach to start the analysis with simpler scenarios. However, the assumption that the solutions of the PDEs lie within the Barron space is too strong. The Barron space is specifically designed for functions that are best approximated by two-layer MLPs and is suitable for analyzing two-layer neural network structures, but it is too narrow to represent the space of PDE solutions.\n\n3.\tThe primary goal of Deep Ritz and PINNs is not just to minimize the loss but to find the solution to PDEs. Thus, instead of focusing on how much a minimizer of the empirical loss reduces the expectation loss, the analysis should focus on how close the empirical loss minimizer is to the true solution. It is crucial because both methods include unbounded derivative operators in their loss functions, meaning that a small difference in loss values does not necessarily imply that the functions are close. Although the paper briefly addresses this in equations (16) and (30), it does so under very restrictive assumptions, casting doubt on the implications of the results.\n\n4.\tWhile the theoretical analysis uses the $ReLU^k$ activation function (also known as RePU) for convenience, this also has limitations. The theory is developed in the context of simple two-layer networks, but practical implementations often involve deeper networks, where the power of the RePU increases with depth, leading to floating-point precision issues. This limitation should be acknowledged in the paper.\n5.\tThe PDEs considered in this study are too simple. Such simple PDEs can be solved much faster and more accurately using classical methods such as FEM, FDM, Discrete Galerkin, and FVM. Deep learning-based methods should focus on more complex PDEs or inverse problems. While it is important to start from a mathematical understanding of simpler problems, it is also important to recognize that these methods are not just mathematical objects. Research in this area must integrate PDEs, classical numerical methods, and deep learning, rather than excluding any one aspect. Furthermore, the significance of this research in the field of deep learning remains unclear beyond its mathematical implications.\n\n6.\tEq (16) combines the results of Prop 1 and Thm 3, but it appears to omit the Poincaré constant from Prop 1, which is dimension-dependent.\n\n\n7.\tLimitations are not addressed in the paper."
+        },
+        "questions": {
+          "value": "See weakness above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "cS2VIXnZfz",
+      "forum": "vsLohTBH4h",
+      "replyto": "vsLohTBH4h",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_sz2Y"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_sz2Y"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6705/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730481949575,
+      "cdate": 1730481949575,
+      "tmdate": 1731427812680,
+      "mdate": 1731427812680,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper derived new generalization bounds for solving elliptic Partial Differential Equations (PDEs) via two deep learning based methods - the Deep Ritz Method (DRM) and Physics Informed Neural Network (PINN). For DRM, this paper obtained generalization bounds for the Poisson equation with Neuman boundary condition when the solution is in either some Barron space or some Sobolev space. For PINN, this paper considered linear second order elliptic PDEs with Dirichlet boundary condition. By utilizing results from statistical learning theory under the Multi-Task Learning (MTL) framework, the authors also obtained generalization bounds for PINN when the solution is in some Barron space or some Sobolev space. As a side product of the main results, this paper also obtained better rates of approximating functions in certain Barron spaces via two-layer neural networks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. This paper is presented in a clear way for readers to follow. Also, a thorough review of related work on variants of Rademacher complexity done by researchers from the statistical learning theory community is included. Proofs of essential lemmas are also presented to ensure the rigorousness of the entire manuscript. \n\n2. In terms of specific contribution, this paper obtained finer bounds for approximating certain Barron functions via two layer neural networks, which lead to better generalization bounds on solving elliptic PDEs via DRM and PINN under the circumstances when the true solution is in some Barron space compared to existing work [1]."
+        },
+        "weaknesses": {
+          "value": "1. The reviewer's main concern is that some contributions mentioned in this article are not described in a clear way. Specifically, the reviewer thinks that it might be worthwhile for the authors to include a separate paragraph to compare the contributions made in this manuscript and existing work [2]. For specific questions about the main contributions and novelty of this paper compared to [2], the authors may refer to the first four bulletin points in the \"Questions\" section below. \n\n2. Regarding presentation of this paper, there are a few grammatic issues that can be potentially resolved. For instance, the sentence from line 40 to 41 can be possibly rephrased as \"The Deep Ritz method, on the other hand, incorporates the variational formulation into training the neural networks due to the widespread use of the variational formulation in traditional methods\".\n\n3. Given that solving PDEs via machine learning based methods is now a popular field, the authors might consider performing a brief literature review by citing a few important work (other than DRM and PINN) [3-9] in the first part of subsection 1.1 (Related Works) for the sake of completeness. One may refer to the related works section in [2] and [10] as possible examples."
+        },
+        "questions": {
+          "value": "1. One thing the authors emphasized as a contribution is that this manuscript derived a generalization bound for the Poisson equation compared to [2]. However, it seems to the reviewer that Proposition 1, which provides a variational formulation of Poisson equation, actually requires extra assumption ($\\int_{\\Omega}f dx = 0$) compared to [2]. Hence, the review wonders whether this is a fair comparison and would appreciates it if the authors can elaborate on why they think the main reason is actually because the expectation of empirical loss is not equal to the population loss under the variational formulation (line 111-112, line 129-130). \n\n2. In Remark 2, the authors state that the convergence rate associated with the DRM gets improved from $n^{-\\frac{2k-2}{d+2k-4}}$ to $n^{-\\frac{2k-2}{d+2k-2}}$, which seems to be incorrect as the second rate is larger than the first one. Also, the same rate (up to $\\log n$ factors) has also been achieved in [2] via the peeling method. Therefore, the reviewer would appreciate it if the author could specify the major novelty/contribution of this paper for the DRM. \n\n3. For the generalization bounds on PINN, the authors claimed that results presented in Section 4 are more general compared to [2] as this paper doesn't require strong convexity of the objective function. However, it seems to the reviewer that this cannot be claimed as a major novelty as Lemma 17 serves a similar role as Theorem B.2 in [2] (Also, here the authors still need the strict elliptic condition). Furthermore, even though the convergence rate $n^{-\\frac{2k-4}{d+2k-4}}$ of PINN attained here is the same as that of [2], the norm used for measuring the error seems to be different - (30) implies that the norm used here is the $H^{\\frac{1}{2}}$ norm, while [2] uses the $H^1$ norm. This will for sure influence the convergence rate and statistical optimality, so the reviewer would appreciate it if the authors could provide some intuition on the change of norms here. \n\n4. Given that [2] provides not only upper bounds but also informational theoretical lower bounds on the expected estimation error, which certifies statistical optimality under certain regimes, would it be possible for the authors to provide some intuition on the lower bounds for the cases when the true solution is in some Barron spaces? Essentially speaking, are the bounds presented in (13) and (27) statistically optimal? \n\n5. In the abstract and introduction (line 15-16 and line 125-127), the authors claimed that sharper generalization bounds are derived for solving both the Poisson equation and the Schrödinger equation via the DRM. However, it seems that Theorem 3 in Section 2 only contains results for the Poisson equation?\n\nReferences: \n\n[1] Lu, Y., Lu, J. and Wang, M., 2021, July. A priori generalization analysis of the deep Ritz method for solving high dimensional elliptic partial differential equations. In Conference on learning theory (pp. 3196-3241). PMLR.\n\n[2] Lu, Y., Chen, H., Lu, J., Ying, L. and Blanchet, J., 2021. Machine learning for elliptic pdes: Fast rate generalization bound, neural scaling law and minimax optimality. In International Conference on Learning Representations, 2022. URL https://openreview.net/forum?id=mhYUBYNoGz.\n\n[3] Sirignano, J. and Spiliopoulos, K., 2018. DGM: A deep learning algorithm for solving partial differential equations. Journal of computational physics, 375, pp.1339-1364.\n\n[4] Han, J., Jentzen, A. and E, W., 2018. Solving high-dimensional partial differential equations using deep learning. Proceedings of the National Academy of Sciences, 115(34), pp.8505-8510.\n\n[5] Khoo, Y., Lu, J. and Ying, L., 2021. Solving parametric PDE problems with artificial neural networks. European Journal of Applied Mathematics, 32(3), pp.421-435.\n\n[6] Zang, Y., Bao, G., Ye, X. and Zhou, H., 2020. Weak adversarial networks for high-dimensional partial differential equations. Journal of Computational Physics, 411, p.109409.\n\n[7] Chen, Y., Hosseini, B., Owhadi, H. and Stuart, A.M., 2021. Solving and learning nonlinear PDEs with Gaussian processes. Journal of Computational Physics, 447, p.110668.\n\n[8] Li, Z., Kovachki, N., Azizzadenesheli, K., Liu, B., Bhattacharya, K., Stuart, A. and Anandkumar, A., 2020. Fourier neural operator for parametric partial differential equations. arXiv preprint arXiv:2010.08895.\n\n[9] Lu, L., Jin, P., Pang, G., Zhang, Z. and Karniadakis, G.E., 2021. Learning nonlinear operators via DeepONet based on the universal approximation theorem of operators. Nature machine intelligence, 3(3), pp.218-229.\n\n[10] Lu, Y., Blanchet, J. and Ying, L., 2022. Sobolev acceleration and statistical optimality for learning elliptic equations via gradient descent. Advances in Neural Information Processing Systems, 35, pp.33233-33247."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "NA"
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "IezRMJcMpX",
+      "forum": "vsLohTBH4h",
+      "replyto": "vsLohTBH4h",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_C4fn"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_C4fn"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6705/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730237745027,
+      "cdate": 1730237745027,
+      "tmdate": 1732132452795,
+      "mdate": 1732132452795,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper, the authors derive refined generalization bounds for the Deep Ritz Method (DRM) and Physics-Informed Neural Networks (PINNs), building on the work of Lu et al. (2021c in the manuscript).  The authors derive sharper bounds for the Poisson and Scrodinger's equations, and then present their modified framework within a multi-task learning perspective."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The strength of the paper is that the authors present mathematical analysis of physics-informed neural networks and similar (related) methods. The author's work fits within the current push for developing and growing the mathematical foundations of PINNs and related ideas."
+        },
+        "weaknesses": {
+          "value": "The reviewer did not find any mathematical errors in the work, but was surprised that the authors did not point to the other mathematical works that exist (in the field).  The most well-known on the mathematical side would be Weinan E and collaborators:\n\nhttps://link.springer.com/article/10.1007/s00365-021-09549-y\n\nWeinan and others (some of which the authors reference part of their work, like: \nhttps://arxiv.org/abs/2106.07539).\n\nPeople have since built on Weinan's ideas:  A Deep Double Ritz Method (D\nRM) for solving Partial Differential Equations using Neural Networks by Uriiarte et al., CMAME 2023."
+        },
+        "questions": {
+          "value": "+ How does the analysis differ (substantially) from the work of Weinan E (paper above) and subsequent papers? In particular, when comparing the author's theoretical framework or results to Weinan's section 2 or the CMAME Section 3, can you highlight how your results/conclusions are different and what changes your work makes in terms of the results.\n\n+ Clarify how the author's work is distinct from the CMAME paper, as an 'extension' of the Lu and Weinan E ideas?  Although not identical, can the authorrs provide details on how their work is novel and how it leads to improved or different results over those of Weinan E and/or the CMAME paper.\n\n+ Please compare the framework with the multi-head (multitask) work of Karniadakis :  https://www.semanticscholar.org/paper/L-HYDRA%3A-Multi-Head-Physics-Informed-Neural-Zou-Karniadakis/ec7289f0cb03f0987a0f84391de278f83654bb09   (either argue how they are different or show numerical results)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "No ethical issues"
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "fkD0vWwvL7",
+      "forum": "vsLohTBH4h",
+      "replyto": "vsLohTBH4h",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_xW5b"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6705/Reviewer_xW5b"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6705/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729894207949,
+      "cdate": 1729894207949,
+      "tmdate": 1731427812704,
+      "mdate": 1731427812704,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The manuscript develops localized generalization bounds for Deep Ritz methods and PINNs, combining new Barron-space approximation rates with local Rademacher analysis and a multi-task concentration argument. The direction is valuable and technically ambitious, but several stated guarantees are not justified under the given assumptions, and the over-parameterized analysis contains a substantive proof gap.",
+        "strengths": [
+          "The paper treats the nonstandard Poisson empirical objective whose expectation differs from the population Ritz functional and provides a detailed localized decomposition (pp. 19–23).",
+          "The multi-task interpretation of PINNs and accompanying concentration/oracle-inequality framework are potentially reusable beyond the particular elliptic PDE considered (pp. 8–9, 31–39).",
+          "The manuscript is unusually comprehensive about measurability, approximation, and limitations, and clearly distinguishes Barron- and Sobolev-regularity regimes (pp. 5–9, 23–24, 54)."
+        ],
+        "weaknesses": [
+          "The claimed PINN solution-error implication is not valid under the assumptions stated on p. 7: strict ellipticity alone does not ensure uniqueness or the stability estimate used on pp. 9 and 50. For example, choosing the zeroth-order coefficient at a negative Dirichlet eigenvalue permits a nonzero function with zero residual and boundary loss. Additional coercivity/invertibility and coefficient/domain regularity assumptions are essential.",
+          "The proof of the over-parameterized entropy result has a logical gap on pp. 51–52: from an upper bound of the Hilbert-space distance by a parameter-space l1 distance, the manuscript concludes that the parameter set A is contained in an l1 ball. The implication goes in the opposite direction, so the subsequent covering argument and width-independent claim are not established.",
+          "Several theorem-level statements require cleanup: Lemma 12 is formulated for an increasing function although the applied covering bound decreases with radius (p. 41); Theorem 3 states probability 1-e^{-t} while its proof obtains 1-4e^{-t} (pp. 6, 23); and factors such as log M can make a stated upper bound negative when M<1 (p. 6)."
+        ],
+        "score_rationale": "The localization framework and approximation results appear promising and constitute meaningful theoretical progress. However, the missing PDE stability assumptions affect the advertised PINN norm guarantee, while the invalid containment step undermines the claimed over-parameterized extension. Together with multiple formal inconsistencies, these issues require major revision rather than a minor correction, placing the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The manuscript develops localized-complexity bounds for DRM and PINNs, combining Barron/Sobolev approximation results with fast-rate empirical-process arguments. The scope and proof effort are substantial, but important gaps in the approximation argument and PDE stability assumptions weaken the main guarantees.",
+        "strengths": [
+          "Provides a broad, largely self-contained treatment covering Poisson and Schrödinger DRM bounds and general linear elliptic PINN losses (pp. 4–9).",
+          "The Poisson analysis explicitly addresses the mismatch between the expected empirical objective and the population Ritz functional using a tailored decomposition and peeling argument (pp. 19–23).",
+          "The multi-task formulation of PINNs and accompanying concentration/oracle-inequality development are technically interesting and potentially reusable (pp. 8, 31–39)."
+        ],
+        "weaknesses": [
+          "The claimed dimension-independent Barron approximation constant is not established: transferring the one-dimensional estimate to the cube introduces a factor 1/ω₁, which can be arbitrarily large; even choosing the largest coordinate gives dimension dependence (p. 17). The H² argument later relies on the same unproved transfer (pp. 28–30).",
+          "The conversion from PINN loss to solution error invokes an elliptic estimate without adequately stated coefficient smoothness, uniqueness/non-resonance, and domain assumptions; its constant is also presented as depending only on Ω rather than on the operator (pp. 9, 50). Under the stated setup, operators with a Dirichlet kernel provide an immediate concern.",
+          "Some quantitative claims are internally incorrect or imprecise. In particular, the exponent with denominator d+2k−4 is called faster than one with denominator d+2k−8, although it is smaller for positive parameters (p. 9); the proof also contains population/empirical notation inconsistencies around Eq. 128 (p. 38)."
+        ],
+        "score_rationale": "The localization framework and resulting rates are promising and constitute meaningful theoretical progress, but the gap in the central approximation proposition directly affects the advertised Barron guarantees, while the PINN norm guarantee needs materially stronger PDE hypotheses. These issues appear potentially repairable, but they prevent the current manuscript from being convincingly sound."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The manuscript develops localized-complexity bounds for Deep Ritz methods and PINNs, including Barron/Sobolev approximation results and a multi-task concentration argument. The direction is relevant and technically ambitious, but central PINN conclusions rely on insufficient PDE assumptions, and several claimed improvements or auxiliary results contain substantive errors or proof gaps.",
+        "strengths": [
+          "Provides a broad, largely self-contained theoretical treatment of both DRM and PINNs, including detailed approximation and empirical-process arguments (pp. 14–49).",
+          "The localized analysis yields potentially useful faster DRM rates for both Barron and Sobolev solution classes (pp. 5–6, 24–27).",
+          "Clearly acknowledges important practical limitations, including boundedness, constrained hypothesis classes, and omitted optimization error (p. 54)."
+        ],
+        "weaknesses": [
+          "The PINN error-to-solution stability claim is not valid under the stated assumptions. Strict ellipticity with arbitrary bounded lower-order coefficients does not ensure uniqueness or exclude a Dirichlet kernel; for example, a negative potential at an eigenvalue permits nonzero zero-loss solutions. Moreover, the cited regularity estimate requires stronger coefficient/domain hypotheses than those on p. 7. Thus Eq. (30) and Lemma 17 do not justify solution-norm generalization as claimed (pp. 7, 9, 50).",
+          "The claimed PINN Sobolev-rate improvement is arithmetically reversed: for the same positive numerator, the cited rate with denominator d+2k−8 is faster, not slower, than the proposed rate with denominator d+2k−4 (p. 9). This undermines a central comparative claim.",
+          "The over-parameterized extension contains a logical gap: closeness of coefficient vectors implies closeness of represented functions, but the proof then incorrectly infers that all coefficient representations of a function-space ball lie in the corresponding coefficient-space ball. Linear dependence or non-identifiability invalidates this inference (pp. 51–53)."
+        ],
+        "score_rationale": "The localization framework and DRM results appear promising, but the false PINN stability conclusion, incorrect rate comparison, and gap in the advertised over-parameterized analysis require substantial correction. These issues affect major contributions rather than presentation alone, placing the work below the acceptance threshold despite its technical scope."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The manuscript develops localized generalization analyses for DRM and PINNs, combining Barron/Sobolev approximation with local Rademacher complexity and a multi-task concentration argument. The scope and explicit rates are useful, but several central approximation and entropy arguments contain material gaps, so the headline guarantees are not established as written.",
+        "strengths": [
+          "The treatment of the Poisson DRM addresses the nonstandard fact that the empirical loss is biased relative to the population Ritz functional, with a tailored decomposition and localization argument (pp. 19–24).",
+          "Viewing PINN residual and boundary losses as multi-task learning is a useful organizing perspective, and the manuscript provides a detailed concentration/oracle-inequality development (pp. 8, 31–39).",
+          "The paper states explicit dimension, sample-size, and approximation dependencies and candidly discusses boundedness, optimization, loss design, and Barron regularity limitations (pp. 6, 9, 54)."
+        ],
+        "weaknesses": [
+          "The claimed dimension-independent Barron approximation constants are not justified by the supplied proof. The change-of-variables step introduces a factor 1/ω₁, which is unbounded for normalized directions (p. 17), and the H² argument later invokes the same transfer without resolving this issue (pp. 28–30). A different proof may repair it, but it is currently a gap underlying the Barron PINN rates.",
+          "Proposition 4(2) claims approximation of any f∈W^{k,∞} by networks having weights bounded by 1 and a uniform W^{2,∞} bound H=O(1), without imposing any bound on ∥f∥_{W^{k,∞}} (pp. 7–8). This is false under arbitrary rescaling of f and directly affects the Sobolev PINN result on p. 9.",
+          "The over-parameterized entropy proof contains a reversed implication: an upper bound of function distance by coefficient ℓ₁ distance only shows that a coefficient ball maps into a function ball, not that the coefficient set A is contained in that ball as asserted (p. 52). Thus Theorem 10 and the advertised width-independent discussion on pp. 50–53 are not proved."
+        ],
+        "score_rationale": "The manuscript has meaningful ideas and considerable technical effort, but one approximation proposition is false as stated and two other proofs have consequential gaps affecting major claims. I therefore place it below acceptance; my score could rise if corrected proofs and assumptions preserve the stated rates."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The manuscript develops localized generalization bounds for DRM and PINNs, combining Barron/Sobolev approximation with local Rademacher analysis. The direction is relevant and some loss-level bounds appear promising, but several stated theorems rely on incorrect or materially underspecified arguments, preventing confidence in the full claims.",
+        "strengths": [
+          "The DRM analysis addresses the nonstandard Poisson empirical objective and provides explicit rates for both Barron and Sobolev regimes (pp. 5–6).",
+          "The multi-task formulation of PINNs and accompanying concentration/oracle-inequality machinery are potentially useful beyond the particular PDE considered (pp. 8–9, 31–39).",
+          "The paper clearly identifies practical limitations, including boundedness, optimization error, and restrictive network classes (p. 54)."
+        ],
+        "weaknesses": [
+          "The conversion from PINN loss to solution error is not justified under the stated assumptions. Strict ellipticity with merely continuous leading coefficients and arbitrary lower-order terms does not ensure uniqueness or the stability estimate in Lemma 17; for example, an elliptic Dirichlet operator can have a nontrivial kernel. Moreover, the claimed constant cannot generally depend only on the domain (pp. 7, 9, 50).",
+          "The Sobolev approximation statement for PINNs omits any bound on the target's W^{k,∞} norm while requiring bounded weights and W^{2,∞} norm; as written it is false by scaling. Its proof is essentially omitted, leaving Theorem 6(2) unsupported without additional normalization and precise constants (pp. 7–9, 31).",
+          "The over-parameterized result contains a substantive proof error: on p. 52, an upper bound from coefficient distance to function distance is used in the reverse direction to assert containment of a coefficient set. Hence Theorem 10 and the advertised width-independent conclusion are not established (pp. 50–53)."
+        ],
+        "score_rationale": "There is meaningful technical ambition and plausible novelty in the localized DRM/PINN analysis, but a false/underspecified PDE stability lemma affects the claimed solution-error guarantee, the Sobolev PINN theorem lacks a valid stated approximation premise, and the over-parameterized argument has a directional error. These require substantial correction rather than minor exposition changes, so the work is below the acceptance threshold despite promising components."
+      }
+    }
+  ]
+}

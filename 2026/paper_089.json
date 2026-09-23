@@ -1,0 +1,237 @@
+{
+  "year": 2026,
+  "package_id": "paper_089",
+  "paper_id": "62nHvQRfaw",
+  "number": 22259,
+  "title": "A Framework for Sample and Objective Forgetting: Pull-to-Outlier & Contrastive Objective-level (POCO) Unlearning",
+  "authors": [
+    "Agil Aghasanli",
+    "Plamen P Angelov"
+  ],
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": [
+    "Machine Unlearning",
+    "Unsupervised Forgetting",
+    "Instance-Level Forgetting",
+    "Objective-Level Forgetting"
+  ],
+  "forum_url": "https://openreview.net/forum?id=62nHvQRfaw",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "human_mean_rating": 2.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "9M6R7MV8IB",
+      "forum": "62nHvQRfaw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761644548264,
+      "tmdate": 1762942139578,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "a7A7F5TGYS",
+      "forum": "62nHvQRfaw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761496533030,
+      "tmdate": 1762942139776,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "raaD8Rf8Hs",
+      "forum": "62nHvQRfaw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761931301795,
+      "tmdate": 1762942138954,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "ygClqsopau",
+      "forum": "62nHvQRfaw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761877209839,
+      "tmdate": 1762942139265,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes projection-head-only procedures for mapping designated examples to synthetic outliers (POU) and reversing a deliberately injected projection-space objective (COU). Although computationally lightweight, the experiments do not establish machine unlearning in the usual sense: they primarily demonstrate controllable representation remapping while the frozen backbone retains the original information.",
+        "strengths": [
+          "POU combines a simple pull loss with explicit preservation of retained embeddings, and the ablation shows that this preservation term substantially reduces drift across all three datasets (pp. 5, 13).",
+          "The approach is lightweight because it updates only small projection heads above frozen encoders, and the paper provides objectives, hyperparameters, and pseudocode (pp. 4–6, 8, 16).",
+          "Evaluation spans instance- and class-level settings on three datasets, with representation metrics, an MIA experiment, and qualitative visualizations (pp. 7–9, 13–15)."
+        ],
+        "weaknesses": [
+          "POU's evaluation does not support genuine deletion: low forget-set accuracy is directly induced by special hard routing for known forgotten inputs, while the frozen backbone still encodes them. Moreover, retraining correctly attains high accuracy on forgotten instances through generalization, showing that zero forget-set accuracy is not an appropriate gold-standard criterion (pp. 6–8, 16). The reported MIA AUC of 2.89% is also not 'near chance'; without score-direction correction it indicates near-perfect distinguishability (pp. 9, 13).",
+          "COU only reverses an objective that the method itself synthetically injected, using stored pre-perturbation embeddings as restoration targets. Trustworthiness and drift merely show reconstruction of the original projection geometry, not removal of a naturally learned capability, and no task-level forgetting metric or meaningful objective-unlearning baseline is provided (pp. 6, 8–9, 15–16).",
+          "The claimed transparent 'certificate' is only a heuristic 3-sigma geometric test, not a formal removal criterion or evidence of indistinguishability from retraining. Several important protocol details are unclear, including how clustering prototypes map to class labels for accuracy and how hard routing recognizes deletion requests at inference (pp. 4–6)."
+        ],
+        "score_rationale": "The projection-only construction is simple and empirically preserves retained embeddings, but the central claims substantially exceed the evidence. POU relies on membership-aware remapping rather than removing information from the model, and COU demonstrates reversal of a contrived perturbation rather than capability unlearning. These fundamental validity issues outweigh the useful engineering observations, warranting rejection."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes projection-head-only geometric procedures for moving designated embeddings to synthetic outliers (POU) and undoing an artificially injected projection-space perturbation (COU). Although lightweight and visually intuitive, the experiments do not establish machine unlearning in the usual sense: the frozen encoder still contains the original information, POU largely forces a chosen classifier to fail on known examples, and COU restores stored pre-perturbation embeddings rather than removing a naturally learned capability.",
+        "strengths": [
+          "The projection-only design is computationally lightweight, and the pull/frozen-loss formulation is simple and clearly described (pp. 4–6, 16).",
+          "POU reports strong retained-set preservation and includes several datasets, baselines, an ablation, and qualitative analyses (pp. 7–9, 13–15).",
+          "The ablation provides useful evidence that the frozen loss prevents large collateral embedding drift (p. 13)."
+        ],
+        "weaknesses": [
+          "The central unlearning claim is unsupported. Because the backbone remains frozen, its information is not removed; POU merely remaps listed forget samples through a head, while hard routing explicitly requires recognizing those samples and selecting the expert closest to their preassigned target (pp. 4–6, 16). Zero forget-set accuracy is not evidence of deletion—indeed, retraining retains 86.8% accuracy on forgotten CIFAR-10 instances (p. 7)—and no comparison to retraining distributions, relearning tests, or attacks on backbone features is provided.",
+          "COU is a synthetic undo experiment rather than objective-level unlearning: the authors first inject an artificial reassignment and then optimize against stored original embeddings (p. 6). Trustworthiness returning to 1 and low drift only show reversal of this controlled perturbation, not erasure of a learned objective or capability; downstream target/non-target task performance is not measured (pp. 8–9).",
+          "The empirical protocol and interpretations have serious issues: an MIA AUC of 2.89% is called near chance, although chance is 50% and such an AUC implies almost perfect separability after reversing the score (pp. 9, 13); baselines appear poorly tuned or incomparable, results lack repeated-run uncertainty, and Caltech-256 test accuracy drops materially (pp. 7–8)."
+        ],
+        "score_rationale": "Despite a clear lightweight construction, the work conflates output-space manipulation with removal of training influence. POU depends on forget-set-aware routing and weak deletion metrics, while COU only reverses a deliberately introduced perturbation. The erroneous MIA interpretation and limited, unfairly aligned evidence further undermine the main claims, warranting rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes projection-head-only procedures for moving designated embeddings to synthetic outliers (POU) and reversing a deliberately injected projection-space objective (COU). While lightweight and clearly described, the experiments do not establish genuine data or capability unlearning: the frozen backbone retains the information, and the central evaluations largely measure geometric manipulation of the same head.",
+        "strengths": [
+          "POU is simple, computationally lightweight in principle, and its pull/frozen-loss construction is clearly specified (pp. 4–6, 16).",
+          "The paper evaluates multiple datasets and includes a useful frozen-loss ablation showing that preservation regularization reduces retained-embedding drift (pp. 7, 13–14).",
+          "The geometric visualizations and reporting of retention, drift, and neighborhood metrics provide an interpretable view of head behavior (pp. 14–15)."
+        ],
+        "weaknesses": [
+          "POU does not demonstrate removal of training-data influence: the frozen encoder still contains the forgotten information, hard routing requires knowing forget-set membership, and forcing forget accuracy to 0% is neither retraining equivalence nor a formal removal criterion. Indeed, retraining retains substantial instance accuracy through generalization (pp. 6–8).",
+          "COU only reverses an artificial objective that the authors themselves inject while retaining the original embeddings as restoration targets. It does not remove a naturally learned capability, and evaluation uses only trustworthiness/drift rather than target-task performance, leakage, or comparison with a model never trained on that objective (pp. 6, 8–9, 15–16).",
+          "The evidence is unreliable or incomplete: an MIA AUC of 2.89% is described as near chance even though an inverted score yields 97.11% separability; baselines appear severely degraded and are not matched carefully; there are no uncertainty estimates, repeated trials, runtime results, or broad class/objective choices (pp. 7–9, 13)."
+        ],
+        "score_rationale": "The head-only geometric mechanism may be useful for access control or representation editing, but it does not satisfy the paper's strong claims of sample- or objective-level unlearning. The trivial synthetic COU setup and misinterpreted privacy evidence are decisive technical and empirical deficiencies, outweighing the method's simplicity and presentation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes projection-head-only geometric displacement (POU) and rollback of an injected projection-space objective (COU). Although lightweight and clearly motivated, the experiments do not establish machine unlearning: they mainly demonstrate output manipulation of known forget samples and reversal of an artificial head perturbation, while the frozen backbone and other stored artifacts retain the original information.",
+        "strengths": [
+          "The methods are computationally lightweight and preserve retained-set geometry better than the tested destructive baselines (pp. 7–8, 13).",
+          "The paper presents explicit objectives, implementation details, pseudocode, and an informative frozen-loss ablation (pp. 5–6, 8, 13, 16).",
+          "Evaluation spans three datasets for POU and two pretrained representations for COU, with both quantitative and qualitative analyses (pp. 7–9, 14–15)."
+        ],
+        "weaknesses": [
+          "POU does not demonstrate deletion of training influence: the backbone is frozen, original representations/prototypes are retained, and inference uses special hard routing for known forget samples (pp. 4–6, 16). Moreover, 0% forget-set accuracy is not a valid retraining-equivalence criterion—the exact-retrain baseline correctly generalizes to many forgotten samples (e.g., 86.8% on CIFAR10, p. 7).",
+          "COU only learns an artificial pseudo-label objective and then optimizes directly toward stored pre-perturbation embeddings; trustworthiness/drift recovery is therefore close to the training target rather than evidence that a naturally learned capability was removed. There are no capability-specific behavioral tests and only one poorly matched baseline (pp. 6, 8–9).",
+          "The privacy interpretation is seriously incorrect: Attack-B AUC of 2.89% is not near chance; reversing the attack score yields 97.11% AUC, indicating strong distinguishability (pp. 9, 13). Results also lack uncertainty across seeds, broader deletion choices, and rigorous comparisons or removal guarantees."
+        ],
+        "score_rationale": "The projection-only implementation and preservation ablation are useful, but decisive conceptual and evaluation flaws undermine the central unlearning claims. In particular, unchanged feature extractors, membership-dependent routing, circular COU recovery, and the inverted MIA interpretation prevent the evidence from supporting either sample-level erasure or objective-level capability removal. I see little uncertainty in these core issues, though reproducibility of the reported raw numbers cannot be assessed from the manuscript alone."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes projection-head editing methods that move designated embeddings to synthetic outliers (POU) or undo a deliberately injected projection-space objective (COU). While computationally lightweight, the experiments do not establish machine unlearning in the usual sense: they mostly demonstrate controlled output manipulation or rollback while the frozen backbone retains the original information.",
+        "strengths": [
+          "The projection-only designs are simple, computationally attractive, and described with losses and pseudocode (pp. 5–6, 16).",
+          "POU explicitly regularizes retained embeddings, and its ablation shows this term substantially reduces collateral drift (p. 13).",
+          "The paper evaluates several datasets and reports utility, geometric, privacy, and qualitative metrics (pp. 7–9, 13–15)."
+        ],
+        "weaknesses": [
+          "The central forgetting metric is invalid as evidence of unlearning: low accuracy on deleted training points rewards forced misclassification, whereas exact retraining still correctly generalizes to many such points (e.g., 86.8% for CIFAR10 on p. 7). POU also uses identity-dependent hard routing for forgotten samples (pp. 6, 16), so its 0% result is partly built into inference rather than demonstrating removal.",
+          "The MIA result is interpreted incorrectly. An AUC of 2.89% is not near chance; reversing the attack score yields approximately 97.11% AUC, indicating strong distinguishability (pp. 9, 13). This directly undermines the claimed privacy guarantee.",
+          "COU only learns and then reconstructs a synthetic perturbation using stored original embeddings; it neither removes an independently learned capability nor evaluates target-task performance. Trustworthiness and drift alone cannot show objective erasure, only geometric restoration, and the comparison is limited to a poorly matched NegGrad baseline (pp. 6, 8–9)."
+        ],
+        "score_rationale": "The work has a clear lightweight geometric construction, but decisive conceptual and evaluation flaws invalidate its principal unlearning claims. The frozen backbone remains unchanged, the deletion metric favors deliberate errors rather than retraining equivalence, the MIA evidence is reversed, and COU is essentially rollback of an artificial head perturbation. Missing variance, several unspecified settings, and substantial Caltech utility loss further weaken the evidence (pp. 7–8, 16)."
+      }
+    }
+  ]
+}

@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_047",
+  "paper_id": "0UCkWfcfb9",
+  "number": 6048,
+  "title": "OPTune: Efficient Online Preference Tuning",
+  "authors": "Lichang Chen; Jiuhai Chen; Chenxi Liu; John Kirchenbauer; Davit Soselia; Chen Zhu; Tom Goldstein; Tianyi Zhou; Heng Huang",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "Efficient RLHF; Online DPO;",
+  "forum_url": "https://openreview.net/forum?id=0UCkWfcfb9",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    5,
+    5,
+    5,
+    3,
+    3
+  ],
+  "human_mean_rating": 4.2,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper targets LLM alignment with human preferences in an online manner. OPTune involves two main strategies to reduce computational costs while maintaining alignment quality, including selective generation and weighted DPO loss. The authors conduct experiments using OPTUNE with LLMs and report a 1.27–1.56x speedup in training while maintaining or even improving model alignment."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. OPTune achieves notable computational savings in data generation and training, reducing costs for online RLHF while preserving alignment quality.\n2. By focusing on low-reward prompts, OPTune avoids unnecessary regeneration, which is a pragmatic approach to improve efficiency.\n3. Using weighted DPO loss changes binary signals to dense signals, improving improving alignment through prioritizing high-utility samples."
+        },
+        "weaknesses": {
+          "value": "1. The choice of the ratio of re-generated prompts $\\rho$ can be a key factor of OPTune. Though the authors conduct experiments with different $\\rho$s, the authors do not provide direct insights on how to choose $\\rho$ to balance between efficiency and performance.\n2. Online DPO (without weighted loss) should be the most related baseline for this paper. Though some experiments are conducted, the authors do not sufficiently evaluate OPTune's superiority over online DPO.\n3. In Table 3, the performance in TrustfulQA is incorrectly bold. The offline DPO model has higher performance.\n4. The choice of $\\beta_2$ in the weighted loss is significant while the authors do not reveal any insight or related experiments on it."
+        },
+        "questions": {
+          "value": "1. A choice of small  $\\rho$ can speed up the training process. However, we may improve the efficiency by directly reduce the training epochs while enlarging the learning rate, which may bring more significant speedups. Will an online training method with dynamic learning rate adjustment have better efficiency?\n2. Samples whose reward gap between positive and negative responses is high may dominate the learning loss. Does the training curve show more significant instability than DPO?\n3. Will the un-re-generated responses be over-optimized?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZTUPRCGmf0",
+      "forum": "0UCkWfcfb9",
+      "replyto": "0UCkWfcfb9",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_NRtG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_NRtG"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6048/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730718241771,
+      "cdate": 1730718241771,
+      "tmdate": 1731428562862,
+      "mdate": 1731428562862,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper propose OPTune, an approach to enhance the both generation and training efficiency of online preference tuning for LLMs alignment.\nTo improve the generation efficiency, OPTune selects prompts whose regenerated responses are likely to provide more informative and higher-quality training signals.\nIn addition, weighted DPO is proposed to improve the training efficiency by modelling the reward gap of response pairs.\nEmpirical results show that LLMs tuned with OPTune maintain instruction-following benefits and achieve faster training speeds compared to standard preference tuning methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper is well-written and well-orginized.\n\nConsidering online DPO takes more time than the original offline method, improving its efficiency is of great significance."
+        },
+        "weaknesses": {
+          "value": "Given that iterative DPO often utilizes different prompts in different iterations [1] for avoid overfitting or overoptimization [2],  it is not clear how the proposed method can be used in such scenarios.\n\nThe performance of the models corresponding to different selection ratios in Table 2 is not very different and is generally low, which cannot explain the effectiveness of the method.\n\n\nReferences:\n\n[1] Meng Y, Xia M, Chen D. Simpo: Simple preference optimization with a reference-free reward[C]. NeurIPS, 2024.\n\n[2] Rafailov R, Chittepu Y, Park R, et al. Scaling laws for reward model overoptimization in direct alignment algorithms[J]. arXiv preprint arXiv:2406.02900, 2024."
+        },
+        "questions": {
+          "value": "How to rank the response pairs? Do you use the average rewards of preferred and less preferred responses? Is there a better prompt selection method suitable for wDPO?\n\nRegarding the experimental configuration in Table 1: How many responses were generated for each prompt?\n\nDid the author observe overoptimization reusing the same prompts for each iterations?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "tWCkMhxGQQ",
+      "forum": "0UCkWfcfb9",
+      "replyto": "0UCkWfcfb9",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_t2sx"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_t2sx"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6048/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730676756129,
+      "cdate": 1730676756129,
+      "tmdate": 1731428563012,
+      "mdate": 1731428563012,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose a more generation-efficient procedure for online RLHF by preferentially sampling responses from prompts that had low rewards and weighting samples by the reward gap in the online DPO loss."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Show across multiple experiments that the proposed strategy outperforms a random selection strategy."
+        },
+        "weaknesses": {
+          "value": "- Lack of relevant baselines on sample selection: a pretty common strategy in RLHF is to pick prompts that had the largest \"margin\" between the winner and the loser for further training (e.g. https://arxiv.org/abs/2404.03715). Could you compare your strategy against this technique?\n\n- Lack of relevant baselines on policy optimization: a variety of papers have already noted that IPO / DPO ignore the gap in reward between the winning and losing completions. Could you compare against at least one of these (e.g. REBEL: https://arxiv.org/abs/2404.16767)."
+        },
+        "questions": {
+          "value": "1. Would it be possible to provide some sort of conceptual grounding for your proposed prompt selection strategy? I could imagine a connection to the pessimism principle in RL."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "N1p4rMhMJm",
+      "forum": "0UCkWfcfb9",
+      "replyto": "0UCkWfcfb9",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_Vdwc"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_Vdwc"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6048/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730670401640,
+      "cdate": 1730670401640,
+      "tmdate": 1731428563168,
+      "mdate": 1731428563168,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper addresses the high-cost issue of online alignment. It proposes a method aimed at improving the efficiency of online  alignment, specifically consisting of two parts. First, only the lowest-rewarded responses generated under the latest LLM policy are regenerated and updated. Second, the loss function is modified to assign higher weights to response pairs that contribute more during training. \nSimilar methods to the two improvements proposed in this paper have already emerged within the community. Further, the experimental section lacks a proper evaluation of the improvements due to the choice of an outdated and subpar baseline Zephyr 7B Beta (Alpaca eval rank 131)."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The writing is relatively clear."
+        },
+        "weaknesses": {
+          "value": "1. Lack of Innovation\nOver the past year, the alignment community has proposed numerous methods similar to those used in this paper. As early as the Llama 2 Technical Report, the approach of directly incorporating the score difference between two responses into the loss function was introduced. Although the Llama 2 Technical Report is cited in the Related Work section, there is no comparative discussion with Llama 2 or other similar works in Section 3.2.\n2. Incomplete Experiments and Lack of Analysis\nThis paper introduces a scaling factor, beta 2, to amplify the score difference and combines it with the original DPO loss function via multiplication rather than addition. However, the motivation behind this approach is not explained. More importantly, there is no ablation study to compare the impact of different values for the scaling factor beta 2 or other ways of incorporating score differences.\n3. Unconvincing Choice of Baseline\nThe entire experimental section only includes the Zephyr model as a baseline, with no comparisons to other baselines. \nCurrently,  on the alpaca_eval board(https://tatsu-lab.github.io/alpaca_eval/) Zephyr-7B-Beta has a win rate of 13.2%, ranking 131st. When controlling for model size and listing only models with 8B or fewer parameters, there are other fine-tuned models based on comparable foundation models. These include the Gemma series (e.g., Gemma-2-9B-it-SimPO, rank 8; Gemma-2-9B-it-DPO, rank 10), Llama3-based fine-tuned models like Llama-3-Instruct-8B-WPO-HB-v2 (rank 20), and Mistral 7B-based models like Storm-7B (rank 24). Without comparisons to any of these other similarly sized fine-tuned models, the paper’s conclusions are difficult to accept.\n\nLongitudinally, the Zephyr model has several later versions, including FsfairX-Zephyr-Chat-v0.1 (rank 50, LC win rate 34.8%), ExPO + Zephyr 7B Beta (rank 128, LC win rate 14.0%), and Zephyr 7B Beta (rank 131, LC win rate 13.2%). The paper only selected Zephyr 7B Beta, which ranks last among these, as its baseline, with a win rate only 40% of the current best Zephyr model. Additionally, instead of using the common win rate metric, the paper employs win score, making it difficult to directly compare the performance of Optune against existing models."
+        },
+        "questions": {
+          "value": "Why didn’t the authors choose a stronger model from the Zephyr series as a baseline, or conduct comparisons with other models like Llama-3-Instruct-8B-WPO-HB-v2?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "UjQmaDha27",
+      "forum": "0UCkWfcfb9",
+      "replyto": "0UCkWfcfb9",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_8QcR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_8QcR"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6048/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730635321166,
+      "cdate": 1730635321166,
+      "tmdate": 1731428563311,
+      "mdate": 1731428563311,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes two improvement for online preference learning: one is reward-based prompt selection, and the other one is weighted DPO. For reward-based prompt selection, the paper proposes that between each iteration of online DPO, one should only regenerate certain proportion of the reponses to the prompts that have the lowest rewards. For weighted DPO, the paper proposes to add a weight term in the DPO loss based on the reward difference in each pair of generation. The paper performs experiments to show that, with  reward-based prompt selection, for both DPO and wDPO loss, selecting the right portion of regeneration will improve the efficiency of online DPO without sacraficing the performance."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The experiment is performed on a 7B model and the result suggests that with a right ratio for regeneration, the proposed method indeed improves training efficiency without decreasing the performance.\n2. The experiment has reasonable comparison with random subselection and shows that random subselection does not work as well as the proposed method."
+        },
+        "weaknesses": {
+          "value": "1. It is unclear to me that ranking the prompts by absolute reward makes sense, especially if the reward model is trained by BT loss. For each fixed prompt, the BT loss only cares about the difference between two responses, so difference prompts may induce a difference biased of the corresponding completion. Thus having a low reward does not necessarily mean that the model is currently performing bad on the prompt. Honestly I might be describing the procedure wrong because I don't see a clear definition of \"ranking prompt by reward\" unless I am missing something.\n\n2. Also it is unclear to me why the wDPO loss makes sense. If the reward gap between two generations are large, it is likely that the pair is already easy for the model, and the term might not even contribute to the training - why not doing the inverse weight?\n\n3. There is no information how table 1 is generated, and it seems like it is the major motivation for the proposed method. More details should be provided, especially to show that all procedures are fully optimized - for example, for generation it seems that using vllm to speed up the inference is the common approach.\n\n4. Frankly, the paper lacks basic rigors. \n- In section 3.1, the important concept of \"reward gain\" is not defined so the motivation part is very confusing.\n- In line 7 of alg 1, the prompt $x^i$ is already popped, then from line 12 should we never see the recently added pairs in $\\mathcal{R}_t$?\n- In line 21 of alg 1, how is the ranking computed?\n- nits: a) in eq (2), the two terms inside KL are not distribution. 2) eq (2) uses $\\alpha$ and the following uses $\\beta$. 3) in line 167 $\\mathcal{P}$ is not defined."
+        },
+        "questions": {
+          "value": "see above"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "FDKZapZlCj",
+      "forum": "0UCkWfcfb9",
+      "replyto": "0UCkWfcfb9",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_mgRJ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6048/Reviewer_mgRJ"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6048/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730404068575,
+      "cdate": 1730404068575,
+      "tmdate": 1731428563544,
+      "mdate": 1731428563544,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "OPTUNE reuses response pairs for high-reward prompts, regenerates only low-reward ones, and weights DPO examples by reward-model score gaps. The approach is practical and shows promising efficiency-quality tradeoffs on a 7B model, but the methodological justification and empirical validation are not yet strong enough for clear acceptance.",
+        "strengths": [
+          "The selective regeneration strategy directly targets the dominant generation cost and is simple to integrate into iterative online DPO (pp. 2, 4).",
+          "Across LIMA and AlpacaEval, reward-based selection generally outperforms random selection and can approach full regeneration with lower reported runtime (pp. 6–8).",
+          "The paper includes complementary benchmark and human evaluations rather than relying solely on one LLM judge (pp. 8–9, 15–16)."
+        ],
+        "weaknesses": [
+          "The main justification is heuristic: aggregate reward gains from low-ranked prompts may reflect regression to the mean or greater headroom, and do not establish that the selection rule causally identifies more informative samples (p. 4). Likewise, weighting by an uncalibrated reward gap is asserted rather than theoretically derived (p. 5).",
+          "Evidence is limited to one 7B policy family, one training prompt source, and one reward model, with no repeated runs, uncertainty intervals, or significance tests. The human study uses only 50 prompts and eight student volunteers (pp. 6–9, 15–16).",
+          "Reproducibility and ablation details are incomplete: key DPO/wDPO parameters such as beta1 and beta2 are not reported in the hyperparameter appendix, and there is little analysis of stale reused pairs, reward-model bias, or sensitivity to weighting/calibration (pp. 5, 15)."
+        ],
+        "score_rationale": "The paper presents a useful, low-complexity efficiency idea with encouraging results and a reported 1.27–1.56x end-to-end speedup. However, novelty is incremental, the wDPO rationale is underdeveloped, and single-setting experiments without seeds or uncertainty leave the central quality-preservation claim insufficiently established. I therefore rate it marginally below acceptance, with some uncertainty because the reported trends are fairly consistent."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "OPTUNE reduces online preference-tuning cost by regenerating responses only for prompts with low cached rewards and introduces a DPO loss weighted by reward gaps. The approach is simple and practically relevant, with promising results on one 7B model, but the evidence and technical justification are insufficiently robust for acceptance.",
+        "strengths": [
+          "Targets an important practical bottleneck: generation accounts for 71.8% of measured online-DPO time, and the reported method yields 1.27–1.56× end-to-end speedups (pp. 1, 7–8).",
+          "The low-reward prompt-selection heuristic is straightforward to implement and generally outperforms random selection at matched generation budgets (pp. 6–8).",
+          "Evaluation spans LIMA, AlpacaEval, four standard benchmarks, and a small human study; the latter suggests comparable quality to full regeneration (pp. 8–9, 15–16)."
+        ],
+        "weaknesses": [
+          "The core motivation is not causally established: the bottom-half reward-gain observation may largely reflect regression to the mean or sampling noise, and no normalized, controlled, or multi-seed analysis supports the claimed informativeness of low-reward prompts (p. 4).",
+          "The wDPO objective is heuristic rather than derived: sigmoid weighting is restricted to 0.5–1 for winner–loser pairs, while the claim that larger reward gaps provide more useful learning signals is unsupported and may instead amplify reward-model errors (p. 5).",
+          "Evidence is narrow and statistically weak: experiments use one 7B starting model, one prompt dataset, and one reward model, with no seeds, uncertainty intervals, or significance tests; the human study has only 50 prompts and eight student raters (pp. 6–9, 15–16)."
+        ],
+        "score_rationale": "The paper presents a useful efficiency heuristic and encouraging wall-clock results, but novelty is modest and central claims lack rigorous justification and statistically robust validation. Reward-model dependence is acknowledged (p. 15), yet robustness to reward noise, model scale, datasets, and seeds is not tested, placing the work marginally below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes OPTUNE, an online preference-tuning pipeline that regenerates responses only for low-reward prompts and weights DPO examples by reward-model score gaps. On one 7B model and prompt corpus, it reports similar or slightly better instruction-following quality than full regeneration with 1.27–1.56× wall-clock speedup. The idea is practical, but its novelty and empirical validation are insufficiently strong for confident acceptance.",
+        "strengths": [
+          "The method directly addresses a meaningful systems bottleneck: generation accounts for 71.8% of measured online-DPO time (p. 1), and selective regeneration is simple to implement.",
+          "Comparisons include full regeneration and random selection at matched ratios; the proposed selection generally performs better than random selection and competitively with full regeneration (pp. 6–8).",
+          "Evaluation covers LIMA, AlpacaEval, four standard benchmarks, and a small human study rather than relying solely on the training reward model (pp. 8–9, 15–16)."
+        ],
+        "weaknesses": [
+          "The technical novelty is modest: selecting low-scoring items and multiplying DPO loss by a sigmoid of the reward gap are straightforward heuristics. Moreover, the claim that larger reward gaps imply greater training utility is not established, and the proposed weight is restricted to approximately [0.5,1] because the winner has nonnegative reward gap (p. 5).",
+          "Evidence is narrow and statistically weak: experiments use only one 7B policy family, one reward model, and one prompt source, with no multiple seeds, variance, significance tests, or uncertainty intervals (pp. 6–9). The human study has only 50 prompts, many ties, and non-independent repeated ratings (pp. 15–16).",
+          "The motivation in Fig. 2 does not demonstrate causal informativeness: low-reward prompts naturally have more headroom and may exhibit regression to the mean, while selecting and weighting by the same imperfect reward model can amplify bias or noise. The limitations discuss RM dependence only briefly and do not test robustness to alternative or corrupted reward models (pp. 4, 15)."
+        ],
+        "score_rationale": "The paper offers a useful, computationally efficient heuristic with encouraging results, but the limited novelty, weak justification of reward-gap weighting, and single-setting evaluation without uncertainty leave central claims under-supported. I therefore rate it marginally below acceptance, while acknowledging that broader multi-model/RM studies and statistically rigorous comparisons could change the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes OPTUNE, combining low-reward prompt regeneration with a reward-gap-weighted DPO loss to reduce online preference-tuning cost. The idea is practical and results are directionally encouraging, but the novelty is modest and the limited, statistically weak evaluation does not fully support the broad efficiency and alignment claims.",
+        "strengths": [
+          "The regeneration heuristic is simple, practical, and directly targets the dominant generation cost identified in the pipeline (pp. 1–4).",
+          "Across LIMA, AlpacaEval, standard benchmarks, and a small human study, selective regeneration generally matches or exceeds full regeneration and random selection (pp. 6–9, 15–16).",
+          "The paper separately evaluates prompt selection with both DPO and wDPO, providing a useful partial ablation of the two components (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "Technical justification is weak: the bottom-half reward-gain observation may largely reflect regression to the mean, while wDPO's sigmoid weight is an ad hoc factor restricted to 0.5–1 with no theoretical analysis, normalization study, or comparison to alternative reward-aware objectives (pp. 4–5).",
+          "Evidence is narrow and lacks uncertainty estimates: experiments use one 7B starting model, one prompt corpus, one reward model, three iterations, and apparently single runs; no seeds, confidence intervals, significance tests, or robustness to reward-model bias/calibration are reported (pp. 6–9, 15).",
+          "Reusing old response pairs makes much of the data increasingly off-policy, yet this distribution shift is neither quantified nor analyzed; reported timing is also insufficiently detailed to establish general end-to-end speedups beyond this setup (pp. 4, 7–8)."
+        ],
+        "score_rationale": "The method offers a useful engineering heuristic and consistent preliminary gains, including a reported 1.27–1.56× speedup, but its core components are relatively incremental and the empirical support is too narrow and variance-free for confident acceptance. I am somewhat uncertain because replicated results across additional models and reward models could materially strengthen the case."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "OPTUNE combines low-reward prompt regeneration with reward-gap-weighted DPO to reduce online preference-tuning cost. The practical idea is plausible and shows encouraging results on one 7B setup, but the methodological justification and experimental validation are not yet strong enough for clear acceptance.",
+        "strengths": [
+          "The method directly targets the dominant generation cost and is simple to implement; measured end-to-end speedups of 1.27–1.56× accompany roughly comparable instruction-following results (pp. 7–8).",
+          "Evaluation covers LIMA/GPT-4 judging, AlpacaEval, four standard benchmarks, and a small human study rather than relying on a single metric (pp. 6–9).",
+          "Reward-based selection consistently outperforms random selection at matched regeneration ratios in the reported experiments, supporting the core selection heuristic (pp. 6–8)."
+        ],
+        "weaknesses": [
+          "Novelty and technical grounding are limited: selecting low-reward items is a straightforward hard-example/replay heuristic, while wDPO merely multiplies loss by a sigmoid weight in [0.5,1] because the winner has nonnegative reward gap; there is no derivation showing consistency with the stated RL objective or accounting for reward calibration and uncertainty (pp. 4–5).",
+          "Evidence is narrow and statistically weak: only one 7B model/reward-model/data configuration and three iterations are tested, with no seeds, error bars, significance tests, or comparisons to stronger active-selection/replay alternatives; several reported gains are small (e.g., AlpacaEval 16.45 versus 15.43 on p. 8).",
+          "Algorithmic and reporting details raise reproducibility concerns: ranking and rewards for reused stale pairs are underspecified (p. 4), and the human-study percentages are incompatible with the stated 200 ratings per comparison if computed from pooled integer counts, with no inter-rater agreement or significance analysis (pp. 9, 15–16)."
+        ],
+        "score_rationale": "The paper presents a useful efficiency heuristic with promising empirical results, but its incremental novelty, weak theoretical support for wDPO, underspecified stale-data handling, and single-setting evaluations without uncertainty estimates leave the central claims insufficiently established. I therefore rate it marginally below acceptance."
+      }
+    }
+  ]
+}

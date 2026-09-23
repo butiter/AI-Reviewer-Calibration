@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_029",
+  "paper_id": "qhLjdFHdXm",
+  "number": 8296,
+  "title": "PDTrim: Targeted Pruning for Prefill-Decode Disaggregation in Inference",
+  "authors": [
+    "Hao Zhang",
+    "Lyu mengsi",
+    "ZhuoChen",
+    "Xingrun Xing",
+    "Yulong Ao",
+    "Yonghua Lin"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "large language models",
+    "disaggregation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=qhLjdFHdXm",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    6,
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "lD5kl0tCEA",
+      "forum": "qhLjdFHdXm",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8296/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761972647145,
+      "tmdate": 1762920226148,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "msbwboJrPj",
+      "forum": "qhLjdFHdXm",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8296/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761385423737,
+      "tmdate": 1762920226592,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "rbFEeIOEo8",
+      "forum": "qhLjdFHdXm",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8296/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762182661033,
+      "tmdate": 1762920224760,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "zcfK0tdANo",
+      "forum": "qhLjdFHdXm",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8296/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761979756825,
+      "tmdate": 1762920225340,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a PD-aware compression pipeline combining simulated-annealing-style block selection, pairwise block distillation, stage-specific removal, and selective transmission of prefill KV entries. The deployment motivation is relevant and the benchmark coverage is broad, but central technical and empirical claims are insufficiently supported and in places internally inconsistent.",
+        "strengths": [
+          "The paper targets the practically relevant interaction between model compression and prefill/decode disaggregation, rather than studying pruning only in a unified inference setting (pp. 1–2).",
+          "Experiments cover several model families, scales, pruning rates, downstream tasks, perplexity, quantization compatibility, and component ablations (pp. 7–8, 15–19).",
+          "The stage-specific comparison reports a measurable improvement over applying one removal configuration to both stages (Table 11, p. 17)."
+        ],
+        "weaknesses": [
+          "The theoretical justification is not sound: the claim that the spectral norm of an attention matrix satisfies ||A||_2≤1 is false for a general row-stochastic matrix, and the resulting one-step perturbation bound does not establish the claimed greater prefill sensitivity or temporal error amplification (pp. 5, 14).",
+          "The headline bandwidth result appears inconsistent with the stated mechanism. With p=0.3, selected layers retain the first and last 30% of prompt tokens, while unselected layers retain full caches; pruning 22 of 32 layers therefore cannot straightforwardly reduce 4.0 GB to 0.8 GB. The number of selected layers n is also not specified in the default setup, and no accounting resolves this discrepancy (pp. 6, 8, 15, 17–19).",
+          "Evaluation reliability is unclear: PIQA and MMLU are used for calibration and ten-epoch distillation while also appearing in reported evaluation, but dataset splits and leakage controls are unspecified. Results lack seeds or uncertainty, some gains rely on very small high-variance tasks such as CB/WNLI, and the latency study does not clearly report end-to-end PD serving conditions or include communication and scheduling effects (pp. 7–8, 15, 17–18)."
+        ],
+        "score_rationale": "The system problem is worthwhile and the empirical breadth suggests potential, but the invalid theoretical step, under-specified method, and apparent contradiction in the central 4.95× communication claim prevent confidence in technical soundness and reproducibility. These are major rather than presentation-level issues, so I lean reject despite promising motivation and results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper combines stage-specific block removal, adjacent-block distillation, and static first/last-token KV-cache retention for disaggregated inference. The deployment motivation is relevant and the reported accuracy gains are sizable, but serious evaluation leakage/fairness concerns, an apparent bandwidth inconsistency, and weak end-to-end systems evidence undermine the central claims.",
+        "strengths": [
+          "Targets the practically relevant interaction between model compression and prefill-decode disaggregation, rather than considering pruning only in a unified model (pp. 1–2).",
+          "Evaluates several model families and scales, multiple pruning ratios and tasks, and includes component, hyperparameter, calibration-set, and approximate-search analyses (pp. 7, 15–21).",
+          "Reports substantial task-accuracy improvements over the included pruning baselines and explores compatibility with quantization (pp. 7–8, 16–17)."
+        ],
+        "weaknesses": [
+          "The method trains/distills for 10 epochs on PIQA and MMLU and uses sampled PIQA/MMLU accuracy to search removal configurations, while PIQA and MMLU are also headline evaluation tasks. Splits are not specified, the results are called zero-shot, and baselines do not appear to receive comparable task-supervised optimization, making the comparison potentially leaked and unfair (pp. 4, 7, 15).",
+          "The claimed 4.95× communication reduction appears inconsistent with the stated default p=0.3, which retains both the first and last 30% of tokens in selected layers while leaving other layers' prefill cache intact. Together with only moderate block pruning, this does not obviously permit reducing 4.0 GB to 0.8 GB; no derivation or byte accounting is supplied (pp. 5–6, 8, 15).",
+          "Evidence for a systems-oriented PD contribution is inadequate: experiments use only two single-GPU nodes, latency is an underspecified single FP32 inference microbenchmark, and there are no serving-stack measurements of throughput/goodput, batching, concurrency, SLOs, network sensitivity, or the acknowledged dynamic-subgraph memory overhead. The theoretical bound also does not establish the claimed comparative sensitivity of prefill versus decode (pp. 4–6, 8, 14, 22)."
+        ],
+        "score_rationale": "Although the problem and combined design are useful, the benchmark-supervised search/training protocol and unexplained bandwidth arithmetic directly threaten the validity of the main empirical claims. Coupled with the absence of convincing end-to-end PD-serving evaluation, these are major issues requiring substantial new experiments and clarification, warranting rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper combines stage-dependent block pruning/distillation with a first/last-token KV-cache heuristic for disaggregated inference. Although the deployment motivation is relevant and the reported task results are broad, central efficiency claims are internally inconsistent and the evaluation does not establish a fair or realistic end-to-end serving benefit.",
+        "strengths": [
+          "Targets the practically relevant interaction between model compression and prefill/decode disaggregation, rather than considering pruning only in a unified model (pp. 1–2).",
+          "Evaluates several model families, pruning rates, and tasks, with additional perplexity, instruction-following, code, ablation, and sensitivity results (pp. 7–8, 15–21).",
+          "The iterative search has lower reported pruning overhead than SLEB, and the unified-versus-disaggregated comparison provides some direct evidence for stage-aware pruning (pp. 8, 16–17)."
+        ],
+        "weaknesses": [
+          "The headline 4.95× communication reduction appears incompatible with the stated algorithm. With p=0.3, each selected layer retains 60% of prompt tokens, while unselected layers remain intact; pruning 22 of 32 layers would retain about 72.5% of the original cache, not 20% as Table 4 reports (pp. 5–6, 8, 15, 17–18). No byte-level derivation resolves this contradiction.",
+          "The comparison is potentially confounded: the proposed method both distills for 10 epochs and searches removal configurations using PIQA/MMLU data, while PIQA and MMLU are also headline evaluation benchmarks; equivalent optimization budgets or task-disjoint selection are not demonstrated (pp. 4, 7, 15). Results also lack seeds, uncertainty, and significance estimates.",
+          "System evidence is inadequate for a PD-serving paper: only single-input latency and raw transfer measurements are reported, without TTFT/TPOT, throughput/goodput, concurrency, batching, output lengths, network specification, or overlap. The theoretical bound is generic and does not actually prove the asserted greater prefill sensitivity (pp. 4–5, 8, 14–15)."
+        ],
+        "score_rationale": "The stage-aware framing and empirical breadth are promising, but the unresolved quantitative contradiction behind the main bandwidth claim, possible calibration/training leakage and unfair baselines, and absence of realistic serving evaluation undermine technical soundness. These are central rather than cosmetic issues, warranting rejection."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes PD-aware LLM compression combining stage-specific block removal, simulated-annealing-style search, block distillation, and selective transmission of first/last-token KV entries. Results are broad and often favorable, but key algorithmic details, theory, and system measurements do not adequately support the central claims.",
+        "strengths": [
+          "The paper addresses a practically relevant interaction between model compression and prefill-decode disaggregation, rather than studying pruning only in a unified deployment setting (pp. 1–2).",
+          "Evaluation covers several model families, pruning rates, and downstream tasks, with additional perplexity, instruction-following, code-generation, quantization, and unified-versus-disaggregated experiments (pp. 7–8, 15–17).",
+          "The authors include component ablations, hyperparameter studies, calibration-set robustness checks, and a restricted exhaustive-search comparison (pp. 17–21)."
+        ],
+        "weaknesses": [
+          "The reported 4.95× communication reduction appears inconsistent with the stated default policy: p=0.3 retains both the first and last 30% of tokens, and pruning is applied to only 22 layers (pp. 5–6, 15, 17–19), which seemingly cannot produce the 0.8G versus 4.0G volume in Table 4 (p. 8) without substantial unstated assumptions.",
+          "The theoretical analysis is not persuasive: it models parameter perturbations rather than block deletion, and the generic attention-error bound does not establish that prefill pruning is more harmful than decode pruning or that errors necessarily amplify over generation (pp. 4–5, 14–15).",
+          "Reproducibility and evidence quality are limited: the distillation target/loss and attention-score aggregation are underspecified; n and exact selected layers are not generally reported; PIQA/MMLU are used for distillation, calibration, search, and evaluation without a clear split protocol; and results lack repeated trials or uncertainty estimates (pp. 5–7, 15, 20–21)."
+        ],
+        "score_rationale": "The PD-aware framing and empirical breadth are promising, but the method is largely a combination of heuristic search, distillation, and static cache pruning. The apparent incompatibility between the stated cache-retention rule and headline bandwidth result, alongside incomplete methodology and weak theoretical justification, prevents confidence in the principal claims. I therefore rate it below the acceptance threshold, while allowing uncertainty because some implementation details may simply be omitted."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper combines stage-specific block pruning/distillation with selective transfer of prefill KV entries for disaggregated inference. The deployment target is relevant and the empirical scope is broad, but serious inconsistencies in the efficiency claims, weak theoretical support, and insufficiently controlled evaluation undermine the main conclusions.",
+        "strengths": [
+          "Targets the practically important interaction between model compression and prefill–decode disaggregation, rather than treating pruning only as a model-level problem (pp. 1–2).",
+          "Evaluates several model families, scales, tasks, perplexity, and instruction/code benchmarks, with some component and hyperparameter ablations (pp. 7, 15–19).",
+          "Reports useful initial comparisons for latency, communication volume, and pruning overhead, and the stage-aware variant improves over its unified counterpart in the presented results (pp. 8, 17)."
+        ],
+        "weaknesses": [
+          "The central bandwidth result appears numerically incompatible with the stated default method. With p=0.3, each selected layer retains the first and last 30%, i.e. 60% of prompt KV; pruning 22 of 32 layers would retain about 72.5% overall, not the 20% implied by 4.0 GB to 0.8 GB. The paper does not reconcile these settings or account for the gap (pp. 5–6, 8, 17–19).",
+          "The claimed analysis does not establish that prefill is intrinsically more pruning-sensitive: it treats pruning as small attention-weight perturbations, omits removed blocks' MLP/residual effects, and then makes a qualitative accumulation argument rather than comparing prefill and decode errors. Thus it provides little justification for the stage-selection rule (pp. 4–5, 14–15).",
+          "Evidence and fairness are insufficient for a PD-serving claim. Distillation explicitly trains on PIQA and MMLU while both are headline evaluation tasks, making the advertised zero-shot comparison and gains difficult to interpret; baseline recovery training is not comparably specified. Moreover, latency uses a single FP32 input and lacks end-to-end serving throughput/goodput, concurrency, SLO, output-length, and network-topology studies (pp. 6–8, 15)."
+        ],
+        "score_rationale": "The idea is relevant and the reported accuracy results are promising, but the unexplained bandwidth arithmetic conflict directly challenges a headline contribution. Combined with potentially confounded evaluation and limited end-to-end systems validation, the current evidence does not support the paper's strong practical claims. Some implementation details remain ambiguous, so confidence is high but not absolute."
+      }
+    }
+  ]
+}

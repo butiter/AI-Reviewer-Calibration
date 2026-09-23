@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_077",
+  "paper_id": "EJ8HnNTEAv",
+  "number": 19031,
+  "title": "DGNet: Discrete Green Networks for Data-Efficient Learning of Spatiotemporal PDEs",
+  "authors": [
+    "Yingjie Tan",
+    "Quanming Yao",
+    "Yaqing Wang"
+  ],
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": [
+    "Partial Differential Equations",
+    "Data-efficient learning",
+    "Graph Neural Networks",
+    "Physics-Informed Machine Learning",
+    "Generalization"
+  ],
+  "forum_url": "https://openreview.net/forum?id=EJ8HnNTEAv",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    4,
+    6,
+    4
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "DS8AxKnwMq",
+      "forum": "EJ8HnNTEAv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19031/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761550793557,
+      "tmdate": 1762931073615,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "L5h5a3beOm",
+      "forum": "EJ8HnNTEAv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19031/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762236949722,
+      "tmdate": 1762931072349,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "R3zXDkzL5a",
+      "forum": "EJ8HnNTEAv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19031/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761921949542,
+      "tmdate": 1762931073164,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "YYtHA4EKYG",
+      "forum": "EJ8HnNTEAv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19031/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761974877442,
+      "tmdate": 1762931072746,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "DGNet combines a Crank–Nicolson resolvent, mesh-derived differential operators, learned operator corrections, and a residual GNN. Reported gains are exceptionally large across several PDEs and source shifts, but central mathematical and implementation inconsistencies prevent the evidence from supporting the claims.",
+        "strengths": [
+          "The architecture injects useful numerical structure and explicitly separates state propagation from forcing; the broad ablations attribute gains to its main components (pp. 5–7, 10, 18).",
+          "Experiments span irregular 2D domains, a 3D geometry, meshes up to 30,000 nodes, and source perturbations, with consistently strong reported accuracy (pp. 8–10, 23–25).",
+          "The paper reports computational costs and openly demonstrates failure on a quasilinear phase-transition problem (pp. 17–20, 25–26)."
+        ],
+        "weaknesses": [
+          "The implementation is internally inconsistent: the system matrix contains learned L_neural, yet it is said to depend only on geometry and to be built/factorized once before training; the described adjoint gives gradients through the right-hand side but not the matrix. It is therefore unclear how L_neural can be trained while reusing fixed LU factors (pp. 5–6, 15).",
+          "The claimed Green/superposition foundation applies directly to linear L with independent forcing, whereas key benchmarks contain nonlinear, state-dependent reactions. L_neural is described as depending only on mesh features, and the residual GNN that may carry these nonlinear dynamics is underspecified, weakening both the novelty claim and interpretation of the ablations (pp. 4–7, 14, 25–26).",
+          "The theoretical guarantees do not establish properties of the implemented model: universal approximation and loss minimization do not guarantee truncation-error cancellation, tanh does not enforce the required spectral-norm bound, and strict coercivity fails for examples such as a Neumann Laplacian. Experimentally, baseline architectures/tuning, stochastic variation, uncertainty, and precise seen-versus-unseen source splits are insufficiently documented despite enormous margins (pp. 7–10, 14–15, 20–22)."
+        ],
+        "score_rationale": "The standard implicit-integration idea is potentially useful and the empirical breadth is appealing, but the fixed-factorization/learned-operator contradiction, misuse of linear superposition for nonlinear benchmarks, unsupported guarantees, and weakly controlled comparisons are major soundness issues. Substantial clarification and new controlled evidence are needed."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "DGNet combines a Crank–Nicolson sparse solve, geometry-derived spatial stencils, and learned graph corrections, reporting very large gains in low-trajectory regimes and source-shift tests. The idea is potentially useful, but the manuscript does not adequately define how its nominally linear update handles the nonlinear and coupled benchmark PDEs, and key theoretical and empirical claims are not supported rigorously.",
+        "strengths": [
+          "The hybrid numerical/GNN construction is intuitive, and factorization reuse offers a practical implementation for static meshes (pp. 5–7, 15–18).",
+          "The evaluation spans canonical PDEs, irregular geometries, 3D and larger meshes, with consistently strong reported results and several component ablations (pp. 8–10, 18, 23–26).",
+          "The paper explicitly demonstrates an important failure mode for quasilinear, state-dependent dynamics rather than hiding the method's boundary of applicability (pp. 25–26)."
+        ],
+        "weaknesses": [
+          "The central formulation assumes du/dt=Lu+f and uses f at the next time step, yet major benchmarks contain nonlinear state-dependent reactions, coupled variables, and Navier–Stokes dynamics. The paper never specifies how these terms, unknown future forcing, PDE coefficients, or boundary conditions enter the solver; the briefly mentioned residual GNN is also undefined (pp. 3–7, 14–15).",
+          "The theoretical claims overreach: minimizing one-step error does not identify a correction equal to negative truncation error, and the stability result requires a spectral-norm bound smaller than the physical dissipation that is neither architecturally guaranteed by tanh nor enforced in training. Eigenvalue plots do not establish contraction for nonnormal operators (pp. 19–22).",
+          "The evidence does not isolate data efficiency or source generalization convincingly: there are no learning curves, repeated runs, uncertainty estimates, or sufficiently detailed source splits; baseline source inputs and fairness are unclear. The Green ablation changes the architecture to a generic GNN, while the claimed Green operator is essentially a standard Crank–Nicolson resolvent (pp. 8–10, 14–15, 18, 25–26)."
+        ],
+        "score_rationale": "The reported accuracy and breadth are promising, but foundational specification gaps make the experiments difficult to interpret or reproduce, while the consistency and stability guarantees are not valid as presented. The method's novelty beyond learned discretizations plus an implicit integrator is also limited, so substantial revision is required despite encouraging empirical results."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "DGNet combines a Crank–Nicolson update, geometry-derived spatial operators, and GNN corrections, interpreting the resulting implicit propagator as a discrete Green operator. The idea is intuitive and the reported gains are large, especially for unseen forcing, but central mathematical and implementation inconsistencies prevent the evidence from establishing the claims.",
+        "strengths": [
+          "The hybrid numerical/neural design is intuitive, applicable to irregular meshes, and accompanied by useful component ablations (pp. 5–10, 18).",
+          "The evaluation spans several equations, geometries, 3D and larger-scale settings, and explicitly documents a quasilinear failure case (pp. 14–18, 23–26).",
+          "Reported source-term generalization and accuracy gains are substantial, while inference costs are reasonably characterized (pp. 8–10, 17–18, 23–25)."
+        ],
+        "weaknesses": [
+          "The learned operator depends on trainable L_neural (p. 6), yet the system matrix is reportedly constructed and factorized once before training (p. 15). Its cached LU factors become invalid whenever parameters change, so the stated training algorithm is internally inconsistent unless refactorization or a separate training procedure is omitted.",
+          "The Green/CN derivation assumes a fixed linear operator, but headline benchmarks contain nonlinear, state-dependent reaction dynamics. The paper does not formally specify how the residual GNN represents these terms, so the superposition-based justification does not cover much of the evaluation (pp. 3–7, 14, 25–26).",
+          "Evidence for data efficiency is incomplete: mostly one small-data operating point, tiny test sets, no repeated-run uncertainty or learning curves, and insufficient detail about source inputs and baseline parity. The claimed stability guarantee also assumes an enforced spectral-norm bound smaller than coercivity, but no such constraint is implemented and several operators need not be strictly coercive (pp. 7–8, 14–15, 20–22)."
+        ],
+        "score_rationale": "The method has a promising inductive bias and unusually broad reported experiments, but the once-factorized trainable operator contradiction is a major soundness issue. Together with the mismatch between linear Green theory and nonlinear benchmarks and weak statistical/fairness controls, the dramatic gains are not presently reliable enough for acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "DGNet combines a standard Crank–Nicolson sparse solve with mesh-derived differential operators and learned graph corrections, targeting low-data PDE surrogate modeling. The empirical gains are striking, but central algorithmic and theoretical inconsistencies make the results difficult to trust as currently documented.",
+        "strengths": [
+          "The paper motivates source-term generalization clearly and evaluates several PDEs, irregular geometries, a 3D case, and an explicit failure regime (pp. 7–10, 23–26).",
+          "Reported improvements over numerous baselines are large, and component ablations consistently favor the full model (pp. 8, 10, 18, 26).",
+          "The hybrid sparse-operator viewpoint is practically appealing, with useful runtime and memory measurements (pp. 17–20)."
+        ],
+        "weaknesses": [
+          "The implementation appears internally inconsistent: L includes trainable L_neural (pp. 5–6), yet A=(I−ΔtL/2) is reportedly constructed and LU-factorized once before training (p. 15). A cached factorization cannot remain valid while L_neural changes, and this undermines both differentiability and the stated efficiency.",
+          "The formulation and novelty are overstated. Equation 7 is essentially the standard Crank–Nicolson update, while the claimed Green-function superposition applies to linear operators; several benchmarks contain state-dependent nonlinear reactions or coupled dynamics not represented by the stated fixed linear L (pp. 5–7, 14). The residual GNN is insufficiently specified to resolve this conceptual gap.",
+          "Evidence and theory lack rigor: tiny test sets, no seeds/error bars, and incomplete source-split and baseline-tuning details weaken the extraordinary gains (pp. 8, 14–15). The consistency theorem does not follow merely from minimizing finite-data prediction loss, while the stability condition ||L_neural||<η is not actually enforced by bounded activations and fails for common non-strictly dissipative operators such as Neumann Laplacians (pp. 21–22)."
+        ],
+        "score_rationale": "Although the empirical scope and reported accuracy are promising, the fixed-factorization/trainable-operator contradiction is fundamental, and the method’s treatment of nonlinear PDEs is not technically reconciled with its linear superposition premise. Together with unsupported theoretical guarantees and insufficient statistical validation, these issues warrant rejection pending substantial clarification and corrected experiments."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "DGNet combines a Crank–Nicolson-style implicit graph solver with geometric discretizations and learned corrections, reporting very large gains in low-data regimes. However, key mathematical and implementation details are internally inconsistent, so the reported evidence does not presently establish the claimed method or conclusions.",
+        "strengths": [
+          "The architecture has an intuitive physics–learning decomposition and targets an important problem: data-efficient simulation on irregular meshes (pp. 5–7).",
+          "The empirical scope is broad, including several PDE families, irregular geometries, 3D and larger-scale tests, recent baselines, and an explicit failure case (pp. 8–10, 23–26).",
+          "Reported improvements are large and supported by component ablations and runtime measurements (pp. 10, 17–18)."
+        ],
+        "weaknesses": [
+          "The derivation assumes a fixed linear operator and additive known forcing, yet major benchmarks contain state-dependent nonlinear reactions (Allen–Cahn, Fisher–KPP, FitzHugh–Nagumo). Equation 7 also uses f^{k+1}, which is unknown when the “source” depends on u^{k+1}; the paper never explains the nonlinear solve, approximation, or whether ground-truth quantities are used (pp. 5, 7, 14).",
+          "There is a fundamental implementation contradiction: L includes the learned L_neural, so A=I−ΔtL/2 changes during training, but the paper says A is built and factorized once before training because it depends only on geometry. The stated adjoint describes solving for input gradients but not differentiating and updating the factorized matrix consistently (pp. 5–6, 15). The residual GNN is also insufficiently specified and may carry much of the nonlinear dynamics (p. 7).",
+          "The evidence does not adequately support data-efficiency or theory claims: there are no sample-efficiency curves, repeated seeds/error bars, or sufficiently detailed source splits and baseline input handling, with some tests having only three trajectories (pp. 8, 14–15). The consistency theorem merely restates empirical loss minimization, while the stability theorem assumes a spectral-norm constraint that tanh does not ensure and that is not imposed or verified; eigenvalue plots alone do not establish contractivity for nonnormal operators (pp. 19, 21–22)."
+        ],
+        "score_rationale": "The underlying idea—an implicit physics-based graph integrator with learned corrections—is plausible, and the reported results are impressive. Nevertheless, calling the ordinary Crank–Nicolson resolvent a discrete Green function offers limited novelty, while unresolved treatment of nonlinear terms and the fixed-factorization/learned-operator contradiction threaten technical validity and reproducibility. These are major rather than cosmetic issues, warranting rejection despite promising empirical breadth."
+      }
+    }
+  ]
+}

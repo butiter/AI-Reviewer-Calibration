@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_051",
+  "paper_id": "JVFRwCx3Dy",
+  "number": 6656,
+  "title": "What Matters for In-Context Learning: A Balancing Act of Look-up and In-Weight Learning",
+  "authors": "Jelena Bratulić; Sudhanshu Mittal; Christian Rupprecht; Thomas Brox",
+  "primary_area": "generative models",
+  "keywords": "in-context learning; few-shot learning",
+  "forum_url": "https://openreview.net/forum?id=JVFRwCx3Dy",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    3,
+    5,
+    5
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies the origins of in-context learning (ICL) in a toy setup. Authors find that:\n\n1. The presence of almost exact copies of a given sample in the model's context substantially promotes ICL.\n\n2. ICL is diminished when the in-weight learning task is easy (as the model can solve the task without using context). On the other hand, harder tasks require both IWL and ICL, and hence the commonly observed ICL transiency (ICL disappearing as IWL performance increases) diminishes in harder tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Timely topic and a relatively straightforward methodology for studying it.\n\n2. I liked Figure 1 with plots of n-gram repetition in real corpora -- it's a good motivation for the toy setup in the paper. (I was keen to see a deeper investigation along those lines but only found toy experiments.)\n\n3. The related work section is comprehensive, and I found it useful.\n\n4. I liked the experiments in Section 5, though I'm not familiar enough with prior work to assess novelty."
+        },
+        "weaknesses": {
+          "value": "The main weakness is that the core experiment in Section 4 is presented poorly, to the extent where I'm still not sure what precisely is going on even after going through the paper several times.\n\n1. I don't get the difference between (3xQ-3xA-B-C) and (3xQ-3xA-B-C iCopy). Is the difference that in the iCopy setup, the three A and the three Q images in the context are copies of one another, whereas in the setting without iCopy they're different images with the same label? Also, does this only apply to the training data, or are test datasets also different between iCopy and no-iCopy?\n    - a) More questions about iCopy description: What is conceptual repetition -- is it just different images of the same class, or is that exact repetition? What kinds of augmented versions of the images are used in iCopy?\n\n\n    - b) It'd be helpful to clearly describe the difference between the baseline and iCopy settings -- perhaps by moving the baseline subsection into Section 4, or by adding a figure illustrating the difference.\n    - c) Relatedly, I did not get an explanation in the Baseline subsection, from *>We think this happens ...* until the end of the paragraph.\n\n2. I did not understand Figure 5: I'm not sure what to look for in these plots re induction heads -- how can the authors tell the induction head from the attention maps? I assume this has to do with the darker \"columns\" in subplot d? Also, I think it'd be helpful to add a description of induction heads to the related work section, as opposed to just mentioning them.\n\n\n3. How is IWL performance measured? Is it zero shot?"
+        },
+        "questions": {
+          "value": ">In our setup, ICL transiency is eliminated by using repetitions in the data sequences and using a complex in-weight learning objective.\n\nThis sentence (with the context of the rest of the paper) makes me think that repetitions make ICL a relatively easier way to get low training loss compared to IWL. So you can get more ICL either by making ICL itself easier (repetition), or making IWL harder (your section 5) -- either way what matters is the balance of ease of ICL vs ease of IWL, and the usefulness of each for reducing the training loss. \n\nDoes the above seem right to the authors? If so, highlighting this point about the balance between ICL and IWL difficulty could be helpful, as it seems to unify many of your findings."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "m4crZpB4CK",
+      "forum": "JVFRwCx3Dy",
+      "replyto": "JVFRwCx3Dy",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_cqA4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_cqA4"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6656/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730979426369,
+      "cdate": 1730979426369,
+      "tmdate": 1731428714489,
+      "mdate": 1731428714489,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "- The authors analyze the relationship between conceptual repetition (e.g., burstiness, skewness) and ICL performance on vision-language few-shot learning tasks.\n- The key take-aways are:\n    - Simple repetition of the query (i.e. iCopy) in the given prompt/sequence of examples is sufficient for allowing ICL to emerge by developing in-context look up ability\n    - Skewness, although helpful because they help create a more difficult IWL task, may not be necessary\n    - A possible explanation of this phenomenon is through better construction of induction heads\n- Given these key take-aways, the authors attempt to build on the data distributional properties for the emergence of ICL [1] and try to generalize these findings to the general LLM domain. However, this connection is weak and not supported by any experiments in the paper. it is not clear what iCopy may be equivalent to in the language domain and how these insights carry over to helping us understand the important properties of language pretraining.\n\n[1] Chan, Stephanie, et al. \"Data distributional properties drive emergent in-context learning in transformers.\" Advances in Neural Information Processing Systems 35 (2022): 18878-18891."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The authors expand on the work of Chan et al. 2022 [1] to not only confirm their findings on the importance of the skewness and burstiness in the pretraining distribution for language, but also show that under the iCopy data construction regime, skewness may not be important and attempt to analyze why it is so (from the induction head perspective)."
+        },
+        "weaknesses": {
+          "value": "- The authors run experiments to investigate the relationship between conceptual repetition (e.g., burstiness, iCopy, etc) and ICL performance on vision-language few-shot learning tasks and try to generalize the observations to the LLM domain. However\n- Some of the design choices for the experiments (like the baseline configuration, the objective function that only computes/backpropagates the loss on the query pair) are not justified and require clear explanation or empirical analysis. These questions are further expanded in the questions section."
+        },
+        "questions": {
+          "value": "- How are the evaluation data samples constructed? (in both of the 2-shot and 4-shot settings)\n- What’s the rationale behind why the authors choose the baseline model to be a mix of 10% and 90% of standard and in-context sequences? Is there perhaps an ablation on changing this ratio?\n- When autoregressively trained on the Omniglot few-shot learning dataset, my understanding from the paper is that only the loss after 2L pairs of image-label examples is computed and used for training. Why do the authors choose this paradigm, instead of backpropagating the losses on all y_i along the sequence like in standard language modeling? How do the results change if we change the training objective to be autoregressive as well?\n- In the experiments for Figure 6, with smaller # of classes, to achieve the same number of training steps, do you train over multiple epochs of the same dataset? Is it possible that these models are perhaps overfitting? Are there any training curves that we can analyze for this? Overall, it would be important to illustrate the validation performance on the IWL task and have that in the context of analyzing the ICL performance.\n- This may be an experiment hard to run during the rebuttal, but how does the model size interplay in the ICL emergence with these different variables of burstiness, skewness, complexity of data (# of classes), etc, given that people have observed that ICL only emerges at some scale of model size?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "None"
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "aFARxTEkTh",
+      "forum": "JVFRwCx3Dy",
+      "replyto": "JVFRwCx3Dy",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_KpPA"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_KpPA"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6656/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730681262982,
+      "cdate": 1730681262982,
+      "tmdate": 1731428714938,
+      "mdate": 1731428714938,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper the authors investigate the mechanisms behind In-Context Learning (ICL) in Large Language Models (LLMs). They argue that conceptual repetitions within training data sequences play a crucial role in enabling ICL. This view is contrasted to other explanations including the importance of data distribution and burstiness. The repetitions facilitate a \"look-up\" mechanism (essentially a copying mechanism performed by an inductive head) where the model learns to solve the task by recognizing the same pattern in the sequence and copying its associated label. The authors also highlight the significance of a complex in-weight learning objective in achieving stable and non-transient ICL performance. This complexity prevents the model from overfitting to simple patterns and encourages robust generalization."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "1. The publication is sufficiently clearly written. While it does occasionally make qualitative statements without referring to any specific figure, section or result (for example, “We observe that it is not possible to obtain a clear ICL performance with the same architecture using only the high-burstiness strategy…”), it generally refers to empirical evaluations and has a sufficiently well thought out experimental section.\n2. While being quite simple, the proposed techniques and ideas are sound. For example, it is entirely believable (even obvious and in the absence of careful experimental evidence) that copying a query example into the context would jump-start and incentivize the model to rely more on a simple “lookup” ICL mechanism. \n3. The authors designed a reasonable set of experiments to study their proposed iCopy mechanism (as well as the effect of the label distribution, label noise and an instance discriminative task)."
+        },
+        "weaknesses": {
+          "value": "1. _Novelty_. In my opinion, this publication is quite incremental and it does not seem to make any significant conceptual leaps on top of the pre-existing work. The importance of the copying mechanism and understanding the role of inductive heads has been the subject of many prior publications. The central idea of the paper that label copying mechanism can be incentivized by directly copying the query sample is in my opinion too obvious. As one example, (Chan et al., 2022) has arguably made an intermediate step towards the iCopy setup by considering a dataset with a single Omniglot exemplar image. The present paper, among other things, does in some sense generalize this setup by allowing the context to contain the same exemplar image, while using many more exemplar images overall. However, I do not see this as a major leap.\n2. It is hard to extend the proposed mechanisms beyond this simple few-shot learning setup. The proposed idea can be viewed as a form of data augmentation, where the sequence is enriched with the information necessary to promote a particular lookup mechanism. However, for real applications including most natural language tasks, this data augmentation (and in-context learning mechanism it empowers) are too naive. For example, rephrasing natural language sentences, changing their attributes, adding reasoning steps, etc. typically requires a separate teacher/oracle model and can be quite non-trivial and noisy [(Arthaud, 2021, Few-shot learning through contextual data augmentation), (Peng, 2023, Controllable Data Augmentation) and many more].\n3. The simple copying mechanism studied here can actually be even damaging beyond the simple few-shot learning setup. In fact, there is ongoing work on “mitigating  the copying bias” (Ali, 2024, Mitigating Copy Bias in In-Context Learning through Neuron Pruning). Points 2 and 3 suggest to me that the iCopy mechanism may be a proper conceptual step for studying ICL in a simple few-shot learning setup, but may be inappropriate and difficult to re-interpret for most other complex in-context learning mechanisms."
+        },
+        "questions": {
+          "value": "1. The core iCopy mechanism employed by the authors relies on a simple strategy: directly copying query examples and putting them into the context. This encourages the embedding model to produce reasonable sample embeddings and the Transformer model to perform ICL by attending to similar embeddings and replicating their associated labels. This may be suitable for some few-shot learning tasks with clearly defined sample embeddings, but this mechanism may be too simplistic for more complex forms of in-context learning including those necessary for most natural language tasks. There much more complex sequence processing and reasoning appears to be important. Relying on simple copying could even be damaging in these applications. In this light, what are potential tasks or applications where iCopy mechanism could actually be utilized to improve complex in-context learning capabilities?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "a0FyrthA6P",
+      "forum": "JVFRwCx3Dy",
+      "replyto": "JVFRwCx3Dy",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_LnMe"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_LnMe"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6656/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730611734569,
+      "cdate": 1730611734569,
+      "tmdate": 1731428715171,
+      "mdate": 1731428715171,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "LLMs have shown the capability to learn from context examples, while the mechanism behind ICL remains a black box. This paper explores the emergence of In-Context Learning capability of LLMs by introducing a controlled dataset and data sequences for the training process of a deep autoregressive model like GPT-2. The results show that conceptual repetitions in the data sequences are crucial for the ICL capability. Besides, the emergence of ICL also depends on balancing the in-weight learning objective with the in-context solving ability."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.\tThe authors provide a new perspective for viewing the emergence of in-context learning capability, revealing the importance of conceptual repetition and IWL objectives.\n\n2.\tThe proposed iCopy has proved effective in enhancing the in-context learning capability.\n\n3.\tThe experiments are carried out across various vision datasets, which makes this paper more convincing."
+        },
+        "weaknesses": {
+          "value": "1.\tThe presentation of this paper is not clear enough. For example, the sequence 3xQ-3xA-B-C is confusing initially. And the sequence (Q-A-B-C-D-E-F-G iCopy) also does not show which character symbol is repeated. Meanwhile, the use of “Q” and “A” could hint at the Q-A pairs, also increasing the difficulty of reading.\n\n2.\tAlthough the authors claim “conceptual repetitions” is crucial for the in-context learning capability, considering that “conceptual” also includes pure textual tokens, this paper does not conduct experiments on pure text tasks.\n\n3.\tMeanwhile, the real in-context learning tasks are much more complex compared to the settings in this paper. Actually, the selection of the examples will also influence the results due to the correlation between the examples and the current query."
+        },
+        "questions": {
+          "value": "1.\tCould the authors explain more about the formation of the sequences?\n\n2.\tIs there any experiments or evidence for reaching the same conclusions on pure text tasks?\n\n3.\tI am still concerned about the correlation between examples, which could influence the ICL prediction results. Do the authors agree with this point? If so, is there any method to evaluate the influence and try to relieve it?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "GrCKXpDDuL",
+      "forum": "JVFRwCx3Dy",
+      "replyto": "JVFRwCx3Dy",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_w6Fy"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6656/Reviewer_w6Fy"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6656/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730558723073,
+      "cdate": 1730558723073,
+      "tmdate": 1731428715432,
+      "mdate": 1731428715432,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a controlled vision-based study arguing that exact instance repetitions (“iCopy”) promote in-context classification and that harder in-weight learning objectives improve ICL persistence. The empirical phenomenon is interesting and documented across several datasets, but the broad causal account and extrapolation to language models are not yet adequately established.",
+        "strengths": [
+          "The sequence-format ablations cleanly isolate exact repetition from class-level burstiness, with both ICL and IWL trajectories reported (pp. 6–7, 20–21).",
+          "The main iCopy effect transfers beyond Omniglot to CIFAR-100, Caltech-101, and DTD, where high-burstiness baselines remain near chance (pp. 7–8, 16).",
+          "The paper provides useful training details and connects performance dynamics to interpretable attention patterns in a small transformer (pp. 8, 15, 21–22)."
+        ],
+        "weaknesses": [
+          "The claim that IWL “complexity” causally governs ICL is substantially confounded: class count, distribution, label noise, objective, sequence mixture, batch size, and learning rate change across comparisons, without an operational complexity measure or difficulty-matched controls (pp. 9–10, 15–16, 22–24).",
+          "The connection to LLMs is speculative. Evidence from language consists mainly of raw n-gram repetition counts, while all interventions use synthetic image-label sequences with an exact copy of the query; no language-model experiment shows that such repetitions cause stable semantic ICL (pp. 2, 6, 10).",
+          "Statistical and mechanistic support is limited: most results use only three seeds despite acknowledged high variance and sensitivity, uncertainty-band definitions are unclear, and attention-map correlations do not causally establish induction heads as the mechanism (pp. 8, 10, 15, 21–22)."
+        ],
+        "score_rationale": "The isolation of exact repetition and the cross-dataset results are useful, but novelty over prior burstiness/repetition and induction-head work is incremental. More importantly, the central “balance with IWL complexity” explanation is not identified by the current confounded experiments, and the proposed relevance to real language-model ICL remains unvalidated. I therefore place the work marginally below acceptance, with some uncertainty about how reproducible the reported high-variance dynamics are."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a controlled vision-sequence study arguing that exact instance repetitions (“iCopy”) promote induction-style lookup and that harder in-weight objectives make ICL less transient. The experiments reveal a useful phenomenon, but the broad conclusions about conceptual repetition and real LLM pretraining are not established by the evidence provided.",
+        "strengths": [
+          "A broad set of controlled experiments compares repetition, burstiness, skew, class count, label noise, and instance discrimination, with learning curves for both ICL and IWL (pp. 6–10, 22–24).",
+          "iCopy produces large, consistent gains on held-out classes across Omniglot, CIFAR-100, Caltech-101, and DTD, while preserving IWL in several settings (pp. 7–8, 15–16).",
+          "The small-model attention analysis connects performance dynamics to plausible induction-head patterns, and the paper openly reports sensitivity, variance, and transiency limitations (pp. 8, 10, 19–22)."
+        ],
+        "weaknesses": [
+          "The central extrapolation is weak: exact query-instance copy-pasting in 90% of supervised training sequences is a highly engineered episodic signal, while the only evidence concerning language is a descriptive count of exact n-grams; no language-model experiment establishes that such repetitions cause LLM ICL (pp. 2, 6, 10, 15).",
+          "The “IWL complexity” interpretation is substantially confounded. Increasing classes also changes label space/data composition, Zipfian comparisons change the number of classes, label noise degrades the target signal, and instance discrimination changes the objective and sequence mixture; these interventions do not isolate a common notion of complexity (pp. 9–10, 22–24).",
+          "The mechanistic evidence is correlational and selectively visual: attention maps/progress metrics are shown at chosen checkpoints without causal interventions, head ablations, or quantitative circuit-faithfulness tests. Robustness is also limited by only three seeds for most experiments and acknowledged sensitivity to initialization/embedder design (pp. 8, 10, 15, 19–22)."
+        ],
+        "score_rationale": "The paper offers a potentially useful empirical recipe and extensive controlled results, but its main explanatory claim is stronger than the experiments support. Exact-copy episodic training makes the lookup result less surprising, objective-difficulty experiments are confounded, and the claimed relevance to natural-language ICL remains speculative. I therefore place it marginally below acceptance; uncertainty remains because the reported cross-dataset effect is sizeable and may still be practically or mechanistically valuable."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a controlled visual-sequence study arguing that exact instance repetitions promote an in-context lookup strategy and that harder in-weight objectives make this behavior more persistent. The experiments demonstrate a clear empirical effect in the studied setup, but the broader explanation in terms of generic task complexity—and especially its extrapolation to language models—is not adequately isolated or validated.",
+        "strengths": [
+          "The paper systematically varies sequence burstiness, exact copying, label distributions, noise, and training objectives, with held-out-class ICL evaluation and appendices providing additional results (pp. 4–10, 15–24).",
+          "The iCopy effect is large and reproduces across Omniglot, CIFAR-100, Caltech-101, and DTD while retaining measurable IWL performance (pp. 6–8, 16).",
+          "The small-model attention analyses connect the behavioral effect to a plausible match-and-copy circuit, although they remain descriptive rather than causal (pp. 8, 19–22)."
+        ],
+        "weaknesses": [
+          "The central “IWL complexity” interpretation is substantially confounded: the skew experiments change both class count and frequency distribution, label noise directly suppresses IWL, and instance discrimination uses 100% in-context sequences with copied instances, making contextual lookup effectively necessary (pp. 9–10, 15, 22–24). These interventions do not establish complexity itself as the causal variable.",
+          "The claimed relevance to LLMs is speculative. The paper measures exact n-gram repetition in corpora but conducts no language-model intervention; exact image copy-pasting is a much stronger signal than typical semantic or conceptual repetition in text (pp. 1–2, 6, 10).",
+          "Mechanistic and robustness evidence is limited: attention maps are not causal circuit tests, most results use only three seeds, and the authors report sensitivity to initialization and image encoders plus large seed variance (pp. 8, 10, 15)."
+        ],
+        "score_rationale": "The controlled experiments reveal a useful and reasonably novel phenomenon: exact repetitions can induce robust lookup-like ICL in image-label sequences. However, the strongest causal claim about balancing generic IWL complexity against ICL is not cleanly identified, and the extension to real language-model pretraining is unsupported by direct experiments. These limitations place the work slightly below the acceptance threshold despite its clear empirical contribution."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a controlled visual-sequence study arguing that exact instance repetitions encourage an induction-style lookup mechanism, while harder in-weight learning objectives make ICL more persistent. The experiments are suggestive and broad within this setup, but the central causal interpretation and extrapolation to language-model ICL are not sufficiently established.",
+        "strengths": [
+          "A clear controlled setup separately evaluates held-out-class ICL and trained-class IWL, with ablations over repetition, burstiness, skew, and several datasets (pp. 4–10, 15–16).",
+          "The iCopy intervention produces large, consistent gains over high-burstiness baselines on Omniglot, CIFAR-100, Caltech-101, and DTD, while often preserving IWL performance (pp. 6–8, 16, 20–22).",
+          "Attention maps and progress metrics in a small one-head model provide useful mechanistic evidence connecting the intervention, induction-head-like attention, and ICL trajectories (pp. 8, 19–22)."
+        ],
+        "weaknesses": [
+          "The claim that generic IWL “complexity” is causal is under-isolated: class count, Zipf skew, label noise, and instance discrimination also alter class frequency, supervision quality, task definition, or training regime; the instance-discrimination comparison additionally changes sequence mixture and hyperparameters (pp. 9–10, 15–16, 22–24).",
+          "The main intervention is exact query-instance copying, a highly artificial and privileged training signal. The paper measures textual n-gram repetition but does not test language modeling or establish that these repetitions play the analogous semantic role, making the LLM/general-modality conclusions speculative (pp. 1–2, 6, 10).",
+          "Evidence is statistically limited: most experiments use only three seeds, the authors report substantial seed and architecture/initialization sensitivity, and results are primarily curves without numerical summaries or significance tests (pp. 10, 15)."
+        ],
+        "score_rationale": "This is a useful empirical observation with convincing within-setup gains and some mechanistic support, but novelty is incremental relative to burstiness/parallel-structure and induction-head work, and key confounds prevent the broad “balance of lookup and IWL complexity” thesis from being demonstrated. I therefore place it marginally below acceptance, with some uncertainty about whether tighter controls could elevate the contribution."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper studies in-context classification in controlled image–label sequences and argues that exact instance repetition (iCopy) promotes induction-head-like lookup, while difficult in-weight learning objectives improve ICL persistence. The experiments consistently demonstrate these phenomena in the constructed setting, but the broad conclusions about natural-language ICL and objective complexity are not adequately isolated or validated.",
+        "strengths": [
+          "The controlled comparison of burstiness, repetition, and skewness is extensive; iCopy improves held-out-class ICL across Omniglot, CIFAR-100, Caltech-101, and DTD while preserving IWL performance (pp. 6–8, 16).",
+          "Training-time curves expose ICL transiency rather than reporting only favorable checkpoints, and the appendices provide useful seed variability, architecture, and optimization details (pp. 7, 15, 21–24).",
+          "The small-model attention analysis connects performance to a plausible match-and-copy induction circuit, with complementary progress metrics tracking its formation and decay (pp. 8, 19–22)."
+        ],
+        "weaknesses": [
+          "The training construction directly places the query instance and its label in 90%–100% of sequences and applies loss to the query, making lookup highly advantageous by design. The instance-discrimination condition is especially close to an explicit episodic retrieval objective, weakening claims about spontaneous ICL emergence (pp. 4–6, 9, 15).",
+          "The proposed causal explanation—greater IWL “complexity” produces stable ICL—is insufficiently identified. Class count, Zipfian sampling, label noise, pretrained encoders, and instance discrimination simultaneously change label structure, supervision quality, memorization incentives, and sequence utility; no common quantitative measure of difficulty or controlled intervention separates these factors (pp. 9–10, 15, 22–24).",
+          "The connection to LLMs remains speculative: the only language evidence is an under-specified count of exact n-gram repetitions, whereas all causal experiments use short, synthetic image–label sequences. Exact copied images are not shown to model semantic or syntactic repetition in language, despite broad modality-agnostic claims (pp. 1–2, 10)."
+        ],
+        "score_rationale": "This is a careful and informative controlled empirical study with a useful repetition/transiency observation, but its main explanatory claim is confounded and its LLM relevance is not experimentally established. The evidence supports conclusions about this synthetic retrieval setup more strongly than the paper’s general account of ICL, placing it slightly below the acceptance threshold."
+      }
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_086",
+  "paper_id": "l49uZcEIcq",
+  "number": 12365,
+  "title": "Verbosity $\\neq$ Veracity: Demystify Verbosity Compensation Behavior of Large Language Models",
+  "authors": "Yusen Zhang; Sarkar Snigdha Sarathi Das; Rui Zhang",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "Large Language Models; Verbosity of LLM; LLM Uncertainty; LLM Routing",
+  "forum_url": "https://openreview.net/forum?id=l49uZcEIcq",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    8,
+    5
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a concept termed “Verbosity Compensation” (VC), where LLMs respond with overly verbose answers to compensate for uncertainty. VC is shown to decrease response efficiency, increase costs, and obscure clarity, highlighting an urgent need to mitigate this behavior. To address VC, the paper introduces a cascade algorithm that effectively reduces verbosity by replacing verbose responses with alternative model-generated responses, achieving a significant reduction in VC, particularly demonstrated with a 63.81% to 16.16% decrease for the Mistral model on the Qasper dataset."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Interesting research problem."
+        },
+        "weaknesses": {
+          "value": "1. In the verbosity compensation and uncertainty section, how to quantity the uncertainty for each split is not clear. How to get the perplexity evaluation metric and eigenvalues is not clear.\n2. In my understanding, In performance difference calculation, the recall is calculated by exact matching, checking if the generation contains the exact same string of the ground truth answer. There might be some correct but not exactly matched answer in LLM generation, especially in the lengthy (verbose) response. So would be better to design a partial credit to further validate the findings of this work.\n3. The proposed cascade model selection method can leak the ground truth answer. In the selection process, the detector would take ground truth answer as input for answer selection.\n4. In section 4.2, what does the |r|>3 mean? \n5. In line 365 and figure 3, what does the llama-3-80b mean? I believe llama-3 doesn’t have the 80B version."
+        },
+        "questions": {
+          "value": "please see the weaknesses above"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "NGBhFIca4e",
+      "forum": "l49uZcEIcq",
+      "replyto": "l49uZcEIcq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12365/Reviewer_3ZZU"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12365/Reviewer_3ZZU"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12365/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730687280907,
+      "cdate": 1730687280907,
+      "tmdate": 1731428202094,
+      "mdate": 1731428202094,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studied the verbosity issue of LLMs. The authors tested the frequency that LLMs generate verbose answers (a behavior defined as **verbosity compensation** by the authors), and showed the following findings:\n\n(1) All mainstream LLMs generate verbose answers.\n(2) Models have different performance when generating concise and verbose answers. Most models perform worse when their response are verbose.\n(3) There is a positive correlation between answer verbosity and model uncertainty. This means that models are usually more uncertain about the answers when they generate excessively long answers.\n(4) Using verbosity as an indicator to route models (if the smaller model generates a verbose answer, then we give this example to the larger model) is a promising approach to balance model performance and inference cost."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The authors are the first to formally define the verbosity compensation (VC) behavior of LLMs which refers to generating an answer that is more verbose than required.\n2. The authors collected a benchmark from existing NLP task data to analyze the frequency of VC in LLMs. They further designed metrics to calculate the impact of VC on model performance.\n3. The authors did extensive experiments to test the correlation between VC and (1) model performance (2) model uncertainty. These experiments led to the findings I listed in paper summary.\n4. The authors proposed a simple but effective model routing technique based on their findings on VC: routing the instance to stronger models if the weaker model exhibits verbosity in answering. They further tested its effectiveness in reducing verbosity and balacing performance-cost trade-off.\n5. The paper is well written and the experimental results are clearly presented."
+        },
+        "weaknesses": {
+          "value": "1. The fairness of evaluation metrics is questionable. This includes two aspects:\n\n(1) The authors wrote in section 3.1: *We define a response $r$ to be verbose if and only if it can be further compressed with fewer tokens\nwhile keeping the same meaning.* However, in actual experiments, they directly used \"the number of tokens in the response\" as the verbosity detector. **They did not measure \"whether the answer can be compressed while keeping the same meaning\"**. This may contain bias, for example, if the gold answer is 3 tokens but the model generates a wrong answer that is 5 tokens, although the answer is wrong, but I don't think the wrong answer is verbose if it cannot be further simplified. However, such a case will be identified as verbose by the authors as their criteria of conciseness is \"less than 4 words\".\n\n(2) In section 3.2, the authors define $\\Delta$ (performance difference) as the model score on cases where its answer is verbose minus the score on cases where its answer is concise. This means, **the two scores are not calculated on the same test instances**. First, I suspect this is not 100% fair, because there may be only a few \"verbose instances\" or \"concise instances\" for some LLMs, which will lead to inaccurate estimation. Second, I suspect this metric can be affected by spurious correlations. The authors showed in section 5.3 that generating verbose answers indicate a model's uncertainty. And it is possible that model-uncertain cases are those that are more difficult. Therefore, it is reasonable that models perform worse on such instances.\n\n2. The evaluation set is limited to scenarios where the gold answer is less than 4 words. However, I think such short-form QA is just one of the possible situations where verbosity may occur, and it might not even be the most critical one. Verbosity may be more harmful in open-ended generation cases that are not evaluated in this paper. For example, *repeating the question when answering a factual question* may be less annoying than *saying a lot of useless words when planning a trip*.\n\n3. When evaluating the proposed cascading approach in model routing, the authors only compared it with randomly selecting models. However, they did not compare with more related baselines such as \"model routing based on response uncertainty\". For example, if the weaker model is uncertain about the response, then give this question to the stronger model."
+        },
+        "questions": {
+          "value": "1. The equation in section 3.2 uses the score of cases where $V(x,y,r)=1$ as the minuend, and the score of cases where $V(x,y,r)=0$ as the subtrahend. However, the authors defined the formula as \"the average score of the concise responses minus the average score of the verbose responses\". Should the minuend and subtrahend be reversed?\n2. I have concerns about the definition of verbosity. From Figure 1 and the definition of verbosity detector, it seems like answers like *Paris is the capital of France* will be judged as verbose for the question *Which city is the capital of France?*. However, I think such a response seems pretty natural and human-like, and it does not bring any confusion or inefficiency to the communication. Therefore, I wonder whether the definition of \"if the gold answer is less than 4 words, then any answer longer than 4 words is verbose\" is too strict and whether it will be widely accepted."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "sXOuIjBZ0s",
+      "forum": "l49uZcEIcq",
+      "replyto": "l49uZcEIcq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12365/Reviewer_Tbb5"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12365/Reviewer_Tbb5"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12365/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730607075380,
+      "cdate": 1730607075380,
+      "tmdate": 1733210146225,
+      "mdate": 1733210146225,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a novel concept of verbosity compensation in LLMs. They define this term, explore it's presence in different models using combination of different datasets, also they try to come up an algorithm to tackle this issue of VC. The paper defines verbosity compensation as a tendency of LLMs to generate overly verbose responses when the LLMs are unsure about the answer. Coming to the evaluation part there are different sections of it with combination of automated evaluation and manual human evaluations. The paper does have some interesting things but there are some issues with the actual implementation and also writing, it is not very clear the exact research question the paper is trying to solve."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The model has a new concept of verbosity compensation\n\nThey explore 14 different LLM for comparison and performance evaluation\n\nThe idea of different type of VCs\n\nThe work also introduces algorithm to mitigate the issue that has been defined in the paper"
+        },
+        "weaknesses": {
+          "value": "- > The problem doesn't seem to very well defined, I couldn't understand the exact research question the paper is trying to solve.\nIf the problem is about the length of output, I don't see it as a major issue.\n\n -> The dataset used for this experiment is creates using existing datasets from previous works, most of these are from previous years and there is high chance that these were in the training data that was used for training different LLMs used in the paper and the details of these data-leakage are not explored or mentioned.\n\n-> The prompt used for the experiment is not clear, more details on why 3 words was choose and why is it mentioned multiple times single phrase if possible, but then you mention single phrase and also 3 words. Given that the work depends a lot on the prompt, more prompts should have been experimented and more details of those results are needed.\n\n-> Though there is mention of verbosity detector the actual definition and formula on how you calculate it is missing.\n\n-> There is introduction of algorithm, the paper mentions that VC might causes latency, there can be latency due to algorithm as well.\n\n-> Writing can be improved\n\n-> Most of the examples mentioned in the paper have some numbers in the answers, out of 3 correctly given answers 2 doesn't have any numbers, given that there is existing research that LLMs are not good at the numbers, it would be better to compare the behavior on those lines as well, if the output is wrong because of the numbers and not other factors."
+        },
+        "questions": {
+          "value": "N/A"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ww4x6vGIIF",
+      "forum": "l49uZcEIcq",
+      "replyto": "l49uZcEIcq",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12365/Reviewer_esHV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12365/Reviewer_esHV"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12365/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730252642124,
+      "cdate": 1730252642124,
+      "tmdate": 1732996906099,
+      "mdate": 1732996906099,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces “verbosity compensation” (VC), measures it across 14 LLMs and five QA datasets, relates it to accuracy and uncertainty, and proposes routing verbose outputs to stronger models. The topic is useful, but the operationalization largely reduces VC to exceeding an arbitrary token threshold, while the analyses do not establish the claimed mechanism or causal performance relationship. Serious numerical inconsistencies further undermine the evidence.",
+        "strengths": [
+          "Highlights a practically relevant behavior—unnecessarily long answers under explicit concision instructions—and proposes a useful taxonomy with examples (pp. 6–7).",
+          "Evaluates a broad collection of open- and closed-source models across several QA settings, with additional prompt and longer-response experiments (pp. 6, 20–22).",
+          "The simple cascade is operationally intuitive, and the paper reports cost/performance and latency comparisons rather than only answer length (pp. 9–10, 18–21)."
+        ],
+        "weaknesses": [
+          "The semantic definition (“compressible without information loss”) is not measured: the main detector is simply output length greater than three tokens, based on inspection of only 30 examples per dataset. It can label correct elaborations as VC and conflate verbosity, instruction following, and incorrectness; the CoT detector is similarly an arbitrary per-step threshold (pp. 4–6, 8, 20).",
+          "The accuracy and uncertainty conclusions are substantially confounded. Concise and verbose outputs usually come from different, potentially differently difficult instances, so their performance gap does not show that verbosity causes errors; the cross-model analysis does not resolve this. The uncertainty evidence covers only four models, aggregates datasets, provides no significance estimates, and may mechanically depend on sequence length or generation likelihood (pp. 7–9, 20–21).",
+          "There are major reporting inconsistencies: GPT-4o’s 50.40% is a single-dataset value, not its overall VC rate; Mistral’s reported average of 74.19% is incompatible with its row; NarrativeQA and Mixtral values conflict across figures/tables; and the claimed Qasper cascade result mixes 16.60% with the 16.16% overall average (pp. 1, 6, 9, 17). These errors make the quantitative findings difficult to trust."
+        ],
+        "score_rationale": "The framing and experimental breadth offer some novelty, but the central construct is not validly operationalized, the main correlations do not support the stated mechanism, and pervasive numerical inconsistencies compromise technical soundness. Substantial redesign and verification are needed, supporting a reject score."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces “verbosity compensation,” benchmarks short-answer instruction violations across 14 LLMs, relates response length to accuracy and uncertainty, and proposes cascading to a stronger model when the first response exceeds a length threshold. The topic is practically relevant, but the operationalization and analysis do not support the broader semantic or causal claims.",
+        "strengths": [
+          "Broad empirical coverage across 14 open- and closed-source models and five QA datasets, with additional prompt, CoT, planning, routing, and latency analyses (pp. 5–10, 18–22).",
+          "The paper highlights a useful practical signal: responses violating a strict concision instruction are often less accurate, and length-based routing can improve empirical cost–quality tradeoffs (pp. 7–10).",
+          "The taxonomy and examples make several forms of undesirable verbosity concrete (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "The central construct is not validly measured: VC is defined semantically as compressibility without information loss, but almost all experiments label any response over three tokens as VC (pp. 4–6). This conflates verbosity, formatting, instruction following, answer type, and correctness; only 30 examples per dataset were inspected, and no annotation agreement or detector accuracy is reported.",
+          "The claimed link to uncertainty is largely correlational and confounded by question difficulty and correctness. The study splits outputs by length and uses potentially length-sensitive uncertainty measures, without matched instances, controls, statistical tests, confidence intervals, or evidence that uncertainty causes verbosity (pp. 4, 9). The cascade result is also partly mechanical: accepting an answer only when successive models pass the same length test necessarily lowers the measured VC rate (pp. 5, 9–10).",
+          "There are serious numerical inconsistencies that undermine reliability: Mistral’s five frequencies average about 48%, not the reported 74.19%; its NarrativeQA frequency is 41.40 in Figure 2/Table 6 but 14.20 in Table 9; Mixtral’s LongBench value is 27.62 in Figure 2 but 4.38 in Table 9 (pp. 6, 9, 17). Table 13’s supports and stated VC frequencies also do not reconcile (p. 21)."
+        ],
+        "score_rationale": "The framing and empirical breadth are promising, but the paper’s main conclusions rest on an inadequate length-only proxy, uncontrolled correlations, and multiple material reporting inconsistencies. These are central rather than cosmetic issues, so substantial redesign and verification would be required before acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper names and empirically surveys “verbosity compensation,” relating response length to accuracy and uncertainty and proposing length-triggered model cascading. The topic is practically relevant, but the operational definition does not establish the claimed semantic phenomenon, the analyses are heavily confounded, and multiple numerical inconsistencies undermine the evidence.",
+        "strengths": [
+          "Broad empirical coverage across 14 models and five main QA datasets, with additional CoT, planning, prompt-robustness, cost, and latency analyses (pp. 5–10, 18–22).",
+          "The concise prompting setup and basic cascade rule are simple, interpretable, and potentially useful in practice (pp. 4–5, 16–17).",
+          "The paper attempts human categorization of verbose behaviors and reports examples that illustrate several qualitatively distinct failure modes (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "The semantic definition—compressibility without information loss—is replaced by the crude rule |r|>3, despite selecting gold answers by words rather than model tokens. Only 30 examples per dataset are inspected, with no annotation protocol, agreement, precision/recall, or validation across tokenizers/models (pp. 4–6). Thus explanations, harmless formatting, and genuinely necessary answers can be mislabeled as VC.",
+          "The central performance and uncertainty conclusions are correlational and confounded by instance difficulty: models may be verbose because a question is hard, rather than verbosity causing lower accuracy. The purported same-instance analysis still pools different model outputs without controlling model or item effects (pp. 7–9, 20–21), while the uncertainty evidence is an aggregate plot for only four models with no statistical tests or sufficient sampling details (p. 9).",
+          "Reported results contain serious contradictions and arithmetic errors. For example, Mistral-7B’s five VC frequencies average about 53%, not the stated 74.19%; its NarrativeQA frequency is 41.40 in Table 6 but 14.20 in Table 9; and Mixtral’s LongBench value differs between Figure 2 and Table 9 (pp. 6, 9, 17). These errors compromise the benchmark and cascade claims."
+        ],
+        "score_rationale": "The paper has a relevant observation and substantial experimental breadth, but its detector does not validly measure the proposed construct, causal-sounding conclusions are unsupported by the observational splits, and decisive tables are internally inconsistent. These are central rather than cosmetic issues, warranting rejection despite the promising direction."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces “verbosity compensation,” benchmarks short-answer behavior across 14 LLMs, relates response length to accuracy and uncertainty, and proposes length-triggered model cascading. The empirical scope is useful, but the central construct is operationalized almost entirely as exceeding three tokens, which does not establish semantic compressibility or compensation. Major confounding and numerical inconsistencies substantially weaken the conclusions.",
+        "strengths": [
+          "Broad evaluation across 14 open- and closed-source models and five QA datasets, with additional prompt, CoT, planning, and routing studies (pp. 5–10, 20–22).",
+          "The paper highlights a practically relevant issue: models often violate explicit concision instructions, potentially increasing cost and reducing usability (pp. 1–2).",
+          "The appendices provide prompts, model versions, costs, and several robustness analyses that improve transparency (pp. 15–22)."
+        ],
+        "weaknesses": [
+          "The detector equates VC with |r|>3 tokens (p. 6), despite defining it as semantic compressibility (p. 4). Gold answers are filtered by words rather than model-specific tokens, and valid answers or formatting can exceed the threshold; only 30 inspected examples per dataset are cited, without annotation protocol or agreement.",
+          "The accuracy and uncertainty claims are largely correlational and confounded by instance difficulty: concise and verbose groups contain different examples (acknowledged on p. 20), while the purported fixed-instance analysis still pools model outputs rather than providing paired counterfactual responses. The uncertainty-versus-length curves do not establish that uncertainty causes verbosity (pp. 9, 18–21).",
+          "There are serious numerical/reporting inconsistencies: Mistral’s listed frequencies average about 48%, not 74.19% (pp. 9, 17); the abstract calls 16.16% a Qasper result although Table 6 reports 16.60% (pp. 1, 9); and GPT-4’s 50.40% is a single NarrativeQA value, not its overall rate (pp. 1, 17). The cascade’s lower VC rate is also partly mechanical because it retries precisely when the first output exceeds the threshold."
+        ],
+        "score_rationale": "The phenomenon is relevant and the experiments are broad, but the paper’s main measurement does not validly capture its stated construct, causal interpretations are unsupported, and multiple headline numbers are incorrect. These are central rather than cosmetic issues, so substantial redesign and correction would be required for acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper names and surveys “verbosity compensation,” relating response length to accuracy and uncertainty across several QA datasets, then uses a length-triggered model cascade. The topic is practically relevant, but the central construct is not validly operationalized and several reported results are internally inconsistent, undermining the main conclusions.",
+        "strengths": [
+          "Broad empirical coverage of 14 open- and closed-source models over five QA datasets, with additional CoT and planning studies (pp. 5–9, 20–22).",
+          "The paper identifies a useful practical signal—failure to follow a concise-answer instruction—and provides qualitative categories and examples (pp. 6–7).",
+          "The simple cascade is evaluated against random and uncertainty-based routing baselines and includes cost/latency analysis (pp. 9–10, 18–21)."
+        ],
+        "weaknesses": [
+          "The definition of VC as semantic compressibility is replaced by the rule “more than three tokens,” justified using only 30 inspected examples per dataset; gold answers are filtered by words while outputs are thresholded by model-dependent tokens. Thus valid multi-token answers, formatting, and verbosity are conflated (pp. 4–6). The CoT criterion—any step exceeding ten tokens—is similarly arbitrary (pp. 8, 20–22).",
+          "The accuracy and uncertainty claims are correlational and heavily confounded by question difficulty/model confidence: uncertain or incorrect examples can independently cause both longer outputs and lower recall. Splitting examples post hoc by generated length does not show that verbosity harms accuracy, while token-overlap recall is a weak correctness measure and explicitly favors longer answers (pp. 4, 7–9, 20–21). Uncertainty implementation details, sampling, error bars, and significance tests are also insufficient.",
+          "There are serious numerical inconsistencies: Mistral’s listed per-dataset VC rates cannot average to 74.19%; its NarrativeQA rate is 41.40% in Table 6 but 14.20% in Table 9; Mixtral’s LongBench rate differs between Figure 2 and Table 9; and the abstract describes GPT-4’s 50.40% dataset-specific value as its VC frequency (pp. 1, 6, 9, 17). These errors substantially weaken trust in the experiments."
+        ],
+        "score_rationale": "Although the paper studies a relevant behavior at useful scale, its key metric does not faithfully measure its stated concept, the evidence does not support causal language about performance or uncertainty, and multiple headline statistics conflict across the manuscript. The cascade result is plausible but largely follows mechanically from retrying when either model exceeds a length threshold. These issues warrant rejection despite the promising empirical direction."
+      }
+    }
+  ]
+}

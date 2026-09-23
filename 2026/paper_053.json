@@ -1,0 +1,213 @@
+{
+  "year": 2026,
+  "package_id": "paper_053",
+  "paper_id": "sdbvTqONk4",
+  "number": 12100,
+  "title": "Refining Dual Spectral Sparsity in Transformed Tensor Singular Values",
+  "authors": [
+    "Andong Wang",
+    "Yuning Qiu",
+    "Haonan Huang",
+    "Zhong Jin",
+    "Guoxu Zhou",
+    "Qibin Zhao"
+  ],
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": [
+    "tensor recovery",
+    "tensor nuclear norm",
+    "low-rank decomposition",
+    "t-SVD"
+  ],
+  "forum_url": "https://openreview.net/forum?id=sdbvTqONk4",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    6,
+    4
+  ],
+  "human_mean_rating": 4.666666666666667,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "3llpzTkJQm",
+      "forum": "sdbvTqONk4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12100/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762464438125,
+      "tmdate": 1762923066818,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "a1HYkJwUAW",
+      "forum": "sdbvTqONk4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12100/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761728284712,
+      "tmdate": 1762923067774,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "oQNoqfFyJ4",
+      "forum": "sdbvTqONk4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12100/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762228798400,
+      "tmdate": 1762923067289,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes an outer ℓp penalty over per-frequency Schatten-q quantities, gives minimax claims for Gaussian denoising, and evaluates a reweighted ADMM heuristic on completion and clustering. The modeling idea is potentially useful and the empirical study is broad, but the central coupling claim, optimization connection, and theoretical proofs have major unresolved problems.",
+        "strengths": [
+          "The mixed spectral regularizer is intuitive and contains TNN and tensor Schatten penalties as special cases (pp. 4–6).",
+          "Experiments cover several modalities, noise models, transforms, and downstream tasks, with useful baseline and sensitivity studies (pp. 8–9, 51–65).",
+          "The paper explicitly discusses computational, parameter-selection, theoretical-scope, and convergence limitations (pp. 67–69)."
+        ],
+        "weaknesses": [
+          "The claimed cross-frequency coupling is mathematically misleading: the optimized penalty is ∥L∥_{ℓp(Sq)}^p = Σk∥M(L)k∥_{Sq}^p, which is exactly separable across slices, as the paper itself uses in Eqs. 9–10 and 44 (pp. 7, 49). Thus one slice's update does not depend on other slices, contradicting the central novelty statements on pp. 18–19.",
+          "The algorithm replaces the proposed objective with a heuristic weighted ℓ1/2 surrogate, provides neither a majorization/descent argument nor convergence to a stationary point, and explicitly concedes that formal convergence is open (pp. 49–53). Consequently, the experiments do not cleanly establish benefits of optimizing the proposed quasi-norm rather than those of the surrogate/reweighting procedure.",
+          "The advertised matched minimax theory is not adequately proved. The hard–soft lower bound incorrectly argues that two separate lower bounds combine additively through a union bound (pp. 29–31), while the soft–soft upper proof treats one regime and simply omits the other two (pp. 42–43). There are also inconsistent tail scalings and highly restrictive/unclear conditions (pp. 23–24, 36–37)."
+        ],
+        "score_rationale": "The broad empirical results and reasonable mixed-norm formulation are promising, but the paper's main conceptual claim is contradicted by its separable objective, the solver is only an unsupported surrogate, and decisive portions of the minimax proof are invalid or omitted. Additional reproducibility inconsistencies—e.g., DFT in the main experiment description versus DCT in the appendix (pp. 8 and 46)—further reduce confidence. These are fundamental rather than presentation-level issues, warranting rejection despite the extensive experiments."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper applies a mixed ℓp–Schatten-q quasi-norm to transformed tensor slices, derives claimed minimax rates, and evaluates a reweighted ADMM heuristic on completion and clustering. The modeling idea is intuitive and the empirical scope is broad, but the central claims of nonseparable cross-frequency coupling, matched theory, and algorithmic realization are not convincingly supported.",
+        "strengths": [
+          "The mixed regularizer provides a simple, interpretable way to control frequency-level sparsity and within-slice spectral decay separately (pp. 4–6).",
+          "Experiments span several modalities and tasks, with generally favorable reconstruction results and useful transform/parameter studies (pp. 8–9, 53–65).",
+          "The manuscript explicitly discusses important limitations, including the idealized Gaussian location model, lack of solver convergence guarantees, and full-SVD cost (pp. 67–69)."
+        ],
+        "weaknesses": [
+          "A central conceptual claim is misleading: raising Eq. (3) to the p-th power gives a sum of independent per-slice penalties, exactly as used in Eqs. (9)–(10), so the claimed global nonseparability and cross-frequency coupling (pp. 7, 18–19) are not established. Moreover, the main setting p/q≈0.9994 is nearly the p=q Schatten case, and the coupling ablation shows only modest gains (pp. 52–53).",
+          "The minimax results are not proved at the advertised level of rigor. Key conditions are malformed or difficult to interpret, parts of the soft-ball upper bound are explicitly omitted, several arguments are only sketches, and there are apparent construction/notational errors such as inconsistent rd1 versus rd2 dimensions and an erroneous product over support-specific packing sets (pp. 24, 28–29, 37–43). Thus the claimed matched rates remain uncertain.",
+          "The proposed solver is a heuristic surrogate rather than a demonstrated optimizer of the stated objective and has no descent or stationarity guarantee (pp. 49–51). Empirical attribution is also weak: the paper inconsistently states DFT versus DCT for the main method (pp. 8, 46), tunes on an evaluated Indian Pines condition without a held-out split, omits variance/error bars, and uses a Gaussian null in the structural test that largely detects trivial DCT/DC concentration (pp. 48, 55–58)."
+        ],
+        "score_rationale": "The natural mixed spectral prior and extensive experiments are promising, but the paper overstates its central coupling mechanism, the long theoretical appendix leaves serious gaps and apparent errors, and the heuristic algorithm is not tied rigorously to the claimed objective. These issues affect novelty, soundness, and interpretation rather than presentation alone, placing the work clearly below the acceptance threshold despite some encouraging empirical evidence."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes an outer ℓp aggregation of per-frequency Schatten-q penalties, derives minimax rates for Gaussian denoising, and evaluates a reweighted completion heuristic. The direction is potentially useful, but the central coupling claim, optimization method, and empirical attribution are not technically convincing.",
+        "strengths": [
+          "The mixed frequency-sparsity/within-slice-low-rank formulation is intuitive and includes several familiar regularizers as special cases (pp. 4–6).",
+          "The paper attempts a broad statistical treatment spanning hard–hard, hard–soft, and soft–soft parameter spaces, with extensive supporting material (pp. 23–43).",
+          "Experiments cover multiple modalities and tasks and generally report improvements over standard tensor baselines (pp. 8–9, 59–63)."
+        ],
+        "weaknesses": [
+          "The claimed nonseparable cross-frequency coupling is undermined by the optimized objective: raising the defined norm to the p-th power gives exactly ∑k‖M(L)k‖Sq^p, which is slice-separable (pp. 5, 7, 18–19, 49). Thus the algorithm does not optimize the allegedly coupled norm as described, and several novelty/challenge claims are overstated.",
+          "The weighted ℓ1/2 update is presented as a heuristic approximation rather than a justified majorizer or proximal map, and no descent, stationarity, or ADMM convergence guarantee is provided (pp. 49–53). The manuscript itself notes that the surrogate becomes loose away from p/q≈1, while the main settings are nearly p=q, where the method is essentially an existing Schatten-type model.",
+          "Theoretical and empirical support has important gaps: two soft-rate upper-bound regimes are simply omitted (p. 43), some packing/cardinality and probability arguments are imprecise (pp. 28–31), and the experiments inconsistently state whether the proposed method uses DFT or DCT (pp. 8 and 46). Moreover, the p=q ablation accounts for most gains and the incremental coupling gains are small without uncertainty estimates (pp. 52–53)."
+        ],
+        "score_rationale": "The modeling idea and breadth are promising, but the separability mismatch directly affects the central novelty claim, while the heuristic solver lacks guarantees and the minimax proof contains substantial omissions. These issues prevent confidence in the main conclusions and warrant rejection in the current form."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes an ℓp–Schatten-q tensor quasi-norm for sparsity across transformed slices and low rank within slices, presents minimax rates under a Gaussian location model, and evaluates a reweighted ADMM solver on completion and clustering. The modeling idea is intuitive and the experiments are broad, but major inconsistencies between the claimed coupled objective, the separable surrogate actually optimized, and the reported experimental setup undermine the central claims.",
+        "strengths": [
+          "The proposed group/spectral formulation is intuitive, contains TNN and tensor Schatten penalties as special cases, and is motivated with data from several modalities (pp. 2–6, 55–59).",
+          "The paper attempts an unusually broad theoretical treatment spanning hard–hard, hard–soft, and soft–soft sparsity regimes (pp. 23–43).",
+          "Empirical coverage is extensive, including Gaussian and Poisson completion, videos, seismic data, fourth-order tensors, clustering, and parameter sensitivity (pp. 45–66)."
+        ],
+        "weaknesses": [
+          "The central coupling/optimization story is inconsistent. The paper says the outer ℓp term globally couples slices and prevents slice-wise independence (p. 19), but the implemented objective uses the p-th power of the norm, which is a sum of per-slice penalties and is explicitly decomposed into independent subproblems (pp. 7, 49). The weighted ℓ1/2 step is acknowledged as a heuristic approximation, has no descent or convergence guarantee, and therefore is not the claimed proximal solution (pp. 49–53).",
+          "The theoretical support is not sufficiently complete or reliable for the strong matched-minimax claim: the most general upper-bound proof treats only one regime and simply omits the other two (p. 43), several probability bounds suppress necessary noise scaling, and the results concern an idealized constrained least-squares estimator rather than the proposed algorithm or completion setting (pp. 23–43, 67–68).",
+          "Experimental reporting and attribution are problematic. The main text says the proposed method uses DFT (p. 8), while the appendix says DCT (p. 46); the reported Salinas-A value 28.43 matches Ours-DCT, whereas Ours-DFT is only 23.53 (pp. 53–54). Moreover, the p=q variant already produces most gains and changing p/q to 0.99 adds only modest improvements, weakening evidence that dual-level coupling—not the different reweighted solver—drives performance (pp. 52–53). Variances and statistical tests for recovery gains are also absent."
+        ],
+        "score_rationale": "Although the formulation is potentially useful and the empirical scope is substantial, the objective/solver mismatch, incomplete theoretical proof, and direct transform-reporting contradiction are major technical and reproducibility issues. The evidence does not convincingly isolate the claimed dual-spectral contribution, placing the work clearly below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes an outer ℓp penalty over per-frequency Schatten-q spectra, derives minimax rates for Gaussian denoising, and evaluates a reweighted tensor-completion solver. The structural idea is intuitive and the empirical study is broad, but central claims about cross-frequency coupling, optimization, and matched theory are not adequately supported.",
+        "strengths": [
+          "The formulation provides a natural two-parameter description of frequency selection and within-slice spectral decay (pp. 4–6).",
+          "The empirical evaluation spans completion, Poisson observations, clustering, videos, seismic data, and a fourth-order example, with useful ablations against stronger baselines (pp. 8–9, 51–63).",
+          "The hard-sparsity rate separates frequency-support selection from low-rank matrix estimation in an interpretable way (pp. 6, 23–25)."
+        ],
+        "weaknesses": [
+          "The claimed nonseparable cross-frequency coupling is contradicted by the optimized objective: raising the proposed quasi-norm to p gives exactly a sum of independent slice penalties, and Eq. (9) is explicitly decomposed into frequency-wise problems in Eq. (10) (p. 7). Thus the repeated assertions of global coupling and fundamentally new coupled optimization geometry (pp. 18–19) are misleading.",
+          "The solver is a heuristic weighted-ℓ1/2 surrogate rather than a demonstrated optimizer of the stated ℓp(Sq) objective. No majorization, descent, stationarity, or ADMM convergence result is established; the appendix explicitly concedes that only empirical convergence is available (pp. 49–53). The ablation also shows that much of the gain persists at p=q and that the incremental benefit of actual group sparsity is modest (pp. 52–53).",
+          "The central matched-minimax claim is not fully justified by the supplied proofs. Two of the three soft-soft upper-bound regimes are simply omitted (p. 43), and the hard-soft upper-bound derivation concludes with a squared error bounded by square-root-scale terms, inconsistent with the stated rate (p. 37). Experimental reporting also contains a DFT/DCT inconsistency between the main setup and appendix (pp. 8, 46, 54), and lacks uncertainty estimates."
+        ],
+        "score_rationale": "Despite a plausible regularizer and extensive experiments, the paper's main novelty narrative relies on coupling that disappears in its actual penalized objective, while the proposed solver has no demonstrated relationship or convergence to that objective. Material gaps and inconsistencies in the minimax proof further undermine the principal theoretical contribution. These are central rather than cosmetic issues, warranting rejection; some uncertainty remains because several rates may be repairable with substantially revised proofs and positioning."
+      }
+    }
+  ]
+}

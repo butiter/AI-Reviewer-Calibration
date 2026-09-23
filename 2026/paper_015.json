@@ -1,0 +1,249 @@
+{
+  "year": 2026,
+  "package_id": "paper_015",
+  "paper_id": "gZiLJVfD2v",
+  "number": 4051,
+  "title": "You Are What Role You Play: Directing AI Values Through Role Assignment​",
+  "authors": [
+    "Zhou Ziheng",
+    "Jiakun Ding",
+    "Zhaowei Zhang",
+    "Junqi Wang",
+    "Ruosen Gao",
+    "Yipeng Kang",
+    "Fangwei Zhong",
+    "Ying Nian Wu",
+    "Demetri Terzopoulos"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "value",
+    "alignment",
+    "role",
+    "llm",
+    "judge",
+    "reward",
+    "safety",
+    "prompt",
+    "feedback"
+  ],
+  "forum_url": "https://openreview.net/forum?id=gZiLJVfD2v",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    8,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "2WfYtHih4l",
+      "forum": "gZiLJVfD2v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4051/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761952291445,
+      "tmdate": 1762917151875,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "8X0tukA2SF",
+      "forum": "gZiLJVfD2v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4051/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761839483209,
+      "tmdate": 1762917152090,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "f16xaxuG8E",
+      "forum": "gZiLJVfD2v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4051/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761760540735,
+      "tmdate": 1762917152598,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    },
+    {
+      "review_id": "lhdyE9VhZX",
+      "forum": "gZiLJVfD2v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4051/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760925084632,
+      "tmdate": 1762917153350,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free safety pipeline in which role-conditioned generation is iteratively revised using role-conditioned critics. Although the reported improvements are large across several models, the central theoretical claim is not established and the experimental protocol is insufficiently specified or controlled to support the broad conclusions.",
+        "strengths": [
+          "The role-conditioning mechanism is simple, interpretable, and easy to deploy without training (pp. 4–5).",
+          "The main table covers five model families and several safety benchmarks, with large reported gains from iterative role critics (pp. 6–7).",
+          "Ablations examine individual roles, role combinations, and refinement rounds, showing that most iterative gains occur early (pp. 7–8, 13)."
+        ],
+        "weaknesses": [
+          "The claimed proof of strict dominance is not valid: the key probability inequalities are asserted from assumptions such as an “appropriate” ideal role, incomplete principles, and dummy cognition, without defined expressivity classes or a derivation. The formulation also conflates output likelihood with alignment quality (pp. 3–4).",
+          "The evaluation lacks essential reproducibility and reliability details: sample sizes, sampling/decoding settings, repeated-run uncertainty for the main results, exact baseline prompts, critic-model configuration, and significance tests are absent. Role selection on SafeEdit also makes its use as a main evaluation benchmark susceptible to selection leakage (pp. 5–8, 12–14).",
+          "Safety is evaluated largely through automated judges without human validation, helpfulness/over-refusal analysis, or compute-matched baselines. There is also a decisive metric inconsistency: HarmfulQA is marked higher-is-better in Table 1, while Appendix Table 4 calls it attack success rate, which should be minimized (pp. 6, 14)."
+        ],
+        "score_rationale": "The prompting idea and broad reported gains are promising, but novelty is modest and the invalid theoretical centerpiece, under-specified and potentially unfair evaluation, metric inconsistency, and missing utility analysis prevent confidence in the conclusions. These are substantial issues requiring major new analysis and experiments rather than minor revision."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes training-free safety alignment through role-conditioned generation and iterative role-based critics. Although Table 1 reports large improvements across five model families and five benchmarks, the central expressivity theorem is unsupported and the experimental reporting is insufficient to establish robust alignment rather than benchmark-specific refusal behavior.",
+        "strengths": [
+          "The method is simple, interpretable, training-free, and potentially easy to deploy; the minimalist role prompts help isolate the proposed intervention (pp. 5–6).",
+          "The evaluation spans multiple model families and safety benchmarks, with large reported gains for iterative role critics on WildJailbreak, SaladBench, and SafeEdit (pp. 6–7).",
+          "Ablations examine individual roles, combinations, role count, and refinement iterations, while the blackmail experiment tentatively explores transfer beyond content safety (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The claimed proof that roles strictly dominate principles is not valid: the key probability inequalities are asserted without assumptions, an “appropriate” role is defined to induce the desired latent variables, and principle conditioning is arbitrarily denied contextual cognition even though the model also observes the context (pp. 3–4).",
+          "The empirical protocol is under-specified: dataset sizes/subsets, sampling and decoding settings, repetitions, uncertainty, exact baseline prompts, critic-feedback aggregation, and failure handling are largely absent. Roles are selected on SafeEdit and then evaluated on that same benchmark, creating selection bias, while most results have no significance estimates (pp. 5–8, 12–14).",
+          "The study does not adequately distinguish genuine safety improvement from generalized refusal or evaluator gaming. It lacks benign-helpfulness and over-refusal analysis, human validation, adaptive attacks, and robustness to role stereotypes or prompt injection; metric labeling is also inconsistent (e.g., HarmfulQA is marked higher-is-better on p. 6 but described as attack success rate on p. 14)."
+        ],
+        "score_rationale": "The prompting idea is useful and the reported cross-model gains are promising, but novelty is modest and decisive theoretical and empirical validity problems remain. In particular, the invalid dominance argument and insufficiently reproducible, potentially refusal-driven evaluation prevent confidence in the paper’s central claims, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper proposes a simple training-free safety pipeline in which role-conditioned generators are iteratively revised using role-based critics. Results across several models and safety benchmarks are promising, but the central theoretical claim is unsupported and the empirical protocol lacks enough clarity and controls to establish that roles, rather than prompt wording, selection, extra inference, or evaluator artifacts, cause the reported gains.",
+        "strengths": [
+          "The method is simple, interpretable, and deployable without training; the minimalist generator/critic templates make the basic intervention easy to understand (p. 5).",
+          "The main table covers five model families and multiple benchmarks, with large reported gains over several prompting baselines, especially when critics are used (pp. 6–7).",
+          "Ablations examine individual roles, combinations, role count, and refinement iterations, while the blackmail experiment offers preliminary evidence beyond content safety (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The claimed proof of strict expressivity/dominance is not valid: it assumes an ideal role induces the target values and cognition, then asserts unjustified probability inequalities. No formal hypothesis class, representational result, or conditions establish strict dominance over principle prompts (pp. 3–4).",
+          "The evaluation is materially under-specified and potentially confounded: dataset sizes, decoding settings, repetitions, uncertainty, and significance are absent; roles are selected on SafeEdit and then prominently ablated on the same benchmark; critic configurations and inference budgets are not clearly matched; and there are no direct controls using equally terse non-role prompts or role descriptions expressed as principles (pp. 5–8, 13–14).",
+          "Metric validity and interpretation are unclear. HarmfulQA is marked higher-is-better with values near 100 on p. 6 but called attack success rate in Table 4, where lower should be safer; automated evaluators are used without human validation, GPT-5 replaces prescribed evaluators without justification, and benign-task utility/over-refusal is not evaluated (pp. 6, 14)."
+        ],
+        "score_rationale": "The prompting idea and broad reported improvements are interesting, but novelty is modest and decisive technical claims exceed the evidence. The invalid formal argument, metric inconsistency, missing reproducibility/statistical details, and lack of utility and matched controls place the work below the ICLR acceptance threshold, though the empirical signal merits further investigation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a training-free safety pipeline in which role-conditioned generators are iteratively revised using role-conditioned critics. It reports large improvements across five model families and several safety benchmarks, but the central theoretical claim is not established, and the evaluation does not rule out blanket refusal or provide enough methodological detail for reliable interpretation.",
+        "strengths": [
+          "The method is simple, interpretable, and potentially easy to deploy, with generator and critic templates shown explicitly (p. 5).",
+          "The main table covers five substantially different model families and five benchmarks, with large reported gains for iterative role critics on several settings (pp. 6–7).",
+          "Ablations examine individual roles, combinations, role count, and refinement iterations, and suggest that most iterative benefit occurs early (pp. 7–8, 12–13)."
+        ],
+        "weaknesses": [
+          "The claimed proof of strict expressiveness/dominance is invalid: it assumes an ideal role induces the target values and cognition, assumes principles necessarily lack cognition, and then asserts strict probability inequalities without definitions or derivation (pp. 3–4). Principle prompts could also encode contextual reasoning, so the conclusion is largely built into the assumptions.",
+          "The safety-only evaluation cannot distinguish genuine alignment from generalized refusal. No benign helpfulness, over-refusal, or response-quality evaluation is reported; metric reporting is also inconsistent, since HarmfulQA is marked higher-is-better in Table 1 but called attack success rate in Table 4 (pp. 6, 14).",
+          "Reproducibility and statistical support are inadequate: benchmark sample sizes/subsets, decoding settings, exact baseline prompts, evaluator configurations, run variance, and significance tests are absent. Roles are selected using SafeEdit and then prominently evaluated on the same benchmark, while the blackmail experiment gives no uncertainty analysis (pp. 6–9, 13–14)."
+        ],
+        "score_rationale": "The broad empirical results make the idea worth investigating, but the work falls below acceptance because its headline theorem is unsupported and its experiments cannot establish improved alignment rather than conservative refusal. Missing controls, uncertainty estimates, and reproducibility details further weaken the otherwise promising empirical signal."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a simple training-free alignment pipeline in which role-conditioned generation is followed by role-conditioned critics. Reported safety gains are large across several models and benchmarks, but the central theoretical claim is unsupported and substantial evaluation ambiguities prevent the empirical results from establishing robust alignment rather than refusal or evaluator gaming.",
+        "strengths": [
+          "The method is lightweight, interpretable, and easy to apply without training; the generator/critic prompts are conceptually simple (pp. 4–5).",
+          "The main table covers five model families and five safety benchmarks, with often large reported gains over several prompting baselines (pp. 6–7).",
+          "Ablations examine individual roles, combinations, role count, and refinement iterations, showing that most iterative gains occur early (pp. 7–8, 13)."
+        ],
+        "weaknesses": [
+          "The claimed proof of strict dominance is not valid: it assumes an ideal appropriate role induces the target values/cognition and then simply asserts strict probability inequalities without defined assumptions, objectives, or derivation. A fixed principle prompt could also encode contextual reasoning, so the purported expressivity separation does not follow (pp. 3–4).",
+          "The evaluation is insufficiently specified and internally inconsistent. Sample counts, decoding settings, randomness, uncertainty estimates, exact baseline prompts, and detailed benchmark protocols are absent. Moreover, HarmfulQA is labeled higher-is-better in Table 1 but attack-success-rate in Table 4, which should be lower-is-better; evaluator replacement with GPT-5 is also unexplained (pp. 6, 14).",
+          "The work measures safety almost exclusively on harmful-query benchmarks without helpfulness, benign-query, or over-refusal evaluation, so blanket refusal may explain gains. Roles are selected using SafeEdit and then evaluated on SafeEdit, while the blackmail experiment lacks sufficient protocol and statistical detail to support broad generality (pp. 7–9)."
+        ],
+        "score_rationale": "Although the prompting idea is practical and the reported improvements are promising, the invalid central theorem, metric inconsistency, missing reproducibility/statistical details, and lack of utility/over-refusal controls undermine both soundness and the claimed paradigm-level contribution. These are major rather than minor issues, warranting a reject score."
+      }
+    }
+  ]
+}

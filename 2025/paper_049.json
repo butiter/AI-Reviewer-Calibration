@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_049",
+  "paper_id": "0CtIt485ew",
+  "number": 6324,
+  "title": "Brain-inspired continual pre-trained learner via silent synaptic consolidation",
+  "authors": "Xuming Ran; Juntao Yao; Yusong Wang; Mingkun Xu; Dianbo Liu",
+  "primary_area": "applications to neuroscience & cognitive science",
+  "keywords": "Continua learning; Silent synapse; Pre-trained model; neuroscience-inspired method",
+  "forum_url": "https://openreview.net/forum?id=0CtIt485ew",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    5,
+    3,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces the Artsy framework, which enhances continual learning in pre-trained models by mimicking the activation mechanisms of silent synapses via spike-timing-dependent plasticity observed in biological neural networks. The framework maintains memory stability for previously learned knowledge in the pre-trained network while promoting learning plasticity in task-specific sub-networks during training. During inference, it uses artificial silent and functional synapses to connect pre-synaptic neurons in the pre-trained network with post-synaptic neurons in the sub-networks, enabling effective information extraction. Experimental results show that Artsy outperforms conventional methods on class-incremental learning tasks and offers better biological interpretability than other solutions to mitigate catastrophic forgetting."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper presents an interesting and original idea by leveraging biological mechanisms of learning to enhance AI models, specifically focusing on the activation mechanisms of silent synapses through spike-timing-dependent plasticity. Given that the biological brain exhibits minimal effects of catastrophic forgetting compared to AI models, seeking inspiration from neurobiological learning mechanisms is a promising and innovative research direction. While initial explorations exist in the literature, there remains substantial room for further innovative research in this area.\n\n2. Although some additional details are necessary for a complete explanation and reproducibility of the experiments, the authors have made a commendable effort in describing the framework by providing both training and inference algorithms and biological motivation.\n\n3. The results, while needing a few more details for complete clarity, appear promising and suggest that the Artsy framework outperforms conventional methods on class-incremental learning tasks."
+        },
+        "weaknesses": {
+          "value": "•\tThere are other literature works that propose biologically inspired solutions to mitigate catastrophic forgetting (see below), which are not covered in the background nor related work sections. I suggest adding these references to provide a more comprehensive context for the proposed framework in the neuroscientific context.\n\n•\tSome parameters needed for reproducibility of the results (incl. number of parameters, type of connectivity e.g. for silent and functional synapses) are not reported. For instance, the paper does not mention how many artificial synapses are used for each subnetwork or whether there is e.g. all-to-all vs sparse connectivity.\n\n•\tThe study mentions limitations of other algorithms in the background section regarding efficiency and computational time. However, the authors do not discuss these features of the Artsy framework compared to other algorithms. Efficiency, model complexity and computational time are important aspects that the authors should quantitatively analyze (or at least provide estimates for) to explain the performance vs efficiency tradeoff.\n\n•\tA potential limitation of the framework is the potential increase in the number of subnetworks and artificial synapses with the addition of more classes. This could pose scalability issues and raise questions about the biological plausibility of the framework. I suggest that the authors provide more information and comments on this aspect.\n\n•\tThe paper does not provide a link to the code, which is essential for reproducibility and further validation of the results.\n\n•\tStandard deviations for the results in Table 1 and Figure 3 and 4 are not shown. These are important for comparing the variability of the frameworks. In addition, the experimental setup lacks clarity regarding the number of runs averaged (for instance, for Figure 4B).\n\n•\t“Good” and “bad features” (sec 4.5) are not clearly defined\n\n•\tThe paper makes a claim that brain lesions causing synaptic disconnections can lead to dementia by disrupting synaptic consolidation but lacks references to support this. Moreover, the connection between artificial synapses of the Artsy framework and brain lesions needs to be made clearer.\n\n•\tMore targeted explanations of AMPA and NMDA receptors are needed, for example if the relevance of these receptors to short- vs long-term plasticity is related to the dynamics of functional and silent synapses \n\n•\tThe diagram for Figure 2C could show more than one subnetwork to accurately represent the architecture.\n\nIf the above points are clarified, I am happy to revise my score.\n\nSuggested references (non exhaustive):\nhttps://arxiv.org/pdf/2405.09637 , https://www.nature.com/articles/s42256-023-00747-w , https://www.nature.com/articles/s41467-022-29491-2 , https://arxiv.org/pdf/2403.13249 , https://proceedings.mlr.press/v232/madireddy23a.html , https://pubmed.ncbi.nlm.nih.gov/37589728/ , https://proceedings.mlr.press/v162/gurbuz22a/gurbuz22a.pdf"
+        },
+        "questions": {
+          "value": "Minor:\n1.\tThe type function used for S_t is not specified. I suppose it is a step function, if so could you please confirm and specify?\n\n2.\tWhere does the name \"Artsy\" originate from? Is it an abbreviation for \"ARTificial Synapse\"? If so, could you specify this in the paper?\n\n3.\tCan the Artsy framework work in other continual learning settings beyond class-incremental learning (CIL)?\n\n4.\tHow are both the pre-trained network and the initialized subnetworks analogous to the mature brain network? Could you provide examples and references of networks and subnetworks coexisting and connected in the mature brain, but with different dynamics?\n\n5.\tWhat is the rationale behind naming the connections \"artificial synapses\"?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "None"
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dNk03ucBaT",
+      "forum": "0CtIt485ew",
+      "replyto": "0CtIt485ew",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_Xigk"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_Xigk"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6324/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730658882404,
+      "cdate": 1730658882404,
+      "tmdate": 1731428630494,
+      "mdate": 1731428630494,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the problem of catastrophic forgetting of pre-trained models by presenting an architecture for class-incremental learning.\nThe architecture, the Artsy framework, is inspired by the plasticity of neurons in the brain. \nArtsy simulates silent and functional synapses. Specifically, (1) the fixed pre-trained network acts as a consolidated memory, (2) the sub-network learns the features of new incrementally available data, (3) artificial synapses interconnect the pre-trained network and sub-networks. \nHere, artificial synapses represent the silent and functional synapses.\nThe experimental results show that Artsy achieves superior performance on incremental learning tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "**Originality:** An innovative biologically inspired approach to avoid catastrophic forgetting while using pre-trained models for incremental class learning is presented. The emulation of silent and functional synapses to artificial networks is appraising and novel in the context of pre-trained models.\n\n**Quality:** A solid background on the biological foundations necessary to understand the composition of the Artsy framework is given.\n\n**Clarity:** The flow of the text is easy to follow. The objective of the paper is clearly stated. All necessary background is given to understand the presented approach. The experimental setup is explained in detail.\n\n**Significance:** The presented work is significant to advance the research in the domain of continuous/lifelong machine learning. The biological inspiration highlights this."
+        },
+        "weaknesses": {
+          "value": "**Inconsistencies in formulas** There are some inconsistencies between equations and the presented algorithms. For example, LINE 230, Eq. (1) defines $h_0 = E_0(x)$, while LINE 272, Algorithm 1, uses $F(x)$ and LINE 326, Algorithm 2, uses $E_0(x)$.\nLINE 323 states $E_0(x) + \\sum_{i=1}^{t}E^i(x) * m_i$ which is different from the expression within the parentheses in Eq. (5). Equation (3) and (4) are not explained enough. For example, what is the purpose of $m_t$ in general (apart from determining whether a synapse is silent or functional) and how $c_t$ is learned?\n\n**Weak ablation study**\nThe ablation study uses two different types of features as input to test the performance. For the ablation study per se, for example, it would be meaningful to see the separate contribution of $E_0(x)$ and $\\sum_{i=1}^{t}E^i(x) * m_i$ to the performance on the class incremental learning task.\n\n**Limited related work** While related work on silent and functional synapses and other approaches for class incremental learning is thoroughly presented, the related work on similar biologically inspired architectures is missing. Here, the comparison with other biologically inspired approaches would be beneficial. As an example, [1] can be considered.\n\n[1] German I. Parisi, Ronald Kemker, Jose L. Part, Christopher Kanan, and Stefan Wermter. Continual lifelong learning with neural networks: A review. Neural Netw., 113(C):54–71, May 2019."
+        },
+        "questions": {
+          "value": "1. How $thr_t$ is selected? Is it learnable?\n2. What is $h$ in Eq. (5)? Is it $h_0$?\n3. How is $S_t$ optimized (LINE 283)?\n4. How often $m_t=0$ or $m_t=1$? \n5.  What does `complete the prototypes for former classes' mean?\n6. How was it determined that the sub-network is trained for 20 epochs and the artificial synapse is trained for 2 epochs?\n7. What is a *good feature*? What is a *bad feature*?\n8.  It would be interesting to see the performance on class incremental learning when only the pre-trained model is used. Are such experiments available?\n9. Will the code be publicly available?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "MdKSvjSSRl",
+      "forum": "0CtIt485ew",
+      "replyto": "0CtIt485ew",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_k1G8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_k1G8"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6324/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730483235514,
+      "cdate": 1730483235514,
+      "tmdate": 1731428630948,
+      "mdate": 1731428630948,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors proposed a continual learning system inspired by dynamical switching between silent and functional synapses in the brain. The actual mechanisms, however, has no real link to biological synapses that is extensively discussed in their study. Instead, their algorithm is a variation of the earlier algorithm referred to as ‘EASE’ in this study. EASE uses a pretrained encoder (visual transformer) as a backbone and trains adaptors to learn down-stream tasks. As each adaptor learns a new distinct task, catastrophic forgetting can be avoided."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The authors propose an automatic gating process that can turn on or off individual adaptors depending on present inputs. For each adaptor, a distinct MLP is trained to predict if a present input is an in-distribution example. During inference, adaptors are activated only when the corresponding MLPs predict “match”. Consequently, if all MLPs are perfectly trained and are 100% accurate, only a single adaptor trained for a present input will be activated, and other adapters will be shut down, which means that we can expect a highly accurate prediction."
+        },
+        "weaknesses": {
+          "value": "This proposed gating process is interesting, but the authors’ own comparison to EASE show that its advantage is marginal. As they used two simple tasks (CIFAR100 and TinyImageNet) to evaluate the newly proposed algorithm, it remains unclear whether the proposed gating mechanism is beneficial for more complex tasks.\n\nAs MLPs need to be trained with old and new data, the algorithm proposed in this study requires a type of replay memory, which is not clarified in the paper.\n\nThe authors’ description of the model (e.g., encoder (E_t(x)), prototypes and MLP) also needs improvements. Their study is based on Zhou et al (2024) study that proposes EASE, so the details of their study may overlap with Zhou’s study, but this does not mean that they do not need to explain their algorithm. They should extend and improve the description of their proposed algorithm for better readability."
+        },
+        "questions": {
+          "value": "Please see comments for \"weaknesses\"."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "D3MsLNZojv",
+      "forum": "0CtIt485ew",
+      "replyto": "0CtIt485ew",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_vQei"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_vQei"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6324/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730428711807,
+      "cdate": 1730428711807,
+      "tmdate": 1731428631240,
+      "mdate": 1731428631240,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors introduced the Artsy framework, designed to enhance the continual learning capabilities of pre-trained models, addressing their vulnerability to catastrophic forgetting when incrementally trained on new tasks. Using their framework, the authors are able to achieve state-of-the-art performances on class-incremental learning tasks. Furthermore, this framework offered a promising avenue for simulating biological synaptic mechanisms."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The author's approach to constructing a pre-trained model inspired by the activation mechanisms of silent synapses is commendable.\n2. The overall readability of the article is strong and easy to follow.\n3. The use of artificial silent and functional synapses establishes precise connections between networks, enhancing the extraction of relevant information during inference."
+        },
+        "weaknesses": {
+          "value": "1. The overall experiments have some shortcomings, as only two common datasets, CIFAR-100 and TinyImageNet, were used.\n2. Although the authors emphasize biological synaptic mechanisms throughout the paper, corresponding results are not observed in the results section.\n3. The authors mention that pre-trained artificial neural networks lack generalization capabilities, but they do not conduct corresponding experiments to address this issue.\n4. We would have appreciated a more detailed exploration of how the authors intend to enhance the model based on synaptic mechanisms, accompanied by a mathematical description of these processes. Regrettably, the current explanation remains overly simplistic."
+        },
+        "questions": {
+          "value": "1. Although the methods section of this article is described very clearly, many details are not introduced. For example, the pre-trained network E0(⋅).\n2. The author needs to explain the mathematical mechanisms underlying artificial synapses.\n3. The experiments are too weak, relying solely on two commonly used datasets (CIFAR-100 and TinyImageNet).\n4. The author should include additional experiments that provide interpretability to highlight the advantages of the biological mechanisms.\n5. The author should also provide some efficiency metrics to demonstrate the superiority of the model."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ufAJREgFuC",
+      "forum": "0CtIt485ew",
+      "replyto": "0CtIt485ew",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_dTcH"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6324/Reviewer_dTcH"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6324/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730131587081,
+      "cdate": 1730131587081,
+      "tmdate": 1731428631655,
+      "mdate": 1731428631655,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "Artsy freezes a pretrained ViT, adds one AdaptFormer sub-network per incremental task, and learns binary gates framed as artificial silent synapses. Reported results exceed EASE on CIFAR-100 and TinyImageNet, but the method is insufficiently specified and the evaluation does not establish a fair or reproducible continual-learning advance.",
+        "strengths": [
+          "The architecture offers a straightforward stability mechanism: freeze prior components and expand with task-specific adapters (pp. 5–7).",
+          "Artsy reports consistent gains over the strongest listed baseline across all evaluated splits, including roughly 0.9–2.1 points over EASE on CIFAR-100 (p. 8).",
+          "The paper separately visualizes old-task and new-task accuracy and attempts an ablation of the gating signal (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core technical formulation is unclear and internally inconsistent: Eq. 5 uses undefined or mismatched features/indices, Algorithms 1–2 do not specify losses or coherent outputs, and the relation between the thresholded current model and the implemented MLP classifier is underdefined (pp. 5–7).",
+          "Each new binary gate is said to train on data from all previous tasks versus the current task (p. 7), apparently requiring retention/replay of old samples. The memory protocol is not disclosed, and this potentially gives Artsy substantially more information than some baselines while conflicting with the paper's motivation concerning replay costs and privacy (pp. 1, 7, 9).",
+          "Evidence is narrow and weakly controlled: only two small datasets are used; there are no seeds, error bars, significance tests, resource/parameter comparisons, or standard gating/router baselines. The sole ablation compares undefined 'good' and 'bad' features rather than removing components or testing alternatives, while the neuroscience claims remain largely metaphorical (pp. 8–10)."
+        ],
+        "score_rationale": "The adapter-plus-gating idea is plausible and the reported accuracies are encouraging, but novelty beyond task routing for expandable adapters is modest. More importantly, ambiguities about old-data access, gate behavior, equations, and comparison budgets prevent judging technical soundness or attributing the gains to the proposed mechanism. Substantial methodological clarification and controlled experiments are required, yielding a reject score."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "Artsy freezes a pretrained ViT, adds one AdaptFormer-style subnetwork per incremental task, and learns binary gates framed as artificial silent synapses. It reports modest improvements over EASE on CIFAR-100 and TinyImageNet, but the central mechanism is insufficiently specified and the evaluation does not establish a fair, reproducible continual-learning advance.",
+        "strengths": [
+          "The task-conditioned expansion and routing idea is intuitively motivated, and freezing earlier modules should reduce direct parameter interference (pp. 5–7).",
+          "Artsy consistently exceeds the strongest reported baseline across the presented settings, including roughly 1–2 points over EASE in many metrics (p. 8).",
+          "The paper evaluates multiple class-increment schedules and separately visualizes old-task and new-task accuracy (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The method is technically ambiguous: Eqs. 3–5 have unclear or inconsistent variables and aggregation, Algorithms 1–2 do not define losses or prototype construction precisely, and it is unclear how conflicting simultaneous gate activations are handled (pp. 5–7).",
+          "The protocol appears to train each binary gate using data from all previous tasks, explicitly written as the union of prior datasets, but storage/replay access, memory budgets, and fairness to baselines are not disclosed (p. 7). This potentially changes the continual-learning setting substantially.",
+          "Evidence is limited to two small benchmarks, with no seeds, error bars, memory/parameter or computational analysis, routing accuracy, strong gate alternatives, or meaningful component ablation. The sole “good” versus undefined “bad” feature ablation is not informative (pp. 9–10)."
+        ],
+        "score_rationale": "The biological framing is largely an analogy layered over a growing adapter ensemble with learned task/OOD routing, so novelty appears limited. Although the reported numbers are promising, major specification and protocol ambiguities—especially possible access to all prior data—prevent confidence in technical soundness and fair comparison. I therefore recommend rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "Artsy adds a binary task-routing mechanism between a frozen ViT and task-specific adapters, motivated by silent-synapse activation. It reports modest gains over EASE on CIFAR-100 and TinyImageNet, but the method and protocol are insufficiently specified to establish soundness or meaningful novelty.",
+        "strengths": [
+          "The paper presents an intuitive modular continual-learning design and attempts to connect task-dependent adapter activation with a biological mechanism (pp. 3–6).",
+          "Artsy consistently improves over the strongest reported baseline, EASE, across the displayed dataset/split settings (Table 1, p. 8).",
+          "The evaluation includes both final and average accuracy and a per-step comparison of old- and new-task performance (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The technical formulation is unclear and internally inconsistent: the synapse input alternates between summed embeddings and x, Eq. 5 contains ambiguous indices/features, and Algorithms 1–2 do not define losses, prototype construction, thresholds, or a coherent inference loop (pp. 5–7). This prevents reliable reproduction and makes it unclear what is actually trained.",
+          "The proposed synapse is essentially an MLP binary old-versus-current task gate combined with one adapter per task; the silent-synapse interpretation does not yield a clearly novel learning rule. More seriously, training it uses data from all previous tasks, but the paper does not state whether those data are stored or how class imbalance is handled, potentially introducing replay and undermining the claimed setting (p. 7).",
+          "Evidence is limited: only two small benchmarks are used, improvements over EASE are modest, and there are no seeds, error bars, significance tests, parameter/memory/compute comparisons, gate accuracy, or meaningful component ablation. The undefined “good” versus “bad” feature experiment is not sufficient validation (pp. 8–10)."
+        ],
+        "score_rationale": "The empirical numbers are promising, but unclear equations and training protocol, possible reliance on retained past data, limited novelty beyond adapter routing, and weak experimental controls constitute major soundness and reproducibility concerns. I therefore rate it a reject rather than marginal acceptance; some uncertainty remains because implementation details omitted from the manuscript might resolve parts of the protocol."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "Artsy freezes a pre-trained ViT, adds task-specific adapters, and learns binary gates framed as artificial silent synapses. Reported CIFAR-100 and TinyImageNet results exceed EASE by modest margins, but the method is insufficiently specified and the evaluation does not substantiate its broad or biological claims.",
+        "strengths": [
+          "The task-gated adapter construction is intuitively motivated and aims at a relevant problem: routing among expandable modules without an externally supplied task identity (pp. 3–7).",
+          "Artsy consistently reports the best average and final accuracy across the five evaluated settings, including gains over the strongest baseline EASE (p. 8).",
+          "The paper separately visualizes old-task and new-task accuracy over the incremental sequence, attempting to examine stability and plasticity rather than only aggregate accuracy (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The central gate is not reproducibly or coherently defined: Eq. 3 only names an unspecified function, Eqs. 3–5 contain inconsistent notation, and the paper omits gate inputs, losses, thresholds, handling of simultaneous activations, and exact feature aggregation. Algorithms 1–2 do not resolve these ambiguities (pp. 5–7).",
+          "Training each new binary gate uses data from all previous tasks as negatives (p. 7), apparently requiring replay or retained historical data, yet the storage mechanism and budget are not disclosed. This undermines the continual-learning comparison, especially against methods with potentially different memory access and expansion costs; parameter, memory, and compute growth are also unreported (pp. 7–8).",
+          "Evidence is narrow and weakly controlled: only two small datasets are used, there are no error bars, seeds, statistical tests, or independently informative ablations. The sole ablation compares undefined “good” and “bad” features (pp. 9–10), while the biological analogy is not experimentally tested and appears mainly to relabel task routing and adapter selection."
+        ],
+        "score_rationale": "Despite promising tabulated accuracy, the contribution appears to be a biologically framed adapter-gating scheme with limited demonstrated novelty. Missing operational details and an undisclosed dependence on prior-task data make the central results difficult to interpret or reproduce, while the limited ablation cannot isolate why Artsy improves over EASE. I therefore judge the current manuscript below the technical-soundness and evidence bar for ICLR; uncertainty remains because a clearer implementation and memory protocol could resolve some concerns."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "Artsy adds per-task adapters to a frozen ViT and learns binary gates, framed as artificial silent synapses, to select adapter features during class-incremental inference. It reports modest gains over EASE on CIFAR-100 and TinyImageNet, but the method and protocol are insufficiently specified and the evidence does not substantiate the paper’s novelty, fairness, or biological claims.",
+        "strengths": [
+          "The gating of task-specific adapters addresses the practically important problem of task-agnostic expert selection (pp. 5–7).",
+          "Artsy consistently improves the reported Average and Last accuracy over the strongest listed baseline, EASE, across five settings (p. 8).",
+          "The paper evaluates both plasticity and retention over incremental steps rather than reporting only final accuracy (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The core method is essentially adapters plus binary task/OOD classifiers; the silent-synapse analogy does not yield a clearly novel learning rule or demonstrated biological interpretability. Definitions are also inconsistent: Eq. 3 gates summed embeddings, the implementation describes old-vs-current classification, Algorithm 2 calls S_t(x), and Eq. 5 appears to use h_t rather than h_i (pp. 5–7).",
+          "The protocol may require all prior-task data: each gate is trained using data from the union of previous datasets versus the current dataset (p. 7). Storage/replay assumptions, prototype construction for former classes, and whether baselines receive equivalent access are unspecified, making the comparison difficult to interpret.",
+          "Evidence is limited to two small benchmarks with no variance, significance tests, resource/memory analysis, gate accuracy, routing-error analysis, or meaningful component ablation. The sole ablation compares undefined “good” and “bad” features (pp. 9–10), while claims about robustness, biological interpretation, and neurodegeneration are unsupported."
+        ],
+        "score_rationale": "The reported accuracy gains are promising, but unclear data-access assumptions and under-specified/inconsistent gating equations undermine technical soundness and reproducibility. The limited experiments and superficial biological analogy do not support the broad claims, so I lean reject; uncertainty is low because these issues are visible in the complete supplied manuscript."
+      }
+    }
+  ]
+}

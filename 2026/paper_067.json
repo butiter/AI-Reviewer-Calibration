@@ -1,0 +1,269 @@
+{
+  "year": 2026,
+  "package_id": "paper_067",
+  "paper_id": "WX8uuLUSR4",
+  "number": 16207,
+  "title": "Conflicting Biases at the Edge of Stability: Norm versus Sharpness Regularization",
+  "authors": [
+    "Maria Matveev",
+    "Vit Fojtik",
+    "Hung-Hsu Chou",
+    "Gitta Kutyniok",
+    "Johannes Maly"
+  ],
+  "primary_area": "optimization",
+  "keywords": [
+    "gradient descent",
+    "edge of stability",
+    "implicit regularization",
+    "implicit bias",
+    "sharpness"
+  ],
+  "forum_url": "https://openreview.net/forum?id=WX8uuLUSR4",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    0,
+    4,
+    6,
+    6
+  ],
+  "human_mean_rating": 3.6,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "CKatbrbAAe",
+      "forum": "WX8uuLUSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16207/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762215595869,
+      "tmdate": 1764359257720,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "hSMsm3hF3X",
+      "forum": "WX8uuLUSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16207/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761961568882,
+      "tmdate": 1762926366754,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "mQAGhHVmvU",
+      "forum": "WX8uuLUSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16207/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761926028398,
+      "tmdate": 1762926367310,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "uUrbWy7QWQ",
+      "forum": "WX8uuLUSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16207/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761111341161,
+      "tmdate": 1762926367755,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "uevPnunFPw",
+      "forum": "WX8uuLUSR4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16207/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761051560271,
+      "tmdate": 1762926368343,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a useful empirical perspective: finite learning rates move full-batch GD away from gradient-flow-like, low-norm solutions toward lower-sharpness, higher-norm solutions, sometimes yielding intermediate-rate generalization optima. The phenomenon is explored unusually broadly, and the diagonal-network analysis distinguishes norm and sharpness minimizers. However, the theoretical results do not establish the claimed GD trade-off or constrained-risk interpretation, and parts of the generalization appendix appear mathematically incomplete.",
+        "strengths": [
+          "A clear and potentially valuable conceptual framing of learning rate as mediating multiple implicit biases rather than inducing one universal bias (pp. 2–3).",
+          "Extensive experiments across architectures, losses, parameterizations, dataset sizes, and stopping thresholds consistently document the sharpness transition near 2/s_GF (pp. 5–7, 31–44).",
+          "Proposition 3.2 gives an explicit, interpretable separation between norm and sharpness minimizers in the diagonal regression model (pp. 8–10, 21–24)."
+        ],
+        "weaknesses": [
+          "Theorem B.2 supplies only a necessary stability condition for convergent GD; it does not show that GD minimizes risk subject to sharpness ≤2/η or interpolates between the two minimizer sets, as asserted in the toy-model interpretation (pp. 9–10, 21).",
+          "The generalization evidence is mixed and lacks uncertainty estimates or systematic seed variation: many configurations improve monotonically toward the largest stable rate, while several norm trends also violate the headline pattern (pp. 7, 32, 43–44). Thus the proposed 'balanced biases' explanation remains suggestive rather than identified causally.",
+          "The broader regression derivation relaxes the transformed feasible set to all of R^d even though the variable originates from w squared, so Proposition E.2's elementwise square root need not be real; additionally, the main random-data discussion does not condition on y0>0, which is required for interpolation with positive x0 (pp. 9, 26–28)."
+        ],
+        "score_rationale": "The empirical observation is interesting, well presented, and supported over many controlled full-batch settings, but the paper's central mechanistic interpretation exceeds what its theory proves. Mathematical gaps in the generalization appendix and limited statistical validation place it slightly below acceptance, though I am uncertain whether straightforward added assumptions could repair the theoretical examples."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper argues that finite learning rates trade off gradient-flow norm bias against Edge-of-Stability sharpness bias. It presents broad full-batch-GD experiments showing a transition near 2/s_GF and a toy diagonal-network analysis where norm and sharpness minimizers differ. The central perspective is interesting, but the claimed generalization mechanism and GD-selection theory are not fully established.",
+        "strengths": [
+          "A clear and potentially useful framing: learning rate can interpolate between distinct implicit biases rather than merely strengthening one regularizer (pp. 2–3).",
+          "Extensive empirical coverage across architectures, losses, parameterizations, dataset sizes, and modalities supports the sharpness–norm transition qualitatively (pp. 31–44).",
+          "The toy regression analysis explicitly characterizes distinct norm and sharpness minimizers, providing a concrete counterexample to single-bias explanations (pp. 8–10, 21–27)."
+        ],
+        "weaknesses": [
+          "The key theoretical bridge is overstated: the cited stability theorem only excludes convergence to points sharper than 2/η; it does not imply that GD solves sharpness-constrained risk minimization or systematically interpolates between the stated minimizers, as suggested on pp. 9–10.",
+          "The generalization evidence is mixed and largely descriptive: many configurations improve monotonically toward the largest convergent learning rate rather than exhibiting a balanced optimum, and most use one fixed initialization without uncertainty estimates (pp. 7, 43–44).",
+          "There are technical/presentation concerns, including a factor-of-four inconsistency in the minimum sharpness calculation between Eq. (11) and Lemma D.2 (pp. 22–24), while the novelty relative to closely related large-step diagonal-network work is not sharply delineated."
+        ],
+        "score_rationale": "The paper offers a compelling perspective, unusually broad experiments, and a useful toy counterexample, making it slightly above the acceptance threshold. However, the strongest causal/theoretical interpretation of GD as balancing two regularizers is not proved, and the generalization claim is inconsistent across settings. I therefore lean marginally positive rather than clear accept."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper argues that finite learning rates trade off gradient-flow-associated norm bias against edge-of-stability sharpness bias. It documents a recurring phase transition across many full-batch vision experiments and gives a diagonal-network example where norm and sharpness minimizers differ and neither need minimize population risk. The empirical phenomenon is interesting, but the mechanistic and generalization conclusions exceed what the theory and controls establish.",
+        "strengths": [
+          "A clear and potentially useful empirical observation: beyond a threshold near 2/s_GF, final sharpness decreases while parameter norms often increase, across varied architectures, losses, widths, and datasets (pp. 3, 5–7, 31–36).",
+          "The diagonal regression analysis explicitly characterizes distinct norm and sharpness minimizers and supplies proofs rather than only intuition (pp. 8–10, 21–28).",
+          "The appendix is unusually extensive, reporting sensitivity to initialization, loss threshold, parameterization, alternative norms/sharpness measures, and additional modalities (pp. 31–44)."
+        ],
+        "weaknesses": [
+          "The central theoretical interpretation is not established: the cited stability theorem only gives a necessary condition for convergence, yet the paper informally treats GD as solving sharpness-constrained risk minimization and as interpolating between the two biases (pp. 8–10, 21, 41). No theorem characterizes the finite-step GD limit or proves the claimed phase transition.",
+          "The generalization evidence is mixed and under-controlled. Many configurations improve monotonically toward the largest convergent learning rate rather than exhibiting an interior optimum, as the authors acknowledge (pp. 7, 43–44); most configurations use one initialization and provide no uncertainty estimates, weakening claims such as “never” optimal at minimal norm.",
+          "There are technical/presentation concerns in the supplementary theory: the classification loss is written without the conventional minus sign and its Hessian derivation assigns inconsistent signs to the two examples (pp. 28–29). More broadly, raw parameter norms and Hessian sharpness are parameterization-dependent, so their observed trade-off does not yet establish a function-level conflict (pp. 19–20, 34–37)."
+        ],
+        "score_rationale": "The paper offers a novel, well-documented empirical framing and a sound-looking core regression counterexample, but its main causal claim about interacting GD implicit biases is substantially stronger than the proved results. Mixed generalization outcomes, limited statistical replication, and an apparent error in the auxiliary classification analysis place it slightly below the acceptance threshold. I am uncertain whether fuller code-level checks would resolve some empirical-control concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents an interesting empirical picture in which increasing the full-batch GD learning rate moves solutions from a gradient-flow-like regime toward lower sharpness but generally larger parameter norms. A simple diagonal-network analysis shows that norm and sharpness minimizers can be distinct. The phenomenon is extensively documented, but the claimed mechanism connecting learning rate, competing biases, and generalization is only partially established.",
+        "strengths": [
+          "The sharpness–norm transition is documented across an unusually broad collection of architectures, losses, datasets, widths, parameterizations, and stopping thresholds (pp. 5–7, 30–44).",
+          "Proposition 3.2 gives a clear analytic example where norm and sharpness minimizers occupy disjoint parts of the interpolation manifold (pp. 8–10, 21–24).",
+          "The paper is transparent about non-universality: U-shaped generalization occurs in some settings, whereas many others favor the largest convergent learning rates (pp. 7, 43–44)."
+        ],
+        "weaknesses": [
+          "The central theoretical bridge is missing: the cited stability result only excludes convergent limits with sharpness above 2/η; it does not show that GD minimizes sharpness, solves a sharpness-constrained risk problem, or interpolates between the two minimizer sets. Nevertheless, these stronger interpretations drive the toy-model narrative (pp. 9–10, 21, 41).",
+          "The main generalization evidence lacks repetitions or uncertainty estimates for most configurations, often uses a single initialization, and compares runs stopped at a fixed training-loss threshold; consequently, the reported U-shapes and claims about optimal bias balance may be sensitive to seed and stopping protocol (pp. 6–7, 30–31, 43–44).",
+          "There are technical issues in peripheral theory: Proposition E.2 rewrites optimization over w⊙2 as an unrestricted linear problem and appears to omit the required coordinatewise nonnegativity constraint, so its stated Aopt need not correspond to a real w (pp. 26–27). The classification appendix also defines the log-likelihood without the conventional minus sign while calling it a loss to minimize (pp. 28–29)."
+        ],
+        "score_rationale": "The broad empirical regularity and clean separation of norm and sharpness minimizers constitute a useful, moderately novel contribution. However, the paper does not prove that finite-step GD performs the proposed bias trade-off, and the generalization conclusions are statistically weak. I therefore lean marginally above acceptance, with some uncertainty due to the identified theoretical gaps."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes that finite learning rates trade gradient-flow norm bias against EoS sharpness bias. It documents a broad empirical phase transition and gives a diagonal-linear example where norm and sharpness minimizers differ, but the claimed mechanism and generalization conclusions are only partially established.",
+        "strengths": [
+          "A clear and potentially useful synthesis of two usually separate implicit-bias perspectives, with an identifiable transition near 2/s_GF (pp. 2–7).",
+          "Unusually broad empirical coverage across architectures, losses, parameterizations, dataset sizes, and other modalities (pp. 30–44), with detailed reproducibility information.",
+          "The diagonal-linear analysis explicitly characterizes distinct norm and sharpness minimizer sets under positive features (Proposition 3.2, pp. 8–10; proof on pp. 21–24)."
+        ],
+        "weaknesses": [
+          "The central causal interpretation is not proved: Theorem B.2 supplies only a necessary stability condition for convergent GD, not optimization of sharpness or a norm–sharpness interpolation. Statements that GD minimizes risk under a sharpness constraint therefore exceed the theory (pp. 8–10, 21).",
+          "The generalization evidence is inconsistent and statistically weak: many settings improve monotonically toward the largest convergent learning rate, while only some show a U-shape; most comparisons use a single seed and provide no uncertainty estimates (pp. 7, 43–44).",
+          "There are technical issues in the auxiliary theory: the classification section writes log-likelihood without the usual negative sign and derives an indefinite Hessian inconsistent with logistic loss (pp. 28–30); the sharpness minimum proof also drops the factor 4 from Eq. 11 (pp. 22–24)."
+        ],
+        "score_rationale": "The empirical phenomenon is extensive and the framing is interesting, but novelty is mainly interpretive, while the main mechanistic claim is stronger than the available stability theorem and the generalization claim is not robustly demonstrated. The appendix errors further reduce confidence in technical soundness. I am uncertain whether stronger multi-seed analyses or a genuine GD-selection theorem could raise this above the acceptance threshold."
+      }
+    }
+  ]
+}

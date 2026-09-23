@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_045",
+  "paper_id": "qrTrnrEi9d",
+  "number": 5764,
+  "title": "Translation and Fusion Improves Zero-shot Cross-lingual Information Extraction",
+  "authors": "Yang Chen; Vedaant Shah; Alan Ritter",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "large language model; multilingual; information extraction; low-resource language",
+  "forum_url": "https://openreview.net/forum?id=qrTrnrEi9d",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    6,
+    5
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This work proposes a simple yet effective approach for improving cross-lingual transfer with a focus on Information Extraction (IE) tasks such as NER, relation extraction, and slot filling. The idea is to leverage an external Machine Translation (MT) system such as NLLB (or any other similar MT system) to translate data from low-resource languages to English, and then leveraging the translation data as additional signal/context for making predictions. The second key ingredient of the approach is the idea of bypassing the alignment step for IE task, where the 'trick' is to first do annotations on the example translated to English before predicting annotations in the target language, where the former seems to be crucial to enable good performance, as verified by an ablation study. In general, this simple idea does provide benefits across a range of IE tasks and languages. Moreover, the authors show the usefulness of the approach on IE tasks with unseen annotation sets, and they show how a similar approach can be applied both to decoder-only models (which are in the main focus of the paper), but also to encoder-style models as well."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- A simple idea which is well motivated and well explained the paper, with a good coverage of IE datasets and languages, and good side analyses (e.g., ablation studies, error analyses).\n- This idea can be easily combined even with API-gated models without fine-tuning for some quick wins on different IE tasks. Given its simplicity, the entry point to try out the model is quite low (which is a plus).\n- The experimental work can be easily reproduced by other researchers."
+        },
+        "weaknesses": {
+          "value": "- I have concerns about the actual novelty of the work (as advertised in the paper). The use of external MT systems to create some 'silver data' as well as to help with cross-lingual transfer is definitely not a novel idea, and has been tried many times before. We do have many examples of work that explore translation-based cross-lingual transfer for low-resource languages, such as:\n-- https://aclanthology.org/2023.emnlp-main.242\n-- https://aclanthology.org/2024.naacl-long.298/\n-- https://aclanthology.org/2023.emnlp-main.399\n- In fact, some of the key baselines are missing from the paper (e.g., improved 'translate-test' baselines as in the aforementioned work)\n- Also, it is not new to use external MT systems to enable multilingual instruction-tuning, here are just a small selection of papers:\n-- https://aclanthology.org/2024.findings-eacl.90.pdf\n-- https://arxiv.org/abs/2407.09879\n-- https://aclanthology.org/2024.findings-acl.136.pdf\nI would like to see a much broader discussion on how exactly the proposed approach is different and novel here.\n\n- Only one model (GOLLIE-7B) is used as the main baseline model. It would be beneficial to try out the same approach with additional open-weights model (e.g., LLama-3) and also vary the size of the model to verify the impact of model size as well and whether some gains might diminish with larger models. Is it possible to also run some experiments with, say, 70B models from some standard families such as Llama? What about Gemma 2 9B?\n\n- The focus of the work is on IE task simply because of the idea on how to improve the results via generating annotations for the example translated to English first - this seems to me as another hint that this is the only real novelty of the work, as in other 'non-IE' tasks the work would not bring much novelty. I would like to see an extended discussion here. Is the same method applicable to non-IE tasks that require sequence labels such as the 'niche' NLP tasks of POS tagging and dependency parsing? Would the method bring any performance gains to NLU tasks that are typically used to evaluate cross-lingual transfer in some previous research such as NLI on AmericasNLI and XNLI or QA on TydiQA?"
+        },
+        "questions": {
+          "value": "- The main novelty of the work seems to be this idea of generating annotations of the example translated to English before annotating the original sentence (as also discussed under \"Weaknesses\"). Can the authors comment on the increased cost of this approach and if there is a way to cut the cost of additional generation?\n\n- It is unclear to me what happens if a language is unseen by NLLB. Will the proposed method still work or not (and to what extent)? There were some approaches (e.g., see https://aclanthology.org/2023.emnlp-main.242) that proposed easy adaptations of NLLB to unseen languages - it probably makes sense to try out such approaches as well. \n\n- Given that the evaluation datasets used in this work are quite standard, I would recommend providing also additional reference points (i.e., current state-of-the-art scores) from the literature. This would help the reader to grasp not only the gains over the baseline GOLLIE model (and GPT-4) but also situate the results in a wider context of work on those datasets.\n\n- The authors empirically verify that varying the MT model does not have a profound impact on performance. Can the authors discuss why this observation might hold - is it the inherent limitation of the MT system (e.g., it cannot cover some low-resource languages well regardless of its size) or the inherent advantage of the MT system? Is it also related to simplicity/complexity of the task chosen for this experiment?\n\n- How do language properties (beyond its 'resourceness') affect performance? Can we see some patterns based on language proximity/distance to English?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "WkcHlyUiFr",
+      "forum": "qrTrnrEi9d",
+      "replyto": "qrTrnrEi9d",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_TcxU"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_TcxU"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5764/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730715113362,
+      "cdate": 1730715113362,
+      "tmdate": 1731427997419,
+      "mdate": 1731427997419,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "### Summary:\nThis paper proposes a solution called TransFusion (TF) for Information Extraction (IE) tasks in low-resource languages such as African languages with access to only high-resource (en) IE annotated data. It has two key parts 1/ a simple update to the incumbent model GoLLIE's prompt: At inference time, the low resource text input is translated to English and then the model is instructed to first annotate this english text and then \"fuse\" the final annotations on the low-resource language input. 2/ Fine-tuning GoLLIE for the above inference. For this, high resource (en) data is used and annotations are projected on the translated text. This gives 4-way tuples of the text as well as annotations in both languages. This is used to finetune GoLLIE to do translate, annotate, fuse.\n\nThe paper also discusses training data preparation, the modeling formulation and how an LLM's autoregressive decoding is used to execute on this modeling objective. Finally, results are comprehensively shown on a wide variety of languages and datasets where GoLLIE with TF has distinctly better results. Additionally, the paper also shows a stronger baseline than GoLLIE which first translates the en data to target language(s) and uses that to finetune GoLLIE. \n\n### Overall Recommendation:\nMy overall recommendation is a soft accept currently. This is mainly because one of the key parts of the finetuning data is currently unclear (as asked in the questions). If that can be simply addressed and/or explained clearly, this paper does have the potential as it solves a wide swath of IE tasks cross lingually."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "## Quality:\n1. Overall the proposal is a simple prompting and Chain-of-thought (CoT) trick. It is clearly defined, motivated and explained from data generation to training fully as seen in Sec 3.1. \n2. Clear ablation study\n3. Good stronger baseline addition with TransTrain\n4. Very extensive experiments, appendix visualizations and results. This also includes manual error analysis.\n5. Also shows improvements when built with GPT-4. \n6. Good error analysis to the last section of the paper.  \n\n## Significance:\nThis method establishes a clear path for performing information extraction (IE) with generative or encoder-only models, showing a clear tradeoff and presenting easily usable recipes for many low-resource African languages. This would be very impactful for various applications. \n\n\n## Coherence and Clarity\n1. The formulations on page 3 help set expectations on the model before jumping into the LLM prompting. This is very useful to fully understand the proposal.  \n2. Related work is clearly organized by themes and presented with a comparison to the proposed work."
+        },
+        "weaknesses": {
+          "value": "1. The novelty of the cross lingual transfer and alignment usage is stated with just 2020+ references. This is overstating the novelty. For example: Structured Prediction as Translation between Augmented Natural Languages (Paolini et al): would be very apt to relate to as it also does IE with generative models. \n2. The clarity around the finetuning data formation and some of the formalisms as pointed out in Q1 below is lacking. See questions below for details for where the paper can be improved"
+        },
+        "questions": {
+          "value": "1. Can you clarify the notations on pages 3 and 4? Specifically, on page 3, src refers to english and tgt/trans refers to the low resource language. On page 4, L173, trans refers to the english examples. Is this understanding correct? I believe this is because Page 3 is talking about generating the training data which translates **from** English, while Page 4 talks about the inference time workflows (as used in finetuning) where the input example is translated **to** English. \n2. L238-L241 are very confusing. From here, it seems somehow that en data has 19k examples and translated data has another 891. Figure 8 in Appendix also shows the same. However, so far in Section 3.1, L145-151 clearly state that all finetuning/training TF data has to be 4-way parallel. So, what do we mean by just 891 translated examples? Don't the 19k in English also need to have translations and spans mapped as labels?\n3. The difference between Trans-Train and GoLLIE-TF is that while both use the same 4-way parallel data, Trans-Train only finetunes in the original GoLLIE style using the translated data pairs (x, y) while GoLLIE-TF uses the 4-way data to finetune the task of translate/annotate/fuse. Is this accurate? If so, can you make this explicit inline?\n4. Since you were cost-limited per L229, how did that impact the standard test set sizes that you need to run tests on for a fair comparison with literature?\n5. Why do you not compare the fusion step alongside standard rule based aligners?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "H5fUWLY0hk",
+      "forum": "qrTrnrEi9d",
+      "replyto": "qrTrnrEi9d",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_qvp3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_qvp3"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5764/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730702835240,
+      "cdate": 1730702835240,
+      "tmdate": 1731427997337,
+      "mdate": 1731427997337,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work introduces a new framework to deal with information extraction in the context of zero shot cross-lingual approaches on low resource regimes. The framework, called TransFusion, consists in two parts i) rely on a high resource language model that that is fed with the translation of the source part in the original language and ii) to fuse the response in the high resource language and the portion on the low resource one training a model to predict an answer based on both inputs.\nThe framework is applied to the existing English-based model, GoLLIE, to produce GoLLIE-TF, a model to deal with cross-lingual information extraction for low resource languages.\nThe resulting model is run on a variety of datasets, covering tasks such as NER, Slot detection and relation extraction on up to 50 different languages."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The approach is effective and can be applied in a variety of configurations, i.e in decoder only models, on a large pretrained model like GPT-4 to be used zero shot on even on an encoder only model.\nThe work makes a good effort in covering several low resource languages from available datasets.\nThe approach improves over GPT-4 and for translate-traine baselines in most of the languages."
+        },
+        "weaknesses": {
+          "value": "Although the approach is relatively simple and straightforward it is not clearly explained on the paper and requires a thorough reading to understand it (see below).\nOne of the salient points of this paper could also be considered a drawback. TransFusion has been shown to be flexible enough to be used in three different scenarios, each one of them having some minor differences in implementation. One could argue these three \"flavours\"of TransFusion are, in fact, different models (see below)"
+        },
+        "questions": {
+          "value": "* Figure 1 could have shown more clearly the fact that the initial portion of the text is translated into English, ran on an english-based model and then with its output and the portion in the original language, the output is predicted. None of these aspects (nor the fact the TransFusion module is trained separately) is shown in this image. \n\n* Please fix the reference \"Team et all, 2023\", which took the \"Gemini Team\" as the name of the first author, and \"Team\" as its last name\n\n* Although it's not an issue, a better presentation would have completely filled the 10 pages in the submission.\n \n* line: 419  \"lagnauge\"\n\n* line 423 fix double parenthesis. Authors might be referring about two varieties of Tagalog, from Philippines and from Uganda\n\n* Authors might like to stress the fact that the different configurations of TransFusion are, indeed, different usages of the same approach."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "--"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "fp4ycqSazu",
+      "forum": "qrTrnrEi9d",
+      "replyto": "qrTrnrEi9d",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_ow8F"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_ow8F"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5764/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730680788183,
+      "cdate": 1730680788183,
+      "tmdate": 1731427997330,
+      "mdate": 1731427997330,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "- The study proposes a translation and fusion (TransFusion) method as an extension to Gollie for zero-shot cross-lingual information extraction.\n- The method involves appending translated target language instances to the input prompt. The model is prompted to perform information extraction in English first, which serves as a reference label to improve information extraction performance in the target language.\n- For encoder-only language models this entails a two-step approach, where a model fine-tuned in English is used to provide the reference labels for the translated text first. The translated text with the reference labels is then concatenated with the inputs in the target languages and used for the final prediction outcome of the target language data. For decoder-only models, the two steps are combined in one prompt by providing instructions to first generate reference labels in English and then perform the task in the target language."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The evaluation results suggest performance gains for low-resource languages in comparison to GPT-4, regular Gollie and translate-train baselines.\n- The performance benchmarks includes various information extraction tasks across 12 datasets and low-resource languages. Specifically the performance benchmark on low-resource languages shows promising performance benefits for prompting decoder-only and fine-tuning encoder-only models.\n- The authors provide ablation studies evaluating the contribution of the annotation in English and the impact of different sizes of machine translation models."
+        },
+        "weaknesses": {
+          "value": "- The benchmarks lack the translate-test baseline. The annotations of the translated English text are not formally included in the evaluation. This evaluation would provide insights in the contribution of the “fusion” step of the framework and should be included for both GPT-4 and Gollie.\n- The proposed method lacks innovation. Providing annotated translations in the input prompt to enhance multilingual performance has been explored in related work [1,2]. Furthermore, the engineering approach to cross-lingual information extraction lacks detailed evaluation of each individual component.\n- The discussion of the additional computational complexity introduced through machine translation and annotation process is not included in the main body of the paper (included in Appendix Table 7).\n\nReferences\n\n- [1] Xi Victoria Lin, Todor Mihaylov, Mikel Artetxe, Tianlu Wang, Shuohui Chen, Daniel Simig, Myle Ott, Naman Goyal, Shruti Bhosale, Jingfei Du, Ramakanth Pasunuru, Sam Shleifer, Punit Singh Koura, Vishrav Chaudhary, Brian O’Horo, Jeff Wang, Luke Zettlemoyer, Zornitsa Kozareva, Mona Diab, et al.. 2022. Few-shot Learning with Multilingual Generative Language Models. In Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, pages 9019–9052, Abu Dhabi, United Arab Emirates. Association for Computational Linguistics.\n- [2] Priyanka Agrawal, Chris Alberti, Fantine Huot, Joshua Maynez, Ji Ma, Sebastian Ruder, Kuzman Ganchev, Dipanjan Das, and Mirella Lapata. 2023. QAmeleon: Multilingual QA with Only 5 Examples. Transactions of the Association for Computational Linguistics, 11:1754–1771."
+        },
+        "questions": {
+          "value": "- Did you consider skipping the translation step during inference for the fine-tuned Gollie-TF? It would be interesting whether training on translation + fusion already results in performance improvements without the need to translate and annotate the test data.\n- In lines 48 you mention that your TransFusion method trains language models on tools usage (MT model), however your method does not integrate an interactive use of the MT model. Can you elaborate this description?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "kWSbH1vdKw",
+      "forum": "qrTrnrEi9d",
+      "replyto": "qrTrnrEi9d",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_T2WB"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5764/Reviewer_T2WB"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5764/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729594078104,
+      "cdate": 1729594078104,
+      "tmdate": 1732613966555,
+      "mdate": 1732613966555,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes TransFusion, which translates target-language inputs into English, annotates the translation, and conditions target-language extraction on those annotations. The approach is evaluated across multilingual IE tasks and model families, with particularly strong gains for low-resource NER, although the evidence for broader IE generality is mixed.",
+        "strengths": [
+          "A simple, practically relevant approach with a clear training and inference formulation for both decoder- and encoder-only models (pp. 3–4).",
+          "Broad multilingual evaluation shows large gains on MasakhaNER2 (47.9→62.4 F1) and several unseen-schema datasets, especially MultiCoNER2 and MASSIVE (pp. 6–7).",
+          "Useful ablations, translation-quality analysis, multi-seed results, and inference-cost reporting support the central low-resource NER finding (pp. 7–8, 20)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the method combines established translate-test, English annotation, and label projection/fusion ideas, and the paper does not compare the decoder model against a strong direct translate-test projection baseline analogous to CoDec, making the benefit of learned fusion less isolated (pp. 6, 9).",
+          "The gains are not consistent across tasks: TransFusion underperforms GoLLIE on ACE argument extraction and underperforms translate-train on xSID, MultiTO, RED-FM, and MultiNERD, so claims of broad IE improvement are overstated (pp. 6, 21–23).",
+          "Reporting has material inconsistencies and limited uncertainty analysis: UNER is 77.8 in Table 2 but 78.9 in Table 9, the overall gain is described as +4.6 but Table 2 gives +5.5, and multi-seed results cover only MasakhaNER2/MASSIVE (pp. 6–7, 20–21)."
+        ],
+        "score_rationale": "The low-resource NER improvements are substantial and supported by broad experiments, making the work potentially useful. However, the incremental conceptual contribution, missing strong translate-test comparison for the main decoder setting, mixed non-NER results, and reporting inconsistencies keep it only marginally above the acceptance threshold. Some uncertainty remains because evaluation sampling and significance testing are insufficiently documented."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "TransFusion uses English translation annotations to guide target-language information extraction, implemented for decoder-only, prompted proprietary, and encoder-only models. The approach is simple but practically useful, with strong gains on several low-resource benchmarks, although attribution and reporting issues make the evidence less conclusive than claimed.",
+        "strengths": [
+          "Broad evaluation across languages, datasets, label schemas, and architectures; especially large gains on MasakhaNER2, MultiCoNER2, and MASSIVE (pp. 6–9).",
+          "Useful ablations show that both English annotation and translation contribute materially, and translation-quality sensitivity is examined (pp. 7–8).",
+          "The paper reports inference cost, multi-seed results for two benchmarks, detailed per-language results, and an informative error analysis (pp. 9–10, 20–23)."
+        ],
+        "weaknesses": [
+          "The central decoder-only comparison lacks a strong inference-time translate-test plus label-projection baseline, so gains over GoLLIE and translate-train partly reflect access to an external MT system at test time; CoDec is compared only in the encoder experiment (pp. 6, 9).",
+          "Several claims overstate consistency: GoLLIE-TF substantially hurts ACE argument extraction and trails translate-train on multiple unseen-schema datasets (p. 6). Statistical testing is absent, while multi-seed reporting covers only MasakhaNER2 and MASSIVE (p. 20).",
+          "Reporting is internally inconsistent: UNER averages are 77.8 on p. 6 versus 78.9 on p. 21, and the stated overall improvement of +4.6 on p. 7 conflicts with +5.5 in Table 2. The scope of the 200-example evaluation is also ambiguous (p. 4)."
+        ],
+        "score_rationale": "The method is technically plausible and delivers compelling low-resource gains, making it marginally above the acceptance threshold. However, novelty is incremental to translation-based transfer, the most important fair baseline is missing in the main setting, and inconsistencies plus limited uncertainty analysis weaken the strength of the conclusions."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes TransFusion, which translates target-language inputs into English, predicts English annotations, and conditions a fusion model on those annotations to recover target-language spans. The approach is simple but useful, and broad experiments show especially strong gains for low-resource NER, though the evidence for general improvement across IE tasks is mixed.",
+        "strengths": [
+          "Broad evaluation across languages, datasets, seen/unseen schemas, and decoder-only, prompted, and encoder-only models (pp. 4–9).",
+          "Large improvements on MasakhaNER2 over both GoLLIE and translate-train, with multi-seed results provided for the proposed model (pp. 6, 20).",
+          "Ablations support the value of both English annotation and translation, while translation-quality, error, and inference-cost analyses add practical insight (pp. 7–10, 20)."
+        ],
+        "weaknesses": [
+          "The main comparison does not cleanly isolate fusion from stronger translate-test alternatives: overall GoLLIE-TF improves only 1.6 F1 over matched translate-train, and it is worse on several tasks, including ACE argument extraction and xSID (pp. 6, 21–22).",
+          "Reporting is inconsistent or insufficiently specified: UNER is 77.8 on p. 6 but 78.9 on p. 21, the claimed overall gain differs between text and Table 2, and metric aggregation, GPT-4 few-shot details, and significance testing are unclear (pp. 5–7, 21).",
+          "Robustness evidence is limited: multi-seed evaluation covers only MasakhaNER2 and MASSIVE, while error analysis uses just 31 Akan errors; dependence on MT quality and roughly doubled inference cost remains substantial (pp. 8–10, 17, 20)."
+        ],
+        "score_rationale": "This is a practically relevant, moderately novel fusion formulation with convincing low-resource NER results and unusually broad coverage. However, gains over the strongest matched baseline are modest and inconsistent outside MasakhaNER2, and reporting/reproducibility gaps weaken the conclusions. I therefore rate it marginally above acceptance, with some uncertainty about whether stronger translate-test controls would preserve the advantage."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "TransFusion translates target-language text to English, predicts English annotations, and conditions target-language extraction on those annotations. The approach is moderately novel rather than foundational, but its broad experiments indicate useful improvements, especially for low-resource NER; overall I view it as slightly above the acceptance threshold, with uncertainty from evaluation and reporting gaps.",
+        "strengths": [
+          "Broad evaluation across multilingual NER, slot, event, argument, and relation extraction, including unseen schemas; GoLLIE-TF improves the reported overall average from 40.2 to 45.7 F1 and yields large gains on MasakhaNER2, MultiCoNER2, xSID, and MASSIVE (pp. 6–7).",
+          "Relevant controls compare against both translate-train and removal of English annotation/translation; the ablation drops from 62.4 to 55.7 without annotation and to 41.2 without translation on MasakhaNER2 (pp. 7–8).",
+          "The framework transfers beyond one decoder model: prompting improves GPT-4 from 53.4 to 62.0 F1, while an encoder-only implementation reaches 72.0 on MasakhaNER2 and exceeds the cited CoDec result (pp. 8–9, 23)."
+        ],
+        "weaknesses": [
+          "Novelty is incremental over established translate-test, label-projection, and cross-lingual prompting pipelines: the main addition is training a model to consume predicted English annotations jointly with target text, and the paper does not sharply isolate this contribution from generic translated-input reasoning (pp. 3–4, 10).",
+          "Evidence is uneven: most headline results apparently use only 200 examples per language/task, yet confidence intervals or significance tests are absent; three-seed results are supplied only for MasakhaNER2 and MASSIVE, with nontrivial variance for some languages (pp. 4, 20).",
+          "Claims of consistent/general improvement are overstated: TransFusion substantially degrades ACE argument extraction (92.7 to 86.0), trails translate-train on xSID, MultiTO, and RED-FM, and sometimes hurts individual low-resource languages; evaluation counts are also reported inconsistently as 50 languages in the abstract versus 36 in Section 5 (pp. 1, 6, 22–23)."
+        ],
+        "score_rationale": "The method is practical and the breadth and magnitude of several low-resource gains make a credible empirical contribution. However, limited conceptual novelty, incomplete statistical validation, inconsistent reporting, and regressions on several tasks prevent a clear accept; I assign 6 rather than 5 because the central effect is supported by meaningful baselines, ablations, and multiple model architectures."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "TransFusion translates target-language text into English, predicts English annotations, and fuses them with the original text to produce target-language IE spans. The approach is moderately novel rather than foundational, but it is practical and broadly evaluated, with especially strong gains for low-resource NER.",
+        "strengths": [
+          "Broad evaluation across multiple languages, datasets, IE tasks, and seen/unseen schemas; GoLLIE-TF improves the reported overall average from 40.2 to 45.7 F1 and MasakhaNER2 from 47.9 to 62.4 (p. 6).",
+          "Controlled comparison against translate-train plus useful ablations: removing English annotation or translation substantially reduces performance on MasakhaNER2 and MASSIVE (pp. 6–8).",
+          "The framework transfers across decoder-only, prompted GPT-4, and encoder-only models, with sizeable low-resource NER gains (pp. 8–9, 23)."
+        ],
+        "weaknesses": [
+          "Novelty is incremental: the method combines established translate-test/label-projection ideas with sequential annotation and fusion; the distinction from prior projection and translation-based IE is useful but conceptually modest (pp. 3–4, 10).",
+          "Evidence is strongest for NER and mixed elsewhere: GoLLIE-TF underperforms the base model on ACE argument extraction and underperforms translate-train on several unseen-schema averages, including xSID, MultiTO, and RED-FM (p. 6).",
+          "Reporting limits confidence: most results lack variance/significance estimates, evaluation appears restricted to 200 examples per language without a clearly stated sampling protocol for every model, and aggregate inconsistencies occur (e.g., UNER 77.8 on p. 6 versus 78.9 on p. 21)."
+        ],
+        "score_rationale": "The paper presents a sensible, reproducible framework with convincing low-resource NER improvements, strong breadth, and informative ablations. Its incremental novelty, uneven gains outside NER, and reporting/statistical weaknesses prevent a higher score, but the overall empirical contribution is above the acceptance threshold."
+      }
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "year": 2026,
+  "package_id": "paper_024",
+  "paper_id": "AcnCQR2ElW",
+  "number": 6713,
+  "title": "Quicksviewer: An LMM for Efficient Video Understanding via Reinforced Compression of Video Cubes",
+  "authors": [
+    "Ji Qi",
+    "Yuan Yao",
+    "Yushi Bai",
+    "Bin Xu",
+    "Juanzi Li",
+    "Zhiyuan Liu",
+    "Tat-Seng Chua"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Video Understanding",
+    "Large Multimodal Models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=AcnCQR2ElW",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.3333333333333335,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "n3UQV4VUqG",
+      "forum": "AcnCQR2ElW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6713/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761991301845,
+      "tmdate": 1762919001965,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "sQJKYjkh8w",
+      "forum": "AcnCQR2ElW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6713/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761915087153,
+      "tmdate": 1762919002327,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "zsTVSr6iF3",
+      "forum": "AcnCQR2ElW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6713/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760692726343,
+      "tmdate": 1762919002794,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Quicksviewer dynamically partitions videos into variable-length temporal cubes and resamples each cube to a fixed token budget. The idea is intuitive and controlled results suggest benefits over fixed partitioning, but central claims about differentiable learning, online operation, and efficiency are insufficiently substantiated.",
+        "strengths": [
+          "The variable-length cube formulation is a sensible approach to allocating tokens according to temporal change, with a unified resampler for images and videos (pp. 3–5).",
+          "A controlled Llama3.1 comparison shows notable gains over fixed partitioning on MVBench and MLVU under the reported token budget (p. 6).",
+          "The paper evaluates several benchmarks and provides component ablations, including positional encoding and noise annealing (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The core optimization is technically unclear: hard global top-k selection and variable slicing are nondifferentiable, while the thumbnail pathway does not establish that task gradients train the selected cube boundaries. The stated Gumbel-Softmax equation is also nonstandard, and annealing endpoints conflict between 0.001 and 0.01 (pp. 4, 6, 8).",
+          "The claimed online cubing conflicts with selecting the globally largest NQ−1 scores over all video frames; future frames can displace earlier selections, so causal streaming operation is not demonstrated (pp. 3–4).",
+          "Efficiency evidence is incomplete: the 45× figure counts post-resampling tokens but apparently excludes encoding all frames at 576 tokens each, and no latency, FLOPs, memory, or throughput measurements are reported. Literature comparisons also mix backbones and training recipes, while the claimed scaling law is supported only by a small plot without fits or uncertainty (pp. 1, 6–7)."
+        ],
+        "score_rationale": "The method has practical promise and encouraging controlled benchmark gains, but unresolved differentiability and streaming inconsistencies affect the central technical contribution. Missing end-to-end compute measurements and confounded comparisons leave the efficiency claims inadequately validated; the admitted temporal-position misalignment further limits soundness (p. 15). I therefore place it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Quicksviewer proposes fixed-budget, nonuniform temporal cubing followed by per-cube resampling for efficient video LMMs. The idea is intuitive and yields gains over a uniform-partition Llama baseline, but central differentiability/streaming claims are insufficiently justified, and the experiments do not rigorously substantiate the stated efficiency and scaling conclusions.",
+        "strengths": [
+          "The content-adaptive allocation of a fixed number of tokens to variable-duration cubes is a useful, intuitive design, with unified image/video processing and explicit timestamps (pp. 3–5).",
+          "Against the matched Fixed-Llama3.1 baseline, adaptive cubing improves all four principal benchmarks, including 50.2→58.6 on MLVU and 45.2→53.9 on MVBench (p. 6).",
+          "Component ablations support 3D positional encoding and noise annealing, while cube-length and qualitative analyses provide some interpretability (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The claimed end-to-end boundary learning is technically unclear: global top-k selection and discrete cube construction remain non-differentiable, while the straight-through Gumbel description only addresses binary gates and the thumbnail offers an indirect gradient path. Moreover, global top-k requires the clip and conflicts with the claimed online streaming operation (pp. 3–4).",
+          "The empirical attribution is weak: the strongest Qwen model lacks a fixed-partition Qwen control; ablations use a different image-only initialization; full tuning worsens long-video accuracy from 43.44 to 38.44 despite being called optimal; and no variance or statistical tests are reported (pp. 6, 9).",
+          "Efficiency and scaling claims rely mainly on nominal token counts: there are no latency, throughput, memory, or FLOP measurements, and the asserted power law is not fitted or quantified. The appendix also acknowledges unresolved temporal positional misalignment that directly affects temporal reasoning (pp. 1, 6, 15)."
+        ],
+        "score_rationale": "The paper contains a promising adaptive-compression idea and meaningful matched-baseline gains, but unresolved issues in the core optimization/online formulation and insufficient controlled efficiency evidence prevent confidence in its principal claims. I therefore place it below the acceptance threshold, with some uncertainty because implementation details could clarify the gradient path."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "Quicksviewer partitions sampled video frames into nonuniform temporal cubes using a learned Gumbel-Softmax-based gate, then resamples each cube to a fixed token count. The adaptive temporal compression idea is intuitive and moderately novel, but the current evidence does not adequately establish either true systems efficiency or that the proposed partition learning is technically sound and responsible for the reported gains.",
+        "strengths": [
+          "The learned nonuniform cubing plus fixed-size 3D resampling is a simple, practically relevant approach to long-video token reduction, with an online-compatible momentum formulation (pp. 3–4).",
+          "The matched Llama3.1 comparison shows consistent gains over fixed partitioning, including +8.7 on MVBench and +8.4 on MLVU, supporting some benefit from adaptive boundaries (p. 6).",
+          "The paper includes component ablations and explicitly acknowledges temporal positional misalignment as a limitation (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "The differentiable training story is underspecified and potentially flawed: hard top-k indices and cube construction are non-differentiable, while the straight-through Gumbel equation and claimed gradient path through the thumbnail do not clearly explain how task loss trains individual boundaries (p. 4).",
+          "Efficiency claims rely mainly on tokens per frame and nominal compression; there are no measured training/inference FLOPs, throughput, latency, memory, or accuracy-efficiency curves. Comparisons also vary in backbone, data, and frame configuration, limiting support for claims of exceptional efficiency (pp. 6–7).",
+          "Evidence is incomplete and sometimes contradictory: the strongest standard model lacks a matched fixed-Qwen baseline, the additional benchmarks are generally below strong baselines, full tuning substantially hurts long-video accuracy in the ablation, and the admitted temporal-PE misalignment directly threatens temporal reasoning (pp. 9, 15, 17)."
+        ],
+        "score_rationale": "The method offers a useful adaptive-compression direction and encouraging matched-baseline results, but unclear optimization through hard partitioning, absent systems measurements, confounded comparisons, and a known temporal-alignment defect leave the central technical and efficiency claims insufficiently validated. This places it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "Quicksviewer partitions sampled video frames into nonuniform temporal cubes and resamples each cube to 64 tokens, with Gumbel-based training and noise annealing. The approach is intuitive and improves over a matched fixed-partition Llama baseline, but the paper does not adequately substantiate its central efficiency, differentiability, and scaling claims.",
+        "strengths": [
+          "The content-adaptive cubing paradigm is simple, practically motivated, compatible with streaming, and provides a unified image/video interface (pp. 3–5).",
+          "Against the directly matched Fixed-Llama3.1 baseline, adaptive cubing improves all four reported benchmarks, including +8.7 on MVBench and +8.4 on MLVU (p. 6).",
+          "Component ablations support 3D positional encoding and annealing, while the cube-length analysis offers some interpretability of the learned allocation (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The optimization story is underspecified and potentially unsound: hard top-k boundary selection and discrete cube membership are not shown to be differentiable; only the thumbnail path is said to propagate boundary gradients, without demonstrating that it optimizes useful partitions (pp. 4–5).",
+          "Efficiency is asserted mainly through post-resampling tokens/frame. Every sampled frame is still processed into 576 ViT tokens before cubing, yet no FLOPs, throughput, memory, or latency comparison is reported; thus the claimed 45× efficiency/compression advantage is not established end-to-end (pp. 3–6).",
+          "Evidence overreaches: the “power law” claim is based on a few plotted settings without a fit (p. 1); comparisons mix backbones and training data, and the matched Llama variant remains weak on Video-MME (p. 6); full tuning improves overall accuracy but sharply worsens long-video accuracy, contrary to the accompanying conclusion (p. 9)."
+        ],
+        "score_rationale": "The method has a useful idea and meaningful gains over its closest fixed-partition baseline, but missing end-to-end efficiency measurements and unresolved details around discrete boundary learning undermine the main technical claims. Benchmark results are competitive rather than compelling and several conclusions exceed the evidence, placing the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes an adaptive video-LMM pipeline that partitions frames into variable-length cubes and resamples each cube to a fixed token budget. The idea is intuitive and the learned partitioning improves over a fixed-cube Llama3.1 baseline, but the optimization mechanism is insufficiently specified and the empirical evidence does not substantiate the central efficiency and scaling claims.",
+        "strengths": [
+          "A simple, practically relevant combination of content-adaptive temporal partitioning, fixed-budget cube resampling, and explicit timestamps supports long inputs and unified image/video processing (pp. 3–5).",
+          "Under the reported matched Llama3.1 setup, adaptive cubing improves substantially over fixed partitioning on all four main benchmarks, including +8.4 on MLVU and +8.7 on MVBench (p. 6).",
+          "Component ablations support 3D positional encoding and noise annealing, and the paper explicitly acknowledges remaining temporal-position misalignment (pp. 8–9, 15)."
+        ],
+        "weaknesses": [
+          "The differentiable learning story is technically unclear: hard top-k selection and cube construction are discrete, Eq. 3 does not clearly specify the straight-through estimator, and the thumbnail path only explains gradients through a masked global representation rather than through cube membership itself (pp. 4–5).",
+          "Despite efficiency being the main claim, there are no measured FLOPs, throughput, latency, peak memory, or training cost comparisons. Token/frame counts alone omit the cost of applying the full ViT to every frame, while the 45× compression claim is not directly validated (pp. 3, 6).",
+          "Evaluation contains important confounds and inconsistencies: the headline Qwen model lacks a matched fixed-partition baseline; inference changes from training at 1 FPS/420 frames to 5 FPS/720 frames; the claimed power law is supported only by a small plot; and full tuning improves overall Video-MME only slightly while reducing long-video accuracy from 43.44 to 38.44 (pp. 1, 6–9)."
+        ],
+        "score_rationale": "The adaptive cubing idea and fixed-baseline gains are promising, but unclear gradient mechanics and the absence of direct computational measurements undermine both soundness and the principal efficiency claim. Reporting inconsistencies and limited controlled evidence place the work below the acceptance threshold. Some uncertainty remains because implementation details or additional runtime experiments could resolve major concerns."
+      }
+    }
+  ]
+}

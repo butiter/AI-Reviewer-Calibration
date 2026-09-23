@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_049",
+  "paper_id": "yo9WIIecAu",
+  "number": 11743,
+  "title": "Efficient Multi-View 3D Representation via Fusion of View-Agnostic Transformations",
+  "authors": [
+    "Jaemyung Yu",
+    "Jiwan Hur",
+    "Dong-Jae Lee",
+    "Jaehoon Cho",
+    "Junmo Kim"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "View Transformation",
+    "Bird's-Eye-View Representation",
+    "Multi-View Representation",
+    "View-Agnostic"
+  ],
+  "forum_url": "https://openreview.net/forum?id=yo9WIIecAu",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "7eTx6JcmGq",
+      "forum": "yo9WIIecAu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11743/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761919811793,
+      "tmdate": 1762922774080,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "NSYwWbuVN0",
+      "forum": "yo9WIIecAu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11743/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761665070907,
+      "tmdate": 1762922774491,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "V8jGiBMkN7",
+      "forum": "yo9WIIecAu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11743/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761549295977,
+      "tmdate": 1762922775039,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "Vq9bhUuyOP",
+      "forum": "yo9WIIecAu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11743/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761467043865,
+      "tmdate": 1762922775609,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MosaicVT constructs per-camera polar BEV features with shared attention, then geometrically samples and averages them into an ego-centric BEV. The approach is plausible and efficient, but its novelty is incremental and several central generalization and efficiency claims are not adequately established.",
+        "strengths": [
+          "The camera-centric polar formulation, shared positional encoding, and geometry-based fusion form a coherent modular design (pp. 4–6).",
+          "Under the reported ResNet-50 protocol, MosaicVT improves detection over listed view-transformation baselines, reaching 31.6 mAP/39.3 NDS (p. 7).",
+          "The paper evaluates detection, segmentation, temporal extension, latency, perturbations, and several component choices (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The claimed generalization to diverse or unseen camera configurations without retraining is tested only through image cropping and small extrinsic perturbations, not genuinely different camera rigs; cropping also conflates geometry changes with information removal (p. 8). Moreover, the method explicitly requires intrinsics/extrinsics despite language suggesting operation without explicit calibration (pp. 2, 4–6).",
+          "Evidence isolating the main ideas is incomplete: there is no controlled shared-versus-view-specific transformation comparison, and the vaguely defined “multi-view” aggregation baseline does not establish that independent view processing is preferable to global attention (p. 9).",
+          "Efficiency reporting covers only view-transformation latency against WidthFormer, without end-to-end latency, FLOPs/memory, measurement protocol, or broad controlled comparisons; meanwhile the accuracy gains over the strongest listed models are small (pp. 7–8)."
+        ],
+        "score_rationale": "The method is technically plausible and reports useful gains, but the limited novelty, incomplete ablations, narrow efficiency evidence, and unsupported real cross-configuration generalization leave it marginally below the acceptance bar. Some implementation details may resolve these concerns, so confidence is not maximal."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MosaicVT builds per-camera polar BEV features with geometry-aware positional encoding, then warps and averages them in a global BEV. The approach is plausible and efficient, with encouraging nuScenes results, but the evidence does not establish the central claim of generalization to heterogeneous or unseen camera configurations, and several methodological claims are imprecise.",
+        "strengths": [
+          "The modular camera-centric formulation is intuitive and combines shared single-view attention with explicit geometric sampling in a reasonably novel, practical design (pp. 4–6).",
+          "Under the reported ResNet-50 protocol, MosaicVT improves over WidthFormer by 0.9 mAP and 2.0 NDS, while the view-transformation latency is reported as 1.70 ms versus 3.57 ms (pp. 7–8).",
+          "The paper evaluates detection, segmentation, temporal extension, calibration perturbations, and several component choices rather than reporting only a single benchmark result (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The key unseen-configuration claim is not convincingly tested: cropping does not reproduce changed camera pose or mount height, no genuinely different rig is evaluated, and Table 5 compares only clean versus perturbed MosaicVT rather than robustness degradation across methods (p. 8).",
+          "The geometric account is internally unclear. The method claims operation without explicit calibration (p. 2) but requires intrinsics and extrinsics throughout (pp. 4–6); moreover, a shared pointwise 1×1 convolution cannot itself spatially align polar maps as claimed, while the subsequent explicit grid sampling appears to perform the actual alignment (p. 6).",
+          "Evidence for state-of-the-art performance and efficiency is limited to nuScenes validation, with heterogeneous setups in several comparisons, no uncertainty across runs, and latency reported only for the view-transformation component. The catastrophic drop from 31.6 to 0.4 mAP when halving the polar-grid resolution is also unexplained (pp. 7–9)."
+        ],
+        "score_rationale": "The method is promising and the controlled ResNet-50 results support a useful accuracy–latency tradeoff. However, the main generalization claim is inadequately validated, the transformation description contains conceptual inconsistencies, and the empirical gains are modest without statistical or broader-dataset support. These issues place the submission marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MosaicVT constructs per-camera polar BEV features with shared cross-attention, geometrically samples them into an ego-centric grid, and averages overlapping views. The approach is intuitive and efficient, with encouraging nuScenes detection and segmentation results, but its strongest generalization claims are not adequately demonstrated and several key implementation or geometric details remain underspecified.",
+        "strengths": [
+          "The camera-centric polar decomposition and shared view-transformation module form a coherent, modular design that avoids global cross-camera attention (pp. 3–6).",
+          "Under the reported ResNet-50 protocol, MosaicVT improves over WidthFormer by 0.9 mAP and 2.0 NDS, and it also gives consistent, albeit smaller, gains for segmentation and temporal detection (pp. 7–8).",
+          "The reported view-transformation latency is substantially lower than WidthFormer's (1.70 ms versus 3.57 ms), and component, positional-encoding, fusion, and resolution ablations provide useful diagnostics (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The claim of generalization to diverse or unseen camera configurations without retraining is weakly supported: cropping is only a proxy for pose/FoV changes, while the only actual extrinsic perturbations are very small and evaluated at one setting (p. 8). The method also explicitly requires intrinsics and extrinsics, conflicting with language suggesting operation without explicit calibration (pp. 2, 4–6).",
+          "Important mechanics are insufficiently specified for reproducibility and conceptual clarity. In particular, it is unclear how concatenating FoV, orientation, and position followed by a shared 1×1 convolution spatially aligns a polar feature map; the distinction between this learned transformation and the subsequent geometric grid sampling is not rigorously explained (p. 6).",
+          "Evidence is limited to one dataset's validation split, without repeated runs, uncertainty, or test-set results. Several gains are small, baseline comparability is only described as using “similar conditions,” and the near-total collapse at 8×22 polar resolution is unexplained (pp. 7–9)."
+        ],
+        "score_rationale": "The paper offers a sensible and practically useful camera-wise BEV transformation with promising accuracy–latency tradeoffs. However, novelty is mainly a combination of established polar coordinates, cross-attention, and geometric sampling, while underspecified alignment mechanics and insufficient evidence for the headline configuration-generalization claim keep it marginally below the acceptance bar."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MosaicVT independently maps each camera into a camera-centric polar BEV using geometry-conditioned positional embeddings, then samples and averages the local representations in a global BEV. The approach is intuitive and efficient, with encouraging nuScenes results, but the novelty is moderate and the evidence does not fully support the strongest configuration-generalization and state-of-the-art claims.",
+        "strengths": [
+          "The camera-centric decomposition is well motivated and yields a modular alternative to global cross-view attention; the geometric formulation and implementation are described reasonably clearly (pp. 4–6).",
+          "Results cover detection, segmentation, and a temporal extension, with consistent—though often modest—improvements over the reported baselines (pp. 7–8).",
+          "Component ablations examine positional coordinates, transformation conditioning, fusion, and resolution, while latency breakdowns indicate a substantial view-transformation speed advantage over WidthFormer (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The claim of generalization across diverse or unseen camera configurations without retraining is insufficiently demonstrated: cropping only approximates several configuration changes, and the extrinsic test uses small perturbations rather than genuinely different camera rigs (p. 8). The method also explicitly requires intrinsics/extrinsics, contrary to wording suggesting operation without explicit calibration (pp. 2, 4–6).",
+          "Efficiency evidence is limited to view-transformation latency on one GPU, without end-to-end latency, memory, FLOPs, or sufficiently detailed timing methodology; comparisons to lightweight projection methods are shown graphically but not rigorously controlled (p. 8).",
+          "The empirical margin is small in key settings, and baseline comparability is uncertain: the paper states that models use only “similar conditions,” while architectures, resolutions, and training protocols vary, especially in the stronger-backbone detection and segmentation comparisons (p. 7)."
+        ],
+        "score_rationale": "The method is plausible, clearly motivated, and supported by useful experiments, but it appears primarily an incremental recombination of polar, camera-wise attention and geometry-based sampling. More rigorous controlled comparisons and actual cross-rig evaluation are needed to validate its principal claims. I am somewhat uncertain because implementation/code inspection is unavailable."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MosaicVT constructs per-camera polar BEV features with shared cross-attention, then geometrically samples and averages them into a global BEV. The modular camera-centric design is plausible and reports favorable nuScenes accuracy/latency, but the evidence does not fully substantiate the central claims of configuration invariance, state-of-the-art performance, or technically necessary learned alignment.",
+        "strengths": [
+          "The per-camera polar formulation and shared view-agnostic embedding provide a coherent, moderately novel alternative to global cross-view attention (pp. 4–6).",
+          "Under the reported ResNet-50 protocol, MosaicVT improves over WidthFormer by 0.9 mAP and 2.0 NDS, while reported transformation latency drops from 3.57 ms to 1.70 ms (pp. 7–8).",
+          "The paper evaluates detection, segmentation, temporal extension, calibration perturbations, and several architectural ablations (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The strongest generalization claim is insufficiently tested: cropping is only a proxy for changed yaw, pitch, FoV, and mounting height, while all models are trained and evaluated on one dataset/rig; moreover, MosaicVT explicitly depends on camera intrinsics and extrinsics despite suggesting operation without explicit calibration (pp. 2, 4–5, 8).",
+          "The method description is technically unclear: a shared 1×1 convolution conditioned on pose cannot itself perform spatial scale/rotation/translation, and the actual alignment appears to occur later through deterministic grid sampling; consequently, the interpretation of the transformation ablation is ambiguous (pp. 6, 9).",
+          "Empirical support is narrow and comparability is incomplete: results are validation-only, several comparisons use differing pipelines/resolutions, latency lacks end-to-end measurements and detailed measurement protocol, and gains in the stronger setting and segmentation are small (pp. 7–8)."
+        ],
+        "score_rationale": "The approach is useful and reasonably motivated, with promising reported efficiency and accuracy. However, modest novelty, ambiguity in the claimed learned alignment, and experiments that do not directly validate unseen-camera-configuration generalization leave the main claims short of ICLR acceptance. I am moderately confident, although code or fuller implementation details could resolve some concerns."
+      }
+    }
+  ]
+}

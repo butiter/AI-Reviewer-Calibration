@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_057",
+  "paper_id": "N0vzm0vwyR",
+  "number": 7628,
+  "title": "Pruning Deep Convolutional Neural Network Using Conditional Mutual Information",
+  "authors": "Tien Vu-Van; Dat Du Thanh; Nguyen Ho; Mai Vu",
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": "CNN; pruning; optimization; mutual information; Renyi entropy",
+  "forum_url": "https://openreview.net/forum?id=N0vzm0vwyR",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    1,
+    1,
+    5
+  ],
+  "human_mean_rating": 2.3333333333333335,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose a structured pruning method to reduce the computational complexity of CNNs. It uses conditional mutual information (CMI) to select feature maps that can be pruned from the network and applies an iterative re-training to compensate for the pruning errors."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "Although other methods have been proposed to prune DNNs based on the mutual information (e.g. [1],[2]), it might be that the proposed selection criterion has some novelty.\n\n[1] Ganesh, Madan Ravi, Jason J. Corso, and Salimeh Yasaei Sekeh. \"Mint: Deep network compression via mutual information-based neuron trimming.\" 2020 25th International Conference on Pattern Recognition (ICPR). IEEE, 2021.\n[2] Hussien, Mostafa, et al. \"Small Contributions, Small Networks: Efficient Neural Network Pruning Based on Relative Importance.\" arXiv preprint arXiv:2410.16151 (2024)."
+        },
+        "weaknesses": {
+          "value": "There are several weaknesses:\n* The paper only promises results on CIFAR10. However, this is simply not enough for a compression paper these days. \n* The paper seems to be incomplete. Results are promised in the appendix, but the appendix is missing.\n* The only results provided in the paper (Table 1 and Table 2) show variants of their own pruning method, but do not compare to other literature.\n* all plots miss axis labels\n* References are missing (e.g. reference of Renyi entropy)"
+        },
+        "questions": {
+          "value": "* Could you please comment how your method compares to [1] \n* Further, I would like to see the results from the appendix \n\n\n[1] Ganesh, Madan Ravi, Jason J. Corso, and Salimeh Yasaei Sekeh. \"Mint: Deep network compression via mutual information-based neuron trimming.\" 2020 25th International Conference on Pattern Recognition (ICPR). IEEE, 2021."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "SPYS8ajbym",
+      "forum": "N0vzm0vwyR",
+      "replyto": "N0vzm0vwyR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7628/Reviewer_F4xf"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7628/Reviewer_F4xf"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7628/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730707770407,
+      "cdate": 1730707770407,
+      "tmdate": 1731428930488,
+      "mdate": 1731428930488,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a novel approach to structured pruning of Convolutional Neural Networks (CNNs) using Conditional Mutual Information (CMI). The authors present methods for ranking feature importance using CMI, determining pruning cutoff points, and implementing pruning strategies in both forward and bi-directional manners. The work demonstrates large model size reduction with small accuracy loss on VGG16 with CIFAR-10."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The method part has a lot of information. \n2. The metric of mutual information is rather new."
+        },
+        "weaknesses": {
+          "value": "1. The largest weakness is the experiments. I'm supervised to see that only the old network VGG16 is tested on a small dataset CIFAR-10. Normally, for model pruning, ResNet-50 on ImageNet is necessary. Recently, Vision Transformer is also critical to validate the algorithm. Missing these important experiments makes this paper far below the standard of ICLR.\n2. Missing important references. Many recent papers in 2024, such as [a], are not included. The author should do a complete survey.\n3. Performance is not good. In [a], there is no accuracy drop when pruning 60+% FLOPs. \n\n\n[a] Auto-Train-Once: Controller Network Guided Automatic Network Pruning from Scratch"
+        },
+        "questions": {
+          "value": "Please see weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "WHHLX3bQdy",
+      "forum": "N0vzm0vwyR",
+      "replyto": "N0vzm0vwyR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7628/Reviewer_nPQA"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7628/Reviewer_nPQA"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7628/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730457171451,
+      "cdate": 1730457171451,
+      "tmdate": 1731428931074,
+      "mdate": 1731428931074,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a structured pruning method to achieve the compact DNNs. The proposed method leverages the conditional mutual information to demonstrate the importance of filters in each layer. Then, either the Scree test or X-Mean clustering is used to determine the pruning cutoff point for removing unimportant filters. Moreover, two pruning modes (forward pruning and bi-directional pruning) are investigated in this paper."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Code is released.\n2. The paper is generally well-written, and the approach is very comprehensive.\n3. The experimental results show the effectiveness."
+        },
+        "weaknesses": {
+          "value": "1. This paper only conducts experiments on VGG-16 on CIFAR-10, hence the generalization capability of the proposed method seems to be limited. The authors should report the performance on larger datasets (such as ImageNet) and the models with different architectures (such as ResNet).\n2. The paper lacks the comparison with other state-of-the-art pruning methods to highlight its effectiveness.\n3. The algorithm seems to be quite complex, as each layer requires numerous iterations to calculate CMI and the cutoff point. Additionally, it requires a large memory footprint to store the feature maps from previous layers for calculating cross-layer CMI. Does this imply that the algorithm may be difficult to deploy in compressing deeper networks or those with larger input size?\n4. In Algorithm 4, when $k=1$, what does $F ^ s _ {0}$ represent?\n5. In the experiment, a batch of 256 training samples is used to measure the filters. Does the number of samples affect the stability of the measurement? Can different samples produce the similar measurements? When more samples are used to calculate the measurement, can a more stable measurement be obtained?\n6. Why is the pruning efficiency determined by the percentage of pruned filters over all filters (Line 468 on Page 9)? \n\n\\\nMinor issues:\n1. $L _ i$ and $L_k$ should be unified in the first paragraph of Section 3.1.\n2. $F ^ s _ 1$ in Line 1 of Algorithm 1 is repeated.\n3. There is a symbol error in Line 241 on Page 5.\n4. 'k' should be 'K' in Line 6 of Algorithm 2.\n5. The references are repeated from Line 648 to Line 655 on Page 13."
+        },
+        "questions": {
+          "value": "Please see the weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ygWnWSDlYc",
+      "forum": "N0vzm0vwyR",
+      "replyto": "N0vzm0vwyR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7628/Reviewer_e6ih"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7628/Reviewer_e6ih"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7628/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730427285011,
+      "cdate": 1730427285011,
+      "tmdate": 1731428931657,
+      "mdate": 1731428931657,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes structured CNN filter pruning based on matrix-estimated conditional mutual information, with cross-layer conditioning, Scree/X-means cutoffs, and bidirectional traversal. The idea is potentially useful, but the theoretical justification and empirical validation are insufficient for ICLR.",
+        "strengths": [
+          "Presents a coherent pruning pipeline spanning feature ranking, cutoff selection, and forward/bidirectional layer traversal (pp. 3–9).",
+          "The best reported configuration removes 36.15% of filters and 26.84% of parameters from VGG16 while reducing CIFAR-10 accuracy from 94.00% to 93.68% after retraining (pp. 9–10).",
+          "Includes ablations over per-/cross-layer CMI, traversal direction, and cutoff strategies (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central claim that full and compact CMI are theoretically equivalent by layerwise Markovity is not established and generally fails when conditioning only on selected feature subsets, which need not constitute a Markov separator (pp. 4–5).",
+          "The matrix-based Rényi entropy estimator—the core numerical mechanism—is not specified in the supplied paper: p. 5 points to a missing equation and an Appendix, but no appendix is included. Key choices such as α, kernels, bandwidths, and estimator details are therefore unavailable.",
+          "Evidence is limited to one outdated architecture/dataset and lacks competitive structured-pruning baselines, multiple seeds/error bars, FLOPs, latency, memory, or hardware measurements. The only prior-method comparison collapses to chance accuracy, and the claimed parameter reduction of “more than a third” contradicts the reported 26.84% (pp. 9–10)."
+        ],
+        "score_rationale": "The incremental CMI-based design and reported accuracy retention are promising, but a questionable theoretical premise, missing essential estimator details, ambiguous pruning-state updates, and very narrow experiments prevent validation of soundness or competitiveness. These are major rather than cosmetic deficiencies, so I lean reject."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes structured CNN filter pruning based on matrix-estimated conditional mutual information, adding cross-layer conditioning, scree/X-means cutoffs, and bidirectional traversal. On VGG16/CIFAR-10, its best configuration removes 36.15% of filters and 26.84% of parameters with a 0.32-point accuracy decrease after retraining (pp. 9–10). The idea is plausible but the technical justification and empirical validation are insufficient for ICLR.",
+        "strengths": [
+          "The paper presents a coherent end-to-end pruning pipeline, including feature ranking, cutoff selection, and forward/bidirectional variants (pp. 3–9).",
+          "The ablations compare per-layer/full/compact CMI, traversal direction, and three cutoff schemes (pp. 9–10).",
+          "The best reported result preserves accuracy reasonably well while providing nontrivial structured filter and parameter reductions (p. 10)."
+        ],
+        "weaknesses": [
+          "The central equivalence argument is unsupported and generally questionable: conditioning on a selected subset of the adjacent layer does not necessarily render earlier selected features conditionally independent. Moreover, the matrix-based Rényi estimator is referred to through a broken equation and purported appendix that are absent, preventing technical verification or reproduction (pp. 4–5).",
+          "Evidence is extremely narrow: only one architecture/dataset is tested, apparently using just 256 samples to estimate feature importance; there are no competitive modern pruning baselines, multiple seeds/error bars, sensitivity analyses, or measurements of FLOPs, latency, memory, and pruning cost (pp. 9–10). Retraining for 100 epochs further makes it unclear whether CMI ranking outperforms simpler criteria.",
+          "Several claims overreach or are inconsistent with the results: the conclusion says parameters are reduced by more than one third, while the best table reports only 26.84%; deployment efficiency is asserted without hardware measurements; and algorithmic details about cumulative intermediate pruning and estimator hyperparameters are incomplete (pp. 8–10)."
+        ],
+        "score_rationale": "The cross-layer CMI formulation and bidirectional heuristic offer modest novelty, but a questionable theoretical premise, missing estimator details, and a single weak experimental setting leave soundness and generality unsubstantiated. The reported accuracy/compression result is encouraging but does not compensate for the lack of credible baselines and efficiency evidence, warranting rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes structured CNN filter pruning using greedy conditional-mutual-information ranking, two cutoff heuristics, and forward or bidirectional traversal. On VGG16/CIFAR-10, its best configuration removes 36.15% of filters and 26.84% of parameters with test accuracy decreasing from 94.00% to 93.68% after 100 retraining epochs (pp. 9–10). The idea is potentially useful but the theoretical justification and empirical validation are insufficient for ICLR.",
+        "strengths": [
+          "The paper presents a reasonably clear end-to-end pruning pipeline, including feature ordering, cutoff selection, and bidirectional traversal (pp. 3–9).",
+          "The strongest reported result retains nearly all baseline accuracy while achieving meaningful structured filter pruning (pp. 9–10).",
+          "Ablations compare per-layer/full/compact CMI, traversal direction, and three cutoff procedures (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The claimed equivalence of full and compact CMI via Markovity is not established and generally does not follow when conditioning only on selected feature subsets rather than complete layer states; this also undermines the backward-conditioning argument (pp. 4–5, 8).",
+          "Evidence is limited to one model and one small dataset, with no competitive modern structured-pruning baselines, repeated runs, uncertainty estimates, FLOPs, latency, pruning-time cost, or hardware measurements (pp. 9–10). Thus the claimed resource-deployment benefit is not demonstrated.",
+          "Essential estimator details are missing: page 5 contains a broken equation reference and points to an appendix that is absent from the supplied manuscript. With only 256 samples used for feature maps, the reliability and reproducibility of the matrix-based Rényi CMI estimates cannot be assessed (pp. 5, 9)."
+        ],
+        "score_rationale": "The work offers an incremental and plausibly useful extension of prior CMI pruning, but a questionable central theoretical claim, missing estimator specification, and very narrow experiments prevent validation of soundness or competitiveness. The reported accuracy–compression result is encouraging but does not overcome these major deficiencies."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes structured CNN filter pruning using cross-layer conditional mutual information, Scree/X-means cutoffs, and forward or bidirectional traversal. The idea is potentially interesting, but the theoretical justification is flawed or incomplete and the evidence is too narrow for ICLR.",
+        "strengths": [
+          "The pruning pipeline is clearly decomposed into feature ordering, cutoff selection, and layer traversal, with explicit algorithms (pp. 5–9).",
+          "The proposed compact-CMI bidirectional variant removes 36.15% of filters and 26.84% of parameters from VGG16 with a reported 0.32-point accuracy loss after retraining (pp. 9–10).",
+          "Ablations compare full versus compact CMI, traversal direction, and three cutoff rules (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central Markov argument is not valid as stated: conditioning on a selected subset of an adjacent layer need not screen off other layers, so full and compact CMI are not theoretically equivalent; the analogous backward-direction claim is also insufficiently justified (pp. 4–5, 8).",
+          "The essential matrix-based Rényi entropy estimator is missing: the text points to equation “(??)” and an Appendix, but no appendix, estimator definition, α choice, kernels, or numerical details appear in the supplied manuscript (p. 5; pp. 11–13 contain only references).",
+          "Evidence is limited to one VGG16/CIFAR-10 setup, lacks competitive contemporary pruning baselines, seeds/error bars, FLOPs or measured latency, and relies on 100-epoch retraining. The claimed hardware/deployment benefit is therefore unsupported, and the conclusion incorrectly describes a greater-than-one-third parameter reduction despite reporting only 26.84% (pp. 9–10)."
+        ],
+        "score_rationale": "The cross-layer CMI formulation and pruning traversal provide some incremental novelty, and the reported single-setting result is promising. However, a questionable core equivalence, missing estimator/reproducibility material, and very limited baseline and efficiency evaluation prevent confidence in technical soundness or general usefulness, warranting rejection."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes structured CNN filter pruning using per-layer or cross-layer conditional mutual information, Scree/X-means cutoffs, and forward or bidirectional traversal. On VGG16/CIFAR-10, its best configuration removes 36.15% of filters and 26.84% of parameters while reducing accuracy from 94.00% to 93.68% after retraining (pp. 9–10). The idea is potentially useful, but the theoretical justification and empirical validation are insufficient for ICLR.",
+        "strengths": [
+          "The paper gives a reasonably clear end-to-end pruning framework, including feature ordering, cutoff selection, and forward/bidirectional variants (pp. 3–9).",
+          "The ablations compare full versus compact CMI, traversal direction, and three cutoff strategies (pp. 9–10).",
+          "The best reported result retains nearly all baseline accuracy while achieving moderate structured compression (p. 10)."
+        ],
+        "weaknesses": [
+          "The central equivalence claim is not justified: Markovity of complete consecutive layer representations does not imply that conditioning on a selected subset of one layer makes conditioning on selected subsets of all earlier layers redundant. Thus the claimed equivalence of compact and full CMI is generally invalid (pp. 4–5).",
+          "The CMI estimator is not actually specified in the supplied manuscript: p. 5 points to a missing equation “(??)” and an Appendix, but no appendix is present. The Rényi order, kernel/normalization choices, estimator behavior, and computational complexity are therefore unclear, seriously limiting reproducibility.",
+          "Evidence is restricted to one architecture and one small dataset, with no strong contemporary pruning baselines, repeated runs, uncertainty, FLOPs, latency, or hardware measurements (pp. 9–10). The headline also conflates a 36.15% filter reduction with only a 26.84% parameter reduction, while the conclusion claims parameters are reduced by more than a third (p. 10)."
+        ],
+        "score_rationale": "The cross-layer CMI formulation and cutoff heuristics offer modest novelty, but a questionable core theoretical claim, missing estimator details/appendix, and very narrow experiments prevent establishing soundness, reproducibility, or competitiveness. I therefore rate it a reject rather than marginal acceptance."
+      }
+    }
+  ]
+}

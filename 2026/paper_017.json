@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_017",
+  "paper_id": "F0ohHtSe9M",
+  "number": 5731,
+  "title": "Aligning Task-Rank Preferences: Subspace Coverage and Anisotropy in LoRA Merging",
+  "authors": [
+    "Wooseong Jeong",
+    "Wonyoung Lee",
+    "Kuk-Jin Yoon"
+  ],
+  "primary_area": "transfer learning, meta learning, and lifelong learning",
+  "keywords": [
+    "Parameter-Efficient Fine-tuning",
+    "Model Merging",
+    "LoRA",
+    "Anisotropy",
+    "Subspace Coverage"
+  ],
+  "forum_url": "https://openreview.net/forum?id=F0ohHtSe9M",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    4,
+    6,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "B9bhD2OCdR",
+      "forum": "F0ohHtSe9M",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5731/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761303686864,
+      "tmdate": 1762918224668,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "S6SdprF4d0",
+      "forum": "F0ohHtSe9M",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5731/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761969754040,
+      "tmdate": 1762918223805,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "YxlKiTDvpM",
+      "forum": "F0ohHtSe9M",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5731/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760749359940,
+      "tmdate": 1762918224916,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "Zr2n2lyRaC",
+      "forum": "F0ohHtSe9M",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5731/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761748526671,
+      "tmdate": 1762918224306,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "TARA learns direction-wise coefficients for raw or shared-SVD LoRA components using a preference-aware entropy objective. The empirical study is broad and reports consistent gains, but the central coverage and anisotropy arguments contain fundamental mathematical and interpretive problems, leaving the proposed mechanism insufficiently validated.",
+        "strengths": [
+          "Broad evaluation across eight vision and six NLI tasks, including joint-task, unseen-task, rank-4, efficiency, and independently trained checkpoints (pp. 6–8, 21–24).",
+          "TARA often improves over the strongest directly comparable baseline, notably on the released vision checkpoints and joint-task Hits@1 (pp. 6–8).",
+          "Preference sweeps provide useful evidence that the method can expose smooth two-task trade-offs rather than only a single operating point (pp. 8, 25)."
+        ],
+        "weaknesses": [
+          "The coverage analysis is structurally confounded: the delta-W stack has only N rows and hence effective rank at most N, whereas the rank-1 stack has sum_i r_i rows; thus the large gap in Figs. 1 and 5 is largely forced by construction, not evidence of interpolation-induced collapse. Moreover, neither stack is an actual merged update (pp. 3, 18–19).",
+          "Proposition 1 is false as stated for arbitrary phi: with J in R^{N x K} and typically K>N, nullspace vectors violate the claimed positive lower bound. The appendix silently restricts phi to ker(J)^perp, changing the proposition. The reported preference-specific condition numbers are also not coherently defined relative to J, which itself does not depend on rho (pp. 3–4, 15, 19–20).",
+          "The causal claims are unsupported: there is no ablation isolating coverage from anisotropy, no measurement showing that TARA preserves effective rank, and Variant A depends on the non-identifiable LoRA factorization. Important details such as Variant B's retained rank R and calibration-data protocol are missing, while uncertainty estimates over runs are absent (pp. 4–6)."
+        ],
+        "score_rationale": "The direction-wise merging idea is plausible and the empirical breadth is valuable, but novelty over combining AdaMerging-style entropy optimization, smooth scalarization, and KnOTS-like SVD is moderate. More importantly, the main theoretical diagnostics are invalid or underdefined and the experiments do not establish the claimed mechanism. I am confident these issues are substantive, though uncertainty remains about whether omitted implementation details could resolve some reproducibility concerns."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "TARA learns rank-wise merging coefficients, either over original LoRA factors or a shared SVD basis, using a preference-weighted entropy surrogate. The experiments are broad and generally favorable, but the central coverage analysis is structurally confounded, the stated anisotropy proposition is false without a major restriction, and the evidence does not isolate the proposed mechanisms from increased parameterization.",
+        "strengths": [
+          "Broad evaluation spans eight vision tasks, six NLI tasks, joint-task prediction, unseen-task transfer, two LoRA ranks, and independently trained checkpoints (pp. 6–9, 21–25).",
+          "TARA usually improves upon AdaMerging and LoRA-aware baselines, with especially clear gains on the released vision checkpoints and joint-task evaluation (pp. 6–8).",
+          "The paper reports practical runtime and memory costs and includes preference-sweep experiments rather than only uniform-weight merging (pp. 23, 25–26)."
+        ],
+        "weaknesses": [
+          "The coverage evidence is fundamentally confounded: the rank-1 stack has up to the sum of adapter ranks as rows, whereas the update stack has only one row per task and therefore rank at most the number of tasks. The large effective-rank gap in Figs. 1 and 5 is consequently expected by construction and does not demonstrate merge-induced collapse (pp. 3, 18–19).",
+          "Proposition 1 incorrectly claims a positive lower bound for every coefficient vector. Since the task-direction Jacobian is generally rank deficient, nullspace vectors violate it; the appendix quietly adds a restriction to the orthogonal complement of the nullspace, materially weakening the main statement. The preference-indexed condition-number discussion is also underdefined because the stated Jacobian itself does not depend on the preference (pp. 3–4, 15, 19–20).",
+          "TARA uses far more granular trainable coefficients than AdaMerging, yet there is no parameter-matched ablation or direct measurement showing that performance gains arise from preserving coverage or correcting anisotropy. Results also lack seeds or uncertainty estimates, and the closest cited sensitivity-guided merger is not evaluated (pp. 4–6, 16)."
+        ],
+        "score_rationale": "The empirical package is substantial and the method may be practically useful, but the principal theoretical and diagnostic claims have serious flaws, while the experiments do not disentangle the proposed explanation from a larger coefficient space. These issues require major revision and place the work below the ICLR acceptance threshold despite promising results."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TARA learns task- and direction-specific coefficients for merging LoRA adapters, using either original rank-one factors or an SVD-derived shared basis, with a preference-weighted entropy surrogate. The empirical gains are broad, but key theoretical/diagnostic claims are not established rigorously enough to justify acceptance in the current form.",
+        "strengths": [
+          "Broad evaluation covers eight vision tasks, six NLI tasks, joint-label-space evaluation, unseen-task transfer, rank-4 adapters, and independently trained checkpoints (pp. 6–9, 21–24).",
+          "TARA generally improves average performance over AdaMerging and LoRA-aware baselines, including vision, NLI, and joint-task results (pp. 6–8).",
+          "Preference sweeps provide useful evidence that the method can expose controllable two-task trade-offs rather than only one fixed operating point (pp. 8, 25)."
+        ],
+        "weaknesses": [
+          "The coverage diagnostic is structurally confounded: the ΔW stack has only N rows and hence effective rank at most N, whereas the rank-one stack has up to the sum of adapter ranks. Their large gap therefore does not demonstrate 'merge-induced collapse,' and the per-task-sum comparator is on yet another scale (pp. 3, 18–19).",
+          "Proposition 1 is false as stated for arbitrary coefficients when J has a nullspace—which is unavoidable when the number of directions exceeds the number of tasks. The appendix repairs it only by adding an unstated restriction to ker(J)⊥, substantially weakening the main-text claim (pp. 3, 15).",
+          "The evidence does not isolate the proposed mechanisms: there are no ablations separating rank-wise parameterization, SVD construction, scalarization, and entropy optimization; no uncertainty estimates or repeated-run statistics; and the calibration-data/split protocol for entropy optimization is insufficiently specified (pp. 5–8, 17)."
+        ],
+        "score_rationale": "The method is practically relevant and produces promising, fairly extensive empirical gains, but its central coverage argument is confounded, its stated proposition is incorrect without a major qualification, and the experiments do not causally validate the claimed mechanisms. I therefore place it marginally below acceptance; uncertainty remains because clearer split details, repeated trials, and targeted ablations could materially strengthen the case."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes TARA, which learns coefficients for individual LoRA rank components or shared SVD-derived components using a preference-weighted entropy surrogate. Results across vision and NLI tasks are promising, especially on the released vision checkpoints, but the paper does not convincingly establish that the gains arise from preserving subspace coverage or correcting anisotropy, and several technical and experimental gaps prevent a clear acceptance recommendation.",
+        "strengths": [
+          "The method is practically relevant and evaluated across vision and language models, including per-task, joint-task, unseen-task, low-rank, and efficiency settings (pp. 6–9, 21–24).",
+          "TARA produces substantial gains on the main vision checkpoints, e.g. 76.3 versus 70.7 average normalized accuracy, and improves joint-task Hits@1 from 48.1 to 51.1 (pp. 6–8).",
+          "Preference sweeps provide useful evidence that the learned parameterization can expose competitive two-task trade-offs rather than only one operating point (pp. 8, 25)."
+        ],
+        "weaknesses": [
+          "The central mechanistic claims are not supported by the method or ablations: TARA does not explicitly optimize effective rank or the Jacobian anisotropy measures, and signed free coefficients can suppress directions. Thus improvements may simply result from a much larger coefficient space than AdaMerging; no parameter-count-matched or coverage/anisotropy ablation is provided (pp. 4–5).",
+          "Proposition 1 is false as stated for arbitrary coefficient vectors when J has a nullspace: the claimed lower bound uses the smallest nonzero singular value but fails for nullspace components. The appendix only recovers it by adding an unstated feasible-subspace restriction (pp. 3, 15). Relatedly, comparing effective ranks of stacks with N rows versus sum-of-ranks rows does not by itself demonstrate merge-induced collapse, since the ΔW stack is not an actual merged update and has a much smaller maximum rank (pp. 3, 18–19).",
+          "Experimental reliability and reproducibility are incomplete: there are no seeds, variances, or significance tests; the unlabeled calibration data and SVD truncation rank R are insufficiently specified; and gains shrink considerably on independently trained checkpoints and NLI (pp. 7, 21–23). The very large checkpoint-dependent changes are not analyzed."
+        ],
+        "score_rationale": "The paper has a useful direction, broad experiments, and encouraging empirical gains, but its theoretical statement is incorrect as written and the proposed coverage/anisotropy explanation is largely correlational rather than causally validated. Missing matched-capacity ablations, statistical reporting, and key implementation details make this marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes TARA, which learns task- and rank-specific coefficients for LoRA merging, either over original rank-1 factors or a shared SVD basis, using preference-aware entropy optimization. The empirical scope is broad and results generally improve over AdaMerging and LoRA-aware baselines, but the central coverage/anisotropy justification contains substantial conceptual and mathematical problems, and the experiments do not isolate the claimed mechanisms.",
+        "strengths": [
+          "Broad evaluation across eight vision tasks, six NLI tasks, joint-task evaluation, unseen-task transfer, two LoRA ranks, and independently trained checkpoints (pp. 6–9, 21–25).",
+          "TARA usually improves the reported averages, with particularly clear gains on the primary vision checkpoints and joint-task evaluation (pp. 6–8).",
+          "Preference sweeps provide useful evidence that the method can generate competitive two-task trade-offs rather than only one fixed merge (pp. 8, 25)."
+        ],
+        "weaknesses": [
+          "The coverage analysis compares stacks with inherently different row counts: the LoRA-agnostic stack has only N task-update rows, whereas the rank-1 stack has the sum of adapter ranks. Thus its much lower effective rank is largely structural and does not demonstrate collapse caused by interpolation; moreover, raw rank-1 factors are not invariant to equivalent LoRA refactorizations (pp. 3, 18–19).",
+          "Proposition 1 is false as stated for arbitrary coefficients when J has a nullspace—which is unavoidable when the number of directions exceeds the number of tasks. The appendix only recovers the lower bound by adding an unstated restriction to the row-space. The preference-dependent condition-number discussion is also unclear because J as defined is independent of preference, while a scalarized sensitivity row has no meaningful large condition number (pp. 3–4, 15, 19–20).",
+          "The method does not explicitly guarantee its advertised mechanisms: top-R truncation and unconstrained signed coefficients can remove directions, and no regularizer ensures coverage or corrects a measured condition number. There is no mechanism-specific ablation, statistical uncertainty over runs, or controlled comparison showing that gains arise from coverage plus anisotropy rather than simply many more learnable coefficients (pp. 4–6)."
+        ],
+        "score_rationale": "The extensive and mostly favorable experiments make the approach potentially useful, but novelty is incremental over AdaMerging plus SVD/KnOTS-style parameterization, while central analytical claims are not technically supported. I therefore place it marginally below acceptance. Confidence is fairly high from the complete manuscript, though uncertainty remains because run-level statistics and implementation artifacts are unavailable."
+      }
+    }
+  ]
+}

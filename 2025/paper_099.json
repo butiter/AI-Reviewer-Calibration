@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_099",
+  "paper_id": "kWtP5ZOErR",
+  "number": 13864,
+  "title": "EvoPress: Towards Optimal Dynamic Model Compression via Evolutionary Search",
+  "authors": "Oliver Sieberling; Denis Kuznedelev; Eldar Kurtic; Dan Alistarh",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "large language models; compression; evolutionary algorithms; quantization; pruning",
+  "forum_url": "https://openreview.net/forum?id=kWtP5ZOErR",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    8,
+    8,
+    6,
+    3
+  ],
+  "human_mean_rating": 6.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a new general framework for dynamic LLM compression. Building on the observation that error monotonicity does not generally hold for LLM compression, the paper proposed evolutionary search approach. The proposed approach is provably convergent and has low sample and evaluation complexity when the fitness function is linear. Experiments show that the proposed methods improve dynamic compression of Llama, Mistral, and Phi models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The proposed method shows strong empirical performance. It is flexible, as it can be applied to unstructured pruning, structured pruning/layer dropping, and quantization. Theoretical analysis of the proposed methods is also provided,"
+        },
+        "weaknesses": {
+          "value": "1. I think it would be better if the average and standard deviation of the performance metrics across different runs were reported, as it can demonstrate the significance of the improvement. But I understand it could be expensive to do and might not be possible for baseline methods.\n\n\n2. The theoretical results are somewhat disconnected from other parts. I think having the theoretical results is a bonus and it can be of interest beyond the LLM context. But some exploration of the function form of $f$ in real experiments or some simple simulation example might better demonstrate the significance of the results"
+        },
+        "questions": {
+          "value": "NA"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "IdK7QnnfIh",
+      "forum": "kWtP5ZOErR",
+      "replyto": "kWtP5ZOErR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_yr9o"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_yr9o"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730709318434,
+      "cdate": 1730709318434,
+      "tmdate": 1732502990091,
+      "mdate": 1732502990091,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a meta-heuristic for non-uniform model compression that is largely independent of specific model architectures and compression methods. The method is demonstrated on three compression approaches—depth pruning, unstructured sparsity, and quantization—with ample numerical results and a supporting analytical convergence analysis."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "The strength of the approach is its simplicity and the fact that it is somewhat agnostic to model architecture and compression techniques.\nWhile it doesn’t introduce entirely novel algorithms, its design effectively minimizes computational costs when working with larger models. Overall, the paper is quite well-written and presents compelling arguments for the proposed approach."
+        },
+        "weaknesses": {
+          "value": "The manuscript does not, however, discuss much about the scalability of the approach in more complex scenarios, and to what extent the evolutionary search is useful compared to more basic derivative-free optimization techniques or the like.\nWhile presented as evolutionary, the algorithm leans heavily on an elitist, exploitation-focused strategy. This approach could limit exploration, potentially trapping the algorithm in local minima and risk of poor generalization in more complex compression scenarios.\n\nThis approach appears to be effective as long as the manifold remains relatively convex. However, with multi-modal compression techniques or non-convex landscapes, there are concerns about whether this computationally efficient method will generalize well beyond the controlled benchmarking environments, especially when handling mixed or complex compression strategies."
+        },
+        "questions": {
+          "value": "1) The scheme is presented as an evolutionary search, but the update mechanism uses an elitist strategy (focused on exploitation) based on single-offspring selection. The number of mutations is also kept minimal, with one mutation shown to be nearly optimal, as demonstrated in SI B. In this regime, the scheme resembles a form of random coordinate descent or derivative-free optimization, with the added twist that perturbation occurs on a manifold with constant overall compression (referred to as switching). Could you clarify which properties of an evolutionary algorithm are essential to the results achieved, as opposed to a simpler perturbative approach?\n\n2) In the current setting, how much variability is there in the optimal compression profile found after one run of the evolutionary search? Does it appear the search get stuck in local minima in any of the benchmarks? \n\n3) Can you predict if the hypothesis that smooth dynamic model compression results in a smooth fitness landscape with few local optima still hold in multi-modal cases? \n\nAdditional Questions/comments:\n\n4) How is the step size in a single dimension determined (e.g., the 1M weights for unstructured sparsity)? Is the step size fixed or adaptive?\n\n5) In the selection process, only two stages are shown (see SI B.2). Was this approach tested with more stages, and if so, were additional stages found to be ineffective?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "CdMeLKw6Qy",
+      "forum": "kWtP5ZOErR",
+      "replyto": "kWtP5ZOErR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_jZST"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_jZST"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730679554438,
+      "cdate": 1730679554438,
+      "tmdate": 1732651741559,
+      "mdate": 1732651741559,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work proposes an algorithm to perform dynamic compression (different layers can be compressed to various levels) of large language models. Previous works assign importance to each layer and assume end-to-end model compression error is proportional to the sum of layer-wise errors. This work observes that error monotonicity does not hold for LLM, and proposes an evolutionary search algorithm to achieve better compression quality.\n\nIn EvoPress, multiple heuristics, including mutation operation and the selection step are proposed to achieve efficient sampling for LLM. Experimental results show better compression quality compared to previous work on multiple applications."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "LLM compression is an important topic. This work proposes a new optimization algorithm, and better performance has been presented on multiple applications, including pruning, introducing sparsity, and quantization."
+        },
+        "weaknesses": {
+          "value": "1. It would be good to introduce an algorithm overview figure to illustrate the steps in EvoPress. In addition, the algorithm contains mulitple heuristics to make the sampling efficient. It would be good to also summarize these heuristics in the figure.\n2. It's not clear whether the hyperparameters used in the heuristics (mutation operation & multi-step selection) can transfer well across tasks/datasets/models. Further illustration would be very useful."
+        },
+        "questions": {
+          "value": "Please see above"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rZFj3KY8IT",
+      "forum": "kWtP5ZOErR",
+      "replyto": "kWtP5ZOErR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_wUQk"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_wUQk"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730664576422,
+      "cdate": 1730664576422,
+      "tmdate": 1731428222545,
+      "mdate": 1731428222545,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a new evolutionary framework for dynamic LLM compression."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This paper proposes an evolutionary algorithm within an optimization framework, for sparse structure selection for LLMs."
+        },
+        "weaknesses": {
+          "value": "1. The theoretical justification in Theorem 1 appears irrelevant to the algorithm proposed in the paper. Theorem 1 is established for linear fitness functions; however, it’s difficult to see how this applies, as LLMs likely do not have linear fitness functions.\n\n2.  The comparison lacks systematic rigor. For instance, Table 2 presents results only at the sparsity level 70%. What about results at other sparsity levels?"
+        },
+        "questions": {
+          "value": "See weakness"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ER40cv0QuG",
+      "forum": "kWtP5ZOErR",
+      "replyto": "kWtP5ZOErR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_X4pg"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13864/Reviewer_X4pg"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13864/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730661454727,
+      "cdate": 1730661454727,
+      "tmdate": 1731428222475,
+      "mdate": 1731428222475,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "EvoPress combines constraint-preserving evolutionary mutations with multi-stage, low-token candidate filtering to optimize non-uniform LLM compression. The empirical study is broad and often compelling, but the practical optimality/convergence rhetoric substantially exceeds what the narrow theoretical result establishes.",
+        "strengths": [
+          "Broad evaluation across depth pruning, unstructured sparsity, and mixed-bit quantization on several LLM families, with improvements in both perplexity and zero-shot accuracy (PDF pp. 7–10, 26–32).",
+          "Large gains appear in difficult regimes: e.g., 70% sparsity and 3-bit quantization, rather than only near-lossless settings (PDF pp. 8–10).",
+          "The paper provides useful ablations, seed studies, detailed hyperparameters, and convergence/runtime measurements that improve reproducibility (PDF pp. 23–26)."
+        ],
+        "weaknesses": [
+          "The guarantee applies only to noiseless linear functions on a binary fixed-cardinality domain (PDF pp. 6, 17–23), whereas practical EvoPress uses noisy minibatch fitness, nonlinear multilevel spaces, and sometimes multiple switches. It therefore does not justify claims of practical optimality or guaranteed convergence; the proof also contains apparent drift-sign/inequality inconsistencies on PDF pp. 21–22.",
+          "Several state-of-the-art claims are insufficiently supported. Quantization is compared mainly with uniform GPTQ and an additive-error DP baseline, while extreme-bit experiments use only best-of-32 random configurations (PDF pp. 9–10, 31–32); the paper does not establish superiority over the broader mixed-precision or modern compression literature.",
+          "Efficiency evidence is incomplete: reported search requires roughly 1–8 GPU hours and many candidate evaluations, but there is no comprehensive equal-compute comparison, end-to-end inference latency, or memory analysis (PDF pp. 9, 26, 31)."
+        ],
+        "score_rationale": "The unified formulation and strong empirical gains make this slightly above the acceptance boundary. However, novelty is largely in adapting a simple evolutionary search with successive filtering, and the paper overstates a theory that does not cover its actual algorithm or objectives. Missing competitive and systems-level comparisons prevent a clearer accept."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "EvoPress applies a constraint-preserving (1+λ) evolutionary search with staged, low-token candidate screening to layer-wise LLM compression. The method is evaluated across depth pruning, unstructured sparsity, and mixed-bit quantization, with generally strong perplexity and zero-shot results. The practical contribution is compelling, but the manuscript substantially overstates how its theory applies to the implemented algorithm.",
+        "strengths": [
+          "Broad empirical validation across three compression settings and several LLM families, with particularly large gains at high sparsity and for Llama-3 quantization (pp. 8–10, 26–32).",
+          "The constraint-preserving local mutation and multi-step selection form a simple, generally applicable framework; ablations support the roles of mutation locality, evaluation budget, and fitness choice (pp. 23–26).",
+          "Random-seed experiments show low variability for one challenging 70%-sparsity setting, lending credibility to the reported search behavior (pp. 26–27)."
+        ],
+        "weaknesses": [
+          "The advertised guarantee does not cover practical EvoPress: the theorem assumes binary fixed-cardinality search, a linear objective, and exact fitness, whereas experiments use multi-level, nonlinear, minibatch-noisy fitness and multi-step screening. Thus claims such as “provably optimal” or guaranteed convergence for dynamic LLM compression are unsupported (pp. 2, 6, 17).",
+          "The convergence proof contains apparent directional/sign errors: the claimed contraction of Z_j is written with the wrong inequality, and phase-two drift is defined as E[X(t+1)-X(t)] even though the potential is non-increasing, then lower-bounded positively (pp. 21–23). These may be repairable typos, but they prevent confidently validating the theorem as written.",
+          "Several comparisons weaken the state-of-the-art claim: depth pruning often gives EvoPress finer attention/MLP choices than block-level baselines; the full SPDY search is explicitly omitted; and extreme quantization is compared only with the best of 32 random profiles. End-to-end latency or memory gains are also absent (pp. 7–10, 27–28, 31–33)."
+        ],
+        "score_rationale": "The unified search framework and empirical improvements are valuable and likely publishable, placing the work slightly above the acceptance boundary. However, the central theoretical framing is materially broader than the proved setting, the proof has errors as written, and baseline/efficiency evidence does not fully justify the sweeping state-of-the-art claims. I am moderately confident, with some uncertainty as to whether the proof defects are merely typographical and easily corrected."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EvoPress combines constraint-preserving evolutionary search with successive-fidelity candidate selection for non-uniform LLM compression. The broad empirical results are promising, but the paper overstates its optimality guarantees, and the central proof is not technically valid as written.",
+        "strengths": [
+          "Broad evaluation across depth pruning, unstructured sparsity, and mixed-bit quantization on several model families, with substantial gains at aggressive compression levels (pp. 7–10, 26–32).",
+          "The level-switch mutation and multi-step selection form a practical, architecture-agnostic framework, and the reported one-to-eight GPU-hour searches are reasonably efficient (pp. 4–6, 9, 31–32).",
+          "Seed experiments show low variance for one demanding 70%-sparsity setting, providing useful evidence that the method is not purely benefiting from a lucky run (pp. 26–27)."
+        ],
+        "weaknesses": [
+          "The central convergence proof contains sign/direction errors: it derives E[Z_j^(t+1)|Z_j^t=s] ≥ s/2 where contraction needs an upper bound, then defines drift as E[X^(t+1)-X^t] and lower-bounds it positively despite previously proving X is non-increasing (pp. 21–22). Thus Theorem 1 is not established as written.",
+          "The optimality rhetoric is substantially broader than the theory: the theorem covers exact evaluations of linear binary fixed-cardinality objectives, whereas the practical method uses noisy minibatches, nonlinear KL objectives, multiple compression levels, and finite stopping. Only one small depth-pruning instance is exhaustively verified (pp. 5–6, 17, 26).",
+          "Baseline and evaluation controls are incomplete: full SPDY search is omitted, depth baselines often use a coarser search space, there is no compute-matched random/local-search comparison, and iteration counts are chosen using held-out performance; most main experiments also lack repeated-run uncertainty (pp. 7–9, 26–28)."
+        ],
+        "score_rationale": "The unified formulation and empirical improvements are valuable and could merit acceptance after clarification. However, the invalid proof as presented directly undermines the claimed theoretical novelty, while limited compute-matched comparisons and broad optimality claims leave uncertainty about how much gain comes from the specific algorithm rather than additional direct search."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "EvoPress combines constraint-preserving evolutionary mutations with successive, increasingly accurate fitness evaluations for dynamic LLM compression. The breadth and empirical gains are compelling, but the practical optimality/convergence narrative substantially exceeds the scope of the stated theorem, and the proof contains apparent gaps or sign inconsistencies.",
+        "strengths": [
+          "Broad evaluation across depth pruning, unstructured sparsity, and mixed-bit quantization on several model families, with generally consistent perplexity and zero-shot gains (pp. 7–10, 26–32).",
+          "The multi-stage evaluation scheme is practical and well motivated; runtime, token-count, mutation, fitness, and seed ablations provide useful evidence of efficiency and robustness (pp. 9, 23–26).",
+          "The constrained level-switch search is simple, architecture-agnostic, and practically useful; the fixed-cardinality linear-function analysis is a potentially interesting theoretical complement (pp. 4–6, 17–23)."
+        ],
+        "weaknesses": [
+          "The theorem covers exact evaluations of binary fixed-cardinality linear objectives, whereas the deployed objectives are noisy, nonlinear, and often multilevel. Thus claims of practical optimality, broad guarantees, or convergence are not established; local optima remain possible (pp. 4–6, 17).",
+          "The proof appears to contain substantive presentation or reasoning problems: drift is defined as E[X(t)-X(t+1)] but later written with the opposite sign, the inequality for E[Z_j(t+1)] appears reversed, and the transition from per-coordinate progress to 2k log(n) successful generations is insufficiently justified (pp. 18, 21–23).",
+          "Some comparisons weaken the SOTA claim: full SPDY search is omitted, extreme quantization uses only best-of-32 random profiles, and depth pruning often searches attention/MLP modules separately while most baselines remove whole blocks; the block-matched control is limited to Mistral (pp. 7–10, 27–28, 31–32)."
+        ],
+        "score_rationale": "The paper offers a useful, unified method with strong and unusually broad empirical results, supporting a marginally positive score. However, its central guarantee is much narrower than advertised, and apparent proof issues plus incomplete compute/search-space-matched comparisons prevent a clear accept. I am uncertain whether the proof defects are repairable exposition errors or deeper gaps."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes EvoPress, a swap-mutation (1+λ) evolutionary search with staged, low-sample candidate selection for non-uniform LLM compression. Its broad evaluation across depth pruning, sparsification, and mixed-precision quantization shows substantial gains, especially at aggressive compression. However, the theoretical guarantees apply only to exact linear objectives on a fixed-cardinality binary space, not to the noisy, multilevel KL objectives used in practice, making several optimality and efficiency claims overstated.",
+        "strengths": [
+          "Broad and practically relevant evaluation spanning three compression families and several LLM families, with strong perplexity and downstream-accuracy improvements at high compression (pp. 7–10, 30–32).",
+          "The staged selection mechanism is computationally motivated, and the reported one-hour sparsity variant plus a 16-seed robustness study provide useful evidence of practical efficiency and stability (pp. 9, 24–26).",
+          "The fixed-cardinality linear-objective convergence analysis is nontrivial, and the exhaustive 8,008-configuration depth-pruning example gives a concrete sanity check of rapid search behavior (pp. 5–6, 17–23)."
+        ],
+        "weaknesses": [
+          "The central guarantee is much narrower than advertised: it assumes exact fitness, binary levels, a linear objective, and fixed cardinality, whereas practical EvoPress uses noisy minibatch selection, multilevel compression, and nonlinear KL divergence. Thus it does not establish optimality or convergence for the actual compression problems (pp. 4–6, 17, 26).",
+          "The empirical attribution to the proposed search design is incomplete. There is no comparably budgeted random search, greedy/local search, or standard successive-halving evolutionary baseline, and the full SPDY search is explicitly omitted, so it is unclear how much improvement comes simply from direct end-to-end search with greater compute (pp. 8–9, 23–24).",
+          "System-level evidence is limited: mixed-bit quantization reports model quality but no realized memory, throughput, or latency benefits, and the paper acknowledges that an engine supporting mixed formats is future work (p. 10)."
+        ],
+        "score_rationale": "The empirical results are broad and compelling enough for marginal acceptance, but novelty is largely in adapting standard evolutionary search, and the paper materially overstates a theorem that does not cover its practical algorithm. Stronger compute-matched optimizer baselines and less expansive optimality claims would substantially improve the case."
+      }
+    }
+  ]
+}

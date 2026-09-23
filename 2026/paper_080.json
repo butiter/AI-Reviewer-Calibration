@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_080",
+  "paper_id": "25F5ot3UWg",
+  "number": 19447,
+  "title": "The Role of Learning and Memorization in Relabeling-based Unlearning for LLMs",
+  "authors": [
+    "Xinyu Zhou",
+    "Pushen Wang",
+    "Ehsan Saleh",
+    "Raef Bassily",
+    "Jia Liu"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "Unlearning",
+    "LLM",
+    "Statistical Learning",
+    "AI safety"
+  ],
+  "forum_url": "https://openreview.net/forum?id=25F5ot3UWg",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    2,
+    6,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "3fjr4kwX6n",
+      "forum": "25F5ot3UWg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19447/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761919667517,
+      "tmdate": 1762931366060,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "YwqYKzQSbp",
+      "forum": "25F5ot3UWg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19447/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761894468094,
+      "tmdate": 1762931366554,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "glMWjfgJGQ",
+      "forum": "25F5ot3UWg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19447/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761994494018,
+      "tmdate": 1762931365375,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "sqN2oQ1Tat",
+      "forum": "25F5ot3UWg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19447/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761968817724,
+      "tmdate": 1762931365745,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper argues that relabeling-based unlearning is easier when outputs are memorized independently than when they arise from a learned rule. A Bayesian toy model and synthetic fine-tuning experiments consistently illustrate this intuition, but the theoretical comparison is structurally asymmetric and the evaluation does not establish genuine unlearning or practical LLM relevance.",
+        "strengths": [
+          "The learning-versus-memorization distinction is clearly motivated and offers a useful perspective on when relabeling may disrupt retained behavior (pp. 1–4).",
+          "The experiments provide interpretable decision-boundary visualizations and broadly consistent learning curves across three model families (pp. 8–10, 16–18).",
+          "The mixture experiment and synthetic stereotype setting extend the basic comparison beyond the two extreme geometric tasks (pp. 18–20)."
+        ],
+        "weaknesses": [
+          "The central theory compares a singleton, known rule H0 with a composite lookup-table model H1 whose latent entry can adapt to contradictory evidence; its stability result is therefore largely built into the hypotheses rather than demonstrating a general distinction between learning and memorization. The repeated-single-input setting and constant baselines further limit the connection to LLM optimization (pp. 4–7).",
+          "The experiments measure accuracy on the exact original points, with zero unlearn accuracy meaning successful fitting of flipped labels—not deletion of information. There are no paraphrase, extraction, membership, or relearning tests, and all tasks are small synthetic classification problems; even the stereotype study uses generated templates (pp. 7–10, 19–20).",
+          "Evidence is based on single displayed trajectories without seeds, variance, or sensitivity analyses. Moreover, all tasks ultimately recover nearly perfect retain accuracy, so the claimed detriment is mainly a transient optimization effect. Theorem 4 also uses an informal “negligible” point mass and a construction invoking x1≥6 despite claiming N≥3 (pp. 8–9, 15)."
+        ],
+        "score_rationale": "The paper presents a coherent and potentially useful intuition with reproducible-looking demonstrations, but its broad conclusions are not justified by the asymmetric toy theory or the narrow evaluation. Stronger definitions and tests of unlearning, statistical replication, and realistic knowledge tasks are needed for an ICLR-level contribution."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes an intuitive distinction between rule-based and memorization-based generation and argues that relabeling is less disruptive for the latter. Its Bayesian toy analysis and synthetic experiments consistently illustrate this phenomenon, but the theoretical-to-LLM connection is informal and the evidence does not yet support the broad claims about practical unlearning.",
+        "strengths": [
+          "The learning-versus-memorization framing is clear and potentially useful for characterizing when relabeling may cause collateral damage (pp. 2–7).",
+          "Results are qualitatively consistent across three model families/sizes, with decision-boundary visualizations making the observed optimization dynamics easy to interpret (pp. 8–10, 16–18).",
+          "The mixture and stereotype experiments broaden the basic comparison and follow the predicted ordering (pp. 18–20)."
+        ],
+        "weaknesses": [
+          "The theory concerns Bayesian posterior odds among highly stylized hypotheses, with fabricated evidence repeatedly using one input; no formal link connects these results to SGD dynamics in overparameterized LLMs. Theorem 4 only establishes a representational limitation of linear classifiers and does not prove slower convergence or prior expansion (pp. 5–7, 13–15).",
+          "The evaluation largely equates zero accuracy on original labels with successful unlearning. It does not test information extraction, paraphrased prompts, relearning, or comparison with retraining, so deliberate label flipping may leave the targeted information intact (pp. 8–9, 16–20).",
+          "Evidence is based on small synthetic datasets without reported seeds, uncertainty, or statistical tests. Retain accuracy is measured on data explicitly used in the unlearning objective, and task structure, margins, or unlearn-point geometry are not controlled, leaving important confounds (pp. 7–9, 16)."
+        ],
+        "score_rationale": "The paper offers a coherent, modestly novel perspective and reproducible-looking qualitative evidence, but its central generalization from toy hypothesis testing and binary classification to LLM unlearning is insufficiently justified. The absence of standard unlearning diagnostics and statistically controlled experiments makes this below the ICLR acceptance threshold, though the idea could become valuable with stronger validation."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper argues that relabeling-based unlearning is easier when outputs arise from item-specific memorization than from a learned rule. It develops a Bayesian toy model and a linear-classifier lower bound, then reports synthetic classification and stereotype experiments. The distinction is intuitive and potentially useful, but the formal analysis is weakly connected to neural-network unlearning, and the experiments do not establish genuine information removal or practical generality.",
+        "strengths": [
+          "The learning-versus-memorization perspective is clear and offers a useful lens for analyzing relabeling methods (pp. 2–4).",
+          "The paper provides explicit theoretical statements and proofs rather than relying only on intuition (pp. 5–7, 13–15).",
+          "The qualitative optimization behavior is reproduced across three model families/sizes and supplemented with mixture and stereotype settings (pp. 16–20)."
+        ],
+        "weaknesses": [
+          "The theory studies posterior belief over highly stylized hypotheses—a known fixed rule versus an independent lookup table—and repeatedly relabels one input. This does not model SGD, learned rules, or the multi-input unlearn sets used experimentally, so stability of a hypothesis family is overinterpreted as stability/effectiveness of LLM unlearning (pp. 4–7).",
+          "Theorem 4 only gives an elementary adversarial expressivity result; it does not imply slower convergence or a difficult prior change. Its “negligible” point-mass claim is also not quantified and is false for arbitrary fixed low dimension under the stated construction (pp. 6, 15).",
+          "Evidence is limited to small synthetic training sets and training-set accuracy trajectories, without seeds/error bars, held-out utility, paraphrase/generalization tests, extraction attacks, relearning, or comparison to retraining and standard unlearning baselines. Zero accuracy on the original labels merely demonstrates successful label flipping, not information removal (pp. 7–10, 16–20)."
+        ],
+        "score_rationale": "The paper presents a coherent observation with suggestive replicated demonstrations, but its main theoretical conclusions exceed what the simplified model proves, while the empirical evaluation measures label overwriting rather than robust unlearning. These limitations leave it below the technical and evidential bar for ICLR; uncertainty remains because the supplied supplementary code cannot be assessed here."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper argues that relabeling-based unlearning handles memorized input-specific associations more efficiently than learned rules. It formalizes this contrast using Bayesian hypothesis updates and a linear-classifier lower bound, then reports consistent synthetic results across three LLMs, a mixed task, and a synthetic stereotype task. The phenomenon is interesting, but the theoretical-to-LLM connection and empirical evidence are not yet strong enough to support the paper’s broad conclusions.",
+        "strengths": [
+          "The learning-versus-memorization distinction is clear and offers a useful perspective on when relabeling may damage retained behavior (pp. 2–7).",
+          "The experiments consistently show faster label flipping and smaller transient retain-accuracy degradation for RANDOM data across three model families (pp. 8–10, 16–18).",
+          "The appendices provide proofs, training details, a mixed-regime experiment, and a more application-motivated stereotype experiment (pp. 13–20)."
+        ],
+        "weaknesses": [
+          "The theory studies an idealized comparison between a known fixed rule and an independent lookup-table prior. The posterior bounds are largely consequences of these assumptions, while Theorem 4 is only a representational lower bound; neither establishes slower neural-network optimization or the claimed LLM mechanism (pp. 4–7, 13–15).",
+          "The evaluation equates zero accuracy on original unlearn labels with successful unlearning, although training explicitly teaches their flipped labels. It lacks retraining-based targets, extraction or information-retention tests, paraphrase/generalization evaluations, and comparisons with standard unlearning baselines (pp. 7–9).",
+          "Evidence is narrow and potentially confounded: the main tasks are small synthetic binary classifications, the stereotype study remains generated classification, and results provide no repeated-run variability, uncertainty intervals, or sensitivity to the strong 0.5 weighting that heavily oversamples 30 relabeled examples relative to 994 retained examples (pp. 7–9, 16, 19–20)."
+        ],
+        "score_rationale": "The paper presents a coherent, potentially useful observation with broadly consistent controlled experiments, but its formal results do not justify the optimization-level claims and its evaluation demonstrates label replacement rather than convincing removal of information. Given the limited realism, missing statistical robustness, and absent stronger unlearning evaluations, I view it as marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper argues that relabeling-based unlearning is easier when outputs arise from instance-specific memorization than from a shared learned rule. It develops a stylized Bayesian hypothesis-testing analysis and demonstrates the predicted optimization behavior on synthetic classification tasks and an artificial stereotype dataset. The distinction is intuitive and potentially useful, but the evidence currently supports only a narrow exception-fitting setting rather than broad claims about practical LLM unlearning.",
+        "strengths": [
+          "The learning-versus-memorization distinction is clearly motivated and yields concrete, testable predictions about convergence and transient retain-utility degradation (pp. 2–7).",
+          "Experiments consistently reproduce the qualitative pattern across three model families/sizes, with informative decision-boundary visualizations and a mixed task that interpolates between the extremes (pp. 8–10, 16–18).",
+          "The paper includes proofs, training details, and a somewhat more language-like stereotype experiment rather than relying exclusively on one synthetic result (pp. 13–20)."
+        ],
+        "weaknesses": [
+          "The theory is weakly connected to actual neural-network unlearning: it compares posterior mass among a known rule, a random lookup table, and constant predictors, while Theorem 4 is only an existence result about linear separators and does not establish slower neural optimization or model damage. Its proof also leaves “negligible” undefined and contains inconsistencies such as switching from C to an undefined B (pp. 4–7, 15).",
+          "The evaluation equates unlearning with fitting flipped binary labels and measures original-label accuracy on the same 30 points. It does not test whether information remains extractable, generalizes to paraphrases, or matches retraining from scratch; thus zero unlearn accuracy need not indicate genuine removal (pp. 7–10).",
+          "Evidence is limited to small constructed datasets, single reported trajectories without seeds/error bars or hyperparameter sensitivity, and a stereotype task that again reduces to learning arbitrary exceptions against a retained global mapping. Final utility is nearly perfect for every task, so the claimed detriment is principally transient and may depend on the fixed optimization setup (pp. 9, 16–20)."
+        ],
+        "score_rationale": "The paper offers a coherent perspective and consistent illustrative results, but its main conclusion is close to the expected difficulty of adding exceptions to a shared rule, and neither the stylized theory nor the experiments establish broad relevance to real LLM unlearning. I am moderately confident, with some uncertainty because the supplied supplementary code and repeated-run statistics cannot be assessed here."
+      }
+    }
+  ]
+}

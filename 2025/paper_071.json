@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_071",
+  "paper_id": "4HL2aiDV97",
+  "number": 10075,
+  "title": "GAD-VLP: Geometric Adversarial Detection for Vision-Language Pre-Trained Models",
+  "authors": "Afsaneh Hasanebrahimi; Hanxun Huang; Sarah Monazam Erfani; James Bailey; Christopher Leckie",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "Adversarial detection; Geometric Distance; Multimodal models",
+  "forum_url": "https://openreview.net/forum?id=4HL2aiDV97",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    5,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper benchmarks the effectiveness of several methods for detecting adversarial input images in multi-modal models. In particular, these techniques exploit the geometry of the features extracted by the vision and multi-modal encoders to distinguish between clean and adversarial images, and are agnostic of the downstream task. In the experimental evaluation, the different methods are compared on several datasets for both classification and retrieval tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper extends the use of several detection techniques to vision-language models, which might be interesting as making these models robust is a relevant challenge. The question of whether detection in multi-modal models is easier than with classifier is also interesting.\n\n- The experimental evaluation includes several datasets and tasks, and different architectures."
+        },
+        "weaknesses": {
+          "value": "- Detection methods for image classification have often been shown ineffective against adaptive attacks: for example, LID was bypassed in [A], Mahalanobis distance was shown non-robust to adversarial perturbations in [B], and several detection methods are bypassed in [C]. Thus, the proposed methods should be tested against attacks targeting the detection mechanism, e.g. as discussed in [C]. Moreover, the ablation study in Sec. 5.3 about generalization to different attacks only uses methods which are very close to the PGD attack (with only 10 steps) used for tuning the detection methods, and optimize the same loss function: then the generalization to them is not surprising.\n\n- The techniques used for detection are from prior works, which limits the technical novelty of the paper.\n\n- I think it'd be useful to report the success rate of the attack before detection.\n\n[A] https://arxiv.org/abs/1802.00420 \\\n[B] https://arxiv.org/abs/2201.07012 \\\n[C] https://openreview.net/forum?id=af1eUDdUVz"
+        },
+        "questions": {
+          "value": "I think it'd be important to test adaptive attacks, especially considering that the same techniques used in this paper have been shown ineffective with standard classifiers."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1MkmbTW1x2",
+      "forum": "4HL2aiDV97",
+      "replyto": "4HL2aiDV97",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_5u2q"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_5u2q"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10075/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730720607782,
+      "cdate": 1730720607782,
+      "tmdate": 1731429379916,
+      "mdate": 1731429379916,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes GAD-VLP, a geometric adversarial detection framework for vision-language pre-trained models. The method leverages geometric approaches including local intrinsic dimensionality, k-nearest neighbors distance, Mahalanobis distance, and kernel density estimation to identify adversarial examples in VLPs."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This paper is easy to follow, and the structure is well-claimed."
+        },
+        "weaknesses": {
+          "value": "1. The paper lacks rigorous theoretical analysis of why geometric methods work better for VLPs compared to traditional models. While empirical results are shown, there's no formal proof or theoretical guarantees about the method's effectiveness, especially claiming why their approach is fundamentally sound for VLPs.\n\n2. The paper doesn't adequately address the computational costs of calculating geometric metrics, especially for large-scale deployments. Computing k-NN, Mahalanobis distances, and KDE for high-dimensional embeddings can be computationally expensive. \n\n3. The paper doesn't consider sophisticated adaptive attacks that might specifically target the geometric detection mechanism. Adversarial methods often adapt to known defense mechanisms, and the lack of evaluation against such adaptive attacks raises questions about the method's robustness in real-world scenarios. \n\n4. The authors don't thoroughly examine the false positive rates and their impact on model usability. In real-world applications, high false positive rates could lead to unnecessary rejection of legitimate inputs."
+        },
+        "questions": {
+          "value": "This paper should consider further feedback regarding the lack of rigorous mathematical proof, computational scalability concerns, and vulnerability to adaptive attacks."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "bOWQXUoBS8",
+      "forum": "4HL2aiDV97",
+      "replyto": "4HL2aiDV97",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_S3Ts"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_S3Ts"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10075/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730529672706,
+      "cdate": 1730529672706,
+      "tmdate": 1731429380133,
+      "mdate": 1731429380133,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper looks at detection of adversarial examples for multi-modal models (CLIP, ALBEF). They extend uni-modal detection methods to vision-language based models. Experiments are conducted on classification and Image-retrieval tasks using different 'geometry of sample' based approaches to show GAD-VLP (proposed framework) works well when using different methods for detection."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- The problem being studied is important - Detecting adversarial inputs in multi-modal setup.\n- The related work exploration seems sufficient.\n- Diversity of evaluation tasks (classification, retrieval) and models is reasonable"
+        },
+        "weaknesses": {
+          "value": "- Overall the paper lacks technical novelty as previously used methods (MMD, KDE etc) for uni-modal detection methods are just transferred to multi-modal setup.\n\n- The evaluation/testing setup in re to adversarial setup is not sufficient.\n\n- The adversarial attacks do not seem strong, looking at Fig. 2 a naturally strong attack would be to add a regularizer term that enforces the image embedding (under perturbation) to stay close to the clean embedding. Testing method on such strong attacks would be nice.\n\n- The attacks are based on10-step PGD, and versions of FGSM all at eps=8/255 (other values should have been looked at). A lot of new attacks (see the ones in [1, 2]) for CLIP like models have been proposed - testing which would have been also a valuable addition to the submission.\n\n- For the binary classifier using LID, attacking the classifier (detector) would also be a reasonably strong attack.\n\n[1] Schlarmann, Christian, and Matthias Hein. \"On the adversarial robustness of multi-modal foundation models.\" Proceedings of the IEEE/CVF International Conference on Computer Vision. 2023.\n\n[2] Mao, Chengzhi, et al. \"Understanding Zero-shot Adversarial Robustness for Large-Scale Models.\" The Eleventh International Conference on Learning Representations."
+        },
+        "questions": {
+          "value": "- What is the setup for retrieval is it top-1, top-5?  \nNo other questions, some questions on choice of experiments can be inferred from Weaknesses section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "XMs9HDq4qU",
+      "forum": "4HL2aiDV97",
+      "replyto": "4HL2aiDV97",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_fo3Q"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_fo3Q"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10075/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730199009488,
+      "cdate": 1730199009488,
+      "tmdate": 1731429380301,
+      "mdate": 1731429380301,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper propose the GAD-VLP, a method for detecting adversarial attacks in VLP Models. It uses geometric metrics like Local Intrinsic Dimensionality (LID), k-Nearest Neighbors (k-NN), Mahalanobis distance, and Kernel Density Estimation (KDE) to distinguish adversarial examples. GAD-VLP works across various VLP architectures, whether they use separate or combined embeddings for vision and language inputs. The method demonstrates high detection accuracy against different attacks and is applicable to tasks like zero-shot classification and image-text retrieval. The study highlights GAD-VLP's robustness and versatility across multiple domains."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1.\tThe writing is clear. The formulas are correct.\n2.\tThe experiment is multi-dimensional.\n3.\tThe research topic is important for VLP."
+        },
+        "weaknesses": {
+          "value": "1.\tWhile the proposed method is effective, the metrics used are standard and not specifically tailored for the Vision-Language Pre-training (VLP) task.\n2.\tThe paper does not sufficiently highlight the distinctions between unimodal models and VLP models, resulting in a lack of justification for the choice of metrics.\n3.\tClassical VLP models, such as BLIP [1] and X-VLM [2], are missing from the analysis.\n4.\tThe adversarial attack methods utilized are limited and do not include more popular approaches like Set-level Guidance Attack (SGA) [3].\n\n[1] BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation\n\n[2] Multi-Grained Vision Language Pre-Training: Aligning Texts with Visual Concepts\n\n[3] Set-level Guidance Attack: Boosting Adversarial Transferability of Vision-Language Pre-training Models"
+        },
+        "questions": {
+          "value": "Please see the weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "txQm5EDZLh",
+      "forum": "4HL2aiDV97",
+      "replyto": "4HL2aiDV97",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_9b4J"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10075/Reviewer_9b4J"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10075/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729324740844,
+      "cdate": 1729324740844,
+      "tmdate": 1731429380523,
+      "mdate": 1731429380523,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper applies established geometric adversarial detectors (LID, k-NN, Mahalanobis distance, and KDE) to image and multimodal embeddings of aligned and fused vision-language models. It reports broad evaluations across four architectures, classification/retrieval datasets, several gradient attacks, and adaptive attacks. The topic is relevant and many non-adaptive results are strong, but the novelty is incremental and serious ambiguities in the evaluation protocol make the near-perfect headline results difficult to trust.",
+        "strengths": [
+          "Broad empirical coverage across CLIP, ALBEF, and TCL, multiple datasets, and both zero-shot classification and retrieval (pp. 7–10, 17).",
+          "Simple representation-space detectors often substantially outperform the MCM baseline, especially for aligned CLIP models (pp. 8, 17).",
+          "The appendices add useful checks on locality, computational cost, adaptive attacks, and retrieval attack success rates (pp. 15–19)."
+        ],
+        "weaknesses": [
+          "The train/test and reference-set protocol is insufficiently specified and may leak test samples: adversaries are generated from the entire dataset, geometric scores are computed using clean embeddings as reference, and only afterward are scores divided for detection training/testing (pp. 6–7, 15–16). Self-neighbor or test-reference contamination could explain extremely high k-NN results.",
+          "Novelty is limited to applying well-known unimodal detectors to VLP embeddings, with only MCM—an OOD method rather than a strong adapted adversarial-detection baseline—used for comparison (pp. 2–4, 7–8). No rigorous multimodal-specific methodological contribution is established.",
+          "Claims of near-perfect robustness are overstated: fused-model multimodal attacks yield poor or near-random results in important cases (e.g., ImageNet and retrieval), R-FGSM generalization drops to roughly 74–75 AUC, and the adaptive objective/optimization is underspecified and sometimes substantially reduces LID performance (pp. 8–10, 17–18)."
+        ],
+        "score_rationale": "The breadth and promising CLIP results merit consideration, but the work is largely an empirical transfer of existing techniques. More importantly, the unclear reference-set split creates a potentially decisive leakage concern, while difficult fused-model and adaptive settings expose substantial weaknesses despite broad robustness claims. I therefore lean reject, with some uncertainty because a clarified leakage-free protocol could materially improve the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper applies four established geometric detectors—LID, k-NN, Mahalanobis distance, and KDE—to image or multimodal embeddings from several VLP architectures. The reported results are often very strong across classification and retrieval, but the contribution is primarily an empirical transfer of existing methods, and important evaluation and adaptive-attack issues prevent the evidence from supporting the broad robustness claims.",
+        "strengths": [
+          "The evaluation spans aligned and fused architectures, multiple datasets, and both zero-shot classification and image–text retrieval (pp. 7–10, 17).",
+          "The paper reports both AUC and FPR95 and includes locality sensitivity, computational cost, cross-attack testing, and attack-success-rate analyses (pp. 8–10, 15–19).",
+          "The finding that simple representation-space geometry can strongly separate these particular attacks from clean inputs is potentially useful, especially for CLIP (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the method largely applies established unimodal detectors to VLP embeddings, while the geometric motivation is mostly qualitative; the cited LID sensitivity result does not establish that VLP adversarial examples should be more detectable (pp. 3–7).",
+          "The adaptive evaluation appears technically questionable. Equation 11 adds the detector score to an attack objective that is otherwise maximized, seemingly encouraging higher—and thus more detectable—LID/k-NN scores rather than evasion; differentiating through LID/k-NN and optimization details are also unexplained (pp. 17–18).",
+          "The experimental protocol is insufficiently specified to rule out leakage or overly favorable tuning: adversarial examples are generated before the score data are split, reference-neighborhood construction and threshold selection are unclear, and only a weak OOD baseline is compared. Performance also degrades sharply for fused-model multimodal attacks, e.g. k-NN AUC 32.54 on TCL/ImageNet and 42.19 on TCL/Flickr30k (pp. 6–9, 17–18)."
+        ],
+        "score_rationale": "The breadth of experiments and strong results on non-adaptive CLIP attacks are promising, but the incremental methodology, ambiguous train/reference/test protocol, weak comparisons, and apparently misdirected adaptive objective substantially undermine technical soundness and the central robustness claim. I therefore rate it a reject rather than marginal acceptance; uncertainty remains because some protocol details may simply be omitted."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper applies four established geometric adversarial/OOD scores—LID, k-NN, Mahalanobis distance, and KDE—to image and multimodal embeddings of several VLPs. It reports very strong detection for many PGD-style attacks across classification and retrieval, but the contribution is primarily an empirical transfer of known methods, and major protocol and adaptive-attack issues undermine the robustness claims.",
+        "strengths": [
+          "Broad evaluation across aligned and fused architectures, seven datasets, and both classification and retrieval tasks (pp. 7–10, 17).",
+          "The reported non-adaptive results are often strong, and the paper includes attack-success rates to establish that many evaluated attacks remain effective (pp. 8–9, 18–19).",
+          "Ablations examine multimodal features, neighborhood size, alternative gradient attacks, and computational cost (pp. 10, 15–17)."
+        ],
+        "weaknesses": [
+          "The adaptive attack appears directionally incorrect: Eq. 11 adds the detector score while the paper defines larger LID/k-NN scores as evidence of an adversarial input, so maximizing this loss should make attacks easier—not harder—to detect. The increased k-NN detection in Table 6 is consistent with this flaw, invalidating the principal adaptive-robustness evidence (pp. 17–18).",
+          "The experimental protocol is underspecified in decisive ways: dataset/sample counts, exact train/test/reference splits, threshold selection, covariance regularization, embedding normalization, and repeated-run variability are absent. Because adversarial samples are generated from the entire dataset before score splitting, leakage or overly matched attack distributions cannot be excluded (pp. 6–8, 15–16).",
+          "Novelty is limited to applying standard detectors, with comparison only to an OOD baseline rather than competitive adversarial detectors. Results also weaken substantially for fused-model multimodal attacks—for example, k-NN reaches only 51.92 AUC on ALBEF/ImageNet and 42.19 on TCL/Flickr30k—contradicting broad near-perfect or architecture-independent claims (pp. 8–10, 17–18)."
+        ],
+        "score_rationale": "The breadth and strong non-adaptive numbers make the study potentially useful, but the modest methodological novelty, insufficiently controlled protocol, weak baseline set, and especially the apparent sign error in the adaptive attack prevent confidence in the central robustness conclusions. Substantial correction and reevaluation are needed; uncertainty remains because implementation details could clarify some protocol concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper applies established geometric detectors (LID, k-NN, Mahalanobis distance, and KDE) to adversarial examples in aligned and fused vision-language models. The reported results are often very strong, but key protocol ambiguities and an apparently misdirected adaptive-attack objective substantially weaken the evidence.",
+        "strengths": [
+          "Broad empirical coverage across four VLP architectures, classification and retrieval tasks, multiple datasets, and several attack variants (pp. 7–10, 16–19).",
+          "The study includes useful comparisons among several simple geometric statistics and reports both AUC and FPR95 rather than accuracy alone (pp. 8, 17).",
+          "The fused-model ablation suggests that multimodal-layer features can aid detection of multimodal attacks (p. 10)."
+        ],
+        "weaknesses": [
+          "The data protocol is insufficiently specified and may leak evaluation information: attacks are generated over the “entire dataset,” geometric scores use clean embeddings as references, and only afterward are scores divided into training and testing; it is unclear whether reference sets, threshold selection, covariance/KDE fitting, and queries are strictly disjoint (pp. 6–8, 15–16). This is especially concerning given near-perfect AUCs.",
+          "The claimed adaptive evaluation is not convincing. Equation 11 adds the detector score with a positive coefficient to the attack objective, although larger k-NN/LID scores are treated as more adversarial; under the stated maximization-based attacks this appears to encourage detectability rather than bypass it. No optimization direction, differentiable approximation, coefficient sweep, or attack-strength validation is supplied, and detection sometimes improves under the “adaptive” attack (pp. 17–18).",
+          "Novelty is limited to applying known unimodal detectors to VLP embeddings, while the evidence is narrow in threat-model terms: attacks largely derive from one framework, text-only attacks are omitted, and several fused-model cases are weak (e.g., AUC 32.54–70.70 for k-NN Sepmulti on ImageNet/retrieval; pp. 9, 17). The dimensionality explanation is also mainly correlational rather than a technical justification (pp. 5–6)."
+        ],
+        "score_rationale": "The breadth of experiments and potentially useful empirical observation merit consideration, but the incremental method, unclear train/reference/test separation, and likely incorrect adaptive-attack construction undermine the central robustness claims. I therefore rate it as a reject rather than merely below the acceptance boundary."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper applies established geometric detectors (LID, k-NN, Mahalanobis distance, and KDE) to VLP embeddings and reports strong detection on several architectures, datasets, and retrieval/classification tasks. The empirical breadth is useful, but the novelty is incremental and important protocol and threat-model issues make the near-perfect results difficult to trust.",
+        "strengths": [
+          "Broad evaluation across aligned and fused VLPs, multiple datasets, classification and retrieval tasks (pp. 7–10, 16–19).",
+          "The paper evaluates several complementary geometric scores and reports both AUC and FPR95 rather than only accuracy (pp. 8–9, 17).",
+          "It includes locality sensitivity, attack-transfer, computational-cost, attack-success, and nominal adaptive-attack analyses (pp. 10, 15–19)."
+        ],
+        "weaknesses": [
+          "The adaptive evaluation appears technically flawed: attacks maximize embedding divergence, yet Eq. 11 adds the detector score with a positive coefficient, which seemingly encourages larger LID/k-NN anomaly scores rather than bypassing detection; the surprising improved AUC values are consistent with this concern (pp. 17–18). The optimization direction and differentiable estimators are not adequately specified.",
+          "The train/test and reference-set protocol is underspecified and risks leakage: adversarial examples are generated for the entire dataset before score splitting, while minibatch neighborhoods and threshold selection are not precisely separated into clean reference, validation, and test sets (pp. 6–8, 15–16). Paired clean/adversarial samples could therefore make detection artificially easy.",
+          "Novelty and evidence under realistic threats are limited: the method mainly transfers established unimodal detectors, compares only against an OOD baseline, and tests attacks explicitly designed to push embeddings away from clean representations. Text-only attacks, stronger adaptive optimization, transfer/black-box settings, natural corruptions, and clean distribution shift are absent (pp. 3, 5–7, 10)."
+        ],
+        "score_rationale": "Although the experiments are broad and the reported non-adaptive results are strong, the central robustness claim is undermined by an apparently misdirected adaptive objective and an insufficiently documented evaluation split. Combined with modest methodological novelty and weak baselines, this warrants rejection; some uncertainty remains because implementation details might clarify the objective and eliminate leakage concerns."
+      }
+    }
+  ]
+}

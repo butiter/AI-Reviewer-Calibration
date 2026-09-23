@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_042",
+  "paper_id": "CUABD2qIB4",
+  "number": 5302,
+  "title": "OCCAM: Towards Cost-Efficient and Accuracy-Aware Classification Inference",
+  "authors": "Dujian Ding; Bicheng Xu; Laks V. S. Lakshmanan",
+  "primary_area": "optimization",
+  "keywords": "Efficient ML; Hybrid ML Inference; Classification",
+  "forum_url": "https://openreview.net/forum?id=CUABD2qIB4",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    6,
+    8
+  ],
+  "human_mean_rating": 6.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the trade-off between classification accuracy and inference cost by proposing a framework that combines small and large models. The authors introduce OCCAM (Optimization with Cost Constraints for Accuracy Maximization), a framework that optimally assigns classifiers to queries within a cost budget, leveraging the insight that some “easy” queries can be accurately classified by smaller models. OCCAM uses a statistical accuracy estimator and solves an integer linear programming problem to create a model portfolio that minimizes costs while maintaining accuracy."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper demonstrates statistical guarantees to compute optimal assignments with weak assumptions. \n\n- Experimental results on classification datasets show  up to 40% cost reduction with\nno significant drop in classification accuracy."
+        },
+        "weaknesses": {
+          "value": "- Limited scope of experiments with pretrained classifiers:\nThe paper's most significant weakness is the limited number of pretrained classifiers used in the experiments. This scope may not provide a comprehensive evaluation of the proposed method and could affect the generalizability of the results.\n\n\n- Insufficient clarification on related work:\nThe paper lacks adequate clarification on how it builds upon or differentiates from existing research in the field. Providing a clearer context within the related work section (as highlighted in the Questions) would strengthen the paper by situating it more effectively within the current academic discourse."
+        },
+        "questions": {
+          "value": "- How does OCCAM fit into the literature of routing for Mixture-of-experts?\n\n- What is the reason for K = 40 being the maximal value?\n\n- How does OCCAM perform in scenarios with more than 7 classifiers? E.g. model selection literature [1] use more than 100 pretrained models for ImageNet.\n\n\n\n[1] Mohammad Reza Karimi, Nezihe Merve Gürel, Bojan Karlaš, Johannes Rausch, Ce Zhang, and Andreas Krause. Online active model selection for pre-trained classifiers. In International Conference on Artificial Intelligence and Statistics (AISTATS), pp. 307–315. PMLR, April 2021."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "r4RBO2o5Zz",
+      "forum": "CUABD2qIB4",
+      "replyto": "CUABD2qIB4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_DVtc"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_DVtc"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5302/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730666892222,
+      "cdate": 1730666892222,
+      "tmdate": 1732595492013,
+      "mdate": 1732595492013,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper considers minimizing model inference cost by finding the best instance-classifier assignment. A novel method is proposed and there are some new ideas. However, the problem formulation ignores the extra cost induced by the proposed method, which is not discussed in the main text or evaluated in experiments. This is a critical point that might make the proposed method meaningless in some situations."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The paper presents a new method to find the best instance-classifier assignment to minimize inference cost.\n2. The proposed method for accuracy estimation is asymptotically unbiased and the assignment problem can be solved with ILP solvers. \n3. Good results are show on a specific evaluation setting."
+        },
+        "weaknesses": {
+          "value": "1. The problem formulation seems to be unreasonable. The paper aims to find the best instance-classifier assignment to minimize the overall classification inference cost. However, the problem formulation ignores the extra cost for finding the best assignment itself. If the extra cost of finding the best assignment is larger than the saved cost in inference from that assignment, there is no point using the proposed method. \n2. The running time and cost of the ILP Solver is not discussed. This is important as it impacts the applicability of the method in practice. \n3. The sample size can be as large as 40000, which might presents considerable cost in nearest cost, which however, is also not discussed or reported in experiments."
+        },
+        "questions": {
+          "value": "1. what is the time complexity and empirical running time of the ILP solver? \n2. what is the cost of nearest neighbor search in the sample? \n3. Overall, what is the extra cost induced by the method? Would the gain from reduced inference time be significantly larger than the induced extra cost?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "4vC86VPMRq",
+      "forum": "CUABD2qIB4",
+      "replyto": "CUABD2qIB4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_gGnF"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_gGnF"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5302/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730577240588,
+      "cdate": 1730577240588,
+      "tmdate": 1732647128636,
+      "mdate": 1732647128636,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose a method for choosing a good set of classifiers that try to maximize classification accuracy while maintaining some cost constraints. Their method is based on estimating the expected accuracies of each classifier in the portfolio using nearest neighbor in a suitable embedding space, and then apply integer programming to find out the best classifier for each test example. Experiments show their method beats several state-of-art methods when tested on several image classification benchmarks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- This problem of choosing a good set of classifiers to maximize accuracies under computational budget constraints is a very relevant and practical problem given the rising costs of running neural-network-based classifiers. \n\n- Empirically the method performs very well under various cost reductions when compared to other algorithms such as Frugal-MCT and single best, having higher accuracies at the same cost reduction levels. \n\n- The authors also provide theoretical justifications for their accuracy estimates of different classifiers for a new test sample, under the assumption of Lipschitz continuity and well-separatedness."
+        },
+        "weaknesses": {
+          "value": "- Choosing the hyperparameter \\lambda for different datasets seems difficult. It is set to 100 for Imagenet-1K and 5 for other datasets, which is a large range. This can impact the practical performance of the method. \n\n- The results for unbiasedness and low-variance in Lemma 4.5 and 4.6 are asymptotic. In practice since we are training neural networks for embeddings, the underlying metric space and nearest neighbor function DEPENDS on the training set. For example, the data can be r-separated on the training set since the neural network embedding is trained on it, but not so on a separate validation set. If the samples S_1, ..., S_k in Section 4.2 comes from the training set, the estimates for accuracy can be biased. If they come from a separate validation set then we need a fairly well-represented validation set to estimate the accuracies, which can be a limitation of the method. \n\n- There is a big gap of costs between SwinV2-S and SwinV2-T with no intermediate models. This makes the 10%, 20%, and 40% cost reduction in Table 2 all use the same model for single best and the results for 10% and 20% cost reduction weak for single best since there is no model with intermediate costs available."
+        },
+        "questions": {
+          "value": "- Why are the results for Random the same for all cost reduction levels in Table 2 and Table 4, if it solves the same ILP problem as in Equation 4?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "N/A"
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "D9gsm9jYmw",
+      "forum": "CUABD2qIB4",
+      "replyto": "CUABD2qIB4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_K8Qp"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_K8Qp"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5302/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730471810991,
+      "cdate": 1730471810991,
+      "tmdate": 1731428368101,
+      "mdate": 1731428368101,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors present a method for cost-efficient classifier selection at inference time.\nThe proposed method uses an estimator of classifier accuracy, which is based on the assumption of well-separated classification instances (images) and utilizes samples of classification accuracy from the classifiers.\nGiven such an estimator, the construction of an optimal model portfolio is stated as an Integer Linear Programming problem. \nThe method is evaluated using established image classifiers and standard benchmark data."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The proposed method is well-motivated and of great practical relevance for users of image classification services.\n\n- The method sound under assumptions of well-separated instances and the findings are supported both empirically and theoretically"
+        },
+        "weaknesses": {
+          "value": "- The proposed method relies on precomputed samples of the classifiers under consideration. These are assumed to be given without any cost. However, this is typically not the case. In order to be able to use it in practice, these samples need to be collected which results in expenditure. A good contribution would be to analyse the following question:\nGiven a user-specified budget, how many samples should be acquired in order to maximize accuracy while adhering to the budget with overall cost (samples for accuracy estimation + classification instances).\n\n- Additionally, the use of the nearest-neighbor based accuracy estimator as well as the ILP solver are assumed to incur no cost, which does not hold in practice. \n\n- The considered problem setting is an instance of the (per-instance) Algorithm Selection (AS) problem (Rice 76). That is, given an instance of an algorithmic problem domain and a set of algorithms suitable to solve said instance, select the algorithm that optimizes a performance metric. For the submitted study, the problem domain is image classification, the problem instances are images, the algorithms are image classifiers and the performnace metric is a multi-criteria with cost and accuracy. There is a substantial corpus of literature concerned with AS and also the idea of using algorithm portfolios has been examined. Although the manuscript considers a very specific instantiation of this problem, I think a reference should be given. \n\nMinor remarks:\n- p 1. line 37: \"On the other (hand)\"\n\nLiterature: \nRice, J. R. (1976). The algorithm selection problem. In Advances in computers (Vol. 15, pp. 65-118). Elsevier."
+        },
+        "questions": {
+          "value": "- Is it possible to have a strong (the strongest) baseline by solving the ILP not with an estimator of accuracy but the true classification likelihoods, as an upper bound of achievable performance given a predefined budget?\n\n- To me it seems like the proposed method quite naturally translated into an online setting. It particularly seems to resemble a contextual multi-armed bandit problem, in which each classifier is an arm and the context is given by the classification instances. The reward would be multi-criteria containing costs as well as performance. Would such an extension to online learning make sense?\n\n- The work considers an order of image classifiers, from cheap and less accurate to costly and more accurate. While the classifiers certainly can be ordered wrt accuracy, is there not also a kind of performance complimentarity, i.e. one classifier is better at classifying certain images while another classifier is better suited for other images? I think this may be another strength of OCCAM. Even in (hypothetical) settings in which classifiers have the same cost and the same accuracy on average, OCCAM may be able to identify the better classifer on a per-instance level, effectively outperforming the single best classifier. I am not sure whether these phenomena are present for the considered classifiers and data, however, the possibility should be discussed."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "5koOrJYZz2",
+      "forum": "CUABD2qIB4",
+      "replyto": "CUABD2qIB4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_iJX4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5302/Reviewer_iJX4"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5302/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730455048733,
+      "cdate": 1730455048733,
+      "tmdate": 1732625044135,
+      "mdate": 1732625044135,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "OCCAM routes queries among pretrained classifiers using nearest-neighbor estimates of per-query correctness and a budget-constrained multiple-choice knapsack/ILP. The empirical cost–accuracy curves are promising, but the central statistical guarantees are incorrectly stated or insufficiently justified, while the algorithmic combination is fairly incremental.",
+        "strengths": [
+          "The paper addresses a practical, clearly formulated cost-aware inference problem and accounts for heterogeneous model costs (pp. 4, 7–8).",
+          "Experiments cover four datasets, multiple metrics and feature extractors, and up to 101 candidate models, with useful sample-size, overhead, and oracle analyses (pp. 9–10, 17–22).",
+          "OCCAM generally improves upon the reported baselines, especially under the primary l-infinity configuration (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The main theory has serious errors and missing assumptions: uniform sampling from a general instance space is undefined, nearest-neighbor convergence requires support/regularity conditions, the proof equates |E[Z]| with E|Z|, and Lemma 4.6 claims variance scales as 1/sqrt(K) although an iid sample mean has variance proportional to 1/K (pp. 6, 23).",
+          "There is a mismatch between theory and implementation: guarantees concern randomized soft-classifier success probabilities, Algorithm 1 records realized/binary correctness, and evaluation uses deterministic argmax predictions. Thus the claimed unbiased estimator does not directly justify the measured portfolio accuracy (pp. 5–7, 24).",
+          "Novelty and evidence are limited relative to the claims: nearest-neighbor competence estimation plus a standard knapsack formulation is straightforward, comparisons omit broader routing/selective-classification methods, and the headline understates 2.24–2.75 point drops at 40% savings on the harder datasets without uncertainty estimates (pp. 3–4, 9)."
+        ],
+        "score_rationale": "The practical formulation and broad experiments show potential, but the paper’s claimed principled advantage rests on flawed asymptotic results and a theory–implementation mismatch (pp. 5–6, 23–24). Given the modest algorithmic novelty and limited baselines, these issues place it below the acceptance threshold. Some uncertainty remains because details of how stochastic sample correctness was generated are ambiguous."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "OCCAM routes each query among pretrained classifiers using nearest-neighbor estimates of per-model correctness and a multiple-choice knapsack/ILP formulation. The practical objective is relevant and experiments show favorable accuracy–cost curves, but the central theoretical claims are incorrect or insufficiently justified, and the cost accounting and evaluation leave major uncertainties.",
+        "strengths": [
+          "The budget-constrained routing problem is practically relevant, and the ILP formulation enforces a batch-level cost constraint exactly (pp. 4–7).",
+          "Experiments cover four image datasets, multiple feature metrics, sample-size sensitivity, overhead, and a larger collection of 101 models (pp. 7–10, 17–22).",
+          "Reported results generally improve over FrugalMCT, including small accuracy drops at substantial nominal cost reductions under the preferred metric (pp. 9, 19–21)."
+        ],
+        "weaknesses": [
+          "The main theory is unsound as written: Lemma 4.5 assumes nearest-neighbor distance converges to zero without specifying an appropriate sampling distribution/support and incorrectly equates |E[Z]| with E|Z|; Lemma 4.6 reports variance proportional to 1/sqrt(K), whereas an independent sample mean has variance proportional to 1/K (pp. 6, 23). Thus neither finite-sample routing guarantees nor optimality for true accuracy are established.",
+          "The well-separation evidence is weak: merely observing nonzero inter-class distances—largely automatic for finite, nonduplicate embeddings—does not establish a useful population margin or manageable nearest-neighbor sample complexity. Indeed, reported nearest-neighbor distances remain appreciable and estimation errors around 0.2–0.3 even at the largest sample sizes (pp. 15–17).",
+          "Cost accounting and comparisons are questionable. Feature extraction is said to be deducted from every budget (p. 8), yet a ResNet-18 feature pass itself costs about 0.15 normalized units (Table 1, p. 8), making the lowest plotted budgets difficult to reconcile with additionally running a classifier. Offline labeling by every model is omitted, and the baselines are limited, with “Single Best” sometimes defined as the most expensive rather than most accurate feasible model (pp. 18–21)."
+        ],
+        "score_rationale": "The method is a useful engineering combination of nearest-neighbor routing and standard knapsack optimization, with reasonably broad empirical results. However, novelty is modest, the advertised statistical guarantees contain decisive mathematical errors, and unclear cost accounting undermines the central efficiency claim. These issues warrant rejection despite promising empirical behavior."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "OCCAM routes a batch of classification queries among pretrained models by estimating per-query correctness from labeled nearest neighbors and solving a budgeted assignment problem. The formulation is clear and experiments show favorable accuracy–cost curves, but the claimed theory is substantially weaker and less correct than presented, while baseline and cost-accounting choices limit the empirical conclusions.",
+        "strengths": [
+          "The batch-level cost-constrained routing problem is clearly formulated, and the nearest-neighbor estimator plus assignment solver forms an understandable end-to-end method (pp. 4–7).",
+          "Evaluation spans four image datasets, multiple architectures and metrics, with useful sensitivity, scaling, overhead, and complementarity analyses (pp. 7–10, 15–23).",
+          "Reported results consistently improve over the selected baselines under the primary l-infinity configuration, including the larger model-pool experiment (pp. 9, 20–21)."
+        ],
+        "weaknesses": [
+          "The theoretical claims are overstated and contain errors. Lemma 4.5 only gives pointwise asymptotic reasoning without finite-sample rates or portfolio-level regret guarantees, and its proof incorrectly equates the absolute bias with expected absolute error. Lemma 4.6 states variance proportional to 1/sqrt(K), whereas an independent sample mean has variance proportional to 1/K; the proof also does not justify its cited dependent-data CLT (pp. 6, 23). Thus the computed portfolio is optimal only for noisy estimates, not demonstrably optimal for true accuracy.",
+          "The empirical comparison is weak and sometimes unfair: it omits standard confidence/router or k-NN regression alternatives, defines “single best” by expense rather than best validation accuracy, and in the 101-model experiment gives OCCAM only Pareto-efficient models while allowing the baseline to choose dominated models, explicitly producing artificial oscillations (pp. 8, 18–21). No repeated-run uncertainty or significance is reported.",
+          "Cost accounting and practical scope are unclear. Feature extraction is said to be deducted from the budget, yet the ILP charges every selected classifier separately and low-budget curves appear feasible below the apparent feature-plus-inference minimum; reuse is not modeled or explained (pp. 6, 8–9). Results are also limited to IID image benchmarks, while the separation evidence is largely vacuous for finite clean datasets and does not establish useful Lipschitz constants or rates (pp. 10, 15–17)."
+        ],
+        "score_rationale": "The idea is practical and the empirical trends are promising, but it is essentially k-NN correctness prediction followed by a standard knapsack formulation. Incorrect variance theory, absence of meaningful finite-sample/selection guarantees, questionable baselines, and unresolved cost accounting undermine the central claims. I therefore rate it below the acceptance threshold, with some uncertainty because the reported primary results may still reflect a useful heuristic."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "OCCAM routes each query among pretrained classifiers by estimating per-model correctness from labeled nearest neighbors and solving a budgeted multiple-choice knapsack problem. The approach is practical and extensively evaluated, but its novelty is incremental and its principal theoretical claims are overstated or incorrect.",
+        "strengths": [
+          "The cost-constrained routing problem is clearly formulated, and the nearest-neighbor estimator plus portfolio optimization forms a simple, interpretable pipeline (pp. 4–7).",
+          "Experiments cover four image datasets, several metrics and feature extractors, sample-size sensitivity, overhead, and a 101-model setting (pp. 7–10, 15–22).",
+          "The reported accuracy–cost trade-offs are generally favorable relative to the included baselines, including roughly 40% savings with small losses in several settings (p. 9)."
+        ],
+        "weaknesses": [
+          "The theory contains substantive errors and missing assumptions: nearest-neighbor convergence requires distributional support/regularity not stated in Lemma 4.5, while Lemma 4.6 incorrectly gives sample-mean variance proportional to 1/sqrt(K) rather than 1/K (pp. 6, 23). Thus the advertised guarantees are not established as written.",
+          "The separation evidence is weak and partly vacuous for finite datasets: nonzero inter-class distances do not establish a useful population margin or meaningful Lipschitz constants, and measured nearest-neighbor distances remain appreciable at the tested sample sizes (pp. 15–17). The guarantees therefore provide little control of finite-sample routing error.",
+          "Novelty and evidence against competitive routing methods are limited. The method is essentially k-NN correctness prediction followed by a standard multiple-choice knapsack solver, and comparisons omit confidence-based routing/cascades and broader learned-router baselines; evaluation is restricted to IID image classification (pp. 3, 8–10)."
+        ],
+        "score_rationale": "The practical formulation and empirical breadth are valuable, but the erroneous variance result, incomplete consistency argument, weak finite-sample justification, and limited baseline coverage undermine the paper’s central claim of principled routing with statistical guarantees. I am moderately confident, with some uncertainty about how readily the theoretical statements could be repaired."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "OCCAM routes each query among pretrained classifiers by estimating per-model correctness from labeled nearest neighbors and solving a budget-constrained multiple-choice knapsack/ILP. The practical accuracy–cost curves are promising, but the central theoretical claims do not match the implemented deterministic setting and contain substantive gaps.",
+        "strengths": [
+          "The problem is practically relevant, and the routing-plus-budget formulation is clear and easy to implement (pp. 4–7).",
+          "Experiments cover four datasets, several feature metrics, and a larger 101-model pool, generally showing favorable cost–accuracy trade-offs (pp. 9, 17–21).",
+          "The appendices provide useful sensitivity, overhead, complementarity, and oracle-upper-bound analyses (pp. 19–23)."
+        ],
+        "weaknesses": [
+          "The guarantees are not technically established as stated: “uniform” sampling from the general space is undefined, nearest-neighbor convergence needs support/regularity assumptions, Lemma 4.5 uses an invalid equality involving absolute expectations, and Lemma 4.6 reports variance scaling as 1/sqrt(K) rather than the usual 1/K for independent averages (pp. 6, 23).",
+          "Theory analyzes randomized soft classifiers and access to their success probabilities, whereas Algorithm 1 records binary sample correctness and evaluation uses deterministic argmax predictions. Lipschitz continuity of the deployed classifiers is neither enforced nor measured, so the estimator guarantees do not apply directly to the experiments (pp. 5–7, 24).",
+          "Novelty is limited to nearest-neighbor correctness estimation followed by a standard knapsack ILP, while evidence lacks uncertainty estimates and comparisons to stronger confidence-based/cascade routers. The claimed separation evidence merely shows nonzero finite-sample inter-class distances and does not demonstrate a useful margin or estimator bound (pp. 8–10, 15–18)."
+        ],
+        "score_rationale": "The empirical results suggest a useful heuristic, but the paper presents it as a principled, guaranteed method while key proofs are incorrect or underspecified and the theoretical estimator differs from the implementation. Combined with modest algorithmic novelty and limited baseline/statistical validation, this places the work below the acceptance threshold, though the extensive empirical evaluation prevents a stronger rejection."
+      }
+    }
+  ]
+}

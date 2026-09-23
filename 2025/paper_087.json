@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_087",
+  "paper_id": "MGKDBuyv4p",
+  "number": 12369,
+  "title": "Mitigating Memorization in Language Models",
+  "authors": "Mansi Sakarvadia; Aswathy Ajith; Arham Mushtaq Khan; Nathaniel C Hudson; Caleb Geniesse; Kyle Chard; Yaoqing Yang; Ian Foster; Michael W. Mahoney",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "language models; memorization; machine unlearning; regularization; fine-tuning; natural language processing",
+  "forum_url": "https://openreview.net/forum?id=MGKDBuyv4p",
+  "venue": "ICLR 2025 Spotlight",
+  "status": "accepted_spotlight",
+  "decision": "Accept (Spotlight)",
+  "human_ratings": [
+    8,
+    6,
+    8
+  ],
+  "human_mean_rating": 7.333333333333333,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This manuscripts presents a comparison of 17 methods for reducing memorization in large language models (LLMs) as well as a testbench \n for measuring model memorization comprising of a set of small models called TinyMem. The authors find that the BalanceSubnet method is the most effective at reducing model memorization while preserving performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The authors present a comprehensive comparison of 17 methods for reducing memorization.\n\nApplying the TinyMem test bench to larger models (Pythia) demonstrates the generalizability of the result"
+        },
+        "weaknesses": {
+          "value": "No major methodological weaknesses, however I find this study to be a straightforward comparison of several (existing and new) techniques without any particular novel insights. While this type of work is useful, the authors should extend the work by investigating why the best method works well or extracting practical insights from the results (beside stating that the method is most effective)."
+        },
+        "questions": {
+          "value": "What does the test accuracy in Table 1 represent?\nThe perplexity scores in Table 2&3 are quite high - can you describe how these are calculated and on what dataset?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xkK9Vc8Yn6",
+      "forum": "MGKDBuyv4p",
+      "replyto": "MGKDBuyv4p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12369/Reviewer_zLBY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12369/Reviewer_zLBY"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12369/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730866844576,
+      "cdate": 1730866844576,
+      "tmdate": 1732400870209,
+      "mdate": 1732400870209,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper points out that developing and evaluating memorization mitigation strategies for open-sourced LLMs is a critical challenge due to the lack of memorized data or a big-time cost. To address these issues, the authors first propose a suite of GPT2-style models, namely TinyMem, to rapidly develop and evaluate memorization mitigation strategies. Based on TinyMem, this paper investigates three classes of existing methods, including training-time regularizer-based strategies, post-training fine-tuning-based strategies, and post-training unlearning-based strategies. Additionally, this paper also proposes five new unlearning-based methods. The experimental results show the effectiveness of these proposed methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. This paper focuses on the critical problems, namely, the challenges of developing and evaluating memory elimination methods directly on large models.\n2. This paper innovatively proposes a series of small GPT2-style models (TinyMem), which is used to conduct memorization injection and memorization mitigation experiments in a quick and computationally efficient way. \n3. This paper proposes five new unlearning-based methods, and among them, BalancedSubnet outperforms other methods at removing memorized information while preserving performance on target tasks."
+        },
+        "weaknesses": {
+          "value": "1. I am afraid that the evaluation results of different methods on TinyMem cannot truly reflect the performance of these methods in the memorization elimination of LLMs. On the one hand, the results in Table 1 and Table 2 show that some unlearning-based methods do not perform consistently in different types of tasks and memorization elimination. So how to effectively compare the comprehensive performance of different methods? On the other hand, the types of memorization within LLMs that need to be mitigated in practical applications are more complex and diverse. The two types of memorization (Noise and Backdoor) may be too simple compared to the real harmful memorization. The evaluation based on these two memorizations may hardly represent the ability of different methods to eliminate different types of memory within LLMs.\n2. The innovation of the five proposed methods and their differences from previous methods should be introduced in detail. Additionally, although the algorithms are listed in the appendix, they still lack detailed introductions, which are difficult to understand.\n3. Lack of detailed analysis of the reasons for the good performance of BalancedSubnet."
+        },
+        "questions": {
+          "value": "1. In Line 066, \"the few existing models with known memorized data are large\" lacks detailed examples and references.\n2. In lines 143-144, why test whether the next n−k tokens are matched with the clean sequence? Shouldn't it still match with the noise sequence? Or only disturb the first k words of one sequence?\n3. Why is there a big difference in the mitigation performance and time of the same method in Nosie and Backdoor? Is there a difference in the difficulty of eliminating different types of memorization? The time consumption of the BalancedSubnet method in Table 1 is 0.00. How is it calculated here? Is there an error?\n4. It is recommended to bold the best results in all tables.\n5. The tenses in Lines 327-336 are not consistent."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PBC5QTTUtB",
+      "forum": "MGKDBuyv4p",
+      "replyto": "MGKDBuyv4p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12369/Reviewer_phyr"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12369/Reviewer_phyr"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12369/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730292168121,
+      "cdate": 1730292168121,
+      "tmdate": 1732499953852,
+      "mdate": 1732499953852,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper focuses on addressing the challenge of language models (LMs) memorizing sensitive or private data during training, leading to potential issues such as data leakage. The primary contributions of the paper are:\n\n1. TinyMem: The introduction of TinyMem, a suite of small, computationally efficient GPT2-style models that enable rapid prototyping and evaluation of memorization mitigation strategies.\n\n2. Comprehensive Evaluation: An empirical evaluation of three main strategies for mitigating memorization: regularizer-based methods, fine-tuning-based methods, and machine unlearning-based methods, with five new unlearning-based approaches being proposed.\n\n3. BalancedSubnet: Among the newly introduced methods, the BalancedSubnet unlearning method is highlighted for its superior performance in reducing memorization while preserving model performance across different datasets.\n\n4. Applicability to Larger Models: The paper demonstrates that mitigation techniques developed using TinyMem can be successfully applied to production-grade models, such as the Pythia series, validating their effectiveness in real-world settings.\n\nThe paper provides a detailed analysis of these strategies, focusing on the trade-offs between mitigating memorization and maintaining model accuracy"
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper first introduces TinyMem, a new suite of lightweight models specifically designed for rapid testing of memorization mitigation strategies. Additionally, the proposal of five new unlearning-based methods, including the innovative BalancedSubnet approach, adds contribution to the field. This work also highlights a novel way of applying unlearning-based techniques to real-world, production-grade models, bridging the gap between research and application.\n\n2. Extensive experiments involve 17 memorization mitigation strategies, including both existing and newly proposed methods. The experiments are carefully designed to compare regularizers, fine-tuning methods, and unlearning-based strategies under diverse training conditions. The comprehensive analysis across different model sizes, data types, and training durations demonstrates the robustness of the findings. The use of Pythia models to validate the transferability of the methods adds credibility to the results.\n\n3. The paper is well-structured and clear, with a logical flow from the problem of memorization in LMs to the proposed solutions and experimental results. The introduction of key concepts such as TinyMem and BalancedSubnet is explained effectively, and the figures, while not in vector graphic format, are useful in illustrating results."
+        },
+        "weaknesses": {
+          "value": "This paper seems to be missing some important unlearning baseline methods, e.g., Gradient Ascent + Descent and Gradient Ascent + KL divergence [1].\n\n[1] Jin Yao, Eli Chien, Minxin Du, Xinyao Niu, Tianhao Wang, Zezhou Cheng, and Xiang Yue. 2024. Machine Unlearning of Pre-trained Large Language Models. In Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 8403–8419, Bangkok, Thailand. Association for Computational Linguistics."
+        },
+        "questions": {
+          "value": "Can you describe the difference between the setting of mitigating memorization and knowledge editing? It seems like the gradient-based methods of these settings are similar."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "TJ7aJjLBz0",
+      "forum": "MGKDBuyv4p",
+      "replyto": "MGKDBuyv4p",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12369/Reviewer_osoQ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12369/Reviewer_osoQ"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12369/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729152061924,
+      "cdate": 1729152061924,
+      "tmdate": 1731466858326,
+      "mdate": 1731466858326,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents TinyMem and a broad empirical comparison of 17 memorization-mitigation methods, including BalancedSubnet, which learns a weight mask using forget and retain objectives. The empirical scope is substantial, and BalancedSubnet shows a favorable memorization–perplexity tradeoff on TinyMem and Pythia. However, circular hyperparameter selection, limited unlearning verification, and material algorithmic inconsistencies weaken the central conclusions.",
+        "strengths": [
+          "Broad comparison across regularization, fine-tuning, and unlearning, including varying model sizes, training stages, datasets, and artifact types (pp. 6–9, 31–35).",
+          "TinyMem is a potentially useful, configurable testbed whose memorization trends broadly mirror known effects of duplication, scale, and training duration (pp. 17–20).",
+          "BalancedSubnet combines a learned sparse mask with a retain-set objective and achieves strong reported tradeoffs on Pythia 2.8B/6.9B, substantially reducing exact regurgitation with relatively small perplexity increases (p. 9)."
+        ],
+        "weaknesses": [
+          "Hyperparameters are selected directly using the same memorization and test-utility outcomes subsequently reported, with no validation split; BalancedSubnet also receives a comparatively large search space. This creates substantial selection bias (pp. 30, 39–40). The regularizer criterion on p. 21 even maximizes accuracy plus percent memorized, apparently rewarding memorization.",
+          "Evidence of genuine unlearning is weak: evaluation mainly tests exact greedy continuation under the original prefix, without alternate prompts, extraction attacks, relearning/recovery tests, membership measures, comparison to retraining, or broad downstream utility. Pythia utility is only perplexity on 1,632 sampled Pile sequences (pp. 9, 39).",
+          "The technical specification is internally inconsistent and sometimes ambiguous: BalancedSubnet is described as model-wise, but Algorithm 6 drops top-k weights per layer; K is defined model-wide; vector loss/mask operations are underspecified; and Greedy's pseudocode appears to use only the final parameter score when dropping a weight (pp. 24–29, 36)."
+        ],
+        "score_rationale": "The testbed and empirical breadth are valuable, and the Pythia results suggest BalancedSubnet is promising. Nevertheless, outcome-based model selection and insufficiently adversarial unlearning evaluation prevent the evidence from supporting the paper's broad claims, while pseudocode inconsistencies raise reproducibility concerns. These issues place the work below the acceptance threshold despite its strong experimental effort."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents TinyMem and a broad empirical comparison of 17 memorization-mitigation strategies, including the proposed BalancedSubnet. Results on synthetic/toy settings and Pythia 2.8B/6.9B suggest a favorable memorization–perplexity trade-off, but the evaluation primarily demonstrates suppression of known greedy-decoded strings rather than robust removal of training-data influence.",
+        "strengths": [
+          "The study is unusually broad, comparing regularization, fine-tuning, neuron-level, and weight-level approaches across model sizes, training stages, datasets, and artifact types (pp. 6–10, 31–41).",
+          "BalancedSubnet is a sensible combination of sparse-mask optimization and a retain-set objective, and it achieves strong trade-offs on Pythia: large memorization reductions with relatively small perplexity increases (pp. 9, 23–27).",
+          "TinyMem offers a configurable, computationally accessible testbed whose memorization trends qualitatively match known effects of duplication, dataset size, and model size (pp. 17–20)."
+        ],
+        "weaknesses": [
+          "The decisive metric tests the same known sequences targeted during editing, under one fixed prefix and greedy decoding; there are no held-out related strings, alternative prompts/decoders, extraction attacks, relearning tests, or membership-style evaluations. Thus reduced exact regurgitation does not establish that information was removed (pp. 3, 19, 24–27, 39).",
+          "Utility preservation is assessed mainly through token accuracy or perplexity on a small retain/test sample, without downstream capabilities, factual consistency, neighboring knowledge, or broader generation quality. This is especially concerning because BalancedSubnet removes roughly 2–10% of billions of weights (pp. 9, 36–38).",
+          "Model and hyperparameter selection use the reported memorization and utility metrics after very large sweeps, creating substantial selection bias; the math regularizer criterion even maximizes accuracy plus percent memorized, apparently rewarding memorization (pp. 21, 30, 39–40). Main Pythia results also lack uncertainty estimates."
+        ],
+        "score_rationale": "The benchmark breadth, scale, and strong empirical results make this potentially useful, but the novelty is mostly a straightforward combination of existing mask optimization and a dual objective. More importantly, the evaluation cannot distinguish genuine unlearning from overfitting an edit to known exact-string queries, while the paper repeatedly claims removal of memorized information. These issues place it marginally below acceptance, although a robust held-out extraction and utility evaluation could materially change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents TinyMem, a broad comparison of 17 memorization-mitigation methods, and five new weight-ablation approaches, with BalancedSubnet combining a learned sparse mask and a retain-set objective. The breadth and Pythia-scale experiments are valuable, but errors and selection bias in the evaluation protocol substantially weaken the claimed superiority of BalancedSubnet and the broader conclusions.",
+        "strengths": [
+          "The study is unusually broad, comparing regularization, fine-tuning, neuron-level unlearning, and weight-level unlearning across model sizes, training stages, datasets, and artifact types (pp. 6–10, 31–41).",
+          "BalancedSubnet is a sensible, practically useful extension of Subnet: its retain-set term directly addresses collateral performance loss, and the reported Pythia trade-offs are promising (pp. 5, 9, 24, 27).",
+          "TinyMem offers a configurable, inexpensive testbed and reproduces several expected memorization trends involving duplication, dataset size, and model size (pp. 17–20)."
+        ],
+        "weaknesses": [
+          "Several model-selection objectives appear mathematically wrong. The math regularizer criterion maximizes accuracy plus memorization, explicitly rewarding memorization (p. 21). The math unlearning criterion minimizes memorization difference plus accuracy difference; because both are plotted as negative decreases, it can reward accuracy destruction (pp. 30, 32–33). These errors compromise reported “best-run” comparisons.",
+          "Hyperparameters are selected on the same memorization and utility metrics used for reporting, with highly unequal search budgets—BalancedSubnet receives 72 configurations while several baselines receive only 5–6—and Pythia results lack repeated-mask seeds or uncertainty estimates (pp. 30, 39–40). Thus the claimed consistent superiority may partly reflect tuning and selection bias.",
+          "Evaluation establishes suppression under one known prefix and greedy exact-match test, not robust removal. Pythia utility is measured only by perplexity on 1,632 Pile sequences, without downstream tasks, held-out targets, paraphrased/alternative prefixes, extraction attacks, or relearning tests (pp. 3, 8–10, 39). The paper itself notes that supposedly unlearned content can remain elicitable (p. 10)."
+        ],
+        "score_rationale": "The benchmark breadth and large-model results make this a potentially useful contribution, but the erroneous selection formulas and best-of-sweep evaluation prevent firm conclusions about comparative performance. BalancedSubnet is promising but conceptually incremental and insufficiently validated for robust unlearning. I therefore rate the work marginally below acceptance, with some uncertainty about whether the stated formulas differ from the actual implementation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents TinyMem and a broad comparison of 17 memorization-mitigation methods, including the proposed dual-objective sparse-mask method BalancedSubnet. Results on synthetic/toy models and Pythia 2.8B/6.9B are promising, but the evaluation chiefly demonstrates suppression of known sequences under the same fixed-prefix greedy test used during optimization, rather than robust removal of their influence.",
+        "strengths": [
+          "The study has unusually broad empirical coverage across mitigation families, model sizes, training stages, artifact types, and efficiency measures (pp. 6–10, 31–41).",
+          "BalancedSubnet is a sensible extension of learned subnetwork localization: its retain-set objective directly addresses the utility degradation of Subnet, and it shows a strong memorization–perplexity tradeoff on Pythia (pp. 5, 9, 24–27).",
+          "TinyMem is a potentially useful, configurable testbed, and the paper validates several expected memorization trends before transferring methods to 2.8B/6.9B models (pp. 17–20, 39)."
+        ],
+        "weaknesses": [
+          "The principal evaluation appears to optimize and select hyperparameters using the same known memorized sequences and reported memorization metric, with no held-out forget sequences. It tests only exact greedy continuation from one fixed prefix (pp. 3, 19, 30, 39–40), so the results may reflect target-specific suppression rather than localization or unlearning; alternate prefixes, sampling/extraction attacks, relearning, and membership-style tests are absent.",
+          "Model utility is assessed mainly through aggregate accuracy or perplexity on small retain/test sets, rather than downstream capabilities or localized collateral effects. Pythia perplexity uses only 1,632 sampled Pile sequences, and no uncertainty or independent repetitions are reported for the large-model experiments (pp. 9, 39).",
+          "Model selection and comparisons have methodological problems: methods receive unequal search budgets, best runs are selected directly by the reported outcomes, and the regularizer criterion maximizes accuracy plus memorization—apparently rewarding memorization (Eq. 3, p. 21). Runtime comparisons also contrast full-training overhead, multi-epoch fine-tuning, and post-hoc editing without a normalized compute protocol (pp. 6–7, 30, 39–40)."
+        ],
+        "score_rationale": "The benchmark breadth, scaling experiments, and BalancedSubnet results make this a substantial empirical contribution. However, the lack of held-out and adversarial forgetting evaluation, outcome-driven hyperparameter selection, and limited utility assessment leave the central claim of precise information removal insufficiently supported. I therefore place it marginally below acceptance; uncertainty remains because some selection-criterion issues could be presentation errors rather than implementation errors."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper presents TinyMem and a broad empirical comparison of 17 memorization-mitigation methods, including BalancedSubnet, across small synthetic/Wikipedia models and Pythia 2.8B/6.9B. The scope is substantial, but the evidence primarily establishes suppression of exact greedy completions under oracle-selected settings, not reliable removal of training-data influence.",
+        "strengths": [
+          "Broad comparison across regularization, fine-tuning, and neuron-/weight-level interventions, with variation in model size, training duration, and dataset size (pp. 6–9, 31–35).",
+          "BalancedSubnet has a sensible dual objective and yields a strong empirical perplexity–memorization tradeoff on Pythia relative to included baselines (pp. 9, 24–27).",
+          "The appendices provide extensive implementation, hyperparameter, computational-cost, and scaling details (pp. 17–43)."
+        ],
+        "weaknesses": [
+          "Evaluation reuses known target sequences, exact prefixes, greedy decoding, and hyperparameter selection based directly on post-edit memorization; there are no adaptive extraction attacks, alternate prompts/decoding, relearning tests, or held-out forgetting targets. Thus the results can reflect output suppression or benchmark overfitting rather than unlearning (pp. 3, 30, 39–40).",
+          "Model-selection rules are problematic: regularizer selection for math maximizes accuracy plus percent memorized, directly rewarding memorization (p. 21), while the math unlearning rule is inconsistently defined and appears to minimize a sum involving negative accuracy change, potentially rewarding accuracy destruction (p. 30). This undermines reported best-run comparisons.",
+          "The broader claims exceed the evidence: backdoor behavior on held-out corrupted examples is generalization rather than memorization under the paper's own definition (pp. 3, 17), and utility is assessed mainly through perplexity on only 1,632 Pile sequences rather than downstream capabilities or collateral knowledge loss, despite pruning up to several percent of Pythia weights (pp. 36–40)."
+        ],
+        "score_rationale": "The work is ambitious and BalancedSubnet appears promising, but flawed oracle/model-selection procedures and a narrow exact-regurgitation evaluation prevent the central claims of precise, robust unlearning from being established. I am confident these are substantive issues, though some selection-rule inconsistencies could be presentation errors rather than implementation errors."
+      }
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_020",
+  "paper_id": "zMQT22aG23",
+  "number": 6322,
+  "title": "MSRS: Adaptive Multi-Subspace Representation Steering for Attribute Alignment in Large Language Models",
+  "authors": [
+    "Xinyan Jiang",
+    "Lin Zhang",
+    "Jiayi Zhang",
+    "Qingsong Yang",
+    "Guimin Hu",
+    "Di Wang",
+    "Lijie Hu"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "representation finetuning",
+    "activation steering",
+    "interpretability"
+  ],
+  "forum_url": "https://openreview.net/forum?id=zMQT22aG23",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    6
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "BpEMTMLtDs",
+      "forum": "zMQT22aG23",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761982247116,
+      "tmdate": 1762918617042,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "G9l2SLvB75",
+      "forum": "zMQT22aG23",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761998276181,
+      "tmdate": 1762918616291,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "Ms4TJim1Pn",
+      "forum": "zMQT22aG23",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762159396259,
+      "tmdate": 1764357959449,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "tbMXYk8VrP",
+      "forum": "zMQT22aG23",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761778639210,
+      "tmdate": 1762918617802,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "MSRS combines SVD-derived shared/private activation subspaces, adaptive masking, and token-position selection for multi-attribute steering. The direction is relevant and experiments are broad, but major formulation ambiguities and extensive numerical inconsistencies undermine technical soundness and the credibility of the reported gains.",
+        "strengths": [
+          "Addresses an important multi-attribute steering problem with an intuitively useful shared/private subspace decomposition (pp. 4–5).",
+          "Evaluates several model families, attribute pairs, and general benchmarks, with ablations on subspaces, positions, layers, and hyperparameters (pp. 6–9, 18–26).",
+          "Explicitly studies scaling limits and reports degradation as the attribute count approaches 9–10 rather than claiming unlimited scalability (pp. 9–10, 30–33)."
+        ],
+        "weaknesses": [
+          "The mathematical specification is not sound or reproducible as written: the task loss applies softmax directly to a hidden representation rather than downstream vocabulary logits; concatenation notation is dimensionally inconsistent; orthonormality is not enforced; and basis-wise cosine alignment is not invariant to equivalent subspace bases (pp. 4–5, 15–16). It is uncertain whether these are exposition errors or reflect the implementation.",
+          "Results conflict across the paper. Table 1's Llama-3 MSRS row mixes values associated with different configurations in Tables 12 and 15; the dynamic-position ablation sometimes hurts Alpaca, refusal, and helpfulness despite claims of consistent improvement (pp. 6, 8, 22, 25). MMLU aggregates in Table 2 also appear incompatible with the much higher per-subject values in Table 6, whose rows contain suspicious repeated numbers across models (pp. 7, 18).",
+          "Experimental validity is insufficiently documented: training splits, exact paired examples, model-specific tuning, and leakage controls are unclear; evaluators change from GPT-3.5 to GPT-4o between sections (pp. 6, 16); and the mechanism by which attribute steering produces large improvements on unrelated GLUE/MMLU tasks is not explained (pp. 7, 18–20). The method is also mostly an incremental assembly of ReFT/CS-ReFT-style subspaces, SVD initialization, routing, and token selection."
+        ],
+        "score_rationale": "The core idea is promising and the empirical scope is substantial, but the incorrect/ambiguous objective and numerous cross-table contradictions prevent trusting the central evidence. These issues require major correction and rerunning or auditing experiments, supporting a reject score rather than a marginal rating."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "MSRS combines SVD-derived shared/private subspaces, adaptive masking, and token-position selection for multi-attribute activation steering. The problem is important and the empirical scope is broad, but major formulation errors and pervasive result inconsistencies make the central claims unreliable.",
+        "strengths": [
+          "Addresses the practically relevant problem of interference in simultaneous multi-attribute steering with a reasonably intuitive shared/private-subspace design (pp. 2–5).",
+          "Evaluates several model families, attribute pairs, general benchmarks, and computational costs (pp. 6–10, 20–25).",
+          "Includes useful component studies covering subspace allocation, intervention positions, layers, ranks, and scaling with attribute count (pp. 8–10, 22–33)."
+        ],
+        "weaknesses": [
+          "The method is not technically well specified: the task loss applies Softmax directly to a hidden representation rather than passing it through the remaining LM, the alignment loss requires R and Salign to have matching shapes without ensuring this, and Algorithm 1 contains inconsistent matrices/indices. Thus the stated optimization cannot be implemented as written (pp. 4–5, 15–16).",
+          "The claimed orthogonal attribute-specific subspaces are not produced: each private space is only projected away from the shared space, not from other private spaces. The appendix explicitly reports private-space overlap and contrasts MSRS with strict pairwise orthogonality, contradicting central claims that orthogonal allocation prevents interference (pp. 1–4, 29–33).",
+          "Reported evidence has serious internal inconsistencies. Main MSRS results do not match either default MSRSAttribute or token-selection configurations (pp. 6, 8, 21–22); Table 15's R=4 row exactly reproduces the unsteered baseline (p. 25); and many Mistral MSRS MMLU entries closely duplicate the LLaMA3 MTL-LoRA row (p. 18). Evaluation protocols for the surprisingly broad general-benchmark gains are also insufficiently specified."
+        ],
+        "score_rationale": "The core idea has moderate novelty and potentially useful empirical breadth, but the mathematical specification is dimensionally/in procedurally invalid, the orthogonality premise is contradicted by the actual construction, and multiple tables raise substantial data-integrity and reproducibility concerns. These are central rather than cosmetic issues, warranting rejection despite uncertainty about whether some errors are merely transcription mistakes."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "MSRS combines shared/private SVD-derived subspaces, adaptive masking, and token-position selection for multi-attribute representation steering. The topic is important and the empirical scope is broad, but central mathematical claims and reported results are insufficiently consistent to support the conclusions.",
+        "strengths": [
+          "Addresses a practically relevant limitation of activation steering and presents an intuitive shared/private subspace design (pp. 2–5).",
+          "Evaluates several model families, attributes, general benchmarks, and computational costs, with multiple ablations and sensitivity studies (pp. 6–10, 20–26).",
+          "The scaling experiment candidly shows degradation as the number of attributes grows, rather than claiming unrestricted scalability (pp. 9–10, 18)."
+        ],
+        "weaknesses": [
+          "The technical formulation is not sound or reproducible as written: cross-entropy is applied directly to an intervened hidden state rather than model output logits; the Frobenius alignment requires R and the adaptively sized Salign to have identical shapes without explaining how this is ensured; and neither the objective nor extraction makes private subspaces mutually orthogonal. The appendix explicitly reports nonzero private-subspace overlap, contradicting the abstract and main claims (pp. 1, 4–5, 15–16, 29, 32).",
+          "Results are internally inconsistent and appear to mix configurations. Dynamic token selection is claimed to consistently outperform fixed-token steering, yet it lowers Alpaca, refusal, helpfulness, or coherence on Llama3 and Qwen; moreover, main-table entries combine values associated with different intervention settings and do not consistently match either row (pp. 6, 8, 21–22). Evaluators also change from GPT-3.5 on p. 6 to GPT-4o on p. 16.",
+          "The evidence for preserved or improved general ability is difficult to interpret: the method is trained with task-specific labels, but the paper does not clearly separate steering-training data from benchmark evaluation or explain very large unrelated-task gains. Several appendix results are suspiciously duplicated across models/methods, especially MMLU rows, further weakening confidence (pp. 5–7, 18–20)."
+        ],
+        "score_rationale": "The combination of SVD priors, shared/private representation subspaces, masking, and token selection offers moderate novelty over ReFT/CS-ReFT and the evaluation is extensive. However, contradictions in the claimed orthogonality, underspecified or dimensionally problematic optimization, configuration mixing, and striking table inconsistencies undermine technical soundness and evidential reliability. I therefore rate it a reject rather than marginal acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "MSRS combines shared/private SVD-derived subspaces, adaptive masking, and token-level intervention for multi-attribute steering. The problem is important and the empirical scope is broad, but major formulation ambiguities and pervasive internal inconsistencies make the central evidence unreliable as presented.",
+        "strengths": [
+          "Addresses the practically important and underexplored problem of jointly steering potentially conflicting attributes.",
+          "Evaluates several model families, attribute pairs, general benchmarks, efficiency, scaling, and multiple ablations (pp. 6–10, 18–33).",
+          "The shared/private subspace design and analysis of degradation as attribute count grows are intuitively motivated, with limitations beyond roughly eight attributes explicitly exposed (pp. 9–10, 30–32)."
+        ],
+        "weaknesses": [
+          "The technical formulation is not sound or complete as written: cross-entropy is applied directly to the hidden representation rather than logits from the remaining model; the Frobenius cosine alignment is basis-, ordering-, and sign-dependent rather than a valid subspace-distance objective; and private subspaces are not mutually orthogonal despite repeated headline claims (pp. 1, 4–5, 15–16, 32–33). How multiple attribute-specific token interventions and masks are composed is also underspecified.",
+          "Reported results are internally inconsistent. The main MSRS rows do not match either fixed- or important-token results (pp. 6, 8, 22); HelpSteer uses GPT-3.5 on p. 6 but GPT-4o on p. 16; the scaling heatmaps report different n=1 TruthfulQA changes (8.19% on p. 10 versus 19.14% on p. 33); and many MMLU entries appear duplicated across unrelated model/method rows (p. 18). These issues undermine the claimed gains and reproducibility.",
+          "Novelty over ReFT/CS-ReFT and orthogonal multi-attribute steering is mainly an incremental combination of SVD allocation, masking, and a projection-norm token heuristic. Evaluation protocols, training data construction/splits, target-attribute signaling, baseline tuning, and why attribute steering should substantially improve unrelated benchmarks are insufficiently specified; automated judging also lacks human validation."
+        ],
+        "score_rationale": "The proposed direction is promising, but acceptance-level technical soundness and empirical reliability are not established. Some issues could be notation or copy-editing errors, yet their number and their direct effect on headline comparisons warrant a reject score."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "MSRS combines shared/private SVD-derived subspaces, adaptive masking, and token-position selection for multi-attribute steering. The direction is relevant and experiments are broad, but substantial mathematical underspecification and internal inconsistencies make the reported gains unreliable.",
+        "strengths": [
+          "Addresses an important limitation of activation steering—interference among simultaneously controlled attributes—with an intuitive shared/private-subspace design (pp. 2–5).",
+          "Evaluates several model families, attribute pairs, general benchmarks, scaling behavior, runtime, and multiple ablations (pp. 6–10, 20–33).",
+          "The scalability study candidly shows degradation as the attribute count approaches 9–10 rather than claiming unlimited composability (pp. 9–10, 18)."
+        ],
+        "weaknesses": [
+          "The method is not technically well-defined: cross-entropy is applied directly to a hidden vector rather than downstream model logits; the Frobenius alignment requires R and Salign to have matching shapes despite adaptive ranks; and private subspaces are not mutually orthogonal, contradicting the central orthogonal-allocation claim (pp. 4–5, 16, 29–33).",
+          "Reported configurations and results are inconsistent. The declared default MSRSAttribute gives MC1=32.52, whereas the main table reports 34.91; the latter matches the separate R=8 table while mixing other values. Dynamic token selection is said to consistently outperform fixed steering, but it lowers Alpaca, refusal, helpfulness, or coherence on Llama3 and Qwen (pp. 6, 8, 22, 25).",
+          "Experimental validity is insufficiently documented: train/validation/test construction and possible activation-extraction leakage are unclear, evaluation judges conflict between GPT-3.5 and GPT-4o descriptions, significance tests are absent, and the mechanism by which attribute steering produces large GLUE/MMLU gains is not established (pp. 6, 15–19)."
+        ],
+        "score_rationale": "The core idea is plausible and empirically ambitious, but the undefined objective, contradiction about orthogonality, and numerous result/configuration mismatches prevent verification of the main claims. These are fundamental rather than presentation-only issues, warranting rejection despite the promising motivation."
+      }
+    }
+  ]
+}

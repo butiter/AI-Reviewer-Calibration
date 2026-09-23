@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_027",
+  "paper_id": "3Hy00Wvabi",
+  "number": 2616,
+  "title": "WorkflowLLM: Enhancing Workflow Orchestration Capability of Large Language Models",
+  "authors": "Shengda Fan; Xin Cong; Yuepeng Fu; Zhong Zhang; Shuyan Zhang; Yuanwei Liu; Yesai Wu; Yankai Lin; Zhiyuan Liu; Maosong Sun",
+  "primary_area": "generative models",
+  "keywords": "Large Language Models; Process Automation; Workflow; Tool Learning",
+  "forum_url": "https://openreview.net/forum?id=3Hy00Wvabi",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    6,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper argues that state-of-the-art models like GPT-4o face challenges in effectively handling complex workflows. To address this, the paper introduces WorkflowLLM, a data-centric framework designed to enhance the workflow orchestration capabilities of LLMs. Central to this framework is WorkflowBench, a large-scale fine-tuning dataset comprising 106,763 workflows, 1,503 APIs, and 83 applications across 28 categories. WorkflowBench is constructed through a three-phase pipeline: data collection from sources like RoutineHub, query expansion using ChatGPT to create diverse and complex workflows, and workflow generation leveraging a trained annotator model for high-quality workflow synthesis. The dataset is enriched with Python-style code, comments, and hierarchical thought structures to improve LLM learning.\n\nBased on WorkflowBench, the paper fine-tunes Llama-3.1-8B, resulting in WorkflowLlama, which demonstrates superior performance compared to existing models, including GPT-4o, on workflow orchestration tasks. WorkflowLlama achieves notable success in generalization to unseen APIs and tasks, evaluated using metrics such as CodeBLEU and Pass Rate. Additionally, WorkflowBench exhibits robust zero-shot generalization on the T-Eval benchmark, achieving an F1 plan score of 77.5%."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "S1)The observation and problems are interesting and relevant to the conference\n\nS2) The dataset might have potential uses\n\nS3)The experiments involve many systems"
+        },
+        "weaknesses": {
+          "value": "W1) The scientific or technical contributions are limited as the key contributions of paper are around data curation effort. And the significance of data size and quality  is not clear (see Q2). \n \nW2) Section 3 mentions many steps to generate the needed data for its workflow using ChatGPT but the Quality control protocol is not very clear. Even the author provides some examples and algorithms in appendix, the details are very descriptive . Also section4.2  mentions using  human evaluator to re-label the sampled data,It’d be better to provide more details towards the quality control protocol for this human-driven process as well.\n\nW3) Many technical details are not very clear (see questions)\n\nW4) Code is provided in supplemental material but there is no document how to reproduce the experiment results ( also see Q3)"
+        },
+        "questions": {
+          "value": "Q1)The “pass rate” is an important metric to evaluate the performance in section 4.3. Could you elaborate more on how it is calculated? What are the reasons to choose it? And how is related to training/fine-tuning phases?\n\nQ2)Could you  contextualize the size and the quality of the generated dataset   in terms of  how significant it is in comparison with SOTA or related works? Are they general enough for RPA for just for applications around Apple Shortcuts and RoutineHub?\n\nQ3) The papers also mention about fine-tuning Worfflow Lalama and annotator in a very short paragraph in section. Could you elaborate more about setup, why such training parameters are chosen?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "cADGH5KHDH",
+      "forum": "3Hy00Wvabi",
+      "replyto": "3Hy00Wvabi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_x9fK"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_x9fK"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2616/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731328212714,
+      "cdate": 1731328212714,
+      "tmdate": 1731427627334,
+      "mdate": 1731427627334,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a framework that leverages LLMs to automate workflow orchestration. It extends the real world dataset by creating synthetic data through LLMs, to train the model. It conducts experiment study to compare the proposed framework with several proprietary and open source models, using CodeBLEU and Pass Rate as the metrics."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper is well-written and easy to follow. Examples are given to illustrate the important steps. \n\nThe extended dataset improves the diversity and complexity of the samples in the training data, allowing the models to adapt to the situations that are closer to real-world applications. \n\nThe experimental results show that the proposed framework outperformed the existing models by a large margin."
+        },
+        "weaknesses": {
+          "value": "The paper mainly relies on prompting LLMs to generate the results of the key steps, such as data generation, commenting actions, and plan generating. It seems that there is a large space of prompt engineering to improve the performance but left to be undone. \n\nThe proposed framework bypasses the API selection when handling the OOD setting by directly serving the required APIs as the input. This greatly simplifies the problem of automating workflow orchestration. \n\nThe paper relies heavily on LLMs for the entire process, including generating the dataset, training the model, and evaluating the models (only less than 82% accuracy in a small sample with 330 instances in total). This weakens the technical contribution and the reliability of the experiment results."
+        },
+        "questions": {
+          "value": "Are the prompts used in the framework that drive the LLMs usage automatically generated?  If yes, how to ensure the quality of the prompts? If not, how to scale up?\n\nFor each step from data generation to model evaluation, how to optimize the prompts?\n\nThe description on quality confirmation is a bit vague. The example given about the issues is not clear. How are such issues detected? How to prompt ChatGPT to refine A’ and P’, and how to ensure the quality of the refinement? How to perform the rule-based filtering, e.g., how to automatically detect if parameter constraints are violated or not?\n\nFor OOD settings, how are the other models evaluated? Do they also be given the same input like the one for Workflow Llamma, i.e., providing the list of required APIs? \n\nGiven synthetic data takes the large portion of the final benchmark (91k out of 11k) but the quality is unsure, it would be interesting to also see how Workflow Llama performs on the real-word dataset, i.e., without the synthetic data, compared to other models? \n\nThe proposed framework outperforms all the other models by an extremely large margin in the first four columns in Table 2 (such as 9.4% vs 0.5). This seems to be suspicious and needs further examination and explanation. \n\nIn Table 2, both CodeBLEU and Pass Rate are used, one examines the similarity of code and one examines if the code is executable. It would be interesting to combine both of them, such as setting a threshold on the CodeBLEU score when checking the Pass Rate to compare models, since Pass Rate itself doesn’t necessarily indicate the success of the workflow orchestration."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "G7C2o1htGv",
+      "forum": "3Hy00Wvabi",
+      "replyto": "3Hy00Wvabi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_WEy1"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_WEy1"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2616/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730690428672,
+      "cdate": 1730690428672,
+      "tmdate": 1733148217991,
+      "mdate": 1733148217991,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a detailed explanation of the construction and evaluation of the WorkflowBench dataset, which contains many examples of workflow descriptions. The dataset is later used to fine-tune the open-source LLM Llama-3.1-8B.\nThe dataset creation follows a well-established and potentially reproducible approach. It starts with data gathering, expands to increase data diversity, and generates a final workflow dataset, enhancing real collected data with synthetic data.\nThe fine-tuning intends to overcome the limitations of existing LLMs in workflow orchestration and provide a consistent improvement in process automation by proposing an agentic approach.\nThe fine-tuned LLM called WorkflowLllama is detailed, and its capabilities are evaluated, showing a solid capacity to orchestrate complex workflows. Its performance was compared with commercial and open-source LLMs using the test set of Workflowbench."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper is well-presented and well-written overall. The authors identified a clear pain point in achieving an agentic LLM approach for process automation: lacking LLMs capable of correctly describing complex workflows. Although partially addressed by other works, as pointed out by the authors in the related work section (section 2), their approach is innovative in dealing with fairly more complex workflows than previous solutions.\n\nTheir approach to overcoming this limitation is sound and clever. They provide a fine-tuned LLM specialized to handle this kind of task.\nTo do so, they craft a well-defined dataset, and it is possible to highlight the process of dataset creation as one of the paper's main contributions, as crucial as the constructed dataset and the fine-tuned model.\nAfter the data collection, the query expansion phase is especially interesting because it uses another LLM (e.g., ChatGPT) to help overcome the lack of diversity and complexity of the gathered initial data with syntactic data. The same applies to the clever use of ChatGPT in the evaluation phase.\nCompared with other LLMs solving the same kind of problem, the presented results show the potential use of the author's solution to deal with the initial established problem, i.e., the automation of complex tasks.\nWorkflowLlama outperforms other LLMs when the workflow demands generalization to unseen instructions and unknown APIs.\n\nI also highlight the good approach to evaluating the effectiveness of the LLM-based evaluator (section 4.2), which strengthens the paper's arguments."
+        },
+        "weaknesses": {
+          "value": "- The background on automation's relevance (lines 36-38) might be condensed, as automation's importance is widely recognized.\n- In section 3.1, the author can better explain the $\\mathcal{D}$. The other elements were presented before, but  $\\mathcal{D}$ is directly introduced on line 248 without prior explanation.\n- Lines 245-247 read (my emphasis):  \"This bottom-up [...], efectively **ensuring content realiability** and **minimizing the risk of hallucination**\". These are pretty strong assumptions without solid evidence, especially if generalized to every LLM. Do the authors know published papers that confirm them (since this paper is not about reducing hallucinations)? If not, the phrase can be removed or rephrased to be more humble.\n- The paper lacks a clearer section on threats to validity. The authors provided some in Appendix E, but they should be incorporated into the main text.\n- The paper also lacks a more evident running example/use case. Although the authors provide a small case study in section 4.7 and some examples in Appendix D, a consistent running example, incorporated throughout sections, could clarify the model's applications and emphasize practical use cases.\n\nMinor issues:\n- Line 52 mentions GPT-4, while the rest of the paper uses GPT-4o(-mini). Maybe it is only a typo, or the work mentioned indeed uses the GPT-4 model. Since they are different models, it can be good to double-check every reference to ensure it always talks about the correct model, maybe highlighting somewhere they are not the same.\n- The size of Figure 2 can be increased to improve readability.\n- Figures 3,5 and 6 could improve accessibility through higher contrast colors.\n- Although well-written, the paper is sometimes repetitive (e.g., sections 1 and 3). Proofreading with this issue in mind may help the authors achieve a better final text."
+        },
+        "questions": {
+          "value": "I am curious about the choice of ChatGPT to run both the query expansion phase of the dataset creation (section 3.2) and the experiments (sections 4.1 and 4.2). Altough I think it was a good idea, why rely on a proprietary model (the GPT-4o) with proprietary and non-disclosed prompt engineering behind it? Did the authors try to use directly the GPT-4o model? Did they try other models to run this phase? I assume that the \"ease-of-use\" of the ChatGPT is a fair point in favor of its use, but it should be evident in the paper."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "Potential ethical considerations were taken into account in the Appendices."
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "45qx9rbs4b",
+      "forum": "3Hy00Wvabi",
+      "replyto": "3Hy00Wvabi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_yKyu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_yKyu"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2616/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730371250675,
+      "cdate": 1730371250675,
+      "tmdate": 1731427627561,
+      "mdate": 1731427627561,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a pipeline for constructing workflow (RPA) data to enhance LLMs' workflow orchestration capabilities. The core motivation stems from the observation that real-world workflows require more complex logic and longer sequences than what current LLMs can directly generate. The primary contribution is the construction of a dataset containing over 100K samples. The main limitations lie in the lack of certain technical details (such as specific ChatGPT versions used for annotation) and the lack of deeper investigation into model capability improvements."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "1. Accurate and valuable problem identification. The paper identifies the limitations of existing work in handling real-world workflows: difficulty in processing long-sequence workflows with complex logical relationships like control flow. This observation directly addresses practical application pain points, making the motivation very solid.\n2. Proposes a systematic data construction method. The paper designs a complete data synthesis process: from real data collection, workflow abstract representation, data synthesis to quality control, with detailed design considerations at each stage. The resulting large-scale dataset provides an important resource for this field.\n3. Comprehensive experimental validation. The effectiveness of the method is strongly supported through multi-dimensional evaluation using CodeBLEU and Pass Rate, cross-domain testing with T-Eval, along with detailed case analysis and ablation studies."
+        },
+        "weaknesses": {
+          "value": "1. Important technical details are missing. The paper mentions using ChatGPT for data annotation and optimization multiple times but doesn't specify the model version. For work with data construction as its core contribution, this seriously affects reproducibility and rigor.\n2. Lacks methodological innovation and mechanism analysis. Although data construction is an important contribution, the paper lacks in-depth analysis of how this data enhances model capabilities. Specifically, it doesn't investigate whether the improvements come from enhanced logical reasoning abilities or simply better format matching. Without such analysis, it's difficult to determine if the model has truly learned to reason about complex workflows or has merely memorized patterns from the training data.\n3. Missing critical ablation experiments. The paper doesn't compare the performance difference between the Annotator Model and WorkflowLLM, despite both models using the same training method and data type. This results in question the necessity of the data synthesis strategy and weakens the core argument.\n4. The paper mentions that the Annotator Model can generate workflows with over 70 actions, and theoretically WorkflowLLM should be capable of the same. Given the general limitations of LLMs in long sequence generation, including such long-sequence workflows in the appendix would further demonstrate the work's contribution.\n5. Given that the core contribution is data construction, whether the dataset will be open-sourced directly affects the practical value of the work. The authors should consider open-sourcing the dataset to promote development in this field."
+        },
+        "questions": {
+          "value": "1. The performance of generic LLMs in workflow orchestration through agent-like approaches would serve as an interesting baseline for comparison. Through this comparison, we could better understand whether the core challenge lies in the model's reasoning capabilities or in its ability to maintain consistent output formats. This point won't affect the score; it's just for discussion."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "gR3bJXgnec",
+      "forum": "3Hy00Wvabi",
+      "replyto": "3Hy00Wvabi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_mrzv"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2616/Reviewer_mrzv"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2616/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730365321936,
+      "cdate": 1730365321936,
+      "tmdate": 1732726134990,
+      "mdate": 1732726134990,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces WorkflowBench, a large Apple-Shortcuts-derived workflow dataset, and WorkflowLlama, an 8B model fine-tuned for generating long workflows with control flow. The scale and problem formulation are useful, and reported static-evaluation gains are large, but the evidence does not yet establish reliable executable workflow orchestration.",
+        "strengths": [
+          "A substantial dataset contribution: 106,763 workflows covering 1,503 APIs, with unusually long workflows and nested control structures (pp. 6–7).",
+          "WorkflowLlama shows large gains over strong baselines in both ID and held-out-API settings, and performance is broken down by workflow complexity (pp. 8–9).",
+          "The paper provides extensive construction details, prompts, ablations, and an external T-Eval transfer experiment (pp. 9–10, 15–20)."
+        ],
+        "weaknesses": [
+          "The central evaluation is not execution-based: CodeBLEU rewards similarity to generated references, while Pass Rate uses a deliberately permissive GPT-4o-mini judge with only 81.2% human agreement; actual execution is explicitly absent (pp. 7–8, 16–17, 27). This makes the claimed functional correctness uncertain.",
+          "Dataset generation and evaluation are partly circular: most data are workflows produced by an annotator trained on the seed data and refined by GPT-4o-mini, while the same model family judges outputs. Split construction, near-duplicate/version leakage, and contamination controls are insufficiently documented (pp. 6–8).",
+          "The showcased generated code contains an apparent Python syntax error (`{01/17/2020: Initial release}`) despite the claimed interpreter filtering, and other examples exhibit redundant or questionable logic, raising concerns about dataset quality and transcription fidelity (pp. 10, 23–27)."
+        ],
+        "score_rationale": "The scale, practical task, and strong reported gains make this promising, but the lack of executable evaluation and concerns about synthetic-data quality and benchmark circularity undermine the main technical claim. I therefore place it marginally below acceptance; uncertainty remains because released artifacts could enable checks not possible from the manuscript alone."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents WorkflowBench, a large Apple-Shortcuts-derived corpus, and WorkflowLlama, an 8B model trained for long, structured workflow generation. The scale and OOD gains are promising, but the central claims are not adequately validated because evaluation is static, permissive, and partly model-based, while appendix examples expose errors even in purportedly quality-controlled workflows.",
+        "strengths": [
+          "The dataset is unusually large and structurally rich: 106,763 workflows, 1,503 APIs, and substantial branching/nesting complexity (pp. 6–7).",
+          "WorkflowLlama substantially improves both reported CodeBLEU and judged pass rate over strong baselines in ID and unseen-API settings (p. 8), with complexity-stratified results supporting the intended use case (p. 9).",
+          "The T-Eval experiment and component ablations provide some evidence that benefits extend beyond memorizing the primary representation and that synthetic data and generated thoughts contribute (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "No workflows are actually executed; the main functional metric uses a deliberately lenient GPT-4o-mini judge with only 81.2% agreement on 330 non-independent model outputs, making the claimed 70–77% pass rates uncertain (pp. 7, 16–17, 27).",
+          "The supplied examples undermine data-quality claims: the transcribed workflow contains questionable/inverted duplicated conditions and literalized input expressions (pp. 22–23), while the generated example contains apparently invalid Python such as an unquoted dictionary entry despite syntax filtering (p. 26).",
+          "The benchmark construction and evaluation risk circularity: queries are synthesized bottom-up from workflows, synthetic labels are produced by an annotator trained on the seed set and refined by GPT-4o-mini, and evaluation provides golden APIs; split provenance, near-duplicate control, and stronger independent human evaluation are insufficiently documented (pp. 5–8, 19–20)."
+        ],
+        "score_rationale": "The scale, practical problem, and reported gains make this a potentially valuable resource contribution. However, visibly flawed examples and the absence of executable or rigorous independent correctness evaluation substantially weaken technical soundness and the main empirical conclusion. I therefore rate it below the acceptance threshold, while acknowledging uncertainty about how frequent the demonstrated defects are."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces WorkflowBench, a large Apple-Shortcuts-derived workflow-generation dataset, and WorkflowLlama, an 8B model trained on it. The scale, structured workflow representation, and reported gains are promising, but the central functional-quality claims rely on permissive static evaluation rather than execution, and the supplied examples expose serious data-quality issues.",
+        "strengths": [
+          "WorkflowBench is substantial in scale and structural complexity: 106,763 instances, 1,503 APIs, and explicit branches, loops, plans, and comments (pp. 6–7).",
+          "WorkflowLlama shows large, consistent gains over strong open and proprietary baselines in both ID and unseen-API settings, including 76.9%/70.4% reported pass rates (p. 8), with complexity-stratified analysis (p. 9).",
+          "The paper provides useful ablations, OOD T-Eval results, prompts, transcription details, and an explicit limitations section (pp. 9–10, 15–20, 27)."
+        ],
+        "weaknesses": [
+          "The decisive metric is not sufficiently reliable: GPT-4o-mini uses an explicitly lenient rubric, permits extra functionality, and obtains only 81.2% agreement on 330 model-stratified examples; no inter-human agreement, uncertainty, or judge bias analysis is reported (pp. 7, 16–17). CodeBLEU cannot establish functional correctness.",
+          "There is no execution-based evaluation (p. 27), and even the showcased generated code contains apparent syntax/semantic defects—e.g., an invalid unquoted dictionary entry and `input(...)` embedded as literal text—despite claims that filtering uses a Python interpreter (pp. 19, 26). This undermines confidence in dataset quality and pass rates.",
+          "Test construction, deduplication, and leakage controls are insufficiently specified, especially given closely related shortcuts, GPT-generated queries, and synthetic workflows. Main evaluation also supplies golden APIs (p. 8); the retriever analysis has very low precision/recall and only weak manual validation (pp. 19–20), limiting the claimed real-world generality."
+        ],
+        "score_rationale": "The dataset and strong reported improvements constitute a useful contribution, but the novelty is primarily data engineering and the evidence does not yet substantiate reliable workflow execution. Apparent invalid code in the appendix and underspecified split/leakage controls are material concerns. I therefore place it marginally below acceptance; uncertainty remains because the unavailable released artifacts might resolve some quality and deduplication issues."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a large workflow-orchestration dataset and an 8B fine-tuned model with substantial gains on its associated benchmark. The resource and Python-style transcription pipeline are potentially valuable, but the evaluation does not convincingly establish executable correctness or real-world generalization, and the appendix exposes quality problems that conflict with the stated filtering procedure.",
+        "strengths": [
+          "WorkflowBench is large and unusually complex, covering 106,763 instances, 1,503 APIs, and nested control structures; the transcription and documentation pipeline is clearly described (pp. 4–7, 15–19).",
+          "WorkflowLlama substantially improves both reported CodeBLEU and judged pass rate over strong prompted baselines, including under the paper's unseen-API split (p. 8).",
+          "Ablations and complexity-stratified results provide some evidence that synthetic data and hierarchical annotations help, while performance remains comparatively strong on longer and more nested workflows (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central correctness metric is a permissively prompted GPT-4o-mini judge that agrees with humans only 81.2%, explicitly tolerates extra functionality and approximate completion, and is not backed by execution; golden APIs are also supplied in the main evaluation (pp. 7–8, 16–17).",
+          "Dataset validity and leakage controls are insufficiently documented: queries are generated bottom-up from target workflows, the train/test splitting and shortcut-version or near-duplicate handling are unclear, and thus high benchmark performance may partly measure inversion of the construction process rather than realistic instruction-to-workflow generation (pp. 5–8).",
+          "The showcased generated workflow contains apparently invalid or nonfunctional constructs—e.g., an unquoted dictionary entry and strings containing `input(...)` rather than actual input calls—despite claims that interpreter filtering removes syntax and parameter errors (pp. 19, 26–27). The limited T-Eval plan-sequence result does not resolve this execution gap (p. 9)."
+        ],
+        "score_rationale": "This is a useful and potentially impactful data contribution with strong in-benchmark gains, but the absence of executable evaluation, unclear split hygiene, permissive model judging, and visible quality failures materially weaken the main technical claim. I am therefore marginally below acceptance, with some uncertainty because full dataset inspection is unavailable."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents WorkflowBench, a large Apple-Shortcuts-derived workflow-generation dataset, and WorkflowLlama, an 8B model trained on it. The scale and focus on long, nested workflows are useful, and the reported static-metric gains are substantial. However, the central functional-correctness evidence is not sufficiently reliable: workflows are never executed, the LLM judge is explicitly permissive, and an appendix example contains apparent invalid or semantically dubious code. Thus the work is promising but currently falls marginally below acceptance.",
+        "strengths": [
+          "A substantial resource: 106,763 workflows covering 1,503 APIs, with much greater action and control-flow complexity than typical tool-use datasets (pp. 6–7).",
+          "WorkflowLlama shows large improvements over strong baselines in both ID and nominal unseen-API settings, including 76.9%/70.4% judged pass rates (p. 8), with gains persisting across complexity levels (p. 9).",
+          "The paper includes useful ablations and an external T-Eval transfer experiment, supporting benefits from synthetic data and structured plans/comments beyond the primary benchmark (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "There is no execution-based evaluation (pp. 10, 27). The main pass-rate judge is instructed to accept code that only “roughly” accomplishes a task and to ignore extra functionality (p. 16); its 81.2% human agreement on 330 samples is modest and lacks sufficient annotation detail (p. 7).",
+          "Dataset quality is questionable despite filtering. The showcased generated workflow contains apparent invalid Python such as an unquoted dictionary entry and represents input() as a literal f-string rather than executing it (p. 26), directly conflicting with claims that retained code is syntactically valid and operational (pp. 18–19).",
+          "The benchmark supplies golden APIs in the main evaluation, simplifying real orchestration (p. 8), while split construction and leakage controls are under-specified. Since queries and plans are generated bottom-up from workflows and most data are model-generated/refined, near-duplicate structures or generator/judge biases could inflate results."
+        ],
+        "score_rationale": "The large, complex dataset and strong comparative results constitute meaningful novelty and potential impact. Nevertheless, the lack of executable validation, permissive and only partially validated LLM judging, and concrete quality failures in the supplied example undermine the main soundness claim. I would require stronger leakage analysis, rigorous human evaluation, and preferably execution or formal semantic testing before acceptance."
+      }
+    }
+  ]
+}

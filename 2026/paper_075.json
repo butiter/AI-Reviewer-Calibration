@@ -1,0 +1,209 @@
+{
+  "year": 2026,
+  "package_id": "paper_075",
+  "paper_id": "2ng0VavPXv",
+  "number": 18109,
+  "title": "Training-free LLM Verification via Recycling Few-shot Examples",
+  "authors": [
+    "Dongseok Lee",
+    "JIMYUNG HONG",
+    "Dongyoung Kim",
+    "Jaehyung Kim"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "test-time compute",
+    "LLMs"
+  ],
+  "forum_url": "https://openreview.net/forum?id=2ng0VavPXv",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    2
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "BfYdYgWyEs",
+      "forum": "2ng0VavPXv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission18109/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761933688540,
+      "tmdate": 1762927877518,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "eQpaGLKGMr",
+      "forum": "2ng0VavPXv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission18109/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761212371683,
+      "tmdate": 1762927878550,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "sY752jaQoU",
+      "forum": "2ng0VavPXv",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission18109/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761959115487,
+      "tmdate": 1762927877050,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ReFeri is a practical training-free candidate-selection heuristic that combines response likelihood with a reverse, demonstration-based signal. The evaluation is unusually broad and generally shows modest gains, but the central Bayesian interpretation has a serious sign/semantics inconsistency, and evidence over the strongest alternatives is not sufficiently decisive for clear acceptance.",
+        "strengths": [
+          "Simple, task-agnostic method requiring no verifier training, with evaluation across seven reasoning benchmarks, three generators, and several estimator sizes (pp. 5–8, 20–25).",
+          "Broad robustness analyses cover candidate-pool scaling, exemplar and prompt variation, estimator calibration, sampling variability, and computational cost (pp. 7–8, 20–25).",
+          "The method often improves over forward-only likelihood selection, with especially substantial gains on MuSR and weaker generators (pp. 6, 20)."
+        ],
+        "weaknesses": [
+          "The core formulation is conceptually contradictory: a candidate that increases demonstration likelihood has larger SBack, yet Eq. 11 subtracts SBack, penalizing the stated notion of consistency (pp. 3–4). Moreover, exact Bayes would merely recover unconditional P(y), while separate length normalization and incompatible prompt-conditioned LM probabilities break the claimed identity.",
+          "Improvements over strong baselines are modest and inconsistent. ReFeri loses on several individual tasks (p. 6), is below self-consistency on average for GPT-4o-mini, and only narrowly exceeds it for other models (p. 18); no statistical significance analysis is provided despite only three sampling runs (p. 20).",
+          "The claimed broad applicability remains under-supported: most experiments are automatically scored reasoning tasks, while open-ended evaluation is limited to two title/headline datasets using ROUGE (p. 19). Cost is also materially higher than same-size alternatives, with efficiency gains relying on comparing a 1B ReFeri estimator against 8B baselines (p. 22)."
+        ],
+        "score_rationale": "The idea is useful and supported by extensive experiments, but novelty appears incremental over likelihood-based Best-of-N scoring, and the unexplained sign contradiction undermines the advertised technical rationale. Given modest gains over strong baselines and limited open-ended evidence, I place it marginally below acceptance; uncertainty remains because the empirical heuristic may work despite its flawed Bayesian interpretation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ReFeri is a training-free Best-of-N selector combining candidate likelihood with a leave-one-out likelihood-ratio signal from few-shot demonstrations. Results across seven reasoning benchmarks and three generators show generally consistent but modest gains, with useful robustness and cost analyses. However, the central Bayesian/coherence interpretation is internally inconsistent, and the evidence does not fully establish superiority or broad open-ended applicability.",
+        "strengths": [
+          "Broad evaluation across seven tasks and three generation models, supplemented by three sampling runs and a strong Self-Certainty baseline (pp. 6, 20).",
+          "Practical analyses cover candidate-pool scaling, prompt/exemplar sensitivity, estimator sizes, calibration, and latency (pp. 7–8, 21–25).",
+          "The lightweight reuse of demonstrations is simple, training-free, and yields reproducible average improvements over random selection and several likelihood/prompt-based selectors (pp. 4–7)."
+        ],
+        "weaknesses": [
+          "The claimed backward “consistency” interpretation conflicts with the objective: candidates that increase demonstration likelihood have positive SBack, but Eq. 11 subtracts this quantity. Table 19 then reports that higher SBack identifies better task archetypes, meaning the final score penalizes the property advertised as beneficial (pp. 4, 24).",
+          "The Bayes motivation is weak technically: separately estimated and differently normalized conditional likelihoods—often from a model different from the generator—need not satisfy Eq. 5, while selecting one exemplar further turns the method into a heuristic. No comparison against a tuned linear combination or sign/weight ablation establishes that the Bayesian form is essential (pp. 3–4, 22–23).",
+          "Gains are uneven and sometimes absent or negative per task; uncertainty/significance is not reported for paired selection differences. The headline broad applicability is supported mainly by accuracy-style reasoning tasks, with only two small ROUGE-based personalization experiments for open-ended generation (pp. 6, 19–20)."
+        ],
+        "score_rationale": "The method is useful and empirically well explored, but its main conceptual justification contains a consequential sign/interpretation contradiction, and the improvements are modest without adequate statistical or objective-form ablations. I therefore place it marginally below acceptance, while acknowledging uncertainty because the extensive experiments suggest genuine practical value."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ReFeri ranks sampled responses using a forward likelihood and a demonstration-based backward term, requiring no verifier training. The idea is practical and evaluated broadly, but the Bayesian/consistency interpretation is internally problematic and the empirical advantage over strong aggregation baselines is modest.",
+        "strengths": [
+          "Simple, training-free method that can use a separate small estimator and existing demonstrations (pp. 3–4).",
+          "Broad evaluation across seven reasoning benchmarks, three generators, multiple estimators, repeated sampling, and several robustness ablations (pp. 6–8, 20–25).",
+          "The lightweight backward approximation gives similar accuracy to the full version while substantially reducing latency (pp. 22–23)."
+        ],
+        "weaknesses": [
+          "The central interpretation is inconsistent: the paper defines a larger backward score as better explanatory consistency, yet subtracts it, thereby favoring candidates that make demonstrations less likely. Moreover, with exact probabilities Bayes' rule merely reconstructs the demonstration-independent marginal P(y), so gains arise from estimator/prompt mismatch rather than a principled Bayesian consistency objective (pp. 3–4). Length normalization and averaging further break the stated identity without scale justification.",
+          "Evidence against strong baselines is mixed: standard self-consistency exceeds ReFeri for GPT-4o-mini and is nearly tied for GPT-4o, while the repeated-run advantage over Self-Certainty is small and lacks significance tests (pp. 18–20).",
+          "Claims of applicability to open-ended generation are weakly supported by only two personalization tasks evaluated with reference-overlap ROUGE, without human or preference-based quality assessment (p. 19)."
+        ],
+        "score_rationale": "The method is useful, easy to deploy, and supported by substantial experiments, but its key theoretical story has a sign/interpretation problem and the gains over competitive selection or voting methods are not consistently compelling. I therefore place it marginally below acceptance, with some uncertainty about whether the empirical heuristic remains valuable after correcting or reframing the objective."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ReFeri is a training-free candidate-selection heuristic that combines response likelihood with a leave-one-out score derived from few-shot demonstrations. The paper is empirically broad and practically motivated, but the claimed Bayesian foundation is not convincing, and gains over strong selection baselines are modest and inconsistent on several tasks.",
+        "strengths": [
+          "Extensive evaluation across seven reasoning benchmarks, three generators, multiple estimators, repeated sampling runs, and several robustness settings (pp. 6–8, 20–25).",
+          "The method is simple, training-free, modular, and can use a small estimator to obtain a useful cost–accuracy trade-off (pp. 8, 22–23).",
+          "The appendices provide detailed prompts, ablations, oracle results, and candidate-order analyses that substantially improve reproducibility (pp. 16–24, 36–42)."
+        ],
+        "weaknesses": [
+          "The central Bayesian interpretation is problematic: with a coherent probability model, Eq. 5 simply recovers the unconditional response likelihood, while the implemented leave-one-out and single-example terms are heuristic substitutions. Moreover, a candidate that increases demonstration likelihood receives a larger backward score that is subtracted, contrary to the stated intuition that better explanatory consistency should be favored (pp. 3–4, 23–24).",
+          "Improvements over stronger baselines are limited: in repeated trials, ReFeri exceeds Self-Certainty by only about 0.8–1.9 average points, loses on individual datasets, and raw self-consistency sometimes outperforms it; uncertainty estimates or significance tests beyond three sampling runs are absent (pp. 18–20).",
+          "The paper motivates applicability to open-ended generation, yet most evidence uses automatically scored reasoning tasks; the only open-ended personalization study covers two tasks with ROUGE alone and no human or preference evaluation (p. 19)."
+        ],
+        "score_rationale": "The work offers a useful, well-tested heuristic with credible practical gains, but its main conceptual justification is internally strained and the advantage over strong confidence or voting baselines is relatively small. I therefore place it marginally below acceptance, with some uncertainty about whether the empirical breadth outweighs the theoretical weakness."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes ReFeri, a training-free Best-of-K selector combining candidate likelihood with a leave-one-out score derived from labeled few-shot demonstrations. The evaluation is broad and generally shows modest improvements, but the central interpretation of the backward term is internally inconsistent and ablations suggest that most gains come from the conventional forward likelihood signal.",
+        "strengths": [
+          "Broad evaluation across seven reasoning benchmarks, three generators, multiple estimator sizes, repeated sampling runs, prompt variants, and exemplar variants (pp. 5–8, 20–25).",
+          "The method is simple, modular, requires no verifier training, and can use a small estimator; the 1B variant offers a useful accuracy–latency trade-off against larger-model baselines (pp. 4, 22–23).",
+          "The paper includes several relevant comparisons and diagnostics, including self-consistency, Self-Certainty, ordering bias, full versus approximate backward scoring, and zero-shot generation (pp. 17–24)."
+        ],
+        "weaknesses": [
+          "The core backward-score interpretation has a sign problem: SBack is described as rewarding candidates that better explain demonstrations, yet the final score subtracts it, thereby penalizing increases in P(X|y). The Bayes identity itself is tautological, and replacing its probabilities with separately length-normalized, leave-one-out model scores does not preserve the claimed probabilistic derivation (pp. 3–4).",
+          "Evidence for the novel backward component is weak: backward-only scoring is no better than random on MATH500 and worse on GPQA, while adding it to forward scoring changes accuracy only from 68.9 to 69.0 and 42.2 to 42.7, respectively (p. 7). Thus the main empirical benefit may largely be standard likelihood ranking.",
+          "The open-ended-generation motivation is only lightly validated. Most main tasks have extractable answers, standard self-consistency is competitive or better for some models, and the only open-ended extension uses ROUGE on two personalization tasks without human preference or factuality evaluation (pp. 18–19). Statistical significance of the modest average gains is also not established."
+        ],
+        "score_rationale": "The work is practically useful and experimentally extensive, but its main conceptual novelty—the backward consistency term—is both theoretically misinterpreted and only marginally supported by the ablation. Given the modest gains and limited validation of the advertised open-ended setting, the paper is slightly below the acceptance threshold, though uncertainty remains because the broad repeated experiments show a reasonably consistent practical effect."
+      }
+    }
+  ]
+}

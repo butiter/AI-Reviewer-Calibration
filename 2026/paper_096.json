@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_096",
+  "paper_id": "Lr3B8miY4X",
+  "number": 24316,
+  "title": "Fair-SP: Capturing Pluralistic Social Equity Preferences Through Synthetic Data",
+  "authors": [
+    "Qi Zhou",
+    "Jie Zhang",
+    "Dongxia Wang",
+    "Qiang Liu",
+    "Tianlin Li",
+    "Jin Song Dong",
+    "Wenhai Wang",
+    "Qing Guo"
+  ],
+  "primary_area": "datasets and benchmarks",
+  "keywords": [
+    "Human Preference",
+    "LLM alignment"
+  ],
+  "forum_url": "https://openreview.net/forum?id=Lr3B8miY4X",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    2,
+    4
+  ],
+  "human_mean_rating": 2.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "O2riXhedpX",
+      "forum": "Lr3B8miY4X",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24316/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762341825280,
+      "tmdate": 1762943039071,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "q0MnNpbfWB",
+      "forum": "Lr3B8miY4X",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24316/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760475180652,
+      "tmdate": 1762943039991,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "rA9jbFj72d",
+      "forum": "Lr3B8miY4X",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24316/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761763901293,
+      "tmdate": 1762943039784,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "yq0NJPFKvR",
+      "forum": "Lr3B8miY4X",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24316/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762150351565,
+      "tmdate": 1762943039535,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "FAIR-SP is a large synthetic resource for studying equity preferences across seven prompted social personas, accompanied by a simple uniqueness-based reweighting heuristic. The topic is important and the dataset structure is broad, but the manuscript does not establish that GPT-4o-mini’s persona-conditioned outputs represent real social-segment preferences rather than model stereotypes. Consequently, both the dataset’s central claim and the alignment evaluations remain insufficiently grounded.",
+        "strengths": [
+          "The resource systematically spans numerous equity topics, affected groups, and five stated preference dimensions, with both template and narrative forms (pp. 2–5, 13–18).",
+          "The paper attempts complementary evaluation through held-out questions, narrative scenarios, a segmentation quiz, and human judgments rather than reporting training-set fit alone (pp. 6–9, 20).",
+          "The experiments compare prompting, SFT, DPO, and reweighted variants, and include a limited segment-count ablation (pp. 8, 24)."
+        ],
+        "weaknesses": [
+          "The core validity argument is circular: segment profiles prompt GPT-4o-mini to generate all preference labels, while role fidelity is tested using a quiz intended to classify those same profiles. No preferences from actual members of the seven segments are collected; the human study only assesses perceived persona consistency, with no annotator demographics, agreement, per-segment results, or uncertainty (pp. 5–7, 20). Thus the data may encode LLM-generated stereotypes rather than pluralistic public preferences.",
+          "Experimental evidence is weak and incompletely reproducible: random splits of highly templated combinations may permit substantial structural overlap; evaluation mostly compares models against the same synthetic teacher-derived anchors; only one base model and two target segments are tested; and seeds, variance, learning rates, epochs, DPO construction, and several other essential details are absent (pp. 7–9, 19, 24). The 10-trial quiz is too small to support reliability claims.",
+          "There are substantive conceptual and reporting problems. Complex theories are reduced to overlapping binary oppositions, and the selected “social groups” mix demographics, victims, and political movements without justification (pp. 3–5, 13–16). Reported results also conflict: Table 3 gives WDPO similarity 0.82 to Segment 6 while the text claims 0.87, and the SFT/DPO values are reversed in the discussion of Table 2 (p. 8)."
+        ],
+        "score_rationale": "The paper has useful scope and a potentially valuable data-generation framework, but its main scientific claim—that FAIR-SP captures real pluralistic segment preferences—is unsupported by independent ground truth. Circular validation, limited and underreported experiments, and numerical inconsistencies are decisive flaws. I am confident in a reject score, though genuine segment-level human validation and stronger leakage-controlled experiments could materially change the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "FAIR-SP is a broad synthetic resource combining equity topics, social groups, and ideological dimensions, with demonstrations of segment-conditioned fine-tuning. However, it primarily captures one LLM’s extrapolation from short persona prompts rather than independently observed human preferences, and the validation is substantially circular. Sparse experimental reporting and internal result inconsistencies further undermine the alignment claims.",
+        "strengths": [
+          "The dataset has broad combinatorial coverage—28 groups, roughly 98 topics, five dimensions, and both template and narrative questions—and the construction pipeline is clearly motivated (pp. 2–5, 13–18).",
+          "The paper evaluates several uses, including model positioning, targeted SFT/DPO, scenario transfer, and an external segmentation quiz (pp. 7–9).",
+          "The proposed frequency-tier reweighting is simple and potentially useful for emphasizing preferences distinctive to a target segment (pp. 7, 20)."
+        ],
+        "weaknesses": [
+          "Construct validity is weak: all reported preferences are generated by GPT-4o-mini from coarse, stereotype-prone persona descriptions, without segment-member labels. Quiz validation largely tests whether the model reproduces the same profiles from which its prompts were derived, while the human study reports only mean scores near 0.72, with no agreement, uncertainty, demographics, or per-segment analysis (pp. 5–7, 17–20).",
+          "The evidence for alignment is narrow and insufficiently controlled: experiments use one 3B base model, mainly one target segment, random splitting of highly templated combinations, no seeds/error bars/significance tests, and minimal optimization details. Thus improvements may reflect memorizing generator/template artifacts rather than generalizable social-preference alignment (pp. 8, 19, 24).",
+          "Several claims conflict with the tables: p. 8 reverses the SFT/DPO scores from Table 2 and states WDPO scores 0.87 on simulation data although Table 3 gives 0.82 (WSFT gives 0.87). Cross-regional claims rely on hand-mapped synthetic personas rather than regional respondents, and the Portland/Poland appendix even duplicates “Segment 6” (pp. 8, 20–23)."
+        ],
+        "score_rationale": "The breadth and potential utility are meaningful, but the central claim of capturing pluralistic social preferences is not supported by independent human preference data. Circular validation, under-specified experiments, and contradictory reported results are substantial soundness problems, placing the work clearly below the acceptance threshold despite an interesting resource concept."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "FAIR-SP constructs a broad equity-question bank and uses GPT-4o-mini personas to synthesize preferences for seven UK-derived segments, then demonstrates model positioning and targeted fine-tuning. The topic is important, but the manuscript does not establish that its synthetic outputs represent real social-segment preferences rather than one model’s response to coarse persona prompts.",
+        "strengths": [
+          "The resource spans many equity topics, groups, and five stated conceptual dimensions, with both templates and contextualized variants (pp. 2–5, 13–18).",
+          "The paper attempts complementary evaluations, including persona fidelity, human judgments, held-out synthetic scenarios, and a segmentation quiz (pp. 6–9, 20).",
+          "The alignment study compares prompting, SFT, DPO, and a simple uniqueness-based weighting heuristic, with an additional target and ablation in the appendix (pp. 7–9, 24)."
+        ],
+        "weaknesses": [
+          "The central validity claim is unsupported: all preferences come from GPT-4o-mini conditioned on stereotyped segment descriptions. Quiz fidelity is largely circular, while human annotators only judge consistency with those descriptions; no actual segment members provide or validate preferences (pp. 5–7, 17–20). Human-evaluation sampling, demographics, agreement, uncertainty, and per-segment results are also absent.",
+          "The empirical evidence is narrow and internally inconsistent. Alignment uses one 3B base model and primarily one target, without seeds or significance tests; evaluation mostly measures agreement with the same synthetic anchors. Moreover, Table 3 reports WDPO similarity to S6 as 0.82, while the text claims 0.87, which is actually WSFT’s value (p. 8).",
+          "The conceptual and ethical foundations are weak: heterogeneous identities, victim categories, and advocacy groups are treated uniformly; binary axes conflate contested notions of equity; cross-regional segments are directly mapped without validation (pp. 3–5, 13–16, 20–23). Risks of stereotyping and policy misuse are not discussed in the limitations (p. 9)."
+        ],
+        "score_rationale": "The breadth and socially relevant goal are valuable, but novelty is modest and the main claim—capturing pluralistic human segment preferences—is not demonstrated by model-generated, largely circularly validated labels. Sparse experiments, a decisive result inconsistency, and inadequate treatment of stereotyping and cross-regional validity make the current evidence technically insufficient for acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "FAIR-SP is a large synthetic resource that crosses equity topics, affected groups, and five normative dimensions, then uses GPT-4o-mini personas to generate seven segment-specific preference labels. It also evaluates model positioning and targeted alignment. However, the central claim that these labels capture pluralistic social preferences is not established: they primarily capture one LLM’s interpretation of short, stereotype-prone segment descriptions.",
+        "strengths": [
+          "The paper organizes a broad question bank around 28 social groups, roughly 98 equity topics, and five explicit normative dimensions, with both template and contextualized variants (pp. 2–5, 13–18).",
+          "It attempts complementary validation and downstream demonstrations rather than presenting the synthetic dataset without evaluation (pp. 6–9, 20, 24).",
+          "The targeted-alignment study compares prompting, SFT, DPO, and reweighted variants, and includes evaluation on a separate public segmentation quiz (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "Construct validity is fundamentally weak and partly circular: segment preferences are generated by GPT-4o-mini from brief persona prompts, while role-play fidelity is validated by having role-played LLMs answer the quiz underlying those same personas. Human annotators judge consistency with descriptions rather than agreement with actual members of the segments (pp. 5–7, 17–20). Thus, the resource measures model-imputed stereotypes, not demonstrated human segment preferences.",
+          "The empirical reporting contains material contradictions. Table 3 reports WSFT, not WDPO, as having the highest Segment-6 similarity (0.87 versus 0.82), contrary to the accompanying claim; Table 2’s SFT/DPO values are also reversed in the prose (p. 8). These errors undermine confidence in the main alignment conclusions.",
+          "Evaluation is too limited for the claims: alignment centers on one small base model and mainly one target segment; human evaluation lacks segment-level results, inter-annotator agreement, uncertainty, and clear sampling counts per segment; and question-level random splitting risks strong structural overlap among combinatorial templates (pp. 8, 20, 24)."
+        ],
+        "score_rationale": "The taxonomy and dataset scale are potentially useful, but the paper’s primary scientific claim conflates LLM-simulated persona behavior with genuine pluralistic human preferences. Circular validation, sparse human evidence, possible template leakage, and direct result/prose contradictions on p. 8 make the technical and evidential foundation insufficient for acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FAIR-SP is a large, systematically organized synthetic resource for studying equity-related persona preferences, with demonstrations of model positioning and targeted fine-tuning. However, it does not establish that GPT-4o-mini outputs accurately represent the preferences of real social segments. The validation and downstream experiments largely remain inside the same synthetic persona framework, making the central claim of capturing pluralistic social preferences substantially stronger than the evidence supports.",
+        "strengths": [
+          "The dataset spans a broad, explicitly structured space of 28 social groups, 98 topics, and five proposed equity dimensions, and includes both templates and contextualized variants (pp. 2–5, 13–18).",
+          "The paper evaluates several uses of the resource, including model comparison, SFT/DPO alignment, scenario-based testing, a segmentation quiz, and a limited ablation (pp. 7–9, 23–24).",
+          "Reweighting samples by cross-segment distinctiveness is intuitive and shows improved target similarity and separation in the reported closed-domain experiments (pp. 7–8, 20, 24)."
+        ],
+        "weaknesses": [
+          "The foundational validity is weak: all segment preferences are generated by one LLM from short persona prompts. Quiz consistency mainly shows that the model follows those prompts, while annotators judge conformity to the same prescribed descriptions rather than agreement with actual members of each segment; annotator demographics, agreement, uncertainty, and per-segment results are absent (pp. 5–7, 17–20).",
+          "Evaluation is substantially circular. Training targets, segment anchors, test labels, and generated scenario variants ultimately derive from the same synthetic role-playing process and taxonomy. Random record splitting may also permit closely related questions across splits, and the real-world quiz has only 30 items and 10 trials, so the results do not demonstrate generalization to genuine human preferences (pp. 8–9, 17, 20).",
+          "Technical and conceptual details are insufficiently rigorous: the binary dimensions conflate contested concepts, cross-regional mappings are asserted without validation, the similarity aggregation and weighting rationale are under-specified, and some reporting is inconsistent (e.g., SFT/DPO values are reversed in the prose relative to Table 2 on p. 8)."
+        ],
+        "score_rationale": "The structured dataset construction and preliminary alignment results are potentially useful, but novelty is mainly in combining existing personas, equity categories, and LLM-generated responses. Because the principal claim concerns real pluralistic social preferences, the absence of segment-representative human validation and the closed-loop synthetic evaluation are major validity problems. I therefore rate it below the acceptance threshold, while allowing uncertainty about whether a released, inspectable dataset might reveal additional quality controls."
+      }
+    }
+  ]
+}

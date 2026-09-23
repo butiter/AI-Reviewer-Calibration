@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_071",
+  "paper_id": "JGiSS7hLRT",
+  "number": 17298,
+  "title": "MagicTryOn: Harnessing Diffusion Transformer for Garment-Preserving Video Virtual Try-on",
+  "authors": [
+    "Guangyuan Li",
+    "Siming Zheng",
+    "Hao Zhang",
+    "Jinwei Chen",
+    "Junsheng Luan",
+    "Binkai Ou",
+    "Lei Zhao",
+    "Bo Li",
+    "Peng-Tao Jiang"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "Video Virtual Try-On",
+    "Diffusion Model",
+    "Video Generation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=JGiSS7hLRT",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    6
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "4q4xKVr34i",
+      "forum": "JGiSS7hLRT",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17298/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761104441506,
+      "tmdate": 1762927234789,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "F4l5MK5TUB",
+      "forum": "JGiSS7hLRT",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17298/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761594826127,
+      "tmdate": 1762927234516,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "cwykVv5Wkl",
+      "forum": "JGiSS7hLRT",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17298/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761827792982,
+      "tmdate": 1762927234074,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "ehYn7HCjF5",
+      "forum": "JGiSS7hLRT",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17298/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760793757362,
+      "tmdate": 1762927235237,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MagicTryOn combines multi-stream garment conditioning, a garment token treated as an additional spatiotemporal grid slice, mask-weighted training, and four-step distillation for video virtual try-on. The reported results are strong, but the central technical claims and temporal-consistency evidence are not yet sufficiently rigorous for clear acceptance.",
+        "strengths": [
+          "Strong reported performance across ViViD and VVT, including controlled backbone comparisons and substantial gains over listed baselines (pp. 8–9, 20).",
+          "Removal and additive ablations broadly support contributions from semantic, structural, appearance, mask-loss, and positional components (pp. 9–10, 22).",
+          "The four-step model offers a large measured latency reduction while retaining competitive quantitative and qualitative quality (pp. 8, 15–19)."
+        ],
+        "weaknesses": [
+          "The proposed GAS RoPE appears technically close to applying ordinary 3D RoPE after prepending the garment image as frame t=0; no explicit deformation correspondence is constructed, so claims of correspondence constraints and temporal anchoring are insufficiently justified (pp. 5–6). The remaining conditioning design is also largely a combination of established encoders and cross-attention.",
+          "Temporal consistency is assessed mainly through VFID, selected frames, and a user study against only CatV2TON; there is no direct flicker/warping metric, per-video analysis, repeated-run uncertainty, or statistical testing. The exact w/o-GAS intervention is unclear, and the differently trained “full model” results across Tables 1 and 3 complicate interpretation (pp. 6, 8–10, 21–22).",
+          "Important claims are under-specified: the causal student and auxiliary generator-score training needed for DMD are not described sufficiently, 6.69 seconds for 64 frames does not conventionally establish real-time operation, and the asserted separate modeling of multiple garments has no corresponding architectural mechanism or detailed evaluation protocol (pp. 8, 15–17)."
+        ],
+        "score_rationale": "The paper presents a practically promising system with impressive reported numbers and useful ablations. However, its main novelty is incremental, the GAS-RoPE interpretation is overstated, and the temporal, multi-garment, and distillation evidence lacks key controls and implementation detail. I therefore place it marginally below acceptance; uncertainty remains because the referenced supplementary videos are unavailable in the supplied manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "MagicTryOn augments a pretrained video diffusion transformer with decomposed garment conditioning, garment/video token joint attention using 3D RoPE, garment-region loss weighting, and four-step distillation. The reported benchmark gains are substantial, but the central architectural novelty is modest and some claims exceed what the evaluations establish.",
+        "strengths": [
+          "Strong quantitative results on two VVT benchmarks, including improvements over controlled Wan2.1 and Hunyuan-DiT baselines (pp. 8–9, 20).",
+          "Extensive component evidence includes removal and additive ablations, caption/edge studies, qualitative comparisons, and a user study (pp. 9–10, 21–23).",
+          "The distilled model offers a large practical speed improvement while retaining competitive benchmark quality (pp. 8, 15–16, 18–19)."
+        ],
+        "weaknesses": [
+          "The proposed GAS RoPE appears largely to prepend garment latents as an extra temporal slice and apply standard 3D RoPE; no explicit learned correspondence constraint is formulated, making the claimed garment-specific temporal innovation and mechanism stronger than justified (pp. 5–6).",
+          "Evidence for garment fidelity and temporal stability relies mainly on generic VFID/SSIM/LPIPS and selected visuals. Unpaired VFID does not directly measure correspondence to the requested garment, and the user study compares only CatV2TON on eight unspecified examples (pp. 6–8, 21–22).",
+          "Reproducibility and reporting have gaps: architectural details for Patchfier/adapters and the causal distilled student are limited, multi-garment evaluation provenance is unclear, and the nominal full-model results differ substantially between Tables 1 and 3 without a sufficiently explicit explanation (pp. 8–9, 15–17)."
+        ],
+        "score_rationale": "The paper presents a capable and practically useful system with broad experiments and convincing headline improvements. However, its main ideas mostly combine established conditioning, loss weighting, token concatenation/3D RoPE, and DMD, while direct evidence for the claimed garment correspondence mechanism is limited. I therefore place it marginally above acceptance, with some uncertainty about reproducibility and metric validity."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "MagicTryOn combines decomposed garment conditioning, garment/video full attention with 3D RoPE, a garment-region loss, and four-step distillation for video virtual try-on. The empirical results are strong and broad, but the main architectural novelty is modest and several central claims are stronger than the supplied evidence.",
+        "strengths": [
+          "Strong quantitative performance on ViViD and VVT, including controlled comparisons using the same Wan2.1 and Hunyuan backbones (pp. 8–9, 20).",
+          "Extensive component ablations and additive experiments consistently support the value of the conditioning streams, mask loss, and GAS RoPE (pp. 9–10, 22).",
+          "The distilled model offers a substantial practical speedup while remaining competitive, and the paper includes diverse qualitative tests and a user study (pp. 8, 18–22)."
+        ],
+        "weaknesses": [
+          "GAS RoPE appears largely to prepend the garment latent as an extra temporal slice and apply ordinary spatiotemporal RoPE; the claimed explicit deformation correspondence constraint is neither clearly instantiated nor theoretically justified (pp. 5–6).",
+          "The central temporal-consistency claim is evaluated mainly through aggregate VFID and selected frames; there is no dedicated flicker, feature-tracking, or correspondence metric, and the user study compares only against CatV2TON without uncertainty or significance analysis (pp. 6–8, 21–22).",
+          "The distillation description omits important student/score-network architectural and optimization details, while “without sacrificing” quality and “real-time” are overstated: Turbo is measurably worse than the full model and takes 6.69 seconds for 64 frames (pp. 8, 15–16, 18)."
+        ],
+        "score_rationale": "The work presents a useful, empirically effective system with unusually broad comparisons and ablations. However, its core contributions are mostly incremental combinations, the proposed GAS mechanism is less substantive than claimed, and evidence directly isolating temporal stability is insufficient. I therefore place it marginally above the acceptance threshold, with some uncertainty because videos and executable artifacts are unavailable."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MagicTryOn adapts a video diffusion transformer for virtual try-on using semantic/structural/appearance conditioning, a garment-token extension of spatiotemporal RoPE, a garment-mask loss, and four-step distillation. Results are broad and often strong, but the principal architectural ideas appear incremental and several central claims exceed what is technically or empirically established.",
+        "strengths": [
+          "Strong reported results on ViViD and VVT, including consistent gains over competitive baselines and controlled comparisons using the same Wan2.1 and Hunyuan backbones (pp. 8–9, 20).",
+          "Extensive evaluation includes component ablations, additive studies, multi-garment and cross-category cases, image try-on, in-the-wild examples, and a user study (pp. 9–10, 17–23).",
+          "The four-step model offers a substantial practical speedup while retaining competitive benchmark performance (p. 8)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: SGCA/FGCA combine standard cross-attention conditioning streams, the mask loss is straightforward, and “GAS RoPE” largely amounts to prepending a garment feature grid as an extra temporal slice under ordinary 3D RoPE; the formulation provides no explicit deformation correspondence constraint despite repeated claims that it does (pp. 4–6).",
+          "The temporal evidence is insufficiently diagnostic. VFID conflates quality and dynamics, shown frames cannot establish flicker reduction, and there are no dedicated temporal-warping/consistency metrics or motion-stratified tests. Ablations also use fewer iterations than the headline model, weakening quantitative comparability (pp. 6, 9–10).",
+          "Important claims are overstated or under-specified: the turbo model measurably degrades on most metrics despite “without sacrificing” claims, 6.69 seconds for 64 frames is not clearly real-time, the causal student architecture/training is incompletely described, and the asserted separate modeling of multiple garments is not explained by the method (pp. 8, 15–17)."
+        ],
+        "score_rationale": "The empirical package is unusually broad and the reported improvements are meaningful, supporting borderline acceptance. However, the core methods are mostly conventional combinations, GAS RoPE is oversold relative to its formulation, and evidence does not directly validate the main temporal-consistency mechanism. I therefore rate it marginally below acceptance, with some uncertainty because the supplied static figures cannot reveal actual video stability."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MagicTryOn combines multi-stream garment conditioning, a garment-token extension of spatiotemporal RoPE, garment-region loss weighting, and four-step distillation for video virtual try-on. The reported benchmark gains are substantial, but the main architectural ideas are incremental and several central claims are stronger than the technical formulation and evaluation support.",
+        "strengths": [
+          "Strong reported results on ViViD and VVT, including controlled comparisons using Wan2.1 and Hunyuan-DiT backbones (pp. 8–9, 20).",
+          "Broad empirical coverage includes component ablations, multi-garment and cross-category cases, two video datasets, image benchmarks, user evaluation, and a distilled model (pp. 7–10, 16–23).",
+          "The garment-conditioning decomposition is practically motivated, and the visual examples show improved preservation of logos, patterns, and silhouettes (pp. 4, 18–20)."
+        ],
+        "weaknesses": [
+          "The proposed GAS RoPE is described essentially as placing garment features at an extra temporal index under ordinary 3D RoPE and full attention; this does not itself impose the claimed deformation-aware cross-frame correspondences. The ablations also do not cleanly separate full attention, garment-token concatenation, and positional encoding (pp. 5–6, 9–10).",
+          "Evidence for temporal consistency is limited: VFID is an aggregate distributional metric rather than a direct correspondence/flicker measure, while the user study compares only CatV2TON and provides little information on randomization, blinding, or statistical uncertainty (pp. 6–8, 21–22).",
+          "Important claims and details are insufficiently supported: multi-garment items are said to be modeled separately without a corresponding mechanism, the causal student architecture is unspecified, and “real-time” inference is 6.69 seconds for 64 frames. There is also an inaccurate claim of consistent image-benchmark superiority despite weak DressCode unpaired FID (pp. 8, 16–18)."
+        ],
+        "score_rationale": "The empirical improvements are promising and extensive enough to place the work near the acceptance boundary. However, limited methodological novelty, an under-justified central RoPE claim, and incomplete temporal and distillation validation currently make the contribution marginally below the ICLR bar."
+      }
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_034",
+  "paper_id": "KgN0mo6pLo",
+  "number": 4298,
+  "title": "Compositional Scene Modeling with An Object-Centric Diffusion Transformer",
+  "authors": "Zhimeng Shen; Tonglin Chen; Bin Li; Xiangyang Xue",
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": "Object-Centric Representation Learning; Unsupervised Learning; Compositional Scene Modeling; Diffusion Models; Generative Models",
+  "forum_url": "https://openreview.net/forum?id=KgN0mo6pLo",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    3,
+    6,
+    5
+  ],
+  "human_mean_rating": 4.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a compositional approach for learning interpretable object representations, which can then be used for object editing in images or for unsupervised segmentation. The method is similar to SlotDiffusion, but CODiT explicitly models object masks during the diffusion denoising stage. Results show improvements compared to SlotDiffusion and LSD on object editing and unsupervised segmentation tasks, as well as compared to DINOSAUR (another recent method) on segmentation tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "* I appreciate that the authors shared the model code in the supplementary (though I haven’t had a thorough look at it)\n* Figure 1 nicely lays out the difference between this approach and many prior approaches\n* Results look good compared to the baselines presented in the paper"
+        },
+        "weaknesses": {
+          "value": "1. A key weakness is I found a baseline after a cursory search that should have been included in related work and in the comparisons: Kakogeorgiou et al., CVPR 2024 (“SPOT: Self-Training with Patch-Order Permutation for Object-Centric Learning with Autoregressive Transformers”). This task is not my area of expertise, but this paper also evaluates on the same tasks as the current submission. On VOC unsupervised segmentation, it appears to outperform the proposed method (Table 5 in submission vs. Table 5 in Kakogeorgiou et al). I would appreciate a comparison of this work to that, both in method and in the experimental results. \n2. I find that the intro and writing focus heavily on human intuition, and could do a better job of describing the task at hand and the relevance of huma intuition to accomplishing that task. Until the experiments section, it wasn’t clear to me whether the goal was to learn object representations (if so, for what? Classification? Segmentation?), segment objects, generate new images, or edit existing images. I found that the intro from prior work helped me understand the problem setting better, e.g. Seitzer et al., 2023 (DINOSAUR).\n3. The method figures are generally understandable, but could use a polishing pass for aesthetics. Again, I’d refer to prior work like Seitzer et al, 2023, or Kakogeorgiou et al., 2024.\n4. The figures for qualitative methods are quite hard to parse, and low resolution even after zooming in. I’d encourage the authors to increase the resolution here and the size of the figures."
+        },
+        "questions": {
+          "value": "1. I see prior methods have also reported results on COCO, which is likely to be more challenging than PASCAL. Have you considered reporting results on COCO, or would it be possible to report results on it?\n2. I’d request the authors to address my concerns in the weaknesses.\n3. In particular, I’d like to see a comparison to Kakogeorgious et al."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "iO1Fqd6vXg",
+      "forum": "KgN0mo6pLo",
+      "replyto": "KgN0mo6pLo",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_Aa4N"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_Aa4N"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4298/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730833240886,
+      "cdate": 1730833240886,
+      "tmdate": 1731428097289,
+      "mdate": 1731428097289,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces CODiT, an object-centric learning framework that incorporates a post-decoder compositional diffusion network to improve the interpretability and generation capabilities of scene modeling. CODiT leverages a compositional denoising approach where individual object representations are denoised separately and integrated compositionally. This is differences from the existing pre-decoder methods that struggle with interpretability. The method demonstrates favorable performance in segmentation, reconstruction, and object-editing tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "-\tCODiT’s integration of compositional modeling within a diffusion framework show a meaningful improvement in object-centric learning.\n\n-\tHuman Intuition Alignment: The post-decoder compositional design aligns more closely with human visual scene processing.\n\n-\tThe model’s performance on evaluation datasets (CLEVRTEX, OCT-B, and FFHQ) validate the methods applicability in both synthetic and real data."
+        },
+        "weaknesses": {
+          "value": "### Incomplete literature survey\n\nAlthough there have been recent advances in compositional image analysis using diffusion models, the paper does not adequately introduce or contrast its contributions with these newer works. \n\n[1] Kakogeorgiou, Ioannis, et al. \"SPOT: Self-Training with Patch-Order Permutation for Object-Centric Learning with Autoregressive Transformers.\" Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2024.\n\n[2] Zadaianchuk, Andrii, Maximilian Seitzer, and Georg Martius. \"Object-centric learning for real-world videos by predicting temporal feature similarities.\" Advances in Neural Information Processing Systems 36 (2024).\n\n\n### Incomplete comparison with recent methods\n\nThe paper does not include a comparison or discussion involving recent relevant methods, such as [1]\n\n\n### Limited evaluation benchmarks\n\nWhile segmentation metrics are robust, it would be helpful to have a more extensive evaluation of real-world datasets such as PASCAL VOC and MS COCO.\n\n### Limited Analysis of Failure Cases\n\nThe paper does not include failure cases or comprehensive visualizations where CODiT underperforms."
+        },
+        "questions": {
+          "value": "### Comment\n\nThe main contributions that set CODiT apart from previous methods are not emphasized enough. Including a dedicated paragraph that explicitly contrasts CODiT with prior works would enhance readability and clarify its unique contributions. Currently, the advantages of CODiT are scattered across different sections, making it challenging to discern what specifically differentiates it from recent approaches."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "49BaWEfqCX",
+      "forum": "KgN0mo6pLo",
+      "replyto": "KgN0mo6pLo",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_qGNY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_qGNY"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4298/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730660013300,
+      "cdate": 1730660013300,
+      "tmdate": 1731428097586,
+      "mdate": 1731428097586,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a new method to compose slot components which is different from common methods used in previous object-centric learning approaches. Traditionally, object-centric learning either uses separate decoders for individual slot components followed by mask-sum operation or a single diffusion decoder taking all slot components as conditionings to reconstruct input images. This paper combines the both and proposes to use separate diffusion decoders with shared parameters for individual slot components followed by mask-sum operation in the score (noise prediction) domain. The paper claims that their approach, CODiT, works better than traditional mask-sum approaches for complex scenes and outperforms traditional diffusion decoder approaches in terms of slot representation interpretability and segmentation performance."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper points out an interesting finding from state-of-the-art approaches LSD [1] and SlotDiffusion [2], i.e., the decoded component of a single slot doesn't essentially correspond to a semantic local part (object or facial feature) of input image. As a result, the slot representations learned with these approaches lack interpretability for human understanding.\n\n2. The paper proposes a straightforward approach that can solve this problem while still allows preserving the powerful decoding ability of diffusion models.\n\n3. The paper provides extensive experiments to support the claims and show better segmentation and interpretability performance.\n\nReferences\n\n[1] Jiang, \"Object-Centric Slot Diffusion\", NeurIPS 2023\n\n[2] Wu,  \"Slotdiffusion: Object-centric generative modeling with diffusion models\", NeurIPS 2023"
+        },
+        "weaknesses": {
+          "value": "1. Mask-sum operation indeed can provide better spatial segmentation for interpretability, but on the other hand makes the image rendering process less flexible. Since the masks define clear boundaries, when you stitch different components (either pixel or score) together with masks there could be unnatural artifacts along boundaries leading to blurry results. As observed in Fig 7 in the paper, when you compose different slot components either from same scene (reconstruction) or from different scenes (editing), the obtained results are far from natural and high-fidelity. In contrast, if you observe the editing and generation without using mask-sum operation in LSD Fig 3 Fig 4, and Fig 10 https://arxiv.org/pdf/2303.10834, they have much better generation performance. In summary, by introducing mask-sum operation, the approach actually trades generation performance for interpretability. It would be fair to explicitly point out this in the limitation section.\n\n2. By summing predicted scores (noise predictions), the approach is actually closely related to Decomp Diffusion [2]. The only two main differences are: (1) CODiT uses slot attention for slot representation learning while Decomp Diffusion can use CNN or slot attention or any encoders. (2)  CODiT uses masks to sum noise predictions while Decomp Diffusion sum noise predictions without masks-sum operation. Again, adopting mask-sum operation limits the generation ability of CODiT when compared to Decomp Diffusion. Such an interpretability-segmentation trade-off should be addressed or pointed out in the paper as said above.\n\n3. Image reconstruction evaluation. It is a bit confused that considering that the Fig 7 in the paper doesn't show strong image reconstruction performance while LSD or SlotDiffusion can actually reconstruct input images very well in their original paper, then why CODiT could have better MSE performance than LSD or SlotDiffusion? Did you also examine FID for reconstructions or edited images like what are done in LSD or SlotDiffusion?\n\n4. Segmentation evaluation. This paper uses metric ARI-A and ARI-O among others for segmentation evaluation and states ARI-O considers foreground pixels only. In that case, is ARI-O same as FG-ARI commonly used in existing works? If so, why the ARI-O of baseline LSD is largely different from that in the original LSD paper? If ARI-O and FG-ARI are different, is there any reason why FG-ARI is not involved considering it is a de facto metric in this research topic?\n\n5. The paper overclaims the image editing ability of the proposed approach. Actually, CODiT only outperforms LSD or SlotDiffusion in terms of individual component guidance, while the cross-image editing (swap, removal) ability shown in Fig 7 in the paper is even not comparable with LSD. Furthermore, for compositional generation with individual component controllability, GNM [4], Slot-VAE [5] and NLoTM [6] actually deomstrate such an ability and even with more flexibility where color shape or position can be controlled in a disentangle way. Though not directly comparable, discussing the difference of CODiT with [4][5][6] is helpful to put the approach into context.\n\nReferences\n\n[1] Jiang, \"Object-Centric Slot Diffusion\", NeurIPS 2023\n\n[2] Su, \"Compositional Image Decomposition with Diffusion Models\", ICML 2024\n\n[3] Wu,  \"Slotdiffusion: Object-centric generative modeling with diffusion models\", NeurIPS 2023\n\n[4] Jiang, \"Generative Neurosymbolic Machines\", NeurIPS 2020\n\n[5] Wang, \"Slot-VAE: Object-Centric Scene Generation with Slot Attention\", ICML 2023\n\n[6] Wu, \"NEURAL LANGUAGE OF THOUGHT MODELS\", ICLR 2024"
+        },
+        "questions": {
+          "value": "Fig 6 actually shows some interesting results. Do you train a diffusion decoder or use a pretrained diffusion model like in LSD?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "vJp0GdGwFP",
+      "forum": "KgN0mo6pLo",
+      "replyto": "KgN0mo6pLo",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_pxiR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_pxiR"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4298/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730283139723,
+      "cdate": 1730283139723,
+      "tmdate": 1732524370129,
+      "mdate": 1732524370129,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes CODiT, a DiT-based model for object-centric learning (OCL). CODiT adopts a post-decoder composition design, i.e., it runs a shared-weight DiT on each slot to predict a noise map and a mask in parallel. This is very different from recent works which use the pre-decoder composition (e.g., LSD, SlotDiffusion). In addition, the paper points out that such design is related to the classifier-free guidance (CFG) in diffusion model sampling. The authors conduct experiments on three synthetic and four real-world datasets to evaluate CODiT."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- As far as I know, this paper is the first to study individual object generation ability of OCL models. It surprising to see that prior works perform so badly in this aspect. It serves as a good motivation for this paper.\n- The analogy to CFG is a new perspective to OCL models, especially the fact that object masks enable different CFG values at different pixels. Indeed, this is very intuitive and reasonable in the context of object-centric representations."
+        },
+        "weaknesses": {
+          "value": "- For the image reconstruction result in Sec. 4.4, why only reporting MSE? I think prior works also report LPIPS or FID, which are more aligned with human perception.\n- Another important aspect of OCL methods is the learned slot representations. While I would expect the representation quality to be good (given the single-object generation result), the paper should still show some results in this direction. For example, the object property prediction task in LSD, or the downstream VQA task in SlotDiffusion.\n- For the real-world image segmentation result in Appendix E, why is SlotDiffusion not included here? Its performance is clearly higher than CODiT + DINO. Also, please include COCO as it is also a standard benchmark in prior works.\n- The related work section is not comprehensive enough. OCL is a broad field, but this paper only has ~35 citations. Please refer to the related work section of LSD or SlotDiffusion to add more discussion about prior works."
+        },
+        "questions": {
+          "value": "- The compositional generation results in Fig.7/8/9 are quite blurry compared to Fig.6/10. Can authors provide a clearer version? This is important as compositionality is a crucial aspect of OCL methods.\n- Line 365 says \"we use image-based SlotDiffusion for fair comparison\". What is the \"image-based\" version? SlotDiffusion always use a VQ-VAE and perform denoising in the latent space."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "goyFKyMQgK",
+      "forum": "KgN0mo6pLo",
+      "replyto": "KgN0mo6pLo",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_DL1z"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4298/Reviewer_DL1z"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4298/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729324056758,
+      "cdate": 1729324056758,
+      "tmdate": 1731428098142,
+      "mdate": 1731428098142,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CODiT uses a shared per-slot DiT to predict slot-specific noise and spatial masks, then combines the predictions compositionally. The idea is moderately novel and produces strong synthetic-scene segmentation and reconstruction results, but the theoretical framing and empirical validation do not yet substantiate the paper’s broad interpretability and real-world claims.",
+        "strengths": [
+          "The masked, per-slot denoising architecture is a clear and useful modification of prior slot-conditioned diffusion decoders (pp. 4–7).",
+          "CODiT substantially improves several segmentation metrics on CLEVRTEX and OCT-B and generally improves reconstruction MSE over the two diffusion baselines (pp. 9–10).",
+          "Ablations compare the full model with both a UNet variant and a cross-attention DiT, while qualitative experiments demonstrate single-slot generation and compositional manipulation (pp. 15, 21–24)."
+        ],
+        "weaknesses": [
+          "The CFG section is mainly an algebraic analogy: normalized masks make the unconditional term cancel, but the component predictors are not established as CFG conditional scores. It therefore does not justify the claimed single-slot generation behavior, and editing additionally requires a separately trained unconditional model (pp. 6–9).",
+          "Evaluation is narrow and potentially unreliable: there are no seeds, uncertainty estimates, or statistical tests; the proposed model is larger than LSD; and decoder architecture is entangled with compositional design. Moreover, the stated ARI denominator appears to use a plus rather than the standard subtraction of the chance term, creating uncertainty about the reported metrics (pp. 15–16, 21).",
+          "Generative and real-world evidence is weak: CODiT has worse FID on every dataset (sometimes dramatically), IS on these domains is insufficient to establish quality, editing mostly changes contrast and exhibits artifacts, and CODiT+DINO remains below leading methods on VOC/COCO (pp. 19–20, 22–25)."
+        ],
+        "score_rationale": "The core compositional denoising design is interesting and the synthetic results are promising, but the CFG interpretation is not a real theoretical derivation, metric/reporting issues reduce confidence, and generation and real-world results fall short of the paper’s claims. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CODiT applies a shared slot-conditioned DiT independently to each slot and spatially mixes its noise predictions using learned masks. This is a plausible and moderately novel object-centric diffusion design, with promising synthetic/tabletop segmentation and reconstruction results, but the theoretical interpretation and experimental validation do not fully support the broader claims about interpretability and complex real-world modeling.",
+        "strengths": [
+          "The post-decoder compositional denoising architecture is a clear, useful contribution: per-slot predictions and learned spatial masks provide more explicit object-level control than joint slot conditioning (pp. 4–7).",
+          "CODiT substantially improves several segmentation metrics on CLEVRTEX and OCT-B and gives consistently strong reconstruction MSE across four datasets (pp. 9–10).",
+          "The paper evaluates multiple capabilities and includes architectural ablations, compositional manipulation examples, computational costs, and candid failure cases (pp. 15, 19–23)."
+        ],
+        "weaknesses": [
+          "The claimed CFG explanation is mainly an algebraic analogy: replacing scalar CFG weights and independently trained conditional/unconditional scores with learned spatial masks does not establish score validity or explain why single-slot generation should generalize (pp. 6–7).",
+          "Evidence for interpretability and editing is largely qualitative. Editing mostly changes contrast rather than semantic appearance, requires an additional unconditional model, and visibly produces artifacts; no quantitative localization, leakage, or editing benchmark is provided (pp. 8–9, 23–24).",
+          "Empirical support is incomplete: comparisons focus mainly on two baselines without repeated runs or uncertainty, CODiT has substantially worse FID on every dataset, and it remains behind recent methods on VOC/COCO; the reported ARI/AMI derivations also appear nonstandard or erroneous, reducing confidence in metric correctness (pp. 16–17, 19, 22, 25)."
+        ],
+        "score_rationale": "The compositional DiT decoder is interesting and the synthetic/tabletop results are promising, placing the work near the acceptance boundary. However, the CFG argument is not a real theoretical justification, central interpretability claims lack rigorous measurement, generation quality is weak by FID, and real-world results trail prior work. I therefore rate it marginally below acceptance; uncertainty remains because code could clarify whether the questionable metric formulas are merely presentation errors."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CODiT applies a shared per-slot DiT to predict slot-specific noise and masks, then spatially composes the predictions. This is a plausible and moderately novel object-centric diffusion design, with encouraging segmentation and qualitative controllability results. However, metric-definition errors, architectural confounds, limited statistical evidence, and weak generation quality prevent the empirical claims from being reliable enough for acceptance.",
+        "strengths": [
+          "The per-slot denoising and learned-mask composition mechanism is intuitive, technically plausible, and distinct from decoders that jointly condition on all slots (pp. 4–7).",
+          "CODiT shows large segmentation gains over LSD and SlotDiffusion on CLEVRTEX and OCT-B, alongside improved reconstruction MSE across four datasets (pp. 9–10).",
+          "The appendices include useful architecture details, ablations, complexity measurements, qualitative failure cases, and real-world evaluations (pp. 14–25)."
+        ],
+        "weaknesses": [
+          "The evaluation definitions raise serious correctness concerns: the stated ARI denominator uses a plus sign for the chance term rather than the standard subtraction, and the AMI exposition is internally confusing; it is uncertain whether these are manuscript typos or implementation errors (pp. 15–17).",
+          "The evidence does not isolate the proposed compositional mechanism: CODiT changes UNet to a larger DiT, the key DiT-CA ablation uses attention masks rather than generated masks, and no repeated-run variability is reported (pp. 14–15, 21).",
+          "Generation and editing claims are overstated: FID is substantially worse on every dataset, single-slot interpretability is only qualitative, and editing mainly changes contrast using an additional unconditional model while producing artifacts on FFHQ (pp. 8–9, 19–20, 22–23)."
+        ],
+        "score_rationale": "The core architecture is interesting and some segmentation gains are substantial, but the questionable metric specification and insufficiently controlled experiments materially weaken technical confidence. Poor FID and qualitative-only evidence also undercut the claimed generative interpretability, placing the work below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CODiT applies a shared slot-conditioned DiT independently to each slot and combines per-slot noise predictions using learned spatial masks. This is a useful object-centric diffusion design with encouraging synthetic-scene segmentation and reconstruction results, but the evidence does not yet substantiate the paper’s broad interpretability, generation, and real-world claims.",
+        "strengths": [
+          "The post-decoder denoising construction is simple, reasonably novel, and directly produces compositional masks (pp. 4–7).",
+          "CODiT substantially improves several segmentation metrics over LSD and SlotDiffusion on CLEVRTEX and OCT-B and generally improves reconstruction MSE (pp. 9–10).",
+          "The appendices include architecture details, ablations, complexity measurements, qualitative failure cases, and experiments on several datasets (pp. 14–25)."
+        ],
+        "weaknesses": [
+          "The claimed CFG “theoretical explanation” is mainly an algebraic reinterpretation obtained by replacing scalar CFG weights with normalized spatial masks; it neither establishes object identifiability nor justifies the claim that singleton conditioning should generalize after multi-slot training (pp. 6–7).",
+          "Interpretability and editing evidence is largely qualitative: editing mostly changes contrast rather than object attributes, requires an additional unconditional model, and visibly fails on FFHQ; singleton-generation quality also contains substantial artifacts (pp. 8–9, 23–24).",
+          "Empirical support is incomplete: there are only two main diffusion baselines, no uncertainty or multiple-seed reporting, CODiT has substantially worse FID on every dataset, and it remains behind stronger methods on VOC/COCO (pp. 19–20, 25)."
+        ],
+        "score_rationale": "The compositional denoising architecture is promising and yields meaningful gains on selected synthetic/tabletop benchmarks. However, the central theoretical argument is weak, key interpretability claims lack quantitative validation, generation quality is consistently worse by FID, and real-world results are not competitive. These issues place the work marginally below acceptance, though uncertainty remains because code and additional controlled evaluations could clarify robustness."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CODiT introduces a shared per-slot DiT that predicts slot-specific noise and spatial masks, then composes the predictions. This is a potentially useful object-centric diffusion design, with promising synthetic-scene segmentation and qualitative slot manipulation. However, the theoretical framing and empirical validation do not adequately substantiate the stronger claims, and the appendix raises serious metric-correctness concerns.",
+        "strengths": [
+          "The per-slot denoising and mask-weighted composition architecture is a clear, reasonably novel synthesis of object-centric decoding and latent diffusion (pp. 4–7).",
+          "Results show substantial segmentation gains over LSD and SlotDiffusion on CLEVRTEX and OCT-B, alongside competitive reconstruction performance (pp. 9–10).",
+          "Ablations, qualitative single-slot decoding, editing examples, and explicit failure cases provide useful diagnostic evidence (pp. 8, 15, 21–24)."
+        ],
+        "weaknesses": [
+          "The claimed CFG “theoretical explanation” is mainly an algebraic analogy: normalization makes the unconditional term cancel, but does not establish that learned masks are CFG weights or that single-slot generation should generalize (pp. 6–7).",
+          "Metric definitions appear incorrect or ambiguous. Most notably, the reported ARI denominator uses a plus rather than the standard subtraction of the expected index, while the AMI exposition treats label distributions unusually; this undermines confidence in the central segmentation tables unless confirmed as typographical errors (pp. 15–17).",
+          "Evidence is limited by no seeds/error bars, capacity-mismatched baselines, and weak real-world/generation results: CODiT has substantially worse FID on every dataset and trails several methods on VOC/COCO, while editing largely changes contrast and requires an additional unconditional model (pp. 9, 19–22, 25)."
+        ],
+        "score_rationale": "The compositional decoder is interesting and synthetic results are promising, but questionable metric specifications, a weak theoretical claim, incomplete statistical/fairness controls, and poor generation/real-world results prevent confidence in the paper’s main conclusions. I am uncertain whether the ARI/AMI issues are manuscript-only typos or affect the implementation; resolving that could materially change the score."
+      }
+    }
+  ]
+}

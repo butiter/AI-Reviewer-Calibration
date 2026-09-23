@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_088",
+  "paper_id": "RUn41kd6i0",
+  "number": 12386,
+  "title": "Calibrate to Discriminate:Improve In-Context Learning with Label-Free Comparative Inference",
+  "authors": "Wei Cheng; Tianlu Wang; Yanmin Ji; Keren Tan; Fan Yang; Yiyu Zheng",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "Calibration. In-context learning. Comparative inference.",
+  "forum_url": "https://openreview.net/forum?id=RUn41kd6i0",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    3
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates a phenomenon called \"indiscriminate miscalibration\" in LLMs during in-context learning, where models assign similar confidence levels to both correct and incorrect predictions. The authors propose new metrics to measure this issue and introduce a label-free comparative inference method that includes unlabeled samples in prompts to improve calibration and classification performance. The authors evaluate their approach on 5 datasets using various Llama models and demonstrate improvements in both classification metrics (F1 score, accuracy) and calibration metrics."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper identifies an interesting and important problem regarding LLM calibration\n2. The proposed label-free approach is novel and doesn't require labeled examples\n3. The method appears to improve both classification performance and calibration metrics"
+        },
+        "weaknesses": {
+          "value": "1. The experimental design has several limitations that raise concerns about the generalizability and robustness of the results. Firstly, the evaluation is only conducted on Llama family models, which may not be representative of other language models or architectures. Secondly, the 5 datasets used are relatively standard classification tasks, and it is unclear how the method would perform on more complex or challenging datasets. Furthermore, the maximum of 500 test samples feels limited for a robust evaluation, and the lack of ablation studies examining the impact of different comparison sample selection strategies makes it difficult to disentangle the effects of different components of the method.\n\n2. The paper lacks a rigorous theoretical analysis of why the comparative inference approach works. The assumptions made in Section 4.1.2 about bias averaging (Equation 3) are not well justified, and it is unclear what underlying principles drive the improvement in calibration and classification performance. A more thorough exploration of the theoretical foundations of this method would be necessary to fully understand its implications and limitations.\n\n\n3. The comparative inference method increases the inference cost significantly due to multiple forward passes, which may be a concern for real-world applications where computational resources are limited. Moreover, the post-hoc calibration requires validation data, which may not be readily available for open-ended generation tasks, limiting the method's applicability in these scenarios."
+        },
+        "questions": {
+          "value": "1. Why do you believe the bias averaging assumption in Equation 3 holds? Can you provide theoretical or empirical evidence?\n\n2. How do you select comparison samples in practice? Is there a strategy better than random selection?\n\n3. What is the computational overhead of your method compared to standard few-shot prompting? Please provide detailed timing analysis.\n\n4. How sensitive is the method to the choice of comparison samples?\n\n5. Can you comment on the method's impact on open-ended text generation and language modeling tasks?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "bNIvGu7U8O",
+      "forum": "RUn41kd6i0",
+      "replyto": "RUn41kd6i0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12386/Reviewer_onKS"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12386/Reviewer_onKS"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12386/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730429252020,
+      "cdate": 1730429252020,
+      "tmdate": 1731428908130,
+      "mdate": 1731428908130,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the problem of indiscriminate miscalibration in Large Language Models (LLMs). The authors introduce a new calibration metric called Discriminate KL Divergence (DKL) and propose an in-context comparative inference method -- a label-free approach termed LF -- to mitigate this issue. They validate their method on five classification tasks using five models from the LLama family, employing both traditional and their newly proposed metrics."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The idea of using comparative inference to improve confidence calibration in LLMs is novel.\n2. Extensive experiments demonstrate the effectiveness of their method.\n3. The paper is clearly written and easy to follow."
+        },
+        "weaknesses": {
+          "value": "1. Lack of in-depth analysis on why comparative inference alleviates indiscriminate miscalibration. It remains unclear how such a comparison triggers the LLM to output discriminative confidence.\n2. Unfair comparisons in the experiments. For instance, the 0-shot-agg LF-ICL requires ensembling 10 inferences to produce one result, resulting in 10 times the computational cost compared to the 0-shot ICL baselines. While this is not a major issue since 0-shot LF-ICL still outperforms 0-shot ICL, including a 0-shot-ensemble ICL baseline would provide a more rigorous comparison."
+        },
+        "questions": {
+          "value": "1. Regarding the experiments on post-hoc calibration, the authors claim that \"comparative inference with post-hoc calibration can be combined with few-shot prompting\" to further improve performance. Do the authors have experimental data to support this claim?\n2. The LF-based methods do not show a robust improvement in terms of Expected Calibration Error (ECE) in the post-hoc calibration experiments. Why do the authors not present results using other metrics like the DKL they have just proposed?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "2hdV6mxXJt",
+      "forum": "RUn41kd6i0",
+      "replyto": "RUn41kd6i0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12386/Reviewer_kE25"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12386/Reviewer_kE25"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12386/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730349129486,
+      "cdate": 1730349129486,
+      "tmdate": 1731428908091,
+      "mdate": 1731428908091,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper studies the confidence calibration of large language models (LLMs) on classification tasks. The authors observe the indiscriminate miscalibration behavior of LLMs where accuracy is similar regardless of whether confidences are high or low and that metrics like ECE fail to capture this behavior accurately. The authors propose a KL divergence-based metric that can better capture this behavior and propose a post-hoc label-free calibration method to alleviate indiscriminate miscalibration."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The indiscriminate miscalibration observation, where both correct and incorrect predictions are assigned the same level of confidence, is quite interesting, as previous studies predominantly reported findings similar to Figure 1(b). Notably, the proposed method does not require labels, which is commendable. Experiments were conducted on five different LLMs of varying sizes which is also laudable."
+        },
+        "weaknesses": {
+          "value": "**Key Related Works Missing**: One of my primary concerns is that the paper does not cite several key works in the calibration literature that are highly relevant, including:\n\n1)\tAbbas, M., Zhou, Y., Ram, P., Baracaldo, N., Samulowitz, H., Salonidis, T., and Chen, T. Enhancing in-context learning via linear probe calibration. In Proceedings of The 27th International Conference on Artificial Intelligence and Statistics, pp. 307–315, 2024.\n\n2)\tZhixiong Han, Yaru Hao, Li Dong, Yutao Sun, and Furu Wei. Prototypical calibration for few-shot learning of language models. In Proc. of International Conference on Learning Representations, 2023.\n\n3)\tZhongtao Jiang, Yuanzhe Zhang, Cao Liu, Jun Zhao, and Kang Liu. Generative calibration for in-context learning. In Houda Bouamor, Juan Pino, and Kalika Bali (eds.), Findings of EMNLP 2023.\n\n4)\tM. Shen, S. Das, K. Greenewald, P. Sattigeri, G. Wornell, and S. Ghosh. Thermometer: Towards universal calibration for large language models. ICML 2024.\n\nThese papers focus on calibration for LLMs and could also serve as valuable baselines. While the first three aim to enhance LLM performance, particularly in the in-context learning (ICL) setting, 1) Abbas et al. (2024) and 4) Shen et al. (2024) notably also tackle the issue of Expected Calibration Error (ECE) metric. Thus, I respectfully disagree with the authors’ statement in lines 358-359 that “While such methods can decrease ECE, it does not help with improving model classification performance,” as these papers address both aspects.\n\n**Limited baselines**: The baselines are too limited, and the papers I mentioned earlier should be included as valid baselines.\n\n\n**Limited evaluation**: The dataset selection here appears quite restricted compared to related studies. For example, Batch Calibration (Zhou et al., 2023) utilizes 13 classification datasets, while Generative Calibration (Jiang et al., 2023) uses 12. Using a wider range of datasets would lead to a more thorough assessment and strengthen the study.\n\n**Unfair comparison**: If we use two additional input samples in the prompt (as mentioned in lines 415-416), the zero-shot effectively becomes 2-shot, while three-shot becomes five-shot. I know we are not providing labels for the 2 additional samples but still the comparison of 0-shot/3-shot/10-shot LF-ICL with 0-shot/3-shot/10-shot ICL is a bit unfair since adding additional samples provides additional context/information.\n\n**Reproducibility**: The authors did not provide the code to reproduce the results, which raises concerns about reproducibility.\n\n**Suggestions**: \n\nPrevious studies have shown that ICL is sensitive to the choice of demonstrations used in the few-shot setting. It would be good to report standard deviation across different choices of the test demonstrations in Table 1 and Table 2, as done by (Contextual Calibration, Zhao et al., 2021), (Linear Probe Calibration, Abbas et al., 2024), and (Prototypical calibration, Han et al., 2023) etc.\n\nIn Table 1, it would have been nice to see the results for the 3 shot-agg and 10 shot-agg as well.\n\n\n**Suboptimal Writing**: The writing in the paper is quite suboptimal, containing numerous grammatical errors and typographical errors. Here are some suggestions for improvement:\n\nLines 027-228: Redundancy: ‘LLMs’ abbreviation defined again. It was already defined in the abstract.\n\nLines 094-097: Several grammatical issues in the sentence\n\nLines 135-136: grammar/typo: use ‘accuracies are’ or ‘accuracy is’. Moreover, \"regardless whether\" should be \"regardless of whether\". It is better to use 'LLM' abbreviation as defined earlier in the abstract. \n\nLine 164: grammar/typo: use 'an LLM' instead of 'a LLM'.\n\nLines 195-197: typo/grammar: \"dataset\" should be pluralized as \"datasets.\". typo: add space in the beginning of the sentence (i.e. between '...datasets.' and 'A smaller...').\n\nLines 234-236: grammar/typo: \"incapable for describe\" should be \"incapable of describing\"\n\nLines 268-269: grammar/typo: \"it has trouble\" should be \"they have trouble\": The subject \"LLMs\" is plural, so it should be followed by \"they\" rather than \"it.\"\n\nLines 270-272: grammar/typo: \"without trained on them\" should be \"without being trained on them\". typo/grammar: \"asking LM\" should be \"asking the LLM\".\n\nLines 289-291: suggestion for better readability: change \"Notice that even we are using words like ‘comparing’\" to \"Note that even though we use words like ‘comparing’\". suggestion for better readability: Change \"and sample 3\" to \"or sample 3\" to improve readability.\n\nLine 296: typo/grammar: \"is because of\" → \"is that, due to\".\n\nLine 298: The phrase \"where one would expect\" is confusing in context; replacing it with \"one would expect\" directly makes it clearer.\nLine 302: suggestion: \"bias to the samples\" → \"bias toward samples\".\n\nLine 303-304: suggestion: \"degradation of inference performance on later input samples\" → \"degradation in inference performance for samples appearing later in the input\".\n\nLine 341 (Figure 5): typo/grammar: \"across 5 dataset.\" should be pluralized as \"across 5 datasets.\"\n\nLines 346-347: grammar/typo: \"F1 score and accuracy is also improved\" should be \"F1 score and accuracy are also improved.\"\n\nLine 348: grammar/typo: \"Though\" → \"Although\".\n\nLines 367-368: typo: \"referencs\" → \"references\".\n\nLine 485: typo/grammar: \"restricts\" instead of \"restricted\"."
+        },
+        "questions": {
+          "value": "**Clarification regarding Figure 1 setting**: I am not able to understand the reason behind the difference in observations between Figures 1(a) and 1(b). Why do they behave differently? What distinguishes the experimental settings in each case—is it the use of different datasets, or some other factor? These are important questions, and an apples-to-apples comparison is essential for clarity.\n\n**With-labels version**: How would the method perform if we included labels for the 2 additional input samples? Would adding labels increase/decrease the performance? If it improves, by how much? This would perhaps be an interesting study."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "gKZsGdo9bO",
+      "forum": "RUn41kd6i0",
+      "replyto": "RUn41kd6i0",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12386/Reviewer_H97s"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12386/Reviewer_H97s"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12386/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729889287910,
+      "cdate": 1729889287910,
+      "tmdate": 1732474370750,
+      "mdate": 1732474370750,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper identifies a potentially useful calibration failure mode in which confidence poorly separates correct from incorrect predictions, and proposes jointly prompting with unlabeled comparison examples plus aggregation. Results across five classification datasets and five Llama models are promising, but the methodological justification and empirical reporting are not sufficiently rigorous to support the main mechanism and generality claims.",
+        "strengths": [
+          "The distinction between absolute calibration error and confidence-based discrimination is practically important, and the reliability diagrams make the phenomenon intuitive (pp. 2–5).",
+          "The proposed comparative prompting method is simple, label-free with respect to added examples, and can improve both F1 and ECE across several model sizes (pp. 6–9).",
+          "The study examines five datasets, five models, repeated runs, aggregation, and combinations with few-shot and post-hoc calibration (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The causal explanation is weakly tested: there is no control using multiple unlabeled inputs without comparison wording, no systematic comparison-sample selection ablation, and the histogram evidence does not establish that models actually compare examples (pp. 6, 9–10).",
+          "The new metric/evidence is underspecified. DKL estimation for empirical confidence distributions lacks binning or density-estimation details and uncertainty analysis, while MacroCE is adopted from prior work rather than newly proposed; consequently the central calibration measurements are difficult to reproduce or interpret (pp. 4–5).",
+          "Experimental reporting is incomplete: headline values are averages across heterogeneous datasets, per-dataset results and promised appendix are absent, F1 averaging and ECE implementation are unspecified, statistical significance is not reported, and aggregation uses up to 10 calls without compute-matched ensemble baselines (pp. 7–10)."
+        ],
+        "score_rationale": "The paper offers a useful observation and an inexpensive prompting heuristic with encouraging results, but novelty is moderate and key claims about comparative inference are not isolated experimentally. Missing metric details, absent per-dataset/appendix evidence, and lack of compute-matched controls leave substantial uncertainty about robustness and reproducibility, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper identifies a potentially useful failure mode in LLM confidence estimates and proposes predicting several unlabeled inputs jointly, optionally averaging across comparison sets. Results across five Llama models suggest gains in F1 and some calibration measures, but the methodological justification and experimental evidence are not yet strong enough for ICLR acceptance.",
+        "strengths": [
+          "The distinction between absolute calibration error and the ability to separate correct from incorrect predictions is practically important, and the reliability diagrams communicate the phenomenon clearly (pp. 2–5).",
+          "The study covers five classification datasets and five model sizes/variants, with reported gains that are often substantial, especially over zero-shot inference (pp. 8–9).",
+          "The paper explicitly analyzes autoregressive position bias and recognizes the inference-cost and model-family limitations of the method (pp. 6–7, 10)."
+        ],
+        "weaknesses": [
+          "The central mechanism is weakly supported: joint prediction is called “comparative” even though no actual comparison is required, and the paper lacks controls for multiple unlabeled inputs without comparison wording, matched-compute ensembling, comparator choice, or prompt length. Equation 3 simply assumes zero-mean comparison bias without evidence (pp. 6–7, 9–10).",
+          "Calibration methodology is underspecified or questionable. The proposed DKL is asymmetric, its distribution/density estimation is not described, and summing probabilities of alternative first tokens can double-count prefixes and does not clearly yield normalized class probabilities (pp. 4–5). Thus the reported calibration improvements are difficult to interpret or reproduce.",
+          "Evidence is aggregated too heavily: the principal tables average five heterogeneous datasets without per-dataset results, uncertainty, or significance tests; F1 averaging is unspecified; the test sets are capped at 500; and several promised appendix results and prompts are absent from the supplied manuscript. Aggregation also costs up to 10 inference calls, making comparisons with ordinary prompting compute-unequal (pp. 7–10)."
+        ],
+        "score_rationale": "The phenomenon and simple intervention are interesting, and the reported gains warrant further investigation. However, novelty is modest relative to prompt/batch calibration and ensembling, the zero-mean-bias argument is unsupported, and missing controls and detailed results prevent firm conclusions about whether comparison itself improves discrimination. These are substantial but potentially repairable shortcomings, placing the work below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper identifies a potentially useful calibration failure mode in which confidence poorly separates correct from incorrect predictions, and proposes joint inference with unlabeled comparison examples plus aggregation. Results across five Llama models and five classification datasets suggest gains, but the evidence and formulation do not yet establish the mechanism, generality, or methodological rigor needed for acceptance.",
+        "strengths": [
+          "The distinction between absolute calibration error and the ability of confidence to discriminate correct from incorrect predictions is practically important and clearly motivated with reliability diagrams (pp. 2–5).",
+          "The proposed inference procedure is simple, label-free at inference time, and compatible with few-shot prompting and post-hoc calibration (pp. 6–8).",
+          "Experiments cover five model sizes/variants and five classification datasets, with reported improvements in F1, ECE, MacroCE, and DKL (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited and somewhat overstated: MacroCE is explicitly inherited from prior work, DKL is a direct divergence between conditional confidence distributions, and comparative inference largely amounts to batching a target with random unlabeled examples and ensembling prompts (pp. 5–7).",
+          "The central causal claim is insufficiently tested. There is no clean ablation separating the word “comparing” from merely presenting multiple inputs, no analysis of reference selection or label/class composition, and no compute-matched ensemble baseline, despite aggregation using up to 10 calls (pp. 6–9).",
+          "Experimental reporting is inadequate for judging robustness: principal tables average heterogeneous datasets, per-dataset results and promised appendix details are absent from the supplied manuscript, uncertainty/significance is not reported for key tables, and DKL estimation details are unspecified. Equations 3–5 also rely on an unjustified zero-mean bias assumption and contain unclear normalization/optimization notation (pp. 6–10)."
+        ],
+        "score_rationale": "The paper presents an interesting observation and a simple method with encouraging aggregate results. However, weak novelty, unclear mathematical formulation, missing decisive ablations, compute-unmatched comparisons, and incomplete per-dataset/statistical reporting leave the main claims insufficiently supported. I therefore rate it below the acceptance threshold, while acknowledging uncertainty because the reported gains could prove robust under a more rigorous evaluation."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper identifies an interesting failure mode in which LLM confidence poorly separates correct from incorrect predictions and proposes placing unlabeled comparison examples in the prompt, optionally ensembling several such prompts. Results across five datasets and five Llama models suggest gains in F1 and some calibration measures, but incomplete reporting and weak methodological justification prevent firm conclusions.",
+        "strengths": [
+          "The distinction between absolute calibration error and confidence-based discrimination is practically relevant and illustrated clearly in the reliability diagrams (pp. 2–5).",
+          "The evaluation covers five classification datasets, five model sizes/variants, and ten random replicates, with gains often appearing across models (pp. 8–9).",
+          "The method is simple, label-free in its basic form, compatible with few-shot prompting, and the increased inference cost is acknowledged (pp. 6–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the method largely batches unrelated unlabeled inputs and ensembles prompt contexts, while MacroCE is prior work and DKL is a direct application of standard KL divergence; the key zero-mean comparison-bias assumption is unsupported (pp. 5–7).",
+          "Evidence is insufficiently transparent: most results are averaged over heterogeneous datasets, decisive per-dataset accuracy/F1 tables and promised appendices are absent, statistical significance is not reported, and the 10-call aggregation is not compared fairly with compute-matched prompt ensembling or other calibration baselines (pp. 7–10, 13).",
+          "Technical and reproducibility details are problematic: ECE binning and DKL density estimation are unspecified, first-token probability summation is questionable, and the post-hoc equations/objective are ambiguous or malformed; Figure 5(a)'s caption also describes a different experiment (pp. 4, 5, 7)."
+        ],
+        "score_rationale": "The phenomenon and empirical direction are promising, but the contribution is incremental and the central causal explanation is only hypothesized. Missing granular results, absent promised appendix material, compute-unmatched baselines, and underspecified metrics/calibration equations materially weaken soundness and reproducibility, placing the work below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper identifies a useful calibration failure mode in which confidence poorly separates correct from incorrect predictions, proposes DKL-based measurement, and batches unlabeled examples for comparative inference. The empirical trend is promising, but the method is only weakly justified and the evaluation does not establish that gains arise from comparison rather than extra context, repeated inference, or ensembling.",
+        "strengths": [
+          "The distinction between absolute calibration error and discrimination/ranking ability is practically important, and the reliability diagrams make the phenomenon intuitive (pp. 2–5).",
+          "The study covers five classification datasets and five Llama variants, reporting both predictive and calibration metrics over 10 replicates (pp. 8–10).",
+          "Comparative inference generally improves zero-shot F1, while aggregation often substantially reduces ECE (Table 1, p. 8)."
+        ],
+        "weaknesses": [
+          "The central assumption that comparison-sample bias is zero-mean is unsupported, and no analysis shows that the model actually compares examples; the histogram evidence is correlational (pp. 6–7, 9–10).",
+          "The evaluation lacks essential controls: aggregation uses up to 10 calls but is not compared with an equal-cost ensemble of ordinary prompts, and there are no ablations for simply adding unlabeled examples without comparison wording or for reference selection (pp. 6–9).",
+          "Evidence and reproducibility are incomplete: only averages across datasets are provided, significance is not reported, DKL estimation details are absent, Eq. 5 and its optimization are unclear, and promised appendix breakdowns/sample prompts are missing from the supplied manuscript (pp. 5, 7–10)."
+        ],
+        "score_rationale": "The phenomenon and empirical results are interesting, but novelty over prompt/batch calibration and ensembling is modest, while missing controls and unclear technical details prevent strong causal or calibration conclusions. I therefore rate it below the acceptance threshold, with some uncertainty because the manuscript refers to appendix evidence that is not actually included."
+      }
+    }
+  ]
+}

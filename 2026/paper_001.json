@@ -1,0 +1,216 @@
+{
+  "year": 2026,
+  "package_id": "paper_001",
+  "paper_id": "NX6oMuoLxu",
+  "number": 609,
+  "title": "Layer-Wise Analysis in Exploring the Normalization Strategies in Mamba",
+  "authors": [
+    "Peilin Feng",
+    "Yuanshuai Wang",
+    "Yunhao Ni",
+    "Junle Wang",
+    "zhangkui",
+    "wenjun wu",
+    "Lei Huang"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "Mamba",
+    "Normalization",
+    "Stability",
+    "Optimization",
+    "Scale invariance",
+    "Condition number"
+  ],
+  "forum_url": "https://openreview.net/forum?id=NX6oMuoLxu",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    2,
+    2
+  ],
+  "human_mean_rating": 2.6666666666666665,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "KsGCpzmWVZ",
+      "forum": "NX6oMuoLxu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission609/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760821680125,
+      "tmdate": 1762915565191,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "pxvyX2zWwl",
+      "forum": "NX6oMuoLxu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission609/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761914333035,
+      "tmdate": 1762915564950,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "xMOsQnkirJ",
+      "forum": "NX6oMuoLxu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission609/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761987321296,
+      "tmdate": 1762915564650,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper studies normalization placement in Mamba and proposes pre-SSM BatchNorm plus post-SSM LayerNorm. The empirical breadth is useful, but the contribution is incremental and the evidence does not adequately establish the claimed theoretical or causal conclusions.",
+        "strengths": [
+          "The paper addresses a practically relevant failure mode and provides layer-wise activation/gradient diagnostics on both language and vision settings (pp. 6–8, 20–21).",
+          "The proposed BN→SSM→LN configuration is simple and is evaluated across sequence, NLP, classification, detection, and segmentation tasks (pp. 8–9, 14–16).",
+          "The appendices compare normalization types and placements, supporting the practical observation that post-SSM LN is generally stabilizing (pp. 18–22)."
+        ],
+        "weaknesses": [
+          "The analysis is largely correlational rather than theoretical: K-FAC conditioning does not by itself demonstrate faster convergence, and the paper even describes condition-number panels in Fig. 6(b,e) as convergence/generalization evidence (pp. 5–8). Similar panel-reference mismatches occur in the stability discussion.",
+          "Experimental reporting is insufficient for strong conclusions: there are no repeated runs, uncertainty estimates, compute comparisons, batch-size sensitivity for BN, or systematic depth/model-scale studies. Several gains are tiny (e.g., WikiText-103 27.59→27.57 and COCO 34.5→34.9), while the claimed state-of-the-art performance is unsupported (pp. 8–9).",
+          "Results and setups appear inconsistent or underspecified: ImageNet values for post-LN and BN+LN differ between the main tables/figures and appendix (87.04/87.74 on p. 9 versus 86.36/86.72 on pp. 21–22), and the exact BN axes and inference-time handling for sequential data are unclear."
+        ],
+        "score_rationale": "This is a potentially useful empirical study with a simple practical recommendation, but novelty is modest and substantial reporting, consistency, and causal-interpretation issues undermine technical confidence. The current evidence supports a normalization heuristic more than the claimed principled guideline, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper studies normalization placement in Mamba and proposes pre-SSM BatchNorm plus post-SSM LayerNorm. The broad empirical scope is potentially useful, but the central mechanistic claims are not established rigorously and the reported gains are often small or internally inconsistent.",
+        "strengths": [
+          "The paper examines both training stability and optimization conditioning rather than reporting final accuracy alone, using activation, gradient, weight, and K-FAC statistics (pp. 5–8).",
+          "The normalization-position ablations cover several normalization types and suggest that post-SSM LN is substantially more reliable than BN or IN at that position (pp. 18–20).",
+          "The proposed configuration is evaluated across language, long-sequence, classification, detection, and segmentation tasks (pp. 8–9, 14–16)."
+        ],
+        "weaknesses": [
+          "The claimed theoretical analysis is largely descriptive: K-FAC identities do not prove that BN causes faster convergence, and a smaller maximum eigenvalue does not by itself imply better update alignment or a smoother landscape. The estimation procedure, damping, sample count, and treatment of near-zero eigenvalues are also unspecified (pp. 5–8, 17–18).",
+          "Evidence is insufficiently controlled: there are no seeds, uncertainty estimates, matched training-cost measurements, or strong modern baselines, while several improvements are very small (e.g., WikiText-103 27.59 to 27.57 and COCO 34.5 to 34.9 on pp. 8–9). It is also unclear how BN statistics are formed for sequence inputs or used at inference.",
+          "Reported results and interpretations are inconsistent. ImageNet-100 values differ across Table 3 and appendix figures (e.g., BN-LN 87.74 on p. 9 versus 86.72 on p. 22), no-normalization results vary (11.52 on p. 9 versus 23.08 on pp. 18–22), and the discussion of Figure 5 cites the wrong panels for weight, input, and gradient statistics (pp. 6–8)."
+        ],
+        "score_rationale": "The normalization-placement question is relevant and the empirical breadth provides some value, but the method is only modestly novel. More importantly, unsupported causal interpretations, missing statistical controls and implementation details, and notable internal inconsistencies prevent confidence in the main conclusions. I therefore rate it below the acceptance threshold, while allowing that a carefully corrected and replicated version could become useful."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper studies normalization placement in Mamba and proposes pre-SSM BatchNorm plus post-SSM LayerNorm. The question is useful and the experiments span several domains, but the central mechanistic claims are not established reliably, and substantial inconsistencies between figures, captions, and conclusions weaken confidence in the results.",
+        "strengths": [
+          "The paper targets a practically important failure mode—depth-related instability in Mamba—and separates stability from optimization conditioning (pp. 1–6).",
+          "It evaluates normalization choices across sequence, language, classification, detection, and segmentation tasks rather than relying on one benchmark (pp. 8–9, 14–16).",
+          "The placement ablations support the narrower empirical conclusion that post-SSM LN is stabilizing and that adding pre-SSM BN can provide a modest convergence benefit (pp. 18–22)."
+        ],
+        "weaknesses": [
+          "The analysis contains decisive reporting contradictions: the discussion assigns weight norms to Fig. 5(a,d) and input covariance to Fig. 5(c,f), although the panels show the reverse; Fig. 6(b,e) are condition-number plots but are cited as evidence of training loss and generalization. Moreover, a lower maximum K-FAC eigenvalue alone does not establish better update alignment or a smoother landscape (pp. 6–8).",
+          "The purported theoretical foundation is mostly standard K-FAC identities and intuition. It neither derives why SSM intrinsically amplifies activations nor proves that the proposed normalization controls gradients; singular/near-singular Fisher blocks and the exact percentile condition-number computation are insufficiently handled (pp. 5–6, 16–18).",
+          "Empirical reliability is limited by absent multi-seed uncertainty or significance tests, unclear BN axes/inference behavior, and inconsistent ImageNet numbers across the main table and appendix (87.74, 86.72, and 86.36; pp. 9, 18–22). Several gains are very small, baseline divergences dominate comparisons, and the unsupported state-of-the-art/generalization claims omit compute and batch-size sensitivity."
+        ],
+        "score_rationale": "The normalization-placement hypothesis is plausible and potentially useful, but novelty is modest and the evidence does not support the paper's strong causal and theoretical claims. Figure/text mismatches, inconsistent reported results, and inadequate statistical and methodological controls are substantial enough to warrant rejection rather than a marginal score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper studies normalization placement in Mamba and proposes pre-SSM BatchNorm plus post-SSM LayerNorm. The cross-domain evaluation suggests that post-SSM normalization prevents divergence and that the composite scheme can modestly improve convergence and final performance. However, the contribution is incremental, the claimed theoretical/principled conclusions are not established by the presented diagnostics, and substantial reporting inconsistencies weaken the evidence.",
+        "strengths": [
+          "The paper addresses a practically relevant failure mode and evaluates normalization placement across language, long-sequence, classification, detection, and segmentation tasks (pp. 8–9, 14–16).",
+          "The placement ablations provide useful evidence that post-SSM LN is important for stability and that BN+LN can improve early convergence (pp. 18–22).",
+          "The activation, gradient-covariance, weight-norm, and K-FAC measurements attempt to connect empirical behavior with layer-wise training dynamics (pp. 5–8, 16–18)."
+        ],
+        "weaknesses": [
+          "The analysis is primarily correlational rather than theoretical: no derivation shows that SSM amplification causes divergence or that lower approximate-Fisher conditioning causes faster convergence. K-FAC estimation, damping, eigenvalue computation, sampling, and treatment of singular/near-zero eigenvalues are insufficiently specified (pp. 5–8, 17–18).",
+          "Key claims and figure references are inconsistent. Page 7 attributes weight-norm conclusions to Fig. 5(a,d), although those panels show input covariance, while page 8 attributes input covariance to Fig. 5(c,f), which show weight norms. Page 8 claims convergence/generalization evidence from Fig. 6(b,e), but those panels report K-FAC condition numbers, not loss or accuracy.",
+          "The empirical gains are often small, with no multiple seeds, uncertainty intervals, significance tests, or normalization-specific tuning: e.g., WikiText-103 improves only 27.59 to 27.57 and vision gains are roughly 0.3–0.7 points (p. 9). The unsupported “state-of-the-art” claim lacks comparisons to external methods (p. 8), and reproducibility details for BN axes/statistics in sequence settings remain unclear."
+        ],
+        "score_rationale": "The work contains a plausible and potentially useful normalization recipe, but limited novelty, unsupported mechanistic claims, missing statistical validation, and multiple mismatches between figures and conclusions prevent confidence in the central argument. I therefore rate it below the acceptance threshold, while acknowledging that stronger controlled experiments and corrected analysis could make it viable."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies normalization placement in Mamba and proposes pre-SSM BatchNorm plus post-SSM LayerNorm. While the question is useful and the empirical coverage is broad, the contribution is incremental and the analysis does not rigorously support several causal or theoretical claims.",
+        "strengths": [
+          "Addresses the practically important problem of instability in deep Mamba models and compares normalization placements directly (pp. 1–5).",
+          "Provides layer-wise activation, gradient, weight-norm, and K-FAC diagnostics on both language and vision settings (pp. 6–8, 16–22).",
+          "Evaluates the composite normalization across sequence modeling, language modeling, classification, detection, and segmentation tasks (pp. 8–9, 14–16)."
+        ],
+        "weaknesses": [
+          "The claimed theoretical foundation is largely descriptive: covariance spectra and K-FAC conditioning are monitored, but no result establishes that post-LN prevents divergence or that pre-BN causes faster convergence. Several interpretations—such as lower maximum eigenvalues implying better update alignment—are unsupported, and Fig. 6(b,e) is cited as convergence evidence despite plotting condition numbers (pp. 7–8, 17–18).",
+          "Experimental evidence lacks seeds, uncertainty, statistical tests, and adequately controlled training-efficiency measurements. Many gains are small (e.g., WikiText-103 27.59 to 27.57, COCO 34.5 to 34.9, and ADE20K 26.92 to 27.32), so reliability cannot be judged (pp. 8–9).",
+          "Reported results and descriptions are internally inconsistent: ImageNet no-normalization accuracy is 11.52 on p. 9 but 23.08 on pp. 18–22; post-LN and BN-LN accuracies also vary across tables and figures without explanation. Figure 5 panels are repeatedly misidentified in the text, and crucial K-FAC estimation details are absent (pp. 6–9, 18–22)."
+        ],
+        "score_rationale": "The normalization recipe may be practically useful, and the breadth of tasks is encouraging. However, its novelty is modest, the central mechanistic claims exceed the presented analysis, and missing variance plus substantial reporting inconsistencies undermine confidence in the empirical conclusions. These issues warrant rejection rather than a marginal score."
+      }
+    }
+  ]
+}

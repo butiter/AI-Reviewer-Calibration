@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_046",
+  "paper_id": "YPjcyMzhE2",
+  "number": 11418,
+  "title": "Evolving Sparsity: Leveraging Token Importance Dynamics for Efficient LLM Decoding with Sparse Attention",
+  "authors": [
+    "Ruizi Han",
+    "Miao Zhang",
+    "Ziyue Qiao",
+    "Liqiang Nie"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Sparse Attention",
+    "Long-Context LLMs",
+    "Efficient Inference"
+  ],
+  "forum_url": "https://openreview.net/forum?id=YPjcyMzhE2",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    6,
+    2,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0oKapuZ6FF",
+      "forum": "YPjcyMzhE2",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11418/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762010105013,
+      "tmdate": 1762922535215,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "6B5Yx2eIm2",
+      "forum": "YPjcyMzhE2",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11418/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761897279701,
+      "tmdate": 1762922535853,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "ACBtVVuXu8",
+      "forum": "YPjcyMzhE2",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11418/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762141806679,
+      "tmdate": 1762922534423,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "mrjHkYPGDM",
+      "forum": "YPjcyMzhE2",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11418/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760802037641,
+      "tmdate": 1762922536224,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EvoSparse combines cross-layer reuse of indices from retrieval heads with a decayed history of sparse attention scores. The approach is plausible and reports strong quality–efficiency trade-offs on two model families, but incomplete specification, potentially evaluation-dependent head selection, and weak baseline/latency coverage prevent the evidence from fully supporting the broad claims.",
+        "strengths": [
+          "The two mechanisms are complementary and practically motivated: propagated indices provide query-aware retrieval, while accumulated heat provides temporal salience (pp. 4–5).",
+          "Evaluation spans PG-19, NIHA, and ten LongBench tasks on both MHA and GQA models; component ablations generally support distinct contributions from retrieval and heat (pp. 6–9).",
+          "The reported PyTorch implementation achieves substantial attention and end-to-end speedups over full attention at long contexts, and the paper provides both FLOP analysis and latency breakdowns (pp. 7–8, 13–14)."
+        ],
+        "weaknesses": [
+          "The method is not specified precisely enough to reproduce: the allocation of the total budget among sink/local/heat/retrieval sets, handling of overlaps, per-head versus shared indices and heat, retrieval-head counts/locations, and propagation when multiple retrieval heads exist are unclear (pp. 4–5). Equation 2 is especially ambiguous about aggregating scores or indices across heads.",
+          "Retrieval heads are identified using NIHA and then evaluated on NIHA, raising possible benchmark-dependent selection or leakage; the paper does not report a disjoint calibration protocol or robustness to head-identification data (pp. 5–6).",
+          "Comparative evidence is incomplete: closely related cited methods such as DuoAttention, H2O, Loki, and SparQ are absent; TidalDecode is run with a setting the authors acknowledge is mismatched for Llama-2; and empirical latency is compared only with full attention rather than sparse baselines, without variance or repeated-run details (pp. 6–8)."
+        ],
+        "score_rationale": "The paper presents a useful but moderately incremental synthesis of existing retrieval-head propagation and attention-score accumulation ideas, with encouraging breadth, ablations, and speed results. However, the ambiguous algorithm/budget definition and concerns about NIHA-based head selection materially weaken technical confidence, while missing competitive latency comparisons and selectively disadvantaged baselines limit the empirical case. I therefore place it marginally below acceptance, with some uncertainty because exact numerical results and implementation details are not supplied."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EvoSparse combines retrieval-head index propagation across layers with decayed accumulation of sparse attention scores across decoding steps. The idea is intuitive and the reported results suggest a favorable quality–latency trade-off, but underspecified methodology and limited comparative efficiency evidence prevent firm validation.",
+        "strengths": [
+          "The cross-layer and cross-step mechanisms form a coherent, moderately novel combination that reuses signals already available during decoding (pp. 3–5).",
+          "Results span two attention architectures and three complementary evaluations; EvoSparse is consistently competitive with full attention and stronger than the plotted sparse baselines (pp. 6–9).",
+          "Component, block-size, and decay ablations generally support the proposed design, while measured PyTorch latency shows meaningful speedups at long contexts (pp. 8–9, 12–14)."
+        ],
+        "weaknesses": [
+          "Essential reproducibility details are missing: the numbers and aggregation rules for retrieval heads, the sink/local/retrieval/heat budget split, default decay factor, head/layer sharing of heat, and precise block-level realization are not specified. Equations 2–4 are also ambiguous about aggregation across heads and layers (pp. 4–5, 12–13).",
+          "Retrieval heads are detected using NIHA following prior work, but the calibration protocol, data separation, per-model head sets, and associated cost are not reported; this weakens the claim of requiring no model-specific tuning and creates uncertainty about NIHA fairness (pp. 5–7).",
+          "Efficiency validation compares latency only against full attention, not optimized competing sparse methods, and reports a single GPU without variability or throughput/memory measurements. The method retains the full KV cache, so references to constrained “KV cache budgets” are misleading, and its stated heat update remains linear in context per layer (pp. 7–8, 14)."
+        ],
+        "score_rationale": "The paper presents a useful and empirically promising sparse-decoding design, with broad benchmarks and sensible ablations. However, the incomplete algorithm specification, uncertain retrieval-head calibration protocol, and lack of apples-to-apples latency comparisons are substantial gaps for a systems-oriented efficiency claim. I therefore place it marginally below acceptance, pending clarification and stronger reproducibility/fairness evidence."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EvoSparse combines retrieval-head-based index propagation with decayed accumulation of sparse attention scores. The approach is plausible and shows encouraging results across PG-19, NIHA, and LongBench, but modest novelty, incomplete specification, and evaluation-fairness and systems-evidence gaps leave the central claims insufficiently established.",
+        "strengths": [
+          "The two mechanisms are complementary and intuitive: cross-layer propagation supplies query-dependent retrieval, while heat accumulation preserves longer-term salience (pp. 4–5).",
+          "Evaluation spans two attention architectures and several long-context capabilities; component ablations generally support the proposed roles of retrieval and heat (pp. 6–9).",
+          "The reported PyTorch implementation provides substantial attention and end-to-end speedups over full attention at long contexts, with additional block-size and decay studies (pp. 8, 12–14)."
+        ],
+        "weaknesses": [
+          "Novelty is incremental relative to H2O-style score accumulation, TidalDecode index propagation, and retrieval-head methods. Crucial algorithmic details are also missing: allocation of the total budget among retrieval/heat/local/sink sets, aggregation across heads and layers, duplicate handling, default decay, retrieval-head selection, and GQA mapping are not fully specified (pp. 3–5, 12–13).",
+          "The comparison may be biased: retrieval heads are detected using NIHA and then evaluated on NIHA, while TidalDecode is run with an acknowledged model/layer mismatch. Closely related alternatives such as H2O and DuoAttention are discussed but not evaluated (pp. 5–7).",
+          "Empirical efficiency is compared only against full attention on one GPU/model, without baseline latency, memory, batch-size, timing-protocol, or sustained-generation measurements (p. 8). Results are mostly plots without exact tables, variance, or repeated-run statistics, and the manuscript sometimes calls the attention-token budget a KV-cache budget despite retaining the full cache (pp. 3, 6–8)."
+        ],
+        "score_rationale": "The method is useful-looking and experimentally broad enough to approach acceptance, but its contribution appears primarily compositional and the missing reproducibility details, possible NIHA leakage, disadvantaged baseline configuration, and incomplete latency comparisons prevent firm validation. I am uncertain whether a fully specified and fairly tuned implementation would retain the reported margin."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EvoSparse combines cross-layer propagation of retrieval-head indices with cross-step accumulation of sparse attention scores. Results suggest strong quality–efficiency trade-offs, but incomplete specification and limited/favorable comparisons make the central claims difficult to validate conclusively.",
+        "strengths": [
+          "The two mechanisms are intuitive and complementary: retrieval indices provide query-aware selection, while decayed heat scores preserve longer-term salience (pp. 4–5).",
+          "Evaluation covers two attention architectures, multiple context benchmarks, several budgets, and component/hyperparameter ablations (pp. 6–9, 12–13).",
+          "The reported gains are practically meaningful, including near-full-attention task performance and up to 4.87× attention and 2.36× end-to-end speedups (pp. 6–8)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the method largely combines retrieval-head/index propagation related to TidalDecode or DuoAttention with attention-score accumulation related to H2O; the paper explains distinctions but does not establish a sufficiently deep conceptual advance (pp. 3–5).",
+          "Important implementation details are missing or ambiguous, including aggregation across retrieval heads in Eq. 2, retrieval-head counts and locations, allocation of the total budget among sink/local/retrieval/heat blocks, heat initialization, and the default decay factor (pp. 4–5). This substantially limits reproducibility.",
+          "Evidence is presented mainly as plots without exact tables, variance, or repeated runs. Empirical latency is compared only with full attention on one GPU/model rather than sparse baselines (p. 8), and the paper admits using a mismatched TidalDecode layer that partly explains its weak Llama-2 result (pp. 6–7). The approach also retains the full KV cache, so it reduces attention compute rather than KV-cache memory despite some budget wording."
+        ],
+        "score_rationale": "The method is plausible and empirically promising, with useful ablations and substantial reported speedups. However, its incremental novelty, underspecified algorithm/configuration, potentially unfavorable baseline setup, and lack of direct sparse-baseline latency comparisons leave the evidence slightly below the bar for acceptance. Some uncertainty remains because exact numerical results and implementation details are unavailable."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EvoSparse combines retrieval-head index propagation with decayed accumulation of sparse attention scores to improve long-context decoding. Results across PG-19, NIHA, and ten LongBench tasks are promising, but underspecified mechanics and limited efficiency validation prevent firm conclusions.",
+        "strengths": [
+          "The two mechanisms are complementary and intuitively motivated: retrieval supplies query-dependent evidence, while heat preserves longer-term salience (pp. 4–5).",
+          "Evaluation covers MHA and GQA models, multiple budgets, and three distinct long-context settings; the component ablations generally support both mechanisms (pp. 6–9).",
+          "Reported practical gains are substantial—up to 4.87× attention and 2.36× end-to-end speedup—and block-size/decay sensitivity is explored (pp. 8, 12–14)."
+        ],
+        "weaknesses": [
+          "The method is not reproducible from the description: aggregation across multiple retrieval heads in Eq. 2 is ambiguous, allocation/overlap among sink, local, heat, and retrieval sets under a fixed token budget is unspecified, and the block-level implementation is not reconciled clearly with token-level equations (pp. 4–5, 12–14).",
+          "Novelty is moderate: cross-layer index reuse closely resembles TidalDecode, while accumulated attention importance resembles H2O; the manuscript mainly combines these ideas with retrieval-head selection rather than establishing a fundamentally new principle (pp. 3–5).",
+          "Evidence lacks numeric tables, variability, and baseline latency measurements. Latency is reported only against full attention on one GPU/model, while retrieval heads are detected using NIHA and then evaluated on NIHA, raising possible tuning or contamination concerns (pp. 5–8)."
+        ],
+        "score_rationale": "The approach is plausible and empirically encouraging, with useful ablations and strong claimed speedups. However, key algorithmic details, possible NIHA selection bias, and the absence of direct empirical efficiency comparisons to sparse baselines make the central performance–efficiency claim insufficiently established. I therefore place it marginally below acceptance, with some uncertainty because figures replace detailed numerical reporting."
+      }
+    }
+  ]
+}

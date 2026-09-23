@@ -1,0 +1,450 @@
+{
+  "year": 2025,
+  "package_id": "paper_077",
+  "paper_id": "CtM5xjRSfm",
+  "number": 10737,
+  "title": "Accelerating neural network training: An analysis of the AlgoPerf competition",
+  "authors": "Priya Kasimbeg; Frank Schneider; Runa Eschenhagen; Juhan Bae; Chandramouli Shama Sastry; Mark Saroufim; BOYUAN FENG; Less Wright; Edward Z. Yang; Zachary Nado; Sourabh Medapati; Philipp Hennig; Michael Rabbat; George E. Dahl",
+  "primary_area": "datasets and benchmarks",
+  "keywords": "Training algorithms; optimizers; benchmark; competition; neural network; training",
+  "forum_url": "https://openreview.net/forum?id=CtM5xjRSfm",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    10,
+    5,
+    6,
+    8,
+    6
+  ],
+  "human_mean_rating": 7.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents an analysis of the results of the recent AlgoPerf Training benchmark, in which a variety of community-submitted algorithms were evaluated on multiple workloads and in multiple settings to identify those which yield improved training algorithms. A variety of details from the benchmark results are presented, leading to some broad trends (e.g., the best optimizers are those that are \"consistently reasonable\" as no one approach dominated all workloads) as well as suggestions for future directions. The paper also includes lessons learned and commentary on the benchmark itself, and on the engineering efforts involved."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "The paper summarizes and analyzes the results of the AlgoPerf Training benchmark, providing a valuable focal point to the community for driving future progress in training algorithms and setting the agenda for research. The current advances and limitations of training algorithms are highlighted, helping to clearly identify areas for improvement in the community.\n\nEqually valuable, the paper has a detailed discussion of lessons learned and suggestions from the process of running the competition. These are details that are often not widely disseminated, and are valuable for others seeking to build similar benchmarks. This includes a discussion of engineering challenges involved in ensuring fair and reasonable comparisons across submissions and frameworks.\n\nOverall the paper is clear, well-written, and likely to help drive progress in the ML community."
+        },
+        "weaknesses": {
+          "value": "I have no notable concerns about the paper.\n\nVery minor typo: L382, \"framekworks\" -> \"frameworks\""
+        },
+        "questions": {
+          "value": "n/a"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 10
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "hvDQdUE1mf",
+      "forum": "CtM5xjRSfm",
+      "replyto": "CtM5xjRSfm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_3MCC"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_3MCC"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10737/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730787827116,
+      "cdate": 1730787827116,
+      "tmdate": 1731429403326,
+      "mdate": 1731429403326,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper details the experience of the \"AlgoPerf Competition: Training Algorithms\". The goal of the competition is to evaluate neural network training speeds by improving the training algorithms. The competition evaluated submissions under two rulesets: external tuning (using predefined hyperparameter search spaces) and self-tuning (completely hyperparameter-free). The competition also demonstrated that the top-scoring algorithms generalized across workloads. For the former, distributed shampoo outperformed other techniques, and for the latter, Schedule Free AdamW demonstrated superior performance.\n\nThe paper also describes future training algorithm developments -- emphasizing the importance of fair benchmarking, providing complete algorithm specifications, and different hyperparameter tuning strategies. The paper is written like an experience paper, demonstrating methods and techniques that help with neural network speedups, as well as conducting a fair evaluation of different methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The papers' winners (Dist. Shampoo, and Adam W) are interesting to note, and offer strong baselines for the workloads used in the paper.\n- The paper describes engineering effort needed to bring parity between Jax and Pytorch, which can be useful in understanding   accuracy/performance differences between the two frameworks related to specific features/API calls that were used in the competition.\n- The paper details the engineering and compute needed in hosting a systematic model evaluation framework/process.\n- The paper is well-written, and describes the methodology, results and lessons clearly."
+        },
+        "weaknesses": {
+          "value": "- Weak conclusions:  The authors are encouraged to draw stronger conclusions from the experience. While it is acknowledged that these types of papers are difficult to write, the broad applicability or lessons can be difficult to grasp for the reviewer. The specific nuances in performance evaluation is interesting. But can these results be made more general or useful to improve the paper?  E.g. can you claim that Pytorch/JAX parity is impossible to achieve for specific workloads?\n- Unclear fit with ICLR: The paper reads more like an experience report (e.g. Kaggle summaries), rather than a research paper. While the experiences are interesting, the novel contributions/lessons are limited. The lack of a test set and lack of common workloads also limit the applicability. The paper would be likely be a better fit for a software engineering conference both in terms of fit and conference attendee interests.\n- Challenges with methodology: The competition evaluation is resource intensive and uses a validation test. Most competitions are evaluated on test sets, and a note describing how the results/methodology can be extended to include test sets would help improve the paper."
+        },
+        "questions": {
+          "value": "1) Please describe a fit with ICLR, and how publishing this paper helps the broader ICLR community.\n2) Can you please provide more insights into the specific reasons behind the significant compute costs, and are there suggestions for optimizing the evaluation process without compromising the robustness of the benchmark?\n3) Can you comment on increase in compute costs if test sets and LLMs are considered for model evaluation?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "6k9WexolE2",
+      "forum": "CtM5xjRSfm",
+      "replyto": "CtM5xjRSfm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_Ed5X"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_Ed5X"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10737/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730748136144,
+      "cdate": 1730748136144,
+      "tmdate": 1731429403524,
+      "mdate": 1731429403524,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper analyses the results of the AlgoPerf competition. For that, it presents a summary of the methodology, a detailed description of the winning submissions, how the evaluation was carried out, the implementation details of the competition itself, and the engineering challenges they faced. The main goal of the competition is to evaluate the effectiveness of training algorithms. This is done by measuring how long submissions take to achieve some evaluation goal on some defined workload with restricted runtime and budget. In general, results highlight the competitiveness of the benchmark, as few of the submissions were able to do well on all the different workloads, indicating lots of room for improvement."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Authors provide a detailed analysis of their competition, including the methodology, the best results, and lessons learnt.\n - Originality of the work lies in having the initiative to setup the competition (organisation, dissemination, infrastructure set up), and reporting the results obtained. \n - Analysis is extensive. Authors provide tables and graphics to showcase the results of the competition.\n - Authors provide low level details and lessons learnt also on the implementation and mainteinance of the benchmark, comparing Pytorch and JAX."
+        },
+        "weaknesses": {
+          "value": "- Novelty: Besides the competition results and the insights obtained, novelty is not high. Contributions are mainly the insights extracted from the submissions. It feels more like a report (summarising results obtained from a competition). I would encourage authors to further highlight the contributions they make, clearly stating that this benchmark is solving a gap, and backing up the claims. In addition, I believe that some of the lessons learnt highlighted in bold are not novel but already established practises (e.g. \"having fair comparisons in a competition\" is something widely known and established).\n - Clarity: Narrative can be improved in some sections. E.g. Section 3 is specially dense to read, and is not always clear what the authors want to convey. I encourage authors to include, at the start of each paragraph in section 3, a sentence that summarises the main findings of that paragraph. (Eg. ResNet workload subsection. Then, main takaway sentence. Then, the rest of the details, numbers, statistics, etc.)\n - I believe authors could improve the significance of the work by better motivating the need of this benchmark. Why is this benchmark important and needed? Is it the first benchmark to allow evaluation of training algorithms? What makes it different from other benchmarks?  The current paper is lacking a strong motivation background and more evidence. For example, that there is a real need for self-tuning algorithms."
+        },
+        "questions": {
+          "value": "- \"Although a radical change from the current practice of published training algorithms that aren’t runnable without setting various hyperparameters, publishing families of update rules and abdicating responsibility for tuning entirely to the user only adds to the community’s confusion on what to actually use\". This is an interesting comment that is hidden in the bulk of the text. It would be interesting if the authors clarified this comment, and expanded on it further."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "No ethical concerns."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "TAvYTPlVll",
+      "forum": "CtM5xjRSfm",
+      "replyto": "CtM5xjRSfm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_9ctZ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_9ctZ"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10737/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730720528463,
+      "cdate": 1730720528463,
+      "tmdate": 1731429403524,
+      "mdate": 1731429403524,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper describes the methodology and results of the \"AlgoPerf: Training Algorithms\" competition, which aims to evaluate the speed-ups of neural network training by modifying the underlying training algorithm.\n\nThe competition covers two rulesets: \"external tuning\", which requires a hyperparameter search space that is workload agnostic, and \"self-tuning\", which is hyperparameter-free. This paper details the winners of both rulesets \"Distributed Shampoo\" and \"Schedule Free AdamW\".\n\nFinally, the authors detail the issues they encountered while developing this competition, highlighting compatibility and performance issues between different frameworks and improving the respective implementation by copying the better-performing one."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "S1: Ensuring a fair comparison with JAX and PyTorch is likely impossible, but the authors did a good job of tracing most issues (mathematical correctness, comparing kernel runtimes, etc.). They stopped at memory allocation patterns, which is arguably impossible to get outside of creating an intermediate translation layer between NVIDIA GPU drivers and whatever TPUs are using. This decision showed improvement potential in both frameworks, as the direct comparison between them showcased performance gaps that could be easily closed by copying the better-performing implementation.\n\nS2: The lessons learned are very interesting for practitioners and future competition creators, outlining gaps in current algorithmic development and the dependency on hyperparameter tuning to get the best results."
+        },
+        "weaknesses": {
+          "value": "W1: I am missing a more detailed analysis of why the winners of the respective rulesets came first. While this paper is more about the competition itself, I would love for it to be slightly more useful for practitioners questioning whether they should drop AdamW for Distributed Shampoo in their experiments. Other questions like whether the current on-trend LLM training will see significant changes due to the results from AlgoPerf (due to the significant cost to training these models) might provide a slightly better outlook and highlight the impact of this competition.\n\nMinor issues:\n- Typo in Line 382: \"framekworks\""
+        },
+        "questions": {
+          "value": "I would like the authors to address W1."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "pWrYuv3MbP",
+      "forum": "CtM5xjRSfm",
+      "replyto": "CtM5xjRSfm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_QEMB"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_QEMB"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10737/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730595105954,
+      "cdate": 1730595105954,
+      "tmdate": 1731429403494,
+      "mdate": 1731429403494,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates the AlgoPerf competition and provides insights into model training acceleration. Some findings are reasonable and could potentially guide the design of training algorithms. As this is a survey rather than a technical paper, I am not sure whether it is qualified to be published in ICLR. Therefore, I seek to consider the opinions of other reviewers."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Some interesting findings are provided and they may help to design more efficient training algorithms."
+        },
+        "weaknesses": {
+          "value": "I am not an expert in evaluating this kind of survey paper, and I am curious about how the findings can be applied to refine existing algorithms."
+        },
+        "questions": {
+          "value": "Please refer to the weakness part."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 1
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "CSoPGS3EV6",
+      "forum": "CtM5xjRSfm",
+      "replyto": "CtM5xjRSfm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_XF5p"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10737/Reviewer_XF5p"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10737/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729177369340,
+      "cdate": 1729177369340,
+      "tmdate": 1731429403485,
+      "mdate": 1731429403485,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "A valuable large-scale analysis of the inaugural AlgoPerf competition, evaluating practical time-to-result across diverse workloads and two tuning regimes. The study provides useful empirical evidence and benchmark-design lessons, but several headline causal and “hyperparameter-free” claims are stronger than the protocol supports.",
+        "strengths": [
+          "Substantial evaluation: over 4,000 runs across eight base and six held-out workloads, repeated seeds, fixed hardware, and explicit accounting for tuning costs (pp. 3, 14–15).",
+          "The performance-profile scoring, per-workload results, and counterfactual analyses expose robustness and failure modes that average speedups alone would conceal (pp. 4–7, 18–22).",
+          "The discussion of cross-framework equivalence and runtime engineering is unusually practical and transparent, including measured remaining JAX/PyTorch gaps (pp. 7–9, 23)."
+        ],
+        "weaknesses": [
+          "The results do not isolate optimizer ideas: submissions can differ in framework, implementation, batch size, schedules, and tuning spaces. Residual JAX/PyTorch runtime gaps reach 12%, while Shampoo’s margin over the runner-up is only about 2%, weakening claims specifically attributing gains to non-diagonal preconditioning (pp. 6, 9, 21, 23).",
+          "Calling Schedule-Free AdamW “completely hyperparameter-free” is misleading: the self-tuning ruleset permits fixed cross-workload defaults, and the submission explicitly uses a single hyperparameter configuration (pp. 2–3, 21). Thus the result demonstrates workload-agnostic fixed settings rather than absence of hyperparameters.",
+          "Headline speedups rely on imputing all failed runs at the runtime budget, with no uncertainty intervals or significance analysis; the paper acknowledges this can substantially underestimate actual runtimes. There is also an inconsistent FASTMRI target between Tables 2 and Appendix A.2 (pp. 6, 14–15, 21)."
+        ],
+        "score_rationale": "The competition-scale evidence and engineering analysis are meaningful contributions likely useful to the optimization community. However, novelty is primarily empirical, and important headline interpretations overstate what the heterogeneous submissions and scoring assumptions establish. I lean marginally above acceptance if the claims are corrected and statistical uncertainty is reported."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A thorough report of the inaugural AlgoPerf competition, evaluating complete training algorithms under controlled external- and self-tuning protocols. Its main empirical findings—Distributed Shampoo leading externally tuned methods and Schedule-Free AdamW leading self-tuning—are useful, though the contribution is primarily benchmark evidence and engineering practice rather than a new algorithm or theory.",
+        "strengths": [
+          "Large, unusually controlled evaluation: 4,000+ runs across eight base and six held-out workloads, five seeds/studies, fixed hardware, and explicit accounting for tuning (pp. 2–6, 14–15).",
+          "The paper reports granular runtimes, failures, performance profiles, cross-ruleset comparisons, and sensitivity analyses rather than only leaderboard ranks (pp. 4–7, 17–22).",
+          "The discussion of cross-framework functional equivalence and performance engineering identifies concrete confounders and documents residual JAX–PyTorch timing gaps (pp. 7–9, 23)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the paper mainly applies a previously proposed benchmark to existing submitted algorithms; it offers no new optimizer and relatively little mechanistic explanation for observed performance (pp. 2, 10).",
+          "Headline speedups depend on target thresholds, runtime cutoffs, and favorable imputation of failures at the budget; the authors acknowledge this can substantially underestimate actual runtimes, weakening the precision of the 28% and 8% claims (pp. 5–6, 21).",
+          "Generalization remains uncertain: there are only eight base workloads, no autoregressive language-model or diffusion workload, held-out variants are minor and do not directly contribute to scores, and validation targets reveal attainable performance and horizon information (pp. 2, 10, 14)."
+        ],
+        "score_rationale": "The scale, careful tuning controls, transparent failure reporting, and robustness analyses make this a valuable empirical benchmark paper. However, its scientific novelty is mainly the competition dataset/results, and the broad optimizer conclusions are constrained by benchmark-specific targets, cutoff/imputation choices, residual framework differences, and limited workload coverage. I therefore place it between marginal acceptance and clear acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A valuable, large-scale empirical report on the inaugural AlgoPerf competition. The fixed-hardware, multi-workload evaluation and tuning-aware rules provide unusually practical evidence about optimizer performance, but the paper sometimes attributes results too directly to algorithmic ideas despite implementation, framework, and search-space confounds.",
+        "strengths": [
+          "The evaluation is unusually broad and costly: 18 submissions, eight base workloads, held-out variants, repeated studies, and over 4,000 runs on fixed hardware (pp. 2–5, 14–15).",
+          "The paper reports detailed per-workload outcomes and useful counterfactual analyses, including sensitivity to held-out workloads, workload removal, and the performance-profile cutoff (pp. 5–7, 18–22).",
+          "The discussion of cross-framework functional equivalence and runtime engineering exposes important benchmarking pitfalls and documents concrete mitigations (pp. 7–9, 23)."
+        ],
+        "weaknesses": [
+          "The claim that the winner demonstrates the effectiveness of non-diagonal preconditioning over Adam is not cleanly identified: submissions also differ in framework, implementation, batch size, schedules, and submitted search spaces, so this is a competition outcome rather than a controlled algorithmic comparison (pp. 3–6, 16).",
+          "Uncertainty is insufficiently quantified. Results use medians over five studies, but provide no confidence intervals or paired variability analysis; this matters especially for the self-tuning winner's modest 7.76% speed-up and for stochastic threshold crossings such as RESNET (pp. 5–6, 17, 21).",
+          "Some reporting choices weaken clarity: “hyperparameter-free” appears to mean one fixed configuration rather than absence of hyperparameters (pp. 2–3, 21), failed runs are favorably imputed at the budget for speed-up calculations (pp. 5–6), and the FASTMRI target is inconsistent between pp. 14 and 15 (0.7344 versus 0.723653)."
+        ],
+        "score_rationale": "The benchmark report offers substantial community value, credible large-scale evidence, and thoughtful robustness analyses. However, its main mechanistic claims are stronger than the comparative design supports, and statistical uncertainty is not adequately characterized. I therefore lean accept, while remaining uncertain about the size and generality of the claimed algorithmic advantages."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A valuable, unusually large empirical study of training-algorithm performance under controlled tuning budgets and fixed hardware. The competition results support practical conclusions about Distributed Shampoo and Schedule-Free AdamW, but the paper contributes benchmark evidence and engineering lessons rather than a fundamentally new algorithm, and some headline claims are stronger than the presented uncertainty and fairness analyses justify.",
+        "strengths": [
+          "The evaluation is broad and costly—eight base workloads, six held-out variants, two tuning rulesets, and over 4,000 runs—and the protocol explicitly accounts for tuning cost and stochastic repetitions (pp. 2–5, 14–15).",
+          "The paper provides transparent per-workload outcomes, failure modes, rule counterfactuals, sensitivity to τmax, and leave-one-workload-out rankings, making the main leaderboard conclusions reasonably robust (pp. 5–7, 18–22).",
+          "The discussion of cross-framework functional equivalence and performance engineering is practically useful, with measured JAX/PyTorch gaps after remediation (pp. 7–9, 23)."
+        ],
+        "weaknesses": [
+          "Headline speedups lack confidence intervals or significance analysis. The 28%/8% figures also impute failures at the runtime budget and ignore held-out invalidation, a procedure the authors acknowledge can substantially underestimate runtime (pp. 5–6, 21).",
+          "Cross-framework residual timing differences reach 12%, while some competitive margins are much smaller (e.g., Shampoo versus Schedule-Free AdamW is about 2% by the reported speedup), limiting attribution purely to optimizer ideas rather than implementations/frameworks (pp. 6, 9, 21, 23).",
+          "Claims of a new state of the art for hyperparameter-free training are too broad for one benchmark with only six self-tuning entries; moreover, a single fixed configuration is called self-tuning without fully establishing that it was selected independently of the public workloads (pp. 2–4, 21)."
+        ],
+        "score_rationale": "The scale, careful protocol, transparent reporting, and practical benchmark insights merit acceptance, despite moderate methodological novelty. I discount the score because uncertainty is not quantified, small ranking margins may be confounded by framework effects, and the strongest general claims exceed the evidence. There is also a minor target inconsistency for FASTMRI between Tables 2 and Appendix A.2 (pp. 14–15). My confidence is high but not maximal because the supplied manuscript does not permit verification of code or raw runs."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "A valuable and unusually large empirical report on the inaugural AlgoPerf competition, comparing complete training procedures under controlled tuning budgets and fixed hardware. The benchmark results are informative, but several headline conclusions are stronger than the evidence supports because optimizer families, implementations, frameworks, and tuning choices are not isolated experimentally.",
+        "strengths": [
+          "The evaluation is broad and costly: eight base workloads, six held-out variants, five repeated studies, and over 4,000 runs on fixed hardware, with detailed per-workload reporting (pp. 3–5, 14–15).",
+          "The protocol explicitly accounts for tuning budgets, stochasticity, failures, and workload robustness; the rule counterfactuals and sensitivity analyses make the leaderboard substantially more interpretable (pp. 5–7, 18–22).",
+          "The discussion of cross-framework equivalence and performance engineering identifies concrete, practically important confounders and reports residual timing gaps (pp. 7–9, 23)."
+        ],
+        "weaknesses": [
+          "The paper attributes Shampoo's win to non-diagonal preconditioning, but the competition comparison jointly changes optimizer details, hyperparameter sets, implementation engineering, and framework; no controlled ablation establishes this causal conclusion (pp. 4–6, 16).",
+          "Claims of a new state of the art for “completely hyperparameter-free” training are overstated: Schedule Free AdamW uses a fixed configuration, the comparison is limited to submitted entrants, and seven of eight jointly successful workloads are used for a prominent cross-ruleset comparison (pp. 2, 6, 21).",
+          "Some quantitative choices and reporting weaken confidence: failed runs are imputed at the runtime cutoff for speedups, uncertainty intervals or paired significance analyses are absent, and the FASTMRI target is inconsistent between Table 2 and the stated modification (0.7344 versus 0.723653; pp. 6, 14–15, 21)."
+        ],
+        "score_rationale": "The scale, transparent protocol, and useful benchmark analysis support acceptance, but this is primarily a competition report rather than a novel algorithmic contribution. Confounded causal claims, limited statistical uncertainty reporting, and an internal target inconsistency keep it at marginally above acceptance rather than a clear accept."
+      }
+    }
+  ]
+}

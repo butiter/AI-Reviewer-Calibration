@@ -1,0 +1,212 @@
+{
+  "year": 2026,
+  "package_id": "paper_004",
+  "paper_id": "9bkzvYw9ds",
+  "number": 1708,
+  "title": "Causal Time Series Generation via Diffusion Models",
+  "authors": [
+    "Yutong Xia",
+    "Chang Xu",
+    "Yuxuan Liang",
+    "Qingsong Wen",
+    "Roger Zimmermann",
+    "Jiang Bian"
+  ],
+  "primary_area": "learning on time series and dynamical systems",
+  "keywords": [
+    "Time Series Generation",
+    "Conditional Generation",
+    "Time Series Analysis"
+  ],
+  "forum_url": "https://openreview.net/forum?id=9bkzvYw9ds",
+  "venue": "ICLR 2026 Conference Desk Rejected Submission",
+  "status": "desk_rejected",
+  "decision": "",
+  "human_ratings": [
+    8,
+    6,
+    8
+  ],
+  "human_mean_rating": 7.333333333333333,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "56pugC5ie3",
+      "forum": "9bkzvYw9ds",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1708/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761353058939,
+      "tmdate": 1762915862635,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "IcKfTtiR1O",
+      "forum": "9bkzvYw9ds",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1708/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761846432279,
+      "tmdate": 1762915862452,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "yGV9mfHHe2",
+      "forum": "9bkzvYw9ds",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission1708/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760922047459,
+      "tmdate": 1762915862831,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a useful causal framing of conditional time-series generation and a diffusion architecture with latent environment embeddings. However, its central claim—that interventional and individual counterfactual distributions can be recovered from observational data with unobserved confounding—is not supported by valid identification assumptions or by the experiments.",
+        "strengths": [
+          "The association/intervention/counterfactual task taxonomy is clearly motivated and potentially useful for time-series research (pp. 1–4).",
+          "The framework is presented comprehensively, with algorithms, architecture details, ablations, sensitivity analyses, and efficiency results (pp. 5–9, 19–35).",
+          "Observational distributional performance is strong on the reported shifted splits, and the synthetic counterfactual ablations consistently favor the full model (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The key causal derivation is invalid for an unobserved confounder learned without additional identifying assumptions. In Eq. 29, the quantity proportional to p(x|c,e)p(e) is an interventional-mixture responsibility, not the observational posterior p(e|x,c), which additionally depends on p(c|e). Learning q(e|x,c) from observational pairs therefore does not implement the claimed backdoor adjustment (pp. 17–19).",
+          "The counterfactual construction is not generally an AAP counterfactual: its score derivation replaces the required posterior conditioned also on the candidate x' with fixed p(e|x,c), and Algorithm 3 starts from fresh noise without abducting shared outcome-level exogenous randomness. Thus it need not preserve the same individual world (pp. 18, 22–23).",
+          "The evidence does not validate the causal claims. Table 2 compares against held-out observational data under proxy-defined distribution shifts rather than ground-truth interventional distributions; real-world counterfactual evidence is self-referential or qualitative; and synthetic variable definitions are internally inconsistent between pp. 23 and 25. Sampling-only repetitions also understate diffusion training uncertainty (pp. 7–8, 23–25, 30–34)."
+        ],
+        "score_rationale": "Despite solid presentation and promising observational results, the paper's principal novelty rests on causal identification and score derivations that are not technically justified. The experiments mainly demonstrate shifted-distribution generation, not recovery of the stated interventional or individual counterfactual targets. These are fundamental rather than easily repairable issues, warranting rejection; uncertainty is low because the decisive derivations and protocols are explicit in the manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a useful task taxonomy for observational, interventional, and counterfactual time-series generation and implements it with a diffusion model plus a learned environment bank. However, the central causal interpretation is not justified: an unobserved confounder is claimed to be recovered from observational data without identification assumptions, and the reported experiments primarily establish shifted-distribution generation rather than correct interventional or counterfactual inference.",
+        "strengths": [
+          "The causal-ladder framing of time-series generation is clear and potentially useful, with a unified presentation of the three targets (pp. 3–6).",
+          "The paper provides extensive implementation details, ablations, sensitivity analyses, and efficiency measurements (pp. 9, 20–23, 30–35).",
+          "CaTSG shows strong empirical distributional fidelity on the selected shifted splits, winning 14 of 16 comparisons in Table 2 (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "The key identification argument is invalid or incomplete. Because E causes both C and X, the posterior proportional to p(x|c,e)p(e) in Eq. 29 is generally not the observational p(e|x,c), which instead involves p(e|c). An unlabeled SwAV clustering objective cannot identify a causal confounder or p(x|do(c)) without additional assumptions, proxies, or supervision (pp. 14, 17–21, 36–37).",
+          "Table 2 evaluates purported interventional samples against held-out observational distributions under deliberately shifted environment splits; better MDD/KL/MMD/J-FTSD therefore does not demonstrate recovery of p(X|do(C)). Even on synthetic data, known interventional ground truth is not used for the main intervention evaluation (pp. 7–8, 23–27).",
+          "Counterfactual evidence is weak: quantitative comparisons are only against internal ablations, real-data evidence is largely an unverifiable visualization, and the synthetic variable definitions are internally inconsistent about whether position or acceleration is X (pp. 8, 23–26, 32–34)."
+        ],
+        "score_rationale": "The task framing and empirical engineering are promising, but the paper's main novelty rests on causal claims that are not identified by the proposed observational clustering procedure. Since the experiments do not validate the claimed interventional target and counterfactual evaluation is limited, these are central rather than readily repairable weaknesses, warranting rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes causal time-series generation tasks and a diffusion framework with a learned latent environment bank. Although the framing is interesting, the method does not establish identification of interventions or counterfactuals from observational data, and the experiments largely assess distributional generation rather than the claimed causal targets.",
+        "strengths": [
+          "The observational/interventional/counterfactual task taxonomy is clearly motivated and presented (pp. 1–5).",
+          "The framework is implemented comprehensively, with architectural details, ablations, sensitivity analyses, and efficiency reporting (pp. 6–9, 19–23, 30–35).",
+          "Synthetic SCMs provide some controlled counterfactual ground truth, and the full model outperforms its ablations there (pp. 8, 23–26)."
+        ],
+        "weaknesses": [
+          "The central causal identification claim is unsupported: an arbitrary SwAV-clustered latent bank learned solely from observational data is not guaranteed to recover a sufficient confounder. Moreover, Eq. 29 labels a quantity using p(e), rather than the observational p(e|c), as p(e|x,c); thus the backdoor score derivation conflates an interventional-mixture responsibility with an observational posterior (pp. 17–21).",
+          "The main intervention evaluation compares generated samples with held-out observational distributions under engineered split shifts, not with ground-truth samples from P(X|do(C)); therefore Table 2 cannot validate causal adjustment, and improvements may reflect OOD generative modeling or model capacity (pp. 7–8, 24–28).",
+          "The claimed individual counterfactual procedure abducts only a coarse environment and initializes reverse diffusion with fresh noise, without abducting and holding fixed outcome-specific exogenous randomness. Real-world evidence is qualitative or based on self-referential learned-environment metrics, while synthetic comparisons include only ablations (pp. 8, 18, 22–23, 32–34)."
+        ],
+        "score_rationale": "The causal-TSG framing and empirical effort are valuable, but the paper's principal contribution depends on causal identification that the proposed unsupervised environment clustering does not provide. Because the principal experiments also do not evaluate true interventional distributions, the evidence is insufficient for the central claims; substantial theoretical and experimental revision is required."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes interventional and counterfactual time-series generation using a diffusion model with a learned latent environment bank. The framing is interesting and the implementation is extensive, but the central causal claims are not technically justified: latent confounding is not identified from the observational data, and the proposed score approximations do not generally sample from the stated causal distributions.",
+        "strengths": [
+          "Introduces a clear taxonomy connecting conditional time-series generation to association, intervention, and counterfactual queries (pp. 3–4).",
+          "Provides substantial implementation detail, ablations, sensitivity analyses, and efficiency measurements (pp. 19–23, 30–35).",
+          "Reports broad observational distribution-quality gains across four datasets and several metrics (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The latent environment learned through augmentation consistency and orthogonality is not identifiable as the true confounder; no assumptions or theorem establish that observational data suffice to recover P(X|do(C)). The mixture denoising loss can admit arbitrary or collapsed latent decompositions (pp. 5–6, 17–21, 36–37).",
+          "The counterfactual score is mathematically incorrect in general: the exact mixture score requires responsibilities p(e|x',x,c,c'), but Eq. 31 replaces these with fixed factual weights p(e|x,c). Averaging component scores with fixed weights does not yield the score of the arithmetic-mixture counterfactual distribution claimed by AAP (pp. 18, 22–23). CFG is likewise presented as equality to the causal score despite changing the target when its scale is nonzero (pp. 16–18).",
+          "The evidence does not validate the causal claims. Main interventional results compare generated samples against observational held-out distributions, while counterfactual results have no external baselines and real-data evidence is self-referential or qualitative (pp. 7–8, 32–34). The synthetic construction is also inconsistent about whether position or acceleration is X and may make C' encode nearly the entire simulated trajectory (pp. 23–26)."
+        ],
+        "score_rationale": "Although the task framing and experimental engineering are promising, the unidentifiable latent-confounder assumption and incorrect counterfactual score undermine the main technical contribution. The reported fidelity results support a useful shift-robust generator, not demonstrated interventional or counterfactual correctness. I therefore rate it a reject; uncertainty is low because these issues follow directly from the stated derivations and evaluation design."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes causal time-series generation tasks and a diffusion framework with a learned environment bank for observational, interventional, and counterfactual sampling. The framing is potentially useful, but the central causal identification argument is unsupported: an arbitrary latent confounder cannot generally be recovered or adjusted for from observational data alone, and the proposed self-supervised environment assignments do not resolve this non-identifiability.",
+        "strengths": [
+          "The organization of time-series generation along Pearl’s association/intervention/counterfactual hierarchy is clear and potentially useful (pp. 3–5).",
+          "The framework is implemented comprehensively, with multiple datasets, ablations, sensitivity analyses, runtime results, and uncertainty reporting (pp. 7–9, 30–35).",
+          "Synthetic counterfactual experiments and the abduction–action–prediction presentation provide an accessible initial testbed (pp. 8, 23–26)."
+        ],
+        "weaknesses": [
+          "The decisive flaw is causal non-identifiability. Equation 29 calls p(x|c,e)p(e)/sum_e p(x|c,e)p(e) the posterior p(e|x,c), omitting the observational assignment factor p(c|e). EnvInfer is trained only through augmentations and denoising, so there is no justification that its clusters recover the true confounder, p(e), or an admissible backdoor variable (pp. 17–21). Consequently, the claimed interventional score need not represent p(x|do(c)).",
+          "The main interventional evidence compares CaTSG outputs to held-out observational data using generic fidelity metrics, while baselines target p(x|c) and no ground-truth interventional distribution is evaluated (pp. 7–8). Under shifted splits, better observational test fit does not establish causal adjustment; real-world counterfactual evidence is likewise mainly qualitative or based on metrics derived from the model’s own inferred environments (pp. 8, 32–34).",
+          "The synthetic specification is internally inconsistent: X is first defined as acceleration and C as position/velocity, but the construction later states that position is the target and velocity/acceleration are context before reverting again (pp. 23, 25–26). Moreover, counterfactuals alter initial states and provide the resulting contextual trajectory, making the deterministic oscillator task potentially close to reconstructing acceleration from position/velocity rather than demonstrating latent-confounder counterfactual identification."
+        ],
+        "score_rationale": "Despite a clear framing and extensive experiments, the paper’s primary claim—that latent-confounder adjustment enables identified interventional and counterfactual generation from these observational inputs—does not follow from its assumptions or training objective. The evaluation does not repair this foundational issue, since it lacks direct interventional ground truth and contains synthetic-task inconsistencies. I therefore rate it as a reject, while acknowledging uncertainty about whether additional unstated structural assumptions could make a narrower version defensible."
+      }
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "year": 2026,
+  "package_id": "paper_076",
+  "paper_id": "5y8R8XSHkG",
+  "number": 19003,
+  "title": "Smoothie: Smoothing Diffusion on Token Embeddings for Text Generation",
+  "authors": [
+    "Alexander Shabalin",
+    "Viacheslav Meshchaninov",
+    "Dmitry Vetrov"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "text diffusion",
+    "text generation",
+    "continuous text diffusion"
+  ],
+  "forum_url": "https://openreview.net/forum?id=5y8R8XSHkG",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    4,
+    6,
+    6
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "RFgAQtkIbS",
+      "forum": "5y8R8XSHkG",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19003/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761966916651,
+      "tmdate": 1762931053290,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "WLmHD0pm40",
+      "forum": "5y8R8XSHkG",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19003/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761883918613,
+      "tmdate": 1762931053826,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    },
+    {
+      "review_id": "jIpnhAIfDb",
+      "forum": "5y8R8XSHkG",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19003/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762098197001,
+      "tmdate": 1762931052821,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "rrxvoA9gst",
+      "forum": "5y8R8XSHkG",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19003/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761793220446,
+      "tmdate": 1762931054342,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SMOOTHIE replaces one-hot/simplex token representations with logits derived from distances to fixed token embeddings, producing a semantically structured smoothing process. The idea is intuitive and evaluated on several generation tasks, but the gains are mixed and the mathematical/sampling specification has important inconsistencies.",
+        "strengths": [
+          "The distance-based representation is a simple, moderately novel bridge between embedding and simplex diffusion, with a useful special-case connection to simplex representations (pp. 4, 15).",
+          "The study covers unconditional generation and four conditional tasks, includes controlled embedding/simplex implementations, and reports several relevant ablations (pp. 8–9, 16–19).",
+          "Results are encouraging on XSum and especially ROCStories, where SMOOTHIE substantially improves over the internally implemented diffusion alternatives (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The formal specification is not fully sound or reproducible as written: Algorithm 1 uses the self-referential update “Dt = Dt/σt² + δε”; sampling at t=1 appears to produce a noisy, scaled endpoint rather than the clean D0 used by the likelihood derivation; and σ0 remains 1.5 (pp. 4–6, 17). It is unclear whether these are notation errors or implementation-level mismatches.",
+          "The claimed superiority is overstated. On Quasar-T, SSD-LM has higher ROUGE-L, while on QQP the embedding baseline has higher BLEU and mixed diversity; Table 7 also disagrees with Table 2 on Quasar-T results (pp. 8–9, 17). The latent-space comparison additionally changes the loss and scheduler, so it does not isolate semantic geometry.",
+          "Evidence relies almost entirely on automatic overlap/model-based metrics, without human evaluation, qualitative samples, significance estimates, or a quality–latency comparison against autoregressive systems. The method remains 1.3–1.75× slower than embedding diffusion and requires vocabulary-wide distance computation (pp. 7–9, 18–19)."
+        ],
+        "score_rationale": "The paper offers a plausible and useful text-diffusion construction with broad experiments, but specification inconsistencies and confounded, sometimes modest empirical advantages prevent the central claims from being fully established. I am somewhat uncertain whether the endpoint issues are merely manuscript typos, so I place it near the acceptance boundary but slightly below it."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "SMOOTHIE represents tokens through vocabulary-wide embedding distances and progressively flattens these scores, combining semantic geometry with direct discrete decoding. The idea is intuitive and moderately novel, with encouraging results—especially on ROCStories and XSum—but the theoretical presentation and empirical isolation of the claimed mechanism are not fully convincing.",
+        "strengths": [
+          "The distance-based latent space is a simple, meaningful bridge between continuous embedding diffusion and simplex diffusion, with the latter related as a special case (pp. 4, 15).",
+          "Controlled comparisons using a shared architecture show substantial gains on ROCStories and useful improvements on XSum; embedding choice, noise schedule, self-conditioning, step count, and runtime are also examined (pp. 8–9, 17–19).",
+          "The paper acknowledges practical limitations, including fixed lengths, dependence on pretrained embeddings, and roughly 1.75× slower generation than embedding diffusion (pp. 14, 18–19)."
+        ],
+        "weaknesses": [
+          "The probabilistic derivation is imprecise: timestep indices/scalings appear inconsistent between Eqs. 8–12, and Theorem 4.1's additive term is a conditional variance that can depend on the input and timestep, although it is constant across vocabulary coordinates (pp. 5, 15–16).",
+          "The latent-space ablation is confounded because SMOOTHIE/embedding models use MSE while the simplex model uses cross-entropy; scheduler choices also differ, so improvements cannot be attributed solely to semantic smoothing (p. 8).",
+          "Evidence is mixed beyond ROCStories/XSum: SMOOTHIE loses some metrics to simplex or embedding baselines on Quasar-T and QQP, lacks uncertainty estimates and human evaluation, and relies mainly on overlap/automatic metrics without qualitative samples (pp. 8–9)."
+        ],
+        "score_rationale": "The semantic smoothing construction and breadth of experiments merit a marginally positive score, but theoretical sloppiness and confounded or mixed empirical evidence prevent a clear accept. I am somewhat uncertain whether the equation inconsistencies are only exposition errors or reflect the implementation."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SMOOTHIE diffuses token representations formed from embedding-space distances, aiming to preserve discrete decoding while incorporating token similarity. The idea is intuitive and evaluated broadly, but the theoretical interpretation and empirical isolation of the central contribution are not yet sufficiently convincing.",
+        "strengths": [
+          "The distance-based representation is a simple, meaningful synthesis of continuous semantic geometry and simplex-style decoding; its relationship to simplex diffusion is derived explicitly (pp. 4–5, 15–16).",
+          "Evaluation covers one unconditional and four conditional generation tasks, with controlled in-framework baselines and several useful ablations (pp. 7–9, 16–19).",
+          "Results are promising, especially the large ROCStories MAUVE improvement and strong XSum scores (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The likelihood-based presentation does not cleanly support the actual sampler: training uses forward noise δ=1, while inference changes the reverse variance and prior scale to tuned values as low as 0.1 (pp. 4–7, 16–17). This creates a substantial terminal-distribution mismatch and makes sampling partly heuristic.",
+          "The key latent-space comparison is confounded: embedding, simplex, and SMOOTHIE use different noise schedules, and simplex additionally uses a different loss (p. 8). Thus the experiments do not isolate whether semantic distance smoothing itself causes the gains.",
+          "Evidence is mixed and statistically limited: SMOOTHIE does not dominate every metric or controlled baseline, most results lack uncertainty across training seeds, and there is no human evaluation of fluency, factuality, or meaning preservation (pp. 8–9). It also remains slower than embedding diffusion (pp. 18–19)."
+        ],
+        "score_rationale": "The paper offers a credible and moderately novel construction with broad, promising experiments. However, the mismatch between the probabilistic derivation and tuned inference procedure, together with confounded comparisons and limited evaluation reliability, leaves the central claim just below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SMOOTHIE diffuses token representations derived from distances to a fixed embedding vocabulary, aiming to combine semantic smoothing with simplex-style decoding. The idea is intuitive and the controlled experiments show promising gains, but theoretical ambiguities and incomplete empirical validation leave the paper marginally below the acceptance bar.",
+        "strengths": [
+          "The distance-based latent space is a simple, meaningful synthesis of continuous semantic geometry and discrete decoding, with a clear relationship to simplex diffusion (pp. 4, 15).",
+          "Controlled comparisons against embedding- and simplex-space variants use a shared architecture and show substantial gains on some settings, especially ROCStories MAUVE and XSum (pp. 8–9).",
+          "The appendices provide useful analyses of sampling noise, embeddings, schedules, denoising steps, self-conditioning, and computational cost (pp. 16–19)."
+        ],
+        "weaknesses": [
+          "The probabilistic derivation is insufficiently rigorous: the non-Markovian forward process, reverse transition, simplified objective, and initialization prior are not fully reconciled, and Theorem 4.1's additive term is a conditional variance that can depend on the noisy input and timestep despite being called a constant (pp. 4–6, 15–16).",
+          "Evidence relies almost entirely on automatic metrics without human evaluation, statistical significance, or robust multi-seed reporting beyond MAUVE; several claimed wins are metric-dependent—for example, SMOOTHIE trails alternatives on Quasar-T ROUGE-L and QQP BLEU/diversity (pp. 7–9).",
+          "Baseline fairness remains uncertain because latent-space variants use different losses and noise schedules, while many literature baselines are copied or selectively reproduced; the method also needs 25–350 denoising steps and is about 1.75× slower at generation than embedding diffusion (pp. 8, 17, 19)."
+        ],
+        "score_rationale": "The paper offers a plausible and moderately novel construction with encouraging controlled results. However, the theoretical presentation has unresolved ambiguities, and the empirical evidence does not yet establish broad or statistically reliable superiority, particularly given metric-dependent outcomes and substantial sampling cost. I therefore lean marginal reject, with some uncertainty about whether notation errors obscure an otherwise sound derivation."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SMOOTHIE defines diffusion states from kernel-smoothed distances to fixed token embeddings, aiming to combine semantic corruption with simplex-like representations. The idea is interesting and results are often competitive, but the central conceptual claims and empirical support are not sufficiently convincing for acceptance in the current form.",
+        "strengths": [
+          "The semantic distance-based corruption is a clear, moderately novel alternative to conventional embedding and simplex diffusion, with a useful connection to simplex representations under the trivial metric (pp. 4, 15).",
+          "Controlled implementations of embedding, simplex, and SMOOTHIE use a shared architecture, and SMOOTHIE performs particularly well on XSum and ROCStories (pp. 8–9).",
+          "The appendices provide useful ablations on stochasticity, self-conditioning, embeddings, schedules, speed, and denoising steps (pp. 16–19)."
+        ],
+        "weaknesses": [
+          "The claimed discrete/natural-decoding advantage is overstated: sampling ultimately computes distances from a predicted embedding and takes an argmax (pp. 5–6), which is mathematically a nearest-embedding decoding step—the same difficulty attributed to embedding diffusion on pp. 1–3.",
+          "Evidence is mixed and lacks uncertainty estimates or human evaluation. SMOOTHIE does not uniformly beat its controlled embedding/simplex baselines across metrics (e.g., QQP BLEU and Quasar-T ROUGE-L on pp. 8–9), while ROCStories gains depend heavily on tuning the reverse noise level (p. 7).",
+          "There are material reporting/theory ambiguities: Quasar-T SMOOTHIE values differ between Tables 2 and 7 (pp. 8, 17), and Theorem 4.1 describes C as a constant although its proof makes it a conditional variance that can depend on the input, timestep, and position (pp. 5, 16)."
+        ],
+        "score_rationale": "The paper offers a plausible and potentially useful diffusion parameterization, with broad experiments and good appendices. However, its main discreteness claim is not borne out by the actual decoder, improvements are often small or metric-dependent, and missing variance/human assessment plus internal numerical inconsistencies weaken the evidence. I therefore place it marginally below acceptance, with some uncertainty about whether the theorem’s intended row-wise softmax-invariant constant can be formalized more carefully."
+      }
+    }
+  ]
+}

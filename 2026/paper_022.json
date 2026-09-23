@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_022",
+  "paper_id": "b8TlYh6PN6",
+  "number": 6490,
+  "title": "Distributional Equivalence in Linear Non-Gaussian Latent-Variable Cyclic Causal Models: Characterization and Learning",
+  "authors": [
+    "Haoyue Dai",
+    "Immanuel Albrecht",
+    "Peter Spirtes",
+    "Kun Zhang"
+  ],
+  "primary_area": "causal reasoning",
+  "keywords": [
+    "causal discovery",
+    "latent variables",
+    "equivalence",
+    "rank constraints",
+    "linear non-Gaussian models",
+    "cycles"
+  ],
+  "forum_url": "https://openreview.net/forum?id=b8TlYh6PN6",
+  "venue": "ICLR 2026 Oral",
+  "status": "accepted_oral",
+  "decision": "Accept (Oral)",
+  "human_ratings": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "human_mean_rating": 8.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "DJs2iB9qYs",
+      "forum": "b8TlYh6PN6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6490/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762114322758,
+      "tmdate": 1762918862628,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "OoO0wbUBJL",
+      "forum": "b8TlYh6PN6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6490/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761577019240,
+      "tmdate": 1762918863689,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "RT29NIklPY",
+      "forum": "b8TlYh6PN6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6490/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761934555013,
+      "tmdate": 1762918863335,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "oDnFGJRWl0",
+      "forum": "b8TlYh6PN6",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6490/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761556871151,
+      "tmdate": 1762918864120,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a potentially important characterization of distributional equivalence for linear non-Gaussian causal models with arbitrary latent structure and cycles, together with graph transformations and a learning pipeline. The scope and matroid-based perspective are ambitious, but the central equivalence and traversal results are not established rigorously enough, and the empirical study does not compensate for these foundational gaps.",
+        "strengths": [
+          "The problem is significant and unusually general: the formulation permits arbitrary latent-to-observed relations and cycles rather than imposing measurement-model structure (pp. 1–4).",
+          "The path-rank/edge-rank dual viewpoint yields intuitive local criteria, concrete graphical operations, and useful examples of equivalence classes (pp. 6–9, 36–38).",
+          "The paper provides broad supporting material, including runtime, oracle-misspecification, finite-sample, and real-data experiments (pp. 43–48)."
+        ],
+        "weaknesses": [
+          "The decisive converse of Lemma 3 has a major gap. Equality of generic rank functions identifies matroids, but does not by itself identify the exact parameterized mixing-matrix sets. In particular, the claim that the row-permuted numerical matrix in Eq. B.7 has the support required by H is unsupported; matroid isomorphism does not imply equality of presentations. The proof only reasons with sufficiently general/random representations, although Definition 1 requires equality of the complete distribution sets (pp. 25–26). The admitted existence of non-rank polynomial constraints makes this gap especially consequential (pp. 38–39).",
+          "The transformational characterization also depends on Corollary 3, which is asserted to follow from the single-column connectivity lemma without a proof addressing interactions among multiple columns—the paper itself notes that independent column changes cannot simply be combined (pp. 34–35). Several other central ingredients are omitted as “immediate or known,” including Lemma 1 connecting distribution sets to mixing closures (p. 35).",
+          "The practical evidence is weak for the broad learning claims. The implementation introduces heuristic rank scores, an incompletely specified closest-matroid step, and requires selecting latent dimension despite theoretical OICA identifiability (p. 46); errors remain substantial even at large sample sizes (pp. 46–47). Comparisons deliberately violate baseline assumptions, while the stock-market causal interpretations lack validation and do not address time-series structure (pp. 45, 47–48)."
+        ],
+        "score_rationale": "If correct, the general equivalence characterization would be highly novel. However, the unsupported jump from generic matroid/rank equivalence to exact distributional equivalence affects the paper’s main theorem and all downstream claims, while the traversal proof has another nontrivial missing step. These appear foundational rather than presentational, so the current manuscript warrants a reject score despite its strong ambition and potentially valuable ideas."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a potentially important characterization of distributional equivalence for arbitrary latent-variable, cyclic LiNG models, introduces an edge-rank/matching formulation, and derives traversal and learning procedures. However, the central implication from rank equivalence to equality of observed distribution sets is not convincingly established, undermining all downstream guarantees.",
+        "strengths": [
+          "The target problem is broad and important, and the claimed characterization would be highly novel if correct (pp. 1–2).",
+          "The path-rank/edge-rank dual viewpoint is conceptually elegant and yields clear local criteria and transformations (pp. 6–9).",
+          "The paper provides extensive appendices, illustrative equivalence classes, runtime studies, simulations, and a real-data example (pp. 19–48)."
+        ],
+        "weaknesses": [
+          "The crucial converse in Lemma 3 appears to make an unjustified leap: isomorphism of families of transversal matroids is used to conclude that weighted support-matrix realizations, and hence inverse mixing-matrix sets, coincide up to scaling/permutation (pp. 25–26). Equality of matroid rank functions generally does not imply equality of weighted realization spaces, and the proof does not justify why the permuted valuation in Eq. B.7 follows the support of H. This is especially concerning because the paper itself exhibits non-rank polynomial constraints in mixing matrices (pp. 38–39).",
+          "Several exact set-equality claims are argued using generic ranks or random valuations, without adequately treating nongeneric parameter values, although distributional equivalence is defined as equality over all admissible parameters (pp. 3, 5, 21, 25–26). I am uncertain whether a missing algebraic argument could repair this.",
+          "The empirical evidence does not validate recovery of the full equivalence class: finite-sample evaluation reports minimum SHD to any true-class member, uses heuristic rank repair and latent-dimension selection with limited specification, and does not measure class precision/recall or traversal cost (pp. 46–47)."
+        ],
+        "score_rationale": "The scope, ideas, and presentation are strong, but Lemma 3 is the foundation for the graphical criterion, transformations, and glvLiNG guarantee. Its converse proof does not establish the required equality of distribution families, leaving a potentially fatal soundness gap. Given uncertainty about whether deeper matroid results could close it, I assign reject rather than strong reject."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes an ambitious characterization of distributional equivalence for linear non-Gaussian causal models with arbitrary latent structure and cycles, together with graph transformations and a learning pipeline. The framing and edge-rank viewpoint are compelling, but the central equivalence theorem is not established convincingly, and the finite-sample evidence does not compensate for this theoretical uncertainty.",
+        "strengths": [
+          "The problem is important and unusually general; a correct equivalence characterization without indicator, acyclicity, or latent-structure restrictions would be a major contribution (pp. 1–2).",
+          "The path-rank/edge-rank dual perspective yields an appealing local graphical language and potentially useful links to transversal matroids (pp. 6–8).",
+          "The manuscript supplies extensive appendices, illustrative equivalence classes, runtime studies, simulations, and a real-data example (pp. 19–48)."
+        ],
+        "weaknesses": [
+          "The pivotal Lemma 3 has a substantial proof gap. Generic rank equality only establishes matroid information, whereas distributional equivalence requires equality of the full mixing-matrix sets. The converse argument jumps from isomorphic transversal-matroid families to numerical representations related by permutation/scaling, without adequately proving this; moreover, the forward argument treats the corresponding matrix in the other model as generic without justification (pp. 25–26). This is especially concerning because the paper explicitly exhibits non-rank polynomial constraints (pp. 38–39).",
+          "The transformational completeness result is also too compressed: Corollaries 3–4, including connectivity of all matrix presentations and existence of a unique maximal support, are largely asserted as extensions of the single-column argument rather than rigorously derived (pp. 34–35). Since Theorems 2–3 and glvLiNG depend on these steps, the issue is central rather than local.",
+          "The practical evidence is limited. Reported runtimes cover rank realization rather than potentially enormous equivalence-class enumeration (p. 44); finite-sample rank handling uses heuristic thresholds, performance remains weak in sparse settings, and comparisons deliberately place baselines outside their assumptions (pp. 45–47). The stock conclusions are plausibility-based and unvalidated (pp. 47–48)."
+        ],
+        "score_rationale": "The novelty and potential impact are high, but the main claim rests on an inadequately justified transition from generic rank/matroid equivalence to exact equality of distribution sets. I am uncertain whether a stronger matroid-representation theorem could repair the argument, but as written this is a decisive soundness problem, warranting rejection despite the strong ideas."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes an ambitious characterization of distributional equivalence for arbitrary latent-variable, cyclic LiNG models, introduces an edge-rank/matching perspective, and derives traversal and learning procedures. However, the central step from equality of generic rank structures to equality of the full observed distribution sets is not convincingly established, undermining the main characterization and algorithmic guarantees.",
+        "strengths": [
+          "The target problem is important and unusually general, allowing arbitrary latent structure and cycles; a correct result would be highly novel (pp. 1–3).",
+          "The edge-rank formulation and its connection to transversal matroids provide an interesting local combinatorial perspective, leading to clean proposed criteria and transformations (pp. 6–9).",
+          "The paper is broad in scope, with equivalence-class enumeration, runtime studies, finite-sample simulations, and an illustrative application (pp. 43–48)."
+        ],
+        "weaknesses": [
+          "The proof of the pivotal Lemma 3 appears to conflate equality/isomorphism of matroids with equality of their weighted realization spaces. On pp. 25–26, the argument moves from common generic rank functions to support-constrained matrices and then treats a row-permuted valuation of Q(G) as belonging to H; an isomorphism of transversal matroids does not generally imply that their particular bipartite presentations have the same numerical matrix realization set. The cited 'general simplex position' discussion does not fill this step. This is especially concerning because the paper itself exhibits non-rank polynomial constraints in mixing matrices on pp. 38–39.",
+          "The claimed equivalence is exact equality of distribution sets over all allowed parameters (p. 3), but key arguments use generic ranks, random/sufficiently general weights, and Zariski-style reasoning (pp. 5, 21, 25–26). No argument is given that nongeneric parameter values, zeros on permitted edges, singular limits, or coincidentally reducible ICA representations preserve equality of the full sets rather than only generic closures.",
+          "The empirical evidence does not validate the central exact-recovery claim independently of its disputed theory. The practical method introduces heuristic rank scoring, approximate matroid fitting, thresholding, and latent-dimension selection without a complete specification or consistency analysis (p. 46); comparisons are against methods knowingly outside their assumptions, while the stock time-series interpretation lacks validation of the i.i.d. SEM assumptions (pp. 45–48)."
+        ],
+        "score_rationale": "The problem, conceptual framework, and potential novelty are strong, but Lemma 3 is the foundation for Theorems 2–4 and glvLiNG. The apparent gap between generic matroid/rank equivalence and exact equality of support-constrained mixing/distribution sets is fundamental rather than a minor omission. Unless that step can be repaired with a substantially stronger theorem, the principal claims are unsupported, warranting rejection despite the promising ideas."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The manuscript proposes a graphical characterization and traversal procedure for distributional equivalence in linear non-Gaussian cyclic models with arbitrary latent structure, plus an OICA-based learning algorithm. The scope and matroid-based perspective are ambitious, but the central equivalence theorem is not convincingly established; a key step appears to conflate equality of matroid rank data with equality of the corresponding weighted matrix/model families.",
+        "strengths": [
+          "The problem is important and unusually general, covering latent variables and cycles without indicator-style structural restrictions (pp. 1–3).",
+          "The path-rank/edge-rank dual viewpoint and local children-basis criterion are conceptually interesting and could be useful beyond this setting (pp. 6–8).",
+          "The paper provides extensive appendices, illustrative equivalence classes, runtime studies, simulations, and a real-data example (pp. 19–48)."
+        ],
+        "weaknesses": [
+          "The converse of Lemma 3 contains a decisive unsupported step: from isomorphic families of transversal matroids, the proof effectively treats a row-permuted generic valuation of Q(G) as a matrix following Q(H), and then asserts (TPR)^{-1}_{X,:} belongs to A(H,X) (p. 26). Equality of matroids/rank patterns generally does not imply equality of support-constrained weighted realization spaces up to only scaling and permutation. The manuscript itself exhibits non-rank polynomial constraints (pp. 38–39), making the claim that ranks alone ensure their agreement circular. I am not fully certain whether an unstated specialized representation theorem could repair this, but the cited argument does not establish it.",
+          "Distributional equivalence is defined as exact equality of full distribution sets (p. 3), whereas much of the argument uses generic ranks and general-position valuations (pp. 5, 21, 26). The proof does not adequately bridge generic/Zariski behavior to every admissible parameterization, including coincidental rank degeneracies; related irreducibility and reduction proofs are also only sketches (pp. 25–26).",
+          "The practical algorithm is less general and efficient than the presentation suggests: it depends on OICA, externally selecting latent dimension, heuristic rank scores and thresholds, and closest-matroid approximation (p. 46); Phase 1 involves potentially exponential matroid objects, with no complexity guarantee and rapidly increasing runtime (pp. 22, 44). Baselines are deliberately evaluated outside their assumptions, and the stock-market causal interpretations lack external validation (pp. 45–48)."
+        ],
+        "score_rationale": "The claimed characterization would be highly novel if correct, but the apparent gap in Lemma 3 undermines Theorems 2–4 and the recovery guarantee. Combined with limited practical scalability and mostly proof-of-concept evidence, this warrants rejection despite the strong problem choice and promising combinatorial ideas."
+      }
+    }
+  ]
+}

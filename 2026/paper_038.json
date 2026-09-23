@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_038",
+  "paper_id": "XOuHTBLrPP",
+  "number": 10093,
+  "title": "TAR-TVG: Enhancing LVLMs with Timestamp Anchor-Constrained Reasoning for Temporal Video Grounding",
+  "authors": [
+    "chaohong guo",
+    "Xun Mo",
+    "Yongwei Nie",
+    "Xuemiao Xu",
+    "Chao Xu",
+    "Fei Yu",
+    "Chengjiang Long"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Reinforcement Learning",
+    "Temporal Video Grounding"
+  ],
+  "forum_url": "https://openreview.net/forum?id=XOuHTBLrPP",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0a4fBXwMG8",
+      "forum": "XOuHTBLrPP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10093/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762855723977,
+      "tmdate": 1762921476534,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "1HVyq8frUz",
+      "forum": "XOuHTBLrPP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10093/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761294690899,
+      "tmdate": 1762921477593,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "Xi5kJSMYj0",
+      "forum": "XOuHTBLrPP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10093/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762016467945,
+      "tmdate": 1762921476880,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "eypmU3kul6",
+      "forum": "XOuHTBLrPP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10093/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761969633998,
+      "tmdate": 1762921477288,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes TAR-TVG, an RL post-training scheme that rewards correctly formatted intermediate timestamp anchors, their soft-IoU with ground truth, and progressive improvement. Results are promising, but the method is incremental reward engineering and important inconsistencies and experimental ambiguities prevent the evidence from securely supporting the claims.",
+        "strengths": [
+          "Strong reported grounding performance across four benchmarks, including 61.1 mIoU on Charades-STA and sizable gains over Time-R1 on QVHighlights (pp. 7–8).",
+          "Ablations examine the three-stage pipeline, reward components, anchor count, soft versus standard IoU, and test-time refinement (pp. 8–9, 14–18).",
+          "The intermediate timestamp representation is simple, verifiable, and potentially useful for inspecting temporal predictions."
+        ],
+        "weaknesses": [
+          "The reward specification is internally inconsistent: the main method sets β=1 and γ=5, while the provided implementation defaults to β=5 and γ=1 (pp. 5, 17); prompt structures also differ between the method and appendix (pp. 4, 17), undermining reproducibility.",
+          "Dataset provenance and comparison protocols are insufficiently clear. The 30K traces are filtered using ground-truth overlap, but their source datasets/splits are not explicitly documented; sequential Charades and QV training further makes the exact checkpoint used for each benchmark unclear (pp. 6–7). This leaves uncertainty about leakage and fairness.",
+          "The claimed faithful, human-like reasoning is not established: rewards directly supervise timestamp overlap and ordering, but do not verify the accompanying natural-language rationale. A few favorable examples cannot demonstrate faithfulness, and later weighted anchors can encourage reward optimization rather than genuine iterative visual reasoning (pp. 5, 14–15)."
+        ],
+        "score_rationale": "The empirical gains and breadth of evaluation make the work competitive, but novelty is modest and decisive reproducibility/protocol ambiguities remain. In particular, the contradictory reward implementation and unclear provenance of ground-truth-filtered SFT data require resolution before acceptance; thus I rate it marginally below the bar."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TAR-TVG adds timestamp-anchor rewards and a self-generated SFT stage to RL-based temporal grounding. The reported gains are promising, especially on Charades-STA and QVHighlights, but unclear data provenance, implementation contradictions, and insufficient evidence for the claimed faithful reasoning prevent confidence in the conclusions.",
+        "strengths": [
+          "The method is intuitive and reasonably simple: soft-IoU feedback, anchor-count control, and progressive-refinement rewards directly target temporal predictions (pp. 4–6).",
+          "Reported performance is strong, including 61.1 mIoU on Charades-STA and sizable improvements over Time-R1 on QVHighlights (pp. 7–8).",
+          "Ablations cover training stages, reward components, anchor count, soft versus standard IoU, and several hyperparameters (pp. 8–9, 17–19)."
+        ],
+        "weaknesses": [
+          "Reproducibility is compromised by a decisive contradiction: the main method uses β=1 and γ=5, whereas the supplied algorithm defaults to β=5 and γ=1; the prompt description and shown prompt also disagree about output structure (pp. 5, 17–18).",
+          "The provenance and dataset composition of the 186K generated samples and filtered 30K SFT traces are not specified clearly enough to exclude evaluation contamination or assess comparison fairness; matched controls for data, prompt, and compute are absent (pp. 6–8).",
+          "Timestamp accuracy does not verify the semantic faithfulness or causal utility of the natural-language reasoning. The rewards directly supervise spans using ground truth, while qualitative examples cannot substantiate claims of human-like or verifiable reasoning (pp. 5, 14–15)."
+        ],
+        "score_rationale": "The paper offers useful reward engineering and encouraging empirical gains, but the novelty is incremental and the strongest reasoning claims are unsupported. More importantly, unclear training-data provenance and contradictory implementation details make the results difficult to validate, placing the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TAR-TVG trains an LVLM for temporal grounding using rewards for timestamp formatting, ground-truth overlap, anchor count, and progressively improving intermediate spans, plus an RL-generated/SFT-filtered data stage. The reported gains are promising, but the method is incremental and significant inconsistencies and missing controls weaken the evidence for its central reasoning/refinement claims.",
+        "strengths": [
+          "The timestamp-anchor reward is simple, task-relevant, and clearly formulated, with useful component and training-stage ablations (pp. 4–9).",
+          "The 7B model reports strong results across Charades-STA and QVHighlights, including sizable gains over Time-R1 on QVHighlights, plus some zero-shot improvement on ActivityNet-Captions and TVGBench (pp. 7–8).",
+          "The appendix includes compute, sampling, optimizer, prompt, and failure-case details, and openly notes task specificity and efficiency limitations (pp. 16–20)."
+        ],
+        "weaknesses": [
+          "The central claim of faithful, human-like refinement is not established: every anchor is directly rewarded against the ground truth, while neither the natural-language reasoning nor causal use of earlier anchors is evaluated. Selected examples cannot establish faithfulness, and the final answer is prescribed to equal the last anchor (pp. 4–6, 14–15).",
+          "Reproducibility and result reliability are undermined by contradictions: Eq. 8 uses beta=1 and gamma=5, but Algorithm 1 defaults to beta=5 and gamma=1 (pp. 5, 17); Table 1 also reports an impossible TimeChat ordering where R1@0.7 exceeds R1@0.5 (p. 7).",
+          "Key controls and provenance are unclear. The exact datasets/splits used to train the temporary 7B generator and construct the 30K SFT set are not specified sufficiently to exclude target-test contamination, and comparisons do not cleanly isolate anchor rewards from extra SFT data, prompting, and substantially longer outputs (pp. 6–9, 15–16)."
+        ],
+        "score_rationale": "The paper offers a plausible engineering improvement and encouraging benchmark results, but novelty is modest and the evidence does not substantiate the claimed reasoning faithfulness. Contradictory implementation details, an impossible baseline entry, unclear synthetic-data provenance, and confounded comparisons place it marginally below acceptance; uncertainty remains because the reported gains could be valid after clarification and correction."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TAR-TVG adds timestamp-anchor rewards and a three-stage RL–SFT–RL pipeline for temporal video grounding. The idea is intuitive and produces strong reported results, especially on QVHighlights, but the contribution is largely incremental reward shaping and the current evidence does not isolate whether progressive reasoning, rather than repeated ground-truth-supervised boundary prediction, causes the gains.",
+        "strengths": [
+          "The method is simple and task-relevant: soft IoU, anchor-count control, and progressive-refinement rewards directly address malformed or disconnected timestamp traces (pp. 4–6).",
+          "Reported performance is strong across several datasets, including substantial gains over Time-R1 on QVHighlights and competitive zero-shot results on ActivityNet-Captions (pp. 7–8).",
+          "The paper includes component, anchor-count, soft-IoU, candidate-count, and hyperparameter analyses, plus success and failure cases (pp. 8–9, 14–20)."
+        ],
+        "weaknesses": [
+          "The evidence does not establish faithful or genuinely progressive reasoning. Every anchor is directly rewarded against the ground truth, the final answer is set equal to the last anchor, and the refinement reward can be increased by making the first prediction deliberately worse. There is no answer-only control matched for the multiple IoU reward signals or quantitative reasoning-faithfulness evaluation (pp. 4–5, 14–15).",
+          "Reproducibility has material inconsistencies and omissions: the text specifies beta=1 and gamma=5, while Algorithm 1 defaults to beta=5 and gamma=1; the prompt describes two think blocks but the method uses one; and the source/split provenance of the 186K generated outputs and 30K filtered examples is unclear, making leakage and the claimed zero-shot setting difficult to assess (pp. 5–7, 16–18).",
+          "The headline improvement is uneven and lacks uncertainty estimates: on Charades-STA the 7B model improves only 0.1 R1@0.7 and is worse than Time-R1 on R1@0.5; several zero-shot recall metrics are also worse. Table 1 additionally contains a non-monotonic TimeChat recall row, undermining confidence in the comparison (pp. 7–8)."
+        ],
+        "score_rationale": "The paper has a useful engineering idea and promising empirical results, but limited conceptual novelty, missing matched controls, unclear data provenance, and contradictory implementation details prevent confidence that the claimed progressive-reasoning mechanism is responsible for the gains. This places it marginally below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TAR-TVG trains an LVLM for temporal grounding by rewarding correctly formatted intermediate timestamp anchors, their soft-IoU accuracy, and progressive refinement, using an RL-generated 30K trace set followed by SFT and GRPO. The empirical results are promising, especially on QVHighlights, but important implementation inconsistencies and insufficiently controlled evaluation make the central conclusions uncertain.",
+        "strengths": [
+          "The timestamp-anchor objective is a simple, relevant extension of verifiable-reward training and targets a genuine failure mode of prompt-only timestamp reasoning (pp. 2–6).",
+          "Results cover four benchmarks and two model sizes; the 7B model notably improves QVHighlights over Time-R1 by 6.8 mIoU and 9.9 R1@0.5 (pp. 7–8).",
+          "Ablations examine the training stages, reward components, anchor count, soft versus standard IoU, and reward hyperparameters (pp. 8–9, 17–19)."
+        ],
+        "weaknesses": [
+          "The method is not reproducibly specified: Eq. 8 sets beta=1 and gamma=5, whereas the supplied implementation defaults to beta=5 and gamma=1; these coefficients have opposite roles and the paper shows that gamma strongly affects performance (pp. 5, 17–19).",
+          "Dataset provenance and evaluation isolation are unclear. The source/splits used to generate the 186K candidates and 30K SFT traces are not stated, while training proceeds on Charades-STA and then QVHighlights; this leaves the claimed Charades-only and ActivityNet/TVGBench zero-shot settings difficult to verify (pp. 6–8, 16).",
+          "Evidence does not isolate the proposed reasoning constraint from extra synthetic supervision, prompting, and compute. The rewards supervise timestamp overlap rather than semantic faithfulness of the natural-language reasoning, and no matched-data/matched-compute or prompt-only anchor baseline establishes that progressive reasoning itself causes the gains (pp. 4–9, 14–17)."
+        ],
+        "score_rationale": "The idea is useful and the reported gains are encouraging, but novelty is primarily reward engineering and the strongest claims are weakened by missing controls, ambiguous data provenance, and a consequential equation/code mismatch. I therefore rate it marginally below acceptance pending clarification and corrected, controlled experiments."
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "year": 2026,
+  "package_id": "paper_016",
+  "paper_id": "0KXI6lDM9C",
+  "number": 4737,
+  "title": "Proving the Limited Scalability of Centralized Distributed Optimization via a New Lower Bound Construction",
+  "authors": [
+    "Alexander Tyurin"
+  ],
+  "primary_area": "optimization",
+  "keywords": [
+    "nonconvex optimization",
+    "lower bounds",
+    "distributed optimization"
+  ],
+  "forum_url": "https://openreview.net/forum?id=0KXI6lDM9C",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    4,
+    6,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "csRZy6aE9z",
+      "forum": "0KXI6lDM9C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4737/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762728995715,
+      "tmdate": 1762917542153,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "dy4ZjvZbhM",
+      "forum": "0KXI6lDM9C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4737/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762768144743,
+      "tmdate": 1762917541756,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "jNdaFkObxx",
+      "forum": "0KXI6lDM9C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4737/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762107460261,
+      "tmdate": 1762917542536,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    },
+    {
+      "review_id": "y8u8oGVQm5",
+      "forum": "0KXI6lDM9C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission4737/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761297286539,
+      "tmdate": 1762917543050,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper develops a new K-step zero-chain construction and concentration argument to show that centralized distributed optimization with random sparsification cannot simultaneously obtain strong worker-count scaling in stochastic computation and server-to-worker communication. The result is technically substantial and largely self-contained, but its applicability is narrower than some headline claims, and several modeling/probabilistic assumptions need clarification.",
+        "strengths": [
+          "The new function FT,K,a is a meaningful extension of the Carmon et al. zero-chain: requiring K consecutive discovered coordinates directly addresses the failure of prior constructions in the homogeneous setting (pp. 7–8).",
+          "The manuscript supplies detailed proofs of the construction's stationarity, gap, gradient, and smoothness properties, followed by a nontrivial concentration reduction that explains the polylogarithmic dependence on n (pp. 17–30).",
+          "The worker-to-server extension treats local modifications and variable sparsity levels, and the resulting bounds are compared with matching algorithmic regimes up to logarithmic factors (pp. 9–10, 31–36)."
+        ],
+        "weaknesses": [
+          "The formal result only covers zero-respecting algorithms using uniformly random coordinate sparsifiers, rather than general unbiased compressors. The conclusion's statement that unbiased compressors contain biased compressors—and its claimed implication for biased methods—is incorrect or at least unsupported (pp. 5–6, 9–10).",
+          "The timing model is inconsistent: Assumption 1.4 gives at-most-h and at-most-τ costs, which cannot support lower bounds proportional to those quantities, whereas Protocol 1 silently treats them as exact costs (pp. 2, 6). The theorem must explicitly adopt exact or lower-bounded operation times.",
+          "The proof needs compressor samples to remain conditionally uniform given the full adaptive history, especially when deriving the stream bounds and conditioning across blocks. The theorem states only uniform sampling without replacement and even cites coordinated PermK, so the required fresh-randomness/correlation assumptions are insufficiently specified (pp. 9, 23–27)."
+        ],
+        "score_rationale": "The core construction and proof technique appear novel and potentially important, with extensive supporting derivations. However, the restricted compressor/algorithm class, timing-model mismatch, and ambiguity about conditional compressor randomness prevent a clear accept-level assessment without revision. I therefore rate it marginally above acceptance, with some uncertainty about whether the randomness gap is merely definitional or substantive."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper develops a new K-step zero-chain construction and concentration argument to show that centralized homogeneous distributed optimization with uniform random sparsification cannot simultaneously obtain strong worker-count scaling in stochastic computation and server-to-worker communication. The result is technically substantial and largely self-contained, but its scope and runtime interpretation are narrower than some headline claims.",
+        "strengths": [
+          "The K-coordinate-gated construction is a meaningful and apparently novel extension of standard nonconvex zero chains, with smoothness, gap, gradient-support, and stationarity properties established in detail (pp. 7–8, 16–21).",
+          "The reduction from optimization progress to blockwise random waiting times is insightful and directly addresses why the earlier homogeneous construction loses a factor of n (pp. 15, 22–30).",
+          "The main bounds are accompanied by explicit parameter choices and near-matching algorithmic regimes, making the theoretical implication comparatively sharp within the stated model (pp. 9–10, 26–27, 31–36)."
+        ],
+        "weaknesses": [
+          "The runtime assumptions are inconsistent: Assumption 1.4 specifies that computation and communication take “at most” h and τ seconds, whereas the lower-bound arguments require these to be exact or lower-bounded costs; Protocol 1 silently imposes exact costs instead (pp. 2, 6). Thus the headline lower bound does not follow from Assumption 1.4 as written.",
+          "The formal scope is restricted to zero-respecting algorithms and compressors that uniformly sample coordinates, with substantial dimension and parameter conditions (pp. 5–6, 9, 21). Claims of a broad fundamental limitation for unbiased compression should be qualified more consistently.",
+          "The conclusion states that the family of unbiased compressors contains biased compressors and uses this to extend the result, which is false under Definition 1.5; arbitrary biased compressors are not a subset of the unbiased family, so that extension is unsupported (pp. 3, 10)."
+        ],
+        "score_rationale": "This is a strong, technically creative lower-bound paper whose central construction and proof strategy appear plausible and valuable. However, the mismatch between upper-bounded and exact timing costs affects the stated interpretation, and the paper overstates applicability beyond uniform random sparsifiers and zero-respecting methods. These issues favor marginal acceptance rather than a clear accept; confidence is limited by the density of the concentration arguments."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper develops a new K-memory zero-chain construction and concentration argument to show polylogarithmic, rather than linear, worker scalability for a restricted class of centralized stochastic optimization methods. The core idea is interesting and the appendices provide substantial proof detail, but the formal results do not fully support the paper’s broad runtime and compressor claims.",
+        "strengths": [
+          "The K-coordinate gating construction is a plausible and technically novel response to the failure of ordinary zero-chains in the homogeneous setting (pp. 7–8, 15).",
+          "The paper gives explicit smoothness, gap, and gradient bounds for the construction, with detailed supporting proofs (pp. 17–21).",
+          "The reduction to blockwise concentration is clear, and both communication directions receive extensive formal treatment (pp. 21–36)."
+        ],
+        "weaknesses": [
+          "The runtime model is directionally inconsistent: Assumption 1.4 says operations take “at most” h, τs, and τw, while the lower-bound protocols charge exactly these amounts. Upper bounds on operation time cannot imply runtime lower bounds proportional to them; minimum or fixed costs are required (pp. 2, 6, 23–25).",
+          "The main formal theorem only covers zero-respecting algorithms and uniformly sampled coordinate sparsifiers (with additional randomness assumptions used in the proof), whereas several informal conclusions sound like impossibility results for unbiased compression generally. The claimed extension to biased compressors is particularly unsupported and the statement that the unbiased family “contains” the biased family is false as written (pp. 9–10, 21).",
+          "The result remains separated from matching bounds by sizable powers of log(n), and the required dimension and signal regime scale with these logarithms; thus the claimed practical limitation on scalability is less definitive than the presentation suggests (pp. 9, 27)."
+        ],
+        "score_rationale": "The new construction and proof framework are substantial and potentially publishable, but the stated time assumption does not logically support the advertised lower bound, and the informal scope exceeds the formal zero-respecting, uniform-sparsifier theorem. These issues place the work marginally below acceptance despite its strong technical core; some uncertainty remains because the timing issue may be intended as a correctable definition error rather than a flaw in the underlying proof."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a substantial theoretical lower bound for homogeneous centralized distributed nonconvex optimization with bidirectional communication and uniform random-sparsification compressors. Its main innovation is a K-step zero-chain construction that prevents the fastest of n workers from yielding linear scalability, leading to polylogarithmic dependence on n. The result appears valuable, but its scope is narrower and some concluding claims broader than the formal theorems support.",
+        "strengths": [
+          "The new K-memory worst-case function is conceptually novel and directly addresses why conventional zero-chain constructions lose a factor n in the homogeneous setting (pp. 7–8, 15).",
+          "The paper provides detailed proofs of the construction's support, stationarity, gap, gradient, and smoothness properties, followed by a nontrivial concentration argument (pp. 17–30).",
+          "The lower bounds are meaningfully related to nearly matching simple algorithms, clearly identifying regimes where local SGD, Batch QSGD, or uncompressed synchronized SGD is optimal up to logarithms (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The formal scope is restricted to zero-respecting algorithms and compressors that uniformly sample coordinates; it does not cover arbitrary unbiased compression, rotations/encodings, or general algorithms. Thus, the broad scalability language should be qualified more consistently (pp. 5–6, 9, 21).",
+          "The conclusion incorrectly states that the family of unbiased compressors contains biased compressors and suggests that the lower bound therefore applies to biased-compressor methods. Unbiased compressors are not a superset of biased compressors, and existence of a hard random sparsifier does not establish a lower bound for methods specifically using other biased compressors (p. 10).",
+          "The complete bound is presented informally as obtained by combining Theorems 4.2 and F.1, but the manuscript does not provide a formal theorem/proof showing the algebra and quantifier handling for the exact expression in (5). Given the complexity of the two separate adversarial constructions, this omitted synthesis should be made explicit (pp. 4, 9, 31–34)."
+        ],
+        "score_rationale": "This is a promising and technically substantial lower-bound contribution with a genuinely useful construction, placing it marginally above acceptance. The restricted oracle/compressor model, an erroneous claim about biased compressors, and the omitted formal synthesis of the headline bound prevent a stronger score. Confidence is high but not maximal because the lengthy concentration proof is difficult to fully validate from inspection."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "A substantial theoretical paper establishing a near-tight time lower bound for homogeneous centralized stochastic optimization with bidirectional random sparsification. Its main novelty is a K-step zero-chain construction that suppresses the usual linear benefit from taking the luckiest of n workers, coupled with new concentration arguments. The core result appears plausible and carefully developed, but its scope is narrower than some headline claims suggest.",
+        "strengths": [
+          "The new function FT,K,a requires K consecutive discovered coordinates before progress, directly addressing why standard zero-chain constructions still scale with n in the homogeneous setting (pp. 7–8, 15).",
+          "The paper supplies detailed proofs of the construction’s gradient-support, stationarity, gap, smoothness, and gradient bounds, rather than treating them as black boxes (pp. 17–21).",
+          "The reduction to random waiting times and accompanying concentration lemmas yield bounds that are matched up to logarithmic factors by identified algorithms in the relevant regimes (pp. 9–10, 25–30, 31–36)."
+        ],
+        "weaknesses": [
+          "The formal result applies only to zero-respecting algorithms using uniformly sampled coordinate sparsifiers, under large-dimension and parameter-regime conditions; it does not establish the headline limitation for arbitrary unbiased compressors or unrestricted algorithms (pp. 5–6, 9, 21–22).",
+          "The probabilistic model needs sharper formalization: the proof conditions on coordinate streams as if fresh uniform sampling remains valid, while Theorem 4.2 does not clearly state independence from history, across compressor calls, or across workers. This matters for adaptive or correlated sparsifiers such as the cited PermK example (pp. 9, 23–25).",
+          "The conclusion incorrectly says that the family of unbiased compressors contains biased compressors; biased compressors are not generally a subset of unbiased ones, so the claimed extension to biased-compression methods is unsupported (p. 10)."
+        ],
+        "score_rationale": "The central construction and lower-bound framework are novel, relevant, and supported by extensive technical arguments, making this an acceptance-level contribution. I discount it from a stronger score because important claims are broader than the proved compressor/algorithm class, and the sampling assumptions should be stated more precisely. I did not independently verify every constant or conditioning step in the long appendices."
+      }
+    }
+  ]
+}

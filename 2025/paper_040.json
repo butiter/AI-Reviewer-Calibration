@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_040",
+  "paper_id": "WjKea8bGFF",
+  "number": 5140,
+  "title": "Building Math Agents with Multi-Turn Iterative Preference Learning",
+  "authors": "Wei Xiong; Chengshuai Shi; Jiaming Shen; Aviv Rosenberg; Zhen Qin; Daniele Calandriello; Misha Khalman; Rishabh Joshi; Bilal Piot; Mohammad Saleh; Chi Jin; Tong Zhang; Tianqi Liu",
+  "primary_area": "reinforcement learning",
+  "keywords": "large language model; RLHF; math",
+  "forum_url": "https://openreview.net/forum?id=WjKea8bGFF",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    8,
+    6
+  ],
+  "human_mean_rating": 7.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper investigates enhancing mathematical reasoning in large language models (LLMs) through a multi-turn preference learning approach with tool integration. The authors propose a multi-turn direct preference optimization framework that accommodates complex, multi-turn reasoning and external tool integration, crucial for mathematical tasks. By employing two specific implementations—multi-turn Direct Preference Optimization (DPO) and multi-turn Kernelized Trajectory Optimization (KTO)—the framework improves model accuracy on math benchmarks, GSM8K and MATH. Empirical results with multiple base models show notable gains, particularly for models fine-tuned with iterative multi-turn training, outperforming standard SFT and single-turn baselines. The study also highlights the importance of balancing model exploration and accuracy through KL regularization and mixture sampling to maintain performance in iterative training."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "a.\tThe paper proposed an iterative multi-turn DPO and KTO training framework, which effectively improves the models ability on multiturn reasoning for math problems.\nb.\tThe experiments are solid, and they conduct experiments with multiple base models."
+        },
+        "weaknesses": {
+          "value": "a.\tOverall, the motivation makes sense, as for some complex math problems that require tool integration, human inputs might be needed. However, only GSM8K and MATH have been used as the benchmarks in this paper, which are relatively easy problems, and may not necessarily need human input as multi-turn conversation. It is more convincing if you can conduct experiments on more complex tasks, like formulating an optimization problem and solving it from a task description. \nb.\tThe presentation of the results is not clear enough. For example, table 1 is too long, and different models use different settings, e.g. Wizardmath, codellama and Gemma-1.1-it-7B have different settings from other models. It is more readable if the table is splitted, and each sub table has its own conclusion or findings.\nc.\tTypos, e.g. line 270 DKO, should be KTO."
+        },
+        "questions": {
+          "value": "For the example shown in figure 1, the human inputs (o1 and o2) do not provide additional information, why multi-turn conversation is needed in this case?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "90SbmQFCiL",
+      "forum": "WjKea8bGFF",
+      "replyto": "WjKea8bGFF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_Roam"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_Roam"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5140/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730562991368,
+      "cdate": 1730562991368,
+      "tmdate": 1731428323787,
+      "mdate": 1731428323787,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the optimization of multi-turn MDP planning under conditions involving interactions with external tool integration. Through rigorous theoretical derivations, it models the optimal conditions for multi-turn MDP planning and demonstrates that when\nthe external randomness is low, a reward form using DPO can feasibly compute the utility function in multi-turn MDP planning. Furthermore, the authors propose multi-turn DPO and multi-turn KTO algorithms tailored for optimizing multi-turn MDP planning and validate the effectiveness of combining multi-turn MDP planning optimization with an online iterative approach, showing that performance loss relative to the optimal policy is sublinear, thus highlighting the statistical efficiency of the proposed algorithm. Extensive experiments conducted on various model series across GSM8K and MATH datasets affirm the efficacy of these methods in multi-turn MDP planning."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper proposes a solution to the language model’s multi-turn planning problem involving external environment interaction, offering well-grounded theoretical proofs and a straightforward formulation.\n\n2. The proposed algorithms are empirically validated to be effective in addressing mathematical problem-solving tasks with external tool integration."
+        },
+        "weaknesses": {
+          "value": "1. The utility function form in Equation (7) needs a value network and is computable only under the form of DPO rewards and deterministic external conditions, which limits the practical applicability of this theoretical framework. Currently, the theoretic framework cannot utilize methods like PPO to address multi-turn MDP planning problems with external interactions.\n\n2. The experimental section’s baseline explanation for single-turn iterative DPO lacks clarity regarding the KL regularization strategy, especially in terms of whether a fixed reference is employed, which might contribute to the poorer performance observed in single-turn iterative DPO."
+        },
+        "questions": {
+          "value": "None."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "76VygBq9I7",
+      "forum": "WjKea8bGFF",
+      "replyto": "WjKea8bGFF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_4eni"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_4eni"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5140/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730442641084,
+      "cdate": 1730442641084,
+      "tmdate": 1731428324186,
+      "mdate": 1731428324186,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a multi-turn direct preference learning framework, tailored for this context, that leverages feedback from code interpreters and optimizes trajectory-level preferences. This framework includes multi-turn DPO and multi-turn KTO as specific implementations. The effectiveness of our framework is validated through training of various language models using an augmented\nprompt set from the GSM8K and MATH datasets."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The integration of external tool augmented methods and the use of multi-turn preference learning is both interesting and reasonable, effectively addressing the shortcomings of natural language in mathematical reasoning. The exploration of tool-augmented methods in the mathematical domain is well-motivated.\n\n2. The methods presented in the paper are strongly supported by theoretical foundations, which enhances their credibility, and the overall writing is clear and easy to understand."
+        },
+        "weaknesses": {
+          "value": "1. WizardMath, being a state-of-the-art math model from a year ago, seems somewhat outdated as a baseline for performance. I hope the authors can include results from recent stronger models in mathematics that incorporate MULTI-TURN ITERATIVE PREFERENCE LEARNING, such as Qwen 2.5 Math and DeepSeek Math.\n\n2. I would indeed like to see results of this method in the context of a process-based reward model (PRM) and combined with MCTS sampling strategies (even preliminary results would be helpful). Although the authors mention this limitation in the limitations section and in line 297, relying solely on ORM for reasoning verification is not sufficiently detailed."
+        },
+        "questions": {
+          "value": "Please see the weaknesses section. I also hope to see further details on the ORM, such as the base model and training method. \n\nOverall, the paper does not have any obvious weaknesses, and I personally find it quite impressive. I believe it meets the acceptance criteria for ICLR. If you address my concerns, I would consider raising the score.\n\n**Missing reference:**\n\n[1] DotaMath: Decomposition of Thought with Code Assistance and Self-correction for Mathematical Reasoning"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "8FbwoBpfLj",
+      "forum": "WjKea8bGFF",
+      "replyto": "WjKea8bGFF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_erZb"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_erZb"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5140/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730135270587,
+      "cdate": 1730135270587,
+      "tmdate": 1732151477240,
+      "mdate": 1732151477240,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a new method to improve the mathematical reasoning abilities of large language models. Existing direct preference learning algorithms are mainly applied to single-turn dialogue tasks and fail to address the complexities of multi-turn reasoning and external tool integration. To tackle this, the paper introduces a multi-turn direct preference learning framework and specifically implements two algorithms (M-DPO and M-KTO). Experiments were conducted by training the model on the GSM8K and MATH datasets, and the results demonstrate that this new framework significantly enhances the model’s performance on multiple benchmark tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper improves the performance of large language models (LLMs) in multi-turn complex reasoning tasks. The study effectively validates the proposed approach using two datasets."
+        },
+        "weaknesses": {
+          "value": "Although the proposed method shows outstanding performance, it is relatively focused on specific task types. Currently, the experiments are limited to the GSM8K and MATH datasets, and it would be better to include more datasets in the testing. Additionally, the framework's design is relatively complex, involving multi-turn preference learning and trajectory-level optimization, which may require high computational resources in practical applications. A comparative experiment to demonstrate the time cost and computational consumption compared to previous methods would be helpful here."
+        },
+        "questions": {
+          "value": "1.How is the definition and selection of preference signals specifically designed in this approach? Could different preference signals significantly impact the final optimization results?\n2.Is it possible to further test the method in other types of reasoning tasks or application domains to verify its generalizability?\n3.In terms of external tool integration, is the current method the optimal solution?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "4RDzeqTh5D",
+      "forum": "WjKea8bGFF",
+      "replyto": "WjKea8bGFF",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_h8KG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5140/Reviewer_h8KG"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5140/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729343230114,
+      "cdate": 1729343230114,
+      "tmdate": 1731428324544,
+      "mdate": 1731428324544,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper derives trajectory-level preference objectives for tool-interactive reasoning and implements them by excluding environment-message tokens from DPO/KTO training. Across four 7B–9B models, the method consistently improves GSM8K and MATH accuracy, but the practical novelty is largely a masking rule plus iterative sampling, while the theoretical framework is only loosely connected to the implemented algorithm.",
+        "strengths": [
+          "The deterministic-transition derivation gives a reasonable justification for summing policy log-ratios only over agent actions and masking tool observations (pp. 3–4).",
+          "Results are consistent across four model families and two benchmarks, with meaningful gains over each corresponding SFT checkpoint and RAFT (pp. 7–8).",
+          "Useful ablations examine iteration count, reference updates, KL strength, sampling diversity, SFT duration, and NLL regularization (pp. 8–10, 22–24)."
+        ],
+        "weaknesses": [
+          "The main comparison to “single-turn” DPO/KTO is partly artificial: that baseline is deliberately trained to predict external user/tool messages, whereas the proposed method simply masks them. This makes the practical contribution modest and does not compare against stronger structured multi-turn objectives (pp. 7–8).",
+          "The regret analysis assumes realizable reward/transition classes, an exact planning oracle, and an optimism-based exploration policy, none of which is implemented; experiments instead use deterministic answer checks and heuristic checkpoint-mixture sampling (pp. 5–6, 25–26). Thus the theorem provides little support for the empirical algorithm.",
+          "Evidence is restricted to GSM8K and MATH, with no random-seed variation or uncertainty estimates despite admitted environment-dependent evaluation oscillation. The reported improvements therefore lack statistical robustness and do not establish general multi-turn-agent benefits (pp. 7, 10, 22)."
+        ],
+        "score_rationale": "This is a useful and empirically credible adaptation of preference optimization to deterministic tool interactions, with broad model-level consistency. However, limited methodological novelty, a weakly matched baseline, theory–practice mismatch, and missing statistical validation keep it at marginally above the acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper derives trajectory-level direct preference objectives for multi-turn tool-integrated reasoning and instantiates them as iterative M-DPO/M-KTO, chiefly by excluding environment-message tokens from policy likelihoods. Across four 7B–9B models, the approach consistently improves GSM8K and MATH accuracy over SFT and generally outperforms RAFT and the paper’s single-turn variants (pp. 7–8). The contribution is useful and reasonably supported, though its practical novelty and evaluation breadth are limited.",
+        "strengths": [
+          "The MDP formulation clearly distinguishes agent actions from external observations and gives a principled derivation for deterministic tools, explaining why only policy-generated tokens belong in the preference loss (pp. 2–4).",
+          "Results are consistent across Gemma, CodeGemma, and Mistral families: M-DPO improves average accuracy by roughly 2.9–5.8 points over the corresponding SFT checkpoints and beats matched RAFT/single-turn baselines (pp. 7–8).",
+          "Ablations examine reference updates, KL strength, sampling diversity, sample count, SFT duration, and the auxiliary NLL loss, yielding useful practical findings rather than only headline results (pp. 9–10, 22–24)."
+        ],
+        "weaknesses": [
+          "The practical distinction from ordinary sequence-level DPO is largely masking user/tool-output tokens (p. 7), which is arguably the natural likelihood definition for an agent policy; the single-turn baseline that trains on environment outputs is therefore somewhat artificial, and its gap to M-DPO is often modest (p. 7).",
+          "Evidence is restricted to two closely related, in-domain math benchmarks whose augmented training prompts originate from their training sets; there are no out-of-domain agent tasks, tool-use robustness tests, seed variation, confidence intervals, or significance tests (pp. 6–10).",
+          "The theory is only loosely connected to the implementation: the provable exploration policy requires confidence sets, model MLE, and an oracle, whereas experiments use heuristic checkpoint-mixture sampling; moreover, deterministic execution is essential to the simple M-DPO derivation, limiting applicability to general stochastic agents (pp. 4–6, 10, 25–32)."
+        ],
+        "score_rationale": "This is a solid, useful application of preference optimization to tool-integrated math reasoning, with consistent multi-model gains and extensive ablations. However, the central practical modification is fairly incremental, the strongest theoretical guarantee does not cover the implemented heuristic, and the empirical scope is narrow with no uncertainty reporting. I therefore place it marginally above the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper derives trajectory-level DPO/KTO variants for tool-interactive reasoning, primarily by excluding environment-generated tokens from policy likelihoods, and combines them with iterative outcome-based data collection. Across four 7B–9B models, the method consistently improves GSM8K and MATH accuracy, but the methodological novelty, theoretical-to-practical connection, and experimental rigor are only moderate.",
+        "strengths": [
+          "Consistent matched-checkpoint gains across four model families and both benchmarks; M-DPO improves the strongest Gemma-2-9B baseline from 84.1/51.0 to 86.3/54.5 on GSM8K/MATH (p. 7).",
+          "Useful ablations examine iterations, reference updates, KL strength, sampling diversity, trajectory count, SFT duration, and NLL regularization (pp. 8–10, 22–24).",
+          "The deterministic-transition derivation gives a clear justification for summing policy log-ratios only over agent actions, while explicitly identifying the correction required under stochastic observations (pp. 3–4)."
+        ],
+        "weaknesses": [
+          "The central practical modification is essentially masking interpreter/user tokens (p. 7), which is already standard conditional-likelihood practice; the single-turn baseline that learns to predict environment messages is therefore arguably weak, and the incremental advantage over it is modest (p. 7).",
+          "The theoretical algorithm uses confidence sets, exact planning, and an explicitly optimized exploration policy, whereas experiments use checkpoint-mixture sampling; thus the regret theorem does not substantiate the implemented method (pp. 6, 25–26). The M-KTO presentation also appears to have inconsistent extra scaling by η in its utility/value definitions (p. 20).",
+          "Evidence is limited to two closely related math benchmarks, with no seeds, uncertainty estimates, or robustness/generalization evaluation. Hyperparameter selection and repeated evaluation are described, but statistical reliability and possible test-set selection effects remain unclear (pp. 6–10, 22)."
+        ],
+        "score_rationale": "The empirical improvements are substantial and unusually consistent, making the work potentially useful. However, novelty beyond correct masking and iterative preference training is limited, the practical exploration scheme is not covered by the theory, and missing variance/generalization evidence prevents a clear accept. I therefore rate it marginally above the acceptance boundary, with some uncertainty about whether the reported KTO scaling is merely a notation error."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper adapts direct preference learning to multi-turn, tool-integrated mathematical reasoning by deriving trajectory-level M-DPO/M-KTO objectives that exclude environment-generated tokens, then combines them with iterative data collection. It reports consistent improvements across four 7B–9B models on GSM8K and MATH. The work is practically useful, but its central implementation is close to standard loss masking, and the theoretical online algorithm is not the practical algorithm evaluated.",
+        "strengths": [
+          "Consistent gains over SFT, RAFT, and the stated single-turn DPO/KTO baselines across four model families and both benchmarks (pp. 7–8).",
+          "Useful ablations examine reference updates, KL strength, sampling diversity, sample count, SFT duration, and NLL regularization (pp. 9–10, 22–24).",
+          "The deterministic-tool assumption underlying cancellation of the environment-dependent term is clearly stated, and the paper appropriately limits applicability to more stochastic environments (pp. 4, 10)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the practical distinction from the single-turn baseline is principally masking interpreter/user tokens (p. 7), a natural conditional-language-model treatment; the entropy-regularized MDP derivation is largely standard, as acknowledged on p. 4.",
+          "The regret result analyzes an idealized confidence-set exploration policy and exact planning oracle (pp. 25–26), whereas experiments use heuristic checkpoint-mixture sampling (pp. 6–7); thus the theory does not establish guarantees for the implemented method.",
+          "Evidence is restricted to GSM8K/MATH with final-answer rewards, reports no repeated-run uncertainty, and does not assess out-of-domain reasoning or retention of general capabilities (pp. 6–10)."
+        ],
+        "score_rationale": "The empirical improvements are broad and practically meaningful, supporting a marginally positive assessment. However, the core algorithmic change is incremental, and the substantial gap between the theoretical algorithm and practical implementation, together with limited uncertainty and generalization evaluation, prevents a clear accept."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper formulates tool-integrated reasoning as a multi-turn MDP and derives DPO/KTO objectives that exclude exogenous tool-output tokens from policy likelihoods. Iterative training yields consistent gains across four 7B–9B models on GSM8K and MATH, but the practical contribution is relatively simple and the evidence does not fully establish robustness or the relevance of the theoretical guarantees.",
+        "strengths": [
+          "The distinction between agent actions and environment observations is well motivated, and the deterministic-interpreter derivation gives a principled reason to mask tool outputs rather than model them as policy tokens (pp. 2–4).",
+          "Results are consistent across four base models and both benchmarks; M-DPO generally improves over SFT, RAFT, and the stated single-turn implementation, with useful KL, sampling, and SFT-stage ablations (pp. 7–10, 23–24).",
+          "The appendices provide substantial implementation detail and a formal analysis for a broader stochastic-transition setting, including definitions and proofs (pp. 20–22, 25–32)."
+        ],
+        "weaknesses": [
+          "The central practical change is essentially masking externally generated user/tool tokens, so novelty over correctly implemented conditional preference optimization is modest; comparisons against stronger contemporary math-RL or process/step-level methods are not provided (pp. 4, 7, 18–20).",
+          "Empirical evaluation is limited to two in-domain benchmarks whose augmented training prompts derive from their training sets; there are no out-of-domain agent tasks, general-capability/forgetting checks, repeated runs, uncertainty estimates, or significance tests (pp. 6–10).",
+          "The theory is weakly connected to the implementation: the guarantee uses MLE model classes, confidence sets, and an optimistic exploration policy, whereas experiments use deterministic correctness labels and heuristic checkpoint-mixture sampling. Thus the regret result does not validate the practical algorithm, and its realizability assumptions are strong (pp. 5–6, 25–32)."
+        ],
+        "score_rationale": "This is a technically sensible and practically useful adaptation with credible, consistent benchmark improvements. However, modest algorithmic novelty, narrow evaluation without statistical robustness, and a substantial theory–practice gap prevent a clear accept. I therefore rate it marginally above the acceptance boundary."
+      }
+    }
+  ]
+}

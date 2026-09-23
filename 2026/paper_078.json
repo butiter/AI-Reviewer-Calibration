@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_078",
+  "paper_id": "1SdPgRQrr5",
+  "number": 19127,
+  "title": "Dual-Objective Reinforcement Learning with Novel Hamilton-Jacobi-Bellman Formulations",
+  "authors": [
+    "William Sharpless",
+    "Dylan Hirsch",
+    "Sander Tonkens",
+    "Nikhil Uday Shinde",
+    "Sylvia Lee Herbert"
+  ],
+  "primary_area": "reinforcement learning",
+  "keywords": [
+    "Hamilton-Jacobi Analysis",
+    "Dual Satisfaction",
+    "Safe Reinforcement Learning",
+    "Decomposition"
+  ],
+  "forum_url": "https://openreview.net/forum?id=1SdPgRQrr5",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    6,
+    6,
+    6
+  ],
+  "human_mean_rating": 6.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "8CKbK80cwD",
+      "forum": "1SdPgRQrr5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19127/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761825844470,
+      "tmdate": 1762931147159,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "8XSqI3ARGC",
+      "forum": "1SdPgRQrr5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19127/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761998180192,
+      "tmdate": 1762931146707,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "AM8luvOdNK",
+      "forum": "1SdPgRQrr5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19127/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762090227472,
+      "tmdate": 1762931146047,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "geamxQWIIc",
+      "forum": "1SdPgRQrr5",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19127/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762394037463,
+      "tmdate": 1762931145415,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes Reach-Always-Avoid and Reach-Reach extremal objectives, proves deterministic finite-MDP decompositions into existing HJ reach/avoid problems, and builds DOHJ-PPO around concurrently learned component critics. The deterministic decomposition is potentially useful, but the policy-gradient/GAE derivation contains apparent mathematical errors, while the empirical protocol is insufficiently reliable to establish the broad performance claims.",
+        "strengths": [
+          "The RAA/RR objectives are clearly motivated, and state augmentation appropriately exposes the historical information required by these non-Markovian objectives (pp. 4–7).",
+          "The paper supplies extensive proofs that the deterministic finite-state objectives decompose into reach, avoid, and reach-avoid values (pp. 17–30).",
+          "Evaluation spans four continuous-control domains, both objective types, and several baseline families (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The core policy-gradient derivation appears incorrect: differentiating min(max(V(next),r(s)),q(s)) requires r(s)<V(next)<q(s), whereas Eq. 40 uses the reversed condition q(s)<V(next)<r(s), and the preceding modified dynamics uses mismatched current/next-state quantities. The claimed stationary distribution is also problematic with the introduced absorbing state (pp. 31–32).",
+          "The stated k-step GAE subtracts V(s_{t+k}) rather than V(s_t), and its weighting uses 1/(1−lambda) rather than the usual normalization; Algorithm 1 is too underspecified to resolve these discrepancies or explain how augmented histories and separate rollouts are implemented (pp. 32–34).",
+          "Evidence is weakly controlled: the stochastic study reports the maximum curve over only three seeds, main results lack training-seed uncertainty, the claimed coupled-reset benefit has no shown ablation, and implementation/tuning details for most baselines are absent while code is unavailable (pp. 9–10, 15, 34–35)."
+        ],
+        "score_rationale": "Although the deterministic decomposition may be a meaningful contribution, apparent errors in the derivation used to justify the actual learning algorithm undermine technical soundness. Combined with cherry-picked/uncertainty-free experimental reporting and incomplete reproducibility, the current manuscript does not provide dependable evidence for DOHJ-PPO's claims."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces extremal-return objectives for Reach-Always-Avoid and Reach-Reach tasks, proves decompositions into established reach/avoid subproblems, and proposes a PPO variant evaluated on four continuous-control domains. The framing is interesting, but central algorithmic derivations and the empirical protocol contain substantial issues that prevent the reported gains from convincingly validating the method.",
+        "strengths": [
+          "The RAA and RR objectives are clearly motivated and capture useful behaviors not represented by ordinary reach or reach-avoid objectives (pp. 3–5).",
+          "The deterministic finite-MDP decomposition results are substantive and accompanied by extensive proofs, including justification for history augmentation (pp. 6–7, 17–30).",
+          "Experiments cover four varied domains and compare against several constrained, HJ-RL, temporal-logic, and multi-objective baselines (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The policy-gradient machinery appears technically inconsistent: differentiating min(max(V(next), r), q) should pass gradients when r < V(next) < q, whereas Proposition 1 uses a differently ordered condition involving functions at mismatched states; the transition expression also applies f to π(a|s), not action a (pp. 31–32). This undermines the claimed theoretical basis of DOHJ-PPO.",
+          "The algorithm is insufficiently specified and contains apparent errors: Algorithm 1 updates ω rather than ω_i for decomposed critics, does not clearly show separate coupled-reset rollouts, and Eq. 47 subtracts V(s_{t+k}) rather than the starting-state value while Eq. 48 uses an unusual 1/(1−λ) factor (pp. 32–34). Reproduction is further limited because code is unavailable (p. 15).",
+          "The evidence lacks reliable statistical support: Figure 4 reports evaluations without training-seed variation or uncertainty, while the stochastic study explicitly plots the maximum over only three seeds, a selectively optimistic statistic (pp. 9–10). Baseline tuning and compute parity are not adequately documented, and the stochastic formulation has no corresponding guarantee."
+        ],
+        "score_rationale": "The objectives and deterministic decompositions offer moderate novelty and potential value, but apparent errors in the central policy-gradient/GAE presentation and weak, selectively reported statistical evidence are major soundness concerns. I therefore rate it below the acceptance threshold, with some uncertainty because portions of the equations may contain transcription or notation mistakes."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes RAA and RR extremal-return objectives, decomposes their deterministic finite-MDP optimal values into established reach/avoid subproblems, and builds a PPO variant around these decompositions. The problem is interesting and the deterministic decomposition may be useful, but substantial inconsistencies in the policy-gradient derivation, algorithm specification, reward definitions, and empirical protocol prevent confidence in the claimed method and results.",
+        "strengths": [
+          "The RAA/RR objectives capture meaningful dual-satisfaction behaviors that ordinary reach and reach-avoid formulations omit, with clear motivating examples (pp. 4–6).",
+          "The deterministic finite-state decomposition results are nontrivial, supported by extensive proofs, and explicitly distinguish value-function decomposition from simple temporal-logic predicate algebra (pp. 17–30, 39–42).",
+          "Experiments span four continuous-control domains and compare against several constrained, HJ-RL, temporal-logic, and multi-objective baselines (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The key policy-gradient argument appears mathematically inconsistent: for min(max(V,r),q), gradients propagate when r<V<q, but the manuscript uses q<V<r in both the modified dynamics and Eq. 40 (pp. 31–32). This undermines Proposition 1 and the actor update central to DOHJ-PPO.",
+          "The implementation description contains consequential errors or omissions: Algorithm 1 does not clearly show next-state targets or separate coupled-reset rollouts, updates ω rather than ω_i for decomposed critics, Eq. 47 subtracts V(s_{t+k}) instead of V(s_t), and Eq. 48 uses 1/(1−λ) rather than the usual normalizing factor (pp. 32–34). Reproduction is further limited by unavailable code (p. 15).",
+          "Empirical reliability is weak: the stochastic study reports the maximum curve over only three seeds, while the main comparisons provide no training-seed variation or uncertainty (pp. 9–10). Moreover, many task rewards are written with signs opposite to the stated goal semantics—for example distance-minus-radius is claimed positive inside the goal (pp. 36–39)—leaving uncertainty about what was actually implemented."
+        ],
+        "score_rationale": "The deterministic decompositions offer plausible novelty, but the apparent reversal in the policy-gradient condition directly affects the proposed learning algorithm, and the appendix contains multiple specification inconsistencies. Combined with sign-conflicted task definitions and inadequately uncertainty-qualified experiments, the evidence does not presently support the strong performance claims. I therefore rate it a reject rather than a marginal paper, while allowing that some issues could be transcription errors."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes robust Reach-Always-Avoid and Reach-Reach objectives, deterministic decompositions into existing HJ reach/avoid problems, and a PPO implementation. The deterministic decomposition is potentially useful, but the central policy-gradient derivation appears incorrect as written, and the empirical evidence lacks the statistical and reproducibility support needed for the broad performance claims.",
+        "strengths": [
+          "The objectives are clearly motivated, and the need for history augmentation is illustrated effectively (pp. 4–6).",
+          "The deterministic decomposition results are substantive and accompanied by extensive proofs (pp. 6–7, 17–30).",
+          "Experiments span four meaningfully different continuous-control domains and several baseline families (pp. 9–10, 36–39)."
+        ],
+        "weaknesses": [
+          "The SRABE policy-gradient argument appears technically invalid: differentiation of min(max(V,r),q) should pass through when r<V<q, but the proof uses q<V<r, with additional state-index inconsistencies in the absorbing transition (pp. 31–32). The proposed GAE also subtracts V(s_{t+k}) rather than V(s_t) (p. 33). These errors affect the algorithm's theoretical basis.",
+          "Evidence is statistically weak: Figure 4 provides no seeds, uncertainty, or significance information, while the stochastic study explicitly reports the maximum curve over only three seeds (pp. 9–10). Moreover, finite rollouts cannot establish the claimed infinite-horizon “always avoid” property.",
+          "Reproducibility and comparison details are insufficient. Several printed reward equations have signs inconsistent with the stated positive-inside-goal semantics (pp. 36–39), Algorithm 1 omits important operational details, and the strongest temporal-logic comparisons are relatively naive rather than established automaton/reward-machine methods (pp. 33–35)."
+        ],
+        "score_rationale": "The deterministic theory and task formulation offer some novelty, but implementation-critical mathematical inconsistencies and weak empirical validation prevent confidence in DOHJ-PPO's claimed advantages. I therefore assess the work as a reject; some uncertainty remains because several inconsistencies could be typographical rather than conceptual."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper proposes extremal-value objectives for reach-always-avoid and reach-reach tasks, proves deterministic finite-MDP decompositions into established HJ reach/avoid problems, and builds a PPO variant evaluated on four control domains. The deterministic decomposition is interesting, but serious errors in the stochastic policy-gradient/GAE derivation and weak experimental reporting prevent confidence in the main algorithmic claims.",
+        "strengths": [
+          "The RAA and RR objectives are clearly motivated, and the need for history augmentation is illustrated effectively (pp. 3–6).",
+          "The deterministic decomposition results are substantive and accompanied by extensive proofs and temporal-logic comparisons (pp. 6–7, 17–30, 39–42).",
+          "Experiments span four substantially different environments and compare against several constrained, HJ-RL, temporal-logic, and multi-objective baselines (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The stochastic derivation appears mathematically incorrect: the derivative-active condition for min{max{V,r},q} should be r<V<q, but the proof uses q<V<r; the modified transition also mixes states and actions (pp. 31–32). Moreover, Eq. 47 subtracts V(s_{t+k}) rather than V(s_t), and Eq. 48 uses an unusual reciprocal normalization, undermining the claimed GAE and DOHJ-PPO update (pp. 32–33).",
+          "Empirical evidence is not statistically adequate: Figure 4 provides no seed-level uncertainty, Figure 5 reports the maximum learning curve over only three seeds, coupled resets lack a shown ablation, and code is unavailable (pp. 9–10, 15, 34). Baseline tuning and computational parity are also insufficiently documented.",
+          "Several task equations contradict their descriptions: rewards written as positive distance minus a radius are positive outside, not inside, the stated targets (e.g., Hopper/SafetyGym/HalfCheetah on pp. 36–39). Whether these are pervasive sign typos or actual implementations is uncertain, but either case substantially harms reproducibility and interpretation."
+        ],
+        "score_rationale": "The deterministic value decompositions offer moderate novelty and appear broadly plausible, but the paper’s main practical contribution relies on a stochastic policy-gradient and GAE development containing decisive apparent errors. Combined with inconsistent task definitions and weak statistical reporting, the evidence does not support acceptance, though the underlying deterministic theory keeps this above a strong reject."
+      }
+    }
+  ]
+}

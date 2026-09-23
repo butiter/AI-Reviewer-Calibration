@@ -1,0 +1,217 @@
+{
+  "year": 2026,
+  "package_id": "paper_070",
+  "paper_id": "ryC6pXobCw",
+  "number": 17269,
+  "title": "KV Cache Steering for Controlling Frozen LLMs",
+  "authors": [
+    "Max Belitsky",
+    "Dawid Jan Kopiczko",
+    "Michael Dorkenwald",
+    "Muhammad Jehanzeb Mirza",
+    "James R. Glass",
+    "Cees G. M. Snoek",
+    "Yuki M Asano"
+  ],
+  "primary_area": "interpretability and explainable AI",
+  "keywords": [
+    "large language models",
+    "cache steering",
+    "key-value cache",
+    "chain-of-thought reasoning",
+    "activation steering",
+    "representation engineering",
+    "style control"
+  ],
+  "forum_url": "https://openreview.net/forum?id=ryC6pXobCw",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "8ZbyD5Gy5L",
+      "forum": "ryC6pXobCw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17269/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761966788226,
+      "tmdate": 1762927217480,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "L3siDghmk0",
+      "forum": "ryC6pXobCw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17269/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761937522613,
+      "tmdate": 1762927218122,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "eByoJy0Js6",
+      "forum": "ryC6pXobCw",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17269/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761969367443,
+      "tmdate": 1762927216928,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple one-shot intervention that adds contrastively derived vectors to a prompt token’s cached keys and values, aiming to induce reasoning and stylistic behavior without weight updates. The idea is practically appealing and evaluated across several models and tasks, but the evidence does not yet substantiate the broad claims of reliable accuracy improvement, stability, or production readiness.",
+        "strengths": [
+          "The intervention is simple, inexpensive, and reasonably novel relative to conventional per-token activation steering; its extraction and application are clearly described (pp. 3–5).",
+          "The evaluation covers multiple model families, four main benchmarks, greedy and sampled decoding, and includes several useful ablations (pp. 6–9, 20–24).",
+          "The paper demonstrates clear behavioral effects, including substantially longer generations and transfer of some conspicuous output formats (pp. 7, 9, 13)."
+        ],
+        "weaknesses": [
+          "Accuracy evidence is mixed and lacks statistical testing: cache steering hurts several model/task pairs, especially under sampling, despite claims of consistent improvement; many gains are small, while the 70B MATH result uses an unspecified subset (pp. 6–8). Extensive model–dataset-specific tuning further raises validation/test-selection concerns (pp. 5, 21).",
+          "The evaluation pipeline is insufficiently reliable: the authors acknowledge common extraction errors, force invalid outputs into valid labels, and state that results may be discarded when pre/post-constrained-decoding accuracy differs significantly, without specifying a threshold or reporting discarded runs (pp. 16–17).",
+          "Key interpretations are overstated. Greater length is not evidence of correct or well-structured reasoning, style transfer uses only 20 test questions and has internally inconsistent reporting, and the claimed elimination of amplification/stability advantage lacks a controlled mechanistic comparison; the latency measurement also starts post-prefill and may omit intervention cost (pp. 7–9, 13, 18, 22–24)."
+        ],
+        "score_rationale": "This is a useful and implementable steering mechanism with promising behavioral demonstrations, but the reported task gains are inconsistent and the evaluation/tuning protocol leaves substantial uncertainty about robustness and statistical reliability. I therefore place it marginally below acceptance pending stronger controls, significance reporting, and a more trustworthy evaluation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple one-shot intervention that adds contrastively derived vectors to a prompt token’s KV-cache entries across layers, aiming to induce reasoning without weight updates or per-token activation edits. The mechanism is interesting and broadly evaluated, but the evidence does not yet establish reliable accuracy gains or the paper’s stronger stability and reasoning claims.",
+        "strengths": [
+          "The intervention is lightweight and conceptually novel: it targets fixed KV-cache entries once after prefilling rather than repeatedly editing decoding activations (pp. 3–5).",
+          "Evaluation spans multiple model families, sizes, reasoning datasets, decoding modes, and includes comparisons with CoT prompting and activation steering (pp. 6–9).",
+          "The appendices provide useful implementation details and additional layer, persistence, and representation analyses (pp. 16–25)."
+        ],
+        "weaknesses": [
+          "Accuracy improvements are inconsistent and generally modest: cache steering hurts several model-task pairs and many sampling results, while no significance tests or uncertainty are reported for greedy accuracy; the MATH result uses an unspecified subset (pp. 6–7).",
+          "Evaluation selection is insufficiently controlled: hyperparameters are tuned separately for every model-dataset pair without a clear held-out protocol, and the answer-extraction procedure may discard results based on the change produced by constrained decoding (pp. 5, 16–17, 21).",
+          "Longer generations are treated as evidence of better reasoning, but length alone is inadequate; style transfer uses only 20 test questions with unclear matching criteria, and two styles succeed only 15–35% of the time (pp. 7, 9, 13)."
+        ],
+        "score_rationale": "Cache steering is a promising and practically motivated idea, but the current experiments do not robustly support claims of consistent performance, stability, or reasoning improvement. Per-pair tuning, opaque extraction filtering, missing statistical analysis, and very small style evaluations leave the work marginally below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple, potentially useful one-shot intervention that adds contrastively derived vectors to prompt-token KV-cache entries. The idea is novel enough and evaluated across several model families and tasks, but the evidence does not yet justify the broad claims of reliable accuracy improvement, stability, or reasoning induction.",
+        "strengths": [
+          "The intervention is lightweight and conceptually clear: it modifies cached keys/values once after prefilling rather than editing model weights or every decoding step (pp. 3–5).",
+          "The evaluation covers six small/medium models and four benchmarks, with an additional 70B experiment, and generally shows positive greedy-decoding trends (pp. 6–7).",
+          "The paper includes useful efficiency, coefficient, layer, persistence, and style-transfer analyses (pp. 8–9, 20, 23–25)."
+        ],
+        "weaknesses": [
+          "Empirical rigor is insufficient: model–dataset-specific hyperparameters are numerous (p. 21), the tuning/validation protocol is unclear, statistical significance is not reported, and the MATH subset is undefined. More concerningly, the answer-extraction procedure says results may be discarded based on pre/post-fallback accuracy, creating potential selection bias (pp. 16–17).",
+          "Several claims overstate the results. Sampling often degrades accuracy, some greedy results also decline, and longer outputs are treated as evidence of structured reasoning despite notable incorrect or degenerate generations (pp. 6–9, 13–16, 20). The style study uses only 20 test questions and an unspecified matching assessment (pp. 9, 13).",
+          "The asserted elimination of amplification is intuitive rather than formally or causally established: edited cache entries influence every future step, whose generated representations then enter the cache. The activation-steering comparison also receives a narrower search and implementation-dependent latency comparison, weakening claims of superior stability and efficiency (pp. 4–5, 8, 17, 22–24)."
+        ],
+        "score_rationale": "Cache steering is an interesting and practical new target for representation intervention, and the broad experiments make the paper promising. However, unclear tuning and selective evaluation procedures, weak support for reasoning-quality claims, mixed results, and an under-validated mechanistic argument leave it marginally below the ICLR acceptance bar. Uncertainty remains because code and exact validation splits are not supplied in the manuscript."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple, potentially useful intervention that adds contrastively derived vectors once to prompt-token KV-cache entries, aiming to induce reasoning and stylistic behaviors without weight updates. The idea is novel enough to merit attention, but the current evidence does not convincingly establish robust accuracy gains, superior stability, or the claimed production readiness.",
+        "strengths": [
+          "The one-shot KV-cache intervention is conceptually simple and distinct from standard per-token activation steering, with clear extraction and application equations (pp. 3–5).",
+          "Evaluation covers several model families and reasoning benchmarks, with additional latency, coefficient, layer, and persistence analyses (pp. 6–9, 20, 23–24).",
+          "The style-transfer experiment suggests that cache interventions can control output form beyond generic CoT elicitation, although the evidence is preliminary (pp. 9, 13)."
+        ],
+        "weaknesses": [
+          "Accuracy gains are inconsistent and often small: cache steering hurts several greedy and sampling settings, while the paper provides no significance analysis for the main comparisons (pp. 6–8). Per-model/task hyperparameter selection is extensive and apparently not tied to a clearly separated validation protocol, creating test-selection uncertainty (pp. 5, 21).",
+          "The main behavioral evidence largely equates much longer outputs with better reasoning; no systematic assessment of reasoning correctness or faithfulness is given, and the qualitative examples show plausible but erroneous elaboration (pp. 7, 13–16, 20). Style evaluation uses only 20 test questions with an unclear matching annotation protocol (p. 13).",
+          "Claims of eliminating amplification, stability, and production/API compatibility are overstated. Modified cache entries are repeatedly attended to and can indirectly affect later cached states; no formal or controlled causal comparison establishes the claimed mechanism. Moreover, most reported configurations set key steering to zero, and the activation-steering comparison uses a coarse search and implementation-dependent runtime overhead (pp. 4–5, 8–9, 17, 21–22)."
+        ],
+        "score_rationale": "The KV-targeted steering idea is interesting and inexpensive, but the empirical methodology leaves substantial uncertainty about generalization and practical benefit. Inconsistent gains, possible hyperparameter-selection bias, weak reasoning-quality evaluation, and unsupported mechanistic claims keep the work marginally below the acceptance bar despite promising novelty."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple, potentially useful intervention that adds contrastively derived vectors to a prompt token’s cached keys and values once before decoding. Results across several models suggest that this can increase response elaboration and sometimes improve accuracy, but the current evaluation does not convincingly establish robust reasoning gains or the paper’s broad stability and deployment claims.",
+        "strengths": [
+          "The one-shot KV-cache intervention is a clear and practically motivated alternative to per-token activation steering, with a straightforward formulation and broad model coverage (pp. 3–6).",
+          "The empirical study spans multiple model families, four main benchmarks, sampling and greedy decoding, a 70B experiment, and several ablations (pp. 6–9, 20–25).",
+          "The paper reports useful negative cases and acknowledges that longer, structured traces can still yield incorrect conclusions (pp. 13–16)."
+        ],
+        "weaknesses": [
+          "Accuracy gains are inconsistent and often small or negative; no confidence intervals or significance tests are provided, while model–dataset-specific hyperparameters are extensively tuned using an insufficiently specified subset (pp. 6–8, 21). This makes the claimed reliability difficult to assess.",
+          "Longer output is treated as evidence of reasoning, despite frequent 2–4× length increases, qualitative hallucinations, and occasional accuracy degradation (pp. 7, 14–16, 20). End-to-end latency and token cost are therefore not negligible even if time per token is unchanged, weakening the efficiency claim on pp. 8–9.",
+          "Several central claims are under-supported: “eliminating amplification” is presented mainly as intuition rather than analysis (pp. 4–5, 22); style transfer uses only 20 test questions with an unspecified matching procedure and internally inconsistent descriptions (pp. 9, 13); and the fragile extraction pipeline forces labels for invalid outputs (pp. 16–17)."
+        ],
+        "score_rationale": "Cache steering is a novel-enough and appealing mechanism, and the breadth of experiments indicates a real behavioral effect. However, the evidence more clearly supports increased verbosity/style control than improved reasoning, while tuning, evaluation reliability, statistical uncertainty, and true end-to-end efficiency remain insufficiently addressed. I therefore place it marginally below acceptance."
+      }
+    }
+  ]
+}

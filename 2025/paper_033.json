@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_033",
+  "paper_id": "EFhzmn3RJG",
+  "number": 4172,
+  "title": "Taming Gradient Oversmoothing and Expansion in Graph Neural Networks",
+  "authors": "MoonJeong Park; Dongwoo Kim",
+  "primary_area": "learning on graphs and other geometries & topologies",
+  "keywords": "graph neural network; deep neural network; oversmoothing; optimization",
+  "forum_url": "https://openreview.net/forum?id=EFhzmn3RJG",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    3,
+    3,
+    5,
+    5
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper argues that gradient oversmoothing and gradient expansion pose challenges in training deep Graph Neural Networks (GNNs). Unlike previous approaches that focus on node features, the authors apply a previously defined similarity measure to gradients. They also establish an asymptotic upper bound for this measure, describing the phenomenon where it approaches zero as \"gradient oversmoothing,\" and linking its growth to \"gradient expansion.\" To address these issues, the authors propose a novel normalization technique. Empirical results on various graph datasets and architectures demonstrate that this measure decreases as layer depth increases, and the new normalization approach enables successful training of deep GNNs."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper studies gradient behavior during training of deep GNNs. While this is a widely studied field, mainly linked to oversquashing these days, its full qualitative behavior remains to be studied in more detail. The paper is further a good combination of theoretical and empirical work."
+        },
+        "weaknesses": {
+          "value": "My biggest concern is that the statement on gradient oversmoothing in the asymptotic case is likely to be equivalent to gradient vanishing, i.e., that gradients vanish whenever the proposed similarity measure vanishes and vice versa. In fact, very similar statements to Theorem 1 (i.e., bounds depending on the weight matrix W) can be made for the gradients directly (see Di Giovanni et al, 2024 for instance). Of course it can happen that in the pre-asymptotic case this gradient similarity measure is small or even zero at some point, but this does not denote an issue. \n\nThis has to be addressed, otherwise this paper cannot be published. In particular, the authors have to show that there exists an asymptotic regime, where the similarity measure in Theorem 1 goes to zero, but the gradient norms do not. I suspect there are no such cases, but I am happy to be convinced otherwise. The same has to be done for Theorem 2.\n\nThat being said, this has also be demonstrated empirically. The provided plots in the paper only show the effect of varying the depth on the similarity measure. The same has to be done for the gradient norms for the exact same setup, i.e., same architecture with same weights. This would demonstrate that there are in fact cases, where gradients oversmooth but do not vanish.\n\nOther issues:\n* Some mathematical statements are wrong. For instance, the sentence after equation (3). Here, if B would be perpendicular to span($\\bf 1$), it should be in $\\mathbb{R}^{N-1,N}$, not in $\\mathbb{R}^{N-1,N-1}$. Moreover, this sentence does not add anything to the context and is simply taken from Wu et al. which used it to demonstrate the similarity between this measure and another oversmoothing measure in the literature. \n* most of the theory seems to be taken from other papers. It would be good if the authors could state explicitly what is their own theoretical contribution\n* it would be good to extend to nonlinear layers, since in practice linear GNNs are not very common\n* Only four small-scale graph datasets are considered. It would strengthen the paper if this would be extended.\n\nMinor issues:\n* The writing needs to be revised. There are many typos."
+        },
+        "questions": {
+          "value": "Can you try some of the experiments with GNN architectures that are known to not suffer from gradient vanishing/explosion or oversmoothing? If your gradient similarity measure would go to zero or explode for these cases, it would strengthen your claim."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "RbO0uvVTRg",
+      "forum": "EFhzmn3RJG",
+      "replyto": "EFhzmn3RJG",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_m3nv"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_m3nv"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4172/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730653287456,
+      "cdate": 1730653287456,
+      "tmdate": 1731428057030,
+      "mdate": 1731428057030,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies the behavior of gradients in deep GNNs by considering the oversmoothing problem. The authors show that when GNNs are very deep, the representations become similar (which is a known thing), and that the gradients in first layers become very similar (makes sense by inspecting the Jacobian of the GNN).\n\nThe authors perform several experiments, mostly on simple node classification datasets, and show the training/test accuracies alongside the gradient and feature similarities."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "In terms of strengths, the paper is nicely written and easy to follow. It also sheds more light on the oversmoothing problem. The experiments conducted to understand the theoretical findings are in-order."
+        },
+        "weaknesses": {
+          "value": "In terms of relevance and novelty, as well as related works, I think that the main issue is that most of the presented results are already quite known within the community, and can be found in the literature. For example see \"A survey on oversmoothing in graph neural networks\"  and \"Simplifying the Theory on Over-Smoothing\". Also, the authors lack a discussion of \"Revisiting Graph Neural Networks: All We Have is Low-Pass Filters\".\n\nIn terms of using the Lipschitz constant and bounding it, it was shown in \"On the Robustness of Graph Neural Diffusion to Topology Perturbations\" and \"Contractive Systems Improve Graph Neural Networks Against Adversarial Attacks\" that using it can help to address robustness problems, so it would be interesting to understand the connection between oversmoothing and such approaches. \n\nIn terms of experiments, the authors used mostly simple datasets, and I think that it would be beneficial to also study the performance on other tasks and datasets. I think it would also be interesting to see a report of the Dirichlet energy, that is usually reported in oversmoothing studies. Also, I feel that the experiments lack comparisons with other methods that can address oversmoothing (there are already many such methods)."
+        },
+        "questions": {
+          "value": "Please see my suggestions in the weaknesses section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "k5Gq8KDET5",
+      "forum": "EFhzmn3RJG",
+      "replyto": "EFhzmn3RJG",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_7mh1"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_7mh1"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4172/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730636562303,
+      "cdate": 1730636562303,
+      "tmdate": 1731428057193,
+      "mdate": 1731428057193,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors analyze the effects of the addition of  residual connections in **linear** GNNs **with no non-linear activation function** (specifically GCNNs) as an effort to compact oversmoothing (in extremely deep GNNs).  In a pair of two results (Theorems 1 and 2) the authors analyize the decay of a (reasonable) orthogonal projection of the gradient of the loss with respect to pertrubations of entires of the feature matrix.  \n\nThe use their theoretical upper bounds to suggest that spectral weight normalization, in the spirit of [1], would remedy oversmoothing.  Only empirical studies are then used to support at (presumably) theoretical claim.\n\n\n\n[1] Neyshabur, Behnam, Russ R. Salakhutdinov, and Nati Srebro. \"Path-sgd: Path-normalized optimization in deep neural networks.\" Advances in neural information processing systems 28 (2015)."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The numerical experitments are very nicely executed, clear, convincing, and reproducible (but I still have questions as they do not seem to match the maths).  The bounds are reasonable (even if the proof is extremely straightforward....) and interesting."
+        },
+        "weaknesses": {
+          "value": "- **Identity Activation Only**: Only identity activation are considered (it doesn't seem to be difficult to obtain a result for non-linear activation fixing the origin from your proofs....\n\n- **Connected Graphs** Why not consider disconnected graphs?  It seems to me that with only a bit more work, you can generalize your result by noting that the normalized adjacency matrix has a block-diagonal form in the general (non-bipartide case).\n\n\n- Results are for non-activated GNNs (identity activation function) but the numerics have non-linear activations (and result with identity activation are not plotted).  This latter point, namely that there are no numerical experiments matching the theoretical setting, makes me wonder if there is a gap...Does the theory really come through in practice.  One **needs** illustrations matching the architectural setup in the theorem.\n\n- Theory is for very basic GCNN model (Which is definitely not universal by any means) but many other GNN models are considered in the experiments section.  What is the relevance?"
+        },
+        "questions": {
+          "value": "- As the graph size (number of nodes specifically) diverges, what happens to the proposed normalization?  \n\n- Do you not have any theoretical guarantees for the proposed procedure since you could not obtain matching lower bounds?  I assume that would be required to argue that the normalization does the trick.\n\n- Can you add a few more words explaining what the trouble is with bipartide?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "NjrALrPPED",
+      "forum": "EFhzmn3RJG",
+      "replyto": "EFhzmn3RJG",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_Yjtw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_Yjtw"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4172/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730168622488,
+      "cdate": 1730168622488,
+      "tmdate": 1731428057399,
+      "mdate": 1731428057399,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper analyzed the over-smoothing phenomenon in Graph Neural Networks (GNNs) from a unique perspective, uncovering the issue of gradient expansion in residual connections. To address the problem of gradient explosion, the author introduced a layer-wise Lipschitz constraint, which facilitates efficient training of residual GNNs and enhances their performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper presents a comprehensive theoretical framework for analyzing the over-smoothing phenomenon in GNNs and gradient expansion in residual GNNs, introducing the concepts of representation similarity and gradient similarity to further explain these phenomena.\n\n2. The mathematical derivations are rigorous yet easy to comprehend.\n\n3. The author extensively investigates gradient similarity and representation similarity through numerous experiments, examining their variation throughout the training process.\n\n4. The paper proposes a Lipschitz constraint method that effectively alleviates the effects of over-smoothing and gradient expansion during the training process."
+        },
+        "weaknesses": {
+          "value": "1. In line 147, the equation $$ \\||\\mathbf{X}\\||_F^2 = \\mu(\\mathbf{X})^2 + \\||\\mathbf{X} - \\mathbf{B}\\mathbf{X}\\||_F^2 $$ is presented. a step-by-step derivation or proof of this equation in an appendix, which will greatly enhance the clarity of the methodology presented.\n\n2. The authors provided a mathematical derivation for representation similarity and gradient similarity, validating their correctness in Figures 1 and 2. However, it is unclear which metric better measures over-smoothing, as the relationships among representation similarity, gradient similarity, and test accuracy appear ambiguous in Figure 3. It seems the authors primarily used gradient similarity to assess over-smoothing in Section 5. In references [1] and [2], Dirichlet energy appears to be a more effective metric compared to gradient similarity.  It would be helpful if  authors could provide a more detailed comparison between gradient similarity and other metrics like Dirichlet energy, including quantitative results, which would help clarify the advantages of their chosen metric.\n\n3. In my view, large datasets can mitigate oversmoothing compared to smaller ones. Intuitively, when aggregating features, each node has more distant neighbors, making it harder for features to become overly similar. As shown in [2], Pubmed and Ogbn-arxiv are less affected, as seen in Table 1. Could authors extend their theoretical analysis to consider the impact of dataset size on oversmoothing to enhance the theoretical persuasiveness of the paper?\n\n4. The Lipschitz constraint method is an effective approach to alleviating over-smoothing and gradient expansion. It would enhance the paper's strength to incorporate 2-3 specific baseline methods from the related work section and utilize 1-2 large datasets from references [1] and [2] that are particularly relevant for comparison.\n\n5. It appears that the theoretical derivation in the paper is based on the GCN model, yet the authors have also conducted some experiments on GAT, such as in Figure 4. Perhaps the authors should provide a corresponding theoretical analysis to enhance the persuasiveness of the paper. Additionally, if the model is changed to another one, such as GraphSage, would the theory still be useful?\n\n[1] A Survey on Oversmoothing in Graph Neural Networks  \n[2] Dirichlet Energy Constrained Learning for Deep Graph Neural Networks"
+        },
+        "questions": {
+          "value": "Refer to weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Sh853lX2wz",
+      "forum": "EFhzmn3RJG",
+      "replyto": "EFhzmn3RJG",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_nbzZ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4172/Reviewer_nbzZ"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4172/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730129460045,
+      "cdate": 1730129460045,
+      "tmdate": 1731428057769,
+      "mdate": 1731428057769,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces a potentially useful gradient-space perspective on deep GNN optimization and proposes per-layer Frobenius normalization to stabilize residual GCN/GAT models. However, the principal theoretical claims are not established, and the experimental evidence is too limited to compensate for these problems.",
+        "strengths": [
+          "The distinction between representation oversmoothing and gradient behavior is an interesting framing, supported by extensive layer-wise visualizations across activations and architectures (pp. 6–8, 16–19).",
+          "The normalization is simple, inexpensive, and empirically enables training residual GNNs with hundreds of layers on the reported datasets (pp. 9–10).",
+          "The paper examines both homophilic and heterophilic datasets and reports repeated runs with variability bands (pp. 5, 9)."
+        ],
+        "weaknesses": [
+          "Theorem 1 appears invalid for the stated similarity measure and symmetric GCN normalization: powers of D^{-1/2}(A+I)D^{-1/2} generally converge toward a degree-weighted eigenvector, not span{1}. Similarity to the random-walk matrix preserves eigenvalues but not the projected invariant space, so the ergodicity step on p. 13 does not follow.",
+          "Theorem 2 supplies only an upper bound and therefore cannot establish the defined gradient expansion, which requires divergence; a growing upper bound gives neither a lower bound nor actual explosion. Its proof also inconsistently uses powers L−ℓ versus path length p (pp. 5, 15). Moreover, the assertion that a stochastic GAT matrix has largest singular value one is generally false (p. 5).",
+          "The empirical validation is narrow and incompletely controlled: only four small node-classification datasets are used, comparisons against established deep-GNN or normalization methods are absent, and the claim that gradient similarity better predicts accuracy is based on visually inspected, scale-confounded scatter plots without statistics (pp. 7–9). The measure µ does not by itself demonstrate gradients exploding in “diverse directions.”"
+        ],
+        "score_rationale": "The gradient-focused diagnosis and stabilization results are promising, but central mathematical errors undermine the claimed explanation, while the experiments lack the baselines and statistical analysis needed to establish the broader conclusions. These are substantial rather than readily cosmetic issues, warranting rejection."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces gradient oversmoothing/expansion as an optimization perspective on deep GNNs and proposes per-layer Frobenius normalization. The empirical phenomena are interesting, but the central theoretical claims do not follow from the stated results, and the experimental evaluation is insufficient to establish the method’s competitiveness.",
+        "strengths": [
+          "The gradient-space perspective on deep-GNN failure is intuitive and potentially useful, with clear visualizations across depth, activation, architecture, and dataset (pp. 6–8, 16–18).",
+          "The proposed normalization is simple and appears to stabilize training of residual GCN/GAT models up to hundreds of layers (pp. 9–10, 18–19).",
+          "The paper acknowledges that its theory covers only linear GCNs and that nonlinear architectures may behave differently (p. 10)."
+        ],
+        "weaknesses": [
+          "The core theory is flawed or substantially overstated. For symmetric GCN normalization, the limiting eigenspace is generally spanned by the square-root degree vector, not the all-ones vector used by the measure; equal spectra with a random-walk matrix do not establish ergodicity after projection orthogonal to 1 (pp. 3, 13). Moreover, Theorem 2 provides only an upper bound, so it cannot demonstrate that gradient expansion occurs; the bound increasing with depth is not evidence of divergence (pp. 5, 15). The claim that a stochastic GAT matrix has spectral norm one is also generally false (p. 5).",
+          "The unnormalized quantity µ measures absolute dispersion, conflating directional diversity with overall gradient scale. Thus the claimed distinction between expansion in “diverse directions” and ordinary gradient explosion, as well as its comparison with accuracy, is not adequately justified (pp. 3, 7–8).",
+          "The evidence is limited to four small node-classification datasets and basic residual GCN/GAT baselines. There are no comparisons against relevant deep-GNN or normalization methods, no numerical result tables or significance tests, and key reproducibility details such as splits, hidden dimensions, optimizer settings, regularization, and hyperparameter-selection protocol are missing (pp. 5, 9, 16)."
+        ],
+        "score_rationale": "Although the empirical observations and simple normalization are promising, invalid reasoning in the main theorems undermines the principal contribution. The limited and under-specified evaluation does not independently demonstrate a competitive deep-GNN method, so substantial theoretical correction and stronger experiments are required."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies gradient behavior in deep GNNs, proposes “gradient oversmoothing” and “gradient expansion,” and applies Frobenius weight normalization to train very deep residual GCN/GAT models. The question is interesting and the empirical patterns are suggestive, but central theoretical conclusions do not follow from the presented results, substantially weakening the claimed contribution.",
+        "strengths": [
+          "It highlights an underexplored distinction between representation oversmoothing and optimization behavior in gradient space, with a clear qualitative hypothesis (pp. 1–3).",
+          "Experiments cover multiple depths, activations, GCN/GAT variants, and both homophilic and heterophilic datasets; the reported gradient patterns are broadly consistent across these settings (pp. 5–9, 16–19).",
+          "The proposed Frobenius normalization is simple and appears to prevent severe underfitting in residual networks hundreds of layers deep (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core analysis appears mathematically invalid for the stated similarity measure: symmetric normalized adjacency generally converges toward a degree-weighted eigenvector, not span{1}. The proof infers ergodicity under projection orthogonal to 1 merely from spectral similarity with a random-walk matrix, which does not preserve the relevant projected dynamics (pp. 3, 13). Thus Theorem 1 is not established on irregular graphs.",
+          "Theorem 2 supplies only an increasing upper bound; it cannot establish that gradients actually expand or diverge. Nevertheless, the paper interprets it as proving gradient expansion whenever q||W||>0 (p. 5). The extension to GAT is also unsupported: a stochastic attention matrix has eigenvalue one, but its spectral norm need not equal one (p. 5).",
+          "The gradient metric is unnormalized and therefore conflates directional homogenization with vanishing magnitude, while “expansion” largely tracks exploding scale. Empirical evaluation is limited to four small citation/web graphs, lacks competitive deep-GNN or normalization baselines, and omits sufficiently clear split/protocol details and precise statistical comparisons (pp. 3, 6–10, 15–16)."
+        ],
+        "score_rationale": "The gradient-focused perspective and empirical observations have some novelty, though its extent is uncertain from the supplied related work alone. However, errors in the spectral argument and the inference of expansion from an upper bound undermine the main theoretical claims, while the experiments are too limited to independently support a strong practical contribution. This places the work clearly below the acceptance threshold despite an interesting premise."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces “gradient oversmoothing” and “gradient expansion” as explanations for optimization failure in deep GNNs, then proposes Frobenius-normalizing each residual layer’s weights. The perspective is interesting and experiments show that this normalization can stabilize very deep GCN/GAT training. However, the central theoretical claims are not established as written, and the empirical evaluation is too limited to compensate.",
+        "strengths": [
+          "The backward-message-passing viewpoint provides an intuitive connection between representation smoothing and gradients (pp. 4–5).",
+          "The paper examines multiple depths, activations, architectures, and both homophilic and heterophilic datasets; the gradient diagnostics are visually consistent across these settings (pp. 6–9, 16–19).",
+          "The proposed normalization is simple and produces substantially improved optimization and depth stability in the reported experiments (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Theorem 1 relies on the claim that powers of the symmetrically normalized adjacency become constant across nodes under projection orthogonal to 1 (pp. 4, 13). In general, symmetric normalization converges toward the degree-weighted eigenvector proportional to sqrt(degree), not span{1}; hence the asserted ergodicity and the bound for the chosen similarity measure fail on irregular graphs.",
+          "Theorem 2 only gives an upper bound that may grow exponentially; this cannot prove that gradients actually expand or diverge. Thus calling it a “gradient expansion” theorem and concluding expansion whenever q||W||>0 are logically unsupported (pp. 5, 15). The GAT extension is also not justified by saying a stochastic attention matrix has largest singular value one, and it ignores derivatives of feature-dependent attention (p. 5).",
+          "Evidence for practical value is incomplete: only four small node-classification datasets are used, important implementation/split details are absent, and there are no comparisons against established deep-GNN or normalization baselines. The claim that gradient similarity better predicts performance rests mainly on small, visually inspected scatter plots without quantitative correlation or controlled analysis (pp. 7–9, 18)."
+        ],
+        "score_rationale": "The gradient-focused framing and stabilization results are promising, but the main theoretical foundation contains a decisive normalization/eigenspace error and mistakes a growing upper bound for proof of expansion. Limited, baseline-free experiments do not resolve these concerns, so the work is currently a reject rather than a marginal case."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper introduces “gradient oversmoothing” and “gradient expansion” as explanations for optimization failure in deep GNNs, then proposes per-layer Frobenius weight normalization. The perspective is potentially useful, and experiments show that the normalization can stabilize very deep residual GCN/GAT training. However, central theoretical claims are not established and appear incorrect under the stated assumptions, while the empirical evaluation is too limited to compensate.",
+        "strengths": [
+          "The paper highlights gradient-space behavior as distinct from conventional representation oversmoothing and provides extensive layer-wise visualizations across architectures, activations, and datasets (pp. 6–8, 16–19).",
+          "The proposed normalization is simple, inexpensive, and empirically enables training residual models with hundreds of layers (pp. 9–10).",
+          "The paper clearly acknowledges that its theory only treats linear GCNs and that nonlinear architectures may behave differently (p. 10)."
+        ],
+        "weaknesses": [
+          "The main theory has a fundamental issue: for symmetric GCN normalization, powers of the adjacency generally converge toward the degree-weighted eigenvector, not span{1}. Thus ergodicity with the stated projection B does not follow merely from similarity to a random-walk matrix, undermining Theorem 1 (pp. 3–5, 13). Moreover, Theorem 2 supplies only an exponentially growing upper bound, which cannot prove that gradient expansion occurs (pp. 5, 15).",
+          "The claimed GAT Lipschitz justification is incorrect: a row-stochastic matrix has eigenvalue one but need not have largest singular value one. Consequently, Frobenius-normalizing W alone does not establish the asserted GAT layer Lipschitz bound (p. 5).",
+          "The evidence is limited to four small node-classification datasets, lacks comparisons against strong deep-GNN or normalization baselines, and does not specify splits or provide complete numerical tables (pp. 5, 9, 15–16). The unnormalized, scale-sensitive metric μ cannot by itself distinguish directional diversity from ordinary gradient magnitude, weakening both the “expansion” interpretation and the performance-correlation claim (pp. 3, 7–8)."
+        ],
+        "score_rationale": "The gradient-focused framing and stabilization results are promising, but the central theorems do not support the paper’s causal claims, with Theorem 1 apparently false for the stated normalization and Theorem 2 only bounding rather than proving expansion. Combined with limited and confounded empirical validation, these are major issues requiring substantial revision rather than minor clarification."
+      }
+    }
+  ]
+}

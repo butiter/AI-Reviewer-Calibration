@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_038",
+  "paper_id": "fnnDtyMxcX",
+  "number": 5007,
+  "title": "HeNCler: Node Clustering in Heterophilous Graphs via Learned Asymmetric Similarity",
+  "authors": "Sonny Achten; Francesco Tonin; Volkan Cevher; Johan Suykens",
+  "primary_area": "learning on graphs and other geometries & topologies",
+  "keywords": "Heterophily; Node Clustering; Singular Value Decomposition",
+  "forum_url": "https://openreview.net/forum?id=fnnDtyMxcX",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    3,
+    1
+  ],
+  "human_mean_rating": 3.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a kernel spectral biclustering framework to learn an induced asymmetric similarity graph suited for node clustering of heterophilous graphs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The proposed method is easy to understand.\n2. It addresses an important problem."
+        },
+        "weaknesses": {
+          "value": "1. The innovation seems limited, as graph rewiring is already a common approach to tackle heterophilous graphs, as seen in [1] and [2]. However, it would be beneficial for the authors to clarify how their kernel spectral biclustering approach meaningfully differs from existing graph rewiring techniques. Specifically, a comparison of how these methods address heterophily and clustering effectiveness would strengthen the argument for the novelty of their approach. By expanding on the specific advantages or unique contributions of kernel spectral biclustering over rewiring methods, the authors could better situate their work within the current landscape.\n\n2. While the proposed method achieves the best performance in 11 out of 16 cases, the choice of only five baselines may limit the comprehensiveness of this evaluation. I suggest including additional baselines that are well-regarded in heterophilous graph clustering to provide a more robust comparison, like [4][5]. Additionally, reporting on the statistical significance of the observed improvements would help clarify whether these performance gains are practically meaningful or consistent across datasets.\n\n3. More detailed analysis of Table 4 would improve the discussion of the results. Specifically, it would be helpful for the authors to discuss the relative impact of the different components (e.g., the kernel spectral biclustering loss vs. reconstruction losses) in achieving the overall performance. Additionally, an investigation into any observed trends or dependencies among these components would provide insights into the roles they play in model performance.\n\n4. I recommend adding larger datasets, such as Ogbn-arxiv [3], to further validate the proposed method. Testing on larger datasets could help assess the scalability and robustness of the approach and reveal any computational challenges that might arise when handling high-dimensional data. This addition could provide a more comprehensive evaluation and help demonstrate the method's potential for broader applications.\n\n[1] Jiang, W., Gao, X., Xu, G., Chen, T., & Yin, H. (2024, May). Challenging Low Homophily in Social Recommendation. In Proceedings of the ACM on Web Conference 2024 (pp. 3476-3484).\n[2] Zheng, Y., Zhang, H., Lee, V., Zheng, Y., Wang, X., & Pan, S. (2023, July). Finding the missing-half: Graph complementary learning for homophily-prone and heterophily-prone graphs. In International Conference on Machine Learning (pp. 42492-42505). PMLR.\n[3] Hu, W., Fey, M., Zitnik, M., Dong, Y., Ren, H., Liu, B., ... & Leskovec, J. (2020). Open graph benchmark: Datasets for machine learning on graphs. Advances in neural information processing systems, 33, 22118-22133.\n[4] Li W Z, Wang C D, Xiong H, et al. Homogcl: Rethinking homophily in graph contrastive learning[C]//Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023: 1341-1352.\n[5] Gu M, Yang G, Zhou S, et al. Homophily-enhanced structure learning for graph clustering[C]//Proceedings of the 32nd ACM International Conference on Information and Knowledge Management. 2023: 577-586."
+        },
+        "questions": {
+          "value": "See Weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "h8Qe18ODC8",
+      "forum": "fnnDtyMxcX",
+      "replyto": "fnnDtyMxcX",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_9rSZ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_9rSZ"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5007/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730818975493,
+      "cdate": 1730818975493,
+      "tmdate": 1731428280506,
+      "mdate": 1731428280506,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Focusing on node clustering on heterophilous graph, this paper introduces an RMK-based framework for learning an asymmetric similarity. By incorporating wKSVD framework into graph clustering with two reconstruction loss, HeCler can optimize a bipartite graph with theoretical interpretability.  The experimental results and empirical analysis can demonstrate the effectiveness."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Novelty: Although the overall idea of learning a similarity matrix for heterophilous graph learning is not new, this paper proposed an interesting framework by observing the advantage of RMK framework.\n2. The theoretical support brings interpretability to this framework.\n3. The discussion could empirically interpret how the method works."
+        },
+        "weaknesses": {
+          "value": "1. One weakness is the lack of literature on heterophyllous graph learning. The authors only list three works for heterophilous node clustering. Other methods for heterophyllous graph representation learning are suggested to be included on top of node clustering (such as heterophilous node classification, multi-view heterophilous node clustering, etc).\n\n2. Analysis about the experimental results are somehow insufficient. The experimental results on undirected graphs seems not as good as directed graphs, such as Chamelon, squirrel. The authors should analyze this. In addition, the NMI in these datasets are very low (such as 9.67, 0.06, 6.73), which phenomenon indicates that the model even does not learn any clustering information. How to explain this?"
+        },
+        "questions": {
+          "value": "1. Can you provide a detailed analysis of why your method performs differently on directed vs undirected graphs, particularly for datasets like Chameleon and Squirrel?\n2. The NMI scores for some datasets (e.g. 9.67, 0.06, 6.73) are very low. What might these low scores indicate about the model's performance or limitations on these particular datasets? Are there any insights to be gained from comparing these results to other methods or baseline performance on these challenging datasets?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "RS5QjDDqMJ",
+      "forum": "fnnDtyMxcX",
+      "replyto": "fnnDtyMxcX",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_8wDQ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_8wDQ"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5007/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730648242016,
+      "cdate": 1730648242016,
+      "tmdate": 1731428280820,
+      "mdate": 1731428280820,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces HeNCler, a novel approach for clustering nodes in heterophilous graphs. Traditional clustering methods often assume homophily, where nodes with similar labels are more likely to be connected. HeNCler addresses this challenge by learning a similarity graph through a clustering-specific objective based on weighted kernel singular value decomposition. The authors claim that HeNCler significantly improves node clustering performance in heterophilous graph settings, highlighting the advantage of its asymmetric graph-learning framework."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "1. The paper addresses a significant and under-explored problem in the field of node clustering for heterophilous graphs. This is a practical and relevant issue, as many real-world graphs exhibit heterophily.\n2. Leveraging weighted kernel singular value decomposition to learn a similarity graph for deep node clustering appears to be novel.\n3. The whole objective combines the proposed wKSVD loss with a graph autoencoder. Ablation studies suggest that both components contribute to the overall performance of HeNCler."
+        },
+        "weaknesses": {
+          "value": "1. The relationship between the proposed wKSVD loss and the characteristics of heterophilous graphs is unclear, which limits the soundness of the method. To my understanding, the most important part of wKSVD is its asymmetric similarity measure, which applies different projections to the pairs. However, it is a pretty trivial operation and this paper does not provide a in-depth explanation of how it helps in the context of heterophilous graphs.\n2. While the paper claims significant performance improvements, it does not compare with strong baselines or state-of-the-art methods for heterophilous graphs. There are various unsupervised heterophilous graph representation learning methods that could serve as competitive baselines, but the only competitor designed for heterophilous graphs is MUSE.\n3. I don't agree with the claimed computational complexity improvement of HeNCler. According to _Optimizer, constraints, and cluster assignment_, cluster assignments are obtained by KMeans clustering on the final embeddings, so you need to include the complexity of KMenas in the overall complexity analysis.\n4. The wKSVD-loss is based on the primal formulation of wKSVD, so it's unclear how most of Section 3.1 relates to the proposed method."
+        },
+        "questions": {
+          "value": "1. Please provide more theoretical evidence to strengthen the effectiveness of wKSVD for heterophilous graphs.\n2. Consider removing the dual formulation if it's unrelated to the proposed method.\n3. Please add additional experiments comparing HeNCler with state-of-the-art methods for heterophilous graph clustering or representation learning."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "CPcv8TPdzP",
+      "forum": "fnnDtyMxcX",
+      "replyto": "fnnDtyMxcX",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_ZV7T"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_ZV7T"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5007/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730472570619,
+      "cdate": 1730472570619,
+      "tmdate": 1731428281094,
+      "mdate": 1731428281094,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "HeNCler employs weighted kernel singular value decomposition (wKSVD) to learn an induced asymmetric similarity graph, avoiding reliance on homophily and enabling more effective clustering in heterophilous settings."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1.The motivation is clear. \n2. The proposed method is sound to me.\n3. The experimental results show the effectiveness of the proposed method."
+        },
+        "weaknesses": {
+          "value": "1. The technique contribution is limited. The main contribution is the construction of asymmetric similarity, while the other method part is a combination of existing components.\n2. The authors ignore many existing works, like [1] and [2].\n3. The comparison methods are not enough to show their effectiveness. For example, the newest baselines S3GC and MUSE are from 2022 and 2023 respectively. Besides, S3GC focuses on homophilic and large graphs and MUSE focuses on multi-view graphs.\n4. The application is limited. This work seems to focus only on heterophyllous graphs. From Table 6, it achieves poor performance on homophilous graphs. However, the homophily is unknown without the labeled data.\n\n[1] Dong, Y., Dupty, M. H., Deng, L., Liu, Z., Goh, Y. L., & Lee, W. S. (2024). Differentiable Cluster Graph Neural Network. arXiv preprint arXiv:2405.16185.\n[2] Jiang, Mengying, et al. \"GCN-SL: Graph Convolutional Networks with Structure Learning for Graphs under Heterophily.\" arXiv preprint arXiv:2105.13795 (2021)."
+        },
+        "questions": {
+          "value": "1. There are a number of works that performs clustering on heterophilic graph, which should be cited or compared. To name a few, [1-4]\n2. In fact, some existing methods also learn new similarity matrices from data for heterophilic graph [1-2], which share a similar idea with the proposed method.  \n\n\nRefs:\n[1] Beyond Homophily: Reconstructing Structure for Graph-agnostic Clustering, ICML 2023.\n[2] Robust Graph Structure Learning under Heterophily, arXiv 2024.\n[3] Homophily-enhanced structure learning for graph clustering. Proceedings of the 32nd ACM International Conference on Information and Knowledge Management. 2023.\n[4] Homophily-Related: Adaptive Hybrid Graph Filter for Multi-View Graph Clustering. AAAI 2024."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jFIi4NKInJ",
+      "forum": "fnnDtyMxcX",
+      "replyto": "fnnDtyMxcX",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_AvNN"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5007/Reviewer_AvNN"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5007/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729989781015,
+      "cdate": 1729989781015,
+      "tmdate": 1731428281223,
+      "mdate": 1731428281223,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "HeNCler combines learned asymmetric node similarities with a weighted-KSVD interpretation and primal training for heterophilous clustering. The direction is relevant and results on three small directed graphs are promising, but a fundamental issue in the stated optimization and label-dependent evaluation substantially undermine the claims.",
+        "strengths": [
+          "The asymmetric two-map construction is a sensible way to accommodate directed graphs, and the connection to spectral biclustering is clearly developed for fixed feature maps (pp. 4–6).",
+          "Experiments cover multiple heterophilous datasets, report variability over ten runs, and include loss/asymmetry ablations (pp. 7–9, 14).",
+          "HeNCler performs notably better than the listed baselines on both metrics for the three directed WebKB datasets (p. 8)."
+        ],
+        "weaknesses": [
+          "The stated primal objective is unbounded below: in Eq. (1), setting V=0 and scaling any nonzero U sends the negative quadratic term to minus infinity. Neither the feature-map batch normalization nor the constraint on Σ bounds U or V (pp. 4, 6–7). Thus stationarity does not establish a solution or the claimed primal-dual optimization equivalence. The learned dot-product similarities can also be negative, making the degree-derived positive weights and square roots undefined (pp. 4, 6).",
+          "The protocol reports the best NMI/F1 observed during training, which uses ground-truth labels for epoch selection in an ostensibly unsupervised task and produces optimistic estimates; no label-free selection or final-epoch result is supplied (p. 8).",
+          "The empirical conclusions are overstated. HeNCler is often worse than simple KMeans or other baselines on undirected graphs (e.g., Chameleon, Squirrel, and Roman-empire F1), and the full ablation is not uniformly better than the symmetric or reconstruction-only variants despite the text's claim (pp. 8–9, 14). The strongest results are limited to three very small directed graphs."
+        ],
+        "score_rationale": "The asymmetric clustering formulation has potential, but the unbounded stated training objective is a central technical defect, while oracle metric-based epoch selection makes the reported evidence unreliable. Unless omitted implementation constraints resolve these issues, the paper is not technically sound enough for acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "HeNCler combines learned asymmetric node similarities with a weighted-KSVD interpretation and reconstruction objectives for heterophilous node clustering. The direction is interesting and results on the three small directed datasets are promising, but the central optimization/theoretical formulation appears ill-posed and the evaluation uses ground-truth metrics to select the best epoch, substantially weakening the empirical claims.",
+        "strengths": [
+          "The asymmetric two-map construction is a sensible modeling choice for directed and heterophilous graphs, and the primal implementation aims to avoid explicitly materializing the dense similarity matrix (pp. 2, 6–7, 9).",
+          "The paper evaluates multiple directed and undirected heterophilous datasets and includes component/asymmetry ablations with variances (pp. 8–9, 14).",
+          "HeNCler produces sizeable improvements over the listed baselines on Texas, Cornell, and Wisconsin, especially in NMI (p. 8)."
+        ],
+        "weaknesses": [
+          "The core optimization is not technically justified: Eq. (1) is presented as a minimization but is unbounded below under the stated unconstrained U and V, and replacing negative quadratic terms using Fenchel–Young upper bounds followed by stationarity does not establish equivalence of optima. The implemented Eq. (7) likewise has negative quadratic terms in unconstrained projection matrices; batch normalization constrains feature outputs, not U or V (pp. 4–7).",
+          "The degree weights required by the claimed spectral-biclustering interpretation need strictly positive row and column sums, yet S is a dot-product similarity of centered, learned features and can contain negative values or zero/negative sums. No positivity mechanism or numerical safeguard is specified, making inverse degrees and square roots potentially undefined (pp. 4, 6, 13).",
+          "The protocol reports the best metric observed during training, which requires repeatedly consulting ground-truth labels and creates oracle epoch selection in an ostensibly unsupervised task (p. 8). Moreover, performance is mixed: HeNCler substantially loses F1 on Chameleon and Squirrel and loses both metrics on Roman-empire, while Minesweeper has essentially zero NMI despite high F1 (p. 8)."
+        ],
+        "score_rationale": "The learned asymmetric similarity idea has moderate novelty and encouraging directed-graph results, but the apparent unboundedness/invalid primal-dual argument undermines the method’s main technical foundation. Ground-truth-based best-epoch reporting further prevents the experiments from providing reliable evidence of unsupervised superiority. These are fundamental rather than readily cosmetic issues, warranting a reject score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "HeNCler combines learned asymmetric feature maps, reconstruction, and a weighted KSVD objective for heterophilous node clustering. The idea is relevant and results are promising on the three small directed datasets, but central optimization claims appear mathematically ill-posed and the oracle-style evaluation protocol substantially weakens the evidence.",
+        "strengths": [
+          "The asymmetric formulation naturally accommodates directed graphs and provides a useful connection to spectral biclustering (pp. 4–7).",
+          "Experiments cover several heterophilous datasets and report repeated runs, two metrics, and component/asymmetry ablations (pp. 7–9, 14).",
+          "HeNCler performs clearly better than the listed baselines on all reported metrics for Texas, Cornell, and Wisconsin (p. 8)."
+        ],
+        "weaknesses": [
+          "Problem (1) is presented as a minimization but is generally unbounded below: setting V=0 and scaling a nonzero U drives the negative quadratic term to minus infinity. Thus Proposition 1 establishes stationary equations rather than a solution to the stated optimization. Moreover, learned dot-product degrees can be zero or negative, violating the strictly positive weight and square-root assumptions; no positivity mechanism is given (pp. 4–6).",
+          "The protocol reports the best observed evaluation metric over training epochs using ground-truth labels, amounting to oracle test-label model selection and potentially selecting different epochs for NMI and F1. This makes the comparative results optimistic despite applying the protocol to all methods (p. 8).",
+          "The empirical claims are overstated: HeNCler is frequently worse than simple KMeans or ablations on undirected datasets, and the full model is not consistently best in Table 7, contrary to the claim that every loss contributes positively (pp. 8, 14). Baseline coverage, significance testing, and demonstrated minibatch scaling are also limited."
+        ],
+        "score_rationale": "The asymmetric learned-similarity approach has moderate novelty and encouraging directed-graph results, but the unbounded stated objective and unjustified positivity assumptions undermine the theoretical foundation. Oracle epoch reporting prevents the experiments from reliably compensating for these issues, so the paper is below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "HeNCler combines learned asymmetric feature maps, a proposed weighted-KSVD objective, and reconstruction losses for unsupervised clustering of heterophilous graphs. The approach performs well on the three small directed datasets, but major theoretical and evaluation problems undermine the central claims.",
+        "strengths": [
+          "The asymmetric source/target embeddings are a relevant design choice for directed heterophilous graphs, and the primal implementation avoids explicitly materializing the dense learned similarity matrix (pp. 5–7, 9–10).",
+          "The paper evaluates multiple heterophilous datasets and reports repeated runs, two clustering metrics, ablations, and runtime measurements (pp. 7–9, 13–15).",
+          "HeNCler shows clear empirical gains over the included baselines on Texas, Cornell, and Wisconsin (p. 8)."
+        ],
+        "weaknesses": [
+          "Proposition 1 is not established as stated: the proof replaces the primal objective by a Fenchel-derived upper bound and analyzes stationarity, which does not show equivalence of minimizers. Moreover, the unconstrained bilinear/negative-quadratic objective in Eq. 1 can be indefinite or unbounded, so an SVD stationary point is not generally a solution to the asserted minimization (pp. 4–5).",
+          "The normalization is mathematically ill-defined for the learned similarity: inner products can be negative or have zero/negative row sums, yet their inverses and square roots are used as strictly positive weights in Eq. 7. Corollary 2 also says W=D^{-1/2}, although Eq. 2 would require W=D^{-1} to obtain D^{-1/2}SD^{-1/2} (p. 6).",
+          "The protocol selects the best epoch using ground-truth NMI/F1, leaking labels into model selection and overstating unsupervised performance (p. 8). Evidence is also mixed: HeNCler is substantially worse on several undirected-dataset metrics, and the full model loses to ablations in multiple cases, contradicting broad superiority and component-benefit claims (pp. 8–9, 14)."
+        ],
+        "score_rationale": "The asymmetric clustering direction and directed-graph results are promising, but the central primal–dual justification has serious mathematical gaps and the label-based best-epoch reporting invalidates the claimed unsupervised comparison. These issues require substantial correction rather than a minor revision."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "HeNCler combines learned asymmetric node similarities with a weighted-KSVD interpretation and reports strong clustering results, particularly on three small directed graphs. However, the stated optimization problem appears unbounded, the degree normalization is not guaranteed to be well-defined, and the evaluation uses oracle label-based epoch selection. These issues substantially undermine the theoretical and empirical claims.",
+        "strengths": [
+          "The asymmetric two-map construction is a relevant and reasonably novel direction for clustering directed or heterophilous graphs (pp. 2, 5–7).",
+          "Experiments cover multiple graph types and report repeated-run variation, ablations, homophilous results, and runtime measurements (pp. 7–9, 13–15).",
+          "Performance gains are substantial and consistent on the three directed webpage datasets (p. 8)."
+        ],
+        "weaknesses": [
+          "The central minimization is unbounded below: after imposing e_i=U^Tφ_i, setting V=0 and scaling any nonzero U drives the negative quadratic term in Eq. 1 to minus infinity. The implemented Eq. 7 has the same issue because U and V are unconstrained; batch normalization of feature maps does not bound them. Thus Proposition 1 establishes stationarity at most, not a solution to the claimed minimization (pp. 4–7).",
+          "The learned degree weights require positive row and column sums, yet dot-product similarities can be negative or yield zero sums; no positivity mechanism is provided. Centering further complicates these sums, and the weights depend circularly on the learned similarity. Corollary 2 also states W=D^{-1/2}, although Eq. 2 would require W=D^{-1} to produce D^{-1/2}SD^{-1/2} (pp. 4, 6, 13).",
+          "The protocol reports the best ground-truth metric observed across 300 epochs, constituting oracle label-based model selection and potentially favoring unstable methods (p. 8). Claims that every loss and asymmetry consistently help are contradicted by several ablations, including Squirrel F1, Roman-Empire NMI, Minesweeper NMI, and Tolokers F1 (pp. 9, 14); significance tests and stronger baseline tuning are absent."
+        ],
+        "score_rationale": "The idea and directed-graph results are promising, but the apparent unboundedness of the defining objective is a fundamental soundness problem. Together with ill-defined normalization and oracle evaluation, it prevents the evidence from supporting acceptance; uncertainty is low because these issues are explicit in the supplied equations and protocol."
+      }
+    }
+  ]
+}

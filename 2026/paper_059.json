@@ -1,0 +1,212 @@
+{
+  "year": 2026,
+  "package_id": "paper_059",
+  "paper_id": "HKSp4U69dy",
+  "number": 13441,
+  "title": "Adaptive Hopfield Network: Rethinking Similarities in Associative Memory",
+  "authors": [
+    "Shurong Wang",
+    "Yuqi Pan",
+    "Zhuoyang Shen",
+    "Meng Zhang",
+    "Hongwei Wang",
+    "Guoqi Li"
+  ],
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": [
+    "similarity measure",
+    "associative memory",
+    "Hopfield network"
+  ],
+  "forum_url": "https://openreview.net/forum?id=HKSp4U69dy",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    4,
+    6
+  ],
+  "human_mean_rating": 5.333333333333333,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "Web5qrlNc6",
+      "forum": "HKSp4U69dy",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13441/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761910461003,
+      "tmdate": 1762924064138,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "oAci16WKUR",
+      "forum": "HKSp4U69dy",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13441/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761855411435,
+      "tmdate": 1762924064686,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "q78ujCMiev",
+      "forum": "HKSp4U69dy",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13441/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761777573918,
+      "tmdate": 1764359851583,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes A-Hop, which learns a similarity from sorted, cumulative per-coordinate similarities and applies it within a Hopfield-style retrieval layer. The order-statistic representation is interesting and the experiments report broad gains, but the central optimality and energy claims do not establish properties of the practical model actually evaluated.",
+        "strengths": [
+          "The variant-distribution formulation provides a useful distinction between retrieving some nearby memory and identifying the likely source of a query (pp. 4–6).",
+          "The similarity footprint is a simple, interpretable mechanism with O(d log d) computation, and component ablations support sorting, cumulative aggregation, and combining distance and dot-product footprints (pp. 6–7, 30–31, 33).",
+          "A-Hop improves consistently over the included Hopfield baselines across synthetic retrieval and several downstream tasks, with especially large gains under mixed corruption (pp. 8–10, 31–33)."
+        ],
+        "weaknesses": [
+          "Theorem 1 does not prove optimality of the implemented Eq. 4 model: its proofs instead use argmax separation and variant-specific similarities, including an unsorted footprint, a discontinuous delta function, or an added quadratic term. The paper explicitly concedes that the continuous parameter-efficient similarity is not guaranteed optimal (pp. 8, 17–20, 23–27). It also drops the memory prior, so the stated result fails for nonuniform priors despite the general definition of V (pp. 5, 17, 28).",
+          "The energy theorem concerns the special quadratic similarity sunify rather than the learned sorted similarity used by A-Hop. Moreover, its derivation has sign inconsistencies: expanding bᵀ(x−ξi) gives a negative bᵀξi constant, while Lemma 5 uses a positive one, and the update alternates between +b/2 and −b/2 (pp. 21–23). Thus it does not justify convergence of the evaluated architecture.",
+          "Experimental support is incomplete for the breadth of the claims: comparisons are limited, downstream architectures and preprocessing are underspecified, gains on vision/MIL are often small, and the striking multimodal results rely on a synthetic bespoke setup with limited training detail. No controlled seed is used (pp. 10–11, 28–33), making reproduction and fairness difficult to assess without code."
+        ],
+        "score_rationale": "The footprint mechanism and empirical results are promising, but the main theoretical claims are materially overstated and internally inconsistent, while the experiments do not fully compensate for these issues. I therefore rate the work below the acceptance threshold; uncertainty remains because the supplied code cannot be examined."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a generative definition of correct associative-memory retrieval and a learned similarity based on sorted, cumulative per-coordinate similarities. The idea is intuitive and experiments report consistent gains, but the central theoretical claims do not establish guarantees for the actual A-Hop architecture, and the energy proof contains consequential algebraic inconsistencies.",
+        "strengths": [
+          "The variant-distribution perspective gives a useful distinction between retrieving a nearby memory and retrieving the most probable source memory (pp. 4–6).",
+          "The similarity footprint is computationally tractable and offers an intuitive mechanism for ignoring corrupted dimensions; component ablations support sorting, cumulative aggregation, and combining base similarities (pp. 6–7, 30–31).",
+          "Experiments cover synthetic retrieval and several downstream settings, with consistent improvements over the evaluated Hopfield variants (pp. 8–10, 31–33)."
+        ],
+        "weaknesses": [
+          "Theorem 1 does not justify the implemented model. Its proofs require argmax and variant-specific constructions: anisotropic noise uses an unsorted footprint, masking uses a discontinuous indicator, and bias uses coordinate-aware linear/quadratic terms (pp. 17–20). The deployed Eq. 4 instead uses softmax with sorted distance/dot-product footprints; the paper explicitly concedes that optimality is not guaranteed for this parameter-efficient form (pp. 7–8, 23–27).",
+          "The energy analysis is internally inconsistent. Expanding the biased similarity gives a constant term −bᵀξ_i, not +bᵀξ_i as in Lemma 5, and CCCP yields x_{t+1}=Ξp+b/2, whereas Lemma 6 writes Ξp−b/2 (pp. 21–22). Moreover, the main A-Hop update in Eq. 4 contains no bias offset, so Theorem 2 does not establish decreasing energy for the implemented dynamics.",
+          "The empirical evidence is difficult to assess fully: downstream architectures, prototype construction, parameter counts, and tuning/computational parity are underspecified, comparisons are narrow, and the strongest multimodal result comes from a highly artificial random construction (pp. 28–33). The no-fixed-seed statement further weakens reproducibility (p. 11)."
+        ],
+        "score_rationale": "The learned footprint is promising and the reported results merit investigation, but the paper foregrounds optimal-retrieval and energy guarantees that do not apply to the practical architecture and whose derivation contains sign errors. Given these central soundness problems and incomplete empirical controls, I lean reject, while acknowledging uncertainty because the empirical method itself may still be useful."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a learned similarity based on sorted, cumulative dimension-wise similarities and incorporates it into a Hopfield layer. This is an interesting robust-matching mechanism with broad experiments, but the central optimality and energy claims do not apply to the implemented A-Hop and contain substantive inconsistencies.",
+        "strengths": [
+          "The variant-distribution perspective clearly distinguishes proximity from source-identification and motivates context-dependent similarity (pp. 4–6).",
+          "The similarity footprint is simple, interpretable, and computable in O(d log d), with useful component ablations (pp. 6–7, 30–31, 33).",
+          "Experiments cover synthetic retrieval and several downstream settings, consistently improving over the included Hopfield baselines (pp. 8–10, 31–33)."
+        ],
+        "weaknesses": [
+          "The headline optimality theorem does not establish optimality of the proposed model. Actual A-Hop uses softmax and continuous sorted distance/dot-product footprints, whereas the proofs require argmax and variant-specific unsorted, discontinuous, or differently parameterized similarities; the paper itself concedes optimality is not guaranteed for the implemented similarity (pp. 8, 17–20, 23–27).",
+          "The energy result concerns only a restricted quadratic similarity, not Eq. 4, and its derivation has sign inconsistencies: expansion of bᵀ(x−ξ) gives a negative bᵀξ term, while p. 22 uses a positive one; the update alternates between +b/2 and −b/2 (pp. 21–23). Thus the claimed linkage between A-Hop dynamics and decreasing energy is unsupported.",
+          "Evidence is insufficiently controlled for the breadth of the claims: comparisons focus on a narrow set of Hopfield variants, downstream gains are often small without significance testing, reproducibility explicitly omits fixed seeds, and the runtime table's training ratios contradict its labels and accompanying interpretation (pp. 10–11, 28–30, 33)."
+        ],
+        "score_rationale": "The footprint mechanism has practical promise and the empirical results merit attention, but the paper substantially overstates its theory: neither optimal retrieval nor the energy guarantee is proved for the deployed architecture. These central technical gaps, plus incomplete experimental controls, warrant rejection rather than a marginal score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper proposes a learned, order-statistic-based similarity for Hopfield retrieval and motivates it through a generative “variant distribution.” The footprint construction is interesting and yields promising synthetic retrieval results, but the central optimality and energy claims do not establish properties of the actual trained A-Hop, while the empirical protocol is insufficiently specified to support broad state-of-the-art claims.",
+        "strengths": [
+          "The generative framing makes the desired association context explicit and offers a useful perspective beyond fixed dot-product retrieval (pp. 2, 4–6).",
+          "The similarity footprint is a simple, interpretable construction computable in O(d log d), and the ablations support contributions from sorting, cumulative aggregation, and multiple base similarities (pp. 6–7, 30–31, 33).",
+          "A-Hop shows substantial gains on the controlled mixed-corruption retrieval experiments, with consistent smaller improvements across several downstream tasks (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "Theorem 1 overstates what is proved: its constructions use argmax, unsorted or discrete features, and variant-specific similarity formulas that differ from the learned softmax footprint model in Eq. 4. Uniform priors are also assumed inside the proof despite the posterior-based definition (pp. 7–8, 17–20).",
+          "The energy theorem applies only to a special quadratic similarity, not the proposed sorted adaptive similarity. Its derivation also contains a sign inconsistency for the bias update and an erroneous log-sum-exp rewrite, weakening the claimed Hopfield interpretation (pp. 20–23).",
+          "Evidence and reproducibility are limited: empirical accuracy uses the sampled origin rather than the MAP origin and therefore is not generally an estimator of Definition 8; downstream architecture, split, preprocessing, and memory details are incomplete; and the runtime table contradicts its ratios and prose (pp. 16, 28–30, 33)."
+        ],
+        "score_rationale": "The footprint mechanism has practical promise and some novelty, but the paper’s main theoretical guarantees do not apply to the implemented method, and the evaluation does not adequately validate the newly defined correctness criterion or the broad claims. These are substantial issues requiring more than minor revision, yielding a below-acceptance score."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes A-Hop, which learns an ordered, multi-scale similarity descriptor from samples of a query-generation process. The mechanism is interesting and empirically improves over the tested Hopfield variants, but the central theoretical claims do not apply to the implemented architecture, and the experimental comparisons do not adequately isolate the benefit of the proposed footprint from supervised metric learning.",
+        "strengths": [
+          "The generative/MAP perspective gives a clear motivation for task-dependent associative-memory similarity, and the ordered similarity footprint is an intuitive, computationally feasible construction (pp. 4–7, 33).",
+          "A-Hop consistently improves over the included Hopfield baselines across retrieval and several downstream tasks, with particularly substantial retrieval gains under mixed corruption (pp. 8–10, 31–32).",
+          "The appendix includes useful component, sample-efficiency, and runtime ablations rather than reporting only the full model (pp. 30–33)."
+        ],
+        "weaknesses": [
+          "The advertised optimality and energy results do not establish properties of the actual A-Hop in Eq. 4. The proofs instead use argmax separation and variant-specific similarities—unsorted coordinates, discrete delta functions, or extra affine/quadratic terms—whereas the implemented model uses softmax and sorted linear footprints (pp. 7–8, 17–21). The energy derivation also has inconsistent signs: gradient descent yields a +b/2 update on p. 21, while Lemma 6 derives −b/2 and calls it equivalent (pp. 21–23).",
+          "The probabilistic framework is internally incomplete: maximizing likelihood is equivalent to MAP only under a uniform prior, although correct retrieval is initially defined for a general variant distribution (p. 5). Moreover, empirical retrieval accuracy compares against the sampled origin rather than the posterior MAP origin, so Definition 9 is not an estimator of Definition 8 as claimed when class-conditional distributions overlap (p. 16).",
+          "Evidence for the specific architectural contribution is limited. A-Hop receives supervised samples from the corruption distribution, yet comparisons lack strong learned robust-distance or neural similarity baselines; downstream protocols are sparsely specified and XGBoost wins four of five tabular datasets (pp. 9–10, 28–30). Reproducibility is further weakened by unspecified random seeds (p. 11) and contradictory runtime labels/ratios in Table 14 (p. 33)."
+        ],
+        "score_rationale": "The learned ordered-similarity idea and empirical trends are promising, but the paper's main theoretical guarantees are materially overstated and contain algebraic inconsistencies. Together with insufficiently controlled learned-similarity comparisons, this places the work below the acceptance threshold despite encouraging results."
+      }
+    }
+  ]
+}

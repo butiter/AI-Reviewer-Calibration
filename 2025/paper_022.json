@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_022",
+  "paper_id": "HCUksccuFx",
+  "number": 1631,
+  "title": "PuppetMaster: Scaling Interactive Video Generation as a Motion Prior for Part-Level Dynamics",
+  "authors": "Ruining Li; Chuanxia Zheng; Christian Rupprecht; Andrea Vedaldi",
+  "primary_area": "generative models",
+  "keywords": "Video generation; motion; diffusion models",
+  "forum_url": "https://openreview.net/forum?id=HCUksccuFx",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    5,
+    5
+  ],
+  "human_mean_rating": 5.333333333333333,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The authors present a framework called PuppetMaster for generating videos with part level object motion from a single image. The approach uses \"drag\" inputs to control fine grained parts of the generated video. This approach is trained on the Objaverse-Animation-HQ dataset that contains videos with part level motion annotation. State of the art quantitative performance is demonstrated on the videos generated for various classes (animals, humans, objects)."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. **Clarity**: The paper is well written with adequate attention to detail. All the design components are explained in detail to aid in reproducibility. \n2. **Result Quality**: The generated videos show improved quality over baselines with similar drag controls. \n3. **Comparison**: Both quantitative and qualitative performance is provided against a number of baselines. Additionally, out-of-domain performance on the Human3.6 datasets shows the efficacy of the approach.\n4. **Ablations**: The provided ablations highlight the need for the all-to-first attention and the right parameterization needed to represent the drag constraints."
+        },
+        "weaknesses": {
+          "value": "1. **Claims of Novelty**: The authors claim the \"all-to-first\" attention. Although not previously demonstrated in its exact form. The mechanism is essentially a variant of cross attention looking at KV pair from just the first frame. To that the claim that authors present a \"novel all-to-first attention can be softened. For instance, one can highlight the finding of all-to-first attention while emphasizing that the variant of cross-attention that always looks at first frames is better than no attention at generating videos with fine grained part control."
+        },
+        "questions": {
+          "value": "1. What is maximum number of frames that can be generated ? Can the all-to-first attention be replaced with a full 3D attention for better performance?\n2. How is the performance of the framework on non articulated objects? In particular, providing a video example of a non articulated object along with arbitrary drags is helpful to demonstrate the framework's default behavior. \n3. What happens when the drag condition input to the framework is zero? Does the network generate a video with arbitrary motion or just a static image? Showing an example of this setting would be helpful to understand \"unconditional\" synthesis  from the network."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "pTNE6GmVGT",
+      "forum": "HCUksccuFx",
+      "replyto": "HCUksccuFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1631/Reviewer_W1d9"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1631/Reviewer_W1d9"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1631/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730713170786,
+      "cdate": 1730713170786,
+      "tmdate": 1731427455023,
+      "mdate": 1731427455023,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents PuppetMaster, a conditional 2D video generation model that takes an reference object image and some conditional input drags then synthesizes a video with part-level object dynamics. The authors finetunes an off-the-shelf video diffusion model and extend it to encode input conditional drags. Additionally, they propose all-to-first attention method to remove the artifacts when generating out-of-domain video and improve the quality. They also made their own dataset, Objaverse-Animation-HQ, with data curation from Objaverse dataset. The authors argued that the proposed method generalizes well on real images and outperforms in real-world benchmarks in a zero-shot manner."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The motivation of the paper to generate object animation given a reference object image and user-controllable drag condition seems practical. Compared to the existing methods that generate a static image of the final-state of objects, the proposed method can produce fine-grained object motion as a video.\n\n2. The numerical experiments are conducted in rigorous validation by retraining the comparable method (DragAPart) with an identical data setting as the proposed method. To validate the accuracy of part-level dynamics, the authors introduce the 'flow error' metric by computing errors between predicted and ground-truth point trajectories."
+        },
+        "weaknesses": {
+          "value": "1. Insufficient generation quality: Although the authors leverage and finetune the video foundational model (Stable Video Diffusion), the generated video quality is not sufficient to determine that the learned model well-captures object dynamics. In the video results provided by the authors in supplementary materials, the generated results do not preserve the ground-truth object's appearance details, e.g., the generated object colors are changed in every frame (flickering effect). The reviewer wonders if the authors consider these low temporal smoothness problems and make any solution in the proposed method. \n\n2. Limited qualitative result: The reviewer thinks that the authors should provide more qualitative results compared with DragAPart. Although DragAPart is a method that generates a static image, the video results can be obtained by dense sampling on the trajectory and defining fine-grained drag conditions. The reviewer found two samples in the supplementary document, but the reviewer thinks that more diverse object samples should be reported in the main paper."
+        },
+        "questions": {
+          "value": "1. In Sec. 5.1, the authors argue that the proposed model obtains smaller errors when averaging all foreground points (L412). However, the reviewer thinks that the flow error is smaller with the averaged conditioning points. It would be helpful if the authors could provide more explanation and analysis of the results.\n\n2. In Table 2, the authors report the ablation study results. In models A and B, the reviewer wonders why the authors do experiments without an end location of the drags. Is it possible to encode input drags without an end point? It would be great if the authors give more explanation of baseline models in ablation studies. \n\n3. Impact of drag modulation with scale: The authors argue that utilizing the adaptive normalization layer helps to improve the generation quality. The reviewer needs more explanations about the authors' design choices."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "zgtOyOaBpy",
+      "forum": "HCUksccuFx",
+      "replyto": "HCUksccuFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1631/Reviewer_tFyM"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1631/Reviewer_tFyM"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1631/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730645802056,
+      "cdate": 1730645802056,
+      "tmdate": 1731427455148,
+      "mdate": 1731427455148,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the problem of generating videos controlled by drag. The key idea is to take the pre-trained stable video diffusion and fine-tune it by conditioning it on drag control. They used all-to-first attention to improve the consistency between the reference images and video frames. A dataset with paired drag input and output videos is collected while building upon the Objaverse animation dataset."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "First, the collected dataset could be helpful for further study in this direction. \nSecond, compared with previous works such as DragAPart, which used an image generation model, it makes more sense to use pre-trained video diffusion to generate temporal consistent videos."
+        },
+        "weaknesses": {
+          "value": "First, some descriptions might be confusing to understand, making it difficult to follow. For example, in line 113, \"The resulting datasets, Objaverse- Animation and Objaverse-Animation-HQ, contain progressively fewer animations of higher quality.\" what does it mean by progressively fewer animations?  \nFrom Lines 197-205, they mentioned there are two main challenges. However, it seems that both challenges are about injecting drag control into the pre-trained video diffusion. \n\nSecond, to my understanding, the problem itself is not quite properly defined. Given the drag input in the image space only, the input control itself is ambiguous. For example, whether the drag is supposed to zoom-in the object or manipulate part of the object is ambiguous. From my understanding, it also depends on the training set. In this case, the training is severely overfitted to the training set.\n\nThird, the technical contributions are not clear here. Except for collecting a dataset, the technical novelty is limited. For example, the drag encoder seems to be very similar to that proposed in DragAPart. The all-to-first attention(replacing K, V in the attention) is also not new in the context of video generation or image generation, such as Consistent123."
+        },
+        "questions": {
+          "value": "1) What is the difference between the drag encoder and that in the DragAPart paper?\n2) Why not demonstrate the generated videos of DragAPart? \n3) What are the failure cases?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xYvRlBTDFY",
+      "forum": "HCUksccuFx",
+      "replyto": "HCUksccuFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1631/Reviewer_H6mH"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1631/Reviewer_H6mH"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1631/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730583606190,
+      "cdate": 1730583606190,
+      "tmdate": 1731427455249,
+      "mdate": 1731427455249,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "PuppetMaster adapts Stable Video Diffusion for drag-controlled, part-level animation using adaptive modulation, drag-token cross-attention, all-to-first spatial attention, and a curated Objaverse animation dataset. The approach is practically useful and shows promising synthetic-to-real transfer, but the strongest claims about physical plausibility, broad real-world superiority, and foundation-level dynamics exceed the supplied evidence.",
+        "strengths": [
+          "The combination of drag modulation, drag tokens, and all-to-first attention is technically coherent; controlled ablations show substantial appearance and control improvements, especially for adaptive modulation and all-to-first attention (pp. 9–10).",
+          "The data-curation pipeline scales part-level motion learning beyond furniture-specific annotations, yielding 10k filtered animated assets with motion-derived drags (pp. 6–7).",
+          "PuppetMaster clearly outperforms the two video baselines on Drag-a-Move and is competitive or better on most Human3.6M metrics despite synthetic-only video training (p. 8); qualitative examples also cover varied categories (pp. 2, 9)."
+        ],
+        "weaknesses": [
+          "Evidence for physical plausibility and broad real-world generalization is limited: there is no human evaluation or physics-aware metric, and quantitative real-data evaluation is confined to Human3.6M, while other claimed benchmarks are only discussed qualitatively (pp. 8–9).",
+          "The evaluation is small or insufficiently specified: ablations use only 100 videos, uncertainty estimates are absent, the new CoTracker-based flow metric may conflate generation and tracking errors, and PuppetMaster does not dominate all reported metrics (pp. 8–9).",
+          "Dataset filtering and reproducibility are underdocumented, including random-forest annotations, GPT-4V prompt/reliability, rendering choices, and curation validation (pp. 6–7). The cited appendices and supplementary videos are absent from the supplied manuscript, increasing uncertainty."
+        ],
+        "score_rationale": "This is a promising, well-motivated contribution with useful architectural and dataset innovations and generally favorable results. However, the limited evaluation, weak validation of physical plausibility, and missing reproducibility details make the case only marginally above acceptance rather than a clear accept."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "PuppetMaster adapts Stable Video Diffusion for drag-controlled, part-level animation using adaptive modulation, drag tokens, all-to-first attention, and a curated synthetic-animation dataset. The approach is coherent and produces promising quantitative and qualitative gains, but the evidence is narrower than the broad claims and key dataset/reproducibility details referenced as appendices are absent from the supplied manuscript.",
+        "strengths": [
+          "The problem is important, and the combination of a video motion prior with part-level drag supervision is a useful advance over whole-object trajectory control (pp. 2–3).",
+          "The architecture is technically plausible and clearly motivated; in particular, all-to-first attention directly addresses appearance degradation during out-of-domain fine-tuning (pp. 4–6).",
+          "Results show substantial gains over DragNUWA and DragAnything on Drag-a-Move, while zero-shot Human3.6M performance is competitive or best on most reported metrics; component ablations are also strong (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The empirical support is limited relative to claims of general object dynamics: quantitative evaluation covers only Drag-a-Move and Human3.6M, while the other real-world datasets receive only selected qualitative examples (pp. 8–9).",
+          "The new flow error depends on CoTracker correspondences but lacks validation, uncertainty estimates, and sufficient protocol detail; Table 1 also gives no sample counts or statistical significance, making the magnitude and robustness of gains unclear (p. 8).",
+          "Dataset curation relies partly on GPT-4V judgments without reporting prompts, annotation agreement, error analysis, or bias/category statistics (pp. 6–7). The referenced implementation and curation appendices are not present in the supplied 14 pages, limiting reproducibility and assessment."
+        ],
+        "score_rationale": "The paper offers a useful, moderately novel system with convincing ablations and promising improvements, supporting a marginally-above-acceptance score. However, incomplete reporting and limited quantitative coverage prevent stronger confidence in the broad generalization and physical-plausibility claims."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PuppetMaster adapts Stable Video Diffusion for drag-controlled, part-level animation using adaptive modulation, drag-token cross-attention, all-to-first attention, and a curated Objaverse animation dataset. The direction is useful and results are promising, but the supplied evidence does not yet substantiate the broad claims of physically plausible dynamics, strong real-world generalization, or a foundation motion prior.",
+        "strengths": [
+          "The task is important, and combining a pretrained video prior with synthetic articulated-animation data is a sensible advance over frame-independent generation (pp. 2–3).",
+          "All-to-first attention is a simple, potentially reusable response to appearance degradation, with large gains over the tested attention alternatives in the ablation (pp. 6, 9–10).",
+          "PuppetMaster improves over the two video baselines on Drag-a-Move and is competitive on Human3.6M despite synthetic-only fine-tuning (p. 8)."
+        ],
+        "weaknesses": [
+          "Evaluation is narrow and sometimes overstated: quantitative testing covers only Drag-a-Move and Human3.6M, ablations use merely 100 videos, no uncertainty or human study is reported, and PuppetMaster does not outperform every listed method/metric despite the prose implying broad superiority (pp. 8–9).",
+          "The evidence does not directly establish physical plausibility or genuine part-level understanding. PSNR/SSIM/LPIPS/FVD and tracker error against one reference motion conflate appearance and reconstruction, while the qualitative figures cannot reveal temporal artifacts as reliably as videos (pp. 8–9).",
+          "Reproducibility and dataset validation are insufficient: random-forest labeling details, GPT-4V prompt/reliability, dataset composition, and full training details are missing; moreover, the cited dataset-curation and implementation appendices are absent from the supplied manuscript (pp. 7–8)."
+        ],
+        "score_rationale": "The architecture and curated-data direction are technically plausible and show encouraging gains, particularly in the ablations. However, missing promised appendix material, limited evaluation, weak validation of the curation pipeline, and unsupported claims about physics and foundation-level dynamics leave the work marginally below the acceptance bar. My assessment is somewhat uncertain because the referenced supplementary videos are unavailable."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PuppetMaster fine-tunes SVD for sparse-drag-controlled, part-level animation using adaptive modulation, drag-token cross-attention, all-to-first attention, and a curated animated-Objaverse dataset. The approach is promising and shows useful gains over drag-controlled video baselines, but the supplied evidence is too incomplete to firmly establish physically plausible part-level dynamics or broad real-world generalization.",
+        "strengths": [
+          "The problem is important, and combining a pretrained video prior with a substantially curated 10k-animation dataset is a useful contribution (pp. 3, 6–7).",
+          "All-to-first attention is simple and effective for mitigating appearance degradation; the ablation reports large improvements over no attention and a static-reference alternative (pp. 6, 9–10).",
+          "PuppetMaster improves substantially over DragNUWA and DragAnything on Drag-a-Move and is competitive on Human3.6M despite synthetic-only fine-tuning (p. 8)."
+        ],
+        "weaknesses": [
+          "Evidence for the central claim of physically plausible part-level dynamics is limited: evaluation mainly uses reconstruction metrics, a tracker-derived flow error, and selected qualitative frames, with no physics/part-specific evaluation, human study, uncertainty estimates, or robustness tests for ambiguous/conflicting drags (pp. 8–9).",
+          "The claimed real-world breadth is weakly substantiated: quantitative out-of-domain testing is only on Human3.6M, gains over DragNUWA are small or mixed, and the other named real datasets receive only a small set of qualitative examples (pp. 8–9).",
+          "Important reproducibility and validation material is missing from the supplied manuscript: implementation details and the data-curation ablation are deferred to absent appendices, while the random-forest and GPT-4V filtering procedures lack annotation size, accuracy, prompt details, or human validation (pp. 7–8)."
+        ],
+        "score_rationale": "The dataset construction and conditioning architecture are practically valuable, and the reported baseline/ablation results support effectiveness. However, novelty is largely an integration of known conditioning mechanisms plus a modest attention variant, while missing appendices and limited evaluation leave the core physical-plausibility and generalization claims insufficiently verified. I therefore place it marginally below acceptance; uncertainty mainly concerns the unavailable videos and appendices."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "PuppetMaster adapts Stable Video Diffusion for drag-controlled part-level animation using spatial drag modulation, drag-token cross-attention, all-to-first attention, and a curated animated-Objaverse dataset. The approach is technically plausible and empirically promising, but the central claims of physical plausibility and broad real-world generalization receive limited evaluation.",
+        "strengths": [
+          "The combination of all-to-first attention and structured drag conditioning is a useful architectural contribution, with substantial controlled-ablation gains in appearance metrics and direction accuracy (pp. 9–10).",
+          "The proposed curation pipeline scales part-motion training data beyond furniture-specific datasets, yielding 10k filtered animated assets (pp. 6–7).",
+          "PuppetMaster consistently surpasses the two video baselines on Drag-a-Move and obtains competitive zero-shot Human3.6M results (p. 8), while the qualitative examples cover varied categories (pp. 2, 9)."
+        ],
+        "weaknesses": [
+          "Evidence for the headline claims is incomplete: physical plausibility is not measured or human-evaluated, broad real-world results are largely qualitative, and the supplied static frames cannot establish temporal consistency (pp. 8–9).",
+          "Human3.6M improvements over DragNUWA are small and mixed—e.g., SSIM is worse—and DragAPart has substantially better in-domain FVD; thus the claimed broad state-of-the-art advantage is overstated (p. 8).",
+          "Reproducibility and data validity are underdeveloped: GPT-4V filtering lacks its prompt, validation, and bias/error analysis; key implementation details are deferred to appendices that are not present in the supplied manuscript (pp. 7–8)."
+        ],
+        "score_rationale": "This is a relevant, moderately novel, and apparently effective system, with especially convincing component ablations. However, the core interpretation as a physically plausible, general motion prior is stronger than the evidence supports, and missing implementation/curation details add uncertainty. I therefore place it marginally above the acceptance threshold."
+      }
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "year": 2026,
+  "package_id": "paper_085",
+  "paper_id": "K2eSvDvP6u",
+  "number": 21181,
+  "title": "EVALUESTEER: Measuring Reward Model Steerability Towards Values and Preferences",
+  "authors": [
+    "Kshitish Ghate",
+    "Andy Liu",
+    "Devansh Jain",
+    "Taylor Sorensen",
+    "Atoosa Kasirzadeh",
+    "Aylin Caliskan",
+    "Mona T. Diab",
+    "Maarten Sap"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "pluralistic alignment",
+    "llm alignment",
+    "benchmarking",
+    "reward model steerability"
+  ],
+  "forum_url": "https://openreview.net/forum?id=K2eSvDvP6u",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    4,
+    2
+  ],
+  "human_mean_rating": 2.6666666666666665,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "7GHOSe0pSg",
+      "forum": "K2eSvDvP6u",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21181/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762621852725,
+      "tmdate": 1762941580072,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "KMINlHDmPz",
+      "forum": "K2eSvDvP6u",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21181/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761995708469,
+      "tmdate": 1762941580852,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "PoqomF0uU4",
+      "forum": "K2eSvDvP6u",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21181/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761930672714,
+      "tmdate": 1762941582436,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EVALUESTEER is a useful controlled benchmark concept for testing whether reward models can follow joint value/style profiles. The experiments reveal substantial failures under long profiles and consistent style-over-value choices. However, the evidence is too synthetic and confounded to support the broader claims about pluralistic steerability and intrinsic cultural bias, and the effective diversity is much smaller than the headline evaluation count suggests.",
+        "strengths": [
+          "The benchmark systematically crosses value alignment, style alignment, profile context, and conflict-priority conditions, enabling targeted diagnosis rather than only aggregate RM scoring (pp. 4–6, 17).",
+          "Evaluation spans six judge/classifier models, includes context and CoT variants, and reports a useful minimal-context ablation supporting the observed style-over-value pattern (pp. 6–9, 26).",
+          "The paper documents generation prompts, acknowledges important deployment limitations, and performs human checks of value fidelity, style adherence, and appropriateness (pp. 10, 18–22)."
+        ],
+        "weaknesses": [
+          "The 165,888 evaluations are highly dependent combinations built from only 24 prompt–statement pairs and generated with one LLM configuration; labels encode intended attributes rather than observed user preferences. Consequently, the scale, cultural grounding, and real-world generalizability are overstated (pp. 4–5, 10, 16–17).",
+          "Claims of intrinsic value/style bias are confounded by generation artifacts and response quality. Opposing value answers are separately generated, while rewrites alter examples, qualification, complexity, and register, so factors other than the named value/style cannot be assumed constant; validation does not establish matched quality across opposing poles (pp. 4–5, 18–22).",
+          "The oracle comparison is circularly optimistic because samples are filtered using GPT-4.1's success under relevant context, yet the main settings use approximately 200 value statements. Statistical reporting is also under-specified, with unclear experimental units/CI construction and suspicious zero uncertainties in Table 2; the paper inconsistently states 16 versus 11 prompting conditions (pp. 1–2, 5–6, 23)."
+        ],
+        "score_rationale": "The controlled design and relevant empirical question provide moderate novelty and useful diagnostic findings. Nevertheless, limited independent content, oracle-based selection, inadequate control of generation confounds, and weak statistical reporting substantially reduce confidence in the central bias and steerability conclusions. I therefore place it marginally below acceptance, with some uncertainty because released code/data might clarify implementation details not recoverable from the manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EVALUESTEER is a controlled synthetic benchmark for testing whether reward models can select responses matching profiles that combine WVS-derived values with four stylistic preferences. Experiments on six models suggest that full profiles are harder to use than isolated relevant cues, reveal systematic no-context preferences, and show style dominating value alignment in conflict cases. The problem is important and the factorial design is useful, but circular filtering and limited human grounding weaken the central quantitative and cultural-bias claims.",
+        "strengths": [
+          "The benchmark targets an important, underexplored question—contextual steerability of reward models toward joint value and style profiles—and systematically crosses value/style alignment and conflict conditions (pp. 2–5).",
+          "The evaluation spans generative judges and classifier reward models, multiple context/priority conditions, and an informative reduced-context ablation supporting the reported style-over-value pattern (pp. 6–9, 26).",
+          "The paper documents generation prompts, profile construction, stylometric checks, and acknowledged scope/ethical limitations in substantial detail (pp. 10, 16–22)."
+        ],
+        "weaknesses": [
+          "The benchmark is filtered to cases where GPT-4.1 achieves perfect performance under the so-called oracle setting (p. 5). This makes the near-100% reference partly definitional, potentially favors a related evaluated model, and renders the claimed 25-point capability gap difficult to interpret.",
+          "Ground truth encodes stipulated synthetic preferences rather than demonstrated human choices. Human validation covers only 200 completions from the 10 core questions using three in-house annotators, not whether real users with corresponding WVS profiles prefer the designated answers; thus broad claims about pluralistic human alignment and cultural bias are under-supported (pp. 10, 21–22).",
+          "Generation and rewriting may introduce uncontrolled quality/content cues: one model configuration creates all responses, and prompts claiming semantic preservation simultaneously request added examples, context, implications, and complexity (pp. 4, 10, 18–20). Consequently, no-context stance/style rates cannot cleanly identify intrinsic RM bias, and statistical procedures for reported confidence/significance are insufficiently specified (pp. 7–9)."
+        ],
+        "score_rationale": "The work offers a novel and potentially useful controlled benchmark with extensive experiments, placing it near the acceptance boundary. However, circular oracle-based selection, weak behavioral grounding of synthetic labels, and unresolved generation confounds substantially limit the soundness of its headline accuracy-gap and bias conclusions. I therefore rate it marginally below acceptance; uncertainty remains because access to the released samples could clarify artifact severity."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EVALUESTEER is a controlled synthetic benchmark for testing whether reward models can select responses matching user value and style profiles. The joint manipulation of WVS-grounded values and four style dimensions is useful, and the experiments reveal substantial context sensitivity and apparent style-over-value behavior. However, construction and reporting inconsistencies, weak control of generation confounds, and limited statistical validation undermine the strength of the cultural-bias and steerability conclusions.",
+        "strengths": [
+          "Addresses an important, underexplored problem: steerability of preference-ranking models toward joint value and style profiles rather than average preferences (pp. 1–3).",
+          "The factorial setup spans values, styles, conflict cases, context types, priority instructions, and six heterogeneous models, enabling several informative diagnostic comparisons (pp. 4–8, 17).",
+          "The authors provide generation prompts, stylometric checks, human validation, limitations, and a minimal-context ablation supporting the observed style-over-value tendency (pp. 16–22, 26)."
+        ],
+        "weaknesses": [
+          "Dataset accounting is internally inconsistent: the abstract says 16 prompting conditions, the paper uses 11; 165,888 equals 24×4×6×288 before multiplying by settings; and the stated 384 completions omits the two opposing value responses implied by generation (pp. 1, 4–6, 17).",
+          "The claimed controlled value–style isolation is not established. Rewrite prompts deliberately alter complexity, formality, qualification, examples, and sentiment, while validation covers only 200 in-house-rated completions and uses VADER as a warmth proxy; these artifacts could drive both accuracy and inferred biases (pp. 4–5, 16–22).",
+          "Statistical support is insufficient: significance analyses do not describe tests or account for dependence among many evaluations derived from only 24 underlying conversations, response-order randomization is unclear, and oracle filtering with GPT-4.1 risks selection bias—especially when GPT-4.1-family models are evaluated (pp. 5–8, 23)."
+        ],
+        "score_rationale": "The benchmark idea and broad controlled evaluation are promising, but the effective diversity is small and key conclusions may reflect synthetic-generation artifacts or pseudo-replication. The serious counting/reporting discrepancies further reduce confidence in reproducibility. I therefore view it as marginally below the ICLR acceptance bar, though stronger controls and corrected accounting could substantially improve it."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "EVALUESTEER is a timely controlled benchmark for testing whether reward models follow synthetic user value and style profiles. The value–style factorial design and multi-model evaluation are useful, but the central metric often measures recovery of author-assigned instructions rather than validated human preference, and several design and statistical choices weaken the broad claims about pluralistic steerability.",
+        "strengths": [
+          "The benchmark jointly manipulates value alignment, style alignment, priority, and context, addressing a meaningful gap in reward-model evaluation (pp. 2–5).",
+          "Evaluation covers six heterogeneous judge/classifier models, multiple prompting conditions, conflict cases, and a reduced-context ablation (pp. 6–9, 26).",
+          "The authors report stylometric checks, limited human validation, prompts, limitations, and qualitative examples, making the construction relatively transparent (pp. 16–25)."
+        ],
+        "weaknesses": [
+          "Construct validity is limited: labels assume that a survey-coded value or stated style deterministically implies preference for a generated response, without collecting preference judgments from the represented users; the paper itself acknowledges that real preferences can be contextual or inconsistent (p. 10). Thus this chiefly tests synthetic instruction matching.",
+          "The reported oracle gap is partly circular because conversations are filtered to ones GPT-4.1 solves perfectly with relevant context (p. 5). Moreover, value-only and style-only aggregate accuracies include pairs whose labels depend on omitted information (pp. 5, 17), making some cross-context comparisons difficult to interpret.",
+          "Only 24 base conversations and one selected PRISM prompt per WVS item underlie the very large evaluation count (pp. 4–5, 17). Dependence and pseudo-replication are not addressed, statistical testing is underspecified, and human validation covers only 200 completions with in-house annotators (pp. 21–22), limiting support for broad cultural-bias claims."
+        ],
+        "score_rationale": "The controlled benchmark and empirical findings are potentially useful and moderately novel, but substantial construct-validity and evaluation-design concerns prevent the results from convincingly supporting the paper’s broad claims. I am uncertain how much stronger the evidence may be in the anonymous code/data release, which was not part of the supplied manuscript."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "EVALUESTEER is a potentially useful controlled benchmark for testing whether reward models can retrieve relevant value/style instructions from profiles. However, its current evidence supports performance on a small, heavily synthetic construction rather than broad claims about pluralistic human-preference steerability, and key generation, validation, and statistical choices undermine the claimed factor isolation.",
+        "strengths": [
+          "The controlled value-by-style setup targets an important and comparatively underexplored aspect of reward-model evaluation (pp. 2–5).",
+          "The study evaluates several generative judges and classifier reward models under multiple context and priority conditions, exposing a substantial full-profile versus oracle gap (pp. 5–8).",
+          "The authors disclose important scope limitations and provide prompts, human-validation rubrics, qualitative examples, and a context-length ablation (pp. 10, 18–26)."
+        ],
+        "weaknesses": [
+          "The purportedly orthogonal style interventions are explicitly confounded: verbosity requests more complex syntax and added examples, readability changes register and examples, and warmth changes objectivity/bias. The validation measures only marginal cue presence, not semantic preservation or independence, so the style-over-value result is difficult to interpret (pp. 16–21).",
+          "The benchmark has only 24 base conversations, generated with one model configuration, and is filtered by GPT-4.1 succeeding perfectly in an oracle condition. Human validation covers only 200 completions and does not validate actual profile-conditioned pairwise preferences; consequently, model-family leakage, selection bias, and synthetic-label circularity remain substantial (pp. 4–5, 10, 21–22).",
+          "Statistical and reproducibility reporting is inadequate: repeated variants of 24 prompts appear treated as a very large evaluation set without accounting for clustered dependence; confidence intervals and tests are not specified; classifier prompting/scoring is unclear; and the manuscript inconsistently reports 16 versus 11 prompting conditions and describes 165,888 evaluations as both total and across 11 settings (pp. 1–2, 5–6, 17, 23)."
+        ],
+        "score_rationale": "The question is important and the controlled benchmark idea has merit, but central conclusions depend on non-orthogonal synthetic transformations, oracle-based filtering, very limited independent prompt coverage, and underspecified statistical evaluation. These issues require substantial correction before the reported bias and steerability claims are reliable; uncertainty remains because the anonymous code/data link cannot be assessed from the supplied manuscript."
+      }
+    }
+  ]
+}

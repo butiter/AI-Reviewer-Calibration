@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_084",
+  "paper_id": "LvRQgsvd5V",
+  "number": 11360,
+  "title": "Non-Adversarial Inverse Reinforcement Learning via Successor Feature Matching",
+  "authors": "Arnav Kumar Jain; Harley Wiltzer; Jesse Farebrother; Irina Rish; Glen Berseth; Sanjiban Choudhury",
+  "primary_area": "reinforcement learning",
+  "keywords": "Inverse Reinforcement Learning; Imitation Learning; Successor Features",
+  "forum_url": "https://openreview.net/forum?id=LvRQgsvd5V",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    8,
+    3
+  ],
+  "human_mean_rating": 5.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This work considers inverse RL in the state-only setting. Leveraging the linear structure of returns, as inner product of successor features and reward weight, the authors could model inverse RL without adversarially optimizing the reward weight, while is often done in prior works. This allows one to directly optimize policy through minimizing the gap between the successor features of expert policy and of the learned policy."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The paper is well organized and easy to follow\n\n- The motivation is sound and the resulting algorithm is straightforward (without requiring min-max optimization)"
+        },
+        "weaknesses": {
+          "value": "- It is quite surprising that IQL failed most of the tasks in Figure 3\n\n- The choice of baselines could be expanded. While SFM considers the state-only setting, GAIfO is the only baseline that originally proposed for this setting. It might be reasonable to include a few baselines that are designed for state-only setting, for example [1, 2] (with public implementation if my memory serves me right) and some more up-to-date baselines are appreciated. \n\n----\n\nNote: I have not actively followed the recent literature on successor features, so I am uncertain about its novelty when applied to the IRL setting. As a result, I have a low confidence score.\n\n[1] Gangwani, Tanmay, and Jian Peng. \"State-only imitation with transition dynamics mismatch.\" arXiv preprint arXiv:2002.11879 (2020).\n[2] Zhu, Zhuangdi, et al. \"Off-policy imitation learning from observations.\" Advances in neural information processing systems 33 (2020): 12402-12413."
+        },
+        "questions": {
+          "value": "- what are the hyperparameter search space for SFM and baselines respectively?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "BLsT4riSIU",
+      "forum": "LvRQgsvd5V",
+      "replyto": "LvRQgsvd5V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_7726"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_7726"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730690525971,
+      "cdate": 1730690525971,
+      "tmdate": 1731429101590,
+      "mdate": 1731429101590,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces Successor Feature Matching (SFM), a novel non-adversarial approach to Inverse Reinforcement Learning (IRL). The key innovation is reformulating IRL as a direct policy optimization problem that matches successor features between the agent and expert demonstrations. The method has three notable contributions:\n\n1. A non-adversarial approach that avoids the computational expense and instability of traditional adversarial IRL methods\n2. The ability to learn from state-only demonstrations without requiring expert action labels\n3. Strong performance from as little as a single expert demonstration\n\nThe method leverages successor features to estimate expected cumulative features and uses policy gradient descent to minimize the gap between learner and expert features. The authors demonstrate superior performance compared to both adversarial and non-adversarial baselines across multiple control tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The non-adversarial approach using successor features is novel and elegantly simple compared to existing methods\n2. The approach is well-justified with clear theoretical analysis and proofs\n3. The method works with state-only demonstrations and single examples, making it widely applicable\n4. SFM integrates seamlessly with existing actor-critic frameworks\n5. Demonstrates superior performance across multiple tasks and metrics\n6. Shows consistent performance even with weaker policy optimizers"
+        },
+        "weaknesses": {
+          "value": "1. The paper doesn't fully address how SFM handles the exploration problem inherent in IRL\n2. The current implementation is tied to deterministic policy gradients, potentially limiting its applicability\n3. The method currently only works with state-only base feature functions\n4. While comprehensive, the evaluation is limited to DMC suite tasks; testing on more diverse environments would strengthen the claims"
+        },
+        "questions": {
+          "value": "1. How would the method perform on tasks with sparse rewards or requiring significant exploration?\n2. Could the approach be extended to work with stochastic policies?\n3. How does the method compare to recent offline IRL approaches?\n4. What are the computational requirements compared to adversarial methods?\n5. How sensitive is the performance to the choice of successor feature architecture?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZnH17Wts91",
+      "forum": "LvRQgsvd5V",
+      "replyto": "LvRQgsvd5V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_w2Zs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_w2Zs"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730540171437,
+      "cdate": 1730540171437,
+      "tmdate": 1731429101248,
+      "mdate": 1731429101248,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces Successor Feature Matching (SFM), a novel method to Inverse Reinforcement Learning (IRL) which is non-adversarial and does not require expert action labels. SFM directly optimizes a policy to match the expert's successor features (SFs) using policy gradient ascent. The paper claims that SFM offers several advantages over existing IRL methods, including simplified training, state-only learning and robustness to optimizer choice.\nThe paper supports these claims through empirical evaluations on the DeepMind Control suite, demonstrating that SFM outperforms state-of-the-art adversarial and non-adversarial baselines on a variety of single-demonstration tasks. Additionally, the paper explores the impact of different base feature functions on SFM's performance, finding that Forward Dynamics Models (FDM) lands the best results."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "- **Novel and well-motivated approach:** SFM provides a new angle in IRL by leveraging SFs for direct policy optimization, offering an alternative to adversarial methods.\n- **Strong empirical results:** Experiments demonstrate the superiority of SFM over sota methods on normalized return and optimality gap across single-demonstration tasks, demonstrating its effectiveness.\n- **State-only learning:** The ability to learn from state-only demonstrations is a great contribution.\n- **Robustness to RL optimizer choice:** SFM's performance with both strong (TD7) and weaker (TD3) optimizers shows versatility, making it potentially useful for resource-limited applications.\n- The experiments are conducted in clear logic and the analysis and observations are novel and interesting."
+        },
+        "weaknesses": {
+          "value": "- **Dependence on deterministic policy gradients:** The current formulation of SFM is tied to deterministic policy gradient algorithms. Exploring extensions to stochastic policies would broaden its scope. However, it's clearly mentioned by the authors in the discussion part.\n- **Exploration Challenges:** as stated by the authors, the presented method does not fully resolve IRL exploration issues. I wonder how the performance may vary significantly across domains requiring extensive exploration."
+        },
+        "questions": {
+          "value": "- How does SFM handle scenarios where expert demonstrations do not cover the entire state space, particularly in sparse-reward or high-dimensional tasks?\n- Can the authors elaborate on potential extensions of SFM to stochastic policy optimizers, and any early experiments indicating feasibility?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "HbI5wi9daG",
+      "forum": "LvRQgsvd5V",
+      "replyto": "LvRQgsvd5V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_YndG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_YndG"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730299945114,
+      "cdate": 1730299945114,
+      "tmdate": 1732572380120,
+      "mdate": 1732572380120,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes Successor Feature Matching (SFM) in the Inverse Reinforcement Learning (IRL) problem.  The authors focused generalized reward-like properties of  successor features (Barreto et al. 2017), e.g. recovering reward, discounted accumulation. These allowed SFM for alternative formulation of policy optimization using L2 loss in Eq. (4). The experimental results suggest that the proposed SFM yields good scores in single-demonstration benchmarks and much more impressive scores among state-only IRL algorithms."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The proposed SFM, in contrast to adversarial methods, is more rooted in the historical context of early IRL studies.\n2. In my opinion, IRL (or even RL) methods do not have to restrict themselves to formulating scalar reward signals. Adaptation SF (Barreto et al., 2017) expands the notion of IRL into feature learning, which can relax some rigidity in RL-IRL formulation. Since the features have successfully formulated vectorized signals in the transfer learning tasks in RL, this could be a significant contribution that relaxes studies of IRL. \n3. The proposed method achieved good performance among modern IRL methods.\n4. Propositions 1-3 are straightforward to understand."
+        },
+        "weaknesses": {
+          "value": "1. I do not understand why \"non-adversarial\" property is framed as the main contribution throughout the paper. Adversarial learning and SFM are not mutually exclusive. Eq. (3) shows that the base feature can be trained with adversarial learning by setting $\\mathcal{L}_\\mathrm{feat} = \\mathrm{Eq. (3)}$. If the author intended to deepen our understanding of the role of adversarial learning in IRL, they should have provided (1) another theoretical justification of non-adversarial learning and (2) ablation studies, including Eq. (3) in Fig. 6, and (3) results of combining various base feature losses that verifies adversarial losses might deteriorate IRL performance.  \n2. Compared to Figs. 4 and 5, single-demonstration task performance in Fig 3 is only sometimes good, suggesting that SF is more focused on representing states. For some scenarios, action representation performance might be necessary.   \n3. To demonstrate scalability, including more complex (or demonstrative) benchmarks in Fig. 3 would be beneficial to IRL researchers to grasp the model's performance. \n4. There are no supporting tables in the appendix that measure the performance of the learning curves in Figs. 3, 5, 6."
+        },
+        "questions": {
+          "value": "1. How applying l2-loss  in Eq.(4) can be understood for the policy $\\pi_\\mu$? \n2. I think SFM (random) performed well; what is the reasoning behind this and presenting Eqs? (9-11)? Could the base feature only trained with arbitrary unsupervised learning with only states without the next states, actions, or goals?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ufRb2dJRD3",
+      "forum": "LvRQgsvd5V",
+      "replyto": "LvRQgsvd5V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_ZRQG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11360/Reviewer_ZRQG"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11360/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729745728970,
+      "cdate": 1729745728970,
+      "tmdate": 1731429101144,
+      "mdate": 1731429101144,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Successor Feature Matching, which replaces adversarial IRL with repeated closed-form witness estimation and policy-gradient updates that align learned feature occupancies. The idea is appealing and the 10-task DMControl results are strong, especially with one state-only demonstration, but important theoretical assumptions and limited experimental validation leave it marginally below the acceptance bar.",
+        "strengths": [
+          "A simple and potentially useful combination of successor-feature estimation, closed-form feature-space witnesses, and direct actor updates for state-only imitation (pp. 4–6).",
+          "Strong aggregate and per-task performance across 10 DMControl tasks, reported over 10 seeds with confidence intervals; gains are particularly large on quadruped tasks (pp. 8, 18).",
+          "Useful robustness and representation studies covering TD3/TD7/stochastic policies and six feature constructions (pp. 9, 18–20)."
+        ],
+        "weaknesses": [
+          "Proposition 1 requires samples distributed as discounted occupancy measures, but the implementation describes ordinary replay-buffer sampling from fixed-length rollouts. Uniform replay sampling is generally not the discounted mixture assumed in the proof, so the claimed off-policy estimator can be biased (pp. 5, 16–17, 28).",
+          "Proposition 2 differentiates an objective containing policy-dependent successor features and a policy-dependent witness while retaining only the usual actor semi-gradient; the manuscript does not rigorously establish that this is the gradient of feature-distance minimization under arbitrary replay distribution. Thus the central direct-matching interpretation is insufficiently justified (pp. 5–6, 17).",
+          "Evidence is restricted to low-dimensional DMControl tasks and lacks key ablations, such as comparison against ordinary RL on the same closed-form witness, estimator alternatives, runtime/sample-cost measurements, and tests on pixels, video, or dynamics mismatch. Several appendix inconsistencies also hinder reproduction, including the FDM pseudocode predicting action dimension rather than next-state dimension (pp. 7–9, 21–28)."
+        ],
+        "score_rationale": "The method is conceptually interesting and empirically promising, with unusually broad seed-level evaluation for deep IRL. However, the replay-distribution mismatch undermines a central proposition, the policy-gradient argument is closer to an unacknowledged semi-gradient than a proved gradient of the stated matching objective, and the experiments do not isolate the proposed mechanism or substantiate broader observation-only claims. These issues outweigh the strong benchmark results, yielding a marginal reject."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SFM is a simple non-adversarial, state-only imitation method that uses successor-feature differences as an adaptive reward direction and directly updates the policy. Results on ten DMControl tasks are promising, but central theoretical claims rely on unjustified replay-distribution and gradient assumptions, leaving the method marginally below the acceptance bar.",
+        "strengths": [
+          "The successor-feature formulation yields an appealing, practical alternative to adversarial state-only IRL and appears moderately novel (pp. 4–6).",
+          "Experiments use ten seeds, aggregate metrics, per-task curves, and comparisons with both state-only and action-conditioned baselines; SFM is especially strong on quadruped tasks (pp. 7–9, 18).",
+          "Useful ablations cover feature representations, TD3 versus TD7, and stochastic policies (pp. 9, 18–20)."
+        ],
+        "weaknesses": [
+          "Proposition 1 implicitly requires samples distributed according to discounted occupancy measures. Uniform sampling from a conventional finite replay buffer is generally not such a distribution, despite the claim that arbitrary replay transitions suffice; the proof simply assumes the needed occupancy weighting (pp. 5, 16–17).",
+          "Proposition 2's proof differentiates an expression containing policy-dependent successor features and a policy-dependent witness while treating both as fixed. The stated off-policy expectation therefore is not established as the gradient of the defined objective without additional stop-gradient/surrogate-objective qualifications and distribution corrections (pp. 5–6, 17).",
+          "Evidence is restricted to low-dimensional DMControl states and one demonstration source. Several baselines are reimplemented with substantial modifications, and reproducibility is weakened by inconsistencies such as the FDM being defined to predict next state but implemented with action-dimensional output, plus unclear taskwise hyperparameter selection (pp. 7–9, 27–28)."
+        ],
+        "score_rationale": "The core idea is elegant and the empirical results are substantial, but the two main propositions do not rigorously justify the implemented replay-based update, and evaluation breadth is insufficient to overcome this central soundness concern. I am therefore uncertain whether the gains reflect a generally valid IRL reduction rather than an effective heuristic (pp. 5–6, 16–18)."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes SFM, a non-adversarial, state-only imitation method that uses successor features to construct a closed-form witness reward and update the policy directly. The idea is appealing and results on ten DMControl tasks are strong, but important gaps between the theoretical estimators and their replay-buffer implementation, together with serious reproducibility inconsistencies, leave the technical case slightly below the acceptance bar.",
+        "strengths": [
+          "The combination of successor-feature occupancy matching with direct policy optimization is simple, practically relevant, and moderately novel, especially for state-only demonstrations (pp. 4–7).",
+          "The evaluation uses ten seeds, aggregate RLiable statistics, per-task curves, several state-only and action-aware baselines, and reports substantial gains on difficult quadruped tasks (pp. 7–9, 18).",
+          "Ablations across feature representations and TD3/TD7/stochastic policy variants provide useful evidence that the method is not tied to one representation or optimizer (pp. 9, 18–20)."
+        ],
+        "weaknesses": [
+          "Proposition 1 implicitly treats replay-buffer samples as a mixture of discounted occupancy measures, but ordinary uniform replay from finite trajectories is not distributed this way. The proof does not justify the equality between sampling from the buffer and sampling from discounted occupancies, although this estimator is central to SFM (pp. 5, 16–17).",
+          "Proposition 2 is presented as the direction that most steeply increases return, yet the practical update uses an arbitrary replay distribution and a changing, approximate successor network and witness. The proof only differentiates the surrogate while holding these quantities fixed and provides no guarantee that the implemented update reduces the original feature-matching objective (pp. 5–6, 17, 24–25).",
+          "Reproducibility is compromised by contradictory or erroneous specifications: Algorithm 1 omits the discount in the SF target; the FDM is defined as predicting the next state but Appendix C.4 outputs an action-sized vector labeled “action”; and its encoder pseudocode references undefined/mismatched layers (pp. 5–6, 27). Evaluation is also limited to low-dimensional DMControl states, so video/mocap applicability remains untested."
+        ],
+        "score_rationale": "The empirical performance and clean high-level idea are promising, but the replay-distribution assumption undermines a central proposition, the policy-gradient claim is stronger than established, and the appendix contains consequential implementation contradictions. I therefore rate it marginally below acceptance; uncertainty remains because the reported ten-seed results suggest the method may work well despite the incomplete justification."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Successor Feature Matching, a simple state-only imitation method that replaces adversarial reward learning with direct policy updates toward the expert’s estimated feature occupancy. The idea is appealing and the 10-task DMControl results are strong, but central theoretical statements do not fully justify the implemented replay-based algorithm, and the empirical scope is too narrow to establish the broader claims.",
+        "strengths": [
+          "The combination of successor-feature estimation with a closed-form feature-occupancy witness is conceptually clean and offers a useful non-adversarial approach to state-only imitation (pp. 4–6).",
+          "SFM performs strongly from one demonstration across 10 DMControl tasks and is evaluated over 10 seeds, with aggregate uncertainty reporting and per-task results (pp. 7–9, 18).",
+          "The paper includes useful ablations over representations and policy optimizers, including TD3, TD7, and stochastic policies (pp. 9, 18–20)."
+        ],
+        "weaknesses": [
+          "Proposition 1 implicitly requires transitions to be sampled according to discounted occupancy measures. A standard uniformly sampled replay buffer—apparently used here—does not generally have that distribution, so the equality claimed for an arbitrary buffer and its proof are not valid as stated (pp. 5, 16–17).",
+          "Proposition 2 overclaims that the replay-distribution objective gives the direction of steepest return improvement. The derivation treats the critic, witness, and replay distribution as fixed and does not justify this as the gradient of the actual on-policy return or feature-matching objective (pp. 5–6, 17).",
+          "Evidence is limited to low-dimensional DMControl tasks with experts produced by the same general RL family; no visual observations, dynamics mismatch, or real video/mocap experiment supports the emphasized applicability claims. Reproducibility is also weakened by inconsistent FDM specifications: Eq. 14 predicts the next state, whereas Pseudo 4 outputs an action-dimensional quantity labeled action (pp. 6, 10, 27)."
+        ],
+        "score_rationale": "The method is promising, practically simple, and supported by substantial controlled experiments, placing it near the acceptance boundary. However, the replay-buffer identity underlying the witness estimator and the claimed policy-gradient guarantee have material gaps, while the benchmark scope does not validate the broad state-only/video claims. I therefore rate it marginally below acceptance; uncertainty remains because the empirical method may work well despite the theoretical misstatements."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SFM is an appealing non-adversarial approach to state-only imitation: it estimates a closed-form feature-occupancy witness using successor features and optimizes the policy toward the expert. Results on ten DMControl tasks are promising, but theoretical-to-implementation gaps and limited empirical scope leave the central claims insufficiently established.",
+        "strengths": [
+          "The combination of successor-feature matching, a closed-form witness, and direct actor updates is conceptually simple and reasonably novel, especially for state-only imitation (pp. 4–6).",
+          "Experiments use a single demonstration, ten seeds, confidence intervals, several relevant baselines, per-task results, and both TD3- and TD7-based variants (pp. 7–9, 18–20).",
+          "A useful representation ablation shows that performance is not tied to one feature construction, although FDM is clearly strongest overall (pp. 9, 19)."
+        ],
+        "weaknesses": [
+          "Proposition 1 assumes transitions distributed according to discounted occupancy measures, but the algorithm samples uniformly from a replay buffer without described discount weighting; a generic finite replay buffer does not satisfy the proof's occupancy-flow identity. Thus the claimed off-policy estimator is not justified as implemented (pp. 5, 16–17).",
+          "The policy-gradient claim is overstated: the derivation treats the policy-dependent witness as fixed and invokes an off-policy state distribution to call the update the direction of steepest return increase, without clearly establishing the required envelope argument or exact off-policy gradient conditions (pp. 5–6, 17). Appendix Eq. 37 also appears to reverse the stated witness sign (p. 25).",
+          "Evidence is confined to ten closely related low-dimensional DMControl locomotion tasks. There is no wall-clock comparison supporting the computational-efficiency claim, no visual/video or dynamics-mismatch setting supporting broader state-only motivation, and implementation descriptions contain consequential inconsistencies (e.g., the FDM is defined to predict next state but outputs action_dim on p. 27)."
+        ],
+        "score_rationale": "The idea and empirical results are promising enough to avoid a clear reject, but the replay-distribution assumption and gradient justification affect the method's central technical story, while the benchmark scope does not establish the broad efficiency and applicability claims. Some inconsistencies may be typographical, creating limited uncertainty, but substantial clarification or correction is needed for acceptance."
+      }
+    }
+  ]
+}

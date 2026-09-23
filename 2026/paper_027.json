@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_027",
+  "paper_id": "Nt0cnag6n8",
+  "number": 7641,
+  "title": "Zero-Shot Video Restoration and Enhancement with Assistance of Video Diffusion Models",
+  "authors": [
+    "Cong Cao",
+    "Huanjing Yue",
+    "Shangbin Xie",
+    "Xin Liu",
+    "Jingyu Yang"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "zero-shot",
+    "video restoration",
+    "video enhancement",
+    "video diffusion model"
+  ],
+  "forum_url": "https://openreview.net/forum?id=Nt0cnag6n8",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    4,
+    8
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "6tSxSivFmi",
+      "forum": "Nt0cnag6n8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7641/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761926680877,
+      "tmdate": 1762919715796,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "P0nCis8jem",
+      "forum": "Nt0cnag6n8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7641/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761989635611,
+      "tmdate": 1762919714695,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "SRFyg1OnD0",
+      "forum": "Nt0cnag6n8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7641/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761616327223,
+      "tmdate": 1762919716232,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    },
+    {
+      "review_id": "XaPLm9zSzt",
+      "forum": "Nt0cnag6n8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7641/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761974307244,
+      "tmdate": 1762919715291,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free wrapper that combines image restoration with homologous and heterogeneous video-diffusion latent fusion, metric-guided fusion-weight selection, and I2V post-processing. Reported gains are broad and large, but the heterogeneous fusion is not technically well-defined as written, and the experimental protocol does not adequately validate the adaptive selection mechanism or reproducibility.",
+        "strengths": [
+          "Addresses the important problem of temporal flicker when applying image diffusion restoration frame-by-frame, with a modular design spanning several restoration settings (pp. 4–6).",
+          "Reports extensive metrics across zero-shot super-resolution, low-light enhancement, and blind super-resolution, with consistently strong numerical gains (pp. 7–9).",
+          "Provides cumulative ablations together with runtime, memory, and parameter costs, making the substantial computational trade-offs visible (p. 10)."
+        ],
+        "weaknesses": [
+          "The central heterogeneous conversion appears dimensionally invalid: Eqs. 10 and 13 combine latents from different VAEs despite explicitly stating that these latent spaces differ; the required normalization and transfer of the noise residual across distinct schedules are also not defined (p. 5).",
+          "The claimed “CoT” strategy is essentially greedy per-timestep metric search, not a demonstrated reasoning process. It selects using CLIP-IQA and WE and then reports those same metrics, creating evaluation-target leakage, while lacking comparisons against tuned fixed/random schedules or isolated ablations (pp. 5–6, 10).",
+          "Reproducibility and evidence are limited: crucial prompts, fusion ranges, sample count, schedules, clip lengths, and seed/statistical details are absent; evaluation uses only 18 and 10 videos for two tasks, and the referenced supplementary user study is not included (pp. 6–8)."
+        ],
+        "score_rationale": "The idea is practically relevant and the reported results are impressive, but a core component is mathematically underspecified or incorrect, novelty over latent fusion plus video post-processing is moderate, and metric-guided selection weakens the evidential value. I therefore lean reject, while allowing uncertainty that the equations may be presentation errors and that unavailable supplementary material could resolve some reproducibility concerns."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free pipeline that combines image-restoration diffusion models with homologous and heterogeneous video diffusion priors, adaptive fusion-weight selection, and I2V post-processing. Reported results are broad and strong, but central technical ambiguities and incomplete ablations substantially weaken confidence in the claims.",
+        "strengths": [
+          "The method addresses an important practical problem and reports consistent improvements across super-resolution, low-light enhancement, and blind restoration using nine fidelity, perceptual, and temporal metrics (pp. 7–9).",
+          "The heterogeneous-latent idea is potentially useful because it aims to connect restoration and video models with incompatible VAEs rather than requiring a shared latent space (pp. 4–6).",
+          "The paper reports resource costs and an incremental component study, clearly exposing the substantial runtime and memory trade-offs (p. 10)."
+        ],
+        "weaknesses": [
+          "The heterogeneous conversion appears mathematically ill-defined: Eqs. 10 and 13 add/subtract quantities belonging to different VAE latent spaces, with no stated mapping for the residual/noise terms. This undermines reproducibility and possibly the core method (p. 5).",
+          "The so-called CoT strategy is essentially greedy per-step metric-based hyperparameter search, not a reasoning chain; its exact search procedure is ambiguous, and optimizing CLIP-IQA and warping error at inference while reporting those same metrics risks selection bias (pp. 5–6).",
+          "Evidence is incomplete: experiments use small collections, omit uncertainty/statistical tests, and the ablation only adds modules cumulatively—without post-processing-only, heterogeneous-only, alternative fusion schedules, or metric-selection controls—so gains cannot be cleanly attributed (pp. 7–10)."
+        ],
+        "score_rationale": "The empirical gains are promising and the integration problem is relevant, but novelty is mainly compositional and the apparent latent-space inconsistency in the central equations is a serious soundness issue. Missing controlled ablations and possible metric overfitting keep the work below the acceptance threshold; uncertainty remains because implementation details or unavailable supplementary material might resolve some ambiguities."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper combines image restoration with homologous/heterogeneous video-diffusion priors and I2V post-processing. Reported gains are broad and substantial, but the heterogeneous fusion is not mathematically well-defined as written, key implementation details are absent, and the evidence does not adequately isolate the proposed contributions.",
+        "strengths": [
+          "Addresses the important problem of temporal flicker in framewise diffusion restoration with a practical, training-free direction (pp. 1–3).",
+          "Reports improvements across three tasks, several backbones, and multiple fidelity, perceptual, and temporal metrics (pp. 7–9).",
+          "Includes resource measurements and a staged ablation showing incremental improvements from the components (p. 10)."
+        ],
+        "weaknesses": [
+          "The central heterogeneous fusion equations are dimensionally and diffusion-wise inconsistent: Eqs. 10 and 13 add/subtract latents from different VAEs without mapping all terms into one space, and do not correctly transfer a normalized noise residual between distinct schedules (p. 5). This prevents faithful implementation and undermines technical soundness.",
+          "The claimed CoT strategy is essentially greedy per-step metric selection rather than a reasoning method; essential values such as M, r, initial ratios, schedules, prompts, and sampling steps are missing. Its modest reported runtime overhead is also difficult to reconcile with repeatedly decoding and ranking multiple candidates at every step (pp. 5–6, 10).",
+          "Evidence is limited by small datasets, no uncertainty or significance analysis, a sequential rather than factorial ablation, and optimization directly against two evaluation metrics. Claimed supplementary comparisons and user study are absent from the supplied complete manuscript, whose appendix contains only an LLM-use statement (pp. 7–10, 14)."
+        ],
+        "score_rationale": "Although the empirical tables suggest a promising engineering pipeline, the undefined cross-VAE latent arithmetic is a major correctness issue rather than a minor presentation gap. Missing reproducibility details and weak isolation of metric-selection and post-processing effects further prevent confidence that the reported gains validate the claimed method and novelty."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper combines image restoration with homologous and cross-VAE video-diffusion latent fusion, metric-guided fusion-weight selection, and I2V post-processing. Reported gains are broad and large, but key mathematical, reproducibility, and evaluation concerns prevent confidence in the conclusions.",
+        "strengths": [
+          "Addresses the important problem of temporal flicker in zero-shot video restoration with a modular use of pretrained video priors (pp. 2–6).",
+          "Reports extensive metrics over super-resolution, blind super-resolution, and low-light enhancement, with consistently strong improvements over the image backbones (pp. 7–10).",
+          "The incremental ablation includes quality, runtime, memory, and parameter costs, exposing the method's substantial computational trade-offs (p. 10)."
+        ],
+        "weaknesses": [
+          "The heterogeneous conversion is technically unclear and appears inconsistent with standard diffusion re-noising: Eqs. 10 and 13 do not explicitly recover and transfer normalized noise across the two schedules, undermining the claimed latent correspondence (p. 5).",
+          "Critical implementation details are absent, including prompts, diffusion steps, candidate count M, search radius, initial weights, schedules, clip length, and randomness; moreover, decoding and evaluating multiple candidate videos at every timestep seems difficult to reconcile with the reported 6.71-second search overhead (pp. 6, 10).",
+          "Evidence is limited by small datasets, no variance or statistical testing, and selection using CLIP-IQA and warping error followed by evaluation on closely related metrics. The claimed user study and additional comparisons are not included, while the strongest system uses 7.4B parameters and 72.8 GB memory (pp. 7–10)."
+        ],
+        "score_rationale": "The use of heterogeneous video priors is moderately novel and the reported results are promising. However, questionable cross-schedule equations, insufficient procedural detail, metric-coupled test-time selection, and limited statistical evidence make the large gains hard to verify. The work is therefore below the acceptance threshold despite its empirical potential."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes a training-free pipeline that combines image restoration with homologous and heterogeneous video-diffusion priors, adaptive fusion-weight search, and I2V post-processing. The reported results are broad and strong, but the central heterogeneous-fusion equations appear dimensionally invalid, and essential implementation and evaluation details are missing.",
+        "strengths": [
+          "Addresses an important practical problem and explores a useful way to leverage pretrained video priors for temporally consistent restoration (pp. 1–6).",
+          "Reports improvements across three tasks, several backbones, and nine fidelity/perceptual/temporal metrics, including substantial gains over the underlying image methods (pp. 7–9).",
+          "Includes a sequential component ablation and reports runtime, memory, and parameter costs rather than hiding the method’s substantial overhead (p. 10)."
+        ],
+        "weaknesses": [
+          "The heterogeneous fusion is not technically well-defined as written: Eqs. 10 and 13 add/subtract original and converted latents despite the stated different 2D/3D VAE spaces, which may have incompatible channel and spatiotemporal shapes (p. 5). This is a central correctness issue rather than a minor notation error.",
+          "The purported “COT” strategy is essentially greedy per-step best-of-N hyperparameter search, with no reasoning chain or learned process reward model. Crucial values such as M, r, initial weights, schedules, prompts, and clip lengths are absent, while the selection directly optimizes CLIP-IQA and WE later used for evaluation (pp. 5–6).",
+          "Evidence is insufficiently reproducible and diagnostic: datasets are small for two tasks, the ablation is only cumulative, post-processing-only variants blur the claimed scope, and the promised supplementary comparisons/user study are absent from the supplied complete manuscript (pp. 7–10, 14)."
+        ],
+        "score_rationale": "Despite promising and unusually broad empirical gains, the apparent latent-space inconsistency in the core method and missing details prevent verification or reproduction. The novelty is also overstated because homologous fusion follows prior work and the “COT” component is greedy metric-based search. I therefore judge the submission below the bar; uncertainty remains because Eq. 10/13 could reflect a serious notation omission rather than the actual implementation."
+      }
+    }
+  ]
+}

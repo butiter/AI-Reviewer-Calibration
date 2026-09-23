@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_080",
+  "paper_id": "ajxAJ8GUX4",
+  "number": 10928,
+  "title": "Learning Geometric Reasoning Networks For Robot Task And Motion Planning",
+  "authors": "Smail Ait Bouhsain; Rachid Alami; Thierry Simeon",
+  "primary_area": "applications to robotics, autonomy, planning",
+  "keywords": "Graph Neural Networks; Deep Learning for Robotics; Task and Motion Planning; Robot Manipulation Planning",
+  "forum_url": "https://openreview.net/forum?id=ajxAJ8GUX4",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents Geometric Reasoning Networks (GRN), a graph neural network-based approach to enhance efficiency in Task and Motion Planning (TAMP) for robotic manipulation. An incremental GNN-based model is introduced with two mechanisms: inverse kinematics (IK) feasibility prediction, and grasp obstruction (GO) estimation using full-state knowledge. Experimental validation demonstrates GRN's applicability to various environments and configurations."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The study tackles a significant challenge in TAMP arising from the bottleneck in geometric planning within complex 3D environments and proposes a novel, though incremental, architecture to predict action and grasp feasibility to reduce the need for costly geometric planning queries.  \n\n- The model is more generalizable in complex environments compared to prior works (Table 4).\n\n- The proposed model is evaluated and compared against prior works and an ablation study is conducted.\n\n- The authors conducted real-robot experiments, and shared their code."
+        },
+        "weaknesses": {
+          "value": "Below is the list of the issues I observed, and my suggestions for this work:\n\n1. **Strong Assumptions on Object Knowledge and Static Scene Conditions**: The model assumes complete knowledge of object shape, dimensions, and pose, as well as static conditions where objects remain stationary unless moved by the robot (lines 153–154). This is a considerable simplification for real-world scenarios, where partial observability and dynamic conditions are typical. By contrast, some baselines used for comparison assume partial observability and predict feasibility based on images rather than full state knowledge, making these comparisons less directly fair. Addressing this by either relaxing these assumptions or comparing only with baselines under similar assumptions would improve applicability and fairness.\n\n2. **Limited Integration and Short Planning Horizons**: While some baselines are fully integrated within TAMP solvers, GRN’s integration is relatively basic and tested only on shorter-horizon problems. The scenarios addressed in the experiments are limited in complexity, lacking tasks that demand multi-step, long-horizon planning (e.g., removal of obstructing objects or inter-robot handovers). Expanding the evaluation to more complex, long-horizon planning tasks would better demonstrate GRN's practical utility in handling realistic TAMP challenges.\n\n3. **Improvement for TAMP**: Since the paper do not include a full-fledge TAMP solver, it remains unclear how it improves traditional/existing solvers. It'd have been really useful to see how many geometrical computations were skipped (so computational time was gained) when GRN was used vs. not used. Inference time comparison to some of the baselines is not fair, as they use image-based input while this work relies on a significantly smaller full-state information of the environment. \n\n4. **Incremental Advancement and Limited Impact of IK Infeasibility Module**: While GRN introduces small adjustments on Edge-Featured Graph Attention Network (EGAT), these additions are incremental and rely heavily on prior EGAT methods. Furthermore, as shown in Table 3, the IK infeasibility module does not significantly impact overall performance. Adding a deeper analysis or improvement in these areas could strengthen the contribution. It seems like GO by itself is already a good estimator of feasibility. This could also be due to problem settings where there might not be (enough) cases when there is no grasp obstruction IK was still infeasible (e.g., due to reachability). A more nuanced analysis of scenarios where IK feasibility alone might be crucial (e.g., environments with tighter spaces or more complex robot configurations) that would help clarify when this module provides substantial benefits.\n\n5. **Restricted Grasp Representation**: The model simplifies grasp feasibility by considering only five grasp types, which may limit its effectiveness in real-world settings where grasp variety and adaptability are crucial. Even for grasping box-shaped objects requires 24 (or 20 if it lies flat on a surface) different configurations with a parallel jaw gripper, much higher than 5 as used in this work. Exploring a more flexible grasp representation that could handle diverse object shapes and placements would make the model more versatile for practical robotics applications.\n\n6. **Limited Interpretability Support**: While the authors claim that GRN allows interpretation of feasibility (or infeasibility) of actions, this claim lacks follow-up discussion or specific experimental support. Including experiments or qualitative analysis to illustrate interpretability (e.g., showing how grasp obstruction information directly affects planning decisions) would make this feature more convincing and actionable. \n\n7. **Clarity and Organization of Paper Structure**: The organization could be improved for readability and logical flow. For example, Figure 2 is never referenced in the text, and Figure 1, which appears on page 3, is not mentioned until Section 6.4 on page 10. Figures in the Appendix (e.g., Figures 7 and 8) are not referenced or explained, leaving the reader without context for understanding their relevance."
+        },
+        "questions": {
+          "value": "I've listed my main concerns under _weaknesses_ section, and here are some further questions (some overlapping with the points above):\n\n- **Self-loop Edge Representation in 4.1**: What is the rationale for using the self-loop edge to store IK feasibility instead of treating it as a node feature? How does this choice affect the overall model performance or its ability to generalize to unseen environments?\n\n- **Effectiveness and Necessity of the IK Module**: In the ablation study (Table 3), the results show minimal difference between the full model and the one without the IK module. Given this, is the IK module truly necessary? What are the specific cases where IK adds value? Also, could you provide the inference time for the IK module to understand its overhead?\n\n- **Access Task Success Rate in Section 6.4**: The success rate for the Access task in Table 5 is slightly lower than Bouhsain et al. (2024). What are the main reasons for this reduction? Are there particular scenarios where GRN struggles, or is this a result of experimental variance?\n\n- **Inference Time in Table 5**: Could you provide more detailed inference times for Table 5, including how the times break down between GRN predictions and geometric planning? Understanding the computational cost of each component would provide a clearer picture of where time savings are realized.\n\n- **Handling Dynamic Scenes**: The current assumptions restrict the model to static scenes, which is not always practical in real-world tasks. How would this approach be extended to handle dynamic environments?\n  \n- **Real-world Evaluation of Long-horizon Tasks**: The paper would benefit from showing how GRN scales to more challenging multi-step tasks, such as multi-robot collaboration or handling non-prehensile manipulation. Can the authors comment on future steps for validating GRN on these scenarios?\n\n- **Simplified Grasp Types**: The use of only five grasp types is limiting. Are there plans to extend the grasp representation, or can the authors justify why five types were sufficient for the tasks tested in this paper?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "b38m95GMVt",
+      "forum": "ajxAJ8GUX4",
+      "replyto": "ajxAJ8GUX4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_LeQs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_LeQs"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10928/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730731530912,
+      "cdate": 1730731530912,
+      "tmdate": 1733201665959,
+      "mdate": 1733201665959,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a graph neural network model for efficient Task and Motion Planning (TAMP). It uses a scene graph to represent 3D environments, incorporating Inverse Kinematics (IK) and Grasp Obstruction (GO) modules. Experiments show its superiority over state-of-the-art methods in accuracy, generalization, and speed. It reduces the reliance on computationally expensive geometric planners while remaining robust across diverse robots and complex scenes."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. It incorporates explainable modules within the GNN, such as inverse kinematics and grasp obstruction estimations, to predict feasibility. This interpretability enhances decision-making by providing insights into why certain actions are infeasible.\n\n2. Experiments demonstrate that GRN significantly lowers computational costs compared to traditional geometric planners, making it a more efficient solution for real-time TAMP applications."
+        },
+        "weaknesses": {
+          "value": "1. The method's reliance on simplified bounding box representations and discrete grasp feasibility may limit its effectiveness in real-world TAMP problems, especially in dynamic, cluttered environments with irregular objects or sensor noise.\n\n2. The method only assesses discrete feasibility without motion planning, restricting its ability to handle complex cases where motion feasibility [1] is crucial. \n\n[1] Scaling Multi-Modal Planning: Using Experience and Informing Discrete Search"
+        },
+        "questions": {
+          "value": "1. How would the performance of GRN be affected if the Inverse Kinematics (IK) and Grasp Obstruction (GO) modules were replaced with traditional methods, such as standard inverse kinematics solvers or simpler distance-based obstruction checks? Specifically, how would this change impact prediction accuracy, interpretability, and computational efficiency in various environments?\n\n2. What is the maximum level of environmental complexity that GRN can handle effectively? For example, how many fixed nodes or objects can it support while maintaining accuracy and efficiency? Could GRN scale to environments with thousands of nodes, akin to point cloud representations, and still perform well in highly cluttered scenes?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QhtxzDAmIb",
+      "forum": "ajxAJ8GUX4",
+      "replyto": "ajxAJ8GUX4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_edpJ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_edpJ"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10928/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730703487371,
+      "cdate": 1730703487371,
+      "tmdate": 1731428576200,
+      "mdate": 1731428576200,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces Geometric Reasoning Networks (GRN), a GNN model for predicting action and grasp feasibility. Technical Innovations of the paper includes:\n- Novel scene representation using directed graphs\n- Edge-Enhanced Graph Attention Network (EGAT) that leverages both node and edge features\n- Ability to explain why actions are infeasible, enabling more efficient planning"
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. Outperforms state-of-the-art methods in both action and grasp feasibility prediction\n2. Lower inference time compared to traditional geometric planning\n3. Generalization to more complex environments and different robot types\n4. Writing is very clear and detailed"
+        },
+        "weaknesses": {
+          "value": "1. Some details for the experiment setting needed to be discussed further to correctly evaluate the approach. See the questions."
+        },
+        "questions": {
+          "value": "1a. How imbalanced is the dataset? Is it nearly composed of 50% feasible cases and 50% infeasible cases? It would be appreciated if some ratio of the dataset could be shared as a table.\n\n1b. Since RRT is a random algorithm, I think it doesn't necessarily mean one task is truly infeasible, if RRT couldn't generate a plan. What is the definition of the feasibility in this paper's scope?\n\n2. Regarding training, why is pre-trained needed before jointly fine-tuning? Was there any training instability if we directly train all the modules?\n\n3. The generalization experiment is interesting. What I'm expecting is that the graph representation should be powerful enough to achieve a significantly better generalization. However, it seems that the MLP method is also good enough to generalize to 20 obstacles. Is there any specific reason why this is the case? Or are we also facing the imbalanced dataset issue here? Sampling a feasible case for 20 obstacles sounds challenging, right?\n\n4. I am not very familiar with TAMP problem. Just as a discussion, in general, when would a learning-based feasibility checker be preferred compared to a learning-based end-to-end planner, that directly generates a plan? And when vice versa?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "u7aFKw2RAC",
+      "forum": "ajxAJ8GUX4",
+      "replyto": "ajxAJ8GUX4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_FvER"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_FvER"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10928/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730409839392,
+      "cdate": 1730409839392,
+      "tmdate": 1732561048595,
+      "mdate": 1732561048595,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes to use GNN-based methods to predict action and grasp feasibility, which can speed up the geometric planner in task and motion planning. Furthermore, the authors propose to predict the inverse kinematics feasibility and grasp obstruction to improve the interpretability. Through quantitative and qualitative experiments, the authors verify the effectiveness of the proposed approach."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1: This paper is well-motivated. The efficiency of task and motion planning is a significant issue and how to improve it is an important research question. \n\n2: Predicting geometric dependencies and feasibility with a graph neural network makes sense to me. \n\n3: This paper contains an extensive experiments section and compares the method to several baselines, which is nice. \n\n4: The paper shows some real-world demos."
+        },
+        "weaknesses": {
+          "value": "1: My first concern is the limited discussion and comparison to related works in geometric feasibility reasoning [1, 2, 3] and graph neural networks in task and motion planning [4, 5, 6]. In particular, [2] also uses feasibility-related predicates to improve the efficiency of the task planning. \n\n[1]: K. Lin, C. Agia, T. Migimatsu, M. Pavone, and J. Bohg. Text2motion: From natural language instructions to feasible plans. Autonomous Robots, 47(8):1345–1365, 2023.\n\n[2]: Y. Huang, C. Agia, J. Wu, T. Hermans, and J. Bohg. Points2Plans: From Point Clouds to Long-Horizon Plans with Composable Relational Dynamics, ArXiv, 2024. \n\n[3]: C. Agia, T. Migimatsu, J. Wu, and J. Bohg. Stap: Sequencing task-agnostic policies. In 2023 IEEE International Conference on Robotics and Automation (ICRA), pages 7951–7958. IEEE, 2023.\n\n[4]: Planning for Multi-Object Manipulation with Graph Neural Network Relational Classifiers. In IEEE International Conference on Robotics and Automation (ICRA), 2023.\n\n[5]: H. Shi, H. Xu, Z. Huang, Y. Li, and J. Wu. Robocraft: Learning to see, simulate, and shape elastoplastic objects in 3d with graph networks. The International Journal of Robotics Research. \n\n[6]: H. Chen, Y. Niu, K. Hong, S. Liu, Y. Wang, Y. Li, and K. R. Driggs-Campbell, “Predicting object interactions with behavior primitives: An application in stowing tasks,” in 7th Annual Conference on Robot Learning, 2023.\n\n2: The videos and figures for this paper are hard to follow. For example, in Figure 1, I can only understand green represents feasible and red represents feasible. However, there are other colored objects like blue ones. Furthermore, why robots are sometimes grey and sometimes red?  \n\n3: This paper makes several strong assumptions including known object shapes and poses, and all objects remain static except the robot grasps them."
+        },
+        "questions": {
+          "value": "1: how would your proposed approach compare to related works in geometric feasibility reasoning [1, 2, 3] and graph neural networks in task and motion planning [4, 5, 6]? \n\n2: Is there any noise when you estimate the object's shape and pose in the real world? If there is noise, would your proposed approach be robust to the noise? \n\n3: Could you train one more for all robots? Training one model for each robot limits the generalization ability of your proposed system.  \n\n4: For the Panda-3D-4 dataset, the MLP achieves a 0.558 F1 score but the Panda-3D-20 achieves a 0.609 F1 score, why does MLP perform better in a more complex dataset? This is weird. \n\n5: In Table 5, why does your proposed approach perform worse than the baseline in the “Access” problem? Why does the baseline always achieve a 100% success rate? I guess your task is too easy."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "B05laaJQGc",
+      "forum": "ajxAJ8GUX4",
+      "replyto": "ajxAJ8GUX4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_WQrW"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10928/Reviewer_WQrW"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10928/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729721146839,
+      "cdate": 1729721146839,
+      "tmdate": 1732600178103,
+      "mdate": 1732600178103,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes GRN, an edge-aware GNN that predicts action/grasp feasibility together with auxiliary IK-feasibility and pairwise grasp-obstruction quantities. It reports strong synthetic classification results and promising planning demonstrations, but the methodological novelty is moderate and the evidence does not yet establish broad TAMP effectiveness or real-world generalization.",
+        "strengths": [
+          "The decomposition into IK feasibility, grasp obstruction, and final feasibility is intuitive and useful; ablations show that obstruction supervision, EGAT, augmentation, and staged training contribute to performance (pp. 5–6, 9).",
+          "GRN substantially outperforms the implemented image- and graph-based baselines across three datasets while remaining fast, and it generalizes reasonably from four to 10–20 movable objects (pp. 8–10).",
+          "The appendices provide useful implementation, data-generation, robustness, and qualitative intervention details, including tests under pose/dimension noise (pp. 14–16, 20–24)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the core method combines standard MLP auxiliary predictors, privileged geometric supervision, and an existing EGAT architecture; the paper does not clearly isolate a broadly novel learning principle beyond this task-specific composition (pp. 5–6).",
+          "Most evidence comes from procedurally generated box scenes labeled by one planning stack. Results lack multiple training seeds, uncertainty tests, and evaluation on independently sourced environments; real-world evidence is only two qualitative executions with known shapes (pp. 7–10, 15–19).",
+          "The planning claims are under-supported: the planner is evaluated on only two problem families, drops to 90% success on Access, does not clearly specify blocker destination selection or state-dependent re-querying, and ignores the motion-planning failure mode acknowledged by the authors (pp. 9–10, 17, 19)."
+        ],
+        "score_rationale": "The work is clear, practical, and empirically promising, especially for scaling feasibility prediction to larger synthetic scenes. However, its incremental architecture and limited, largely synthetic validation leave substantial uncertainty about robustness and end-to-end TAMP impact, placing it marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes GRN, a scene-graph GNN that predicts action/grasp feasibility while explicitly estimating IK feasibility and pairwise grasp obstruction. It reports strong synthetic benchmark gains and substantial planning-time reductions, but the methodological novelty is moderate and the evidence does not yet substantiate the broad generalization and TAMP claims.",
+        "strengths": [
+          "The decomposition into IK, obstruction, and final feasibility modules is intuitive, computationally efficient, and provides actionable intermediate outputs (pp. 4–6).",
+          "GRN consistently and substantially outperforms the evaluated CNN/GNN baselines, including when testing on scenes with 10–20 rather than 4 movable objects (pp. 8–10).",
+          "The paper includes useful ablations, runtime decomposition, noise tests, and limited robot executions, giving a broader evaluation than prediction accuracy alone (pp. 9, 14, 18–22)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the main model combines existing MLP auxiliary predictors with an existing EGAT, while the claimed interpretability largely consists of supervised predictions of planner-generated factors; its faithfulness is supported only by a qualitative example (pp. 5–6, 20–21).",
+          "Most evidence comes from box-only synthetic scenes generated by one procedure and labels from one planner; test scenes with more objects still use the same generator. The representation retains only bounding boxes and yaw, weakening claims about diverse shapes and broad real-world generalization (pp. 14–16, 22).",
+          "The downstream TAMP evidence is small and incomplete: Table 5 uses only 10 instances per problem without variability, Access loses success rate, real-world results lack quantitative trials, and the simple planner does not address general goals or motion-planning failures—a stated model limitation (pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "The strong benchmark improvements and efficient, useful factorization make the work promising. However, the contribution is largely an application-oriented combination of known components, and the narrow synthetic distribution plus limited planning and real-world evaluation leave central generalization and TAMP claims insufficiently supported. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes GRN, an EGAT-based predictor that decomposes manipulation feasibility into supervised IK-feasibility and pairwise grasp-obstruction estimates. It is a useful, reasonably sound approach with strong synthetic results, but its novelty is primarily architectural integration and the evidence for general TAMP or real-world effectiveness remains limited.",
+        "strengths": [
+          "The decomposition produces actionable intermediate predictions and is supported by targeted ablations: grasp-obstruction supervision accounts for most of the improvement, while EGAT, augmentation, and staged training provide additional gains (pp. 8–9).",
+          "GRN substantially outperforms the implemented image and graph baselines across Panda, tabletop, and PR2 datasets while retaining low reported inference cost (pp. 8–9).",
+          "Evaluation includes extrapolation from 4 to 20 movable objects, input-noise tests, planning examples, and two physical-robot demonstrations (pp. 9–10, 19–22)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the main model combines standard MLP auxiliary heads, supervised geometric labels, and an existing EGAT architecture; the interpretability is explicit prediction of privileged annotations rather than a new explanatory principle (pp. 5–6).",
+          "Evidence is dominated by procedurally generated, box-shaped scenes annotated by the same planning stack used for verification. Complex-shape and real-world claims rely on a few qualitative executions without quantitative trials, broader distribution shifts, or comparisons (pp. 10, 15–19).",
+          "The TAMP evaluation is narrow and under-specified. Algorithm 1 reuses predictions from the initial state, lacks explicit destination selection, state updates, or cycle handling, and is evaluated on only 10 instances per problem; it also reduces Access success from 100% to 90% (pp. 9–10, 17)."
+        ],
+        "score_rationale": "The work is practically motivated, technically plausible, and empirically strong on its synthetic benchmark, warranting marginal acceptance. However, incremental methodological novelty and limited quantitative evidence for full TAMP and real-world generalization prevent a stronger score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes GRN, an edge-aware GNN that predicts action/grasp feasibility together with IK feasibility and per-object grasp obstruction. Large synthetic evaluations show strong predictive performance and scalability, but the planning evidence and claimed interpretability are not yet sufficiently rigorous, and the presented planner pseudocode appears inconsistent with the reported behavior.",
+        "strengths": [
+          "GRN substantially outperforms the evaluated image- and graph-based baselines across three datasets, with useful ablations separating obstruction, IK, augmentation, and EGAT contributions (pp. 8–9).",
+          "The model is efficient and generalizes reasonably from four-object training scenes to scenes with 10–20 movable objects (pp. 8–10).",
+          "Auxiliary IK and obstruction outputs are actionable and more informative than a bare feasibility score; noise tests and qualitative counterfactuals provide some supporting evidence (pp. 20–22)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 appears technically incomplete: after recursively clearing blockers it returns the blocker subplan without appending the desired object's move, and it recursively reuses predictions from the initial scene rather than recomputing them after state changes (p. 17). This conflicts with the multi-action rollouts and needs clarification or correction.",
+          "The end-to-end TAMP evaluation is narrow: only two problem families, 10 instances each, one prior planner baseline, and anecdotal real-robot executions; the GRN planner also loses success rate on Access (pp. 9–10, 18–19). There are no uncertainty estimates or broader comparisons against learned TAMP heuristics.",
+          "Novelty is moderate—primarily combining a scene graph/EGAT with supervised IK and pairwise obstruction auxiliary heads—and the representation is strongly restricted to bounding boxes, yaw-only poses, five axis-aligned grasp classes, known geometry, and mostly synthetic box scenes; motion-planning failures are explicitly not modeled (pp. 4–6, 10, 15–17)."
+        ],
+        "score_rationale": "The predictive results are strong and the auxiliary geometric outputs are practically useful, supporting borderline acceptance. However, the apparent planner-algorithm inconsistency is a significant soundness concern, while limited end-to-end evaluation and restrictive assumptions weaken the broader TAMP claims. I therefore rate it marginally below acceptance, with some uncertainty because the implementation may differ from the flawed pseudocode."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes GRN, an edge-aware GNN that predicts action/grasp feasibility together with IK feasibility and pairwise grasp-obstruction ratios. The formulation is clear and performs strongly on the authors’ synthetic benchmarks, but the architectural novelty is incremental and the evidence for general TAMP effectiveness and real-world robustness remains limited.",
+        "strengths": [
+          "Strong predictive results across Panda, tabletop, and PR2 datasets, with consistent gains over several adapted baselines and useful ablations isolating obstruction prediction, data augmentation, and EGAT (pp. 8–10).",
+          "The explicit IK and pairwise obstruction outputs are actionable and more informative than a single feasibility score; their predictive accuracy and response to controlled scene modifications are demonstrated (pp. 9, 20–21).",
+          "The paper evaluates scaling to 10–20 movable objects, input noise, runtime, and two robot embodiments, while providing substantial implementation and data-generation detail (pp. 9–10, 14–16, 22)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the core method combines standard MLP auxiliary predictors with an existing EGAT architecture and a compact bounding-box scene graph; the main contribution is task-specific decomposition rather than a fundamentally new learning method (pp. 4–6).",
+          "The central TAMP evidence is weak: integration is explicitly outside scope, comparison covers only two problem families with ten instances, and the simple planner reuses predictions from the initial state without clearly updating the scene after moves or specifying destination selection (pp. 9–10, 17).",
+          "Evaluation is dominated by procedurally generated box scenes and labels from one planning pipeline. Real-world results are qualitative single rollouts, and limitations include known geometry/poses, five axis-aligned grasp classes, yaw-only orientation, bounding-box shape loss, and poor handling of motion-planning failures (pp. 3–4, 10, 15–19)."
+        ],
+        "score_rationale": "The auxiliary geometric predictions are practically useful and the synthetic results are convincing, placing the work near the acceptance boundary. However, incremental methodological novelty and insufficiently rigorous end-to-end TAMP/real-world evaluation prevent a clear acceptance recommendation; uncertainty remains about performance beyond the narrow generated distribution."
+      }
+    }
+  ]
+}

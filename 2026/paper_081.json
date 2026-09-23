@@ -1,0 +1,214 @@
+{
+  "year": 2026,
+  "package_id": "paper_081",
+  "paper_id": "Z14gV0qz5r",
+  "number": 19994,
+  "title": "Quantization-Enhanced HNSW for Scalable Approximate Vector Search",
+  "authors": [
+    "Dinesh Kumar Koilada"
+  ],
+  "primary_area": "infrastructure, software libraries, hardware, systems, etc.",
+  "keywords": [
+    "Approximate Nearest Neighbor",
+    "Hierarchical Navigable Small Word(HNSW)",
+    "Vector Quantization",
+    "Locally Adaptive Quantization(LVQ)",
+    "Vector Search",
+    "Large Language Models",
+    "Retrieval-Augmented Generation(RAG)",
+    "Scalable Indexing",
+    "Memory-Efficient Search",
+    "Low-Latency Vector Databases"
+  ],
+  "forum_url": "https://openreview.net/forum?id=Z14gV0qz5r",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    0,
+    0
+  ],
+  "human_mean_rating": 0.6666666666666666,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "AaUV2R3yQQ",
+      "forum": "Z14gV0qz5r",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19994/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761957998570,
+      "tmdate": 1762932897732,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "PifQf70EeW",
+      "forum": "Z14gV0qz5r",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19994/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761971923639,
+      "tmdate": 1762932896873,
+      "content": {
+        "rating": {
+          "value": 0
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "ZCE71PuGFX",
+      "forum": "Z14gV0qz5r",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19994/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762732398614,
+      "tmdate": 1762932896462,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper applies per-dimension percentile clipping to 8-bit scalar quantization within HNSW and reports favorable memory/throughput results on SIFT1M. However, the method is only lightly novel, the proposed distance computation appears technically incorrect or materially underspecified, and the single-dataset evaluation is insufficient to substantiate the claims.",
+        "strengths": [
+          "The motivation—reducing HNSW vector-storage cost while limiting outlier-induced quantization error—is clear, and the clipping rule is simple to implement (pp. 1–2).",
+          "The paper reports a direct min-max-versus-clipping ablation with a large Recall@1 difference, which supports the relevance of clipping on SIFT1M (pp. 4–5).",
+          "It provides basic construction/search hyperparameters and reports memory, recall, latency, and throughput (pp. 4 and 7)."
+        ],
+        "weaknesses": [
+          "The distance formulation is unsound or incomplete: per-dimension affine scales differ, yet Algorithm 1 applies ordinary integer L2 without the scale-squared weights needed to approximate original-space L2. Moreover, saturated unsigned subtraction is one-sided, and `maddubs_epi16` does not straightforwardly square arbitrary uint8 differences as claimed (pp. 2–3).",
+          "Evidence is restricted to SIFT1M on one machine, with no distribution-diverse or modern embedding datasets, repeated trials, error bars, build-time measurements, or detailed implementation disclosure. Baseline fairness is unclear because FAISS uses HNSW32 while the main LAVQ setting uses M=16 (pp. 4 and 7).",
+          "Several claims and descriptions conflict: the abstract claims 3.8× memory reduction while Table 1 shows 3× total RAM; Figure 2 is described as varying M, whereas the appendix says recall–QPS curves vary efsearch; and Algorithm 1's termination condition has an empty body (pp. 1, 3–5, and 7)."
+        ],
+        "score_rationale": "The percentile-clipping idea is plausible but incremental, and the reported SIFT1M results are not enough for ICLR-level validation. More importantly, the apparent metric-scaling and SIMD-kernel errors undermine technical soundness and make the headline speed/recall results difficult to trust. I therefore rate it a clear reject, with slight uncertainty because source code could conceivably contain corrections absent from the manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes per-dimension 1st/99th-percentile clipping for uint8 HNSW storage and an AVX2 distance kernel. Although the goal is practically relevant, the method is only a modest variant of standard scalar quantization, and substantial technical and experimental problems leave the reported gains unsubstantiated.",
+        "strengths": [
+          "Targets an important memory/throughput bottleneck in graph-based vector search and presents a simple, implementable clipping idea (pp. 1–2).",
+          "Reports memory, recall, and single-thread throughput together, including a direct min-max versus clipping ablation (p. 4).",
+          "Acknowledges distribution drift as a limitation and provides basic HNSW hyperparameters (pp. 5, 7)."
+        ],
+        "weaknesses": [
+          "The distance computation appears technically incorrect or seriously underspecified: per-dimension quantization ranges require dimension-specific squared-distance weights to approximate float L2, but Algorithm 1 describes plain integer L2. Moreover, the claimed use of unsigned saturated subtraction and maddubs_epi16 does not by itself compute general squared uint8 differences, and processing 32 dimensions “in a single CPU cycle” is implausible (pp. 1–3).",
+          "The evidence is far too narrow: only SIFT1M is tested, with no modern embedding, inner-product/cosine, distribution-shift, percentile, build-time, or statistical analyses. Important reproducibility details are absent, and Figure 2 is described as varying M while the appendix says efsearch generated the curves (pp. 4–5, 7).",
+          "Baseline fairness and reported claims are inconsistent. The FAISS baseline uses HNSW32 while the proposed default uses M=16, yet graph structures are called identical; no matched-parameter or matched-recall comparison is established. The abstract claims 3.8× memory reduction, whereas Table 1 gives 576/192=3×, and the novelty over established percentile/clipped scalar quantization is not demonstrated (pp. 1, 4, 7)."
+        ],
+        "score_rationale": "This is a reject well below the acceptance boundary. The practical motivation and preliminary SIFT1M result are useful, but low novelty, a potentially invalid distance/kernel formulation, unfair or unclear comparisons, internal inconsistencies, and validation on only one legacy benchmark prevent confidence in either the technical correctness or generality of the central claims."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The manuscript proposes per-dimension 1st/99th-percentile clipping for 8-bit HNSW vectors plus an AVX2 distance kernel. Although practically motivated, the method is a modest robust-scaling heuristic, and central algorithmic and experimental issues prevent the reported gains from supporting the claims.",
+        "strengths": [
+          "The motivation—reducing HNSW vector memory while limiting outlier-induced quantization error—is clear, and the paper provides an intuitive illustration (p. 2).",
+          "The comparison between naive min–max quantization and clipping is directionally useful, with a large reported Recall@1 difference (pp. 4–5).",
+          "The manuscript reports memory, latency, throughput, and recall and includes basic HNSW hyperparameters (pp. 4, 7)."
+        ],
+        "weaknesses": [
+          "The stated distance computation appears technically incorrect: per-dimension quantization uses different scales, yet Algorithm 1 applies an unweighted integer L2 distance, which changes the original Euclidean metric unless squared scale factors are incorporated (pp. 2–3). Moreover, the described `_mm256_subs_epu8`/`_mm256_maddubs_epi16` sequence does not straightforwardly compute exact squared uint8 differences, and overflow/sign issues are not addressed (p. 3).",
+          "Evidence is limited to SIFT1M on one CPU, with no repeated timings, variance, implementation release, broader embedding datasets, clipping-percentile ablation, or controlled comparison at matched recall and graph/search parameters (pp. 4–5, 7). FAISS uses HNSW32 while the main proposed configuration uses M=16, further confounding comparisons.",
+          "Novelty is weak: fixed per-dimension percentile clipping is a standard robust quantization idea rather than a substantively new vector-search method. Reporting is also inconsistent: the abstract claims 3.8× memory reduction, whereas Table 1 shows 576/192=3× total RAM; Algorithm 1 lacks the required break at its termination test; and Figure 2 is described as varying M although the appendix says efsearch was varied to generate the curves (pp. 1, 3–5, 7)."
+        ],
+        "score_rationale": "The practical goal is relevant, but the apparently metric-distorting distance calculation and questionable SIMD description undermine technical soundness. The single-dataset, confounded evaluation is insufficient to validate the large speed and recall claims, while the percentile-clipping contribution is incremental. Some implementation details remain uncertain because no code or lower-level validation is supplied."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes per-dimension 1st/99th-percentile clipping for uint8 scalar quantization inside HNSW, paired with an AVX2 distance kernel. Although the motivation is intuitive, the method is incremental and the sole SIFT1M experiment does not adequately establish correctness, generality, or reproducibility.",
+        "strengths": [
+          "The core intuition—preventing outliers from wasting scalar-quantization resolution—is clear and simply presented (pp. 1–2).",
+          "The paper reports memory, throughput, recall, and a direct clipping-versus-min–max ablation rather than reporting compression alone (pp. 4–5).",
+          "Basic construction and search parameter ranges are supplied in the appendix (p. 7)."
+        ],
+        "weaknesses": [
+          "The distance computation appears technically underspecified or incorrect: per-dimension affine quantization produces different scales, so unweighted L2 distance between uint8 codes is not equivalent to float-space L2, yet no scale weighting or error analysis is given. Moreover, the claimed `_mm256_maddubs_epi16` squaring procedure is not sufficiently explained and is problematic for signed differences and overflow (pp. 2–3).",
+          "Evidence is limited to one old, homogeneous benchmark and one CPU, with no distributional analysis, modern embedding datasets, build-time results, statistical variability, or comparison to stronger quantization/search methods. Key operating points and fairness are unclear: the methods use different HNSW configurations, while `efsearch` is varied but per-result values are omitted (pp. 4–5, 7).",
+          "Novelty and reporting are weak: percentile-clipped per-dimension scalar quantization is a straightforward robust-scaling heuristic without theoretical justification or substantive distinction from existing quantizer training. Claims are also inconsistent—3.8× memory in the abstract versus 3× total RAM in Table 1—and Figure 2 is described as varying M although the appendix says recall–QPS curves vary `efsearch` (pp. 1, 4–5, 7)."
+        ],
+        "score_rationale": "The idea is understandable and potentially useful, but the central distance kernel and metric preservation are not convincingly specified, and the empirical support is far too narrow for the strong speed, accuracy, and scalability claims. Combined with limited novelty and inconsistent experimental reporting, this warrants a strong reject despite uncertainty about whether omitted implementation details might resolve some technical concerns."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes per-dimension 1st/99th-percentile clipping for uint8 scalar quantization within HNSW, together with an AVX2 distance kernel. Although the motivation is clear, the method is incremental and the reported performance is not supported by sufficiently broad, controlled, or technically credible evidence.",
+        "strengths": [
+          "The outlier-induced failure mode of min-max scalar quantization is explained clearly, and percentile clipping is simple to implement (pp. 1–2).",
+          "The paper reports memory, latency, throughput, recall, and a clipping ablation rather than compression alone (p. 4).",
+          "Basic HNSW construction and search parameters are disclosed in the appendix (p. 7)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the central method is global per-dimension percentile clipping, despite the “locally adaptive” name, and the paper does not adequately distinguish it from robust/clipped scalar quantization or establish a new algorithmic contribution (pp. 2–3).",
+          "The SIMD description appears technically incorrect or seriously incomplete: unsigned saturated subtraction is not an absolute difference, and maddubs does not directly square unsigned differences as claimed. The assertion that 32 dimensions are processed in a single CPU cycle and the resulting theoretical speedup analysis are unsupported (p. 3).",
+          "Evidence is inadequate and comparisons are potentially unfair: evaluation uses only SIFT1M, lacks repeated timings/error bars and distribution-sensitive datasets, compares the main M=16 method against FAISS HNSW32, and does not fully specify matched search/construction settings. Figure 2 is described as varying M, while the appendix says the recall–QPS curves vary efsearch (pp. 4–5, 7)."
+        ],
+        "score_rationale": "This is a straightforward engineering idea with an appealing reported trade-off, but the contribution is weakly novel and the core low-level implementation claims are questionable. The single-dataset evaluation, inconsistent experimental description, and unmatched baseline parameters prevent confidence in the 4.4× speed and recall claims; moreover, the abstract’s 3.8× memory claim conflicts with the 3× total-RAM result in Table 1 (pp. 1, 4). Substantial technical correction and much stronger validation are required."
+      }
+    }
+  ]
+}

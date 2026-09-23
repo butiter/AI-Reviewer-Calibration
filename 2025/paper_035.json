@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_035",
+  "paper_id": "U9j40EohfY",
+  "number": 4547,
+  "title": "Adversaries With Incentives:  A Strategic Alternative to Adversarial Robustness",
+  "authors": "Maayan Ehrenberg; Roy Ganz; Nir Rosenfeld",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "adversarial training; strategic classification; adversarial robustness; strategic robustness",
+  "forum_url": "https://openreview.net/forum?id=U9j40EohfY",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    3,
+    6
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a new perspective in adversarial training by proposing that adversaries may act out of self-interest rather than pure malice. Traditional adversarial training models the adversary as seeking maximal harm to the classifier, requiring models to defend against all possible incorrect labels. This approach, while robust, can reduce model generalization and clean data accuracy. Instead, the authors propose a framework called strategic training, which considers opponents who act to maximize their own utility. By assuming that opponents pursue specific goals, this approach allows models to leverage knowledge about opponent incentives, defining an incentive uncertainty set to guide training."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- This paper identifies a favorable interpolation between natural training and adversarial training, in which many meaningful optimization problems with real-world significance are formulated.\n\n- This paper provides a comprehensive investigation into the proposed types of strategic opponents, including adversarial, semantic, anti-semantic, preference ordering, and 1-hot.\n\n- Thorough experiments demonstrate the gap between strategic attacks and adversarial attacks, as well as the effectiveness of the proposed strategic training method."
+        },
+        "weaknesses": {
+          "value": "- Regarding the question of \"How much do we lose by being maximally conservative, and how much can we gain by appropriately reducing uncertainty,\" this paper offers an answer through experimental analysis but lacks a detailed theoretical examination.\n\n- Strategic training requires a predefined utility function or set of utility functions; however, if the utility function is unknown, strategic training cannot proceed.\n\n- (Minor) A typo in Figure 1: \"preferecnce\" should be corrected to \"preference.\""
+        },
+        "questions": {
+          "value": "Is it possible in practice to estimate the opponent’s utility function based on some information such as historical attack data from opponents?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "T9codwbxVx",
+      "forum": "U9j40EohfY",
+      "replyto": "U9j40EohfY",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4547/Reviewer_CMSm"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4547/Reviewer_CMSm"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4547/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730468864578,
+      "cdate": 1730468864578,
+      "tmdate": 1731428164842,
+      "mdate": 1731428164842,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper considers a new adversarial scenario where an attacker has a non-uniform preference for target classes. It introduces a new adversarial training method, named strategic training, designed specifically to defend against such targeted attacks. It claims that prior knowledge of the attacker’s preferences can enhance both clean accuracy and strategic adversarial accuracy."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "- The paper is well-written and clearly formalizes the proposed framework."
+        },
+        "weaknesses": {
+          "value": "- The proposed scenario seem impractical, as it is challenging for a defender to anticipate an attacker’s intent in advance. Additionally, an attacker’s preferences may shift over time, and there can be multiple attackers with varying preferences. This is why most work on adversarial robustness assumes a uniform preference among attackers.\n- Although the proposed scenario is novel, the framework and its results seem straightforward. Constraining the attacker’s search space is expected to yield higher clean accuracy, reflecting the fundamental trade-off between accuracy and robustness.\n- The results in Table 1 appear inconsistent and unreliable. In the GTSRB experiment, strategically trained VGG and ResNet18 models achieve higher adversarial accuracy than standard adversarially trained models. This suggests that the evaluation method may be flawed; the authors should consider using stronger attack algorithms, such as AutoAttack [1]. Using a 20-step PGD attack is an outdated evaluation approach, more commonly seen in studies from 2018.\n\n[1] Francesco Croce, Matthias Hein, Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks, ICML 2020"
+        },
+        "questions": {
+          "value": "See the weaknesses above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "XPPTehL5Fe",
+      "forum": "U9j40EohfY",
+      "replyto": "U9j40EohfY",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4547/Reviewer_7Lyq"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4547/Reviewer_7Lyq"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4547/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730022816739,
+      "cdate": 1730022816739,
+      "tmdate": 1731428164983,
+      "mdate": 1731428164983,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies *strategically robust learning*, which fills the gap between adversarial learning and vanilla learning nicely. Specifically, the problem formulation is done in such a way that generalizes both cases. Extensive experiments are conducted to empirically verify the effectiveness of the proposed model and demonstrate the advantage of considering such strategic opponent scenarios instead of blindly chasing for the worst-case guarantees."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "Overall,\n1. Well-motivated research design, which fills the gap between the two extreme spectrums of adversarial training nicely.\n2. Clear formulation for most parts of the presentation. \n3. Extensive experiments that cover a wide range of concerns. Each experiment is also well-motivated."
+        },
+        "weaknesses": {
+          "value": "1. It seems like although we consider the set of all possible utilities to be $\\\\Lambda = [0, 1]^{K \\\\times K}$, the discussion is tailored towards $\\\\{0, 1\\\\}^{K \\\\times K}$ instead. It is not immediately clear that all the discussions and analysis will follow through within for the more general $\\\\Lambda$. I'm just curious whether it is possible to consider other than $0$-$1$ utilities in the experiment, since some of the categories, e.g., preferences, will make more sense for the case of $[0, 1]$ utilities.\n2. Little emphasis on the algorithm description makes some of the claims not convincing. For example, what is the exact algorithm Line 364 referring to, i.e., \"solving $\\\\max_u$ independently for each row $u(y, \\\\cdot)$\"? What is the advantage in terms of time complexity when using this algorithm? This is crucial and should not be omitted since otherwise, as mentioned in Line 363, the runtime will scale with $|U|$.\n3. Perhaps out-of-scope, but it will be nice to see some connection between the existing theory for adversarial training with this setting: how do they generalize, and how do they fail to generalize? The lack of (can be light) theoretical discussions makes the discussion a bit unsatisfying."
+        },
+        "questions": {
+          "value": "See Weaknesses. Additionally,\n1. I found that Figure 1 is not very clear. Some explanations are needed for the meaning of (faded) arrows and such.\n2. It's not entirely clear upon reading Section 4.2 how one will solve Eq. (5), or Eq. (4) given a strategic opponent with utility $u$. Without briefly stating the strategy, the results are reported and I think it would help to have some pointers to Section 5 saying that the results are obtained based on Section 5.1 (I suppose).\n3. What does Line 360 mean exactly? More explanation is needed for how $\\\\hat{\\\\delta}_{y'}$ is defined.\n4. Line 451, where the terms \"well-specified\" and \"misspecified\" are unclear in this context.\n\nSome minor suggestions in writing:\n1. Line 18, \"incentive uncertainty set.\" instead of 'incentive uncertainty set'. Similarly, Line 82 'everything'. to \"everything.\", etc. \n2. Line 236, $u^{\\\\text{adv}}$ appears without a definition.\n3. Line 266 and 267, it's unclear to me what $\\\\mathrm{test}(f_{\\\\text{train}})$ and $\\\\mathrm{clean}(f_{\\\\text{adv}})$ stand for without looking at the next paragraph.\n\n>I would be happy to raise scores once these are answered and addressed."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1uHsJM5Vfz",
+      "forum": "U9j40EohfY",
+      "replyto": "U9j40EohfY",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission4547/Reviewer_CujN"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission4547/Reviewer_CujN"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission4547/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729782372751,
+      "cdate": 1729782372751,
+      "tmdate": 1731428165155,
+      "mdate": 1731428165155,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper reframes adversarial robustness as defense against utility-maximizing, multi-target opponents and trains over an incentive uncertainty set. This is an appealing perspective with broad experiments, but the proposed strategic objective is not sufficiently well-defined or convincingly evaluated to support the paper’s robustness claims.",
+        "strengths": [
+          "The incentive-set formulation provides a clear conceptual interpolation between clean and fully adversarial training (pp. 5–7).",
+          "Experiments span several opponent structures, three datasets, and multiple architectures, with generally improved clean and in-set strategic accuracy over vanilla adversarial training (pp. 8–10, 16–22).",
+          "The paper explicitly investigates incentive misspecification and stronger opponents rather than reporting only the favorable known-utility setting (pp. 8–9, 17–18)."
+        ],
+        "weaknesses": [
+          "The core response δ_u is set-valued: when no positive-utility target is reachable, every perturbation has equal utility but can yield different classifier loss. No tie-breaking rule is defined in Eq. (4), while later sections introduce heuristic and differing fallback choices (pp. 4, 7, 21), so the strategic risk and claimed equivalences are not generally well-defined.",
+          "Evidence for robustness relies on a 20-step PGD-style evaluation without reported restarts, convergence checks, or stronger/adaptive attack suites (p. 15). The attack proxy in Eq. (9) need not solve the discrete utility maximization, and surprising results such as CIFAR-100 strategic accuracy greatly exceeding the same model’s clean accuracy warrant stronger validation (p. 16).",
+          "Practical incentive knowledge remains largely assumed: utilities depend on the true label, semantic partitions are hand-designed, and the inference experiment uses synthetic attacks while assuming known k (pp. 4, 14–15, 20). Moreover, evaluation against undefended targets shows substantial losses relative to adversarial training (pp. 17–18)."
+        ],
+        "score_rationale": "The strategic perspective is interesting and empirically promising, but the ambiguity of the best response is a foundational technical issue, and the attack evaluation is too limited to establish the claimed robustness. These concerns outweigh the experimental breadth, placing the work below the acceptance threshold; uncertainty remains because a precise tie-breaking convention and stronger evaluation might materially improve it."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper reframes adversarial robustness as robustness to utility-maximizing, multiclass strategic opponents and trains against an incentive uncertainty set. This is an appealing perspective with broad experiments, but the formalization has consequential response/tie-breaking ambiguities and the empirical evaluation is not sufficiently strong to establish robust gains.",
+        "strengths": [
+          "The incentive-uncertainty-set formulation provides a clear, flexible bridge between clean, targeted, and fully adversarial training (pp. 5–7).",
+          "Experiments cover several incentive structures, datasets, and architectures, with generally improved strategic and clean accuracy over adversarial training (pp. 8–10, 16–20).",
+          "The paper explicitly investigates utility misspecification and adaptive knowledge of undefended targets rather than reporting only the well-specified case (pp. 9, 17–18)."
+        ],
+        "weaknesses": [
+          "A utility best response is generally set-valued: when several perturbations have equal utility, especially after attack failure or under the zero utility, their induced classification losses can differ. The paper imposes heuristic fallbacks without incorporating tie-breaking into the model, so Eq. (5), Eq. (8), and the claimed clean-to-strategic interpolation are not generally justified; preference attacks can even correct errors, as the paper itself notes (pp. 5–7, 18, 21).",
+          "Robustness is evaluated mainly with the authors’ own 20-step PGD-style attack, without restarts, attack convergence checks, or stronger independent/adaptive attack suites. This is particularly concerning because training and evaluation share closely related surrogate attacks (pp. 9, 15, 17).",
+          "The main comparisons lack uncertainty across training seeds and use limited baselines; some settings also change batch size between strategic and adversarial training, while the method is substantially slower (pp. 10, 15–16)."
+        ],
+        "score_rationale": "The strategic framing is useful and moderately novel, and the empirical breadth makes the work promising. However, the undefined strategic response selection undermines central inequalities and the meaning of the reported objective, while the attack evaluation is too weak to verify the robustness claims. These issues place the paper marginally below acceptance, though I am uncertain whether a precise pessimistic tie-breaking formulation and stronger evaluation would resolve them."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes an intuitive strategic reinterpretation of adversarial training, restricting defenses to attacks consistent with an opponent’s presumed incentives. The empirical study is broad and generally supports gains under matched synthetic incentive models, but formal ambiguities and evaluation limitations prevent the evidence from establishing reliable strategic robustness.",
+        "strengths": [
+          "The incentive-uncertainty-set formulation provides a clear, flexible bridge between clean and adversarial training and is conceptually useful (pp. 4–7).",
+          "Experiments cover multiple datasets, architectures, opponent classes, and misspecification settings, with consistent matched-threat gains over adversarial training (pp. 8–10, 16–22).",
+          "The appendices discuss misspecification, informed adversaries, preference utilities, and continuous utilities rather than presenting only favorable known-utility cases (pp. 17–22)."
+        ],
+        "weaknesses": [
+          "The clean ≤ strategic inequality in Eq. 8 is not generally valid: a utility-maximizing response can correct an initially wrong prediction, as the paper itself notes for preference utilities (pp. 7, 18). More broadly, argmax tie-breaking is unspecified, so the strategic response and claimed guarantees can be ill-defined.",
+          "The implementation does not clearly optimize the stated objective for general uncertainty sets: Eq. 7 selects a global utility outside the expectation, while the proposed batch-wise and row-wise maximization requires structural closure assumptions not stated for arbitrary sets, especially globally coupled preference orders (pp. 6–7, 18–19).",
+          "Robustness is evaluated primarily with the authors’ own short PGD-based attacks (20 steps, with no stated restarts or attack suite), often using the same incentive and attack construction as training; thus attack under-optimization and transfer to realistic incentives remain uncertain (pp. 9–10, 15, 17–22)."
+        ],
+        "score_rationale": "The strategic perspective is interesting and the empirical breadth is appreciable, but the contribution is close operationally to class-dependent multi-target adversarial training. A false general inequality, unclear alignment between the minimax objective and optimizer, and insufficiently strong/adaptive robustness validation make this marginally below the acceptance bar."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes replacing an unrestricted adversary with a utility-maximizing strategic opponent and training against an uncertainty set of possible utilities. This is a useful, intuitive reframing, and experiments across several datasets, architectures, and incentive structures show sizable gains when the assumed incentives match evaluation. However, the formal robustness notion is underspecified under utility ties, and the empirical evidence does not establish reliable robustness against the claimed strategic objectives strongly enough for acceptance.",
+        "strengths": [
+          "The incentive-uncertainty-set formulation provides a clear conceptual bridge between clean and adversarial training and supports several interpretable opponent families (pp. 4–7).",
+          "The empirical study is broad, covering known, misspecified, semantic, anti-semantic, preference-ordered, and continuous utilities, with multiple architectures and datasets (pp. 8–10, 16–22).",
+          "The paper directly investigates misspecification and stronger opponents rather than reporting only matched train/test results (pp. 9, 17–18)."
+        ],
+        "weaknesses": [
+          "The strategic response is set-valued whenever several perturbations attain the same utility, especially when no beneficial target is reachable. No tie-breaking or abstention rule is formally specified, so Eqs. (4)–(8) and the claimed equivalence to adversarial robustness are not generally well-defined; the surrogate/default attack choices can materially determine measured accuracy (pp. 4–7, 21).",
+          "Robustness evaluation relies mainly on a custom 20-step PGD-style proxy without multiple restarts, convergence checks, or independent/adaptive attacks. Thus the reported worst-case strategic accuracy is only accuracy against this optimizer, not convincing evidence for the stated worst-case objective (pp. 9–10, 15).",
+          "The practical model assumes utilities depend on the true label and that the attacker knows it, while costs, partial information, and endogenous responses are largely absent. Evidence is restricted to small image benchmarks, and the main comparisons are only clean and standard adversarial training (pp. 4, 14–16)."
+        ],
+        "score_rationale": "The conceptual perspective is novel enough to be interesting, and matched-setting gains are extensive. Nevertheless, ambiguity in the central response definition and insufficiently validated attack evaluation weaken both the theory and the principal robustness claims. I therefore place it marginally below the acceptance threshold, with some uncertainty about whether stronger evaluation would preserve the results."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes replacing an unrestricted adversary with a utility-maximizing strategic opponent and training robustly over an incentive uncertainty set. This is an appealing conceptual bridge between adversarial and strategic classification, but the current technical and empirical support is not yet sufficient for acceptance.",
+        "strengths": [
+          "The incentive-uncertainty formulation is intuitive and offers a useful vocabulary for specifying robustness between clean and fully adversarial regimes (pp. 4–7).",
+          "Experiments cover several architectures, datasets, incentive structures, and misspecification settings, with substantial supplementary analysis (pp. 8–10, 16–22).",
+          "The paper acknowledges misspecification risk and studies mitigation and stronger informed attackers rather than reporting only the favorable known-utility case (pp. 9, 14, 17–18)."
+        ],
+        "weaknesses": [
+          "The claimed clean–strategic–adversarial ordering in Eq. (8) is not generally valid: a utility-maximizing manipulation can correct an initially wrong prediction, and the paper itself reports strategic accuracy exceeding clean accuracy on CIFAR-100 (pp. 7, 16). More generally, Eq. (4) leaves consequential ties between utility-maximizing perturbations unspecified.",
+          "The evaluation relies mainly on short PGD attacks and comparisons only to clean and vanilla adversarial training; it lacks stronger adaptive/robust evaluation and modern accuracy–robustness baselines. Main results also use limited seed reporting and, in one case, method-specific batch sizes (pp. 9–10, 15).",
+          "Most gains arise in synthetic, label-defined incentive structures where the evaluation opponent closely matches the training objective. No realistic deployment task establishes that such utilities are available or stable, while the method assumes access to the true label when generating responses (pp. 4, 8–10)."
+        ],
+        "score_rationale": "The strategic perspective is interesting and the empirical study is unusually broad, but a false central ordering claim, underspecified best responses, and insufficiently rigorous/realistic robustness evaluation make the contribution marginally below the acceptance threshold. I am somewhat uncertain how results would change under stronger adaptive attacks and competitive baselines."
+      }
+    }
+  ]
+}

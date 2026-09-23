@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_039",
+  "paper_id": "8xpR7IXcE8",
+  "number": 5100,
+  "title": "Classroom-Inspired Multi-Mentor Distillation with Adaptive Learning Strategies",
+  "authors": "Shalini Sarode; Muhammad Saif Ullah Khan; Tahira Shehzadi; Didier Stricker; Muhammad Zeshan Afzal",
+  "primary_area": "transfer learning, meta learning, and lifelong learning",
+  "keywords": "Multi-Mentor Knowledge Distillation; Adaptive Learning Strategies; Dynamic Mentor Selection",
+  "forum_url": "https://openreview.net/forum?id=8xpR7IXcE8",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    6,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "after reading the comments from other reviewers and corresponding responses, I would like to keep my initial score due to limited novelty and insufficient experiments.\n\n———— \nThis paper follows a setting in knowledge distillation where there are multiple teacher models involved. Instead of using traditional approach that all teacher models influence the student model, it proposes to first rank the performance and then filter out teacher models that underperform the student one. Afterwards, use a KL divergence driven weight assignment according to the performance gap. \n\nExperiments are conducted on CIFAR100, ImageNet and COCO. However, one thing to notice that on ImageNet and COCO pose estimation tasks, the authors only compare their method with the baseline student method without KD (NOKD)."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "+ The motivation that let more models teach the student model is not novel, but their approach to dynamically rank and select the better teachers per sample seems interesting and novel to me.\n\n+ The paper is clearly written and easy to follow. The figure of motivation clearly shows the differences between their approach with earlier works. \n\n+ Experiments on CIFAR100 are very comprehensive.\n\n+ Ablation studies are complete and cover many aspects of the proposed ClassroomKD."
+        },
+        "weaknesses": {
+          "value": "I have the following concerns and hope to see the response from the authors.\n\n1. How does the ClassroomKD compare to other multiple teachers approaches? For example, [A] proposes a dynamic framework that also learns from multiple teachers and multi-level knowledge. The proposed ranking the best seems very similar to the proposal in [A].\n\n2. While experiments on CIFAR-100 are very comprehensive, the evaluation on ImageNet and COCO pose estimation are not sufficient. Could you clarify the meaning of the AVER performance in the two tables? Additionally, please explain the underlying method used for these experiments.\n\n3. On CIFAR100, the performance gap between the proposed method and others is somewhat marginal. It may be not a good way to evaluate your method on CIFAR100 since it is considered overfitted in current research. Results on larger, more challenging datasets would provide more valuable insights into the effectiveness of your approach.\n \n4. It would be beneficial to include comparisons with at least one state-of-the-art multi-teacher method on larger datasets such as ImageNet or COCO.\n\n\n[A] Liu et al. Adaptive multi-teacher multi-level knowledge distillation. Neuralcomputing"
+        },
+        "questions": {
+          "value": "Please see the above weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "GIrrnIx93O",
+      "forum": "8xpR7IXcE8",
+      "replyto": "8xpR7IXcE8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_yecG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_yecG"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5100/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730788855344,
+      "cdate": 1730788855344,
+      "tmdate": 1733269133670,
+      "mdate": 1733269133670,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents ClassroomKD, a novel multi-mentor knowledge distillation framework inspired by classroom dynamics. It addresses challenges in multi-mentor distillation and consists of a Knowledge Filtering Module and a Mentoring Module. Experiments on multiple datasets show its superiority over existing methods."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The framework's dynamic mentor selection and adaptive teaching strategies are highly innovative. It simulates a classroom environment, a novel approach compared to traditional methods, and effectively solves problems in multi-mentor distillation.\n2. Theories behind the KF and Mentoring Modules are reasonable. The loss function construction is also sound. Experiments on diverse datasets with detailed settings and in-depth result analysis provide strong evidence for the method's effectiveness. It contributes to knowledge distillation research, inspiring future work. Its good performance in computer vision tasks offers practical solutions.\n4. The paper has a clear structure and logical flow. The writing is clear, and figures aid understanding. The appendix enriches the paper."
+        },
+        "weaknesses": {
+          "value": "1. In-depth Analysis of Limitations: The limitations section could be enhanced. For example, more details on challenges in applying to other domains and the impact of framework complexity on performance and tuning difficulties are needed.\n2. Exploration of More Practical Application Scenarios: While successful in computer vision, its potential in other areas like NLP and recommendation systems should be explored to show broader applicability.\n3. Sensitivity Analysis of Hyperparameter Settings: A sensitivity analysis of hyperparameters would help researchers better understand and apply the method.\nOverall, the paper has many strengths but could be improved in the mentioned areas."
+        },
+        "questions": {
+          "value": "see the weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "wrLNGdl1Mb",
+      "forum": "8xpR7IXcE8",
+      "replyto": "8xpR7IXcE8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_6R5A"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_6R5A"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5100/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730687429026,
+      "cdate": 1730687429026,
+      "tmdate": 1731428312355,
+      "mdate": 1731428312355,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work deals with a multi-teacher knowledge distillation method, where the key idea is to assess the fitness of each teacher at individual training sample level, and use that fitness to select the teachers for knowledge distillation in a weighted manner. The proposed method has been evaluated on a number of image classification tasks in comparison to previous methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Clear writing up and presentation.\n\nGood coverage of the literature.\n\nReasonably good experiment design and setup and presentation."
+        },
+        "weaknesses": {
+          "value": "**Novelty**:\n1) This data sample conditioned teacher weighting idea has been proposed in [Ref-A] where even more advanced meta-learning based optimization algorithm was proposed for model training - bilevel optimization algorithm, in addition to other complexity and challenges, like data access to other domains and label scarcity. In general, this proposed work is a subset of Ref-A in techniques.\n- [Ref-A] Wang Z, Ye M, Zhu X, Peng L, Tian L, Zhu Y. Metateacher: Coordinating multi-model domain adaptation for medical image classification. Advances in Neural Information Processing Systems. 2022 Dec 6\n\n2) More justification should be added on why only those mentors/teachers with higher probability estimation on the true class label are selected and activated for distillation, whilst the remaining teachers are not. For example, in cases that the student model makes too confident precision for a specific training sample, those less confident teachers may provide a signal to soften this predictive confidence. This is because, in knowledge distillation, the key knowledge with the teacher is mostly about the class distribution, rather than seeking the maximum of true class probability. Under this consideration, the proposed knowledge filtering design is questionable. \n\n3) Similarly, more discussion and explanation about how Eq (8) represents the performance gap should be made. The similar concern holds here as the above.\n\n**Experiments**:\n1) The performance gap in comparison to previous art knowledge distillation is some limited, mostly within 0.5%. This suggests the benefits of this method is not significant. \n\n**Presentation issues**:\n1) In general, the first appearance of previous work should come with a reference, e.g., no reference for DGKD (Line 50), and no reference for those mentioned methods in Fig 1's caption. The authors need to take a careful global check for this. \n\n2) The two concepts, performance gap (Line 52) and capacity gap (Ling 40), seem mixed and they are not properly defined, discussed and compared in the Introduction. \n\n**Overall**:\nGiven the limited novelty in terms of techniques, lacking of solid design rationales,  and not significant experimental advantage, I do not find enough significance of accepting this work at the current shape. More research works are needed to further enhance it for future submission."
+        },
+        "questions": {
+          "value": "Please check the weaknesses above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LGYMosULLp",
+      "forum": "8xpR7IXcE8",
+      "replyto": "8xpR7IXcE8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_SG8E"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_SG8E"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5100/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730652570750,
+      "cdate": 1730652570750,
+      "tmdate": 1731428312588,
+      "mdate": 1731428312588,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a knowledge distillation framework ClassroomKD to improve knowledge transfer from multiple mentors to a student model by dynamically selecting mentors based on their effectiveness for each data sample. The framework includes a Knowledge Filtering Module, which ranks and activates high-quality mentors, and a Mentoring Module, which adjusts each mentor's influence according to the performance gap with the student. Experiments on CIFAR-100, ImageNet, COCO Keypoints, and MPII Human Pose indicate that ClassroomKD performs competitively with existing methods, suggesting that adaptive mentor selection can enhance knowledge transfer and model performance."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper provides an in-depth analysis of existing methods and highlights their respective limitations.\n2. The proposed framework is effective, and some experimental results look good.\n3. The paper is well-written and easy to understand."
+        },
+        "weaknesses": {
+          "value": "1. In the second section, recent literatures on knowledge distillation from the past two years is limited, and it is recommended to include additional references. For example: [1] Logit standardization in knowledge distillation  [2] Class attention transfer based knowledge distillation.\n2. In Figure 2, based on the article's content, the indicator label for Active mentors should be \"M’\"\n3. According to the results in Table 1, the improvement achieved by the proposed method compared with the single-teacher distillation methods appears modest. Theoretically, the use of multiple mentors should yield a more significant improvement than a single mentor. It is recommended to conduct further experimental analysis to explore this aspect."
+        },
+        "questions": {
+          "value": "Please refer to the Strengths and Weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "DPInQDuc2w",
+      "forum": "8xpR7IXcE8",
+      "replyto": "8xpR7IXcE8",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_gtoW"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5100/Reviewer_gtoW"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5100/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730618375754,
+      "cdate": 1730618375754,
+      "tmdate": 1733213533572,
+      "mdate": 1733213533572,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "ClassroomKD combines batch-dependent mentor filtering, confidence-based loss weighting, and mentor-specific temperatures for offline multi-mentor distillation. The idea is intuitive and evaluated across classification and pose estimation, but central claims do not match the stated method, the algorithm is internally inconsistent, and the evidence does not adequately isolate gains under fair, reproducible comparisons.",
+        "strengths": [
+          "The framework is simple and practically motivated, with ablations attributing most of the CIFAR-100 gain to mentor filtering and a smaller gain to adaptive temperature (PDF pp. 7–9).",
+          "Experiments span CIFAR-100, ImageNet, COCO, and MPII and include heterogeneous mentor/student architectures (PDF pp. 6–9, 14).",
+          "The appendix discloses mentor compositions and costs, and provides qualitative analysis of changing mentor–student confidence gaps (PDF pp. 14, 24–27)."
+        ],
+        "weaknesses": [
+          "The advertised per-sample selection is actually batch-level: true-class probabilities are averaged over the batch before one common mentor set is selected (PDF pp. 4–5). Moreover, a higher true-class probability neither guarantees a correct prediction nor prevents harmful transfer, contrary to repeated claims (PDF pp. 5, 24–26).",
+          "The specification is not technically consistent: Eq. 9 defines temperature as 1 plus the normalized gap times a base temperature, whereas Algorithm 1 omits both the additive 1 and base-temperature factor (PDF pp. 5, 17). The claim that this temperature rule theoretically “slows” learning is also unsupported.",
+          "Evidence is weakened by unfair or limited comparisons: the method uses five extra mentors when compared with single-teacher methods (PDF pp. 6, 14), ImageNet and pose results compare only against naive averaging (PDF p. 7), and there are no repeated-run uncertainties. Baseline values also vary substantially across tables/settings without sufficient controlled explanation (PDF pp. 7, 14, 23)."
+        ],
+        "score_rationale": "The paper offers a plausible engineering combination and encouraging breadth, but novelty over confidence-aware multi-teacher weighting and adaptive-temperature KD appears incremental. More importantly, the batch/sample mismatch, contradictory algorithm, and insufficiently controlled comparisons undermine soundness and reproducibility. I therefore lean reject, while acknowledging uncertainty because corrected implementation details and multi-seed matched baselines could materially improve the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "ClassroomKD combines confidence-based mentor filtering, confidence-weighted losses, and mentor-specific temperatures for offline multi-mentor distillation. The idea is intuitive and evaluated across classification and pose estimation, but the method is incremental and substantial specification and evaluation issues prevent the reported gains from establishing a sound, reproducible advance.",
+        "strengths": [
+          "The framework is simple and practically motivated, with explicit mechanisms for selecting mentors and adapting their influence (pp. 4–5).",
+          "The study covers CIFAR-100, ImageNet, COCO, and MPII, including heterogeneous architectures (pp. 6–9, 14).",
+          "Component and classroom-composition ablations indicate that filtering provides most of the improvement and that mentor diversity can help (pp. 7–10)."
+        ],
+        "weaknesses": [
+          "The central claim of per-sample selection is inconsistent with the method: true-class probabilities are averaged over the batch before ranking, so every sample receives the same active set. Moreover, a mentor can exceed the student's true-class probability while still predicting the wrong class, and the full-distribution KL can then transfer its error; the appendix explicitly acknowledges this case without resolving it (pp. 4–5, 24–26).",
+          "The method is not specified consistently: Eq. 9 defines temperature as 1 plus the normalized gap times the base temperature, whereas Algorithm 1 uses only the normalized gap, omitting both terms. The manuscript also calls normalized confidence a “rank,” creating ambiguity about the implemented objective (pp. 5, 10, 17).",
+          "Evidence is insufficiently controlled: there are no repeated runs or uncertainty estimates; reported standalone accuracies differ between the main tables and mentor-configuration appendix; multi-teacher comparisons use nonstandard and differing mentor sets; and ImageNet/pose results compare mainly against naive averaging rather than strong task-specific baselines (pp. 6–7, 14, 23). Training-time inference overhead from running all frozen mentors is also not meaningfully assessed."
+        ],
+        "score_rationale": "The confidence-gating formulation is plausible and the empirical breadth is useful, but novelty over existing adaptive multi-teacher weighting and temperature methods is modest. More importantly, batch-level rather than sample-level filtering, the unresolved wrong-mentor case, an equation/algorithm mismatch, and weakly controlled comparisons undermine technical soundness and the main empirical claims. These issues warrant rejection despite promising reported CIFAR-100 gains."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "ClassroomKD combines confidence-based mentor filtering, mentor weighting, and adaptive temperatures for offline multi-mentor distillation. The idea is intuitive and evaluated across classification and pose estimation, but methodological inconsistencies and weakly controlled comparisons prevent the reported gains from establishing a sound, clearly novel advance.",
+        "strengths": [
+          "The framework is simple and practically interpretable, addressing negative transfer by activating only mentors whose ground-truth confidence exceeds the student’s (pp. 4–5).",
+          "The evaluation spans CIFAR-100, ImageNet, COCO, and MPII, with heterogeneous mentor/student architectures and mentor-composition studies (pp. 6–9, 14).",
+          "Ablations separately examine filtering and adaptive mentoring, with the filtering module providing the larger reported contribution (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "The central claim of per-sample mentor selection conflicts with the method: Eq. 4 averages ground-truth confidence over the entire batch, yielding one activation decision per model and potentially hiding sample-specific errors (pp. 2, 4–5). Moreover, a confidently wrong mentor can still be selected, which the appendix explicitly acknowledges (pp. 24–25).",
+          "The experimental comparisons are not adequately controlled. ClassroomKD uses up to six pretrained mentors while Table 1 compares it against single-teacher methods; multi-teacher baselines often use unspecified or different mentor sets, and the authors acknowledge their AVER results differ drastically from prior reports (pp. 6–7, 14, 23). ImageNet and pose comparisons include only AVER, and no repeated-run uncertainty is reported despite several small gains (pp. 7, 9).",
+          "The specification is internally inconsistent: the main method defines tau_m = 1 + gap*tau, whereas Algorithm 1 appears to use only the normalized gap, omitting both the offset and base temperature (pp. 5, 17). Claims that temperature smoothing 'slows' teaching and that filtering prevents error accumulation are largely heuristic, without theoretical support or direct error-transfer measurements."
+        ],
+        "score_rationale": "The paper offers a useful incremental combination of known adaptive KD ideas and broad experiments, but its claimed sample-level mechanism is actually batch-level, the algorithm disagrees with the equations, and resource-matched comparisons are insufficient. These issues substantially weaken technical soundness and empirical attribution, placing it below the acceptance threshold; uncertainty remains about whether corrected implementation details or controlled experiments would recover the gains."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "ClassroomKD combines confidence-based mentor filtering, mentor weighting, and gap-dependent temperatures for multi-mentor distillation. The idea is intuitive and evaluated across classification and pose estimation, but methodological inconsistencies and weakly controlled comparisons prevent the reported gains from convincingly establishing a sound, novel advance.",
+        "strengths": [
+          "The framework is simple and practically motivated, with mentor filtering and temperature adaptation explicitly ablated; both improve the reported CIFAR-100 result (pp. 7–8).",
+          "Experiments cover CIFAR-100, ImageNet, COCO, and MPII, including heterogeneous student/mentor architectures, and the appendix documents mentor configurations and parameter counts (pp. 6–9, 14, 27).",
+          "The paper analyzes classroom size and architectural/performance diversity rather than reporting only a single favorable configuration (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The claimed per-sample selection is not implemented by the equations: true-class probabilities are averaged over the entire batch before ranking, so every sample receives the same active mentor set (pp. 2, 4–5). Moreover, confidence is calibration-sensitive and does not ensure that an activated mentor predicts correctly, a failure the appendix itself acknowledges (pp. 24–25).",
+          "The temperature definition is internally inconsistent and therefore not reproducible: Eq. 9 uses 1 + gap × base-temperature, whereas Algorithm 1 omits both the additive 1 and base-temperature factor; plotted peer temperatures also appear to approach zero although Eq. 9 requires temperatures of at least one (pp. 5, 9, 17).",
+          "Evidence for superiority is not sufficiently controlled: no seeds, uncertainty, or significance are reported; ImageNet and pose comparisons are mostly only against AVER; and the appendix admits that published AVER results use unspecified, differing mentor sets. The authors' AVER is dramatically weaker than other reported AVER values, inflating gains such as +7.01 points (pp. 7, 23)."
+        ],
+        "score_rationale": "The adaptive filtering idea is plausible and the empirical scope is useful, but novelty over confidence-aware/adaptive multi-teacher KD appears incremental. More importantly, the batch-level implementation contradicts the central per-sample claim, the algorithm conflicts with the stated temperature rule, and baseline fairness and statistical reliability are inadequate. I therefore lean reject, while allowing uncertainty because corrected implementation details and repeated controlled experiments could strengthen the result."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "ClassroomKD combines confidence-based mentor filtering with mentor-specific loss weights and adaptive temperatures. The idea is intuitive and evaluated across classification and pose estimation, but methodological inconsistencies and weakly controlled comparisons leave the claimed advantages insufficiently established.",
+        "strengths": [
+          "The framework is simple and practically understandable, with complementary filtering and mentoring components (pp. 4–5).",
+          "Experiments cover CIFAR-100, ImageNet, COCO, and MPII with heterogeneous architectures (pp. 6–9, 14).",
+          "Ablations examine module contributions, mentor number/diversity, ranking, and temperature choices (pp. 7–10)."
+        ],
+        "weaknesses": [
+          "The claimed per-sample selection is actually based on batch-averaged ground-truth probabilities, so all samples share the same active mentors; moreover, the temperature in Algorithm 1 omits the base-temperature formula stated in Eq. 9, creating a material implementation ambiguity (pp. 4–5, 17).",
+          "Comparisons are not well controlled: ClassroomKD uses multiple pretrained mentors against many single-teacher baselines, while multi-teacher results often come from different mentor configurations; the paper itself notes this lack of standardization (pp. 6–7, 14, 23).",
+          "Evidence lacks repeated runs, uncertainty, training-cost accounting, and strong matched baselines on ImageNet/pose; gains there are shown only against NOKD/AVER and are sometimes small (pp. 7, 10, 14)."
+        ],
+        "score_rationale": "The adaptive confidence-filtering idea has some novelty and promising breadth, but it is an incremental combination of known mechanisms. The batch-level rather than sample-level method, algorithm/equation mismatch, and unfair or underpowered empirical comparisons prevent confidence in the central technical and state-of-the-art claims."
+      }
+    }
+  ]
+}

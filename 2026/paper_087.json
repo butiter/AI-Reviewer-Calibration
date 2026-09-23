@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_087",
+  "paper_id": "iDmt7Tzmke",
+  "number": 22010,
+  "title": "RoboReward: A Dataset and Benchmark for Vision-Language Reward Models in Robotics",
+  "authors": [
+    "Tony Lee",
+    "Andrew Wagenmaker",
+    "Karl Pertsch",
+    "Percy Liang",
+    "Sergey Levine",
+    "Chelsea Finn"
+  ],
+  "primary_area": "applications to robotics, autonomy, planning",
+  "keywords": [
+    "robotics",
+    "reward modeling",
+    "reinforcement learning",
+    "datasets",
+    "benchmarking",
+    "vision-language models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=iDmt7Tzmke",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    2,
+    2,
+    4
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "FqySzZVYc5",
+      "forum": "iDmt7Tzmke",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22010/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761893971673,
+      "tmdate": 1762942017252,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "OgWkiZkUkg",
+      "forum": "iDmt7Tzmke",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22010/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761642636630,
+      "tmdate": 1762942017482,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "iYNpU3RfAc",
+      "forum": "iDmt7Tzmke",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22010/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761307563887,
+      "tmdate": 1762942018150,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "klKqDfEUJ7",
+      "forum": "iDmt7Tzmke",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22010/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761510848640,
+      "tmdate": 1762942017819,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces a timely benchmark, counterfactual relabeling pipeline, and compact VLM reward models for short-horizon robotics. The scale and real-robot coverage are promising, but benchmark construction and splitting are insufficiently validated, and the downstream RL evidence is too limited to substantiate broad claims of reliable policy improvement.",
+        "strengths": [
+          "Addresses an important bottleneck and evaluates 20 VLMs over a broad collection of real-robot embodiments and tasks (pp. 2, 8, 21–22).",
+          "Counterfactual relabeling is a useful practical idea for converting success-heavy demonstrations into graded reward examples, with concrete prompts and verification procedures provided (pp. 6–7, 18–20).",
+          "Includes both offline benchmarking and an initial real-robot RL deployment rather than relying exclusively on reward-prediction accuracy (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The synthetic score classes may be identifiable from linguistic artifacts—e.g., precision constraints for score 4 and wrong relations for score 3—and there are no text-only, shuffled-video, or alternative-generator controls demonstrating genuine visual grounding. Human verification edits commands to fit fixed labels rather than independently relabeling them, with no annotator agreement reported (pp. 7–8, 19–20).",
+          "The split granularity is ambiguous: splitting the augmented corpus could place paraphrases or counterfactual commands sharing the same video across train and test. Data accounting is also unclear, including seemingly duplicated DROID and RoboArena counts in Table 2, and the claimed benefit of counterfactual augmentation lacks a direct ablation (pp. 7, 21).",
+          "Downstream evidence is underpowered: only two simple tasks and 20 trials per condition are used, without uncertainty, seeds, learning curves, or reward-hacking analysis. In particular, the 60% to 70% drawer improvement is not convincing at this sample size; the pooled simulation correlation likewise may confound task difficulty with model accuracy (pp. 5, 8–9)."
+        ],
+        "score_rationale": "The benchmark and released models could be valuable, and the empirical ranking is encouraging. However, possible same-video leakage and generator-induced shortcuts threaten the central benchmark result, while the real-robot study is too small to resolve these concerns. I therefore rate it marginally below acceptance, with uncertainty because the exact split procedure and unreported statistical variability could materially change the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RoboReward is a potentially useful dataset/benchmark effort for episodic vision-language reward modeling, with counterfactual relabeling, evaluation of 20 VLMs, and a small real-robot RL demonstration. However, the benchmark construction risks rewarding synthetic-command artifacts rather than robust task understanding, and the empirical reporting is insufficient to establish the headline claims reliably.",
+        "strengths": [
+          "Addresses an important practical bottleneck and provides a broad evaluation spanning many robot datasets and embodiments (pp. 2, 21–22).",
+          "Counterfactual relabeling is a pragmatic way to obtain graded failures from success-heavy demonstration corpora, with explicit generation and verification stages (pp. 6–7, 18–20).",
+          "Includes downstream validation rather than only offline metrics: RoboReward-3B improves over the base policy on both real-robot tasks, while the base VLM reward degrades performance (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Most benchmark negatives appear generated by the same pipeline used for training, so RoboReward models may exploit generator-specific command patterns. Human verification uses one annotator who edits commands to fit predetermined labels, with no inter-annotator agreement or natural-failure validation (pp. 7–8).",
+          "Key evidence is underreported: Table 3 provides only aggregate win rates without per-dataset scores, uncertainty, prompt/parsing details, or statistical tests; there is also no ablation isolating counterfactual relabeling or paraphrasing despite attributing gains to them (pp. 7–8, 22).",
+          "Dataset accounting appears inconsistent: the stated 64,850 training pairs (p. 7) does not match the substantially larger sum of Table 2, and DROID and RoboArena have identical split counts while being listed separately (p. 21). The real-robot evaluation is also limited to two tasks and 20 trials each, without confidence intervals (pp. 8–9)."
+        ],
+        "score_rationale": "The benchmark scope, resource contribution, and real-robot experiment are promising, but synthetic-artifact confounding, missing ablations/statistical reporting, and inconsistent dataset accounting prevent confidence in the main superiority and generalization claims. I am therefore marginally below acceptance; uncertainty remains because released artifacts could resolve some reporting concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RoboReward introduces a broad real-robot reward-model dataset, a counterfactual relabeling pipeline, and compact 3B/7B VLM reward models. The direction is important and the reported benchmark and real-robot results are promising, but inconsistencies in dataset accounting and weaknesses in benchmark validation and downstream evaluation currently undermine the central claims.",
+        "strengths": [
+          "Important problem and potentially valuable open resource: the benchmark spans many tasks, datasets, and embodiments and compares 20 VLMs (pp. 2, 8, 21–22).",
+          "Counterfactual instruction relabeling is a practical way to derive failures and graded near-misses from success-heavy demonstration corpora, with explicit generation and verification prompts (pp. 6–7, 18–20).",
+          "The paper connects offline reward accuracy to policy learning through both simulation and a real-robot deployment, where the trained 3B model improves both tested tasks while the base VLM degrades performance (pp. 5, 8–9)."
+        ],
+        "weaknesses": [
+          "Dataset accounting appears internally inconsistent: the per-source training counts in Table 2 sum far above the stated 64,850 training pairs, and DROID and RoboArena have identical 9,256/752/100 counts despite being presented as separate sources (pp. 6–7, 21). This raises unresolved duplication, leakage, and reproducibility concerns.",
+          "Benchmark labels are not established with strong independent validation: apparently one annotator checks each synthetic label and edits the task description to fit the predetermined score, with no inter-annotator agreement or independent rescoring (pp. 7–8). Splitting after describing corpus augmentation also leaves unclear whether paraphrases or counterfactuals from the same video can cross splits.",
+          "Evidence for downstream utility is limited: real-robot evaluation covers only two tasks with 20 trials each and reports no uncertainty, seeds, learning curves, or significance tests (pp. 8–9). Likewise, the headline leaderboard provides only aggregate win rates, without complete per-source MAE, uncertainty, or ablations isolating counterfactual relabeling (pp. 8, 22)."
+        ],
+        "score_rationale": "The work has meaningful novelty and could become a useful benchmark, while the compact-model and real-robot results are encouraging. However, central dataset-count discrepancies, unclear split independence, label-validation concerns, and small downstream experiments prevent confidence that the reported gains reflect robust reward modeling rather than dataset construction artifacts. I am uncertain whether these issues are documentation errors or substantive leakage, so I place it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces a timely benchmark, counterfactual relabeling pipeline, and compact VLM reward models, with preliminary simulation and real-robot RL results. The resource could be valuable, but the current evidence does not adequately establish benchmark validity or robust downstream benefit.",
+        "strengths": [
+          "Important problem and potentially useful open resource spanning many robot datasets and embodiments (pp. 1–2, 21).",
+          "The counterfactual relabeling pipeline is intuitive and provides a practical way to obtain graded failures from success-heavy datasets (pp. 6–7, 18–20).",
+          "The authors connect offline reward prediction to downstream control and include a real-robot deployment rather than relying only on benchmark scores (pp. 5, 8–9)."
+        ],
+        "weaknesses": [
+          "Benchmark validity is insufficiently established: synthetic instructions and labels are generated and verified by related VLMs, while the human annotator edits task descriptions to fit predetermined labels rather than independently relabeling outcomes; no inter-annotator agreement or natural-versus-synthetic breakdown is reported (pp. 7–8). This may favor models trained on the pipeline's linguistic artifacts.",
+          "Core empirical reporting is incomplete. The main table gives only aggregate win rates without MAE, per-dataset results, uncertainty, or significance, and there are no ablations for counterfactual generation, paraphrasing, data scale, or verifier filtering despite attributing gains to these components (pp. 8, 22). Split grouping across augmented variants is also not explicitly specified (p. 7).",
+          "The downstream evidence is too small for strong claims: only two real-robot tasks with 20 trials each are tested, so the reported 10-point drawer gain is two additional successes and lacks confidence intervals or repetitions (pp. 8–9). The simulation correlation similarly appears pooled across tasks/checkpoints without uncertainty, leaving possible task confounding (p. 5)."
+        ],
+        "score_rationale": "This is a promising and potentially impactful dataset/benchmark contribution, but substantial uncertainty remains about synthetic-label validity, leakage/artifact sensitivity, and statistical robustness. The limited ablations and small downstream evaluation place it marginally below acceptance in its current form."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "RoboReward is a potentially valuable dataset/benchmark effort for vision-language robot rewards, with a sensible focus on progress labels and a useful real-robot demonstration. However, the benchmark is dominated by model-generated counterfactual task text rather than genuine failed executions, and the paper does not adequately establish that strong benchmark performance reflects robust reward estimation rather than generator artifacts. Missing ablations, incomplete statistics, and inconsistent dataset accounting leave the central empirical claims insufficiently supported.",
+        "strengths": [
+          "The paper addresses an important practical bottleneck and offers a broad benchmark spanning many real-robot sources and embodiments, alongside open 3B/7B checkpoints (pp. 2, 21–22).",
+          "The counterfactual relabeling pipeline is clearly described, including its ordinal rubric, generation stages, verification, and prompts (pp. 6–7, 18–20).",
+          "The authors connect offline reward accuracy to downstream control and include a real-robot RL comparison against both the base VLM and human rewards (pp. 5, 8–9)."
+        ],
+        "weaknesses": [
+          "Most negatives and near-misses pair successful videos with synthetically generated commands. Thus, models may learn linguistic artifacts or artificial precision constraints rather than recognize authentic failure dynamics. Human verification edits task descriptions to fit predetermined labels, and no comparison against independently labeled natural failures is reported (pp. 6–8, 18–20).",
+          "Key evidence is incomplete: the claimed counterfactual-relabeling benefit has no reported ablation; the leaderboard omits the stated primary MAE metric, per-source results, uncertainty, and significance; and its model-pool-dependent mean win rate makes comparisons difficult to interpret (pp. 7–8, 22).",
+          "The downstream validation is too small for the claims: only two tasks and 20 trials per condition are used, so improvements such as 60% to 70% equal two additional successes, with no confidence intervals, seeds, learning curves, or detailed RL budget. Dataset accounting is also unclear: Table 2 appears inconsistent with the stated 3,105-test-example total and lists DROID and RoboArena with identical counts (pp. 8–9, 21)."
+        ],
+        "score_rationale": "The dataset scope and real-robot experiment are promising, but the central benchmark may reward synthetic-command discrimination, and essential ablations and statistical support are absent. I therefore place the work marginally below acceptance; uncertainty remains because the supplied manuscript does not expose the underlying videos or annotations for direct quality assessment."
+      }
+    }
+  ]
+}

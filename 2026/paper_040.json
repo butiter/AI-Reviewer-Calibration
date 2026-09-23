@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_040",
+  "paper_id": "weM68cZfMl",
+  "number": 10262,
+  "title": "VL Norm: Rethink Loss Aggregation in RLVR",
+  "authors": [
+    "Zhiyuan He",
+    "Xufang Luo",
+    "Yike Zhang",
+    "Yuqing Yang",
+    "Lili Qiu"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Reinforcement Learning for LLMs",
+    "RLVR",
+    "gradient variance reduction"
+  ],
+  "forum_url": "https://openreview.net/forum?id=weM68cZfMl",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    6,
+    4
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "4sEXm1taZW",
+      "forum": "weM68cZfMl",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10262/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761972316525,
+      "tmdate": 1762921617043,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "ABgQ4GAUhw",
+      "forum": "weM68cZfMl",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10262/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761667024155,
+      "tmdate": 1762921618328,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "lMvB8k8elf",
+      "forum": "weM68cZfMl",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10262/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761752918714,
+      "tmdate": 1764358087481,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "twnPYTTbQr",
+      "forum": "weM68cZfMl",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10262/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761229073326,
+      "tmdate": 1762921618739,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes VL Norm, an inverse-length weighting rule for aggregating variable-length RLVR trajectories. The method is simple and the experiments suggest smoother training and modest accuracy gains across several model/task settings. However, the central unbiasedness and minimum-variance claims rely on an unsubstantiated—and likely false—conditional-mean assumption, so the theoretical framing is not sound as written; the empirical evaluation also lacks repetitions and unbiased model selection.",
+        "strengths": [
+          "The aggregation rule is simple, inexpensive, and practically relevant for unstable variable-length RLVR training (pp. 6, 15–16).",
+          "The evaluation spans Qwen and Llama models, two tasks, multiple context limits, and comparisons with several normalization schemes; training curves generally favor VL Norm (pp. 7–9, 13, 16–17).",
+          "The paper substantially expands empirical support for a length–gradient-deviation relationship using 131,072 responses and reports measured CV reductions (pp. 17–18)."
+        ],
+        "weaknesses": [
+          "The proof treats each observed-length gradient as having the same mean and concludes unbiasedness merely because the random weights sum to a constant (pp. 5–6, 14–15). Since weights depend on length and length is correlated with trajectory content, reward, and gradient, unbiasedness requires E[g_i|L_i] to be length-invariant, which is neither proved nor plausible; the paper itself says long responses may carry different learning signals (p. 6). This also undermines the stated bias of baselines and the minimum-variance theorem's applicability.",
+          "The variance model Var(g_i)=V L_i ignores token covariance and group-baseline dependence (pp. 4–5). Correlating length with squared deviation from an unconditional finite-sample mean does not isolate conditional variance and can also reflect length-dependent mean shifts (pp. 14, 17); only selected parameter blocks are examined.",
+          "Results use the best checkpoint selected on the reported test metric, with frequent evaluation, but provide no independent validation selection, repeated seeds, confidence intervals, or significance tests (p. 13). Several gains are small or inconsistent, including a loss to GRPO on CountDown-7B and only marginal Math improvements (pp. 7, 9, 13)."
+        ],
+        "score_rationale": "This is a useful, low-cost heuristic with encouraging breadth of experiments, but its principal theoretical contribution is invalid without a conditional-unbiasedness assumption, and the single-run/best-test-checkpoint protocol makes the modest gains difficult to assess. I therefore place it marginally below acceptance, while acknowledging that stronger replicated evidence or a corrected conditional analysis could change the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes VL Norm, an inverse-length-weighted aggregation rule for RLVR gradients, motivated as an unbiased minimum-variance estimator. The method is simple and empirically promising, but the central unbiasedness and optimality claims rely on assumptions that do not hold as stated when response length and gradient are jointly generated by the policy.",
+        "strengths": [
+          "The aggregation rule is simple, practically relevant, and requires only a small implementation change; the derivation is clear under its stated fixed-length, independent-observation model (pp. 6, 14–16).",
+          "Experiments cover Qwen 3B/7B, two tasks, two maximum lengths, and an additional Llama model, with generally favorable training curves and endpoint results (pp. 7–9, 13, 16–17).",
+          "The paper directly investigates its variance–length motivation at scale and reports substantial positive correlations and measured CV reductions (pp. 17–18)."
+        ],
+        "weaknesses": [
+          "The key unbiasedness proof incorrectly treats trajectory-dependent lengths and weights as fixed: marginal E[g_i]=μ does not imply E[x_i(L)g_i]=E[x_i(L)]μ unless E[g_i|L_i]=μ or an equivalent independence condition holds. This undermines both the claimed bias analysis of prior methods and VL Norm's central unbiasedness claim (pp. 4–6).",
+          "The minimum-variance result assumes independent gradients with scalar total variance exactly V L_i, despite group-normalized advantages coupling rollouts and gradient covariance being parameter-dependent. Correlation of squared deviations with length does not establish these stronger assumptions or global optimality (pp. 4–6, 17–18).",
+          "Empirical evidence lacks repeated runs, uncertainty intervals, and statistical tests; results select the best checkpoint using repeatedly evaluated test performance, and several gains are small or inconsistent, including losing to GRPO on CountDown-7B (pp. 7, 9, 13, 17)."
+        ],
+        "score_rationale": "VL Norm is a useful and well-evaluated heuristic with encouraging breadth, but the paper's principal theoretical claim—unbiased minimum-variance estimation—is not established because its data-dependent weighting is correlated with the sampled gradient. Combined with best-checkpoint reporting and absent run-to-run uncertainty, this places the work marginally below acceptance despite its practical promise."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "VL Norm reweights trajectory gradients approximately inversely with response length, motivated as a minimum-variance unbiased estimator. The method is simple and shows encouraging gains across several model/task/length configurations, but the central unbiasedness and optimality argument relies on assumptions that do not hold for the actual data-dependent RLVR estimator, while the empirical protocol lacks the replication needed to establish the reported gains.",
+        "strengths": [
+          "The proposed normalization is simple, inexpensive, and clearly related to inverse-variance weighting; the derivation is transparent under its stated fixed-length, independent-observation assumptions (pp. 6, 14–16).",
+          "Experiments cover Qwen 3B/7B, two tasks, two maximum lengths, and an additional Llama model, with generally favorable training dynamics (pp. 7–9, 13, 16–17).",
+          "The appendix substantially expands the empirical check of the length–gradient-deviation relationship to 131,072 responses and reports strong correlations across two models (p. 17)."
+        ],
+        "weaknesses": [
+          "The main unbiasedness analysis treats sampled lengths and resulting weights as fixed and effectively assumes E[g_i|L_i] is length-independent. In RLVR, length is policy-generated and correlated with tokens, rewards, and gradients; moreover, group-normalized advantages couple rollouts. Thus E[x_i(L)g_i] generally cannot be factored as x_i(L)E[g_i], undermining both the claimed bias of prior methods and VL Norm's unbiasedness (pp. 3–6).",
+          "The minimum-variance guarantee assumes independent gradients with scalar variance exactly V L_i. The paper explicitly violates independence through shared prompts/group baselines, while squared deviation versus length can reflect length-dependent conditional means rather than conditional variance; correlations on selected layers do not establish the assumed covariance structure (pp. 4–6, 17–18).",
+          "Reported results appear to be single runs without uncertainty or significance tests, and each method is reported at its best checkpoint selected using repeatedly evaluated test sets (p. 13). Several Math improvements are small, and using one learning rate despite substantially different normalization scales confounds whether gains arise from aggregation or effective step size (pp. 7, 9, 13)."
+        ],
+        "score_rationale": "The idea is practical and the empirical trends are promising, but the paper's primary novelty claim—an unbiased, minimum-variance estimator—does not follow for random, gradient-correlated lengths and group-coupled advantages. Combined with best-checkpoint reporting and absent multi-seed uncertainty, this is currently below the acceptance bar, though a conditional analysis and stronger controlled experiments could make it compelling."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes VL Norm, an inverse-length-weighted aggregation rule for RLVR gradients, motivated as minimum-variance unbiased estimation. The method is simple and shows promising results across several model/task/length settings, but the central unbiasedness theorem does not hold under the stated assumptions because its data-dependent weights are functions of trajectory length and hence generally correlated with the trajectory gradient.",
+        "strengths": [
+          "The aggregation rule is simple, inexpensive, and clearly motivated; the inverse-variance calculation is correct under the much stronger idealized model of independent observations with identical conditional means and variance proportional to length (pp. 6, 14–16).",
+          "Experiments cover Qwen 3B/7B, Llama 3B, two tasks, and two maximum lengths, with generally favorable training curves and additional comparisons to DAPO components (pp. 7–9, 13, 16–18).",
+          "The appendix substantially strengthens the empirical motivation by measuring length–gradient-deviation correlations at larger scale and reporting realized CV reductions (pp. 17–18)."
+        ],
+        "weaknesses": [
+          "The key claim of unbiasedness is unsupported. From only E[g_i]=∇J, the random weights x_i∝L_i^{-α}/Σ_jL_j^{-α} do not imply E[Σ_ix_ig_i]=∇J/M, since L_i and g_i arise from the same trajectory and are generally dependent. One would need a common conditional mean E[g_i|L_1,…,L_G]=∇J (or suitable independence), which is neither assumed nor plausible in RLVR. Group-normalized advantages add further dependence explicitly acknowledged on p. 5. Thus the minimum-variance-unbiased framing on pp. 6 and 14–15 does not establish the advertised result for the actual estimator.",
+          "The evidence lacks repeated runs, uncertainty intervals, or significance tests, despite noisy curves and often small gains. Moreover, checkpoints are selected using the highest score on the reported held-out/public test benchmarks (p. 13), creating selection bias; task-specific α choices further weaken the claim of consistent superiority (pp. 7, 9).",
+          "The variance model is restrictive: token-gradient covariances are discarded, all trajectories are assigned the same scalar variance coefficient V, and only total variance is optimized (pp. 4–6). The correlation analyses on pp. 14–18 support association but do not establish Var(g|L)=VL or exclude prompt/difficulty and conditional-mean effects."
+        ],
+        "score_rationale": "The work has a useful practical idea and encouraging breadth, but its main theoretical novelty—an unbiased minimum-variance estimator—is invalid without crucial conditional-independence/mean assumptions. Combined with best-test-checkpoint reporting and no run-to-run uncertainty, the experiments are not yet sufficient to compensate, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "VL Norm is a simple inverse-length weighting scheme for RLVR gradients, motivated as inverse-variance aggregation and evaluated across several models, lengths, and two task families. The empirical trends are promising, especially for stability, but the central unbiasedness/minimum-variance interpretation relies on assumptions that do not hold as stated for endogenous response lengths and group-normalized advantages.",
+        "strengths": [
+          "The method is simple, inexpensive, and practically relevant; the paper clearly connects variable response length to RLVR optimization behavior (pp. 1–6).",
+          "Experiments cover Qwen 3B/7B, an additional Llama 3B model, two task families, and maximum lengths of 3072/8192, with generally favorable learning curves (pp. 7–9, 13, 16–17).",
+          "The appendix substantially expands the empirical check of the length–gradient-deviation association, using 131,072 responses and reporting strong correlations across selected layers/models (p. 17)."
+        ],
+        "weaknesses": [
+          "The main unbiasedness proof is invalid without a much stronger conditional-mean assumption. Lengths and weights are random functions of trajectories and therefore correlated with gradients; pointwise normalization of weights does not imply E[Σx_i g_i]=ΣE[x_i]E[g_i]. Likewise, the paper repeatedly moves length factors outside expectations as if lengths were fixed (pp. 4–6). Group-normalized advantages, PPO clipping, and shared baselines further undermine E[g_i]=∇J and independence.",
+          "The minimum-variance result assumes independent estimators with identical means and exactly Var(g_i)=V L_i. Token-gradient covariances are discarded, group baselines explicitly induce cross-sample dependence, and longer/shorter trajectories may estimate different conditional gradients. Correlation of length with deviation in selected projections does not establish proportional variance or the required covariance model (pp. 4–6, 14–15, 17–18).",
+          "Empirical reliability is limited by apparently single runs without uncertainty bars or significance tests, task-specific α selection, and reporting the best checkpoint chosen using repeatedly evaluated test sets. Several Math gains are small, so seed variance or checkpoint-selection bias could change the conclusions (pp. 7–9, 13–14)."
+        ],
+        "score_rationale": "The paper presents a useful, easy-to-adopt heuristic with reasonably broad and encouraging experiments. However, its headline theoretical claims—unbiasedness and minimum variance for RLVR—do not follow because trajectory length-dependent weights are correlated with the gradients and the identical-mean/independence assumptions are unjustified. Combined with the absence of multi-seed uncertainty and test-based best-checkpoint selection, this leaves the work marginally below acceptance despite promising practical results."
+      }
+    }
+  ]
+}

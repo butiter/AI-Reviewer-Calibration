@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_053",
+  "paper_id": "d38yjwdGYr",
+  "number": 6856,
+  "title": "ConGra: Benchmarking Automatic Conflict Resolution",
+  "authors": "Qingyu Zhang; Liangcai Su; Kai Ye; Chenxiong Qian",
+  "primary_area": "datasets and benchmarks",
+  "keywords": "Code merging; conflict resolution; large language model",
+  "forum_url": "https://openreview.net/forum?id=d38yjwdGYr",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    5,
+    5,
+    3,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.2,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper seeks to benchmark the applicability of large language models for the purpose of conflict resolution when merging git commits.\nTo that end, it proposes a pipeline consisting of:\n\n1. The collection of merge commits with conflicts\n2. 'coloring' of individual blocks containing conflicts into six categories (types, function body, function signature, variables, ...)\n3. Classifying commits into 3 categories (text, functional, syntactic)\n4. Applying six different large language models (each supporting context lenght of at least 8K) to let them merge the underlying conflicting commits\n5. Metrics to assess the outcomes (normalized edit distance, winnowing, and cosine similarity)\n\nThis pipeline has been applied to 34 large open source projects, resulting in 23,334 conflict files and 44,948 'conflict scenarios' (which I assume are chunks in the code with a conflict).\n\nFindings include that larger context support is not necessarily helpful, nor that code llms have advantages. Llama3-8B and DeepSeek-V2 appear to be the winners, with accuracy/precision hovering around 75% (depending on the programming language). Also, simpler conflict types are not necessarily easier to handle."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Impressive merge conflict data collection established\n- Paper establishes that LLMs with chain of thought can do a decent job in resolving merge conflicts"
+        },
+        "weaknesses": {
+          "value": "In section 3.1 I was confused about the way in which merges are detected. \nIt turns out this is explained on page 6 in the first paragraph of section 4.\nI think this belongs in section 3, as it is independent of the nine systems chosen.\n\nIn Section 5 I was disappointed by the fact that comparison with existing merging tools was considered infeasible. While I can follow the reasoning to some extent, this does undermine the whole purpose of having a benchmark. In particular, the abstract states:\n\n> we introduce CONGRA, a CONflict-GRAded benchmarking scheme designed to evaluate the performance of software merging tools under varying complexity conflict scenarios\n\nI find it odd that existing software merging tools then are not taken into account.\n\nThe implicit hypothesis under this paper is that the content of the conflicting commits is enough to make merge decisions. However, this can also be a project-level decision, where e.g., feature A or feature B is considered more important.\n\nAnother assumption is that conflicts can be handled individually. But I'd say that choosing between A and B should be consistent -- one cannot pick some changes from A and others from B. The approach proposed doesn't seem to take this into account.\n\nThe findings suggest the 'context type' doesn't make much of a difference -- this can also mean that it is pointless to collect this type of information (as it doesn't truly affect the merge decisions).\n\nThe paper doesn't contain an analysis of whether the systems studied are part of the training data of the language models used. If so, the language models \"know\" what the eventual code should look like, which should help them.\n\nDetail: Table 1 would be easier to follow if more meaningful names than Feature_1..6 were used"
+        },
+        "questions": {
+          "value": "- From how many actual (merge) commits are the 44,948 conflict cases?\n- What are the pros/cons of handling conflicts individually vs considering all connected to a sigle merge attempt?\n- What is the impact of training data on the results?\n- What would it take to apply the dataset to the existing automated conflict resolution tools?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "w5PVzWJKDU",
+      "forum": "d38yjwdGYr",
+      "replyto": "d38yjwdGYr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_qScG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_qScG"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6856/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730670467858,
+      "cdate": 1730670467858,
+      "tmdate": 1731428496515,
+      "mdate": 1731428496515,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces **CONGRA**, a CONflict-GRAded benchmarking scheme designed to evaluate code merging capabilities of LLMs across varying conflict complexities. It proposes a novel method for classifying code conflicts into seven categories based on code operations, enhancing the understanding of conflict difficulty. Using this approach, the authors build a large-scale dataset of 44,948 conflict cases from 34 real-world projects written in C, C++, Java, and Python. They conduct the first comprehensive evaluation of LLMs on automatic conflict resolution using this dataset, revealing counterintuitive findings:\n- LLMs with longer context lengths do not always perform better\n- General purpose LLMs can outperform specialized code LLMs."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The construction of a substantial dataset containing 44,948 conflict cases from 34 real-world projects across multiple programming languages (C, C++, Java, and Python) is a valuable contribution to the field. Using real-world conflict cases from open-source projects is appropriate and lends credibility to the evaluation.\n2. It introduces a new method for classifying code merge conflicts based on code operations extracted from syntax trees, enabling a complexity-graded dataset.\n3. It provides insights into how different conflict types and contextual information impact the performance of LLMs.\n4. The use of traditional metrics like accuracy and precision makes evaluation reliable instead of using automated frameworks like LLM-as-a-Judge."
+        },
+        "weaknesses": {
+          "value": "1. The paper claims generalist LLMs outperform specialized code LLMs in automatic conflict resolution tasks. However, the code-focused models evaluated are relatively older and potentially less capable than the general-purpose LLMs used. Including recent code-specific LLMs would strengthen the authors' claims and provide a fairer basis for comparison.\n2. The authors' explanations for their findings lack sufficient depth and appear speculative. For example, the claim that long-context models underperform because they are not adequately trained on merge conflict datasets is presented without substantial evidence or analysis (line 413). Incorporating more rigorous, possibly statistical, analyses would help substantiate these claims and make the conclusions more convincing.\n3. For each task, different models are compared (eg. Table 2, Table 4, Table 6) which complicates direct comparisons of their performance. Populating these tables with the same set of models would help draw more insightful conclusions.\n4. The authors use only the preceding and following code lines as context for resolving conflicts. Expanding the context to include cross-file information could potentially yield better results. Implementing methods such as tree-search combined with semantic similarity measures to identify and incorporate the most relevant context across files might improve the models' performance in conflict resolution tasks.\n5. The authors propose a new dataset for evaluating automatic conflict resolution, however the dataset itself is not provided in the supplementary material.\n---\n\nIf my concerns are addressed, I'm happy to revise my score."
+        },
+        "questions": {
+          "value": "1. Given that the dataset is constructed from publicly available code repositories, how do you address potential bias in evaluation where LLMs may have encountered the \"correct\" resolution blocks during training?\n2. As coding practices evolve, particularly with the growing influence of LLMs as coding assistants, how will CONGRA maintain its relevance as a benchmark since it is based on a static set of questions?\n3. Sections 3.2 and 3.3 would benefit from clearer explanation of how the coloring process directly informs the classification methodology. Currently, these sections are not sufficiently clear for readers of all expertise. Could this workflow be elaborated?\n4. What were the considerations in limiting the dataset to C/C++, Java, and Python? Is there potential for expansion to other languages such as JavaScript or Rust? Please consider adding this to Future Work.\n5. Could the paper include visualizations depicting the distribution of conflicts across languages and conflict types to better illustrate the dataset composition?\n6. The experimental setup using temperature=0.7 could be enhanced by either, a) Using near-deterministic settings (temperature~0) or b) Running multiple samples at higher temperatures. This would provide more statistically robust results."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Jjz81ycpMH",
+      "forum": "d38yjwdGYr",
+      "replyto": "d38yjwdGYr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_UqBD"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_UqBD"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6856/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730539531405,
+      "cdate": 1730539531405,
+      "tmdate": 1731428496508,
+      "mdate": 1731428496508,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The work presented CONGRA, a dataset for evaluating automatic conflict resolution (ACR) tools. The authors aim to address limitations in existing benchmarks by introducing a complexity-graded dataset containing ~45k conflict cases from real-world projects. The built dataset includes conflicts categorized by type (text, syntax, and functional), which can be used for evaluating various conflict resolution models under differing complexities.  The authors evaluated several general-purpose and code-specific LLMs on this dataset and reported insights regarding the performance of specialized versus general LLMs."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "+ A new dataset for evaluating ACR tools\n+ Performance and limitations of existing LLMs on the new data were explored"
+        },
+        "weaknesses": {
+          "value": "- motivation of labeling conflict with the complexity scenario info is unclear\n- dataset construction lacks transparency about the criteria used for project selection\n- complexity type info (e.g., Text, Functional, Syntax) is too coarse-grained to be practical\n- missing benchmarking existing machine learning-based ACR (e.g., DeepMerge, MergeGen)\n- lack of deep analysis regarding the pros and cons of examined LLMs\n- focused on limited syntax problems (i.e., declarations or definitions only)"
+        },
+        "questions": {
+          "value": "1. What are your criteria for selecting projects? \n\n2. These machine learning-based ACRs also involved large-scale conflict datasets. Except for the complexity type information, are there any other differences between their dataset and the dataset created in this paper? \n\n3. In 5.1, the authors explained why they are not compared to the existing baselines. They used RPredictor and MESTRE to illustrate the reasons for not comparing to machine learning-based ACRs. While some other machine learning-based ACRs, such as DeepMerge and MergeGen, are still comparable, as explained in 2.3, these ML-based ACRs are trained to offer resolution suggestions for merge conflicts. Why do authors exclude DeepMerge and MergeGen?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rSBfUfzWiL",
+      "forum": "d38yjwdGYr",
+      "replyto": "d38yjwdGYr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_5V4W"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_5V4W"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6856/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730524308121,
+      "cdate": 1730524308121,
+      "tmdate": 1731428496462,
+      "mdate": 1731428496462,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents CONGRA, a benchmark for program merge conflict resolution. The CONGRA dataset  includes 44,948 merge conflict cases and resolutions collected from 34 real-world projects spanning multiple programming languages. This dataset classifies conflicts into seven types, enabling more granular evaluations. \n\nThe benchmark uses edit distance, winnowing, and cosine similarity to measure the accuracy and precision of conflict resolution results. Authors evaluate six LLMs on the CONGRA benchmark, finding that general-purpose LLMs frequently outperform code-specialized ones in resolving code conflicts and that the models with shorter context windows sometimes achieve better results than those with longer context windows."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1) The paper tackles an important software engineering problem -- automated merge conflict resolution\n2) The effort promotes open science, by promising to open source the benchmark which could help drive the research in automated program merge"
+        },
+        "weaknesses": {
+          "value": "The benchmark matching criteria are not optimal, and are not well aligned with the evaluation metrics used in the existing merge conflict research. It appears to be more optimized towards a typical code in-filling task. More specifically, CONGRA regards the resolution candidate matching the ground truth when similarity is greater than 80%. To my opinion, this is a major issue and I see two possible solutions:\n1) require a stricter 100% syntactic match (modulo the white space and indentation). A variant of this could also exclude local identifiers defined and used only in the conflict region scope from the similarity calculation, given the freedom in choosing the particular identifier names in this case. Moreover, there is no clear reason to choose 80% similarity threshold -- the numbers in the table 2-3 are already quite high suggesting the benchmark maybe too easy and is at risk of becoming obsolete in the next year or so.\n2) better option: verify functional correctness instead. When constructing the benchmark you could select only the conflicts that have unit test coverage for the lines in the conflicted region in the ground truth user-resolved version of the code. In this case, the functional correctness would be verified wrt to the unit tests"
+        },
+        "questions": {
+          "value": "Classification of Merge Conflicts: The current classification of merge conflicts feels too restrictive and maybe disconnected from the merge task, appropriate for broader infilling tasks -- what portion of real-world merge conflicts would it cover? I believe the classification should reflect the difficulty of resolution. From this perspective, cases resolved using \"take ours\" or \"take theirs\" merge strategies are the simplest. Next are cases that can be resolved by rearranging physical lines of code across the base, incoming, and current versions, followed by those that allow rearrangement of token sequences within a line. Finally, there are cases where developers introduce new tokens not present in the conflicted chunks. This classification respects the unique challenges of program merging, while you could also impose your syntax-based classifications on top.\n\n\"Propagation of the large-scale datasets for LM's training and testing.\" -> Can you correlate it to major LLMs training data cutoffs like what swe bench does? Once the benchmark is established major LLMs will surely respect it and not include it in the training split.\n\n\"DeepMerge and MergeBERT are essentially classification models that select answers from candidates, while our paper only focuses on LMs\" --> This is not entirely accurate and needs to be corrected. DeepMerge composes resolution based on the line interleaving of the lines present in the incoming, current and baseline code chunks. While MergeBERT is a classifier, it first performs a token-level merge then selects from a set of composable patterns. I think the major point you are making about these two models is that they do not allow new tokens in the resolutions which are not present in the inputs.\n\n\"these methods do not consider the contextual content and are divorced from the actual scenario\" -> MergeBERT does include surrounding code context lines, up to the max limit of the model's context window, similarly to your setting. These models are not open source afaik which is a good enough reason to not evaluate them in the paper. But the statement about them being \"divorced from the actual scenario\" is kind of overly bold and also incorrect.\n\n## Minor comments\nabstract:\n\"With the development of language models, researchers treat conflict code as text,\" -> Even before LLMs, actually, the ubiquitous git merge algorithm handles program merging as a line-level unstructured merge process, treating code purely as text agnostic to the language syntax or grammar. While AST-aware structured program merging algorithms have been developed, I see your point that unstructured text-based merging is more feasible path forward with the rise of LLMs.\n\nintroduction\n\"Git fails to resolve conflicts automatically\" -> git does not attempt to merge conflicts automatically, if a 3-way merge attempt fails, the conflict markers would be generated, prompting user to resolve it manually\n\nMain text:\n\"For LLMs, a simpler conflict does not necessarily mean it is easier to handle\" -- what do you mean by \"simpler\" here?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "0TxNgif9aA",
+      "forum": "d38yjwdGYr",
+      "replyto": "d38yjwdGYr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_MBtc"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_MBtc"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6856/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730435183104,
+      "cdate": 1730435183104,
+      "tmdate": 1731428496372,
+      "mdate": 1731428496372,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes ConGra, a large-scale benchmark for evaluating LLMs on solving conflicts when merging different software versions. The authors built the ConGra dataset in 3 steps: collect Github commits, coloring by program analysis, and classify the different types of conflicts. Then, the authors propose a general pipeline for using LLMs to generate merged code. This paper evaluates 6 open-source LLMs on the ConGra dataset, and reaches several findings: first, LLMs with longer contexts do not always perform better than models with shorter contexts. Second, general-purpose LLMs outperform code LLMs in resolution precision and accuracy."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "+: This paper first investigates the performance of LLMs in resolving software version conflicts.\n\n+: Proposed a conflict dataset in multiple programming languages."
+        },
+        "weaknesses": {
+          "value": "-: The authors only adopt a few models for evaluation, which makes their conclusion less convincing. For example, it is better to include results for more proprietary models, such as GPT-4o.\n\n-: The authors stated that GPT-4o-mini is only evaluated on the Java subset due to its token limitation, but the context window of GPT-4o-mini is 128K, which is comparable to other models in the evaluation.\n\n-: The finding \"general-purpose LLMs outperform code LLMs\" may be inaccurate. The code LLMs in this paper, CodeLlama and DeepSeek-Coder, are fine-tuned on older versions of base models than Llama-3 and DeepSeek-V2. To make a fair comparison, the authors should compare these code LLMs with their corresponding base models."
+        },
+        "questions": {
+          "value": "Please see \"weaknesses\"."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "I5RoGfE7f3",
+      "forum": "d38yjwdGYr",
+      "replyto": "d38yjwdGYr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_dgxq"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6856/Reviewer_dgxq"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6856/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730235273821,
+      "cdate": 1730235273821,
+      "tmdate": 1731428496637,
+      "mdate": 1731428496637,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "CONGRA proposes a large, multilingual dataset of historical merge conflicts and a lightweight taxonomy for benchmarking LLM-based resolution. The scale and per-type analyses are potentially useful, but the paper does not establish that either its “complexity grades” or its reported correctness scores are valid, making the central empirical conclusions unreliable.",
+        "strengths": [
+          "The dataset is substantially larger than the cited prior benchmark, containing 44,948 conflicts from 34 projects across four languages (p. 6).",
+          "The paper provides a reasonably clear end-to-end collection, classification, prompting, and evaluation pipeline, with prompts and qualitative examples included (pp. 4–6, 14–19).",
+          "The breakdowns by conflict category and context availability expose potentially useful hypotheses for future work (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The proposed grades are coarse syntactic labels rather than validated levels of resolution complexity. Any function-body edit becomes “functional,” overlapping labels are simply called more complex, and no human annotation, agreement study, or correlation with actual difficulty validates the taxonomy; the claimed whitelist guarantee is also contradicted by acknowledged misclassification (pp. 5, 8–10).",
+          "Correctness is defined as any one of edit, fingerprint, or embedding similarity exceeding 0.8, without validating the threshold against semantic or test-based correctness (pp. 7, 20). This can accept behaviorally wrong code, so the very high accuracy/precision values and derived findings are not dependable; the qualitative examples show substantial behavioral mismatches despite textual similarity (pp. 16–19).",
+          "The experimental comparisons are heavily confounded and incomplete: context length, model family, size, and training data vary simultaneously; there are no meaningful merge-tool baselines, no contamination/temporal analysis for public GitHub code, and stochastic generation at temperature 0.7 with up to ten retries is insufficiently specified (pp. 7–10). Thus claims about long-context and general-versus-code models are unsupported causally."
+        ],
+        "score_rationale": "The large dataset and practical topic provide value, but the paper’s primary novelty—complexity grading—is not validated, and its central outcome metric does not measure functional correctness. These are foundational rather than presentational issues, so the reported conclusions cannot presently support acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "CONGRA mines 44,948 merge conflicts from 34 projects, assigns seven labels derived from text/syntax/function-related operations, and evaluates several LLMs. The scale and cross-language coverage are useful, but the proposed labels are not convincingly established as difficulty grades, and the evaluation does not reliably measure correct conflict resolution.",
+        "strengths": [
+          "The dataset is substantially larger than the cited ConflictBench and covers C, C++, Java, and Python projects (pp. 6–7).",
+          "The paper presents a reproducible high-level mining, parsing, prompting, and evaluation pipeline, including the complete prompt and descriptive dataset statistics (pp. 4–6, 14, 20–21).",
+          "Per-type and context ablations expose potentially useful empirical patterns rather than reporting only aggregate model performance (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The central “complexity grading” claim is unsupported: the seven categories are merely combinations of operation types, with no demonstrated ordering, human difficulty study, classifier validation, or error analysis. The paper even acknowledges missed syntax cases while asserting classification correctness (pp. 5, 10).",
+          "Correctness is defined as exceeding 0.8 on any one of edit, fingerprint, or embedding similarity, without compilation, tests, semantic equivalence checks, or human validation (pp. 7, 20). This permissive OR rule can count functionally wrong code as correct, undermining the reported 50–86% accuracy and the major conclusions.",
+          "The experimental comparisons are heavily confounded and incomplete: no prior ACR baselines are actually run, GitHub training-data contamination is not assessed, temperature 0.7 plus up to ten retries biases processability, and conclusions about context length or general-versus-code models compare models with different training, sizes, and APIs rather than controlled variants (pp. 7–10)."
+        ],
+        "score_rationale": "The benchmark scale is valuable, but its two defining components—difficulty grades and correctness measurement—lack essential validation. Consequently, the headline empirical findings cannot presently support strong conclusions; substantial redesign and validation of labels, ground-truth alignment, semantic evaluation, contamination controls, and baselines are needed."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "CONGRA proposes a large, operation-based taxonomy and benchmark of 44,948 real-world merge conflicts, then evaluates several LLMs across four languages. The scale and conflict-type breakdown are potentially useful, but the benchmark does not establish that its labels or success metric reflect true resolution correctness, and several headline conclusions come from uncontrolled comparisons.",
+        "strengths": [
+          "Large dataset spanning 34 projects, four languages, and 44,948 conflict scenarios, with collection and reconstruction broadly described (pp. 6, 19–21).",
+          "The seven-way breakdown offers more diagnostic granularity than treating all conflicts alike, and per-type results expose substantial performance heterogeneity (pp. 5, 8–9).",
+          "The paper includes the prompt, model variants, context ablations, examples, licensing information, and dataset statistics (pp. 7, 9, 14–22)."
+        ],
+        "weaknesses": [
+          "The central correctness criterion is not technically credible: a resolution is counted as correct if any one of edit, fingerprint, or generic embedding similarity exceeds 0.8, without compilation, tests, or behavioral validation (pp. 7, 20). Functionally wrong code can therefore count as correct, undermining all reported accuracy and precision.",
+          "The proposed \"complexity\" labels are coarse operation-presence categories rather than validated difficulty grades. No manual annotation study or classifier accuracy is reported; the paper asserts whitelist-based correctness while acknowledging misclassification, and the priority description is internally unclear (pp. 4–5, 10).",
+          "Headline claims are confounded: longer-context models are compared across different architectures rather than by controlled context variation, and general-versus-code comparisons mix model families, sizes, and training regimes (pp. 7–10). Popular historical GitHub repositories also create an unaddressed training-contamination risk, and stochastic decoding/retries lack repeated-run uncertainty."
+        ],
+        "score_rationale": "The benchmark scale and diagnostic intent are valuable, but the absence of semantic or executable validation is a fundamental threat to validity. Combined with unvalidated difficulty labels, contamination risk, missing uncertainty analysis, and uncontrolled comparisons, the evidence does not support the main performance claims. I therefore rate it a clear reject despite the promising dataset contribution."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "CONGRA mines 44,948 merge conflicts from 34 projects, assigns seven labels from combinations of text/syntax/functional operations, and benchmarks several LLMs. The dataset scale is potentially useful, but the claimed complexity grading and reported resolution accuracy are not adequately validated.",
+        "strengths": [
+          "The benchmark covers four programming languages and substantially more conflicts than the cited prior benchmark (pp. 4–6).",
+          "The pipeline for reconstructing merges and parsing conflict regions is clearly motivated and reasonably reproducible at a high level (pp. 4–6).",
+          "The per-type and context ablations expose potentially useful empirical patterns rather than reporting only aggregate performance (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The seven labels are operation-type combinations, not a validated grading of complexity: no ordering, annotation study, classifier accuracy measurement, or independent difficulty criterion is provided. The claim that whitelist classification “guarantees” correctness is unsupported and contradicted by the acknowledged missed syntax cases (pp. 5, 10).",
+          "Correctness is determined when any one of edit, winnowing, or embedding similarity exceeds 0.8, without calibration, human validation, parsing, compilation, or tests (pp. 7, 20). This can accept semantically incorrect code, so the high accuracy figures do not establish successful conflict resolution; the appendix examples themselves show materially wrong outputs (pp. 16–19).",
+          "The evaluation lacks controls for public-repository training contamination, project/temporal memorization, stochastic variance, and fair baselines. Temperature 0.7 with retries, heterogeneous model access, and omission of existing merging systems further weaken comparative conclusions (pp. 7–8)."
+        ],
+        "score_rationale": "The large mined corpus is a meaningful artifact, but the central novelty—complexity grading—is not substantiated, and the permissive, unvalidated similarity-based correctness metric undermines nearly all empirical conclusions. These are fundamental validity issues rather than minor omissions, warranting rejection despite the dataset’s potential value."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "CONGRA proposes a large benchmark of 44,948 merge conflicts from 34 repositories, assigns conflicts to seven combinations of text/syntax/functional labels, and evaluates several LLMs. The dataset scale is potentially useful, but the proposed labels are not convincingly validated as difficulty grades, and the evaluation does not establish functional correctness. Consequently, the headline findings are too confounded to support the paper’s claims.",
+        "strengths": [
+          "The benchmark covers four programming languages, 34 real projects, and substantially more conflicts than the cited ConflictBench dataset (pp. 4–6).",
+          "The paper provides a reproducible high-level pipeline, including conflict reconstruction, tree-sitter-based labeling, prompting, and multiple similarity measures (pp. 4–7, 14, 20).",
+          "The per-type and context ablations expose potentially useful empirical hypotheses about merge-resolution behavior (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The central novelty—complexity grading—is inadequately justified. Labels indicate the presence of comments, function bodies, or selected syntax operations, but no human validation, classification accuracy study, ordering criterion, or demonstrated correlation with actual resolution difficulty is provided; indeed, the paper calls T+S+F “most complex” while observing it is often easiest (pp. 5, 8–10).",
+          "Correctness is determined when any one of edit, winnowing, or embedding similarity exceeds 0.8, without compilation, tests, static checks, or human assessment (pp. 7, 20). Semantically incorrect code can be textually similar, and embedding similarity is especially unsuitable as a correctness oracle; thus the reported 50–86% accuracies and ensuing conclusions are not reliable.",
+          "The comparisons are heavily confounded: models differ in size, training, APIs, and context limits; temperature is 0.7 with unclear retry handling; only adjacent context is used; established merge baselines are excluded; and public historical repositories may overlap model training data without contamination or project-level analysis (pp. 7–10). Claims about long-context and general-versus-code models therefore do not follow causally."
+        ],
+        "score_rationale": "The scale and benchmark direction are valuable, but the unvalidated notion of graded difficulty and similarity-only correctness criterion undermine both technical soundness and the main empirical conclusions. Substantial redesign and validation are needed before the benchmark can support reliable model comparisons."
+      }
+    }
+  ]
+}

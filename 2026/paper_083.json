@@ -1,0 +1,244 @@
+{
+  "year": 2026,
+  "package_id": "paper_083",
+  "paper_id": "WEuJlEJmX8",
+  "number": 20267,
+  "title": "CircuitSense: A Hierarchical MLLM Benchmark Bridging Visual Comprehension and Symbolic Reasoning in Engineering Design Process",
+  "authors": [
+    "Arman Akbari",
+    "Jian Gao",
+    "Yifei Zou",
+    "Mei Yang",
+    "Jinru Duan",
+    "Dmitrii Torbunov",
+    "Yanzhi Wang",
+    "Yihui Ren",
+    "Xuan Zhang"
+  ],
+  "primary_area": "datasets and benchmarks",
+  "keywords": [
+    "Mathematical Reasoning Benchmark",
+    "Circuit Benchmark",
+    "Symbolic Reasoning",
+    "Equation Derivation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=WEuJlEJmX8",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    6,
+    6,
+    4
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "8bS1JM0Lmv",
+      "forum": "WEuJlEJmX8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20267/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761926989658,
+      "tmdate": 1762933746906,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "BThCu5tyRD",
+      "forum": "WEuJlEJmX8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20267/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760480313836,
+      "tmdate": 1762933747600,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "k3ftDdoDP3",
+      "forum": "WEuJlEJmX8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20267/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761901006037,
+      "tmdate": 1762933747184,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "vIGfwweGDT",
+      "forum": "WEuJlEJmX8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20267/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761974315017,
+      "tmdate": 1762933746568,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CircuitSense is a potentially useful 8,006-problem benchmark for hierarchical visual circuit reasoning, with an especially valuable focus on deriving symbolic models rather than merely recognizing components. However, visible ground-truth errors, insufficiently validated evaluation procedures, and conclusions that are not consistently supported by the reported results substantially undermine the benchmark’s reliability.",
+        "strengths": [
+          "The benchmark targets an important and relatively underexplored capability—translation of schematics and block diagrams into symbolic equations—across six abstraction levels (pp. 2–6).",
+          "Combining curated questions with 5,020 synthetic examples offers useful scale and a meaningful way to probe performance beyond textbook-style multiple choice (pp. 4–8).",
+          "The curated/open-ended/synthetic comparison and attempted stepwise failure analysis could provide useful diagnostic information rather than only aggregate accuracy (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Ground-truth reliability is questionable. For example, the system transfer-function label on p. 23 omits the downstream G3(s) block from C(s)/R(s), despite C(s) being measured after that block. Other prompts are ambiguous, such as asking for a transfer function “from V1 to R1” on p. 21. This conflicts with the claim of guaranteed symbolic ground truth.",
+          "Evaluation validity is underdocumented: distractors and open-ended judgments rely on Gemini-2.5-Flash without reported human validation, error analysis, or judge agreement; design “accuracy” lacks clear tolerances and pass criteria despite being based on simulation (pp. 6–7, 24–26). The relationship between LLM judging and SymPy comparison is also unclear.",
+          "Several conclusions contradict the tables. The asserted consistent link between symbolic reasoning and design is not quantified and has counterexamples (Gemma and GPT-4o-mini in Tables 3 and 6, pp. 7–8). Appendix A.1 claims every model degrades from abstract to exact blocks, although GPT-4o and Qwen improve in Table 8; it also names different model versions (p. 15). Table 7 reports 81% total-impedance accuracy while the text states 55% (p. 9). Dataset counts likewise alternate between 890 and 806 perception examples (pp. 4–5)."
+        ],
+        "score_rationale": "The problem and benchmark concept are novel enough to be promising, but benchmark papers require exceptionally strong label and evaluation integrity. The concrete ground-truth error and multiple internal contradictions prevent trusting the central performance claims without a substantial dataset audit and evaluation redesign. My uncertainty reflects that the full released dataset itself cannot be inspected from the manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CircuitSense proposes a potentially useful 8,006-item benchmark for hierarchical visual circuit understanding, combining curated questions with synthetic symbolic-analysis problems. The scope is valuable, but substantial inconsistencies in dataset accounting, evaluation methodology, and demonstrated ground truth undermine confidence in the reported results and central conclusions.",
+        "strengths": [
+          "The benchmark targets an important and relatively underexplored capability—deriving symbolic models from circuit images—across component-to-system abstraction levels (pp. 2–6).",
+          "The synthetic pipelines and symbolic-equivalence evaluation are sensible ideas for reducing contamination and accepting algebraically equivalent answers (pp. 4–6).",
+          "The paper evaluates eight diverse models and separates curated multiple-choice, curated open-ended, and synthetic performance, revealing a potentially informative distribution shift (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "Dataset reporting and task definitions are inconsistent: Perception is stated as 890 but Table 1 totals 806; the claimed 2,986 curated items are not reconciled with the 2,023 analyzed curated items; model names and counts also vary (pp. 4–6, 10, 15).",
+          "Evaluation validity is insufficiently established. Gemini-2.5-Flash generates distractors and judges open answers while a Gemini model is the leading evaluated system; judge agreement, distractor quality, repeated-run variance, design success criteria, and statistical uncertainty are not reported (pp. 6–8).",
+          "Ground-truth quality is questionable: the system-level example appears to omit the downstream G3 block from C(s)/R(s), and several questions/answers are ambiguous or malformed (e.g., “transfer function from V1 to R1” and inconsistent nodal-equation targets) (pp. 19–23). The claimed link between symbolic reasoning and design is only observational and has conspicuous counterexamples, without correlation statistics or controlled evidence (pp. 7–9)."
+        ],
+        "score_rationale": "The problem and benchmark concept are novel and relevant, but the paper does not yet provide sufficiently reliable evidence for an acceptance-level benchmark contribution. Apparent label errors, inconsistent statistics, possible evaluator bias, and under-specified design evaluation directly affect the headline findings. I am uncertain how widespread the ground-truth issues are because only a few examples are shown, but those examples make a broader expert audit essential."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CircuitSense targets an important and relatively underexplored capability: deriving engineering equations from visual circuit representations across abstraction levels. The benchmark is broad and potentially useful, but substantial inconsistencies in examples, statistics, and evaluation methodology undermine confidence in the reported conclusions.",
+        "strengths": [
+          "The visual-to-symbolic circuit-analysis focus is practically important and more demanding than recognition-oriented circuit benchmarks (pp. 1–3).",
+          "The combination of curated data with schematic and block-diagram generators provides broad coverage across abstraction levels and task types (pp. 4–6).",
+          "Separating curated multiple-choice, curated open-ended, and synthetic performance exposes a potentially informative performance gap (p. 8)."
+        ],
+        "weaknesses": [
+          "Quality control appears inadequate: Perception is reported as both 890 and 806 items (pp. 4–5); Table 7 reports 81% total-impedance accuracy while the text says 55% and incorrectly describes a 47-point drop (p. 9); model names also change in Appendix A.1 (p. 15).",
+          "Several released examples raise ground-truth or task-definition concerns. “Transfer function from V1 to R1” does not specify the output quantity (p. 21), and the displayed block-diagram ground truth appears to omit the downstream G3 block despite C(s) being after it (p. 23). These issues directly threaten benchmark validity.",
+          "Evaluation is insufficiently validated: Gemini generates distractors and judges open answers without reported human agreement; design-scoring criteria and tolerances are unclear (pp. 6–7, 24–26). Claims of memorization and a symbolic-reasoning/design correlation are based on confounded comparisons and no statistical analysis; Appendix results also contradict the claim that all models degrade on exact representations (pp. 7–9, 15)."
+        ],
+        "score_rationale": "The benchmark concept and scale are valuable, but apparent label errors, internal contradictions, ambiguous design evaluation, and overclaimed causal interpretations prevent the results from being technically reliable in their current form. Uncertainty remains because only selected dataset examples are visible, though those examples include decisive warning signs."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "CircuitSense is a potentially useful, large benchmark for hierarchical visual circuit reasoning, especially symbolic equation derivation. However, apparent ground-truth errors, inconsistent reporting, and insufficiently validated evaluation procedures substantially undermine the reported model comparisons and central conclusions.",
+        "strengths": [
+          "Targets an important and underexplored capability: translating circuit diagrams into symbolic models across multiple abstraction levels (pp. 2–5).",
+          "Combines 2,023 curated analysis problems with 5,020 synthetic problems and reports results across eight diverse MLLMs (pp. 6–9, 15).",
+          "The decomposition of derivation failures into intermediate subtasks is useful for diagnosing errors beyond aggregate accuracy (p. 9)."
+        ],
+        "weaknesses": [
+          "Benchmark integrity is questionable: the block-diagram example’s stated ground truth omits the final G3 block and therefore cannot be C(s)/R(s) for the displayed diagram (p. 23). No systematic human-audit statistics are provided to establish label accuracy.",
+          "Evaluation is under-validated: Gemini-2.5-Flash generates distractors and judges open responses without reported human agreement or judge-sensitivity analysis, while design-task simulation criteria and pass thresholds are not specified (pp. 6–7, 24–26).",
+          "Numerous inconsistencies impede reproducibility: Perception is reported as both 890 and 806 examples, the evaluated Gemini model alternates between 2.0-Pro and 2.5-Pro, and Appendix A.1 discusses Claude-3.5 despite evaluating Claude-4 (pp. 4–6, 15). The claimed link between symbolic reasoning and design is also presented as causal without a formal correlation or controlled analysis (p. 7)."
+        ],
+        "score_rationale": "The hierarchical visual-to-symbolic benchmark concept is novel and valuable, and the dataset scale is substantial. Nevertheless, an evidently incorrect showcased label plus weak validation of judging, distractors, and design scoring make the headline accuracies unreliable. These are major but potentially correctable issues, placing the work below the acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "CircuitSense targets an important and relatively underexplored problem: hierarchical visual-to-symbolic circuit reasoning. However, conspicuous ground-truth errors and an insufficiently specified evaluation pipeline undermine the reported model comparisons and central conclusions.",
+        "strengths": [
+          "The benchmark spans perception, analysis, and design across several circuit abstraction levels, a useful framing beyond conventional visual multiple-choice benchmarks (pp. 2–6).",
+          "Combining curated questions with procedurally generated schematics and block diagrams could reduce contamination and enable controlled complexity studies (pp. 4–6).",
+          "The curated/open-ended/synthetic breakdown exposes a potentially important performance gap, and the paper includes illustrative failure cases (pp. 8–9, 19–23)."
+        ],
+        "weaknesses": [
+          "The supplied examples reveal apparently invalid synthetic labels. For example, the page-19 ground truth ignores most resistive paths connected to the source, while the page-20 answer is independent of several components directly connected to the queried node; the block-diagram label on page 23 also appears to omit or mishandle blocks. These errors directly threaten the 5,020-sample evaluation.",
+          "Evaluation is not sufficiently auditable: distractors and open-ended judgments rely on Gemini-2.5-Flash without reported human validation, design-task simulation/scoring rules are largely unspecified, and the symbolic parser's failure handling is not described (pp. 6–7, 17, 28).",
+          "Several claims exceed the evidence. The asserted causal/prerequisite relationship between symbolic reasoning and design is based mainly on model rankings rather than controlled analysis (p. 7), while counts and model identities are inconsistent—806 versus 890 perception examples and Gemini-2.0-Pro versus 2.5-Pro (pp. 4–6, 15)."
+        ],
+        "score_rationale": "The problem and benchmark structure are promising, but benchmark validity is foundational here. Visible ground-truth errors, inconsistent reporting, and weak validation of automated judging make the headline accuracy and failure-analysis conclusions unreliable. Substantial label auditing and a reproducible, independently validated evaluation protocol are needed before acceptance."
+      }
+    }
+  ]
+}

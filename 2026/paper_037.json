@@ -1,0 +1,236 @@
+{
+  "year": 2026,
+  "package_id": "paper_037",
+  "paper_id": "hPY2jwJzZ4",
+  "number": 10032,
+  "title": "Pose Prior Learner: Unsupervised Categorical Prior Learning for Pose Estimation",
+  "authors": [
+    "Ziyu Wang",
+    "Shuangpeng Han",
+    "Mengmi Zhang"
+  ],
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": [
+    "Prior Learning",
+    "Pose Estimation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=hPY2jwJzZ4",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    2,
+    6,
+    6,
+    8
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "hJ5zXzYFOg",
+      "forum": "hPY2jwJzZ4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10032/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761409594364,
+      "tmdate": 1762921438549,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "hgSJhPTHLg",
+      "forum": "hPY2jwJzZ4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10032/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761998015239,
+      "tmdate": 1762921437585,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "qYEkdvyJeZ",
+      "forum": "hPY2jwJzZ4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10032/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760973066545,
+      "tmdate": 1762921438835,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "uBruxijvWi",
+      "forum": "hPY2jwJzZ4",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10032/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761522785485,
+      "tmdate": 1762921438095,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PPL, an unsupervised 2D landmark system that distills an explicit keypoint/connectivity template from multiple memory banks and uses reconstruction plus iterative feedback for occluded inputs. The explicit representation and broad experiments are interesting, but the claimed categorical-prior interpretation and occlusion robustness are not yet convincingly isolated from architectural capacity and reconstruction-based hallucination.",
+        "strengths": [
+          "The method exposes a visualizable keypoint and connectivity representation rather than leaving all structural regularity implicit in network weights (pp. 4–6, 10).",
+          "PPL consistently improves over the listed conventional unsupervised baselines across Human3.6m, Taichi, and CUB, including a masked-reference variant that reduces reliance on paired video frames (pp. 7–8, 21).",
+          "The paper provides useful ablations, qualitative failure disclosure, efficiency information, and experiments across several object categories (pp. 9, 16, 18–21)."
+        ],
+        "weaknesses": [
+          "The technical meaning of the learned “prior” is weakly justified: every keypoint receives an independent affine transform, including unrestricted translation, so the template geometry need not constrain the output strongly; indeed frozen random keypoint templates remain competitive. Moreover, the parallel banks are called hierarchical without an actual hierarchy, and mean-pooling their entries is not shown to recover a statistically meaningful categorical prior (pp. 5, 9, 19–20).",
+          "The evidence does not cleanly attribute gains to prior learning. The main comparison mixes architectures and supervision mechanisms, while the strongest controlled result with a trainable human-defined prior is slightly better than default PPL (2.51 versus 2.56), undermining the broad claim that learned priors are superior (p. 9). Evaluation/alignment details for mapping unsupervised landmarks to annotated keypoints are also insufficiently specified (pp. 7, 16–17).",
+          "Occlusion claims lack quantitative comparisons against strong baselines or simpler iterative/reconstruction controls. Severe random masking remains substantially worse than the unoccluded case, and the paper acknowledges plausible but incorrect hallucinations; the classification extension additionally uses one PPL per class and confidence selection over all reconstructions without matched-compute controls (pp. 9–10, 18–19, 21–22)."
+        ],
+        "score_rationale": "PPL is a potentially useful combination of explicit templates, memory retrieval, and reconstruction, with encouraging benchmark results. However, central novelty claims about learning a meaningful categorical prior are not adequately established, and decisive controlled evidence for the memory/prior and iterative-occlusion mechanisms is missing. I therefore place it marginally below the ICLR acceptance threshold, with some uncertainty because implementation and evaluation details could resolve part of these concerns."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PPL combines a multi-bank vector-quantized memory, an explicit keypoint/connectivity graph, and reconstruction-based training for unsupervised landmark discovery. The framing is interesting and reported results improve several prior baselines, but the manuscript does not convincingly establish that the distilled keypoint template is a meaningful or causally important categorical prior, and key claims about self-supervision and occlusion robustness are insufficiently supported.",
+        "strengths": [
+          "The explicit, visualizable graph representation and memory-based iterative inference are intuitive and constitute a useful combination of existing template, connectivity, and prototype ideas (pp. 4–7).",
+          "PPL reports consistent improvements over listed unsupervised baselines across Human3.6m, Taichi, and CUB, including an image-only-reference variant, and provides several component ablations (pp. 7–9, 20–21).",
+          "The paper evaluates multiple object categories, discusses failure under severe occlusion, and clearly acknowledges the restriction to 2D priors (pp. 8–10, 18)."
+        ],
+        "weaknesses": [
+          "The claimed keypoint prior imposes little identifiable constraint: each template point receives its own unrestricted affine transform, including translation, so any fixed or random point can map almost anywhere (p. 5). Indeed, frozen random keypoint priors remain competitive and a predefined learned prior slightly beats the proposed memory prior (p. 9), while semantic correspondence is explicitly not guaranteed (p. 21). Memory training reconstructs the model’s own detached predictions, making the interpretation as an independently learned categorical prior circular.",
+          "The claim of fully self-supervised learning without external human annotations is overstated because the main reconstruction loss uses a frozen VGG-19 pretrained on labeled ImageNet (p. 6). Moreover, the purported hierarchy is essentially parallel independent banks rather than demonstrated hierarchical levels, and the one-bank ablation changes the encoding structure as well as the bank count, so it does not isolate the proposed design (pp. 5, 20–21).",
+          "Evidence for the central occlusion claim is weak: only synthetic patch masks on controlled Human3.6m are quantitatively evaluated, with no quantitative comparison to baselines or uncertainty estimates (pp. 9, 19). At 40% random masking, iterative inference remains substantially worse than the unoccluded result, and severe occlusion can hallucinate an incorrect pose (pp. 18–19). The class-specific recognition extension also selects among reconstructions from every class model, making its gain difficult to attribute fairly without matched baselines (pp. 21–22)."
+        ],
+        "score_rationale": "The method is competently presented and yields promising benchmark improvements, but its novelty is mainly combinational and the central interpretation is undermined by an effectively unconstrained per-keypoint transform, circular prior learning, and partial semantic consistency. The supervised perceptual backbone conflicts with the stated learning setting, while the occlusion and hierarchy claims lack decisive controlled evidence. These issues place it below the ICLR acceptance threshold, though uncertainty remains because full implementation details could reveal stronger constraints than the equations indicate."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PPL, an unsupervised 2D keypoint-discovery system that distills a visualizable category template from a multi-bank memory and uses iterative reconstruction for occlusion. The idea is interesting and benchmark results are promising, but the evidence does not yet establish that the explicit distilled prior—rather than added memory/capacity and reconstruction—is chiefly responsible for the gains.",
+        "strengths": [
+          "The explicit keypoint/connectivity representation and compositional memory offer a potentially interpretable alternative to priors hidden in network weights (pp. 4–6).",
+          "PPL improves over the reported conventional unsupervised baselines across Human3.6m, Taichi, and CUB, including when masked same-image references replace video references (pp. 7–8, 21).",
+          "The paper includes useful ablations, three-run averaging, qualitative results across several categories, and an acknowledged severe-occlusion failure case (pp. 9, 18, 20)."
+        ],
+        "weaknesses": [
+          "The claimed template constraint is technically weak: every prior keypoint receives its own unrestricted affine transform, including independent translation, so any point can be placed essentially anywhere; the manuscript does not show why the distilled keypoint prior itself meaningfully constrains estimation (p. 5).",
+          "Key causal evidence is missing. The one-bank ablation changes representation and retrieval structure, while no capacity-matched model with memory but without prior distillation/feedback is reported; occlusion plots lack quantitative competing methods, variances, and a corresponding memory/prior ablation (pp. 9, 19–21).",
+          "Empirical scope and evaluation clarity are limited: results rely heavily on controlled Human3.6m and older baselines, PPL is substantially worse than the diffusion baseline on Taichi and all non-aligned CUB subsets, and the protocol for matching unsupervised keypoints to ground-truth landmarks is not fully specified (pp. 7, 16–17)."
+        ],
+        "score_rationale": "The explicit-prior formulation and consistent benchmark improvements are promising, but the per-keypoint transformation undermines the central structural-prior interpretation, and the ablations do not isolate that contribution. I am therefore marginally below acceptance; uncertainty remains because clearer correspondence protocols and stronger controlled ablations could materially change the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PPL, a self-supervised pose-estimation framework that distills an explicit keypoint/connectivity template from a multi-bank memory and uses iterative reconstruction for occluded inputs. The idea is interesting and benchmark results are promising, but the claimed role of the learned categorical prior is not convincingly isolated, and the occlusion/generalization evidence is too limited for the breadth of the claims.",
+        "strengths": [
+          "The explicit, visualizable keypoint and connectivity representation is a useful alternative to structural information hidden only in network weights (pp. 2–5).",
+          "PPL improves over reported non-diffusion baselines across Human3.6m, Taichi, and all listed CUB splits, including the masked-reference variant PPL* (pp. 7–8, 21).",
+          "The paper includes several relevant ablations, qualitative results across categories, efficiency reporting, and an acknowledged severe-occlusion failure case (pp. 16, 18–21)."
+        ],
+        "weaknesses": [
+          "The keypoint prior is weakly identifiable as a causal constraint: each template point receives its own unrestricted affine transform, including translation, so any point can effectively be placed anywhere regardless of the template (p. 5). Correspondingly, frozen random keypoint priors remain competitive, while a trainable predefined prior actually beats the default learned-memory prior, 2.51 versus 2.56 (p. 9).",
+          "The memory is described as storing prototypical poses, yet each bank independently stores partial tokens, mean pooling defines the prior, and the authors explicitly state that no stored item corresponds to a complete pose (pp. 5, 8, 19). The small one-bank ablation does not establish that the memory contains diverse prototypes or that gains arise from prior distillation rather than extra capacity and reconstruction regularization (pp. 20–21).",
+          "Occlusion evidence is confined mainly to synthetic masks on controlled Human3.6m, with quantitative curves lacking AutoLink, inpainting, or one-step reconstruction baselines (pp. 9, 18–19). The broader classification claim also uses one separately trained PPL per class and reports no comparable restoration baseline, so it does not establish general transferable prior learning (pp. 21–22)."
+        ],
+        "score_rationale": "The explicit-prior framing and consistent benchmark improvements provide moderate novelty and empirical value. However, the unrestricted per-keypoint transformations make the learned template largely nonbinding, the prototype interpretation is insufficiently demonstrated, and the central occlusion/generalization claims lack decisive controlled comparisons. I therefore place the work marginally below acceptance; uncertainty remains because some evaluation-protocol details, including ground-truth alignment of unsupervised keypoints, are not fully specified."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PPL combines reconstruction-based unsupervised landmark discovery with a multi-bank memory, an explicitly visualized keypoint/connectivity template, and iterative reconstruction for occlusion. The idea is interesting and the reported benchmark numbers improve over several prior methods, but the formulation does not convincingly establish that the extracted template is a meaningful or causally important categorical pose prior.",
+        "strengths": [
+          "The paper proposes an interpretable, explicit keypoint/connectivity representation and a compositional memory mechanism rather than leaving all regularities implicit in network weights (pp. 4–6, 19).",
+          "PPL reports consistent improvements over several reconstruction-based baselines across Human3.6m, Taichi, and CUB, including a masked-reference control that reduces the temporal-supervision confound (pp. 7–8, 21).",
+          "The paper includes useful ablations, qualitative results across categories, synthetic-occlusion curves, efficiency measurements, and an acknowledged severe-occlusion failure case (pp. 9–10, 16, 18–20)."
+        ],
+        "weaknesses": [
+          "The claimed prior constraint is technically weak: every template keypoint receives its own unrestricted affine transform, including an independent translation, so the predictor can map even a frozen random template to essentially arbitrary keypoints. Indeed, frozen random keypoint priors remain competitive (pp. 5, 9). This makes the learned keypoint prior's causal role unclear, and no intervention directly isolates the distilled prior from added memory/capacity.",
+          "The memory interpretation is insufficiently validated. Independent banks retrieve parts that are never shown to correspond to coherent complete prototypes; the authors explicitly state that stored prototypical poses cannot be visualized. Mean-pooling codebook entries is not theoretically or empirically shown to yield a categorical prior, while semantic correspondence is only partial (pp. 5, 8, 21).",
+          "Evidence for the broad robustness claims is limited: occlusion tests use only synthetic masks on controlled Human3.6m and lack quantitative comparisons to competing correction methods (pp. 9, 19). The recognition extension trains one PPL per class and selects among all class-conditioned reconstructions by maximum classifier confidence, with no matched generative baseline or compute control, so it does not establish general transfer (pp. 21–22)."
+        ],
+        "score_rationale": "The explicit-prior framing and empirical gains are promising, but central claims are undermined by a parameterization that can bypass the learned template and by inadequate validation of memory semantics and robustness. Missing details such as loss weights and limited, partly confounded comparisons further reduce confidence in reproducibility and attribution. Overall this is an interesting direction but currently below the acceptance bar."
+      }
+    }
+  ]
+}

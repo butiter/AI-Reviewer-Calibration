@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_008",
+  "paper_id": "JG0Ca7nFjq",
+  "number": 2657,
+  "title": "LACE: Lightweight Attribution-guided Concept Evolution for Continual Learning",
+  "authors": [
+    "Zhiyu Zhu",
+    "Jiayu Zhang",
+    "Zhibo Jin",
+    "Yihong Fei",
+    "Xinyi Wang",
+    "Huijie Xu",
+    "Fang Chen",
+    "Jianlong Zhou"
+  ],
+  "primary_area": "interpretability and explainable AI",
+  "keywords": [
+    "Interpretability",
+    "Continual Learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=JG0Ca7nFjq",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "BbZ7CptqGL",
+      "forum": "JG0Ca7nFjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761924783338,
+      "tmdate": 1762916322041,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "RRYy1I6reI",
+      "forum": "JG0Ca7nFjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761049883473,
+      "tmdate": 1762916322300,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "RhNd7MXrdv",
+      "forum": "JG0Ca7nFjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762165523425,
+      "tmdate": 1762916320932,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "fj0lRPvnkf",
+      "forum": "JG0Ca7nFjq",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission2657/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762061289588,
+      "tmdate": 1762916321472,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LACE combines a language-guided continual CBM with attribution-based concept ranking, approximate pruning-budget selection, and prototype feature replay. The application is relevant and the reported accuracies are promising, but the central CA/CV justification contains fundamental mathematical problems, while the experiments do not directly substantiate the main compactness, interpretability, and forgetting claims.",
+        "strengths": [
+          "Addresses the practically important problem of concept proliferation in interpretable continual learning with a coherent rank-and-verify pipeline (pp. 2, 5).",
+          "Reports broad accuracy comparisons across five coarse- and fine-grained datasets, including direct comparison with the closest CBM baseline (pp. 9–10).",
+          "Includes runtime and memory measurements suggesting modest overhead over a frozen CLIP backbone (p. 17)."
+        ],
+        "weaknesses": [
+          "The CV derivation is technically invalid as written: it explicitly notes that the softmax covariance has rank C−1, yet repeatedly uses its inverse and inverse square root; moreover, the group deletion formula divides by a scalar leverage although deleting a C-dimensional sample requires a block inverse. The final loss correction is not derived from these equations (pp. 8, 14–16).",
+          "The claimed CA axioms are not established. A nonzero per-sample contribution need not imply a nonzero total attribution because terms can cancel, and the dataset-averaged sign update can suppress coordinates with nonzero individual sensitivities. The argument also does not prove the standard Sensitivity axiom (pp. 6–7).",
+          "Evidence for the paper's defining claims is inadequate: only one seed is specified, no uncertainty is reported, and there are no quantitative retained-concept counts, interpretability/readability metrics, direct forgetting metric, no-pruning baseline, or prototype-augmentation ablation. The sole component ablation even refers to an unreported naive baseline (pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "The problem and empirical scope are worthwhile, but novelty is largely compositional and the mathematically flawed CV mechanism is a central claimed contribution. Single-seed accuracy tables and one qualitative example cannot compensate for the missing validation of compactness, interpretability, or causal component effects, so the manuscript currently warrants rejection."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LACE combines a continual concept bottleneck, attribution-based ranking, approximate leave-one-out pruning selection, and prototype feature replay. The application is relevant and the reported benchmark coverage is broad, but central CA/CV arguments are mathematically incorrect or insufficiently justified, while the experiments do not substantiate the claimed compactness and interpretability benefits.",
+        "strengths": [
+          "Addresses the practically relevant problem of concept proliferation in interpretable continual learning with an auditable rank-and-prune pipeline (PDF pp. 1–5).",
+          "Reports results across five coarse- and fine-grained datasets, with especially large stated gains on ImageNet-subset (PDF pp. 8–10).",
+          "Includes efficiency measurements and a limited CA/CV component ablation (PDF pp. 17–18)."
+        ],
+        "weaknesses": [
+          "The CV derivation is technically unsound: the softmax covariance is explicitly rank deficient but is inverted; the appendix incorrectly treats objectives weighted by S^{-1/2} and S^{1/2} as equivalent; and the block leave-one-out correction is reduced to scalar division without justification (PDF pp. 8, 14–16). Moreover, tr(H) is essentially design rank for a full-rank projection, so the proposed complexity term may be data-independent and can make 1−γ/n nonpositive.",
+          "The claimed Sensitivity proof is invalid: one nonzero step contribution does not imply a nonzero total attribution because contributions can cancel across steps and samples. The method also leaves the sign convention for ranking signed path-integral scores unclear (PDF pp. 6–7). Thus the advertised axiomatic foundation is not established.",
+          "The evidence does not support key claims: there are no quantitative retained-concept counts, readability metrics, or cross-task concept-consistency evaluations; results use only one reported seed without uncertainty; and the ablation omits an unpruned baseline and prototype-augmentation ablation (PDF pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "The concept-proliferation problem and empirical scope are worthwhile, but the central CV estimator and CA guarantee contain decisive mathematical errors. With limited ablations and no quantitative evidence for the main interpretability/compactness claims, the reported accuracy improvements are insufficient to establish the proposed method."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LACE combines a language-guided continual CBM with gradient-based concept ranking, an approximate leave-one-out pruning rule, and prototype feature replay. The topic is relevant and the reported accuracies are promising, but central theoretical derivations are invalid or underspecified, and the experiments do not substantiate the main compactness and interpretability claims.",
+        "strengths": [
+          "Addresses the practically important and underexplored problem of concept proliferation in interpretable continual learning, with a coherent rank-and-verify pipeline (pp. 1–5).",
+          "Reports broad benchmark coverage and strong accuracy, particularly on ImageNet-subset, while including comparisons to both CBM and non-CBM continual-learning baselines (pp. 8–10).",
+          "Includes component ablations, a qualitative concept example, and approximate runtime/memory measurements (pp. 17–19)."
+        ],
+        "weaknesses": [
+          "The CV derivation has major mathematical problems: softmax covariance Si is explicitly rank-deficient but Si^{-1} and Si^{-1/2} are used; the IRLS weighting appears reversed; block leave-one-out influence is reduced to an unjustified scalar division; and tr(H) for an unregularized full-rank projection largely collapses to parameter dimension rather than the claimed data-dependent complexity (pp. 8, 14–16).",
+          "The claimed attribution guarantee is incorrect: one nonzero summand does not imply a nonzero total attribution because contributions can cancel. Moreover, the dataset-averaged gradient gives every sample the same exploration direction, and the paper does not justify ranking signed loss-increasing path integrals as concept utility (pp. 6–7).",
+          "Evidence for the central claims is incomplete: no retained concept counts, quantitative interpretability/readability evaluation, forgetting metric, uncertainty estimates, or multi-seed statistics are reported. The ablation lacks the stated naive baseline, and Table 2 ambiguously labels settings versus average/last accuracy (pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "The proposed combination is potentially useful and the reported accuracy is encouraging, but the technically unsound CV and attribution arguments affect the core method rather than peripheral exposition. With only one stated seed and no quantitative evidence for compactness or interpretability—the principal motivation—the current manuscript falls clearly below the acceptance threshold. Some implementation details may resolve uncertainty, but the written derivations themselves require substantial correction."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LACE combines concept-space attribution, adaptive pruning, and prototype-based feature replay for exemplar-free continual learning. The motivation is relevant and reported accuracy is competitive, but the central CA/CV theory contains serious mathematical errors, while the experiments do not substantiate the main compactness and interpretability claims.",
+        "strengths": [
+          "Addresses the practically relevant problem of concept proliferation in interpretable continual learning with a coherent rank-and-verify pipeline (pp. 1–5).",
+          "Evaluates accuracy across several coarse- and fine-grained class-incremental benchmarks, with particularly large reported gains on ImageNet-100 (pp. 8–10).",
+          "The frozen-backbone design and reported memory/time measurements suggest modest practical overhead (pp. 16–17)."
+        ],
+        "weaknesses": [
+          "The CV derivation is invalid as written: the softmax covariance Si has rank C−1 but is inverted; inverse rather than covariance weighting is used; and Eq. 39 falsely equates S^{-1/2}- and S^{1/2}-weighted objectives. Moreover, the projection trace is essentially model rank, and dividing by n can make the proposed denominator nonpositive (pp. 8, 14–16).",
+          "The claimed CA Sensitivity proof is false because one nonzero term does not imply a nonzero summed attribution—terms can cancel. The paper also provides no empirical attribution-faithfulness or stability evaluation supporting its axiomatic claims (pp. 6–7).",
+          "Evidence for the central claims is incomplete: only one seed is specified, no uncertainty is reported, there are no quantitative concept-count/readability or standard forgetting results, and the ablation omits an unpruned baseline and prototype-augmentation ablation (pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "Although the problem and empirical scope are promising, the unusable/singular IRLS formulation undermines the core adaptive pruning mechanism, and the attribution guarantee is incorrectly proved. Missing uncertainty, component controls, and quantitative interpretability evidence prevent the accuracy tables from rescuing the main claims; substantial correction and reevaluation are required."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LACE combines a language-guided continual CBM, gradient-based concept ranking, automatic pruning-budget selection, and prototype feature replay. The empirical scope is broad, but the central CV derivation is mathematically invalid as written, and the paper does not quantitatively substantiate its main compactness and interpretability claims.",
+        "strengths": [
+          "The paper targets an important and underexplored problem: controlling concept proliferation in interpretable continual learning, with a reasonably coherent rank-and-verify framework (pp. 1–5).",
+          "Evaluation spans five coarse- and fine-grained datasets and several strong pretrained-model continual-learning baselines; reported accuracy is consistently competitive, with especially large gains on ImageNet-100 (pp. 8–10).",
+          "The frozen backbone and concept-level operations appear practically inexpensive, and the paper reports concrete runtime and memory measurements (pp. 16–17)."
+        ],
+        "weaknesses": [
+          "The CV mathematics has fundamental errors. The paper explicitly states that each softmax covariance Si has rank C−1 but then uses Si^{-1} and Si^{-1/2}; moreover, IRLS should use covariance square-root weighting, whereas Eq. 39 incorrectly equates S^{1/2}- and S^{-1/2}-weighted objectives. The block leave-one-out correction is also reduced to an unjustified scalar leverage formula (pp. 8, 14–16). Thus the claimed LOOCV approximation and pruning rule are not established.",
+          "The CA axiomatic claim is overstated: a single nonzero summand does not imply a nonzero total attribution because contributions can cancel, invalidating the stated Sensitivity proof. Signed attributions are then sorted without explaining whether magnitude or sign determines removal (pp. 6–7).",
+          "Evidence for the central claims is insufficient: no retained concept counts, compression ratios, concept-quality metrics, human evaluation, or temporal concept analysis are reported. The ablation lacks a neither-CA-nor-CV baseline and does not isolate prototype augmentation; results use one seed without uncertainty, while the only interpretability evidence is one qualitative example (pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "The problem and empirical breadth are promising, but the core CV derivation is unsound as written and the main compactness/interpretability claims lack direct evidence. Even if the implementation uses an unstated pseudoinverse or corrected weighting, that uncertainty cannot repair the submitted technical argument, warranting rejection."
+      }
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_010",
+  "paper_id": "4a9doRh3Jv",
+  "number": 670,
+  "title": "Fast and Slow Generating: An Empirical Study on Large and Small Language Models Collaborative Decoding",
+  "authors": "Kaiyan Zhang; Jianyu Wang; Ning Ding; Biqing Qi; Ermo Hua; Xingtai Lv; Bowen Zhou",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "Large Language Models; Collaborative Decoding",
+  "forum_url": "https://openreview.net/forum?id=4a9doRh3Jv",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    6,
+    6,
+    3
+  ],
+  "human_mean_rating": 5.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper explores collaborative decoding strategies between large language models (LLMs) and small language models (SLMs). The authors introduce the FS-GEN framework, categorizing LLMs as System 2 (slow and deliberate) and SLMs as System 1 (fast and intuitive). The research focuses on decoding methods like speculative decoding, contrastive decoding, and proxy tuning to improve efficiency and mitigate issues like high inference time."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "Originality:- The paper introduces a novel FS-GEN framework.\nQuality:- The tables and figures are very well used.\nThe paper is written with a great clarity. \nsignificance:- The paper compares from smaller models to larger ones, based on the number of parameters."
+        },
+        "weaknesses": {
+          "value": "Could provide more discussion of practical applications.\nTrade-offs between the inference time and cost can be a great addition. \nThe experiments focused on only few tasks like:- MMLU-STEM, GSM8k, and MBPP, Having experiments over domain specific datasets can give a better understanding."
+        },
+        "questions": {
+          "value": "How generalizable do you believe your findings are to other language tasks or domains?\nHow do you think the collaborative patterns might change, If different sampling technique is used."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jtUyzkDKm0",
+      "forum": "4a9doRh3Jv",
+      "replyto": "4a9doRh3Jv",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_DHMi"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_DHMi"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission670/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730920328840,
+      "cdate": 1730920328840,
+      "tmdate": 1733057068933,
+      "mdate": 1733057068933,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper studies collaborative decoding, where small language models and large language models work together in the decoding process. In particular, the paper offers a unifying perspective on 3 different collaborative decoding techniques: proxy tuning, speculative decoding and contrastive decoding. Authors categorize the larger model as System 2 and smaller model as system 1.\nThe paper studies the 3 techniques, their commonalities and differences through their framework FS-GEN (Fast and Slow Generating).\nThey find that only small fraction of decoding steps require collaboration and that System 1 and 2 follow a scaling law related to parameter ratios."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "Paper studies a relatively under explored but important and emerging area of research.\nThe findings are interesting, particularly the 2:8 law, collaborations being most necessary at the beginning of decoding and that high uncertainty tokens within System 1 are more likely to require collaboration.\nSome of the findings could spur targeted research in the field of collaborative decoding.\nExperimental benchmarks cover different capabilities like knowledge, math and coding, as well as two LLM families."
+        },
+        "weaknesses": {
+          "value": "The System 1 and System 2 analogy is not well fleshed out, to the point where it feels more like a distraction from the main contributions.\n\nThe line fits on the param ratio scaling plot aren't very convincing.\n\nThe uncertainty analysis is only qualitative - quantitative metrics to support this hypothesis (covering different tasks and model families) are missing. Without them its hard to have confidence in this finding."
+        },
+        "questions": {
+          "value": "Related work is pushed to the Appendix. This is a strange choice. I understand there might have been a space crunch, but Related Work makes much more sense to be in the main paper."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Si1zURQN7a",
+      "forum": "4a9doRh3Jv",
+      "replyto": "4a9doRh3Jv",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_zvri"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_zvri"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission670/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730914580920,
+      "cdate": 1730914580920,
+      "tmdate": 1731427297489,
+      "mdate": 1731427297489,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper analyzes the patterns of collaboration between SLMs and LLMs when used in a collaborative decoding/training setup. By analyzing this behavior across multiple collaboration setups, tasks, and model families, the authors draw the following conclusions:\n- The collaboration frequency peaks at about 20%, with the maximum collaboration happening when there's the biggest gap in the model sizes. In fact, there's an inverse scaling law connecting the model size ratio and the collaboration frequency (more clearly evident for Qwen models than Pythia). \n- Most of the LLMs/System 2 interventions are required at the start of the decoding and for tokens for which SLMs are uncertain."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Proposes a new framework to analyze the collaborative behavior between models\n- Empirical results shed new light on this collaborative behavior. In particular, the scaling law for collaboration and frequent positions of collaboration are quite interesting."
+        },
+        "weaknesses": {
+          "value": "- The paper analyzes speculative decoding, contrastive decoding, and proxy tuning. Except for speculative decoding, it's not clear if the analysis provides any executable insights for the other two setups. \nDrawing questionable analogies with human cognitive processes just because one model runs fast and the other slow and then commenting about how the collaborative distributions are different (L127-L129) is extremely flawed reasoning. The analogy doesn't make sense, except for the fact that one model is faster and the other is slower.   \n\nComments about writing:\n- Why is O_g being used and not O_f for p_f (fused logits) in Section 2.2\n- L053: \"allow\" -> \"allows\"\n- L195: \"produce\" -> \"produced\""
+        },
+        "questions": {
+          "value": "- It is not clear what exactly is being illustrated in Figures 11, 12, and 13. What are the different features? \n- How does one use the insights from this paper for contrastive decoding and proxy tuning?\n- Currently, greedy decoding is used to establish whether collaboration is required or not. I wonder if the next token perplexity could be another measure."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "pFDna3M21t",
+      "forum": "4a9doRh3Jv",
+      "replyto": "4a9doRh3Jv",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_gboG"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_gboG"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission670/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730732507189,
+      "cdate": 1730732507189,
+      "tmdate": 1732890996053,
+      "mdate": 1732890996053,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents an investigation into collaborative decoding between small and large language models, attempting to formalize it from the perspective of a system 1 / system 2 collaboration, where system 1 operates quicly and intuitively, while system 2 functions in a more slow and deliberate manner. The paper focuses on the differences between system 1 and 2 in the context of decoding, when system 1 would underperform compared to system 2 and how efficiency of the compound system can be improved. For their investigation, the authors use the Qwen and Pythia series. To evaluate the system, they consider MMLU-STEM, GSM8k and MBPP. The analysis focusses on two aspects of collaboration: frequency and position, where the former refers to how often the models should interact, where as the second one refers to the specific points of interaction. They find thta collaborative interactions are most critical at the beginning of the generation, and that the optimal frequency is around\n 80-20, depending on the task."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper asks an interesting question and presents several findings. The idea to take inspiration from system 1 and system 2 is interesting."
+        },
+        "weaknesses": {
+          "value": "My main qualm with the work is the presentation of the paper, which almost reads like a slide deck: plenty of conclusions and graphics, but little to no details about how the experiments are actually set up or how the conclusions are drawn. I also don't see any evidence of how well the collaborative decoding actually works (that is, there are no accuracy scores reported), and how that may depend on the frequency or place of collaboration). The many figures are hardly described. There is also no discussion of how the results are different between the benchmarks and whether that may make sense given the topics.\n\nLastly, while I like the idea of interpreting collaborative decoding as a system-1 system-2 scenario, but the current work does not really convince me that it makes sense to explore collaborative decoding with SLMs and LLMs in this way. Wouldn't LLMs be better both at the intuition and the deliberate reasoning?\n\nIn sum, it could be that the paper contains many interesting results, but if so, the current presentation does not do them justice.\n\nNB: the related work section is in the appendix and is not even referred to"
+        },
+        "questions": {
+          "value": "Could you elaborate on the motivation of using system 1 - system 2 reasoning for collaborative decoding with SLMs and LLMs, specifically?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "87Ek9xhLwN",
+      "forum": "4a9doRh3Jv",
+      "replyto": "4a9doRh3Jv",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_VTMo"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission670/Reviewer_VTMo"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission670/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730478260592,
+      "cdate": 1730478260592,
+      "tmdate": 1731427297696,
+      "mdate": 1731427297696,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper reframes several large/small-model decoding schemes as “fast and slow” generation and empirically studies token disagreement frequency, sequence position, and SLM uncertainty. The topic is useful, but the central metric is largely an oracle, teacher-forced agreement statistic rather than a deployable collaboration measure, and the claimed 20% rule and scaling law are not adequately supported.",
+        "strengths": [
+          "Studies multiple collaborative-decoding families, model series, parameter pairings, and tasks, including additional appendix benchmarks (pp. 5–10, 18–21).",
+          "The token-position heatmaps consistently suggest that disagreements concentrate early in generated sequences, especially on reasoning tasks (pp. 7–9, 19–20).",
+          "The paper includes an initial practical routing experiment and quantitative separation metrics rather than relying only on qualitative examples (pp. 10, 20–22)."
+        ],
+        "weaknesses": [
+          "CoF_lower is computed by feeding the full collaborative output back to the SLM token by token and counting top-1 mismatches (pp. 17–18). This requires oracle knowledge of the desired collaborative trajectory, making the “minimal collaboration” result essentially an agreement statistic; the paper acknowledges it is not practically attainable (p. 9).",
+          "The advertised “20%” law is contradicted by substantial results: Table 3 contains many rates above 20%, reaching 31.4% (pp. 18–19), while several proxy results also approach or exceed that level (p. 6). The parameter-ratio “scaling law” uses task/method-specific fits, weak Pythia fits, no uncertainty estimates, and no held-out predictive validation (pp. 6–7, 19).",
+          "Evidence about usefulness and efficiency is incomplete: the authors explicitly omit task accuracy and assume collaborative outputs are better (p. 18), despite appendix examples where collaboration is wrong (pp. 22–23). There are no latency, throughput, or end-to-end cost measurements, and K=1 “oracle decoding” is not an actual speculative-decoding speedup (p. 18)."
+        ],
+        "score_rationale": "The broad empirical survey and uncertainty observations have some value, but novelty is mostly a conceptual relabeling, and the main conclusions overreach an oracle disagreement analysis. Contradictory frequency evidence, unvalidated curve fitting, and missing quality/efficiency evaluation undermine technical soundness and practical significance, warranting rejection."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper offers a unified descriptive view of large–small-model decoding and studies where token-level outputs differ. However, its principal claims are substantially stronger than the evidence: the proposed “lower bound” is an oracle, teacher-forced mismatch statistic rather than a realizable collaboration rate, the claimed 20% rule has direct counterexamples, and the proposed scaling law lacks rigorous validation.",
+        "strengths": [
+          "Studies several collaborative-decoding paradigms—speculative/oracle, contrastive, and proxy tuning—under a common vocabulary (pp. 3–5).",
+          "Covers multiple model families, scales, and tasks, with additional domain and instruction-following datasets in the appendix (pp. 5–10, 18–21).",
+          "The observation that early-generation and low-confidence tokens are useful routing candidates is practically relevant, and preliminary routing trade-offs are reported (pp. 8–10, 21)."
+        ],
+        "weaknesses": [
+          "The central CoF lower metric is computed by feeding the completed collaborative output back to the SLM token by token (pp. 17–18). This uses an oracle collaborative prefix and does not establish that the same output can be obtained online with only those interventions; no end-to-end latency, compute, or exact-output experiment validates the claimed efficiency.",
+          "The headline “less than 20%”/2:8 law is contradicted by the paper’s own results: Table 3 reports many rates above 20%, reaching 31.4% (p. 19), while proxy results in Figures 2–3 also appear substantially above 20% (p. 6). Moreover, collaborative outputs are assumed superior without task-accuracy evaluation (p. 18), despite appendix examples where collaboration is wrong (pp. 22–23).",
+          "The “scaling law” is an empirical curve fit with task- and method-specific parameters, weak fits for Pythia, no uncertainty estimates, held-out prediction, model-family extrapolation, or comparison against simpler baselines (pp. 6–7, 19). The uncertainty analysis is also underspecified and only moderately supports separability—several silhouette scores are well below 0.5 and Pythia DBI exceeds 1 (pp. 20–21)."
+        ],
+        "score_rationale": "The broad empirical framing is useful, but novelty is mostly organizational and the decisive quantitative conclusions are not technically supported. Oracle conditioning, contradictions to the 20% claim, absence of ground-truth quality/cost evaluation, and unvalidated curve fitting undermine the main contributions, warranting rejection rather than a borderline score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper frames speculative decoding, contrastive decoding, and proxy tuning as “fast/slow” collaboration and studies token mismatch frequency, sequence position, and SLM uncertainty. The empirical observations are potentially useful, but the central claims substantially exceed what the evaluation establishes.",
+        "strengths": [
+          "Provides a common vocabulary and broad empirical comparison across several model scales, tasks, and three collaborative-decoding settings (pp. 3–8).",
+          "The observation that mismatches concentrate early in generation is consistent across numerous model/task combinations and is clearly visualized (pp. 8–9, 19–20).",
+          "Includes appendices with additional datasets, uncertainty analyses, and preliminary routing results rather than relying solely on illustrative examples (pp. 18–22)."
+        ],
+        "weaknesses": [
+          "The reported “lower bound” is an oracle, teacher-forced mismatch rate against a collaborative output, not a realizable collaboration policy or a measure of actual speed/cost. With K=1, the LLM is still evaluated at every step, and no latency, FLOPs, or wall-clock improvement is measured (pp. 17–18).",
+          "The claimed 20%/Pareto regularity and scaling law are weakly supported: Table 3 contains many rates above 20%, proxy results can approach 30%, Pythia fits are acknowledged to be poor, and there is no held-out predictive validation or goodness-of-fit comparison against simpler alternatives (pp. 6–7, 18–19).",
+          "Output quality is largely unevaluated: the authors explicitly omit task accuracy and assume collaborative outputs are generally better, although their own examples include incorrect collaborative answers. The uncertainty/routing analysis also lacks clear feature construction, threshold-selection details, strong routing baselines, and comprehensive quality–cost results (pp. 18, 20–23)."
+        ],
+        "score_rationale": "The unified perspective and dataset-scale descriptive analysis offer some value, but novelty is mostly conceptual repackaging of known methods and known uncertainty-based routing ideas. More importantly, oracle mismatch frequency is repeatedly interpreted as practical collaboration efficiency without measuring deployable cost or validating output quality. The unsupported scaling-law and 20% claims further weaken technical soundness, so I assess the work as a reject despite potentially useful empirical observations."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper presents FS-GEN, a dual-process framing of collaborative decoding, and studies token disagreement frequency, sequence position, and SLM uncertainty across speculative/oracle, contrastive, and proxy decoding. The empirical observations are potentially useful, but the framework is largely descriptive and the central scaling-law, 20% collaboration, and uncertainty claims are not established rigorously enough.",
+        "strengths": [
+          "Provides a common vocabulary for comparing several large–small model collaboration schemes and clearly distinguishes their roles (pp. 2–5).",
+          "Covers multiple model families, scales, tasks, and decoding methods, with additional datasets and analyses in the appendices (pp. 5–10, 18–21).",
+          "The observations that disagreements concentrate early and correlate with SLM confidence suggest potentially useful routing heuristics (pp. 7–10, 21)."
+        ],
+        "weaknesses": [
+          "The reported CoF lower is an oracle, teacher-forced token-disagreement rate: determining its positions still requires evaluating the collaborative system at every step. Thus it does not itself demonstrate realizable inference or training savings, as the authors acknowledge (pp. 5, 9–10, 17–18).",
+          "The headline “less than 20%”/2:8 claim is insufficiently supported and has visible counterexamples: Table 3 reports many rates above 20%, reaching 31.4%, while no aggregate statistics, uncertainty intervals, or significance tests are supplied (pp. 6, 18–19).",
+          "The proposed scaling law is mainly an in-sample fitted curve with task- and method-specific parameters, weak fits for Pythia, and no held-out predictive evaluation. Likewise, the uncertainty study uses poorly specified clustering features and mostly descriptive metrics rather than calibrated routing AUROC/PR, cross-model threshold transfer, or end-to-end latency/quality evaluation (pp. 7, 9–10, 19–22)."
+        ],
+        "score_rationale": "The paper offers a broad empirical survey and useful qualitative hypotheses, but its novelty is primarily a loose cognitive analogy, and its major claims substantially exceed the evidence. The oracle nature of the key metric, contradictions to the 20% headline, and weak validation of the scaling and routing claims make this a reject in its current form."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes FS-GEN, a dual-process framing for analyzing token-level collaboration between small and large language models, and studies mismatch frequency, sequence position, and SLM uncertainty across several model families and tasks. The descriptive observations are potentially useful, but the framework is mostly a relabeling of existing decoding schemes, while the central scaling-law and practical-effectiveness claims are not adequately validated.",
+        "strengths": [
+          "Studies three collaborative-decoding settings across multiple model scales and tasks, with additional model families and datasets in the appendices (pp. 5–10, 18–21).",
+          "The token-level mismatch diagnostic is simple and interpretable, and the paper provides both position heatmaps and uncertainty visualizations (pp. 8–10).",
+          "The appendices disclose important implementation choices and include practical routing curves rather than only qualitative examples (pp. 18, 20–22)."
+        ],
+        "weaknesses": [
+          "The claimed “lower bound” is an oracle, teacher-forced mismatch rate: identifying the necessary steps requires already knowing the full collaborative output. Moreover, speculative decoding is evaluated only with K=1 and renamed “oracle decoding,” so actual speculative speedups, verification blocks, and latency are not evaluated (pp. 17–18).",
+          "The proposed scaling law is weakly supported: the exponent/fitting procedure, goodness-of-fit, uncertainty, and held-out predictive tests are absent; fits are task- and method-specific and visibly unreliable for Pythia. Thus the displayed regressions do not establish a general scaling law (pp. 6–7, 19).",
+          "Evidence does not substantiate improved correctness or practical efficiency. The authors explicitly omit task accuracy and treat collaborative generations as references even though those generations may be wrong (p. 18; concrete failures on pp. 22–23). The uncertainty analysis reports clustering metrics without competitive routing baselines, calibration, error bars, or clear held-out threshold selection (pp. 20–22)."
+        ],
+        "score_rationale": "The paper offers a broad descriptive study and useful visual diagnostics, but its novelty is largely conceptual, and the main claims overreach the evidence. Oracle-defined collaboration rates, unsupported scaling-law terminology, and the absence of systematic correctness, latency, and held-out routing evaluation are major technical shortcomings. I therefore rate it a reject, with some uncertainty because the diagnostic dataset could still be useful after substantial reframing and stronger evaluation."
+      }
+    }
+  ]
+}

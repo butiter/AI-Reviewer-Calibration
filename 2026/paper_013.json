@@ -1,0 +1,236 @@
+{
+  "year": 2026,
+  "package_id": "paper_013",
+  "paper_id": "OcIepBMLnO",
+  "number": 3968,
+  "title": "LLM-AUGMENTED KNOWLEDGE REPRESENTATION LEARNING VIA ATTENTION FOR KNOWLEDGE GRAPH COMPLETION",
+  "authors": [
+    "Mengqing Wang",
+    "Peipei Li"
+  ],
+  "primary_area": "learning on graphs and other geometries & topologies",
+  "keywords": [
+    "Knowledge Graph Completion",
+    "Large Language Models",
+    "Data Augmentation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=OcIepBMLnO",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    6,
+    4
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "94e4lhoMQj",
+      "forum": "OcIepBMLnO",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3968/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761923672204,
+      "tmdate": 1762917116945,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "AlM4eIhn71",
+      "forum": "OcIepBMLnO",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3968/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761942465416,
+      "tmdate": 1762917116658,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "NlLOTPozSF",
+      "forum": "OcIepBMLnO",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3968/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761900480995,
+      "tmdate": 1762917117257,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "okvGRrjDSr",
+      "forum": "OcIepBMLnO",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3968/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761557134355,
+      "tmdate": 1762917117492,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LAKRA combines LLM-generated graph augmentation with a query-aware hybrid-attention encoder and a 3D-convolutional decoder. The direction is potentially useful for long-tail KGC, but the central evidence is compromised by test-set contamination and incomplete methodological specification.",
+        "strengths": [
+          "The paper targets an important practical problem and presents a coherent augmentation-plus-encoder/decoder framework (pp. 3–7).",
+          "Component ablations and sparse-entity analyses attempt to isolate where gains arise, with augmentation producing the largest reported improvement (pp. 9, 18).",
+          "The appendix reports generation cost, retained-triple counts, and examples including acknowledged failures, providing some transparency about augmentation noise (pp. 15–19)."
+        ],
+        "weaknesses": [
+          "The main results train on generated triples that include 932 FB15K-237 and 198 WN18RR test triples (pp. 9, 15). Although an FB15K-237 removal experiment is reported, it identifies overlaps using test labels, omits WN18RR, and the uncontaminated FB15K-237 MRR drops from 0.396 to 0.375; thus the headline evaluation is not valid evidence of generalization.",
+          "The empirical claims overstate performance: Table 2 shows KICGPT outperforming LAKRA on FB15K-237 MRR, Hits@1, and Hits@3, while RAA-KGC substantially outperforms it on WN18RR MRR, Hits@3, and Hits@10 (p. 8). Comparisons also lack variance, significance testing, and controlled reimplementations.",
+          "Reproducibility and technical clarity are insufficient: the Gaussian kernels are not defined beyond a high-level equation, candidate thresholds and filtering heuristics are unspecified, and the 3D stack/kernel description is dimensionally and conceptually unclear (pp. 6–7, 11–12)."
+        ],
+        "score_rationale": "The basic idea and some ablations are promising, but the principal claimed contribution is evaluated using training data containing known test triples, a severe protocol violation. The limited decontaminated result remains somewhat competitive but does not establish the claimed gains, and substantial specification gaps prevent confident verification. These issues warrant rejection despite the potentially useful research direction."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LAKRA combines LLM-generated triples for low-degree entities with a query-aware hybrid-attention GNN and a convolutional decoder. The direction is relevant, but test-set contamination, incomplete methodological specification, and overstated empirical conclusions substantially weaken the central evidence.",
+        "strengths": [
+          "The paper targets an important long-tail KGC problem with a conceptually intuitive explicit-augmentation pipeline and schema-constrained candidate selection (pp. 3–5).",
+          "Component ablations and sparse-entity analyses suggest that augmentation and the proposed decoder can improve the reported metrics (pp. 8–9, 18).",
+          "Experiments cover four datasets and include some computational-cost and noisy-generation discussion (pp. 15–19)."
+        ],
+        "weaknesses": [
+          "The augmentation leaks benchmark test facts: 932 generated FB15K-237 triples and 198 WN18RR triples occur in their test sets (pp. 9, 15). The uncontaminated experiment is reported only for FB15K-237; it drops MRR from 0.396 to 0.375 and leaves WN18RR and the striking sparse-entity gains unaudited (pp. 9, 18). Using descriptions and LLM parametric knowledge also makes benchmark-fact leakage difficult to rule out.",
+          "The empirical claims are inaccurate or weak relative to the table: LAKRA is not best on FB15K-237 MRR or Hits@3, where KICGPT scores 0.412/0.448 versus 0.396/0.431, and it trails substantially on WN18RR MRR and Hits@10 (p. 8). Comparisons lack uncertainty, repeated runs, and controlled augmentation baselines.",
+          "Reproducibility and technical clarity are inadequate: candidate thresholds, filtering rules, LLM decoding settings, and generated triples are not fully specified; Gaussian kernels are left undefined; and the stated 3D stack/kernel construction is internally unclear (pp. 3–7, 11–13). Novelty is also limited because the architecture largely combines known attention, correlation, Gaussian-feature, and convolutional ingredients."
+        ],
+        "score_rationale": "The problem and augmentation idea have merit, and the reported ablations are promising. However, the central results are compromised by explicit test overlap and possible LLM benchmark memorization, while the only decontaminated result is materially weaker and incomplete. Together with specification gaps and overstated comparisons, this supports a reject score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "LAKRA combines LLM-generated triples for low-degree entities with a query-aware hybrid-attention GNN and a 3D-convolutional decoder. The direction is relevant and several ablations are reported, but the central empirical evidence is compromised by test-set overlap and insufficiently specified generation/evaluation procedures, while the architecture is not described precisely enough for confident reproduction.",
+        "strengths": [
+          "The paper targets an important long-tail KGC problem with an intuitive, schema-constrained two-stage augmentation pipeline (pp. 3–5).",
+          "Component ablations compare augmentation, attention branches, Gaussian features, message functions, and decoders on two principal datasets (pp. 8–9).",
+          "Appendices add sparse-entity results, generated-triple examples, prompts, computational costs, and two additional datasets (pp. 12–19)."
+        ],
+        "weaknesses": [
+          "The augmentation contains 932 FB15K-237 and 198 WN18RR test triples (pp. 9, 15). Removing the FB15K-237 overlaps lowers MRR from 0.396 to 0.375, meaning about two-thirds of the reported gain over the no-augmentation model (0.364) is associated with these overlaps; no corresponding clean WN18RR result is given. This substantially undermines the main evaluation.",
+          "Reproducibility and technical specification are inadequate: the Gaussian kernels, reshape operator, dimensions, candidate thresholds, heuristic validation, LLM decoding settings, number of generated triples per entity, and several architectural details are undefined or ambiguous (pp. 3–7, 11–12). Equation 19 also repeats the original relation representation, and the claimed four interaction pairings are not clearly implied by the stated stack/kernel.",
+          "The empirical claims overstate the results and controls are insufficient. LAKRA is not best overall on FB15K-237 or WN18RR—KICGPT and RAA-KGC exceed it on several primary metrics (p. 8). Baselines are apparently imported across heterogeneous settings, there are no uncertainty estimates or multiple seeds, and the very large sparse-entity jump lacks a clean, leakage-free breakdown (pp. 8, 18)."
+        ],
+        "score_rationale": "The explicit augmentation idea has some merit and the breadth of experiments prevents a strong-reject score. However, direct test-set contamination materially contributes to the headline gains, the clean improvement is modest, and key method/evaluation details are missing. These are central validity and reproducibility problems, so the manuscript is below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LAKRA combines LLM-generated graph augmentation with a hybrid-attention GNN and 3D-convolutional decoder. The direction is potentially useful for long-tail KGC, but test-set contamination, incomplete technical specification, and weak experimental controls prevent the reported gains from establishing sound or reproducible progress.",
+        "strengths": [
+          "The augmentation pipeline uses relation/type-constrained candidate sets rather than unconstrained generation, and the prompts and generated-triple counts are documented (pp. 3–4, 12–15).",
+          "Component ablations and sparse-entity results suggest augmentation is the main contributor, while decoder and attention variants provide smaller gains (pp. 8–9, 18).",
+          "The paper evaluates on four datasets and reports augmentation and model runtime costs (pp. 15, 18–19)."
+        ],
+        "weaknesses": [
+          "The principal evaluation is contaminated: 932 FB15K-237 and 198 WN18RR generated training triples occur in the respective test sets (pp. 9, 15). Although an FB15K-237 removal experiment is reported, it is absent for WN18RR, its protocol is insufficiently detailed, and the main tables still use contaminated augmentation; pretrained-LLM memorization and indirect leakage are also uncontrolled.",
+          "The method is materially underspecified or inconsistent: Gaussian kernels and reshape dimensions are undefined, Eq. 19 duplicates the relation representation, the claimed convolutional interactions do not clearly follow from the tensor/kernel definitions, and query-conditioned message passing and head prediction are not operationally explained (pp. 5–7).",
+          "Evidence is weaker than claimed: LAKRA is not best overall—KICGPT is better on three of four FB15K-237 metrics and RAA-KGC is substantially better on three of four WN18RR metrics (p. 8). There are no repeated runs, uncertainty tests, systematic generated-triple precision assessment, or controlled comparison isolating LLM augmentation from simpler augmentation (pp. 8–9, 12–18)."
+        ],
+        "score_rationale": "The constrained explicit augmentation idea has some novelty and promising ablations, but the headline experiments train on hundreds of test triples and several core architectural details are not reproducible. Combined with inaccurate performance claims and missing statistical and augmentation-quality controls, the current evidence does not support acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "LAKRA combines LLM-generated graph augmentation with a hybrid-attention GNN encoder and a 3D-convolutional decoder. The direction is relevant and the ablations suggest gains, but the central evaluation is compromised by training on generated triples that overlap the test set, while important methodological and reproducibility details remain underspecified.",
+        "strengths": [
+          "Targets long-tail entities directly through schema-constrained augmentation rather than only encoding auxiliary text (pp. 3–5).",
+          "Provides component ablations and sparse-entity analysis across several datasets (pp. 8–9, 18–19).",
+          "Reports augmentation and model costs and acknowledges noisy generations (pp. 15–19)."
+        ],
+        "weaknesses": [
+          "The main results use 932 FB15K-237 and 198 WN18RR generated triples that occur in the test sets (pp. 9, 15). Removing FB15K-237 overlaps lowers MRR from 0.396 to 0.375, eliminating the claimed advantage over KICGPT (0.412) and KG-R3 (0.390); no leakage-free WN18RR result is given (pp. 8–9). Entity descriptions may also expose held-out facts, but their provenance is unspecified.",
+          "Technical specification is incomplete or inconsistent: Gaussian kernels are not defined beyond notation, tensor reshaping and convolution dimensions are unclear, the five-layer stack duplicates the relation, and the stated two-adjacent-layer kernel conflicts with the displayed kernel depth of five (pp. 6–7). Filtering heuristics, thresholds, candidate-pool construction, LLM decoding settings, and generated triples are insufficiently documented for reproduction (pp. 11–13).",
+          "Empirical claims are overstated and comparisons are not well controlled. LAKRA is not best on FB15K-237 MRR or Hits@3 and trails RAA-KGC substantially on WN18RR MRR/Hits@3/Hits@10 (p. 8), contrary to the text. There are no multiple-seed uncertainties, statistical tests, augmentation-quality audit, or controlled comparison against simpler non-LLM/schema-based augmentation."
+        ],
+        "score_rationale": "The problem is important and the architecture shows potentially useful empirical gains, but test-set contamination directly affects the headline results and the leakage-free experiment no longer establishes state-of-the-art performance. Combined with incomplete technical definitions, limited reproducibility, and overstated conclusions, these issues warrant rejection despite promising motivation and ablations."
+      }
+    }
+  ]
+}

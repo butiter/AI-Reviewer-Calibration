@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_004",
+  "paper_id": "bxqfyKl4lQ",
+  "number": 315,
+  "title": "BiDRN: Binarized 3D Whole-body Human Mesh Recovery",
+  "authors": "Zhiteng Li; Yulun Zhang; Jing Lin; Haotong Qin; Jinjin Gu; Xin Yuan; Linghe Kong; Xiaokang Yang",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "3D whole-body human mesh recovery; Binarization",
+  "forum_url": "https://openreview.net/forum?id=bxqfyKl4lQ",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    5,
+    3,
+    8
+  ],
+  "human_mean_rating": 5.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a binarized network for the task of human shape recovery from images. The main design in the proposed Binarized\nDual Residual Network (BiDRN) is the Binarized Dual Residual Block (BiDRB), which is further composed of Local Convolution Residual (LCR) and Block Residual (BR). The LCR is extended to convolution operations with down scale, down sample, fusion up, and fusion down. The design of LCR includes using Hardtanh as pre-activation function and the adoption of RPReLU activation. Experiments are conducted on two datasets to show the effectiveness of the proposed method compared with other binarization methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "This paper presents detailed design of the binarized dual residual block, which covers the design of the pre-activation function, local convolution residual with channel-wise RPReLU, and block residual.\n\nThe Local convolution residual is extended to scenarios where the residual does not match the dimension of the outputs of convolutions.\n\nBoth the backbone of the reconstruction task and the face and hand detection network are considered in the network binarization.\n\nExperiments on EHF and AGORA show performance advantages over other binarization methods."
+        },
+        "weaknesses": {
+          "value": "The novelty and contribution of the proposed binarization is limited as most of the design is quite straightforward. The block residual is something new to me. \n\nThe designed residual block is quite specific for ResNet. This limits the scope of the proposed binarized dual residual block. \n\nThe experiment is conducted with comparison to other standard binarization methods, which are designed for general networks. This comparison is kind of unfair as the proposed binarization only works for this particular model, or maybe a broader ResNet-like architecture. A comparison to other binarization/quantization methods for networks in 3D human reconstruction or ResNet-like models is needed."
+        },
+        "questions": {
+          "value": "It is not very clear why the proposed binarization method target at the Hand4Whole method. There are other (latest) methods (with better performance) in the field.\n\nLatency. While the OPs is provided to have a rough idea of the number of operations, It is also necessary to see the change of speed with the proposed binarization."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "qjXnShj7OR",
+      "forum": "bxqfyKl4lQ",
+      "replyto": "bxqfyKl4lQ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_fsnC"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_fsnC"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission315/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730719495372,
+      "cdate": 1730719495372,
+      "tmdate": 1731427235127,
+      "mdate": 1731427235127,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a binarized network for 3D whole-body recovery from images. The core design of the proposed network is a binarized module consisting of (i) the local convolution residual with hardtanh pre-activation to alleviate binarization failures, and (ii) the block residual with a full-precision shortcut to maintain information. The proposed network is compared with several general binarization methods on two public datasets. The experimental results show that the proposed network outperforms the general binarization methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "\\+ The presentation of this paper is good and easy to follow.\n\n\\+ This paper provides a good engineering solution for efficient human mesh recovery. It raises the performance of previous binary networks on the EHF and AGORA datasets."
+        },
+        "weaknesses": {
+          "value": "\\- The proposed method is not clarified clearly. In the down sample residual block (Figure 4, left), why the dual binarized convolutions with the same inputs, kernel sizes, and strides are needed? How does it differ from a grouped binarized convolution (i.e., with 2 groups)? As for the FullPrecision convolution in the block residual, its kernel size and stride are 1 and 2, respectively. Will this result in checkboard artifacts? \n\n\\- None of the competitors is designed for human mesh recovery. I wonder whether the proposed method still has significant advantages in efficiency compared with those tailored for this task (in terms of GPU memory and FPS), such as [1-2].\n\n[1] Dou, Zhiyang, et al. Tore: Token reduction for efficient human mesh recovery with transformer. ICCV 2023.\n\n[2] Zheng, Ce, et al. Potter: Pooling attention transformer for efficient human mesh recovery. CVPR 2023.\n\n\\- The qualitative results show that some meshes predicted by the proposed method do not align with images well (e.g., hands and faces in Figure 7)."
+        },
+        "questions": {
+          "value": "I have a few concerns that I wish could be addressed. I may change my decision after reading the rebuttal and other reviewers' comments.\n\nQ1: It would be better to include the results of the baseline (Hand4whole) in the visual examples.\n\nQ2: Why binarized deconvolution and linear layers even yield better performance (L345-346)?\n\nQ3: How is the prediction head of SMPLX parameters binarized?\n\nQ4: A visual architecture comparison with other binarized methods could help to capture the gist and novelty of the proposed design, especially when previous methods have similar components, e.g., Bi-real also adopts a piecewise polynomial function and shortcuts. \n\nTypos: \"e.g.the\" -> \"e.g., the\", \"Hands regions\" -> \"Hand regions\"."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "5WAQ9TnoXT",
+      "forum": "bxqfyKl4lQ",
+      "replyto": "bxqfyKl4lQ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_kuYg"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_kuYg"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission315/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730699336910,
+      "cdate": 1730699336910,
+      "tmdate": 1731427235253,
+      "mdate": 1731427235253,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates the binarized network for whole-body 3D human mesh recovery. The motivation is to reduce the high computational cost of existing multi-stage pipeline, so that the model can efficiently run on mobile devices. While directly binarizing the backbone causes severe degradation on precision of mesh regression. Built on the baseline, Hand4Whole, this paper redesigns the architecture of backbone, bounding box detector, and decoding heads to reduce the computational costs while alleviating the reduction in precision.  The experiments are conducted on EHF and AGORA to testify the effectiveness of the proposed designs, compared with other common designs. Compared to the previous binarization design, ReCU, the proposed method reduces 17.1% and 4.5% on EHF and AGORA in terms of whole-body MPJPE, meanwhile, reducing the computational costs to 27.8% of the original Params and 15.6%  of the original OPs."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "1.\tThis paper addresses the underexplored challenge of enhancing computational efficiency in whole-body 3D human mesh recovery.\n2.\tUnlike previous binarization methods, the proposed approach mitigates degradation in mesh regression to an obvious extent.\n3.\tThe reduction in model parameters and operations is substantial, making this method valuable for deployment on mobile devices."
+        },
+        "weaknesses": {
+          "value": "This paper introduces a binarization model based on the state-of-the-art multi-stage method, Hand4Whole. The experiments and binarization techniques are tailored specifically to optimize this baseline. However, it remains unclear whether the proposed binarization approach is compatible with more efficient one-stage methods, such as MultiHMR or AiOS, which may offer greater potential for faster performance on mobile devices. If the proposed binarization method cannot be applied to other whole-body HMR methods, its novelty and contribution to the field would be limited.\n\nThe challenges are described as engineer problems, such as the quality of backbone features or dimension mismatching. The motivation behind all the binarization designs hasn’t been discussed in an obvious way."
+        },
+        "questions": {
+          "value": "The scientific value of the proposed method might be determined by whether the proposed method can be generalized to the other HMR methods, especially the one-stage methods, AiOS / MultiHMR, which adopts a very different architecture."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "YLruai9l5D",
+      "forum": "bxqfyKl4lQ",
+      "replyto": "bxqfyKl4lQ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_Ywt4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_Ywt4"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission315/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730640469042,
+      "cdate": 1730640469042,
+      "tmdate": 1731427235384,
+      "mdate": 1731427235384,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In this work, the authors focus on the 3D HMR (human mesh recovery) task. They propose a method named BiDRN based on a Binarized Dual Residual Network. They propose to use a binarized boxnet followed by three BiDRNs for the face, hand, and body, respectively. These features are then projected to SMPL-X parameters to animate the human object. As suggested by the authors, they are the first to propose a binarized neural network for the HMR task. The authors have conducted extensive comparisons on EHF and AGORA benchmarks and compared both binarized and non-binarized methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "+ The proposal of BiDRN is one of the first implementations of a Binarized Neural Network for the HMR task. The motivation is solid (due to rendering time requirements for VR), and the paper is well-written and easy to follow.\n+ The authors have conducted comprehensive comparisons with other methods, including both BNN-based and non-BNN-based methods. They show significant improvement over other BNN-based methods, while performance is close to float32 networks, with a huge reduction in computational requirements.\n+ The overall improvement is validated with extensive ablation results."
+        },
+        "weaknesses": {
+          "value": "This work is interesting, and I have no major concerns. For further improvement, here are some suggestions:\n\n+ For the results shown in Table 1, please consider including more recent BNN-based methods. Currently, the latest work in the table is from 2021, which is three years old. Including more recent work would make the comparison more reasonable, as the BNN domain has advanced in recent years (as stated in the related works).\n + As BNNs significantly reduce computational requirements, it would be helpful to check the FPS rate for a video for the BNN network compared to the original network, which could better illustrate whether the BNN-based model can achieve real-time HMR."
+        },
+        "questions": {
+          "value": "If authors are able to provide the FPS rate for the reconstruction for a video, along with the resolution of the frames and computational resources, it can be very helpful to further validate how fast BNN can achieve for HMR task."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "NbBv7F2dEp",
+      "forum": "bxqfyKl4lQ",
+      "replyto": "bxqfyKl4lQ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_zufd"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission315/Reviewer_zufd"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission315/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729991214913,
+      "cdate": 1729991214913,
+      "tmdate": 1731427235498,
+      "mdate": 1731427235498,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "BiDRN adapts binary networks to whole-body mesh recovery using local full-precision activation shortcuts, full-precision block residuals, dimension-matching modules, and a partially binarized BoxNet. It substantially improves over the evaluated binary baselines, but its architectural novelty is incremental and its claimed edge-device efficiency is supported only by idealized parameter/operation accounting rather than deployment measurements.",
+        "strengths": [
+          "The method targets a practically relevant and apparently underexplored application of binarization, with a reasonably clear architecture and treatment of dimension-changing residual paths (pp. 4–7).",
+          "Across EHF and AGORA, BiDRN consistently outperforms seven adapted BNN baselines while reporting fewer equivalent parameters and operations (pp. 7–9).",
+          "Ablations separately examine residual variants, pre-activation, full- versus binary block residuals, encoder choices, and BoxNet binarization, generally supporting the design choices (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the central mechanism largely combines established binary-convolution scaling, RPReLU, and full-precision residual information paths; the proposed dimension-matching variants are useful but conceptually straightforward (pp. 4–6).",
+          "The efficiency claims rely on theoretical OP equivalences (binary FLOPs divided by 64) and equivalent parameter storage, without wall-clock latency, peak memory, energy, or edge-hardware measurements; full-precision residuals and other non-binary operations may materially affect actual deployment (pp. 7, 9–10).",
+          "The claim of performance comparable to full precision is overstated: on EHF, All MPVPE is 118.3 versus 86.3 for the matched Hand4Whole baseline, and AGORA is 215.0 versus 194.8 (p. 7). Baseline adaptation/training details and the referenced architecture mapping are also insufficiently documented in the supplied paper (p. 8)."
+        ],
+        "score_rationale": "The paper shows meaningful empirical gains and useful ablations, but the modest methodological novelty, sizable remaining accuracy gap, incomplete reproducibility detail, and absence of real-device evidence leave it marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "BiDRN adapts binary networks to whole-body mesh recovery using local full-precision activation bypasses, dimension-matching residual modules, full-precision block shortcuts, and a partially binarized BoxNet. It substantially improves over directly binarized Hand4Whole variants, but the methodological novelty is incremental and the deployment-efficiency claims are supported only by theoretical operation/storage proxies rather than real measurements.",
+        "strengths": [
+          "The method addresses a practically relevant but underexplored setting and clearly specifies residual mechanisms for preserving information across both matched and mismatched feature dimensions (pp. 4–6).",
+          "BiDRN consistently outperforms seven adapted BNN baselines on both EHF and AGORA, with sizable error reductions and lower reported equivalent parameter/operation counts (pp. 7–9).",
+          "Ablations separately examine the redesigned residual modules, activation, block residual, encoder choice, and BoxNet, generally supporting the proposed components (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The main ideas largely combine established binary convolution machinery with residual bypasses; moreover, the strongest model depends materially on full-precision 1×1 block residuals, whose modest 1.7 mm gain costs roughly 47% more reported parameters and nearly doubles operations over binary BR (p. 9).",
+          "Efficiency is evaluated through idealized bit-operation accounting only; there are no latency, memory, energy, or edge-device measurements, despite deployment and speed being central motivations (pp. 2, 7). The reported “Params” and “OPs” are therefore not sufficient evidence of practical efficiency.",
+          "Claims of performance comparable to full precision are overstated: BiDRN is notably worse than the matched Hand4Whole baseline on EHF (118.3 vs. 86.3 All MPVPE) and AGORA (215.0 vs. 194.8), while comparisons to other full-precision systems use potentially different training protocols (pp. 7–9). Reproducibility is also limited because the promised architecture mapping/supplement is absent from the supplied manuscript (pp. 6, 8)."
+        ],
+        "score_rationale": "The paper offers a useful application of binarization with strong improvements over straightforward BNN baselines and reasonable ablations. However, limited conceptual novelty, reliance on substantial full-precision computation, lack of measured hardware efficiency, incomplete architectural detail, and overstated full-precision comparability leave it marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper adapts binary neural networks to whole-body mesh recovery through local and block-level residual paths plus a partially binarized BoxNet. BiDRN substantially improves over the tested binary baselines on EHF and AGORA, but it remains notably worse than its full-precision parent and does not demonstrate actual edge-device efficiency.",
+        "strengths": [
+          "Addresses a practically relevant but underexplored application of binarization: whole-body body/hand/face mesh recovery (pp. 2–3).",
+          "Reports consistent gains over seven adapted BNN baselines across EHF and AGORA; for example, EHF All MPVPE improves from the strongest baseline's 142.7 to 118.3 (p. 7).",
+          "Provides useful component ablations for residual variants, activation choice, block residual precision, encoder selection, and BoxNet binarization (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central deployment claim is supported only by theoretical bit-operation accounting; there are no measured latency, peak memory, energy, or hardware results on an edge device, despite emphasizing practical deployment (pp. 1–2, 7).",
+          "The method is substantially mixed precision: full-precision block convolutions are central and nearly double cost versus binarized BR for only a small MPVPE gain, while the paper still labels the model as 1-bit (pp. 6–7, 9). This also weakens the novelty beyond established full-precision residual bypass ideas in BNNs.",
+          "Claims of performance comparable to Hand4Whole are overstated: on EHF, All MPVPE is 118.3 versus 86.3, and hand error is 70.8 versus 47.2 (p. 7). Reproducibility is also limited because exact architecture mappings and additional qualitative results are deferred to a supplementary file not present in the supplied manuscript (pp. 6, 8–9)."
+        ],
+        "score_rationale": "The paper has a useful application focus, coherent design, and encouraging two-benchmark results with extensive ablations. However, the architectural novelty is incremental, the model is not genuinely end-to-end 1-bit, and the absence of real deployment measurements leaves its main practical motivation unverified. These issues place it marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "BiDRN adapts binary neural networks to whole-body mesh recovery using local full-precision activation bypasses, dimension-matching residual modules, full-precision block residuals, and a partially binarized BoxNet. It substantially improves over directly adapted BNN baselines on EHF and AGORA, but the architectural novelty is incremental and the deployment-efficiency case is supported only by proxy operation counts rather than measured edge-device behavior.",
+        "strengths": [
+          "The method addresses a practically important efficiency problem and presents a reasonably clear architecture for retaining information across binary convolutions, including dimension-changing cases (pp. 4–6).",
+          "BiDRN consistently and substantially outperforms seven adapted BNN baselines on both EHF and AGORA while reporting fewer effective parameters and operations (Table 1, pp. 7–8).",
+          "Ablations separately examine residual variants, pre-activation, block residual precision, BoxNet binarization, and comparisons with lightweight/pruned alternatives (Tables 2–4, pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central ingredients are largely combinations or extensions of established BNN techniques—full-precision residual bypasses, scaled binary weights, RPReLU, and selective mixed precision—so novelty beyond applying them to whole-body recovery appears moderate (pp. 4–6).",
+          "The efficiency claims rely on theoretical bit-operation conversions (1/32 parameters and 1/64 operations) without latency, memory, energy, or hardware measurements; substantial full-precision block residual computation also makes the blanket “1-bit” labeling potentially misleading for deployment (pp. 6–7, Table 2c on p. 9).",
+          "Evidence lacks repeated-run uncertainty and contains unresolved comparability/reporting concerns: “comparable” to Hand4Whole still means a sizable EHF All-MPVPE gap of 118.3 versus 86.3, and the binarized-BR result differs between Tables 2c and 3 without explanation (pp. 7, 9–10)."
+        ],
+        "score_rationale": "The paper shows a useful empirical advance over standard BNN adaptations and provides broad ablations, but limited methodological novelty, proxy-only efficiency evaluation, mixed-precision characterization, and reporting uncertainties keep it marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "BiDRN adapts binary neural networks to whole-body mesh recovery through local full-precision activation bypasses, dimension-matching residual modules, full-precision block residuals, and a partially binarized BoxNet. Results on EHF and AGORA show a substantial improvement over adapted binary baselines, but the paper does not convincingly establish practical edge-device efficiency or performance comparable to the full-precision reference.",
+        "strengths": [
+          "The work addresses a relevant, relatively underexplored compression setting and introduces a coherent set of architecture adaptations for preserving information across binary layers and dimension changes (pp. 4–7).",
+          "BiDRN substantially outperforms seven reported BNN baselines on both EHF and AGORA while using fewer effective parameters and operations (Table 1, p. 7).",
+          "Ablations separately examine the residual variants, pre-activation, block residual, component-wise binarization, and BoxNet, generally supporting the design choices (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Efficiency is assessed only through theoretical bit-adjusted parameter and operation counts; there are no measurements of latency, peak memory, energy, or speed on an actual edge device, despite deployment being the main motivation (pp. 1–2, 7).",
+          "The claimed comparability to full-precision Hand4Whole is overstated: BiDRN remains notably worse on EHF All MPVPE (118.3 vs. 86.3) and AGORA All MPVPE (215.0 vs. 194.8), while its full-precision residuals account for a sizable increase in cost (Tables 1–2, pp. 7, 9).",
+          "Novelty is moderate because the central mechanisms largely combine established BNN ingredients—full-precision residual information paths, scaled binary weights, RPReLU, and standard gradient approximations—with task-specific dimension handling; baseline training fairness and statistical variability are also insufficiently documented (pp. 4–8)."
+        ],
+        "score_rationale": "The empirical gains over binary baselines are large and supported by useful ablations, making this a credible task-specific compression contribution. However, limited methodological novelty, overclaimed full-precision comparability, and the absence of real deployment measurements weaken the central practical claim. I therefore place it marginally below acceptance; uncertainty remains because referenced supplementary implementation details are not present in the supplied manuscript."
+      }
+    }
+  ]
+}

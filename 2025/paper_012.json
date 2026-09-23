@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_012",
+  "paper_id": "vTdwuKUc5Z",
+  "number": 752,
+  "title": "Image Super-Resolution with Text Prompt Diffusion",
+  "authors": "Zheng Chen; Yulun Zhang; Jinjin Gu; Xin Yuan; Linghe Kong; Guihai Chen; Xiaokang Yang",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "Image Super-Resolution; Text Prompt; Diffusion Model",
+  "forum_url": "https://openreview.net/forum?id=vTdwuKUc5Z",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    6,
+    3,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces the text prompts to provide degradation priors for enhancing image SR. Specifically, the authors first develop a text-image generation pipeline to integrate text into the SR dataset, via text degradation representation and degradation model. Then, they further propose the PromptSR to realize the text prompt SR. The PromptSR applies the pre-trained language model to enhance text guidance and improve performance. Extensive experiments on both synthetic and real-world datasets demonstrate the effectiveness of introducing text into SR."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1, The proposed prompt text includes some degradation, such as Blur, Resize, Noise, Compression. The reviewer wonders to know why contains the scale factor? Is it flexible to embed the scale factor to SR model?\n\n2, This paper introduces a new pipline for how to measure the degradation which serves as prior to effectively guide deep models.\n\n3, The authors varify the effectiveness of the proposed PromptSR compared with existing generative-based models, including FeMaSR, DiffBIR, etc.\n\n4, The analysis is adequate."
+        },
+        "weaknesses": {
+          "value": "1, The proposed prompt text includes some degradation, such as Blur, Resize, Noise, Compression. The reviewer wonders to know why contains the scale factor?  Is it flexible to embed the scale factor to SR model?\n\n2, The reviewer would like to know the inference time.\n\n3, Do the authors consider the our-of-distribution case when inference? For example, the testing image contains blur and noise, but the text prompt when inference only has 3 text prompts, e.g. blur, noise, compression.\n\n4, Do the authors consider the our-of-distribution case when training? For example, the training text contains blur and noise, but the testing image contains 3 degradations, e.g., blur, noise, and compression."
+        },
+        "questions": {
+          "value": "See Weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "F7XCJnWumq",
+      "forum": "vTdwuKUc5Z",
+      "replyto": "vTdwuKUc5Z",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_JbNu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_JbNu"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission752/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730602395958,
+      "cdate": 1730602395958,
+      "tmdate": 1731427312010,
+      "mdate": 1731427312010,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes to use textual prompts in image super-resolution tasks in the following way: they first design a training data generation pipeline by degrading the original high resolution image in a sequence of chosen transformation steps (blur, upsample, noise, compression, downsample), and in parallel they construct a textual prompt which describes the applied transformations on the original sample. Then they design a U-Net like denoiser network with cross-attention layers to be used as a noise predictor in the diffusion model framework. The inputs to this network comprise of the noised version of the original resolution image patch concatenated with the corresponding low resolution image patch resized to the original image patch size. They use a text encoder model (such as CLIP or T5) to embed the constructed textual prompt as a sequence of vectors and use it as a prior for the diffusion model guidance. Experimental results show the effectiveness of the proposed method."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The proposed method is well described."
+        },
+        "weaknesses": {
+          "value": "1. The use of textual prompts in image super-resolution tasks is not novel, yet the paper lacks discussion and comparison with existing methods like PASD [1] and SeeSR [2], which also employ textual prompts.\n\n2. In Section 3.1.2, the paper claims that textual prompts depicting degradation are superior to prompts based on image content for conditioning the denoiser network, referencing Figure 3 as evidence. However, it does not clarify how the \"overall caption\" result was generated, so further explanation is needed. Additionally, a comprehensive analysis and comparison with related works [1, 2] is necessary rather than relying on a single example to assert that semantic textual descriptions are redundant.\n\n3. The paper suggests using a pre-trained MLLM for generating the degradation description for real-world super-resolution inference. But it doesn’t analyze how often the MLLM-generated prompts match the true data degradation procedure. It’s not clear why the paper assumes that the MLLM can give a good description about the image degradation in real-world use-cases.  It would be beneficial to report the accuracy of the MLLM-generated prompts. \n\n4. Given that BSRGAN [3] outperforms or closely matches the proposed method on some metrics in Table 7, the paper needs to also include BSRGAN in qualitative results.\n\n5. The second comparison in Figure 7 includes the DAN result, while the first comparison lacks. The paper needs to make a proper qualitative comparison with all methods.\n\n6. The paper lacks a user study both on synthetic and real-world datasets.\n\nReferences\n\n[1] Yang, Tao, Rongyuan Wu, Peiran Ren, Xuansong Xie, and Lei Zhang. \"Pixel-aware stable diffusion for realistic image super-resolution and personalized stylization.\" arXiv preprint arXiv:2308.14469 (2023).\n\n[2] Wu, Rongyuan, Tao Yang, Lingchen Sun, Zhengqiang Zhang, Shuai Li, and Lei Zhang. \"Seesr: Towards semantics-aware real-world image super-resolution.\" In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition, pp. 25456-25467. 2024.\n\n[3] Zhang, Kai, Jingyun Liang, Luc Van Gool, and Radu Timofte. \"Designing a practical degradation model for deep blind image super-resolution.\" In Proceedings of the IEEE/CVF International Conference on Computer Vision, pp. 4791-4800. 2021.\n\n[4] Huang, Yan, Shang Li, Liang Wang, and Tieniu Tan. \"Unfolding the alternating optimization for blind super resolution.\" Advances in Neural Information Processing Systems 33 (2020): 5632-5643."
+        },
+        "questions": {
+          "value": "Given that the textual prompts are limited to a small set of predefined options—light/medium/heavy blur, light/medium/heavy noise, light/medium/heavy compression, upsample, and downsample—why not replace the text encoder with a set of learnable embeddings? Seems using just 11 learnable embeddings could capture each transformation eliminating the need for a text encoder."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "WpjSBCM5OS",
+      "forum": "vTdwuKUc5Z",
+      "replyto": "vTdwuKUc5Z",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_PFXi"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_PFXi"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission752/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730581848193,
+      "cdate": 1730581848193,
+      "tmdate": 1731427312108,
+      "mdate": 1731427312108,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces textual prompt information into the image super-resolution (ISR) task to provide degradation priors. It proposes a text-image generation pipeline that integrates text prompts into the SR dataset. The proposed method, PromptSR, leverages pre-trained language models to facilitate image restoration."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper is well-structured.\n- It explores the effective role of textual information in the super-resolution task."
+        },
+        "weaknesses": {
+          "value": "1. **Limited Novelty**: The idea of degradation-guided RealSR has been extensively explored in numerous low-level vision papers, including but not limited to:\n   - *Efficient and Degradation-Adaptive Network for Real-World Image Super-Resolution (DASR)*\n   - *Textual Prompt Guided Image Restoration*\n   - *Dcs-risr: Dynamic Channel Splitting for Efficient Real-World Image Super-Resolution*\n   - *DaLPSR: Leverage Degradation-Aligned Language Prompt for Real-World Image Super-Resolution*\n   \n2.  **What is the necessity of the text?**: The proposed integration of degradation information into the SR network is not significantly different from the approach used in DASR. The text used in this paper, aside from providing degradation classification information, does not offer any additional value. Thus, the necessity of integrating text and a text encoder into the SR network is questionable. It is possible that using DASR’s degradation features could achieve similar results.\n\n3. **Lacks comparisons with many popular SR methods**:  The paper almost entirely omits comparisons with diffusion-based SR methods. There are many open-source and popular diffusion-based methods, including but not limited to:\n   - *[IJCV2024] Exploiting Diffusion Prior for Real-World Image Super-Resolution*\n   - *[CVPR2024] SeeSR: Towards Semantics-Aware Real-World Image Super-Resolution*\n   - *[ECCV2024] Pixel-Aware Stable Diffusion for Realistic Image Super-Resolution and Personalized Stylization*\n   - *[CVPR2024] CoSeR: Bridging Image and Language for Cognitive Super-Resolution*\n   - *[CVPR2024] Scaling Up to Excellence: Practicing Model Scaling for Photo-Realistic Image Restoration In the Wild*\n   - *[CVPR 2024] SinSR: Diffusion-Based Image Super-Resolution in a Single Step*\nThis makes it difficult to be convinced of the proposed method’s superiority.\n\nThis paper appears to be outdated, as the field of RealSR has advanced rapidly. I don’t believe this paper contributes value to the field. Considering the limited novelty and the insufficient experiments,  I decided to give it a rejection."
+        },
+        "questions": {
+          "value": "As shown in Weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "83Gvh5DdqJ",
+      "forum": "vTdwuKUc5Z",
+      "replyto": "vTdwuKUc5Z",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_JpUv"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_JpUv"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission752/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730459549931,
+      "cdate": 1730459549931,
+      "tmdate": 1731427312202,
+      "mdate": 1731427312202,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The work introduces text prompts to image SR to provide degradation priors and develops a text-image generation pipeline to integrate text into the SR dataset."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The work develops a text-image generation pipeline that integrates prompt into the SR dataset via text representation and degradation model.\n2. The work proposes PromptSR, which utilizes the pre-trained language model to improve the restoration.\n3. Experiments show the effectiveness of the proposed method."
+        },
+        "weaknesses": {
+          "value": "1. The work lacks comparison with state-of-the-art methods [1,2,3].\n2. The work should conduct experiments on more real-world datasets, e.g. DRealSR dataset.\n3. The work does not show how user-friendly and flexible the prompt is. To some extent, it is also flexible to directly give the user a 0-1 value as the strength of each degradation. \n4. Using a text encoder to encode discrete degradations is somewhat redundant. Does the method still work when the degradation description is changed (e.g., heavy blur -> very blurry)?\n\n \n[1] Scaling Up to Excellence:Practicing Model Scaling for Photo-Realistic Image Restoration In the Wild. CVPR 2024.\n[2] SeeSR: Towards Semantics-Aware Real-World Image Super-Resolution. CVPR 2024.\n[3] CoSeR: Bridging Image and Language for Cognitive Super-Resolution. CVPR 2024."
+        },
+        "questions": {
+          "value": "None."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "THG5rjHkEl",
+      "forum": "vTdwuKUc5Z",
+      "replyto": "vTdwuKUc5Z",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_iDK6"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission752/Reviewer_iDK6"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission752/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730233275252,
+      "cdate": 1730233275252,
+      "tmdate": 1731427312301,
+      "mdate": 1731427312301,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper conditions diffusion-based blind super-resolution on natural-language descriptions of degradation, generated by discretizing known synthetic degradation parameters; real-image prompts are instead produced by an MLLM. The idea is intuitive and results show perceptual gains, but the central comparison largely demonstrates the value of privileged degradation metadata rather than a clear advantage of language prompting, while practical prompt acquisition and real-world generalization remain insufficiently validated.",
+        "strengths": [
+          "A simple, coherent pipeline connects degradation synthesis, discrete textual descriptions, frozen language encoders, and cross-attention conditioning (pp. 4–6).",
+          "Ablations examine prompt presence, ordering/completeness, content, and text encoders; text improves both PromptSR and ControlNet in the reported setting (pp. 7–8).",
+          "Evaluation covers several synthetic datasets and RealSR, with competitive perceptual results and illustrative comparisons (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the prompt is essentially a verbose encoding of oracle degradation parameters. There is no comparison against numeric degradation vectors, learned categorical embeddings, or an equally parameterized non-language conditioner, so the benefit of language/pretraining is not isolated (pp. 5, 7–8).",
+          "The real-world pipeline depends on unspecified MLLM-generated quality assessments, but prompt accuracy, MLLM identity/settings, robustness to wrong prompts, and sensitivity across prompt generators are not quantitatively evaluated (pp. 5, 10).",
+          "Evidence is mixed and potentially distribution-favored: synthetic tests appear to use the authors’ degradation process, fidelity metrics are often worse, RealSR wins only some perceptual/no-reference metrics, and Real45 has only selective qualitative evidence (pp. 9–10)."
+        ],
+        "score_rationale": "The method is technically plausible and the reported ablations support that informative degradation text can help within the constructed distribution. However, the missing controls against direct degradation conditioning and the under-specified, weakly validated real-world prompt-generation procedure leave the main novelty and practical claims unresolved. I therefore rate it marginally below acceptance; uncertainty remains because no supplementary appendix promised by the main text is included in the supplied manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PromptSR, a diffusion-based super-resolution model conditioned on natural-language descriptions of image degradation, together with a synthetic pipeline that converts sampled degradation parameters into binned textual prompts. The idea is intuitive and potentially useful, but the current evidence does not establish that language modeling is necessary or that the method works reliably when degradation metadata is unavailable.",
+        "strengths": [
+          "A clear and moderately novel formulation of degradation descriptions as text-conditioned priors for blind super-resolution, with an end-to-end data-generation and diffusion-training pipeline (pp. 4–6).",
+          "Ablations show consistent gains from adding prompts to both PromptSR and ControlNet, and explore prompt content, ordering, omission, resizing, and alternative text encoders (pp. 7–8).",
+          "Evaluation covers several synthetic and real-world datasets and multiple perceptual, distortion, and aesthetic metrics; PromptSR is competitive on perceptual metrics and visually strong in selected cases (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The synthetic prompts are generated directly from the ground-truth degradation process, giving the model privileged information unavailable in blind SR. For real images, prompts come from an insufficiently specified MLLM procedure, with no prompt-accuracy study, automatic-pipeline baseline, or sensitivity analysis for incorrect degradations (pp. 5, 10).",
+          "The claimed benefit of pretrained language understanding is weakly isolated: prompts use a tiny structured vocabulary of binned degradation labels, yet there is no comparison against one-hot degradation parameters, a small learned encoder, estimated degradation features, or parameter-matched conditioning. Larger text encoders improving results does not resolve this confound (pp. 5, 8).",
+          "Evidence of overall superiority is mixed. PromptSR sacrifices PSNR/SSIM, is not consistently best across perceptual metrics, and on RealSR leads only ST-LPIPS, CNNIQA, and NIMA while trailing substantially on PSNR and DISTS (pp. 9–10). Real45 has only selected qualitative examples and no rigorous evaluation (p. 10)."
+        ],
+        "score_rationale": "The text-conditioning idea is interesting and experiments indicate that oracle degradation prompts can help, but the central practical claim remains under-supported because real prompt acquisition is not rigorously described or evaluated and key non-language conditioning baselines are missing. These issues place the work slightly below the acceptance threshold despite solid presentation and useful ablations."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PromptSR, a diffusion-based ×4 super-resolution model conditioned on natural-language descriptions of image degradation, together with a synthetic pipeline that converts sampled degradation parameters into discretized prompts. The idea is intuitive and moderately novel, but the evidence does not establish that textual conditioning is preferable to simpler structured degradation metadata or that the method is reliable when oracle degradation labels are unavailable.",
+        "strengths": [
+          "The degradation-to-text data pipeline and text-conditioned diffusion architecture are clearly motivated and straightforward to implement (pp. 4–6).",
+          "Ablations show consistent perceptual-metric gains from adding prompts and examine prompt order, missing prompt components, prompt content, and text encoders (pp. 7–8).",
+          "Evaluation covers several synthetic datasets and a real paired benchmark, with multiple fidelity, perceptual, and aesthetic metrics (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central novelty is limited: discretized degradation parameters are encoded as natural-language labels and injected through standard cross-attention, but there is no comparison against direct numeric parameters, categorical embeddings, or an equivalently sized learned degradation encoder. Thus the claimed benefit of language models or text itself is not isolated (pp. 4–8).",
+          "Synthetic evaluation gives PromptSR privileged oracle prompts generated from the same degradation process used for training, while deployment requires an unspecified MLLM to infer degradation. The paper does not report prompt-estimation accuracy, MLLM details, robustness to incorrect or out-of-distribution prompts, or a controlled real-world comparison with empty/manual/MLLM prompts (pp. 5, 9–10).",
+          "The empirical superiority is mixed and somewhat overstated: PromptSR often trails baselines on PSNR/SSIM and several perceptual metrics, including RealSR LPIPS and DISTS, while Real45 has only selected qualitative examples and no user study or quantitative protocol (pp. 9–10)."
+        ],
+        "score_rationale": "The work presents a plausible, useful conditioning mechanism and meaningful ablations, but its core claim is undermined by missing comparisons to simpler degradation encodings and by the large gap between oracle synthetic prompts and poorly specified real-world prompt acquisition. Mixed benchmark results make this marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PromptSR, a diffusion-based ×4 super-resolution model conditioned on natural-language descriptions of blur, resizing, noise, and compression. The degradation prompts are generated by binning known synthetic degradation parameters, encoded with a frozen language model, and injected through cross-attention. The idea is intuitive and moderately novel, but the evidence does not yet establish that it is robust or practically useful when degradation metadata are unavailable.",
+        "strengths": [
+          "Conditioning SR on textual degradation descriptions is a simple, interesting extension of blind SR, and the text-image generation pipeline is clearly presented (pp. 4–6).",
+          "A controlled empty-prompt ablation shows meaningful perceptual gains for both PromptSR and ControlNet, suggesting that the supplied degradation information is useful beyond one architecture (p. 7).",
+          "The evaluation covers several synthetic and real-world datasets, multiple perceptual metrics, and relevant blind/generative SR baselines; PromptSR is competitive on many perceptual measures (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central evaluation largely gives PromptSR privileged, generator-derived degradation labels while baselines receive only the LR image. Thus the results demonstrate the value of oracle side information more clearly than a practical blind-SR advance; the real-image MLLM prompt-generation procedure is insufficiently specified or independently evaluated (pp. 5, 9–10).",
+          "Robustness to inaccurate degradation prompts—the likely real-world case—is not quantitatively studied. Flexible ordering and omission are tested, but not wrong severity/type labels or noisy MLLM assessments; Fig. 5 only gives limited qualitative examples (pp. 7–8).",
+          "The real-world evidence is mixed and some claims are overstated: on RealSR, PromptSR trails other methods on PSNR, SSIM, LPIPS, and DISTS and is best on only three of seven reported metrics; Real45 has only qualitative examples and no user study or fidelity assessment (p. 10)."
+        ],
+        "score_rationale": "The paper contains a plausible, moderately novel idea and solid synthetic ablations, but its main benefit depends on degradation information that is known during synthesis and difficult to obtain reliably in practice. Missing quantitative evaluation of prompt-estimation quality and incorrect-prompt robustness, together with mixed real-world results, leaves the central practical claim under-supported. I therefore place it marginally below acceptance; uncertainty remains because the promised supplementary implementation details are not present in the supplied 14 pages."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes PromptSR, a diffusion-based blind super-resolution model conditioned on natural-language descriptions of synthetic degradation parameters. The idea is intuitive and the reported perceptual improvements are promising, but the current evidence does not establish that language modeling is preferable to ordinary structured degradation conditioning or that the required prompts are reliably available in real applications.",
+        "strengths": [
+          "A clear end-to-end pipeline jointly generates LR/HR pairs and discretized degradation prompts, and the conditioning mechanism is technically straightforward (pp. 4–6).",
+          "Ablations show consistent gains from prompts on two architectures and examine prompt content, ordering, omission, resize design, and text encoders (pp. 7–8).",
+          "Evaluation covers several synthetic datasets and RealSR, with multiple fidelity, perceptual, and aesthetic metrics plus qualitative comparisons (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core comparison is missing: prompts encode privileged degradation parameters already known during synthesis, yet the paper does not compare against one-hot, numeric, or learned degradation embeddings, or a randomly initialized text encoder. Thus the gains do not demonstrate a benefit from natural language or pretrained language understanding (pp. 5–8).",
+          "Real-world applicability is insufficiently validated. Prompts are said to come from an MLLM, but the MLLM, prompt-generation protocol, accuracy, sensitivity to erroneous prompts, and computational burden are not specified or ablated; Real45 is also only 45 internet images with qualitative results (pp. 5, 10).",
+          "The empirical superiority is mixed and lacks uncertainty analysis: PromptSR often loses substantially in PSNR/SSIM and is not consistently best in perceptual metrics; on RealSR it trails BSRGAN in LPIPS and SwinIR-GAN in DISTS, while no repeated runs, error bars, or human perceptual study are reported (pp. 9–10)."
+        ],
+        "score_rationale": "The degradation-as-text formulation is a useful exploratory idea with broad experiments, but novelty and technical conclusions are weakened by the absence of controls against simpler degradation representations. The unsubstantiated MLLM prompt pipeline also leaves the central real-world use case uncertain. Overall, this is promising but currently marginally below the ICLR acceptance bar."
+      }
+    }
+  ]
+}

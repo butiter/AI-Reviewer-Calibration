@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_059",
+  "paper_id": "0zZEbHLTwf",
+  "number": 8080,
+  "title": "DeepFDM: A scientific computing method for Neural Partial Differential Equation (PDE) operators",
+  "authors": "Patrick Chatain; Michael Rizvi-Martel; Guillaume Rabusseau; Adam Oberman",
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": "Partial Differential Equations; neural operators; solution operators; interpretable models; out of distribution; dataset shift; physical models",
+  "forum_url": "https://openreview.net/forum?id=0zZEbHLTwf",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    5,
+    3,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The manuscript considers the problem of benchmarking neural PDE solvers and analysis of the robustness with respect to the diverse distributions. The authors propose DeepFDM, a benchmark method, and the procedure to generate train/test data for benchmarking with quantified shifts in distributions. The main idea of the DeepFDM method is to represent finite difference approximation of a particular type of PDEs through a convolutional neural network that parameterizes variable coefficients. Therefore, given a ground-truth input/output pair, such a model fits the target coefficients over the used grid. The second part of the work is the procedure to generate data with a controlled distribution shift that helps evaluate the trained model's robustness to input data out of the distribution where training data was generated. In experiments, DeepFDM shows better robustness to input data distribution shifts for the broad classes of equations than competitors while requiring fewer trainable parameters."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. Fair benchmarking of the neural PDE solvers and evaluation of their robustness to the input data is very important for understanding the current state of this field and identifying the gaps in the current SOTA methods.\n2. The proposed DeepFDM method provides more accurate predictions than competitors\n3. The benchmarking procedure is well-described and could be used in other works for evaluation of the new neural PDE solvers,"
+        },
+        "weaknesses": {
+          "value": "1. The main weakness of this work is that the authors combined two different contributions in a single study: a dataset generation procedure for benchmarking neural PDE solvers and a DeepFDM method for fitting the PDE coefficients. \n2. The idea of parameterizing the finite-difference method via CNN is not new and has already appeared in other works like the smoothing operator in the multigrid methodб https://arxiv.org/abs/2102.12071 \n3. The proposed method's scalability is not discussed or compared with competitors.\n4. The presentation of the problem statement is confusing since the authors start not from the inverse problem of coefficient reconstruction but from the solution reconstruction problem."
+        },
+        "questions": {
+          "value": "1. Why do the lines in Fig. 5 start from different initial points? It looks like the authors use different initializations, which is unfair for comparison.\n2. What is the motivation for using Hellinger distance, not the KL divergence, for example? KL also admits closed-form for the distance between multivariate Gaussians."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "wREqeRha82",
+      "forum": "0zZEbHLTwf",
+      "replyto": "0zZEbHLTwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_ubKg"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_ubKg"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8080/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731103716374,
+      "cdate": 1731103716374,
+      "tmdate": 1731429022028,
+      "mdate": 1731429022028,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper compares the performance of an inverse design method combined with a numerical solver against neural PDE solvers. The authors assume they are given data generated from a known PDE family but with unknown, spatially dependent coefficients. In this problem setting, the paper proposes to compare neural PDE solvers against numerical simulators. Since the PDE parameters are unknown, they are estimated by minimizing the difference between the output of a differentiable numerical solver and the given data.  The experiments show that the proposed model converges quicker than the considered neural PDE solvers and achieves lower errors both on in- and out-of-distribution data."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "A novel way of comparing neural PDE solvers against numerical methods, which is in a sense more fair to the neural PDE solvers (if the neural PDE solvers are trained on real-word data)."
+        },
+        "weaknesses": {
+          "value": "1. The paper is not very clear in the type of problem it approaches. The writing could be improved to make the definition of the problem more easy to understand.\n2. The usual setup in neural PDE solvers is that the PDE parameters are known. In this setting, neural PDE solvers have already been compared to numerical methods. The authors could better motivate their specific choice of problem definition (i.e., unknown, spatially-dependent PDE parameters).\n3. The method is only a useful baseline if the neural PDE solver is trained on real-world data. When the neural PDE solver is used as a surrogate for a numerical solver, the PDE parameters would be known (since they would have been used to generate the training data).\n4. There is no inference time evaluation. Faster inference is one of the main reasons for utilizing a neural PDE surrogate instead of a numerical method like the one considered in the paper.\n5. Many experimental and model details are missing (see questions)."
+        },
+        "questions": {
+          "value": "1. How did you condition the neural PDE solvers on the coordinate-dependent PDE parameters? By adding the spatial coordinates to the solver inputs?\n2. How did you create the spatially varying PDE parameters? Using the same method as generating the initial condition?\n3. What did your data look like exactly?  You mentioned 1D and 2D problems. Which PDE in Tab. 1 is 1D, which is 2D? How large was the dataset? How large were the spatial and temporal resolutions?\n4. What learning rate did you use? What optimizer? Did you train the models autoregressively or with 1-step errors only?\n5. How did you introduce the distribution shift? Did you increase or decrease the standard deviation of the PDE parameters? How many basis functions N did you use in the beginning? Did all of them have the same standard deviation?\n6. Why is the Hellinger distance between the parameters generating the initial conditions a good measure for the distribution shift?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "tY8Hp4hOjF",
+      "forum": "0zZEbHLTwf",
+      "replyto": "0zZEbHLTwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_23Du"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_23Du"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8080/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730553527449,
+      "cdate": 1730553527449,
+      "tmdate": 1731429022269,
+      "mdate": 1731429022269,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents DeepFDM, a benchmark approach for learning PDE solution operators that combines the structure of traditional PDE solvers with neural networks. By leveraging the strengths of scientific computing, DeepFDM offers interpretability and aims to enhance accuracy and generalization within a specific class of PDEs, rather than acting as a replacement for neural PDE solvers.\n\nWhile DeepFDM is designed specifically for certain types of PDEs, it shows limited generalization to other PDE classes, reducing its applicability in diverse scenarios. Additionally, the paper lacks a detailed analysis explaining why DeepFDM outperforms traditional methods, which weakens the justification of its advantages. Providing a rigorous theoretical analysis with established approaches would strengthen the work and clarify the specific benefits of DeepFDM in terms of accuracy and generalization."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper highlights a need for benchmarking in PDE solutions, pointing out that while neural networks can flexibly solve a variety of equations, there’s limited systematic comparison with established numerical methods. This motivation is well-founded, especially in scientific and engineering fields that demand rigorous performance metrics.\n\n DeepFDM seems to target both in-distribution (ID) and out-of-distribution (OOD) performance, providing a structured method for generating training and test data that reflects distribution shifts. This contribution is valuable since robust OOD performance is crucial for practical applications."
+        },
+        "weaknesses": {
+          "value": "DeepFDM is presented as a benchmark method; however, its applicability is limited to a specific class of partial differential equations (PDEs). The paper does not sufficiently discuss how this restriction affects DeepFDM's generalizability, particularly in scenarios that require flexibility across various forms of PDEs, such as nonlinear PDEs and complex boundary conditions.\n\nFor instance, in the case of hyperbolic equations with shock locations, finite difference methods (FDM) may struggle to accurately capture the discontinuities inherent in these solutions. This limitation could significantly impact the performance and reliability of DeepFDM when applied to a broader range of PDE types.\n\nPlease explicitly state the objectives and justify  the choice of comparison methods in the context of those objectives. More specifically,\nWhy do the authors compare DeepFDM to both neural networks like ResNet and Unet, as well as neural operators like FNO? It’s unclear whether the authors aim to solve individual instances of PDEs or to learn a solution operator."
+        },
+        "questions": {
+          "value": "You need to compare your methods fairly with both ResNet and Unet, as well as FNO, since they represent different categories—traditional neural networks versus neural operators.\n\nPlease discuss the trade-offs between finite difference and automatic differentiation in your specific context, and to provide justification for the choice of FD and AD. There is considerable evidence that automatic differentiation outperforms FD in terms of training loss.\n\nCan you explain why DeepFDM doesn't show oscillation in Fig. 5, unlike the other methods?\nHow does the computational cost and training time of DeepFDM compare to the other approaches?\nGiven that Fig. 5 doesn't show significant improvement, can you clarify what advantages DeepFDM offers in terms of training dynamics?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9qWHTguyBa",
+      "forum": "0zZEbHLTwf",
+      "replyto": "0zZEbHLTwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_NALU"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_NALU"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8080/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730477515353,
+      "cdate": 1730477515353,
+      "tmdate": 1731429022487,
+      "mdate": 1731429022487,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The goal of this work is to design a benchmark method for learning PDE solution operators based on numerical PDE solvers. The authors proposed DeepFDM, which focuses on one class of PDEs and takes advantage of the structure of PDEs. DeepFDM learns the coefficients of the PDEs, and distribution shifts using the Hellinger distance are quantified. The results are compared with FNO, U-Net, and ResNet."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper explores benchmarking neural operator methods and OOD performance of neural PDE operators, which is meaningful in scientific computing. \n\nFor one family of PDEs, it provides a neural network based solver with coefficients inferred."
+        },
+        "weaknesses": {
+          "value": "- The motivation of choosing the known family of time dependent PDEs with periodic boundary conditions, and bounded coefficients is not clear to me. The problem setup seems very restricted, and the method is only applicable to learn from initial conditions.\n- It should be made clear that if the method is data-driven/known PDE, PDE solver/operator learning in the beginning. According to my understanding, the PDE needs to be known to use the finite differences solver. DeepFDM learns an operator from the initial condition for a specific family of PDEs to the solution at next time step, and the iteratively solve for a longer time. The problem setup should be more rigorous. \n- The literature review in Section 2.1 is not well organized or well-written. The papers of PDE discovery, PINN and operator learning are mentioned without a focus. Some claims are not correct and language is vague. For example, “Lu et al. (2019) propose the DeepONet architecture, which learns PDE solution operators. However, in this case, the PDE is fully known and the PDE residual is included in the loss.” It is not correct. There is no PDE known in vanilla  data-driven DeepONet. The authors may refer to Physics-informed DeepONet. “Neural PDE operators aim to learn to solve a given PDE from data, without assuming that the form of the PDE is known.” This claim is conflicting with the above point. \n- One main issue is that it ‘s not fair to compare DeepFDM with FNO, U-Net, and ResNet, since the PDE structure is known and of course it can perform better than pure data-driven methods. This makes the results not convincing. \n- There is an existing paper on distribution shift quantification: M. Zhu, H. Zhang, A. Jiao, G. E. Karniadakis, & L. Lu. Reliable extrapolation of deep neural operators informed by physics or sparse observations. Computer Methods in Applied Mechanics and Engineering, 412, 116064, 2023.\n- Some notations are clearly defined. For example, m in the dataset, A, A* and \\hat{A}.\n- There are no metrics for coefficient fields if the author considers solving the inverse problem.\n- I don't see Appendix B in the manuscript. \n- \"In this case, the solution is generated on a higher resolution grid, and then coarsened (upsampled).\" It should be \"downsampled\"."
+        },
+        "questions": {
+          "value": "- Could you explain your definition of the benchmarking method? What makes DeepFDM a benchmarking method for PDE operator learning?\n- Do you want to focus on the inverse problem or forward problem? Could you explain how you make sure it is fair to compare with FNO, U-Net, and ResNet?\n- Could you provide a detailed description on datasets and training process?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "rvt495g8vh",
+      "forum": "0zZEbHLTwf",
+      "replyto": "0zZEbHLTwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_cXmE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8080/Reviewer_cXmE"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8080/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730429793033,
+      "cdate": 1730429793033,
+      "tmdate": 1731429022830,
+      "mdate": 1731429022830,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper presents DeepFDM, a differentiable finite-difference solver that estimates spatial PDE coefficients, together with Fourier-based dataset shifts quantified by Hellinger distance. The approach performs substantially better than generic neural operators on synthetic PDEs within its assumed equation family, but the contribution is close to classical parameter identification/PDE-Net-style structured learning, and key theory, stability claims, and experiments are insufficiently supported.",
+        "strengths": [
+          "The method is transparent: learned parameters correspond to PDE coefficients, and the architecture directly implements finite-difference time stepping (pp. 5–6, 12–14).",
+          "The Fourier-coefficient construction provides a simple, quantitative way to vary input-function distributions, with useful ID/OOD visualizations (pp. 6–7, 13).",
+          "Across five tested PDEs, reported errors are much lower than those of FNO, U-Net, and ResNet, while using fewer parameters (pp. 2, 7–9)."
+        ],
+        "weaknesses": [
+          "Theorem 3.1 mostly restates discretization error and does not establish identifiability, parameter recovery, generalization, or the claimed near-unbiasedness; its definition of the error also ambiguously uses A rather than A* (p. 5).",
+          "The claimed general stability is not justified: the appendix derives only a heat-equation CFL condition, while the model includes variable advection, reaction, and nonlinear Burgers terms; sigmoid-bounded coefficients also appear to exclude signed coefficients without discussion (pp. 4, 12–14).",
+          "The empirical study is not reproducible or sufficiently controlled: dataset sizes, grids, time horizons, covariance spectra, optimization settings, and variability are largely absent; only older generic baselines are included, with no classical inverse solver or structured PDE-learning baseline, making the large advantage from supplying the correct PDE family unsurprising (pp. 7–9)."
+        ],
+        "score_rationale": "The structured solver and OOD construction are potentially useful, but novelty is limited and the central theoretical claims exceed what is proved. Missing experimental detail, weak baseline coverage, and unsubstantiated stability/identifiability claims prevent reliable validation despite promising synthetic results. I am somewhat uncertain because fuller implementation details or additional experiments may exist outside the supplied manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper trains spatial PDE coefficients through a differentiable explicit finite-difference solver and proposes Fourier-coefficient distributions whose shifts can be quantified by Hellinger distance. This is a potentially useful structured baseline, but the present theoretical claims are unsupported and the experimental reporting is insufficient to establish a rigorous benchmark.",
+        "strengths": [
+          "The method has a clear inductive bias: its forward pass is an interpretable finite-difference solver, and learned coefficient fields can be inspected directly (pp. 2, 5–6).",
+          "Generating initial conditions through controlled Fourier spectra provides a useful way to construct progressively shifted test distributions (pp. 6–7, 13).",
+          "The reported errors are substantially below those of FNO, U-Net, and ResNet across five PDE cases, including under the tested distribution shifts (pp. 2, 8–9)."
+        ],
+        "weaknesses": [
+          "The main theorem is essentially a restatement of discretization error rather than a learning or generalization result. Its definition of the error uses an arbitrary A where A* appears necessary, its norm/rate statements are inconsistent, and no identifiability or conditioning assumptions justify coefficient recovery, unbiasedness, or generalization (p. 5). Likewise, stability is derived only for nonnegative heat diffusion, yet broader stability is claimed for signed advection, reaction, Burgers, and spatially varying terms (pp. 12–14).",
+          "The comparison is structurally unfair for the claimed benchmarking conclusion: DeepFDM is given the exact PDE term library and numerical discretization, while generic neural operators must infer the solution map. There are no tests under equation misspecification, noise, unseen coefficients, boundary conditions, resolutions, or PDEs outside the predefined family (pp. 4, 7–8).",
+          "The empirical study is not reproducible enough: dataset sizes, grids, time horizons, coefficient fields, Fourier covariance spectra, solver resolutions, learning rates, baseline tuning, and uncertainty/error bars are largely absent. Training-speed claims lack wall-clock measurements, and the OOD metric quantifies the initial-condition distribution rather than the resulting solution-distribution shift (pp. 7–9)."
+        ],
+        "score_rationale": "The structured solver and controlled OOD construction are promising, but novelty over differentiable inverse-PDE solvers is modest, the central theory does not support its conclusions, and missing experimental detail prevents validation of the striking accuracy claims. These are substantial rather than cosmetic issues, so I lean reject; uncertainty remains because a fully specified implementation might verify the empirical results."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper presents DeepFDM, a differentiable finite-difference solver that learns spatial PDE coefficients, together with Fourier-basis data generation for controlled distribution shifts. Although the reported errors are strong, the method is a narrowly specified inverse solver rather than a general neural operator, and key theoretical and empirical claims are insufficiently supported.",
+        "strengths": [
+          "The architecture has a clear physical interpretation: fixed finite-difference convolutions and learned coefficient fields directly implement time stepping (pp. 6, 12–14).",
+          "The Fourier-coefficient construction provides a useful, quantitative way to generate controlled shifts, with Hellinger distance available in closed form (pp. 6–7, 13).",
+          "Across five PDE families, the reported normalized MSE is substantially below the selected neural baselines, and coefficient recovery is visually demonstrated (pp. 2, 8–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited relative to established differentiable numerical inverse problems and PDE-learning methods. The comparison also gives DeepFDM the correct restricted PDE family and discretization while baselines must learn the operator, so the large accuracy advantage is expected and does not establish a broadly competitive benchmark (pp. 3–6).",
+          "Theorem 3.1 mainly restates forward-discretization error and does not justify the subsequent coefficient-recovery or generalization claims: it lacks identifiability, conditioning, excitation, optimization, and sample-complexity assumptions, and its proof inconsistently defines the residual using a generic A rather than A* (p. 5). Stability for the full mixed nonlinear PDE class is likewise asserted but only the heat-equation constraint is developed (pp. 12–14).",
+          "The experiments are insufficiently reproducible and diagnostic: dataset sizes, grid/time resolutions, horizons, exact coefficient/data distributions, baseline tuning, and numerical training-time results are missing; results have only three-run means without variance, and coefficient recovery is shown only qualitatively for diffusion (pp. 7–9)."
+        ],
+        "score_rationale": "The physically structured implementation and controlled-shift idea are useful, but the central theory does not support the claimed recovery/generalization guarantees, and the evaluation lacks the detail and fairness needed to validate the method as a rigorous neural-operator benchmark. These are substantial soundness and evidence shortcomings, leading to a reject score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper presents DeepFDM, a differentiable finite-difference inverse solver that learns spatial PDE coefficients, plus a Gaussian/Fourier construction for quantifying shifts in initial-condition distributions. The reported synthetic results are strong, but the method is structurally given the true PDE family, while the theoretical justification, experimental specification, and breadth of validation are insufficient for the paper’s broad benchmarking and generalization claims.",
+        "strengths": [
+          "The architecture has a clear scientific-computing interpretation: fixed finite-difference convolutions and learned coefficient fields make predictions and parameters more interpretable than generic neural operators (pp. 5–6, 12–14).",
+          "Across five synthetic PDE settings, DeepFDM reports substantially lower normalized MSE than FNO, U-Net, and ResNet (Table 1, p. 2), with favorable OOD trends across quantified input-distribution shifts (Fig. 4, p. 9).",
+          "Generating initial conditions through orthogonal Fourier bases with Gaussian coefficients provides a simple, controlled way to vary and measure a particular form of distribution shift (pp. 6–7, Fig. 6 on p. 13)."
+        ],
+        "weaknesses": [
+          "Theorem 3.1 is close to a restatement of assumed discretization error and does not establish coefficient recovery or generalization: it lacks stability, regularity, identifiability, and excitation assumptions; its definition of the error uses a generic A but the subsequent equality requires A*, and the stated norm/rate is inconsistent between squared and unsquared forms (p. 5). The later claim of a stable scheme for the full mixed nonlinear PDE family is also not justified by the special-case discussion (pp. 12–14).",
+          "The empirical study is under-specified and potentially favors DeepFDM through an inverse-crime-like match between its known PDE family/discretization and synthetic data generation. Dataset sizes, resolutions, prediction horizons, coefficient fields, training schedules, baseline tuning, and uncertainty/error bars are largely absent; only three-run averages are reported, and coefficient recovery is mostly qualitative (pp. 7–9).",
+          "Novelty is limited relative to established differentiable PDE solvers, inverse problems, and PDE-Net-style coefficient discovery. The Hellinger construction measures only Gaussian coefficient distributions in a shared finite basis—not necessarily shift between induced PDE-solution distributions—and the evaluation excludes important PDEs outside the hand-specified scalar, time-dependent class (pp. 3–4, 6–8)."
+        ],
+        "score_rationale": "The structured solver and controlled OOD experiment are promising, and the reported errors are impressive. However, central theoretical claims are unsupported, the comparison lacks enough detail and controls to be reproducible or conclusive, and the approach’s advantage largely follows from being supplied the correct PDE class. These issues place the work clearly below the acceptance threshold, though the core idea has enough merit to avoid a strong reject."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents DeepFDM, a differentiable finite-difference solver that learns spatial coefficients within a predefined scalar, time-dependent PDE family, together with Fourier-based synthetic distribution shifts quantified by Hellinger distance. The approach obtains much lower reported errors than generic neural operators, but this advantage largely reflects substantially stronger knowledge of the governing equation, and the theoretical and empirical validation is not sufficiently rigorous for the paper’s broader benchmarking claims.",
+        "strengths": [
+          "The method is interpretable: trainable quantities correspond directly to PDE coefficient fields, while fixed convolutions implement finite differences (pp. 5–6, 12–14).",
+          "The Fourier-coefficient construction provides a simple, quantitative way to vary input-function distributions, and experiments examine several PDE types and shift magnitudes (pp. 6–9, 13).",
+          "Reported errors are consistently much lower than FNO, U-Net, and ResNet, with fewer parameters and favorable optimization behavior (pp. 2, 7–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited relative to differentiable inverse PDE solvers and PDE-Net-style coefficient discovery: DeepFDM essentially embeds a known finite-difference solver and learns its coefficients. Comparing this highly specified model against generic operator learners is informative as an oracle-like reference but does not establish a generally useful benchmark (pp. 3–6).",
+          "The theoretical justification is weak and contains apparent errors. Theorem 3.1 is largely a restatement of discretization error, defines the residual using A rather than A*, inconsistently moves between squared-norm and norm rates, and does not establish coefficient identifiability, estimator consistency, or OOD generalization. Stability is detailed only for the heat equation but asserted more broadly for the combined nonlinear architecture (pp. 5, 12–14).",
+          "The experiments omit essential details such as dataset sizes, grids, time horizons, precise equations and coefficient fields, numerical time steps, training schedules, and uncertainty beyond averages of three runs. There are no standard inverse-solver/PDE-discovery baselines, ablations, noise tests, or solver/grid mismatch tests, and no error bars; consequently, the large gains and claimed robustness are difficult to interpret or reproduce (pp. 2, 7–9)."
+        ],
+        "score_rationale": "The paper has a sensible implementation and promising controlled results, but the central method is a narrowly specified differentiable inverse solver whose superiority to generic neural operators is largely expected. Substantial theoretical gaps and insufficient experimental specification and controls outweigh the useful OOD-data construction, placing it below the acceptance threshold. Some implementation details may simply have been omitted, which limits confidence in the severity of the empirical concerns."
+      }
+    }
+  ]
+}

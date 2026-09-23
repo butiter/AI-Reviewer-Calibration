@@ -1,0 +1,243 @@
+{
+  "year": 2026,
+  "package_id": "paper_047",
+  "paper_id": "T8IJojfaOh",
+  "number": 11498,
+  "title": "Next-ToBE: Probabilistic Next Token-Bag Exploitation for Activating Anticipatory Capacity in LLMs",
+  "authors": [
+    "Yihe Liu",
+    "Huibin Wang",
+    "Xianming Hu",
+    "Pinyi Zhang",
+    "Jiahao Xiong",
+    "Chenglin Wang",
+    "Nuoyi Chen",
+    "Hongbo Zhao",
+    "Jie Zhang",
+    "Kai Zhang"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Large language models",
+    "anticipatory capacity"
+  ],
+  "forum_url": "https://openreview.net/forum?id=T8IJojfaOh",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    6,
+    8,
+    4
+  ],
+  "human_mean_rating": 6.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "NUEm9RPUrE",
+      "forum": "T8IJojfaOh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11498/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761938716215,
+      "tmdate": 1764359388114,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "PG44814cnx",
+      "forum": "T8IJojfaOh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11498/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762224203801,
+      "tmdate": 1762922598556,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "Xx4THghJ39",
+      "forum": "T8IJojfaOh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11498/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762047410385,
+      "tmdate": 1762922598992,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "stSfulmbN6",
+      "forum": "T8IJojfaOh",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11498/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761997331874,
+      "tmdate": 1762922600527,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a model-informed, temporally and semantically weighted future-token auxiliary objective for language-model fine-tuning. Results across math, code, and commonsense benchmarks are promising, but the evidence does not yet establish that improved reasoning is caused by enhanced anticipation, and important controls and statistical validation are missing.",
+        "strengths": [
+          "The method is architecture-preserving and comparatively efficient, with lower training time and memory than the evaluated MTP-style baselines (p. 10).",
+          "The reported downstream gains are broad and consistent across three model families/sizes and multiple task domains (pp. 8–9), with additional 14B results (p. 24).",
+          "The paper includes useful component, normalization, window-size, and hyperparameter studies (pp. 9, 21–23)."
+        ],
+        "weaknesses": [
+          "The normalized look-ahead term in Eq. 14 optimizes only relative probabilities within the observed future-token bag: its probability ratio cancels the total vocabulary normalization, so it does not directly increase total probability assigned to future tokens. This weakens the claimed mechanism of explicitly activating anticipation (p. 6).",
+          "The anticipation evidence is substantially confounded. Future-token rank and later correctness can both reflect token frequency or predictability, while Figure 3 compares Next-ToBE against the unfine-tuned base model rather than an NTP-fine-tuned control; thus it does not isolate the proposed objective or establish causality (pp. 7–8, 19).",
+          "Results lack repeated runs, uncertainty, and significance tests, despite small evaluation sets producing coarse changes such as AIME increments of 3.3 points. Per-task best hyperparameters are reported without a validation-selection protocol (p. 20), simple future-label-smoothing controls are incomplete, and the from-scratch evidence is small-scale with worse perplexity and only a 0.86-point HellaSwag gain (pp. 24–25)."
+        ],
+        "score_rationale": "The simple objective and unusually consistent benchmark gains make the work promising, but novelty is moderate and the central mechanistic claim is not supported by either the normalized loss or adequately controlled experiments. Missing variance and baseline controls leave uncertainty about whether the gains are robust and attributable to anticipation rather than regularization or tuning, placing the paper marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Next-ToBE, a future-token-aware fine-tuning loss that conditionally redistributes probability among upcoming tokens using detached model preferences and temporal/semantic weights. The method is lightweight and reports broad, consistent benchmark gains, but the central interpretation as directly increasing anticipatory probability is not established, and experimental uncertainty and baseline-selection issues leave the evidence marginal for ICLR acceptance.",
+        "strengths": [
+          "The approach requires no additional prediction heads and has a clearly specified objective and weighting procedure (pp. 4–6), with lower measured resource use than the tested MTP variants (p. 10).",
+          "Reported improvements are unusually consistent across mathematics, code, and commonsense tasks, several model families and sizes, and 35 of 36 headline comparisons (pp. 7–9, 24).",
+          "The appendices include useful ablations of normalization, weighting strategies, window size, and a small from-scratch pretraining experiment (pp. 21–25)."
+        ],
+        "weaknesses": [
+          "The normalized auxiliary term in Eq. 14 only controls relative probabilities among the selected future-token occurrences; it is invariant to jointly scaling their total probability mass. Thus it does not directly encourage future tokens to receive more vocabulary-level probability, weakening the claimed mechanism of “pre-capturing” them and the description as a soft vocabulary target (pp. 6, 10).",
+          "The anticipatory analyses are insufficiently controlled: Figures 3a–b compare against the pretrained base rather than an NTP-fine-tuned model, so ordinary supervised fine-tuning may explain the changes; FtHR is also a top-50 occurrence metric influenced by repeated/common tokens, while the multi-step “generative accuracy” protocol is not fully specified (pp. 7–8, 18–19).",
+          "Results lack multiple seeds, uncertainty estimates, or statistical tests, despite small test sets and coarse increments on AIME/AMC. Hyperparameters are task/model-specific without a stated validation protocol, the MTP comparison is narrow, and the only from-scratch study is a 124M model on 100k samples where Next-ToBE worsens perplexity and yields just a 0.86-point HellaSwag gain (pp. 8–9, 20, 24–25)."
+        ],
+        "score_rationale": "The future-conditioned loss is simple, potentially useful, and supported by broad empirical gains. However, Eq. 14 does not mathematically provide the claimed direct pressure to increase total future-token mass, and the diagnostic comparisons do not isolate Next-ToBE from standard fine-tuning. Combined with absent variance reporting and weak small-scale pretraining evidence, this places the work slightly below the acceptance threshold, though replication with stronger controls could change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Next-ToBE, a single-head objective that regularizes next-token training using dynamically weighted tokens from a future window. Results are broad and consistently favorable, but key controls and statistical evidence are missing, and the normalized objective does not directly increase the total probability assigned to future tokens as the paper’s explanation suggests.",
+        "strengths": [
+          "The method is architecture-preserving and comparatively lightweight, with a clearly specified objective and lower measured overhead than the tested multi-token baselines (pp. 4–6, 10).",
+          "Experiments cover several model families, scales, and reasoning domains, with generally consistent downstream gains over the reported baselines (pp. 7–9, 24).",
+          "The appendices provide useful objective, weighting, window-size, and pretraining ablations rather than reporting only aggregate benchmark results (pp. 21–25)."
+        ],
+        "weaknesses": [
+          "In Eq. 14, normalizing probabilities within the future-token bag cancels the vocabulary softmax normalization; the auxiliary term primarily adjusts relative logits among known future tokens and does not directly raise their aggregate probability against the rest of the vocabulary. This weakens the claimed mechanism of explicitly activating future-token anticipation (p. 6).",
+          "The mechanistic evidence is inadequately controlled: Fig. 3 compares Next-ToBE fine-tuning with the base model rather than an NTP-fine-tuned model, while the rank–future-generation association is observational and partly expected from token predictability, not evidence that anticipation causes better reasoning (pp. 7–8, 19).",
+          "There are no multiple-seed results, uncertainty intervals, or significance tests; several benchmarks are small, hyperparameters are selected separately per model/task, and important simple controls such as unweighted future-bag loss or standard/model-informed label smoothing are absent. The from-scratch evidence is also only a 124M model on 100k samples and worsens perplexity substantially (pp. 8–9, 20, 24–25)."
+        ],
+        "score_rationale": "The idea is simple, potentially useful, and supported by unusually broad positive benchmark results. However, novelty over future-aware label smoothing is moderate, the stated mechanism is not fully aligned with the normalized loss, and missing matched controls and variance estimates prevent the evidence from establishing that gains arise from anticipatory capacity rather than regularization or tuning. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes Next-ToBE, a parameter-free modification of next-token fine-tuning that adds a detached, model-informed soft target over nearby future tokens, weighted through temporal and embedding-based relations. Results across several model families and reasoning domains are promising, but the mechanistic claims and experimental rigor do not yet support the paper’s broad conclusions.",
+        "strengths": [
+          "The method is simple, architecture-preserving, and clearly formulated, with substantially lower reported resource usage than the implemented MTP and MuToR baselines (pp. 4–6, 10).",
+          "Next-ToBE produces fairly consistent gains across mathematics, code, and commonsense tasks and across 1.5B–14B models (pp. 8–9, 24).",
+          "The appendices include useful objective, weighting, window-size, pretraining, and anticipatory-metric ablations (pp. 21–25)."
+        ],
+        "weaknesses": [
+          "The normalized auxiliary loss in Eq. 14 only compares logits of the supplied future tokens: the vocabulary softmax cancels in P(x_j)/sum_i P(x_i), so its gradients do not directly increase their total probability relative to non-future tokens. This materially weakens the claimed mechanism of injecting forward-looking probability mass (p. 6).",
+          "The main results report single values without seeds, uncertainty, or significance tests; several math gains come from very small benchmarks with coarse increments. Moreover, configurations are described as the “best” separately for each task/model without a validation or tuning-budget protocol, raising benchmark-selection concerns (pp. 8–9, 20).",
+          "Baseline and diagnostic evidence is not fully controlled: MTP receives an extra warm-up epoch and method-specific learning rates, making compute comparisons difficult; FtHR includes the immediate next token and therefore partly measures ordinary NTP; and the from-scratch study is small, worsens perplexity substantially, and yields only a 0.86-point HellaSwag gain without uncertainty (pp. 3, 7, 10, 24–25)."
+        ],
+        "score_rationale": "The lightweight future-token smoothing idea is useful and the breadth of gains is encouraging. However, novelty is moderate, the stated causal mechanism is not justified by the normalized objective, and missing variance plus unclear hyperparameter selection make the empirical advantage insufficiently conclusive for acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a future-token-aware soft-target objective that modifies standard next-token fine-tuning without adding prediction heads. Results are broad and generally positive, but the central mechanistic claims and comparative evidence are not sufficiently isolated to establish that anticipatory capacity, rather than ordinary regularization or benchmark tuning, causes the gains.",
+        "strengths": [
+          "The method is lightweight and practically relevant: it retains a single output head and reports lower training memory and time than the tested MTP variants (pp. 4–6, 10).",
+          "Evaluation spans mathematics, code, commonsense reasoning, several model families and sizes, with consistent aggregate improvements over the included baselines (pp. 7–9, 24).",
+          "The appendices include useful objective, weighting, window-size, and pretraining ablations, while acknowledging the perplexity trade-off (pp. 21–25)."
+        ],
+        "weaknesses": [
+          "The normalized auxiliary loss is invariant to the total probability mass assigned to the future-token bag: it only changes relative probabilities within that bag. Thus it does not directly encourage future tokens to enter the current top-m distribution, weakening the claimed causal mechanism behind increased FtHR (p. 6). FtHR and generation analyses also compare against the unfine-tuned base rather than an NTP-fine-tuned control (pp. 7–8).",
+          "The empirical comparison lacks uncertainty across training seeds and omits decisive simple controls such as conventional label smoothing or an unweighted/temporally weighted future-token soft target. Moreover, configurations are described as “best” per task without a validation-selection protocol, so the consistent test-benchmark wins may partly reflect tuning (pp. 8–9, 20–23).",
+          "The weighting formulation is under-specified and contains technical concerns: semantic weights use exponentiated unnormalized embedding dot products and apparently include self-edges; transition normalization/orientation is unclear; Eq. 11 omits the restart factor rho from Eq. 10; and Eq. 13 is undefined if every future-token probability falls below epsilon (pp. 5–6)."
+        ],
+        "score_rationale": "This is a promising, simple objective with unusually broad positive results, but novelty is close to structured label smoothing and the evidence does not adequately separate the proposed anticipatory explanation from simpler regularization or tuning effects. Mathematical and implementation ambiguities further reduce confidence, placing it marginally below acceptance."
+      }
+    }
+  ]
+}

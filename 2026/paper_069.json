@@ -1,0 +1,266 @@
+{
+  "year": 2026,
+  "package_id": "paper_069",
+  "paper_id": "RhW8yXgIxY",
+  "number": 17000,
+  "title": "PACER: Physics Informed and Uncertainty Aware Climate Emulator",
+  "authors": [
+    "Hira Saleem",
+    "Flora D. Salim",
+    "Cormac Purcell"
+  ],
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": [
+    "Neural SDE",
+    "Uncertainty",
+    "Physics Informed Network",
+    "Climate Emulator"
+  ],
+  "forum_url": "https://openreview.net/forum?id=RhW8yXgIxY",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "human_mean_rating": 2.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "KEV423Srae",
+      "forum": "RhW8yXgIxY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17000/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761937388817,
+      "tmdate": 1762927023112,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "eusOx8k8BG",
+      "forum": "RhW8yXgIxY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17000/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762463059786,
+      "tmdate": 1762927020972,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "kvayHJczLg",
+      "forum": "RhW8yXgIxY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17000/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761983256563,
+      "tmdate": 1762927022188,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "lgtlgKF0tO",
+      "forum": "RhW8yXgIxY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17000/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761538961679,
+      "tmdate": 1762927025330,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "z5tu5SvUo8",
+      "forum": "RhW8yXgIxY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission17000/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761669001235,
+      "tmdate": 1762927023777,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "PACER combines an advection-based ODE backbone with a latent neural SDE to emulate temperature fields under prescribed forcings. The compact model reports strong 10-year RMSE across 20 climate models, but substantial methodological ambiguities and insufficient validation make the central claims of physical consistency and calibrated uncertainty unsupported.",
+        "strengths": [
+          "The ODE–SDE decomposition is an intuitively appealing way to combine a structured transport prior with stochastic residual modeling, and the model is reportedly compact at 2.1M parameters (pp. 2–6).",
+          "The empirical scope is broad: results cover 19 CMIP6 models plus FV3GFS, with 10-year rollouts and a limited zero-shot study (pp. 7–9).",
+          "An ablation indicates that adding the advection component improves RMSE over the SDE-only variant on four models (p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed physics backbone is not technically convincing: the inferred velocity equations appear dimensionally questionable and potentially singular, while spherical-grid metric factors, boundary conditions, conservation properties, and stability of centered differences are not specified (pp. 4–5). The forcing source term S is also left undefined.",
+          "The uncertainty claim is inadequately supported. The paper gives neither ensemble size K nor calibration, coverage, spread–skill, or reliability results; CRPS is reported only for PACER, so it does not establish superiority over probabilistic alternatives (pp. 6–9, 13). The stated Gaussian NLL is also ambiguous because variance is estimated from SDE samples yet treated as a cell-wise Gaussian prediction.",
+          "Experimental evidence lacks strong, comparable climate-emulator baselines, statistical variability, error-versus-lead-time curves, and direct physical-consistency diagnostics. Data splits, rollout protocol, normalization, window sizes, and the zero-shot table structure are insufficiently clear for reproducibility (pp. 6–9, 13–14)."
+        ],
+        "score_rationale": "The reported accuracy and breadth are promising, but the central physical and probabilistic contributions are not validated at the level required for ICLR, and key equations and experimental details raise soundness and reproducibility concerns. I therefore lean reject; uncertainty remains because the unusually strong results could become persuasive with corrected derivations and substantially stronger evaluation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PACER combines a learned advection–forcing backbone with a latent neural SDE and reports strong 10-year temperature errors across CMIP6 and FV3GFS datasets. The direction is potentially useful, but major mathematical, probabilistic, and experimental ambiguities prevent the reported gains from establishing a sound climate emulator.",
+        "strengths": [
+          "The ODE–SDE decomposition is an intuitive way to combine a structured transport prior with stochastic residual modeling, while retaining a relatively small stated parameter count (pp. 2–6).",
+          "The evaluation spans 19 CMIP6 models plus FV3GFS and includes long autoregressive rollouts and nominal zero-shot experiments (pp. 6–9).",
+          "The paper acknowledges that advection alone omits most relevant Earth-system physics and that coarse resolution limits treatment of extremes (p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed physics backbone is technically questionable: the climate-velocity expression and inferred velocities in Eqs. 5–6 appear dimensionally or mathematically inconsistent, Eq. 6 independently assigns the full temporal tendency to both velocity components, and the channel dimensions conflict with the two-channel refiner. Centered finite differences for advection are used without spherical-grid treatment, boundary conditions, or a demonstrated stability mechanism (pp. 4–5, 13).",
+          "The uncertainty formulation is insufficiently specified and validated. It is unclear how empirical mean/variance from Brownian samples enter the Gaussian NLL, the ensemble size K and variance-prior scale are omitted, and no calibration, coverage, spread–skill, or probabilistic-baseline comparison is reported; CRPS is shown only for PACER (pp. 6–8, 12–13).",
+          "The evidence lacks essential controls and reproducibility details: only weak/simple deterministic baselines are evaluated, there is no climatology or persistence baseline, no seeds/error bars or horizon-wise stability curves, and no direct physical-consistency diagnostics. The zero-shot table lacks its promised pretrained-model column and is difficult to interpret, while the physics ablation covers only four models (p. 9)."
+        ],
+        "score_rationale": "The broad empirical scope and structured stochastic architecture are promising, but the apparent errors in the central velocity construction and the under-specified training/evaluation protocol undermine technical soundness. Aggregate results alone do not substantiate physical consistency, calibrated uncertainty, or robust 10-year stability, so the manuscript is below the acceptance threshold despite potentially interesting ideas."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "PACER combines an advection-inspired ODE backbone with latent neural-SDE correction and reports strong 10-year temperature errors across 20 climate models. However, the claimed physics and uncertainty contributions are not technically or empirically validated well enough, and key equations and experimental details raise substantial soundness and reproducibility concerns.",
+        "strengths": [
+          "The lightweight hybrid ODE–SDE design addresses an important problem and is evaluated on 19 CMIP6 models plus FV3GFS, including 10-year rollouts (pp. 6–8).",
+          "Reported RMSE consistently improves over the included UNet, ConvLSTM, and SFNO baselines, with additional one-year zero-shot experiments (pp. 8–9).",
+          "The paper acknowledges that advection alone is far from a complete climate model and identifies resolution and extreme-event limitations (p. 9)."
+        ],
+        "weaknesses": [
+          "The physics backbone is questionable: the climate-velocity expression in Eq. 5 appears dimensionally incorrect, Eq. 6 introduces a Laplacian absent from the stated advection equation and divides by potentially vanishing directional gradients, while spherical metric factors, boundary conditions, and stability of centered differences are unspecified (pp. 4–5). Thus, the module is not convincingly physically consistent.",
+          "Uncertainty claims are inadequately supported. CRPS is reported only for PACER, with no probabilistic baseline, calibration, coverage, or spread–skill analysis; feeding the ensemble mean into each next window may also discard trajectory uncertainty. Essential details such as ensemble size K, variance-prior scale, and precise construction of NLL variance are missing (pp. 6, 8, 13).",
+          "The evidence lacks necessary controls and clarity: only the entire physics module is ablated, with no SDE, likelihood, forcing, velocity-refinement, or K ablations; no uncertainty over runs or efficiency measurements are given; dataset normalization/units and split/window construction are unclear; and central ACE/Dyffusion comparisons are absent despite motivating the work (pp. 6–9)."
+        ],
+        "score_rationale": "The reported breadth and gains are promising, but major problems in the physical formulation, incomplete uncertainty validation, and insufficient experimental controls prevent confidence that the improvements establish the paper's central claims. I therefore rate it a reject rather than marginal acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PACER combines an advection-inspired ODE backbone with a latent neural SDE for lightweight, probabilistic climate emulation. Although the reported 10-year temperature errors are promising, major mathematical ambiguities and an insufficient evaluation of uncertainty, physical consistency, and generalization prevent the central claims from being established.",
+        "strengths": [
+          "The paper targets an important problem and presents a compact hybrid ODE–SDE architecture with prescribed forcing inputs (PDF pp. 2–6).",
+          "Experiments cover 19 CMIP6 models plus FV3GFS and report long autoregressive rollouts, substantially broader than a single-model demonstration (PDF pp. 6–9).",
+          "A physics-removal ablation indicates that the proposed backbone improves RMSE over the SDE-only variant on four models (PDF p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed physics backbone is not technically convincing: the climate-velocity expression and per-axis inversion appear dimensionally or mathematically questionable, the source term is unspecified, and centered differences are applied to a latitude–longitude grid without spherical metrics, boundary treatment, or stability analysis (PDF pp. 4–5, 13).",
+          "The uncertainty formulation is internally unclear: ensemble moments from Brownian samples are used alongside a Gaussian NLL that instead describes directly predicted mean and variance; the ensemble size is omitted, recursive propagation uses only the ensemble mean, and no calibration, coverage, spread–skill, or probabilistic-baseline comparison is provided (PDF pp. 5–6, 8, 13).",
+          "Experimental evidence is difficult to interpret or reproduce: RMSE units and normalization are absent, training and evaluation sample construction is unclear, zero-shot table groupings and source/target models are ambiguous, and results lack seeds, uncertainty intervals, lead-time curves, climatic-statistics tests, extremes, or physical-consistency diagnostics (PDF pp. 6–9)."
+        ],
+        "score_rationale": "The combination of a compact advection-inspired backbone and neural SDE has some novelty and the reported errors are encouraging. However, the questionable physical derivation and missing evidence for calibrated stochastic or physically consistent behavior affect the paper's core claims rather than presentation alone. The extensive but under-specified benchmark tables therefore do not support acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "PACER combines an advection-inspired ODE backbone with a latent neural SDE and reports strong 10-year temperature-emulation errors across CMIP6 models and FV3GFS. The lightweight probabilistic architecture is potentially useful, but the physical formulation is questionable and the experiments do not substantiate the central claims of calibrated uncertainty, stability, or generalization.",
+        "strengths": [
+          "The ODE–SDE decomposition is an intuitive attempt to separate structured transport from unresolved stochastic variability, while remaining lightweight at a reported 2.1M parameters (pp. 2, 5–7).",
+          "Results cover 19 ClimateSet models plus FV3GFS and consistently improve RMSE over the three implemented baselines (pp. 7–9).",
+          "The paper acknowledges that advection alone omits most relevant Earth-system physics and that coarse resolution limits treatment of regional extremes (p. 9)."
+        ],
+        "weaknesses": [
+          "The claimed physics backbone is not technically convincing: Eq. 5 appears dimensionally incorrect, Eq. 6 does not provide a well-posed inversion from one scalar tendency to a two-component velocity, and the source term S is never specified. Spherical geometry, pole/boundary treatment, and stabilization for centered advection are also absent (pp. 4–5, 13).",
+          "The uncertainty claims are largely unsupported. The paper reports only PACER's CRPS, gives deterministic baselines no comparable probabilistic score, and provides no coverage, reliability, spread–skill, ensemble-size, or variance-prior analysis. The connection between Brownian samples, predicted Gaussian variance, and Eq. 15 is insufficiently defined (pp. 6–9, 12).",
+          "Experimental reproducibility and fairness are weak: the statement that training uses one year conflicts with the described 86-year scenario data; exact temporal splits, normalization, ensemble size K, source-term construction, and rollout protocol are missing. Table 3 omits a clear pretrained-model mapping, and the sole physics ablation lacks uncertainty/SDE and component ablations or statistical variation (pp. 6, 9, 13–15)."
+        ],
+        "score_rationale": "The architecture has some novelty and broad-looking empirical results, but major flaws in the purported physical derivation and substantial omissions in the uncertainty and evaluation methodology prevent confidence in the conclusions. These issues are central rather than presentational, so the work currently falls in the reject range."
+      }
+    }
+  ]
+}

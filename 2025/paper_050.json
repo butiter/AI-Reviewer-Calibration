@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_050",
+  "paper_id": "TOahfjA3sP",
+  "number": 6346,
+  "title": "Noise Separation guided Candidate Label Reconstruction for Noisy Partial Label Learning",
+  "authors": "Xiaorui Peng; Yuheng Jia; Fuchao Yang; Ran Wang; Min-Ling Zhang",
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": "partial label learning; weakly supervised learning; noisy partial label learning",
+  "forum_url": "https://openreview.net/forum?id=TOahfjA3sP",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    6,
+    5,
+    6
+  ],
+  "human_mean_rating": 5.8,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies the noisy partial label learning (NPLL) problem, where the correct label is not always in the candidate label set (CLS). This setting is more practice in real world. To address this problem, firstly, the authors theoretically prove the generalization error bound of the classifier constructed under NPLL paradigm and reveal that the error bound depends on the noise rate and the average length of the candidate label set. Secondly, the authors propose a method to reduce the noise rate and reconstruct shorter candidate label sets. Finally, experiments on benchmark datasets are conducted to confirm the efficacy of the proposed method in addressing NPLL."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.\tThis paper provides a theoretical generalization analysis of the NPLL, highlighting the noise rate and the length of the candidate label sets are two key factors, which is insightful.\n2.\tThe proposed method is grounded in theoretical findings, making it reasonable and intuitive.\n3.\tExtensive experiments have been conducted and the reported results verify the effectiveness of the proposed method."
+        },
+        "weaknesses": {
+          "value": "1.\tSince the whole label space is very large, then the size of non-CLS may also be very large, which will bring challenges to find the ground truth label.\n2.\tSome parts of this paper is unclear, see the questions below for details.\n3.\tSensitivity analyses of the hyperparameters are absent."
+        },
+        "questions": {
+          "value": "1.\tAccording to Eq.(2), do you need to know the CLS of the normal samples in prior?\n2.\tSince the computation of Eq.(3) relies on the KNN-based pseudo-label, how to decide the parameter of K when applying KNN?\n3.\tIn lines 192-195, the authors claim that “when the ground-truth label of a sample locates at the non-candidate labels, there will be a significant discrepancy between the CLS-based pseudo-label and KNN-based pseudo-label, leading to a larger value of ECK”, could you provide some experimental results to support this?\n4.\tIn lines 272-274, the authors claim that “add the label with the highest pseudo-label probability from the non-CLS to the CLS, and remove the label with the lowest pseudo-label probability from the CLS”, this operation may destroy the diversity of CLS. Is it beneficial to the performance? And please explain Eq.(10).\n5.\tPlease give the detailed derivation of second inequality of Eq.(18).\n6.\tIn lines 648-654, there are two repeated references."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "qWzWFgR1Zy",
+      "forum": "TOahfjA3sP",
+      "replyto": "TOahfjA3sP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_xLDw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_xLDw"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6346/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730690827117,
+      "cdate": 1730690827117,
+      "tmdate": 1731428633307,
+      "mdate": 1731428633307,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the problem of noisy partial label learning (NPLL), where the true label may not be included in the candidate label set (CLS). The authors provide a generalization bound on the empirical risk and, based on this, propose an NPLL method that progressively separates samples and reconstructs the CLS, reducing the noise rate while shrinking the CLS size. Experiments are conducted on both synthetic and real-world noisy datasets."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Building on the generalization error bound, the authors propose a method of progressive sample separation and CLS reconstruction, which reduces the noise rate while simultaneously shrinking the CLS size.\n2. The performance of the proposed method is promising in the experiments.\n3. The writing is very clear and easy to understand."
+        },
+        "weaknesses": {
+          "value": "**Weaknesses and questions**\n\n1. Theoretical part.\n   * \"$f_y(x)$\" (Line 125) is not defined in the paper. I assume this represents the predicted probability of the $y$-th class for $x$, following the notation in Xie et al. (2023), as cited by the authors in Appendix 1?\n   * The authors state, \"Theorem 1 shows that the empirical risk minimizer $\\hat{f}$ converges to the true risk minimizer $f^*$ as $n \\rightarrow \\infty$, $\\epsilon \\rightarrow 0$, and $\\alpha \\rightarrow 1$\" (Line 138). However, even under these conditions, the Rademacher complexity will not necessarily converge to zero, which implies that $R(\\hat{f})$ does not necessarily converge to $R(f^)$. Furthermore, even if $R(\\hat{f})$ does converge to $R(f^*)$, this does not guarantee that the minimizer $\\hat{f}$ itself converges to $f^*$.\n2. Proposed Method and Experimental Part\n   * Could you clarify the rationale behind the statement, \"When the ground-truth label of a sample is included in the candidate labels, the CLS-based pseudo-labels and KNN-based pseudo-labels tend to be similar... however, when the ground-truth label of a sample is in the non-candidate labels, there will be a significant discrepancy between the CLS-based pseudo-label and KNN-based pseudo-label\" (Lines 190-195)?\n   * In constructing the KNN-based pseudo-label and CLS-based pseudo-label for $x_i$, model probability prediction vectors and features are used. How does the warm-up stage affect this process? What if the warm up stage that relies on noisy labels is not good enough to produce meaningful features, especially when the noise ratio is high?"
+        },
+        "questions": {
+          "value": "See above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "d4K17h70gu",
+      "forum": "TOahfjA3sP",
+      "replyto": "TOahfjA3sP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_B6bW"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_B6bW"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6346/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730663821130,
+      "cdate": 1730663821130,
+      "tmdate": 1731428633456,
+      "mdate": 1731428633456,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors provide the generalization error bound of the classifier constructed under NPLL, which depends on the noise rate and the mean size of candidate label sets for normal samples. Empirically, they propose a novel NPLL method which includes two components: progressive sample separation and CLS reconstruction. Their method can serve as a plug-in for existing PLL methods to enhance their performance on NPLL datasets."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. From generalization error bounds in NPLL problem, they find that the lower noise rate and smaller candidate label are two key\nfactors to solve the NPLL problem.\n\n2. By iterative learning, their method can effectively reduce the noise rate while simultaneously decreasing the size of CLS.\n\n3. Extensive experimental results validate that our method outperforms the current state-of-the-art (SOTA) methods by a large margin"
+        },
+        "weaknesses": {
+          "value": "The authors did not compare with the recent work (Lv et al., 2024)."
+        },
+        "questions": {
+          "value": "1. Can we use the prediction from the network $p_j$ instead of the KNN-based $q_j$ in Equ. (6)? Are there any difference in performance? In other words, can you empirically show that the KNN-based pseudo-label is better than probability prediction vector from the network?\n2. Can you compare the performance with (Lv et al., 2024)?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "iBYyQkEpNg",
+      "forum": "TOahfjA3sP",
+      "replyto": "TOahfjA3sP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_1LBQ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_1LBQ"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6346/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730636547143,
+      "cdate": 1730636547143,
+      "tmdate": 1731428633819,
+      "mdate": 1731428633819,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper addresses the problem of Noisy Partial Label Learning (NPLL), a challenging subset of weakly supervised learning where instances are annotated with a set of candidate labels, only one of which is correct. The authors theoretically demonstrate that the generalization error of a classifier constructed under the NPLL paradigm is constrained by the noise rate and the average length of the candidate label set. Building on this theoretical foundation, they propose a novel NPLL framework designed to distinguish noisy samples from normal ones, thereby reducing the noise rate and reconstructing shorter candidate label sets for both categories."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper presents a groundbreaking contribution to the field of weakly supervised learning, specifically addressing the Noisy Partial Label Learning (NPLL) problem. The authors’ novel approach to bounding the generalization error of classifiers under NPLL is a significant theoretical advancement. The proposed method, which integrates progressive sample separation and CLS reconstruction, demonstrates a clear and innovative approach to solving NPLL. This originality in problem formulation and theoretical analysis is commendable.\n2. The article's structure is well-organized and easy to comprehend.\n3. The experiments are generally comprehensive.\n4. Theoretical analysis contributes to establishing the effectiveness of the proposed model."
+        },
+        "weaknesses": {
+          "value": "1.The computational efficiency of the proposed model is a concern.  The requirement to train the classifier on the entire dataset at every epoch introduces a high time complexity, which may limit the practical applicability of the method, especially for large datasets.\n2.The computational efficiency of the proposed model is a concern.  The requirement to train the classifier on the entire dataset at every epoch introduces a high time complexity, which may limit the practical applicability of the method, especially for large datasets.\n3.When there are many noisy samples, for the calculation of KNN, if the neighboring samples are also noisy, is this method reliable?"
+        },
+        "questions": {
+          "value": "Could the authors provide a more detailed explanation or theoretical justification for the assumption that reliable samples become increasingly reliable, while unreliable samples become increasingly unreliable as training progresses?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "kEaGARH2JO",
+      "forum": "TOahfjA3sP",
+      "replyto": "TOahfjA3sP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_Xu7T"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_Xu7T"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6346/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730450532273,
+      "cdate": 1730450532273,
+      "tmdate": 1731428634242,
+      "mdate": 1731428634242,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a new framework for noisy partial label learning (NPLL) that combines progressive sample separation and candidate label reconstruction to reduce noise rates and improve classification accuracy, achieving a good  performance enhancement on the CIFAR10 dataset compared to state-of-the-art methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper is clearly written and easy to understand.\n\n2. The paper provides the generalization error bound for the classifier constructed under NPLL.\n\n3. Extensive experimental results demonstrate that our method significantly outperforms the current state-of-the-art (SOTA) methods."
+        },
+        "weaknesses": {
+          "value": "1. For ablation study,  $v_2$ seems ineffective in separating normal samples and noisy samples in CIFAR10.\n\n2. For Eq.(3), the author calculates the ECK of each sample $x_i$ by CE and uses $\\widetilde q$ as target. What about using a KNN-based pseudo-label as the target instead?\n\n3. The sentence below Eq.(10), $c^\\prime$ can be  $c^\\prime = \\mathrm{arg min}_{j \\in Y_i}$ instead of   arg max\n\n4. The datasets adopt in the experiment are few and small. It would be more effective to utilize larger datasets to further validate the effectiveness of the proposed method."
+        },
+        "questions": {
+          "value": "Please refer to the weakness"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jqYrTELUyY",
+      "forum": "TOahfjA3sP",
+      "replyto": "TOahfjA3sP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_RE2k"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission6346/Reviewer_RE2k"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission6346/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730428084418,
+      "cdate": 1730428084418,
+      "tmdate": 1731428634584,
+      "mdate": 1731428634584,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes progressive normal/noisy-sample separation using disagreement between candidate-set and KNN pseudo-labels, followed by candidate-label reconstruction. The idea is intuitive and reported gains are large, but substantial technical and evaluation concerns prevent confidence in the conclusions.",
+        "strengths": [
+          "The separation-and-reconstruction framework is practically motivated and can be attached to several PLL objectives (pp. 3–6).",
+          "Reported performance is strong across synthetic, fine-grained, and crowdsourced datasets, with useful component and sensitivity studies (pp. 7–9, 19–21).",
+          "The paper directly measures separation accuracy, candidate-set size, and ground-truth hit rate rather than reporting classification accuracy alone (pp. 8–9, 19–20)."
+        ],
+        "weaknesses": [
+          "The comparison is potentially confounded: the proposed method alone uses BLIP-2 features to construct KNN neighborhoods, while stating only that all methods share the same classification backbone; thus gains may reflect powerful external pretrained representations rather than the proposed mechanics (p. 18).",
+          "The reconstruction rule can produce an empty candidate set despite Eq. 6 explicitly requiring a nonempty set: the maximum-probability class may lie outside the permitted original/non-candidate subset, and no fallback is specified (pp. 5, 17). Equation 5 also appears to use max where min is needed, making the stated percentile schedule inconsistent (p. 4).",
+          "The theoretical bound is a loose generic surrogate-risk deviation bound requiring unstated loss nonnegativity in Lemma 2 and does not analyze the learned separation/reconstruction procedure. Reporting reliability is further weakened because the CIFAR10 PaPi row in Table 2 exactly duplicates CIFAR100 values and conflicts sharply with Table 1 (p. 7)."
+        ],
+        "score_rationale": "The core heuristic is moderately novel and the breadth and magnitude of the reported results are promising. However, the external-feature comparison confound, an incompletely defined reconstruction algorithm, inconsistencies in the schedule and tables, and limited relevance of the theory are major issues requiring substantial correction and controlled experiments. I therefore rate it below the acceptance threshold, while acknowledging uncertainty about how much performance remains under a fair feature-controlled evaluation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper addresses an important noisy partial-label learning setting with a moderately novel combination of progressive sample separation and candidate-set reconstruction. Reported gains are large and broad, but substantial specification, theoretical, and experimental-control issues prevent confidence that the contribution is currently acceptance-ready.",
+        "strengths": [
+          "The separation/reconstruction framework is intuitive, exploits the fact that a noisy sample's true label lies outside its candidate set, and can be attached to multiple PLL objectives (pp. 3–6).",
+          "Experiments cover many synthetic conditions, fine-grained datasets, and crowdsourced datasets, with consistently strong reported accuracy improvements (pp. 7–9, 19–20).",
+          "Ablations and diagnostics directly examine separation accuracy, candidate-set size, and ground-truth hit rate rather than reporting only final accuracy (pp. 9–10, 19–20)."
+        ],
+        "weaknesses": [
+          "The formal development is weaker than claimed: the bound is a loose comparison between clean and averaged candidate losses rather than an analysis of the proposed data-dependent reconstruction; its proof implicitly needs a nonnegative loss, and the Rademacher-complexity definition appears to omit normalization (pp. 3, 15–17).",
+          "The stated algorithm is not fully well-defined. Equation (5) uses a maximum where the described percentile schedule seemingly requires a minimum, while the threshold solution of Equation (6) can return an empty set despite an explicit nonempty constraint and provides no fallback (pp. 4–6, 17).",
+          "Experimental attribution is confounded because the proposed method uses frozen BLIP-2 features for KNN while baselines apparently receive only the shared task backbone; moreover, Table 2's CIFAR10 PaPi row exactly duplicates the CIFAR100 PaPi numbers, undermining reporting confidence, and several secondary results lack uncertainty estimates (pp. 7–8, 18)."
+        ],
+        "score_rationale": "The empirical results and breadth merit serious consideration, but the method's undefined edge cases, apparent schedule error, limited theoretical connection, BLIP-2 resource confound, and conspicuous table error are collectively too significant for acceptance as written. I am uncertain how much the implementation silently corrects these issues because only the supplied manuscript can be assessed."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes progressive normal/noisy-sample separation using a KNN consistency score and instance-adaptive reconstruction of candidate label sets. The approach is practically interesting and reports large gains across synthetic, fine-grained, and crowdsourced benchmarks, but important mathematical and experimental inconsistencies prevent the evidence from convincingly supporting the claims.",
+        "strengths": [
+          "The combination of an uncertainty-aware three-way partition and candidate-set reconstruction is a sensible extension of prior NPLL separation methods (pp. 3–6).",
+          "Reported improvements are large and broad across noise/ambiguity settings, several PLL backbones, fine-grained data, and crowdsourced datasets (pp. 7–9, 19–20).",
+          "Ablations and diagnostics directly examine separation accuracy, reconstructed-set size/hit rate, and component contributions (pp. 9–10, 19–21)."
+        ],
+        "weaknesses": [
+          "The formal method is not sound as written: Eq. 5 uses a maximum where the stated ramping behavior appears to require a minimum, causing the thresholds to coincide immediately; moreover, the threshold solution to Eq. 6 can return an empty set despite the nonempty constraint, and that constraint does not ensure retention of the ground-truth label (pp. 4–6, 17). The theorem proof also drops loss terms without explicitly assuming nonnegative losses (pp. 15–17).",
+          "There is a major numerical inconsistency: Table 2's CIFAR10 PaPi baseline exactly repeats the much lower CIFAR100 values rather than the CIFAR10 PaPi results in Table 1, and Figure 1 is derived from these questionable values (pp. 7–8). Table 2 also omits uncertainty estimates.",
+          "The method uses pretrained BLIP-2 features specifically to construct its KNN graph, an additional source of semantic supervision whose contribution is not ablated; saying all methods share the classification backbone does not resolve this fairness issue (p. 18). Computational overhead is acknowledged but not quantified (p. 20)."
+        ],
+        "score_rationale": "The empirical gains are potentially valuable, but the algorithm/proof defects, contradictory reported baselines, and unisolated pretrained-feature advantage substantially weaken technical soundness and attribution. These concerns put the work below the acceptance threshold despite promising results."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes progressive normal/noisy-sample separation using KNN consistency, followed by candidate-set reconstruction, motivated by a generalization bound. The empirical gains are large and broad, but the theoretical contribution is weak and contains missing assumptions, while key algorithmic equations and comparisons raise reproducibility and fairness concerns.",
+        "strengths": [
+          "The separation-and-reconstruction framework is intuitive and practically relevant, particularly its use of the fact that a noisy sample's true label lies outside its original candidate set (pp. 3–6).",
+          "Results show large improvements across many synthetic corruption settings, with additional fine-grained and crowdsourced datasets (pp. 7–9, 19–20).",
+          "Ablations, separation diagnostics, candidate-set hit rates, and sensitivity analyses provide useful component-level evidence (pp. 9, 20–21)."
+        ],
+        "weaknesses": [
+          "The theoretical result is essentially a loose surrogate-risk comparison rather than an analysis of the proposed algorithm. Its proof silently requires a nonnegative loss, and the stated optimizer of Eq. 6 can be empty despite the explicit nonempty constraint, since no eligible label need exceed the threshold (pp. 15–17).",
+          "The method is not reproducible exactly as written: Eq. 5 uses a maximum where the described progressive schedule appears to require a minimum, causing immediate or invalid threshold behavior; reconstruction behavior when the threshold produces an empty set is unspecified (pp. 4–6).",
+          "The evidence has notable fairness and reporting concerns: the proposed method alone relies on BLIP-2 features for KNN construction, without a controlled ablation against learned features or equivalent assistance to baselines (p. 18), and the CIFAR10 PaPi row in Table 2 exactly duplicates the CIFAR100 PaPi values, indicating a substantial results-table error (p. 7)."
+        ],
+        "score_rationale": "The empirical improvements are potentially significant and the core heuristic is sensible, but novelty is moderate relative to prior separation and label-refinement methods. More importantly, the theorem does not substantively guarantee the proposed procedure, the written algorithm has correctness gaps, and the BLIP-2 confound plus erroneous table weaken the central evidence. I therefore place it marginally below acceptance, with some uncertainty because several issues may be correctable implementation or typesetting mistakes."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a plug-in NPLL framework combining progressive KNN-based sample separation with candidate-set reconstruction, motivated by a generalization bound. Results are broad and often substantially better than prior methods, but specification errors, questionable experimental controls, and a weak theoretical contribution leave the evidence below the bar for acceptance.",
+        "strengths": [
+          "The reconstruction/separation framework is practically motivated and can be paired with several PLL objectives; ablations attribute gains to uncertainty handling and reconstruction (pp. 7–10).",
+          "Experiments cover multiple corruption levels, fine-grained datasets, and two crowdsourced datasets, with especially large reported gains under severe synthetic noise (pp. 7–9, 19–20).",
+          "Diagnostics directly examine separation accuracy, ground-truth hit rate, candidate-set size, and parameter sensitivity rather than reporting classification accuracy alone (pp. 9, 19–21)."
+        ],
+        "weaknesses": [
+          "The method is not reproducibly specified: Eq. (5) uses max where the described ramp requires min, apparently eliminating the uncertain phase immediately, while the threshold solution of Eqs. (8–9) may produce an empty candidate set despite Eq. (6)'s nonempty constraint, with no fallback given (pp. 4–6, 17).",
+          "The comparison is potentially confounded because the proposed method uses pretrained BLIP-2 features to construct its KNN graph, whereas the claim that all methods share the same backbone does not establish that baselines receive equivalent external features; an ablation without BLIP-2 is missing (p. 18). Table 2 also appears erroneous: its CIFAR10 PaPi row exactly duplicates CIFAR100 values and conflicts sharply with Table 1, propagating into Fig. 1 (pp. 7–8).",
+          "The theoretical bound is elementary and loose, relies implicitly on nonnegative loss although only boundedness is stated, and does not justify the learned reconstruction procedure: reducing set size can remove the true label and thereby change the noise rate. The plotted decrease of the bound's factor uses ground-truth information and is descriptive rather than evidence of improved generalization (pp. 3, 9, 15–17)."
+        ],
+        "score_rationale": "The strong and diverse empirical results make the approach promising, but the BLIP-2 control issue, clear reporting/specification inconsistencies, and limited theoretical support prevent confidence that the gains arise from the claimed method under a fair, reproducible comparison. I am uncertain how much the Eq. (5) and Table 2 issues are typographical rather than implementation errors, so I assign a marginally-below-acceptance score."
+      }
+    }
+  ]
+}

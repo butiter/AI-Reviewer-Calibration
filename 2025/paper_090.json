@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_090",
+  "paper_id": "yuuyPlywuO",
+  "number": 12634,
+  "title": "Distilling an End-to-End Voice Assistant Without Instruction Training Data",
+  "authors": "William Barr Held; Minzhi Li; Michael J Ryan; Weiyan Shi; Yanzhe Zhang; Diyi Yang",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "Multi-Modal LLMs; Voice Assistants; Distillation",
+  "forum_url": "https://openreview.net/forum?id=yuuyPlywuO",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    6,
+    5,
+    3
+  ],
+  "human_mean_rating": 4.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes DiVA, a voice assistant model that is able to follow both spoken and written instructions. It is trained via a dual distillation and alignment loss and shows relatively strong results on various benchmarks including head to head comparison with Qwen 2 Audio. The authors propose a \"q-former\" style injection of audio into the model, which is initialized from a Whiper model, and a text model initialized with Llama weights and left frozen which consumes the audio input. This model is then trained for relatively small amount of steps on CommonVoice data to learn input alignment as well as output alignment (as compared to text labels)."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Interesting approach which takes several pre-trained models (Llama, Whisper), connects them via a q-former based adapter and trains a small portion of the combined model to respond to audio inputs.\n- Scores relatively well on various benchmarks compared to some well known models.\n- The main contribution is showing that it is sufficient to teach an existing instruction-tuned model to understand audio through relatively light weight techniques which then allows the model to follow instructions via audio queries."
+        },
+        "weaknesses": {
+          "value": "There is not a lot of novelty in this method besides choosing which data to train on. Q-former or in general attention based pooling (e.g. as in perceiver) is well known; L2 loss as a replacement for KLD has also been around for awhile (e.g. in Soundnet: Learning sound representations from unlabeled video.). Putting some of these pieces together to allow Llama models to process audio input has also been explored, for example in Nvidia's SpeechLLM or SALMONN (which is cited in this paper and apparently does not use Llama). In my opinion demonstrating that full SFT is not required to obtain an audio understanding model is interesting but not sufficient."
+        },
+        "questions": {
+          "value": "- Have you compared your approach with an ASR -> LLM based pipeline? One would imagine it would score poorly on the emotion recognition tasks, but probably very high on others.\n- Have you considered diving deeper into what kind of data is requires to achieve specific results? For example, you could ablate the amount of commonvoice data required to achieve specific results; explore other datasets and/or languages and measure their impact on downstream tasks. This would provide a valuable contribution to the community."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "F9pjjiuFbl",
+      "forum": "yuuyPlywuO",
+      "replyto": "yuuyPlywuO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_Rub3"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_Rub3"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12634/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730855586318,
+      "cdate": 1730855586318,
+      "tmdate": 1732760039855,
+      "mdate": 1732760039855,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a method named DiVA for training a speechLLM without using any instruction data in the speech modality. To perform this, an LLM is adapted to enable speech input and output by first combining it with a Whisper based speech encoder, and then using two Novel loss term to train the new modules. The two losses are a cross-model alignment loss which aims to alight the speech and text modalities, and a (simplified) KL divergence loss on the distribution of text and speech outputs. The authors evaluate the paper on 3 groups of tasks, which are spoken question answering, speech classification and speech to speech translation. In all 3 task groups the method reaches state of the art results and surpassed the baseline methods. \n\nOverall, this paper shows a significant contribution and I recommend to accept it."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "1. The proposed method is novel and easy to reproduce.\n2. Evaluations show strong results on a wide variety of tasks. \n3. The paper is clearly written. \n4. Authors use publicly available datasets and fine-tuned models."
+        },
+        "weaknesses": {
+          "value": "1. It is unclear how speech (waveform) is generated from the model output.\n2. The paper is missing some direct evaluation of the speech quality, such as MOS experiments. \n3. For the speech to speech translation task, the paper is lacking an evaluation of the speaker similarity and translation quality (ASR-BLEU) metrics, this may better inform the reader about the overall quality of the translations. \n4. While the paper claims to have created a voice assistant, there is no evaluation or clarification what a voice assistant means. It isn't clear that good performance on the tasks stated in the papers results in a voice assistant. This should be clarified or rephrase."
+        },
+        "questions": {
+          "value": "1. How is speech generated from the model output?\n2. How is the quality of the output speech compared with the ground truth speech? \n3. it is stated that without the KL-divergence loss the speech output is incoherent, how was this measured?\n4. Are there any audio samples from the model?\n5. In what voices is the model able to generate speech?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZXqJLkrwVj",
+      "forum": "yuuyPlywuO",
+      "replyto": "yuuyPlywuO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_RRHC"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_RRHC"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12634/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730042815653,
+      "cdate": 1730042815653,
+      "tmdate": 1731427704672,
+      "mdate": 1731427704672,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a novel approach for training Speech LLMs in the absence of explicit instruction-following data. The authors introduce a method to transfer the instruction-following and conversational capabilities of text-based LLMs to speech-based models by leveraging only ASR data. Specifically, the proposed approach aligns input tokens using a cross-modal token alignment loss and output representations via embedding distillation loss, effectively bridging the modality gap between speech and text. Experimental results demonstrate that this method generalizes well to downstream tasks, including spoken QA and speech translation."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "1.  The cross-modal alignment approach effectively retains general instruction-following abilities, addressing the common issue of forgetting in supervised fine-tuning (SFT).\n2.  The Distilled Voice Assistant (DiVA) surpasses previous SOTA models, such as Qwen2-Audio, with significantly lower resource requirements.\n3.  A qualitative user study shows DiVA’s strong alignment with human preferences in conversational quality.\n4.  Ablation analysis confirms the distinct contributions of cross-modal token alignment and embedding distillation loss to DiVA’s performance."
+        },
+        "weaknesses": {
+          "value": "1.  **Limited Novelty:** Although the authors suggest an \"alternative paradigm\" for aligning speech inputs to text-based LLMs, similar approaches involving distillation text responses for cross-modal alignment have already been explored in works like BLSP [1] and AudioChatLlama [2]. A more detailed discussion and comparison with these works would help clarify the unique contributions. \n2.  **Potential Limitations of Q-Former as Modality Adapter:** DiVA employs a Q-Former as the modality adapter to convert Whisper outputs into tokens. However, recent research in Vision-Language Models suggests that Q-Former can introduce semantic deficiency and \"redundant double abstraction,\" making it less effective than simpler alternatives like MLP with average pooling [3]. Furthermore, the fixed number of query tokens restricts the model’s ability to process speech of varying lengths, potentially limiting its adaptability.\n3.  **Unclear Basis for Performance Gains:** The claim that DiVA outperforms SOTA models like Qwen2-Audio may be misleading, given that DiVA builds on Llama-3—a stronger backbone than Qwen2-Audio’s Qwen-7B. This discrepancy makes it difficult to attribute performance gains solely to the proposed training method. Including the text-only performance of the backbone models (Llama-3 / Qwen-7B) or training DiVA on the same backbone as Qwen2-Audio could clarify the source of the observed improvements. \n\n\n\n[1] Wang C, Liao M, Huang Z, et al. Blsp: Bootstrapping language-speech pre-training via behavior alignment of continuation writing[J]. arXiv preprint arXiv:2309.00916, 2023.\n\n[2] Fathullah Y, Wu C, Lakomkin E, et al. AudioChatLlama: Towards General-Purpose Speech Abilities for LLMs[C]//Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers). 2024: 5522-5532.\n\n[3] Yao L, Li L, Ren S, et al. DeCo: Decoupling Token Compression from Semantic Abstraction in Multimodal Large Language Models[J]. arXiv preprint arXiv:2405.20985, 2024."
+        },
+        "questions": {
+          "value": "Questions:\n1. In Section 3.1, the authors state that they use the decoder weights of Whisper to initialize the Q-Former’s _cross attention_. However, in Section 3.2.1, it’s mentioned that the speech tokens are processed with _causal attention_ in Whisper's decoder. This seems contradictory and is confusing. Could the author clarify the architecture of the Q-Former adapter? \n2. In Section 3.2.1, the cross-modal token alignment loss is applied only to the last $N$ tokens. However, this choice is unclear since Q-Former’s output tokens lack causal relationships. Additionally, the number of speech tokens $Q$ is defined as a hyperparameter, so the assumption that $Q>N$ may not hold for all inputs during inference. Could the author provide further justification for these design choices and proofs for the assumption about token counts?\n3. In Section 3.2.1, the author claim that the additional $Q-N$ token provide information bandwidth for other information. However, I see no evidence to support this claim. Is there any statistic on the number of tokens that did not undergo alignment during training? If so, how does dropping these tokens affect the model's performance? \n4. In Section 3.2.2, the authors claim that the proposed $L_2$ loss can be computed more efficiently than KL divergence. Could additional evidence on training costs (e.g., computation time or resource usage) be provided to support this claim?\n5. The ablation study indicates that the token alignment loss aids the model in adhering to text instructions. However, this difficulty in following text instructions might stem from DiVA being trained solely on speech inputs without accompanying text instructions. Could incorporating text instructions before speech tokens during training improve performance? Furthermore, if this modification were implemented, would the token alignment loss still be necessary, or could it be reduced or omitted?\n\nTypos and minor mistakes:\n1. In Table 1, the base LLM for Qwen 2 Audio Instruct is listed as Qwen2 Instruct. However, according to the technical report, the correct base model should be Qwen-7B. \n2. In Equation (1), the subscripts in the summation notation should start from 1.\n3. In Section 3.2 line 247, \"L2\" should be $L_2$\n\n[1] Chu Y, Xu J, Yang Q, et al. Qwen2-audio technical report[J]. arXiv preprint arXiv:2407.10759, 2024."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "DzmWxqm04M",
+      "forum": "yuuyPlywuO",
+      "replyto": "yuuyPlywuO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_uKgu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_uKgu"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12634/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730042028714,
+      "cdate": 1730042028714,
+      "tmdate": 1731427704615,
+      "mdate": 1731427704615,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes the Distilled Voice Assistant (DiVA), a Speech Large Language Model (LLM) trained on ASR data alone to enhance instruction-following abilities through self-supervised distillation. The authors align DiVA’s responses with those of a text-only LLM to enable cross-modal transfer of instruction adherence. However, the approach does not present substantive methodological innovation, as it closely mirrors existing distillation and instruction-following techniques. Furthermore, the work critically lacks comparisons to similar method in this domain, failing to substantiate its claimed improvements over key baseline methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The use of ASR data alone to improve instruction-following behavior could offer cost benefits by reducing dependence on annotated instruction data.\n- DiVA’s evaluation across diverse benchmarks provides a quantitative assessment of the model’s instruction-following performance."
+        },
+        "weaknesses": {
+          "value": "- Lack of Novelty: The paper’s distillation approach lacks originality and does not go beyond established self-supervised and cross-modal transfer methods. Its reliance on prior distillation techniques without meaningful innovation limits the work's impact.\n- Missing Comparisons to Key Similar Work: The paper does not compare DiVA to highly relevant models, such as those using cross-entropy on target sequences or alternative distillation methods, failing to clarify any advantages over standard methods in the field [1, 2, 3].\n- Insufficient Literature Survey: The paper omits numerous relevant works, resulting in a limited survey that neglects essential context for DiVA’s approach within the broader Speech LLM and instruction-following literature.\n- Paralinguistic Claims: Assertions about capturing paralinguistic features (e.g., sarcasm, emotion) are questionable given that DiVA’s speech embeddings are mapped to text-like embeddings, likely relying more on text semantics than true paralinguistic cues.\n\n\n\n1. Fathullah, Yassir, et al. \"AudioChatLlama: Towards General-Purpose Speech Abilities for LLMs.\" Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers). 2024.\n2.  Wang, Chen, et al. \"Blsp: Bootstrapping language-speech pre-training via behavior alignment of continuation writing.\" arXiv preprint arXiv:2309.00916 (2023).\n3. Wang, Chen, et al. \"BLSP-KD: Bootstrapping Language-Speech Pre-training via Knowledge Distillation.\" arXiv preprint arXiv:2405.19041 (2024)."
+        },
+        "questions": {
+          "value": "- The authors should clarify the differences between this model and an ASR-LLM cascade, as mapping speech to text-like tokens questions both novelty and latency gains.\n- Single-token predictions seem insufficient to capture temporal dynamics, potentially reducing DiVA’s effectiveness for tasks that require detailed temporal context."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "u0zz45CH8x",
+      "forum": "yuuyPlywuO",
+      "replyto": "yuuyPlywuO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_WQdk"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12634/Reviewer_WQdk"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12634/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729934687659,
+      "cdate": 1729934687659,
+      "tmdate": 1731427704848,
+      "mdate": 1731427704848,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes DiVA, which adapts a frozen text LLM to speech using transcript-conditioned self-distillation and a Whisper-decoder-initialized Q-Former, without speech instruction-response labels. The approach is novel and empirically promising across several tasks, but important baseline, theoretical, and evaluation issues weaken the strongest claims.",
+        "strengths": [
+          "The cross-modal context-distillation formulation and reuse of the Whisper decoder to initialize audio-text cross-attention are interesting, practical contributions (pp. 3–5).",
+          "Evaluation spans spoken QA, classification, translation, accents, and a blinded user study; DiVA is especially strong on QA and receives 72% of 522 pairwise preferences against Qwen2-Audio (pp. 6–9).",
+          "The loss ablation clearly shows complementary roles: output distillation enables coherent behavior, while token alignment substantially improves adherence to text instructions (p. 10)."
+        ],
+        "weaknesses": [
+          "The decisive comparisons omit an ASR-plus-frozen-Llama-3 pipeline and a transcript-to-Llama-3 oracle. Consequently, gains over baselines with different underlying LLMs cannot isolate end-to-end speech modeling or substantiate advantages over the straightforward pipeline criticized in the introduction (pp. 1, 6–9).",
+          "Lemma 1 is much weaker than presented: equality of hidden states is sufficient for equal distributions, but if that state is unattainable under the adapter parameterization, the L2 minimizer need not minimize KL. The toy optimization does not establish the claimed approximation in the actual model (pp. 5, 17).",
+          "Some headline evidence is insufficiently controlled: CoVoST2 audio originates from CommonVoice, creating uncertain overlap with the CommonVoice-17 training corpus (pp. 5, 18); the user-study significance may ignore repeated ratings clustered within 53 users; and the “>100x less training compute” claim is not supported by comparable baseline compute accounting (pp. 2, 9–10)."
+        ],
+        "score_rationale": "This is a useful and reasonably novel training strategy with broad, encouraging results and informative ablations. However, the missing ASR+same-LLM control, an overstated theoretical justification, possible benchmark overlap, and unsupported compute comparison prevent a clear accept. I lean marginally above acceptance because the core empirical idea remains compelling, though uncertainty about overlap and evaluation controls is material."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a promising cross-modal distillation method that adapts a frozen instruction-tuned Llama 3 to speech using only paired speech/transcripts. Results span QA, classification, translation, ablations, and a user preference study. However, important confounds and possible evaluation contamination prevent the evidence from establishing the central claims convincingly.",
+        "strengths": [
+          "The combination of Whisper-decoder-initialized Q-Former, input-token alignment, and output hidden-state distillation is novel and practically motivated (pp. 3–5).",
+          "The evaluation is unusually broad, and the loss ablation provides useful evidence that output distillation enables coherent responses while token alignment supports text-instruction adherence (p. 10).",
+          "DiVA shows strong spoken-QA results across multiple accents and a substantial preference advantage over Qwen 2 Audio in a blinded study (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The paper omits the decisive same-base cascade baseline—Whisper transcription followed by the same frozen Llama 3—and text-oracle results. Consequently, improvements over models with different base LLMs cannot isolate the value of native audio processing or the proposed training method (pp. 6–9).",
+          "There is a serious possible train/test overlap: training uses the English portion of CommonVoice 17 (p. 5), while CoVoST 2 evaluation audio is sourced from CommonVoice (p. 18). Exact utterance deduplication is not reported, so the translation evidence may partly evaluate previously seen audio.",
+          "Several claims are insufficiently supported: “>100x less training compute” appears to compare hours of training audio rather than measured compute (pp. 1–2, 10), and the user study comparison is confounded by different underlying LLMs. Essential reproducibility details such as query count, loss weighting, and handling transcripts longer than the fixed query sequence are also absent (pp. 4–6)."
+        ],
+        "score_rationale": "The core idea is interesting and the empirical results are encouraging, supporting a borderline contribution. Nevertheless, the missing same-LLM ASR cascade, possible CommonVoice/CoVoST overlap, and unsupported compute claim substantially weaken causal interpretation. I am uncertain about the overlap’s actual extent because example identifiers are not provided."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents DiVA, which adapts a frozen text LLM to speech using transcript–audio token alignment and hidden-state distillation, trained only on ASR data. The approach is novel and practically appealing, with strong spoken-QA results and a favorable user study, but important reproducibility gaps and possible evaluation leakage weaken the evidence.",
+        "strengths": [
+          "The cross-modal self-distillation formulation and Whisper-decoder initialization offer an interesting, annotation-efficient alternative to multi-task speech instruction tuning (pp. 3–5).",
+          "DiVA substantially outperforms three relevant speech-LLM baselines on two spoken-QA benchmarks, including multiple accent regions (pp. 6–7).",
+          "The loss ablation demonstrates complementary roles: hidden-state distillation enables coherent responses, while token alignment restores text-prompt adherence (p. 10)."
+        ],
+        "weaknesses": [
+          "Potential train–test contamination is not addressed: DiVA trains on CommonVoice 17, while CoVoST2 evaluation audio is sourced from CommonVoice; no overlap filtering is reported (pp. 5, 18).",
+          "Key implementation details are missing, including the number of Q-Former queries, handling of transcripts longer than the query count, relative loss weights, and precise positional treatment, limiting reproducibility (pp. 4–6, 17).",
+          "Several claims are overstated: the paper calls hidden-state L2 loss a KL loss, the lemma only establishes a sufficient global optimum rather than a meaningful approximation guarantee, and the claimed >100× compute advantage is unsupported by comparable compute accounting; tone-sensitive tasks are largely at chance (pp. 5, 8, 10)."
+        ],
+        "score_rationale": "The central idea is sufficiently novel and the QA, ablation, and user-preference results are promising enough for marginal acceptance. However, possible CommonVoice/CoVoST overlap, incomplete methodological specification, weak evidence for paralinguistic understanding, and unsupported compute claims prevent a stronger score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes DiVA, which adapts a frozen text instruction-tuned LLM to speech using a Whisper-initialized Q-Former and hidden-state/token alignment on ordinary ASR pairs. The approach is efficient and produces strong spoken-QA and user-preference results, but several claims are stronger than the supplied evidence and important methodological details and controls are missing.",
+        "strengths": [
+          "A useful and reasonably novel cross-modal distillation strategy transfers instruction-following behavior without speech-response annotations, with effective reuse of the Whisper decoder to initialize the Q-Former (pp. 3–5).",
+          "The evaluation spans QA, classification, translation, accents, and a blinded preference study; DiVA's QA gains are consistent across dialects, and users prefer it in 72% of 522 comparisons (pp. 6–9).",
+          "Loss ablations demonstrate that output alignment is needed for coherent behavior while token alignment materially improves adherence to text instructions (p. 10)."
+        ],
+        "weaknesses": [
+          "The central loss is underspecified: no complete objective or loss weights are given, the number/handling of Q-Former queries and transcripts longer than Q are unclear, and the method aligns only the first next-token hidden state. Lemma 1 establishes merely a sufficient shared minimum, not that hidden-state L2 generally approximates KL or response-level behavior (pp. 4–5, 17).",
+          "Evaluation has important confounds: CoVoST2 audio comes from CommonVoice, yet overlap with CommonVoice 17 training is not ruled out (pp. 5, 18); comparisons also mix different base LLMs and training recipes. The claimed >100× training-compute advantage is unsupported because Table 1 reports data hours, while competitor compute is unreported (pp. 2, 6, 10).",
+          "Evidence for genuinely audio-specific understanding is weak: no model beats chance on sarcasm, only one baseline beats chance on humor, and the authors acknowledge semantic confounding in emotion recognition (pp. 7–8). The preference study uses only 53 users, lacks clustered significance analysis and tie handling, and compares against only one baseline (p. 9)."
+        ],
+        "score_rationale": "This is a promising, efficient method with broad experiments and compelling QA/preference results, warranting a marginally positive score. However, incomplete specification, possible train–test audio overlap, unsupported compute claims, and limited evidence for prosodic understanding keep it below a clear accept."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents DiVA, which adapts a frozen text LLM to speech using paired ASR audio/transcripts, Whisper-initialized components, input-token alignment, and hidden-state distillation. The approach is novel and promising: it achieves strong spoken-QA results and a 72% preference rate over Qwen2-Audio while using no response annotations. However, incomplete methodological details, possible CommonVoice/CoVoST2 overlap, and an unsupported “100× less training compute” claim weaken the evidence.",
+        "strengths": [
+          "A useful and reasonably novel alternative to speech instruction tuning: transferring a text LLM’s behavior through cross-modal hidden-state distillation without annotated responses (pp. 3–5).",
+          "Broad evaluation includes QA across accents, classification, translation, and a blinded study with 53 users; DiVA is especially strong on QA and receives 72% of 522 preferences (pp. 6–9).",
+          "The loss ablation provides meaningful support that output distillation enables coherent audio responses while token alignment enables adherence to text-side instructions (p. 10)."
+        ],
+        "weaknesses": [
+          "The claimed “over 100× less training compute” is not substantiated: the paper reports DiVA’s TPU usage but compares primarily against training-data hours, while Qwen2’s actual compute is not given (pp. 2, 6, 10).",
+          "CoVoST2 audio is sourced from CommonVoice, which is also DiVA’s training corpus; the manuscript does not analyze recording-level overlap with its CommonVoice 17 training set, making the translation generalization evidence uncertain (pp. 5, 18).",
+          "Reproducibility and technical specification are incomplete: key quantities such as the number of Q-Former queries, loss weighting, sequence handling, and decoding settings are absent. Moreover, the theoretical result only identifies one sufficient global optimum, while the implemented distillation matches only the first next-token hidden state, so it offers limited justification for full response-distribution transfer (pp. 4–5, 17)."
+        ],
+        "score_rationale": "The annotation-free cross-modal distillation idea is valuable, and the QA, user-study, and ablation results provide credible evidence of practical promise. I lean marginally above acceptance because these contributions outweigh the shortcomings, but the compute claim, possible benchmark overlap, and missing implementation details prevent a stronger score."
+      }
+    }
+  ]
+}

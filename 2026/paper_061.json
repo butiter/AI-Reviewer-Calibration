@@ -1,0 +1,210 @@
+{
+  "year": 2026,
+  "package_id": "paper_061",
+  "paper_id": "40TvCwYSau",
+  "number": 14074,
+  "title": "Multi-Modal Representation Learning via Semi-Supervised Rate Reduction for Generalized Category Discovery",
+  "authors": [
+    "Wei He",
+    "Xianghan Meng",
+    "Zhiyuan Huang",
+    "Xianbiao Qi",
+    "Rong Xiao",
+    "Chun-Guang Li"
+  ],
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": [
+    "Generalized Category Discovery"
+  ],
+  "forum_url": "https://openreview.net/forum?id=40TvCwYSau",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    6,
+    2
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "LpWph3G5bQ",
+      "forum": "40TvCwYSau",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission14074/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761705144011,
+      "tmdate": 1762924553028,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "Pkfn7tHePJ",
+      "forum": "40TvCwYSau",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission14074/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761972551131,
+      "tmdate": 1762924552194,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "RAgcSsgz6u",
+      "forum": "40TvCwYSau",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission14074/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761917032297,
+      "tmdate": 1762924552653,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes SSR2-GCD, combining a semi-supervised maximal coding-rate-reduction objective, retrieval-based aggregation of CLIP text candidates, and dual co-taught classifiers. Results on six reported benchmarks are strong, especially for Cars and Flowers, but important formulation and evaluation gaps prevent confident acceptance.",
+        "strengths": [
+          "Strong empirical performance across the six actually reported datasets, with particularly large gains on Stanford Cars and Flowers102; three-trial variability is also provided (pp. 7, 14).",
+          "Useful component and loss ablations compare frozen CLIP, contrastive learning, SSR2, and two inter-modal objectives, while rank and similarity analyses offer some mechanistic evidence (pp. 8–9, 15–17).",
+          "The proposed combination is practically relevant and transfers to uni-modal GCD variants with generally positive results (p. 17)."
+        ],
+        "weaknesses": [
+          "The central objective is not fully sound or reproducible as written: the text loss uses the image embedding in its supervised term, apparently a consequential typo, and class terms divide by N_j without explaining absent/empty classes—common when a batch of 128 contains up to hundreds or 1,000 classes (pp. 5, 12–13).",
+          "The broad conclusion that inter-modal alignment is non-essential is overstated: only two alignment losses are tested within one architecture, while RTA itself relies on pretrained CLIP image-text alignment and final co-teaching explicitly aligns modalities (pp. 5–8, 15–17).",
+          "The paper repeatedly claims experiments on eight datasets, but quantitative results are supplied for only six; ImageNet-100 and ImageNet-1K appear only in dataset statistics, leaving scalability and the claimed breadth unsupported (pp. 2, 7, 9, 12)."
+        ],
+        "score_rationale": "The strong benchmark gains and reasonably extensive ablations make the approach promising. However, ambiguity in the core loss for missing classes, an apparent modality error in Eq. 8, missing results for two claimed datasets, and an overgeneralized central conclusion constitute substantial soundness and evidence concerns. I therefore rate it marginally below acceptance, with some uncertainty because the Eq. 8 issue may be only a transcription error."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SSR2-GCD combines retrieval-based prompt aggregation, semi-supervised coding-rate reduction, and dual classifiers for generalized category discovery. Results on six datasets are strong, but the central objective is underspecified as written and the novelty and broader claims exceed the presented evidence.",
+        "strengths": [
+          "Strong empirical performance against recent multimodal baselines, with especially large gains on Stanford Cars and Flowers102 (pp. 7, 14).",
+          "Useful ablations separate prompt aggregation, dual classifiers, and SSR2, and compare multiple intra-/inter-modal losses (pp. 8–9, 15–17).",
+          "The effective-rank analysis offers an intuitive diagnostic for the claimed known/unknown compression imbalance (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The core SSR2 loss is not well-defined for minibatches lacking samples from a class because terms divide by class counts N_j while summing over all k classes; this is common when batch size is 128 and k can exceed it. No empty-class handling is specified, and the textual loss also seemingly uses ZI rather than ZT in its supervised term (pp. 5, 13). These may be implementation/typographical omissions, but they impede verification.",
+          "The theoretical justification is weak: supervised MCR2 results are cited as support for even compression under noisy, jointly learned pseudo-labels, without an analysis establishing that extension. Moreover, the proposed Re statistic uses raw cosine similarities as edge weights, so its denominator may contain negative values and it is not generally a valid within/between-edge ratio (pp. 6, 8).",
+          "The paper claims evaluation on eight datasets, but reports results for only six; ImageNet-100/1K appear only in dataset statistics. Experiments use only three trials and provide no compute/runtime or scaling evaluation, despite retrieval and log-determinant costs (pp. 2, 7, 12–14, 18)."
+        ],
+        "score_rationale": "The empirical gains and ablations are promising and could support acceptance after clarification. However, the mathematically undefined empty-class case in the central loss, an apparent modality typo, limited theoretical support, and missing claimed large-scale evaluations leave the current submission marginally below the bar."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SSR2-GCD combines semi-supervised maximal coding-rate reduction, retrieval-based text aggregation, and dual classifiers for multimodal generalized category discovery. The reported gains are promising, particularly on Cars and Flowers, but key objective definitions are mathematically ambiguous and the empirical claims are broader than the supplied evidence supports.",
+        "strengths": [
+          "Strong results against recent multimodal baselines across the six actually reported datasets, with especially large gains on Stanford Cars and Flowers102 (pp. 7, 14).",
+          "Useful ablations separate text aggregation, dual classifiers, and SSR2, and compare intra-modal against multiple inter-modal objectives (pp. 8–9, 14–17).",
+          "The effective-rank analysis directly investigates the proposed motivation of reducing unequal compression between old and new categories (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The central SSR2 objective is insufficiently specified: classwise terms divide by per-minibatch counts that can be zero—indeed k exceeds batch size on CUB—while hard versus soft pseudo-labels and gradient handling are unclear. Equation 8 also uses image embeddings inside the stated text loss, apparently contradicting the method (pp. 5–6, 13).",
+          "The conclusion that inter-modal alignment is generally non-essential is too broad: it is supported only for two tested alignment losses within one classifier pipeline, and the proposed edge ratio can be unstable with signed cosine similarities and is computed using unavailable ground-truth classes (pp. 7–8, 15–17).",
+          "The paper repeatedly claims experiments on eight datasets, but numerical results are supplied for only six; ImageNet-100 and ImageNet-1K appear only in the dataset-statistics table. Dependence on externally generated tag/attribute lexicons also receives little analysis regarding unknown-class-name overlap (pp. 6–9, 12–15)."
+        ],
+        "score_rationale": "The method has moderate novelty and convincing benchmark improvements, but the undefined empty-class behavior and apparent modality error in the core equations prevent confident assessment of technical soundness and reproducibility. Missing results for two claimed datasets and overgeneralized alignment conclusions keep it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper adapts maximal coding-rate reduction to semi-supervised multimodal GCD and combines it with retrieval-based text aggregation and dual classifiers. The method achieves strong results on the six actually evaluated benchmarks, especially Stanford Cars and Flowers102, but its theoretical framing and broad claims about inter-modal alignment are not fully supported.",
+        "strengths": [
+          "Strong empirical performance against recent multimodal baselines, including sizable gains on Stanford Cars and Flowers102, with three-run variability reported for fine-grained datasets (pp. 7, 14).",
+          "Useful component and loss ablations examine RTA, dual classifiers, SSR2, two inter-modal losses, hyperparameters, and unimodal transfer (pp. 8–9, 14–18).",
+          "The balanced-compression motivation is intuitive, and effective-rank diagnostics provide evidence that SSR2 reduces the old/new representation-rank disparity relative to contrastive learning (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The claimed structural guarantee is insufficiently justified: results cited for supervised maximal rate reduction do not directly establish even compression under noisy, jointly learned pseudo-labels, and the loss is undefined as written when a minibatch contains no samples assigned to a class. Equation (8) also uses image embeddings in the supervised term of the textual loss, likely a consequential typo (pp. 5–6).",
+          "The conclusion that inter-modal alignment is broadly non-essential is stronger than the evidence: only CLIP and CICO alignment losses are tested inside this particular RTA/co-teaching pipeline, while the diagnostic Re uses ground-truth classes and potentially problematic signed cosine sums (pp. 7–8, 15–17).",
+          "The paper repeatedly claims evaluation on eight datasets, and the appendix lists ImageNet-100 and ImageNet-1K, but results are provided for only six. The use of ImageNet/GPT-derived prompt lexicons also warrants an explicit target-class-overlap or leakage-controlled analysis (pp. 3, 7, 12–17)."
+        ],
+        "score_rationale": "The paper offers a plausible, moderately novel adaptation with strong and fairly extensive empirical evidence. However, missing experiments for two claimed datasets, ambiguity in the core objective, limited justification of its theoretical properties, and overgeneralization of the alignment conclusion keep it only marginally above the acceptance threshold. Some uncertainty remains because the textual-loss error may be merely typographical rather than an implementation flaw."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SSR2-GCD combines retrieval-based text aggregation, a semi-supervised maximal coding-rate-reduction objective, and dual-branch clustering for generalized category discovery. It reports strong results on six generic/fine-grained benchmarks and useful diagnostics suggesting that intra-modal structure matters more than explicit cross-modal alignment. However, the central theoretical claims are insufficiently justified, and several reporting/formulation issues weaken confidence in the conclusions.",
+        "strengths": [
+          "Strong empirical performance: the method improves over the reported multimodal baselines on all six evaluated datasets, with particularly large gains on Stanford Cars and Flowers102 (p. 7), and three-run variability is reported for fine-grained datasets (p. 14).",
+          "The component ablations are informative: dual classifiers, RTA, and SSR2 each contribute, while the full combination performs best (p. 9); additional comparisons against contrastive and inter-modal objectives support the practical value of intra-modal learning (pp. 8, 15–17).",
+          "The paper studies representation geometry beyond final accuracy, including effective ranks, intra-class/inter-class edge ratios, sensitivity analyses, and embedding visualizations (pp. 8–9, 16–18)."
+        ],
+        "weaknesses": [
+          "The main technical claim that SSR2 yields even compression across known and unknown classes is not established for the proposed semi-supervised, pseudo-label-driven objective. Results from supervised MCR2 are cited rather than extended to this setting, and erroneous pseudo-labels can directly reinforce incorrect subspaces (pp. 5–6). Equation (8) also appears to use image embeddings ZI inside the labeled term of the text loss, creating ambiguity about the actual implementation (p. 5).",
+          "The broad conclusion that inter-modal alignment is “non-essential” is supported only inside this particular pipeline and for two alignment losses. Loss weighting and optimization comparability are insufficiently controlled in the primary comparison, while the diagnostic Re uses ground-truth categories and a ratio of raw cosine-similarity sums that can be unstable or hard to interpret when similarities are negative (pp. 7–8, 15–17).",
+          "The evidence is less extensive than claimed: the paper repeatedly states evaluation on eight datasets, but reports final results for only six; ImageNet-100 and ImageNet-1K appear only in dataset statistics, leaving scalability untested (pp. 2, 7, 12). The use of ImageNet-name/GPT-generated prompt lexicons also deserves a clearer analysis of external semantic supervision and possible target-class leakage (pp. 3, 5)."
+        ],
+        "score_rationale": "The method is empirically promising and reasonably well ablated, placing it near the acceptance boundary. I score it marginally below acceptance because the core balanced-compression claim lacks a sound argument under pseudo-labeling, the inter-modal conclusion is overgeneralized, and the missing ImageNet experiments contradict the stated evaluation scope. Uncertainty remains because the text-loss equation may be only a typographical error rather than an implementation flaw."
+      }
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_055",
+  "paper_id": "pQqeQpMkE7",
+  "number": 7162,
+  "title": "On Scaling Up 3D Gaussian Splatting Training",
+  "authors": "Hexu Zhao; Haoyang Weng; Daohan Lu; Ang Li; Jinyang Li; Aurojit Panda; Saining Xie",
+  "primary_area": "infrastructure, software libraries, hardware, systems, etc.",
+  "keywords": "Gaussian Splatting; Machine Learning System; Distributed Training",
+  "forum_url": "https://openreview.net/forum?id=pQqeQpMkE7",
+  "venue": "ICLR 2025 Oral",
+  "status": "accepted_oral",
+  "decision": "Accept (Oral)",
+  "human_ratings": [
+    8,
+    8,
+    8,
+    8
+  ],
+  "human_mean_rating": 8.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper, named Grendel, presents a system to enable the distributed training of 3DGS. By leveraging the spatial locality and discovering the Gaussian intersection on image pixels, Grendel enables transferring Gaussians with sparse all-to-all communication while balancing the communication overloads. The load balancing can be simply adjusted according to the time estimation of rendering a pixel in previous iterations. While increasing the batch size needs adjusting the hyperparameters for optimizers, Grendel proposed an automatic hyperparameter scaling rule to enable the hyperparameter-tuning-free batched 3DGS training. Experiments conducted on the small-scale Mip-NeRF360, Tansk-and-Temples, and DeepBlending dataset, the large-scale Mega-NeRF dataset, and the large-scale MatrixCity data validated the effectiveness of the proposed method."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "(1) This work enables the distributed training of 3DGS, which can be very useful to accelerate the training of 3DGS.\n\n(2) The paper is well-written and easy to understand.\n\n(2) This work did exhaustive experiments on very large-scale datasets (e.g., the MatrixCity dataset)"
+        },
+        "weaknesses": {
+          "value": "(1) The related works are put into the last section of the paper, which is weird to me. It lacks discussion of some existing distributed methods, such as **DOGS** (Chen and Lee, NeurIPS 2024), and RetinaGS(Li, et, al, arXiv 2024).\n\n(2) In Sec.6 Related Works, The discussion of VastGaussian, CityGaussian, and Hierarchical Gaussian is wrong. They do not merge the resulting images. Instead, they merge the sub-models. And the authors also claimed that \"None of these systems can consider a full large-scale scene directly and achieve the same quality as ours\". This is ***over-claimed and does not respect existing works since they did not compare to any of these methods*** but only tried different configurations of their Grendel methods.\n\n(3) Baselines are missing in the current version. It is a good system work to me. However, over-claiming something in the paper won't make it a better work. I would like to see a fair comparison of the method to more baselines (original 3DGS, VastGaussian, CityGaussian, DOGS, etc.) and raise my score if they do so."
+        },
+        "questions": {
+          "value": "(1) At line 206, the method splits an image into 16x16 pixel blocks. I'm curious whether the patch size of image blocks can influence the performance of image rendering quality.\n\n(2) Since this method enables training 3DGS from multiple views, it can gather gradients from multiple views and then better constrain the training of 3DGS (as has been shown in the paper *MVGS: Multi-view-regulated Gaussian Splatting for Novel View Synthesis*). However, I saw no performance gains using the distributed training. In lines 312-323, the paper claimed that \"even though some cameras share similar poses, a set of random cameras generally observe different parts of a scene, hence the gradients in a batch are mostly sparse and can be thought of as roughly independent.\". I think that might be the reason that the distributed training does not improve the rendering quality. Can the authors try to explain/discuss this further? For example, are there any non-random batch-splitting methods that can be applied to improve the performance?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xXHag3Zl0t",
+      "forum": "pQqeQpMkE7",
+      "replyto": "pQqeQpMkE7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_VE39"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_VE39"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730613826474,
+      "cdate": 1730613826474,
+      "tmdate": 1732201203040,
+      "mdate": 1732201203040,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a parallel training pipeline for 3D Gaussian Splatting to be trained on up to 32 GPUs, instead of 1 GPU only. This significantly improves the limit of 3DGS in terms of primitive count, scene scale, scene detail, and training speed. This paper splits the 3DGS training process into per-Gaussian stage and per-pixel stage. In per-Gaussian stage, each GPU has its own Gaussians to calculate the Gaussian transformations, mostly 3D to 2D transformation and color evaluation. In per-pixel stage, each GPU is in charge of a set of pixels for rendering, and performs a sparse communication to fetch the required Gaussians from other GPUs. Lastly, a backward propagation is carried out in a similar manner to pass back the gradients. As a result, the proposed method demonstrates a significantly higher number of Gaussians supported, much faster training speed, and a moderate increase in rendering quality."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "**Motivation**\n* This paper has a strong motivation of expanding the training of 3DGS into multiple GPUs/machines. The vanilla 3DGS has a limited number of primitives supported due to the GPU memory limit, but the exceptional performance of 3DGS indicates its great usefulness in large-scale reconstruction. This paper is monumental in providing support in terms of parallel training.\n\n**Method**\n* This paper correctly identifies the per-Gaussian and per-pixel stages of the training pipeline of 3DGS. Since it split the set of Gaussians onto each GPU, the first per-Gaussian stage is relatively simple. For the per-pixel stage, the paper provides intuitive and empirical support for the locality property of 3DGS for each pixel. The paper cleverly leverages this property to design a sparse communication to transport the 3DGS across GPU at a low speed and bandwidth sacrifice. This enables the distributed training of 3DGS.\n* This paper rigorously analyzed the scaling property of the 3DGS training process, and carefully designed a hyper-parameter setting paradigm based on the independent gradient assumption and empirical support. \n* To further improve the utilization of all GPUs, the load balancing algorithm is introduced to ensure each GPU can adaptively adjust their workload during training, because the number of Gaussians required for each region of the image cannot be predetermined.\n\n**Experiments**\n* This paper conducts extensive experiments across various scales of scenes under different experiment settings. The experiment result are well presented to demonstrate the improvement in primitive count, training speed, and rendering quality."
+        },
+        "weaknesses": {
+          "value": "**Method**\n* The paper follows the vanilla 3DGS design and does not consider the Level of Detail support. Since this paper focuses on the large-scale reconstruction, LOD is essential for downstream applications. It is not clear how the proposed method can support LOD.\n\n**Experiment**\n* The quality improvement is not as significant as the number of primitives or the training speed. However, I would like to argue that this is because of the lack of an appropriate dataset to evaluate a very large-scale reconstruction, which limit the performance of this paper. \n* Although the training speed improvement is very significant with this parallel training, large scenes require very time-consuming pose estimation to be done first. The overall training time including the pose estimation might not be improving as much as the reported improvement. This is not the problem of this paper, but does weaken the impact of this paper."
+        },
+        "questions": {
+          "value": "1. Can the proposed method be applied to 3DGS with LOD design?\n2. How does the training across different machines instead of different GPUs affect the performance of the proposed paper?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "FmEU7ietHv",
+      "forum": "pQqeQpMkE7",
+      "replyto": "pQqeQpMkE7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_smer"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_smer"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730452815624,
+      "cdate": 1730452815624,
+      "tmdate": 1731428049351,
+      "mdate": 1731428049351,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes Grendel, a parallelized computation system for 3D Gaussian Splatting. Grendel introduces two parallelization strategies designed for different stages of the 3DGS rendering pipeline: partition by Gaussians and partition by pixels. The partition by Gaussians method distributes Gaussians within the point cloud across multiple GPUs, while partition by pixels assigns pixels across GPUs. Communication between these parallelization schemes is conducted through NCCL all2all. To enhance batch optimization, a learning rate scaling rule is proposed. Experiments demonstrate performance improvements through the utilization of more Gaussians compared to 3DGS approaches in Large scene datasets."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Proposal of parallelization with respect to different stages of the rendering pipeline of 3DGS is interesting.\n\n2. With the proposed method, training 3DGS on high-resolution images is possible.\n\n3. Batch processing can significantly increase the training speed."
+        },
+        "weaknesses": {
+          "value": "1. This paper lacks a conclusion and limitations, making it difficult to understand its overall contribution contribution and appear incomplete.\n\n2. Similar to the proposed learning rate scaling, RAdam [1] also suggests a method for variance rectification. It also rectifies the learning rate using variance to enable adaptive learning and, I believe, takes batch size into account. However, the advantage of the proposed method remains unclear.\n\n3. The rendering speed is expected to be slow due to the time required for Gaussian transfers between GPUs, however, the paper does not provide details regarding rendering speed.\n\n4. Based on Fig. 14, it appears that increasing batch size does not decrease the maximum number of Gaussians significantly.\n\n5. As shown in Fig. 11, for datasets that are not high-resolution like Rubble, the performance gain becomes marginal even if the number of Gaussians exceeds what can be handled by a single GPU.\n\n[1] Liu et al., *On the Variance of the Adaptive Learning Rate and Beyond*, ICLR 2020"
+        },
+        "questions": {
+          "value": "1. How much does the rendering speed change?\n\n2. By how much does the actual GPU memory requirement per GPU reduce when using batch processing?\n\n3. What is the storage requirement based on the number of Gaussians?\n\n$~$\n\nMinor comments:\n\nThe figure reference is inconsistent in line 173."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "R5crdXEJ3q",
+      "forum": "pQqeQpMkE7",
+      "replyto": "pQqeQpMkE7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_e5kX"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_e5kX"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730119677612,
+      "cdate": 1730119677612,
+      "tmdate": 1732509298245,
+      "mdate": 1732509298245,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces GrendelGS, which eliminates the bottleneck of 3DGS in parallel training and scaling up. GrendelGS mixes Gaussian-wise and pixel-wise parallelism, so as to fit computation requirements of different stages. It also makes an effort to minimize communication among GPUs and workload imbalance. And it reveals hyperparameter scaling law for 3DGS parallel training."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "1. Originality.  A reasonable parallel training strategy with novel modification for 3DGS based on valuable insights.\n2. Quality. Sufficient experimental validation on effectiveness of the method.\n3. Significance. Pioneering and well-optimized parallel training implementation for 3DGS, resolving critical challenges in synchronized parallel 3DGS training. On the one hand, GrendelGS avoids tedious model pertaining or data and primitive partitioning in prior works like VastGaussian or CityGaussian. On the other hand, this work enables efficient training when multiple GPUs are available, especially under instant requirements or large-scale scenes."
+        },
+        "weaknesses": {
+          "value": "1. While the superior efficiency over the original 3DGS is clearly and sufficiently illustrated through experiments, it would be beneficial to show if this synchronized parallel training mechanism shows higher efficiency over existing open-sourced asynchronized paradigms, such as HierarchyGS, OctreeGS, or CityGS. Note that for a fair comparison, the batch size and overall iterations should be aligned. Considering the limited time for rebuttal, a comparison with one existing method on 2-3 representative large-scale scenes is enough.\n2. The Independent Gradients Hypothesis is introduced to support the hyperparameter scaling law. It's reasonable that the hypothesis is true on Rubble or even other large-scale scenes, since the views are extremely sparse and approximately independent. However, for condensed views over small scenes or single objects, the hypothesis may not well suit the reality, especially when the batch size grows.  It seems more reasonable to limit the hypothesis to cases with significant view sparsity, or check if the scaling law brings worse results on small scenes."
+        },
+        "questions": {
+          "value": "1. The legends in Figure 1 are put in inversed order. A modification seems to be required.\n2. In Algorithm 1, the meaning of ET_j is confusing and I didn't find a clear definition. An annotation in the graph can optimize the reading experience.\n3. In the \"Independent Gradients Hypothesis\" section, why can we assume E(g_k)=0 over all views? This hypothesis is not that obvious."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "hIjNpgLMxE",
+      "forum": "pQqeQpMkE7",
+      "replyto": "pQqeQpMkE7",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_sLkS"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission7162/Reviewer_sLkS"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission7162/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729066360336,
+      "cdate": 1729066360336,
+      "tmdate": 1732260362737,
+      "mdate": 1732260362737,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "Grendel is a distributed 3D Gaussian Splatting system combining Gaussian-wise parameter sharding, pixel-wise rendering partitions, sparse all-to-all transfers, dynamic load balancing, and batched optimization. The system enables substantially larger models and generally strong throughput/quality results, although the optimizer argument and comparisons to the closest distributed alternatives are incomplete.",
+        "strengths": [
+          "The mixed-parallel design is well motivated by 3DGS structure: parameters and transformation are partitioned by Gaussian, rendering by contiguous pixel blocks, and spatial locality enables sparse communication (pp. 3–5).",
+          "The evaluation is broad and practically compelling: 4-GPU training preserves quality across 13 standard scenes with roughly 3–4× speedups, while Rubble scales to 40.4M Gaussians and 27.28 PSNR beyond single-GPU capacity (pp. 8–9, 16–18).",
+          "The paper studies both system and optimization components, including load-balancing ablations, batch-scaling trajectory analysis, memory scaling, and a same-hardware CityGaussian comparison showing substantial end-to-end speed gains (pp. 9–10, 15–20)."
+        ],
+        "weaknesses": [
+          "The square-root scaling derivation relies on zero-mean independent gradients and treats a batched Adam update as approximating multiple sequential updates, despite changing parameters and optimizer states; validation is limited mainly to diffuse-color update trajectories after resetting Adam, rather than establishing the rule across all parameter groups and full training regimes (pp. 6–7, 16).",
+          "The closest distributed 3DGS methods, DOGS and RetinaGS, are discussed but not experimentally compared. CityGaussian is a different divide-and-conquer approach, so the evidence does not fully establish advantages over competing distributed execution strategies (p. 10).",
+          "Scaling efficiency is noticeably sublinear and some headline gains conflate more GPUs with larger batches; for example, Train reaches only 5.33× on 16 GPUs, and Rubble throughput plateaus or falls at the largest batch. Communication, scheduling, and per-stage timing breakdowns needed to explain these limits are absent (pp. 8, 18–19)."
+        ],
+        "score_rationale": "This is a useful and reasonably novel systems contribution with strong evidence that it expands 3DGS memory capacity and accelerates training without material quality loss. The incomplete closest-method comparisons and heuristic optimizer justification prevent a clear high accept, but the demonstrated capability and breadth of experiments place it above the acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "The paper presents Grendel, a distributed 3D Gaussian Splatting system combining Gaussian-wise parameter sharding, pixel-wise rendering partitions, sparse all-to-all communication, dynamic load balancing, and batch-size-aware Adam scaling. Results show useful throughput and memory scaling up to 32 GPUs and improved reconstruction quality from models exceeding single-GPU capacity.",
+        "strengths": [
+          "The mixed-parallel design is technically coherent: Gaussian transformation and optimizer work are sharded by Gaussian, rendering is partitioned by contiguous pixel blocks, and spatial locality enables sparse communication (pp. 4–5, 14–15).",
+          "The evaluation covers standard and genuinely large scenes, showing near-linear memory growth, 3–4× four-GPU speedups on 13 scenes, and measurable quality gains from additional Gaussians (pp. 8–10, 16–19).",
+          "The square-root learning-rate and exponential-momentum rules are simple and supported by gradient statistics, trajectory ablations, and broadly stable PSNR under batching (pp. 6–8, 16)."
+        ],
+        "weaknesses": [
+          "The most relevant distributed 3DGS alternatives, DOGS and RetinaGS, receive only qualitative discussion; the sole quantitative comparison is CityGaussian, a materially different divide-and-conquer pipeline evaluated on downsampled scenes (pp. 9–10).",
+          "The optimization argument relies on restrictive zero-mean, independent-gradient assumptions, while its direct empirical validation is limited to diffuse-color parameters and one Rubble checkpoint trajectory; no seeds or uncertainty estimates are reported (pp. 6–7, 16).",
+          "Systems characterization is incomplete: several speedups jointly change GPU count and batch size, 16 GPUs yield only 5.33× over one GPU on Train, load-balancing gains can be small, and there is no communication/time breakdown or network-sensitivity study (pp. 8–9, 18–19)."
+        ],
+        "score_rationale": "This is a useful, plausibly sound systems contribution with substantial large-scale evidence and clear practical impact. Missing direct distributed baselines and limited validation of the heuristic scaling theory prevent a stronger accept; exact reproducibility and scaling efficiency remain somewhat uncertain."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "Grendel is a useful distributed 3DGS system combining Gaussian-wise parameter sharding, pixel-wise rendering partitions, sparse all-to-all transfers, dynamic load balancing, and batched optimization. The paper demonstrates meaningful memory scaling and speedups while largely preserving reconstruction quality, although several empirical and methodological claims are not fully isolated.",
+        "strengths": [
+          "The mixed-parallel design is well motivated by 3DGS computation and spatial locality, with sparse communication addressing a genuine systems bottleneck (pp. 3–5).",
+          "Experiments cover up to 32 GPUs, native 4K scenes, memory capacity, throughput, and standard reconstruction datasets; the reported scaling enables models that exceed single-GPU capacity (pp. 7–9, 17–19).",
+          "The batch-size scaling rule is supported by gradient statistics and optimizer-trajectory ablations, and multi-scene tests show nearly unchanged PSNR at higher throughput (pp. 6–9, 16)."
+        ],
+        "weaknesses": [
+          "The Adam scaling derivation relies on strong zero-mean and independent-gradient assumptions and is validated mainly on diffuse-color parameters from one scene; it does not establish equivalence for all parameter groups or throughout densification (pp. 6–7, 16).",
+          "Competitive evaluation is limited: the quantitative comparison covers CityGaussian only, while contemporaneous distributed approaches such as DOGS and RetinaGS are discussed but not evaluated (pp. 9–10).",
+          "Some evidence is confounded or underspecified: Gaussian-count studies change densification settings or initialization as well as count (pp. 9, 16–18), and the load balancer describes both per-pixel timing and assigning a single GPU-average time to every pixel, leaving the estimator unclear (p. 5)."
+        ],
+        "score_rationale": "The work offers a novel and practically significant distributed 3DGS implementation with strong scaling and quality evidence, placing it above the acceptance threshold. Its main limitations are heuristic optimization theory, incomplete contemporary baselines, and imperfectly controlled ablations, which keep it below a clear accept score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "Grendel is a distributed 3D Gaussian Splatting system that shards Gaussian state, switches between Gaussian-wise and pixel-wise parallelism using sparse all-to-all communication, dynamically balances pixel blocks, and enables batched training through proposed Adam scaling rules. The system is practically useful and empirically strong, though the optimization theory and some systems comparisons are incomplete.",
+        "strengths": [
+          "The mixed-parallel design is well motivated by 3DGS computation and spatial locality, with dynamic balancing addressing an important irregular-workload problem (pp. 2–5).",
+          "Evaluation covers up to 32 GPUs, large 4K/city scenes, memory scaling, throughput, image quality, and ablations; it shows 40.4M-Gaussian Rubble reconstruction at 27.28 PSNR and substantial multi-GPU speedups (pp. 8–9, 16–19).",
+          "Against CityGaussian on three large scenes, Grendel achieves comparable or better quality with roughly 3–6.7× lower end-to-end time, supporting practical significance (pp. 9–10, 20)."
+        ],
+        "weaknesses": [
+          "The learning-rate derivation relies on zero-mean independent gradients and treats a large-batch Adam update as approximating sequential updates despite Adam's nonlinear state and changing parameters; validation focuses mainly on diffuse-color update trajectories from one Rubble checkpoint (pp. 6–7, 16).",
+          "Novelty and empirical positioning against the closest distributed 3DGS systems are incomplete: DOGS and RetinaGS are discussed but not experimentally compared, leaving uncertainty about the advantages over alternative distributed strategies (p. 10).",
+          "Systems evidence lacks detailed communication-volume/time breakdowns and direct comparisons among sparse versus dense communication or alternative partitioning strategies; scaling is useful but sublinear, e.g. only 5.33× training speedup on 16 GPUs for Train (pp. 8, 15, 18–19)."
+        ],
+        "score_rationale": "The paper offers a technically coherent and useful distributed 3DGS system with convincing large-scale quality, memory, and throughput results. Its empirical contribution is acceptance-worthy, but incomplete closest-system comparisons and a heuristic rather than rigorous account of batched Adam scaling keep it below a clear high accept."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "Grendel is a well-motivated distributed 3D Gaussian Splatting system that combines Gaussian-wise parameter sharding, pixel-wise rendering partitions, sparse all-to-all transfers, adaptive load balancing, and batched optimization. The paper demonstrates substantial memory scaling, useful throughput gains, and largely preserved reconstruction quality, although some central claims need stronger isolation and broader comparisons.",
+        "strengths": [
+          "The mixed-parallel design is technically sensible and tailored to 3DGS: Gaussian-wise transformation/optimization is combined with pixel-wise rendering and locality-aware sparse communication (pp. 3–5).",
+          "The evaluation is broad and practically meaningful, covering up to 32 A100 GPUs, 4K and city-scale scenes, 13 standard scenes, memory capacity, image quality, and comparison with CityGaussian (pp. 7–10, 16–20).",
+          "The paper provides evidence that larger models improve reconstruction: Rubble rises from 26.28 PSNR at 11.2M Gaussians to 27.28 at 40.4M, beyond single-GPU capacity (pp. 9, 17)."
+        ],
+        "weaknesses": [
+          "The optimizer-scaling derivation relies on strong zero-mean and independent-gradient assumptions and substantially simplifies Adam; the empirical validation mainly measures diffuse-color update similarity after resetting optimizer state rather than end-to-end convergence across scenes and batch sizes (pp. 6–7, 16).",
+          "Systems attribution is incomplete: there is no communication-volume/time breakdown or strong ablation of sparse communication, while load balancing provides only modest gains on Rubble; scaling is also sublinear and plateaus at 32 GPUs (pp. 8, 18–20).",
+          "The experimental baseline coverage is limited. CityGaussian is the only directly compared large-scale method, while RetinaGS and DOGS are discussed but not evaluated; moreover, the quality-versus-Gaussian-count study changes densification schedules and thresholds, partially confounding parameter count with optimization choices (pp. 9–10, 16–18)."
+        ],
+        "score_rationale": "This is a useful and moderately novel systems contribution with convincing evidence that distributed 3DGS can overcome single-GPU memory limits while retaining quality. The main design appears sound, and the empirical scope supports acceptance. However, limited distributed-baseline comparisons, incomplete performance attribution, and a heuristic optimizer argument keep it below a clear high-confidence accept."
+      }
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_060",
+  "paper_id": "xhrN80hmJ9",
+  "number": 13828,
+  "title": "Learning to Reason via Mixture-of-Thought for Logical Reasoning",
+  "authors": [
+    "Tong Zheng",
+    "Lichang Chen",
+    "Simeng Han",
+    "R. Thomas McCoy",
+    "Heng Huang"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Logical Reasoning",
+    "Self-evolving Training",
+    "Large Language Models",
+    "Parallel Scaling",
+    "Test time scaling"
+  ],
+  "forum_url": "https://openreview.net/forum?id=xhrN80hmJ9",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    4,
+    4,
+    6
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0TIodNaAdy",
+      "forum": "xhrN80hmJ9",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13828/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761854584154,
+      "tmdate": 1762924352278,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "MKPQOpi6rg",
+      "forum": "xhrN80hmJ9",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13828/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761946246908,
+      "tmdate": 1762924351911,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "oNcsOzPgo3",
+      "forum": "xhrN80hmJ9",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13828/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761982523242,
+      "tmdate": 1762924351297,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "vCJgJvXNeZ",
+      "forum": "xhrN80hmJ9",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission13828/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762064272491,
+      "tmdate": 1762924350779,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes self-training one LLM on natural-language, code, and purported truth-table traces, followed by cross-modality majority voting. Results show consistent gains on FOLIO and ProofWriter, but the central symbolic modality is not reliably formal and several comparisons do not isolate cross-modality synergy, leaving the paper marginally below the acceptance bar.",
+        "strengths": [
+          "The framework is simple and practically relevant, and modality diversity during both training and inference is a reasonable extension of STaR-style self-training (pp. 4–5).",
+          "Improvements are consistent across several model families and both benchmarks, with three-seed results supporting robustness (pp. 6, 18).",
+          "The paper includes useful ablations on equal-sized diverse NL data, policy choice, modality mixtures, and test-time scaling (pp. 19–21)."
+        ],
+        "weaknesses": [
+          "The alleged truth-table procedure is LLM-generated constraint reasoning rather than systematic enumeration or verified grounding; supplied examples make invalid inferences such as deriving I=False from T=True in T∨I and C=False from I=False (pp. 17, 29). Thus its claimed formal reliability is unsupported.",
+          "Training retains traces solely from final-answer correctness plus superficial formatting checks (p. 4), despite demonstrably invalid code and symbolic traces (pp. 26–28, 37–42). This can reinforce spurious reasoning, and no step-faithfulness evaluation or formal execution verifies the learned modalities.",
+          "Evidence for genuine training synergy is partly confounded by roughly 3× training data, weak/incomparable closed-model baselines, and evaluation on only two closely related logic datasets; the controlled comparison provides only a modest 61.1% versus 57.1% gain on one model/dataset (pp. 6–7, 19–21)."
+        ],
+        "score_rationale": "The empirical gains and breadth of ablations are promising, but novelty is moderate—multi-format self-training plus voting—and the unverified, sometimes logically invalid “truth-table” and code traces undermine the main technical claim. Given limited benchmark breadth and imperfectly controlled comparisons, I lean to a marginal reject while acknowledging uncertainty about whether stronger verification would preserve the reported gains."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a self-training and voting framework that equips one LLM with natural-language, code, and purported truth-table reasoning. Results show consistent accuracy improvements across several model sizes, but the central claims of formal truth-table reasoning and cross-modality synergy are not established cleanly enough for acceptance.",
+        "strengths": [
+          "The framework is simple, practically relevant, and evaluated across four base models, with multi-seed results showing consistent gains on FOLIO and ProofWriter (pp. 6, 18).",
+          "The paper includes useful modality-level, difficulty, test-time scaling, and out-of-domain analyses rather than only reporting aggregate accuracy (pp. 7–9, 18–22).",
+          "The proposed truth-table representation is motivated by concrete failure modes of natural-language reasoning, and some examples illustrate complementary behavior (pp. 2, 9, 35–40)."
+        ],
+        "weaknesses": [
+          "The proposed “truth-table” procedure is not a sound or systematic truth-table algorithm: pruning is delegated to unconstrained LLM deduction without verification (pp. 17–18), and the provided example makes invalid inferences such as I=false⇒C=false and C=false⇒S=true (p. 29). Thus its claimed formal/exhaustive character is unsupported.",
+          "The main gains compare a model fine-tuned for multiple rounds on up to roughly three modalities of answer-filtered data against an unfine-tuned prompted base model (pp. 5–7). Key synergy ablations also change data volume (Table 3, p. 7; Table 9, pp. 19–20), so improvements cannot be cleanly attributed to multimodal interaction rather than extra supervised exposure and compute.",
+          "Novelty is moderate: the method largely combines STaR-style rejection-sampling SFT with known representation diversity and majority voting. Moreover, answer-only filtering permits incorrect rationales (p. 4), while no rationale-faithfulness or formal-correctness evaluation validates what the model learns."
+        ],
+        "score_rationale": "The consistent empirical improvements and broad analyses make the work promising, but decisive controls are missing and the supposedly symbolic modality is demonstrably unsound in supplied examples. Given the incremental algorithmic contribution and uncertainty over whether gains reflect true cross-modality synergy, I rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MoT jointly self-trains one LLM on natural-language, code, and purported truth-table traces, then votes across modalities. The empirical gains are broad and supported by several useful ablations, but the proposed symbolic modality is not a sound truth-table procedure, and the evaluation does not cleanly isolate modality synergy from task-specific supervised fine-tuning and additional data/compute.",
+        "strengths": [
+          "Consistent improvements across four base models and two logical-reasoning benchmarks, with three-seed results supporting robustness (pp. 6, 18).",
+          "Useful controls compare single-modality, partial-mixture, equal-sample diverse-NL, and on/off-policy training, providing some evidence for modality-level diversity beyond ordinary sampling (pp. 7, 19–21).",
+          "The paper includes detailed prompts, training settings, modality-overlap analyses, and concrete failure examples, making the empirical proposal relatively transparent (pp. 16–24, 30–42)."
+        ],
+        "weaknesses": [
+          "The “truth-table” method has no soundness or completeness guarantee and often substitutes unconstrained LLM deduction for exhaustive model enumeration. Its own example makes invalid reverse inferences such as I=False⇒C=False and C=False⇒S=True (p. 29), directly contradicting the claimed remedy for invalid-converse errors.",
+          "Training accepts any trace with the correct final label plus superficial formatting checks, without validating intermediate logic (pp. 4–5). Appendix examples expose severely unsound traces—for example, arbitrarily selecting one disjunct in code (pp. 26–28) and mishandling logical constraints (pp. 40–42)—so gains cannot substantiate faithful or genuinely symbolic reasoning.",
+          "The largest gains compare task-trained MoT against prompted base models, while no equally strong label-supervised SFT control is reported. Many MoT comparisons also use roughly 3× training data or three inference generations; the fixed-budget control is narrow (one model, FOLIO, NL evaluation; pp. 20–21), limiting the causal claim of cross-modal synergy."
+        ],
+        "score_rationale": "The multi-representation self-training recipe is practically interesting, and the reported accuracy gains and ablations are substantial. However, the central symbolic mechanism is technically unsound even in the supplied examples, and key training comparisons confound modality mixture with task supervision and resources. I therefore view this as promising empirical work but marginally below the bar without sound verification and stronger matched controls."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper combines natural-language, code, and purported truth-table reasoning through iterative rejection-sampling/SFT and inference-time voting. It reports substantial, generally consistent gains on FOLIO and ProofWriter, but the symbolic component lacks formal correctness guarantees and the evidence does not fully isolate the claimed cross-modality synergy from supervised fine-tuning and ensembling.",
+        "strengths": [
+          "The framework is simple and practically relevant, integrating training-time and inference-time modality diversity in one model (pp. 4–5).",
+          "Results span four base models, two principal benchmarks, and three-seed robustness checks, with sizeable improvements over the corresponding bases (pp. 6, 18).",
+          "Useful ablations compare single- versus multi-modality training, equal-sized NL versus mixed training data, and on- versus off-policy variants (pp. 7, 19–21)."
+        ],
+        "weaknesses": [
+          "The proposed truth-table method is not an exhaustive truth-table procedure: it asks the LLM to directly generate a minimal consistent assignment without completeness verification (pp. 17–18). Indeed, the example on p. 29 makes invalid inferences such as deriving I=False from T=True under T∨I and C=False from I=False, undermining the central claim that this modality prevents such errors.",
+          "The main improvements do not cleanly establish training-time synergy. Models receive labeled, correctness-filtered fine-tuning with extensive sampling, while bases are merely few-shot prompted; the strongest equal-budget comparison is limited to one model, one dataset, and NL evaluation (pp. 6, 20–21). Ensemble gains over the best trained single modality are also modest (p. 6).",
+          "Evaluation is narrow and partly under-specified: each logical benchmark is trained on separately, ProverQA appears only in a depth plot, and the error-analysis pipeline lacks validation details while reporting raw error counts rather than normalized rates (pp. 8–9, 18, 22–24)."
+        ],
+        "score_rationale": "The empirical gains and ablations make this more substantial than a clear reject, but novelty is largely a combination of known self-training and voting ideas, and the claimed symbolic/truth-table foundation is technically unreliable. I therefore place it marginally below acceptance; uncertainty remains because the reported gains could still reflect useful representation diversity despite the flawed formal interpretation."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes MoT, combining self-training and inference-time voting across natural-language, code, and purported truth-table reasoning. Results across several small open models and two logic benchmarks are encouraging, but the central symbolic modality is not implemented as a sound truth-table procedure, and the experiments do not cleanly isolate cross-modal synergy from ordinary labeled, domain-specific fine-tuning.",
+        "strengths": [
+          "Consistent accuracy improvements are reported across four base models and both FOLIO and ProofWriter, with three-seed results supporting robustness (pp. 6, 18).",
+          "The paper includes useful modality, training, data-budget, difficulty, and test-time-scaling analyses rather than relying only on one aggregate result (pp. 7–9, 19–22).",
+          "The practical idea of inducing structurally different reasoning traces and voting across them is simple, relevant, and potentially useful for smaller models."
+        ],
+        "weaknesses": [
+          "The proposed truth-table method is not a sound or exhaustive symbolic procedure: “reasoning to prune” delegates constraint handling directly to the LLM (pp. 17–18), and the supplied example makes invalid converse-like deductions such as I=False implying C=False and C=False implying S=True (p. 29). Thus the claimed systematic enumeration and formal complementarity are not technically established.",
+          "The main improvements compare domain-fine-tuned MoT models against unfine-tuned few-shot base models (p. 6). Although later ablations help, they do not provide comprehensive matched controls across models and datasets for answer-only SFT, equal accepted-trace counts, or equal training compute; consequently, gains attributable specifically to cross-modal synergy remain uncertain (pp. 7, 20–21).",
+          "Novelty is moderate: the method is essentially STaR-style rejection-sampling SFT over prompted formats plus majority voting, while code is not executed and traces receive no step-level verification (pp. 3–5). Evaluation is also restricted mainly to two closely related logic benchmarks, with non-logic tests showing stability rather than transfer gains (pp. 8–9, 16)."
+        ],
+        "score_rationale": "The empirical signal is substantial and reasonably robust, making this stronger than a clear reject. However, the central “truth-table” contribution lacks logical soundness, and the evaluation does not conclusively separate multimodal reasoning benefits from additional in-domain supervised training. These issues place the work marginally below the ICLR acceptance bar."
+      }
+    }
+  ]
+}

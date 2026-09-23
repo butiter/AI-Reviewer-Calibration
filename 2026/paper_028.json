@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_028",
+  "paper_id": "F8a6dAw3Yg",
+  "number": 8072,
+  "title": "Safe In-Context Reinforcement Learning",
+  "authors": [
+    "Amir Moeini",
+    "Minjae Kwon",
+    "Alper Kamil Bozkurt",
+    "Yuichi Motai",
+    "Rohan Chandra",
+    "Lu Feng",
+    "Shangtong Zhang"
+  ],
+  "primary_area": "reinforcement learning",
+  "keywords": [
+    "reinforcement learning",
+    "in-context learning",
+    "safe reinforcement learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=F8a6dAw3Yg",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "82gW9ZCFgm",
+      "forum": "F8a6dAw3Yg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8072/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1760509054731,
+      "tmdate": 1762920063920,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "bCmr4S2m8y",
+      "forum": "F8a6dAw3Yg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8072/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761823982326,
+      "tmdate": 1762920063293,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "iMC6PiqxVu",
+      "forum": "F8a6dAw3Yg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8072/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762040869302,
+      "tmdate": 1762920062527,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "qqX9wMtEE3",
+      "forum": "F8a6dAw3Yg",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8072/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761996926907,
+      "tmdate": 1762920062894,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces safe in-context RL and an exact-penalty-inspired reinforcement-pretraining method, EPPO. The problem is timely and the experiments show promising reward improvement and cost reduction without test-time parameter updates. However, substantial gaps between the formal objective, theorem, implemented algorithm, and empirical safety claims prevent the results from establishing reliable constraint satisfaction.",
+        "strengths": [
+          "The formulation of safety-aware, parameter-update-free adaptation is timely and plausibly novel, with both supervised and reinforcement-pretraining variants (pp. 2–5).",
+          "The center-to-edge distribution shift and partially observed sparse-reward environments provide a meaningful test of contextual adaptation beyond merely changing goal identities (pp. 6, 19).",
+          "Results consistently show EPPO improving return while reducing cost across a grid world and two continuous-control agents, plus useful sensitivity studies (pp. 7–8, 22–23)."
+        ],
+        "weaknesses": [
+          "The theoretical EPPO objective does not match Algorithm 1: the multiplier update omits the required subtraction of δ, while the actor uses a sampled violation indicator times a critic rather than the positive-part expected-cost penalty in Eq. 7 (pp. 5, 15). The implementation also caps λ (p. 20), outside the theorem.",
+          "The theorem only characterizes exact fixed points under strong assumed duality and explicitly provides no convergence result (pp. 5, 17). Moreover, the claim that every optimum gives a fixed point for any multiplier at least ||λ*||∞ is not proved and can fail when ||λ*||∞=0 and constraints are strictly satisfied.",
+          "Constraint satisfaction is not convincingly demonstrated: δ and its relation to the conditioned CTG are unclear, key hyperparameters omit δ, Figure 1 averages over many CTGs without budget lines, and Figure 2 shows maximum costs exceeding some low CTG values (pp. 6–8, 20). Evaluation is also limited to three closely related custom domains and lacks strong safe meta-RL/ICRL baselines."
+        ],
+        "score_rationale": "The paper has a valuable problem formulation and encouraging empirical learning curves, but the central safety claim is undermined by a serious theory–algorithm mismatch and by experiments that mainly demonstrate cost trends rather than satisfaction of stated per-episode budgets. These issues require major correction and broader validation, placing the work below the acceptance threshold despite its novelty."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces safe in-context RL under CMDP constraints, proposes supervised and reinforcement-pretraining approaches, and reports parameter-update-free adaptation on a grid world and two Safety-Gym variants. The direction is novel and promising, but the presented implementation does not clearly implement the analyzed optimization, and the experiments do not substantiate the claimed per-episode safety guarantees.",
+        "strengths": [
+          "The safe-ICRL problem formulation and controllable reward–cost trade-off are timely, potentially important contributions (pp. 2–5).",
+          "The evaluation explicitly introduces a train/test spatial distribution shift and shows improving reward with decreasing cost across episodes for reinforcement pretraining (pp. 6–8).",
+          "The paper includes useful comparisons of online versus supervised pretraining and ablations over context length, model size, dataset size, and optimization (pp. 8, 21–23)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 appears inconsistent with Eq. (7): its multiplier gradient accumulates the maximum raw episode cost but does not subtract the threshold δ (p. 15, lines 22–37). The actor update also uses an episode-violation indicator and critic rather than clearly optimizing the stated exact-penalty objective. Thus, Theorem 1 does not establish properties of the implemented EPPO algorithm; the appendix explicitly omits convergence (p. 17).",
+          "The central claim of respecting user-specified per-episode constraints is not convincingly evaluated. Figure 1 provides no threshold or violation rate, while Figure 2 reports maximum cost that can exceed the requested CTG at low budgets, especially for SafeDarkMujoco-Point (pp. 7–8). The relationship among CTG, δ, and achieved safety is insufficiently specified.",
+          "Evidence is narrow: only one grid world and two closely related navigation agents are tested, with 16 test tasks and unclear training-seed variation. There are no strong safe-RL/meta-RL or unconstrained-ICRL baselines, and the asymptotic distribution-separation result does not quantify the actual α=0.5 shift or prove that successful behavior results from learned extrapolation rather than general navigation heuristics (pp. 6, 17–19)."
+        ],
+        "score_rationale": "The paper has meaningful novelty and encouraging empirical behavior, but the apparent omission of δ from the implemented multiplier update and the lack of direct constraint-satisfaction evidence undermine its main technical and safety claims. These issues place it below the acceptance threshold despite the promising direction."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces safe in-context RL and an online reinforcement-pretraining method, EPPO, evaluated on a grid world and two partially observed MuJoCo navigation domains. The problem is timely and the reported adaptation and cost-conditioning behavior is promising, but discrepancies between the stated optimization, theorem, implementation, and empirical safety claims substantially weaken the contribution.",
+        "strengths": [
+          "Safe ICRL under user-controlled cost budgets is a useful and relatively novel problem formulation, with both supervised and reinforcement-pretraining approaches considered (pp. 3–5).",
+          "The experiments include an explicit train–test distribution shift and show reward improvement alongside declining cost without test-time parameter updates in three domains (pp. 6–8).",
+          "The paper provides architecture/training details and several ablations covering context length, model size, dataset size, and a naive primal–dual alternative (pp. 19–23)."
+        ],
+        "weaknesses": [
+          "The theory overstates what is established: Theorem 1 concerns exact fixed points of idealized updates, while the appendix explicitly omits convergence (p. 17). Moreover, its claim for any multiplier at least ||lambda*|| is not proved and can fail when lambda*=0 and the optimum is strictly feasible (pp. 5, 16–17).",
+          "Algorithm 1 does not faithfully implement Eq. 7: the multiplier accumulator uses the maximum raw episode cost without subtracting the threshold delta, so it should continually increase for nonzero costs; the actor's critic-based, violation-gated penalty also differs from the stated exact objective (p. 15). The unexplained practical capping of lambda further departs from the theory (p. 20).",
+          "Evidence for safety and generality is insufficient: the main comparison is primarily against a weak supervised baseline, results cover only three closely related goal-navigation domains and 16 test tasks, training-seed variability is absent, and Figure 1 does not directly demonstrate threshold satisfaction. The OOD proposition is only an alpha-to-infinity statement, whereas experiments use alpha=0.5 (pp. 6–8, 17–19)."
+        ],
+        "score_rationale": "The problem and empirical phenomenon are interesting, but the implementation/objective mismatch, an overstated fixed-point theorem, and limited baseline and safety validation are major correctness and evidence gaps. These issues place the work below the acceptance threshold despite its promising direction."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces a timely safe-ICRL problem and an online reinforcement-pretraining method, EPPO, with encouraging adaptation and reward–cost trade-off trends on three simulated domains. However, substantial gaps between the formal objective, theorem, implementation, and evaluation prevent the claimed safety guarantees from being established.",
+        "strengths": [
+          "Safe adaptation without test-time parameter updates is a useful and relatively novel problem formulation, and the comparison of supervised versus reinforcement pretraining is informative (pp. 3–7).",
+          "EPPO shows improving returns and decreasing costs across a grid world and two continuous-control agents, with controllable empirical reward–cost behavior (pp. 7–8).",
+          "The paper includes implementation details and relevant ablations of context length, model size, dataset size, and optimization stability (pp. 19–23)."
+        ],
+        "weaknesses": [
+          "The theory does not justify the implemented algorithm: Theorem 1 only characterizes exact fixed points and explicitly provides no convergence proof, while Algorithm 1 appears to update the multiplier using Cmax without subtracting δ and uses critics Q(s,a) that omit the history and CTG on which the policy and partially observed task depend (pp. 15–17). The theorem's claim for any multiplier at least ||λ*||∞ also fails in the zero-multiplier, strictly feasible case.",
+          "The central safety claim is insufficiently evaluated. Equation (4) requires every episode's expected cost to be below δ, but the experiments do not clearly state the evaluation δ, plot constraint violations against it, or report uncertainty/violation rates; Figure 2 mainly demonstrates correlation between CTG and cost rather than satisfaction of the formal constraint (pp. 3, 7–8). Moreover, the constraint is in expectation, not the repeatedly claimed strict per-episode safety.",
+          "The OOD argument is overstated: Proposition 1 proves separation only as α→∞ for a single-location distribution, whereas experiments use α=0.5 and generate complete maps with multiple obstacles. No divergence at the actual setting is reported, finite-α distributions retain overlapping support, and evaluation uses only 16 tasks with limited baselines (pp. 6–8, 17–19)."
+        ],
+        "score_rationale": "The problem and empirical trends are promising, but the algorithm–theory mismatch and lack of direct evidence for the stated safety constraints are major soundness issues. The limited OOD validation further weakens the principal claims, placing the work below the acceptance threshold despite meaningful novelty."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces safe in-context RL and proposes an exact-penalty reinforcement-pretraining method. The direction is timely and the reported adaptation trends are promising, but substantial gaps between the formal objective, implemented algorithm, and empirical safety evidence prevent the central claims from being established.",
+        "strengths": [
+          "Addresses a novel and important intersection of constrained RL and parameter-update-free in-context adaptation (pp. 2–5).",
+          "Evaluates both gridworld and continuous-control settings under an explicit train/test distribution shift, with reward improving and cost generally declining across episodes (pp. 6–8).",
+          "Provides a clear fixed-point characterization for the idealized exact-penalty update under strong assumptions (pp. 5, 16–17)."
+        ],
+        "weaknesses": [
+          "Algorithm 1 does not implement Eq. (7): its multiplier update accumulates Cmax without subtracting the threshold δ, while the actor uses a realized-episode violation indicator and a cost critic rather than the stated penalty on positive expected constraint violations; Cmax also appears to be reset per episode (p. 15). Thus the theorem does not justify the actual method.",
+          "The key safety claim is not convincingly measured. The constraint threshold δ is absent from the reported hyperparameters, Figure 1 has no threshold comparison, and Figure 2 sometimes shows maximum cost exceeding the purported CTG limit, especially at low budgets (pp. 7–8, 20). CTG and the formal CMDP threshold are not clearly related.",
+          "Evidence is narrow and lacks strong baselines or training-seed statistics: only three closely related navigation domains and 16 test tasks are reported. The asymptotic distribution-separation result does not quantify the finite α=0.5 setting and even uses squared distance whereas the main definition states Euclidean distance (pp. 6, 17–19)."
+        ],
+        "score_rationale": "The safe-ICRL formulation is interesting and likely novel, with encouraging qualitative results. However, the implementation–theory mismatch and missing direct verification of the stated cost constraints undermine technical soundness and the main safety conclusion. These are major rather than presentation-level issues, placing the work below the acceptance threshold despite its promise."
+      }
+    }
+  ]
+}

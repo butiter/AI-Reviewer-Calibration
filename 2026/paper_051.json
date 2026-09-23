@@ -1,0 +1,213 @@
+{
+  "year": 2026,
+  "package_id": "paper_051",
+  "paper_id": "qImzresc4C",
+  "number": 11907,
+  "title": "Learning from Peers in Reasoning Models",
+  "authors": [
+    "Tongxu Luo",
+    "Wenyu Du",
+    "Jiaxi Bi",
+    "Stephen Chung",
+    "Zhengyang Tang",
+    "Hao Yang",
+    "Min Zhang",
+    "Benyou Wang"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Large Language Models",
+    "Large Reasoning Models"
+  ],
+  "forum_url": "https://openreview.net/forum?id=qImzresc4C",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    2,
+    2
+  ],
+  "human_mean_rating": 2.6666666666666665,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "EMXeCuAVYF",
+      "forum": "qImzresc4C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11907/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762124496220,
+      "tmdate": 1762922916172,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "MgQMBzErNl",
+      "forum": "qImzresc4C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11907/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761890434310,
+      "tmdate": 1762922916766,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "xDsV0ogGYC",
+      "forum": "qImzresc4C",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission11907/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761769635867,
+      "tmdate": 1762922917154,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes LeaP, an inference-time framework in which parallel reasoning paths periodically summarize their progress and receive selected peer summaries, plus LeaP-T models trained to follow this protocol. The approach is simple and practically relevant, and it produces fairly consistent gains across several model sizes and reasoning benchmarks. However, its novelty over multi-agent debate/collaboration is incremental, and important evaluation and compute-accounting issues make the strength of the conclusions uncertain.",
+        "strengths": [
+          "The method is clearly specified and easy to implement: periodic summaries, top-k routing, and continued reasoning form a coherent cross-path correction mechanism (pp. 3–4).",
+          "Results are broad and mostly consistent across three model sizes, several math/STEM benchmarks, and ZebraLogic; the reported Pass@1 gains are often substantial (pp. 5–7).",
+          "The paper includes unusually extensive diagnostics on communication frequency, traffic, timing, error tolerance, routing, and failure cases (pp. 7–9, 18–34)."
+        ],
+        "weaknesses": [
+          "Novelty is limited relative to multi-agent debate, ReConcile, CoMM, Corex, and MoA, yet most relevant interactive baselines are only discussed rather than compared; the sole MoA comparison is under-specified, and random routing nearly matches the proposed dispersed router (pp. 16, 18–19, 26).",
+          "The main math evaluations contain only 10–30 problems, report no confidence intervals or significance tests, and explore many router/top-k/interval/temperature choices on AIME 2024, creating substantial selection uncertainty (pp. 4–8, 30–32).",
+          "Compute and causal analyses are not fully convincing: the FLOPs estimate appears not to account clearly for autoregressive summary generation, latency is not reported, and the single-problem “transition” study treats stochastic outputs as paired corrections (pp. 9, 27–29)."
+        ],
+        "score_rationale": "This is a useful, well-executed empirical paper with credible cross-task improvements and valuable analyses, supporting a marginal acceptance. The score is restrained because the central mechanism is an incremental variant of prior collaborative inference, comparisons to strong interactive baselines are inadequate, and small, heavily tuned evaluations without uncertainty estimates weaken the evidence. I am moderately confident, but exact significance cannot be established from the supplied results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes LeaP, an inference framework in which parallel reasoning paths periodically summarize their progress and receive routed peer summaries, plus LeaP-T models trained to follow this protocol. Results show broad, often substantial gains across math, GPQA, and ZebraLogic, but the evidence does not yet cleanly isolate LeaP from existing interactive multi-agent methods or establish statistical and compute-matched robustness.",
+        "strengths": [
+          "A simple, practically relevant cross-path communication mechanism is clearly described, with routing, communication-frequency, and traffic ablations (pp. 3–8, 18–19, 30–32).",
+          "Empirical coverage is broad: three model scales, several math/STEM benchmarks, ZebraLogic, and trained LeaP-T variants generally show consistent gains (pp. 5–7).",
+          "The appendices examine failure cases, communication timing, routing alternatives, robustness, and overhead rather than reporting only headline accuracy (pp. 20–34)."
+        ],
+        "weaknesses": [
+          "Novelty is incremental relative to debate, CoMM, ReConcile, Corex, MALT, and MoA, while direct comparisons are largely absent; the sole MoA comparison uses one configuration and reports apparent instruction-following failure (pp. 16, 26).",
+          "Most math evaluations contain only 10–30 questions, yet no confidence intervals or significance tests are reported despite stochastic sampling and extensive router, k, temperature, and timing exploration; some headline gains could reflect selection variance (pp. 4–8, 18, 31–32).",
+          "Compute accounting is insufficiently convincing: token matching does not fully capture multiple-path latency/memory, summary generation, prefill, and cached autoregressive costs, while the FLOP derivation compares sequence-level quantities using simplifying assumptions (pp. 5, 27–29)."
+        ],
+        "score_rationale": "LeaP is useful and supported by unusually extensive experiments, warranting a marginally positive score. However, limited statistical rigor, incomplete compute accounting, and weak direct comparison with the closest interactive reasoning baselines prevent a clear accept."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes LeaP, a periodic message-passing scheme in which parallel reasoning paths summarize intermediate states and receive selected peer summaries, plus LeaP-T models trained to use this interaction. Results show sizable gains across several reasoning models and benchmarks, but the evidence does not yet cleanly establish superiority over prior interactive multi-agent inference under controlled compute.",
+        "strengths": [
+          "The method is simple and practically relevant, with consistent Pass@1 gains across model scales and math/STEM benchmarks; the GPQA results provide evidence beyond the very small olympiad sets (p. 5).",
+          "The evaluation includes non-math generalization to ZebraLogic and trained variants from 1.5B to 14B, where improvements are generally consistent (pp. 6–7).",
+          "The appendices contain useful ablations on communication frequency, traffic, routing, temperature, overhead, and failure cases rather than presenting only headline results (pp. 7–9, 27–34)."
+        ],
+        "weaknesses": [
+          "Novelty is limited relative to multi-agent debate, ReConcile, CoMM, Corex, and related communication frameworks acknowledged on p. 16. Only MoA receives a direct, narrow comparison, and its poor result is attributed to instruction-following failure rather than demonstrating an advantage over well-tuned interactive baselines (p. 26).",
+          "Statistical support is inadequate: AIME has 30 questions and AIMO only 10, yet many routers, k values, intervals, and temperatures are explored without confidence intervals or significance tests (pp. 5, 7–8, 18–19, 31–32). Correlated interacting samples make raw Pass@1 differences especially difficult to interpret, and hyperparameter selection on AIME 2024 risks benchmark overfitting.",
+          "Compute fairness is not fully convincing. Token-matched curves do not control actual FLOPs or latency, while the appendix uses an approximate full-sequence FLOPs calculation and reports only a 12.08% communication overhead without comprehensive wall-clock/memory measurements (pp. 5, 27–29). The constructed prefix study also uses only ten selected incorrect responses per model, limiting support for the broad “Prefix Dominance Trap” claim (p. 2)."
+        ],
+        "score_rationale": "The broad and mostly consistent empirical gains make the work promising, but the core mechanism is an incremental multi-agent communication design, and missing strong interactive baselines, statistical uncertainty, and incomplete compute controls prevent a clear acceptance recommendation. I therefore place it marginally below acceptance, with some uncertainty about whether repeated-run statistics or stronger baselines would change the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes LeaP, an inference-time scheme in which parallel reasoning paths periodically summarize their states and receive routed peer summaries, plus SFT-adapted LeaP-T models. The method is simple and empirically promising across several reasoning benchmarks, but its novelty and evaluation rigor are only moderate relative to existing multi-agent collaboration methods.",
+        "strengths": [
+          "Consistent, often sizable gains across three model scales and math, science, and logic tasks, including the large ZebraLogic evaluation (pp. 5–7).",
+          "Useful ablations cover routing, communication frequency/traffic/position, robustness, and summary-model adaptation (pp. 7–9, 18–19, 30–34).",
+          "The compute-matched Cons@N analyses and single-communication variant suggest that gains are not solely due to adding independent samples (pp. 5, 26–29)."
+        ],
+        "weaknesses": [
+          "Novelty is incremental over debate, ReConcile, CoMM, Corex, and MoA; despite discussing these methods, the main experiments compare only independent reasoning and self-correction, while MoA receives one underspecified setup with unclear metric/benchmark (pp. 5, 16, 26).",
+          "Several conclusions rely on small, adaptively selected evaluations without confidence intervals or significance tests: the Prefix Dominance Trap uses only 10 selected incorrect-prefix questions, AIMO has 10 questions, and router/hyperparameter choices are repeatedly assessed on AIME 2024 (pp. 2, 4–8).",
+          "Compute and headline comparisons are not fully convincing: the R1-671B comparison uses unmatched models/inference procedures, token matching does not by itself match FLOPs or latency, and the FLOPs treatment does not report measured end-to-end cost (pp. 5, 27–29)."
+        ],
+        "score_rationale": "LeaP is a practical, clearly presented mechanism with broad and generally strong empirical gains, warranting a marginally positive score. However, limited comparisons with the closest interactive-inference methods, weak statistical treatment, and uncertain compute fairness prevent a clear accept. I am moderately confident because the full appendix is extensive, though the absence of repeated-run uncertainty makes the robustness of some gains unclear."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes LeaP, an inference framework in which parallel reasoning paths periodically summarize their progress and selectively exchange summaries, plus LeaP-T models trained for this interaction pattern. Results suggest consistent gains across several model sizes and reasoning benchmarks, but the contribution is incremental relative to existing multi-agent collaboration and the evaluation does not fully establish statistical robustness or fair superiority over strong interactive baselines.",
+        "strengths": [
+          "The method is simple, clearly specified, and practically motivated; periodic summarization and selective routing provide a plausible mechanism for cross-path correction (pp. 2–4).",
+          "Empirical coverage is broad: improvements appear across three model scales, math, GPQA, and ZebraLogic, with additional compute-matched and trained-model results (pp. 5–7, 26–29).",
+          "The appendices include useful analyses of communication timing, traffic, routing, robustness, failure cases, and computational overhead rather than reporting only headline accuracy (pp. 7–9, 18–34)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: LeaP closely resembles multi-agent debate, collaborative prompting, and mixture-of-agents approaches discussed on p. 16. The only direct MoA comparison is a single poorly performing configuration, leaving superiority over strong interactive inference baselines insufficiently demonstrated (p. 26).",
+          "Most headline benchmarks contain only 10–30 problems, many routing and communication configurations appear evaluated on the same test sets, and no confidence intervals or significance tests are reported. Correlated paths exchanging information further reduce the effective sample size, making several small differences—such as dispersed versus random routing—uncertain (pp. 5, 18–19).",
+          "The “Prefix Dominance Trap” evidence uses only ten selected incorrect prefixes per model and largely measures continuation from deliberately flawed context, so it does not yet establish a distinct general self-correction phenomenon (pp. 2, 8). LeaP-T reproducibility is also limited by missing counts and composition of filtered training trajectories (pp. 6, 26)."
+        ],
+        "score_rationale": "The paper presents a useful, technically plausible approach with substantial and fairly broad empirical gains, supporting a marginally positive score. However, limited comparisons to closely related collaborative methods, extensive apparent test-set tuning, and weak uncertainty reporting prevent a clear accept-level assessment. I am moderately confident, though exact significance cannot be determined from the supplied results."
+      }
+    }
+  ]
+}

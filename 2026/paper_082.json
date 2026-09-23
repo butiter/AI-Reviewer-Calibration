@@ -1,0 +1,236 @@
+{
+  "year": 2026,
+  "package_id": "paper_082",
+  "paper_id": "kvzW81UtyH",
+  "number": 20259,
+  "title": "Causality-Inspired Robustness for Nonlinear Models via Representation Learning",
+  "authors": [
+    "Marin Šola",
+    "Peter Bühlmann",
+    "Xinwei Shen"
+  ],
+  "primary_area": "optimization",
+  "keywords": [
+    "Robustness",
+    "nonlinear prediction"
+  ],
+  "forum_url": "https://openreview.net/forum?id=kvzW81UtyH",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    6,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "HaV8yTX78Y",
+      "forum": "kvzW81UtyH",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761302879472,
+      "tmdate": 1762933742619,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "cINN6zOvcM",
+      "forum": "kvzW81UtyH",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761951890352,
+      "tmdate": 1762933741886,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "lGj2JLAaVq",
+      "forum": "kvzW81UtyH",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761575997153,
+      "tmdate": 1762933742217,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "wZcnuGQDPJ",
+      "forum": "kvzW81UtyH",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission20259/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761966534746,
+      "tmdate": 1762933741590,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes CIRRL, a two-stage combination of distribution-matching representation learning and DRIG, aiming to obtain finite-radius robustness for nonlinear observed relationships. The direction is interesting and results are promising, but the main optimality theorem is not established by the supplied proof, and the representation-identifiability argument does not follow from the stated model.",
+        "strengths": [
+          "The finite-radius perspective and combination of nonlinear representation learning with causality-inspired DRO address a relevant robustness problem (pp. 4–8).",
+          "CIRRL shows strong synthetic performance under both specified and non-Gaussian shifts, and favorable results on two biomedical datasets (pp. 8–9).",
+          "The appendices provide useful sensitivity plots for the robustness radius, latent dimension, and representation regularization (pp. 22–25)."
+        ],
+        "weaknesses": [
+          "Theorem 3 contains a fundamental minimax gap: equality of the per-distribution Bayes risks for unrestricted and linear predictors does not imply equality after exchanging minimization with the supremum over interventions. Moreover, the Bayes linear coefficient may depend on v, and the moment-defined uncertainty set includes interventions not covered by the ellipticity/mean assumptions (pp. 7–8, 16–17).",
+          "Affine recovery is asserted without sufficient justification. Imposing a learned Gaussian prior does not establish that the true latent distribution is a GMM, while the cited result additionally requires a weakly injective piecewise-affine generative decoder; these conditions are absent from the main SCM and mismatch the polynomial synthetic decoder (pp. 6–8, 14–15, 18–21).",
+          "The empirical evidence lacks baseline uncertainty and a clearly independent hyperparameter-selection protocol. The ICU test set has only 67 records, Table 1 reports no variability, and the multi-seed plots cover CIRRL rather than comparative final performance (pp. 9, 19, 21, 25)."
+        ],
+        "score_rationale": "Although the problem and empirical trends are worthwhile, the claimed nonlinear finite-radius guarantee is the central contribution, and both its identifiability premise and minimax proof have serious unresolved flaws. The experiments do not compensate for these foundational issues, so I rate the submission as a reject."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes CIRRL, a two-stage method combining an environment-conditioned distributional autoencoder with DRIG in a learned latent space. The finite-radius nonlinear robustness goal is interesting, but the central optimality theorem is not established by the supplied proof, and the empirical evaluation is insufficiently controlled to compensate.",
+        "strengths": [
+          "The combination of identifiable representation learning with finite-radius causal DRO addresses a relevant gap and is conceptually appealing (pp. 4–8).",
+          "The paper evaluates synthetic, single-cell, and ICU settings and includes sensitivity plots for the robustness radius and latent dimension (pp. 9, 22–25).",
+          "Proposition 1 provides a useful latent-space restatement of the DRIG objective, conditional on exact affine recovery of the true representation (pp. 7, 15–16)."
+        ],
+        "weaknesses": [
+          "The proof of Theorem 3 makes an invalid minimax step: equality of the best unrestricted and linear risks separately for each intervention does not imply equality after minimizing a single predictor against the supremum over interventions; the optimal linear conditional-mean coefficient can depend on the intervention covariance (pp. 16–17). Thus the main claim of optimality over all L2 functions is unsupported.",
+          "The representation guarantee is overclaimed. Exact generative-model identifiability under a correctly specified GMM and piecewise-affine weakly injective decoder does not by itself show that optimization of the proposed finite-capacity DPA objective recovers an encoder affine-equivalent to the true latent variables. Moreover, the SCM does not clearly impose the conditional-independence/generative assumptions used to assert E[Y|X]=E[Y|phi*(X)] (pp. 6, 8, 14–18).",
+          "Experimental reliability and selection protocols are unclear: baselines are reported at their 'best' hyperparameters without a stated validation procedure, comparative multi-seed uncertainty is absent, and the ICU description reserves a single small MIMIC set of 67 records while Table 1 reports mean/median/worst across unspecified environments (pp. 9, 19, 21, 25)."
+        ],
+        "score_rationale": "The problem and two-stage construction have some novelty, but the principal theorem contains a decisive logical gap and rests on inadequately connected identifiability assumptions. Ambiguous evaluation and limited comparative uncertainty further weaken the evidence, warranting rejection despite the promising direction."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper combines an environment-conditioned distributional autoencoder with DRIG to obtain nonlinear predictors with a claimed finite-radius causal robustness guarantee. The direction is interesting, but the central guarantee is not established under the stated assumptions, and the empirical validation is too limited and underspecified to compensate.",
+        "strengths": [
+          "The proposed DPA-plus-DRIG construction is intuitive and addresses a meaningful gap between nonlinear representation learning and finite-radius robustness (pp. 5–7).",
+          "The uncertainty radius has a useful interpretation, and the experiments examine sensitivity to its value rather than reporting only one setting (pp. 23–25).",
+          "The evaluation includes synthetic, single-cell, and ICU data and compares against several domain-generalization baselines (pp. 8–9, 21–24)."
+        ],
+        "weaknesses": [
+          "Theorem 3 has major technical gaps. Its proof applies the elliptical conditional-expectation lemma to ε+v although independent elliptical variables do not generally have an elliptical sum, and it directly infers equality of minimax problems from a separate pointwise equality for every v without justifying a common minimax solution or interchange (pp. 16–17).",
+          "The representation-identification claim is insufficiently connected to the algorithm. Matching generated and observed distributions does not by itself show that the learned deterministic encoder equals an affine transform of the true latent variable; moreover, Theorem 3 omits the GMM, weakly injective piecewise-affine decoder, exact population optimization, and model-class conditions invoked for this step (pp. 6–8, 14–18). The synthetic polynomial construction also does not clearly satisfy the adopted piecewise-affine theorem (pp. 19–21).",
+          "The evidence is not yet convincing: comparative real-data results lack seed-level uncertainty and a clear validation protocol for selecting each baseline's best hyperparameter; ICU uses only 67 test records, and CIRRL is effectively tied with linear DRIG there (0.413 vs. 0.414 mean MSE) despite stronger claims (pp. 8–9, 19, 21). The synthetic study is narrow and its construction ambiguously reverses the stated encoder/decoder mapping (pp. 19–21)."
+        ],
+        "score_rationale": "This is a potentially novel and useful composition, but the advertised all-L2 finite-radius optimality is the main contribution and currently rests on invalid or missing arguments. Together with weak statistical reporting and only modest gains over DRIG on ICU data, these issues warrant rejection rather than a borderline score."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper combines environment-conditioned representation learning with DRIG to obtain finite-radius robustness for nonlinear observed relationships. The direction is interesting, but the central optimality theorem is not established, and the empirical validation is too limited to compensate.",
+        "strengths": [
+          "The two-stage construction is intuitive: learn an affine-identifiable latent representation and then apply a finite-radius robust estimator, yielding a potentially useful bridge between representation learning and causal DRO (pp. 5–8).",
+          "The paper evaluates both synthetic misspecification and two biomedical datasets, where CIRRL improves worst-environment MSE over the nonlinear baselines and modestly improves over linear DRIG (pp. 8–9).",
+          "The appendices include useful sensitivity plots for γ and α, learning curves, and results across seeds (pp. 22–25)."
+        ],
+        "weaknesses": [
+          "The proof of Theorem 3 makes an invalid minimax step: showing that, for each fixed intervention distribution v, a possibly v-dependent Bayes predictor is linear does not imply equality after exchanging minimization over a single predictor with the supremum over v. Thus the claimed optimality over all L2 functions is unsupported (pp. 16–17).",
+          "The affine-identification argument is incomplete. Penalizing the learned encoder distribution toward an environment-conditioned GMM does not establish that the true latent variables satisfy the generative assumptions of the cited identifiability theorem, nor that a finite-weight empirical optimum exactly matches both required distributions (pp. 5–8, 18).",
+          "Empirical evidence is narrow and incompletely specified: the ICU test set has only 67 records, Table 1 lacks uncertainty or significance estimates, model-selection protocols for γ and baseline hyperparameters are unclear, and the claimed gains over DRIG are extremely small on ICU (pp. 9, 19–25)."
+        ],
+        "score_rationale": "The nonlinear finite-radius DRO goal is novel and promising, but the main theorem contains a fundamental logical gap and the representation-identifiability premise is not justified for the proposed training objective. Given these central soundness issues and limited real-data evidence, I rate the work as a reject, while allowing some uncertainty about whether stronger assumptions could repair the theory."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes CIRRL, combining environment-conditioned identifiable representation learning with DRIG to obtain finite-radius robustness under nonlinear observations. The direction is interesting, but the central optimality guarantee is not established by the presented assumptions or proof, and the empirical study is too limited to compensate.",
+        "strengths": [
+          "The combination of latent representation learning with a data-driven finite-radius uncertainty set addresses a meaningful gap between nonlinear prediction and causal DRO (pp. 4–8).",
+          "Proposition 1 gives a useful explicit DRIG-style risk characterization when the representation is already known to be an invertible affine transform of the true latent variables (pp. 7, 15–16).",
+          "The experiments cover synthetic misspecification and two biomedical datasets, with consistent reported gains over several baselines (pp. 8–9, 21–25)."
+        ],
+        "weaknesses": [
+          "Theorem 3 contains a major minimax gap: showing that, separately for each intervention distribution, its Bayes predictor is linear does not justify exchanging this pointwise result with min_f sup_v or establish one common linear minimax predictor. Moreover, independent elliptical ε and v need not have an elliptical sum, although Lemma 6 is applied to ε+v (pp. 8, 16–17).",
+          "The guarantee for the learned representation is unsupported as stated. Exact affine recovery requires true GMM latents, a weakly injective piecewise-affine decoder, exact distribution matching/global optimization, and population information, but these conditions are absent from Theorem 3. Enforcing a Gaussian learned prior does not make the true latent distribution satisfy the identifiability theorem (pp. 6, 8, 14–18).",
+          "Evidence is not sufficiently rigorous: there is only one narrow synthetic configuration, real-data hyperparameters are reported as the “best” without a clear validation protocol, ICU testing uses only 67 records, and the near-tie with linear DRIG lacks uncertainty or significance analysis. Comparative multi-seed error bars are also missing (pp. 9, 19–25)."
+        ],
+        "score_rationale": "The problem and two-stage construction have moderate novelty, but the claimed all-L2 finite-radius robustness theorem has fundamental logical and assumption-level defects. Given that this theorem is the main contribution and the experiments do not decisively isolate or validate it, the manuscript currently warrants a reject-level score. Confidence is high, though the exact scope of the cited identifiability results cannot be independently checked from the supplied manuscript."
+      }
+    }
+  ]
+}

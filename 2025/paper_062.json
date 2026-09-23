@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_062",
+  "paper_id": "IcNzKiB8CP",
+  "number": 8526,
+  "title": "TELEPORTATION WITH NULL SPACE GRADIENT PROJECTION FOR OPTIMIZATION ACCELERATION",
+  "authors": "Zihao Wu; Juncheng Dong; Ahmed Aloui; Vahid Tarokh",
+  "primary_area": "optimization",
+  "keywords": "Optimization; Teleportation; Gradient Projection",
+  "forum_url": "https://openreview.net/forum?id=IcNzKiB8CP",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    3,
+    3,
+    3
+  ],
+  "human_mean_rating": 3.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This work considers an alternative strategy for teleportation in optimization landscapes, i.e., going to locations within the level set of the loss but which are better suited for further optimization, like having higher gradient norm. Past methods consider using the group action of continuous symmetries, but this makes them limited to MLPs. This work considers maximizing the gradient norm to teleport while ensuring the layerwise updates of parameters falls in the null space of the layer input. Experiments showcase that this method leads to faster convergence in train and test performance while performing at par with baseline optimization methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The idea to utlize (layer) input-space null projection is built atop the work of GPM (Saha et al'21) in continual learning and its use here for the purposes of teleportation is neat.\n\n- This extends the applicability of the approach and might draw further interest in these methods. The resulting method is also more efficient than symmetry teleport based methods.\n\n- The experiments cover a variety of scenarios, wherein the method results in faster convergence while being as good if not slightly better than the baselines."
+        },
+        "weaknesses": {
+          "value": "- **Wall-clock comparison of convergence:**\n It is unclear how much excess time is being used during the process of teleportation, and if the gains in faster convergence are worth the extra effort. \n\n- **Difference in arrived solutions:**\nI would like to see if the solutions reached with teleportation differ qualitatively to those reached without. Can the authors make the LMC curves (Frankle et al, 2019) to see if there are barriers between the reached solutions?\n\n- **Comparison to group action based method:**\n I think it would be interesting to compare the results of your method to group action based ones in a simple setting with MLPs to see in what ways the methods differ. \n\n\n- **Stability of the hyperparameters**:\nIt is not clear to me how much do the hyperparameters of teleportation, as well as SVD thresholds, have to be tuned. Can you present a study showing the robustness (or lack of)?\n\n- **Poor referencing of related work:**\nA lot of the citations are plain wrong. E.g., I don't think the citations are representative, and some are just plain wrong: \n\n  - Hessian matrix (Sun et al., 2019).\n  - Adam (Kashyap 2022)\n  - ReLU (Agarap, 2018)\n  - MLP (Taud & Mas, 2018).\n  - CNN (Li et al., 2021).\n  - multi-head self-attention layers (Wen et al., 2022)."
+        },
+        "questions": {
+          "value": "See weaknesses section. \n\nRegarding presentation, I would also make a few suggestions. Instead of input-space, quality it as input space of layers. Otherwise it is confusing. Also, please fix the image titles to TinyImageNet (which currently say ImageNet)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "bSDTzReYcN",
+      "forum": "IcNzKiB8CP",
+      "replyto": "IcNzKiB8CP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_4wRs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_4wRs"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8526/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731117373346,
+      "cdate": 1731117373346,
+      "tmdate": 1731429118749,
+      "mdate": 1731429118749,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a novel algorithm, \"teleportation with null space gradient projection,\" designed to accelerate optimization in deep learning models. The proposed method improves upon existing teleportation techniques by reducing runtime and mitigating error accumulation. Additionally, it extends teleportation optimization to a broader range of models. The authors validate their approach across diverse model architectures, including Multi-Layer Perceptrons (MLPs), Convolutional Neural Networks (CNNs), and Transformers, employing various benchmark datasets and optimization methods to demonstrate its effectiveness."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper is well-written and easy to follow.\n- The proposed method is architecturally flexible, as it does not rely on group action from the underlying architecture. This allows the approach to be applicable across a broader range of architectures."
+        },
+        "weaknesses": {
+          "value": "- The explanation for why projecting onto the Residual Gradient Space (RGS) keeps the parameters within the loss-invariant level set of the original loss is unclear, since the gradient being projected is the gradient of the teleport loss projected to RGS.\n- The paper lacks a comparison with other state-of-the-art methods that employ teleportation, such as Zhao et al. (2022) and Mishkin et al. (2024).\n- A runtime comparison with non-teleportation optimizers counterparts (SGD, Momentum, Adagrad, Adam) is absent."
+        },
+        "questions": {
+          "value": "- How does projecting the gradient of the teleportation loss onto RGS ensure the parameters remain on the level set of the original loss?\n- Could you provide a performance comparison of the proposed method with other teleportation techniques, specifically comparing with Zhao et al. (2022) on MLP models and with Mishkin et al. (2024) on applicable models?\n- What are the runtime of the baseline optimizers before and after introducing teleportation with null-space gradient projection?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "VVsIDS5K5k",
+      "forum": "IcNzKiB8CP",
+      "replyto": "IcNzKiB8CP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_u2NW"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_u2NW"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8526/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730738807200,
+      "cdate": 1730738807200,
+      "tmdate": 1731429118881,
+      "mdate": 1731429118881,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a teleportation technique for accelerating the convergence of gradient descent. The idea of teleportation is to move the parameters on the level set of the loss function to get a better (e.g., steeper) point before taking a gradient descent step, and this is done every few iterations. The authors aim to address limitations in previous teleportation methods, which were primarily restricted to multi-layer perceptrons (MLPs), by generalizing it to a broader range of architectures, including convolutional neural networks (CNNs) and transformers. Their method aims to reduce computational overhead by eliminating dependency on specific group actions and using an efficient gradient projection technique."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The paper concerns an interesting problem, specifically exploring optimization acceleration through teleportation techniques.\n- The introduction effectively provides background context and situates the study within related work, giving readers a clear overview of the existing literature and the motivation for this approach.\n- The idea of doing gradient ascent on the gradient norm, while projecting it onto the level set of the original loss is interesting."
+        },
+        "weaknesses": {
+          "value": "- The authors mix layer-wise and global operations without a clear explanation or justification. While Equations (4) and (5) and Algorithm 1 (correctly) outline parameter updates at a global level, Sections 3.1, 3.2, and 3.3 abruptly pivot to layer-wise operations and projections without justification. The authors should clarify why the projection of the entire parameter vector 𝜋 is equivalent to projecting subsets of the elements (i.e., layers) separately.\n- Relatedly, from Equation (5), it appears that 𝜋 is defined to take inputs of the same dimensionality as the complete set of weights. If so, then reusing 𝜋 in Equations (11-13) is incorrect, as these equations seem to imply different dimensionality.\n- Again, on a related note, the statement that \"the gradient of the teleportation objective function resides within the space spanned by the input data\" is incorrect and misleading. The paper actually seems to refer to the input spaces at each layer, not the space spanned by the input data. This claim should be corrected and replaced with a precise statement about the layers if there exists one."
+        },
+        "questions": {
+          "value": "- Please refer to the weaknesses above.\n- In the unnumbered equations between (7) and (8) for MLP, CNN, and Self-Attention: I see that the order of multiplication in which the input to the layer appears differs between architectures (x*\\delta in CNN and Self-Attention, as opposed to \\delta*x in MLP). Can the authors explain whether this order affects the theoretical claims or the projected outcome, and if so, in what ways?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "N/A"
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "y1b6uLuDmi",
+      "forum": "IcNzKiB8CP",
+      "replyto": "IcNzKiB8CP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_z2Na"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_z2Na"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8526/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730686760610,
+      "cdate": 1730686760610,
+      "tmdate": 1731429119095,
+      "mdate": 1731429119095,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes an improved algorithm for teleportation-based optimization, in which at certain times during training the network weights are moved to a different location with roughly the same loss but higher gradient norm. Their approach uses an approximate projection onto the loss level set while optimizing the gradient norm during the teleportation step. The algorithm is validated on experiments with MLPs, CNNs, and Transformers."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The authors propose a faster algorithm for the teleportation step that can also be applied to architectures beyond MLPs.\n2. The authors validate their approach by using it to modify a variety of standard optimizers on multiple problems, showing consistent improvements in training loss.\n3. Code is attached to reproduce the results."
+        },
+        "weaknesses": {
+          "value": "1. The approximation scheme is not very clearly described. It would be helpful to have pseudocode for the actual core contribution of the work, rather than just for the teleportation approach more broadly. The goal of the approximation (“to ensure that the gradient update in Equation 5 preserves the correlation between the weights and the space of significant representation as much as possible”) is only defined in words, and the error we should expect is not analyzed.\n2. A major claim is the improved speed over past teleportation approaches, such as the one using symmetry or the one using linear approximation. However, no comparison is done for either case. For example, it would be useful to see whether the reduced per-iteration complexity is enough to overcome the approximation error and to do better than the symmetry-based approach. Similarly, a wallclock (rather than epoch) comparison between this approach and vanilla optimizers would also be useful.\n3. The observed improvement is mainly in training performance, with minimal improvement in generalization. The authors suggest that there may be ways to overcome that, but do not evaluate this. Without a clear path towards test-time performance improvement the utility of teleportation-based approaches is unclear."
+        },
+        "questions": {
+          "value": "1. What does “enhance the gradient norm” mean?\n2. In what sense is symmetry teleportation “a state-of-the-art algorithm”?\n3. It is strange to cite a 2018 applications paper for MLPs (they have been around for a long time), a 2018 paper proposing ReLUs for classification for ReLUs (which have also been around for a long time), and a 2022 applying Transformers to time series for multi-head attention when they were introduced in 2017 by Vaswani et al."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "38LnjS86L5",
+      "forum": "IcNzKiB8CP",
+      "replyto": "IcNzKiB8CP",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_KxS7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8526/Reviewer_KxS7"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8526/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730512221690,
+      "cdate": 1730512221690,
+      "tmdate": 1731429119816,
+      "mdate": 1731429119816,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes projecting gradient-norm-maximizing teleportation updates onto layer-input null spaces and reports applications to MLPs, CNNs, and Transformers. The extension is potentially useful, but the central derivation appears internally contradictory, and the experiments do not establish compute-adjusted optimization acceleration.",
+        "strengths": [
+          "The layerwise projection framework is simple and potentially more architecture-agnostic than symmetry-specific teleportation (pp. 3–6).",
+          "Experiments span several architectures, datasets, and four optimizers, with three-run loss trajectories (pp. 6–9).",
+          "The paper discusses runtime scaling and the effect of the SVD threshold rather than reporting task loss alone (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core method appears degenerate: the paper proves that the teleportation gradient lies in the input span (p. 5), then removes precisely that span in Eqs. 11–13 (p. 6). With τ=1 and the same batch, the projected update should therefore be zero. Nonzero results imply an unstated mismatch or invalidate the claimed level-set guarantee. Moreover, exact invariance beyond the cached batch and under simultaneous multilayer changes is not proved.",
+          "The acceleration comparison is not compute-fair. Teleportation differentiates a gradient norm and therefore requires second-order autodiff/Hessian-vector computations, yet results are plotted by epoch, and the complexity analysis omits the cost of the t projected updates while claiming no t dependence (pp. 3, 6–9). Figure 5 measures only isolated teleportation runtime, not end-to-end training.",
+          "Evidence relies on small/custom architectures and baseline training with unusually small learning rates, without tuned compute-matched baselines, standard schedules, accuracy/perplexity metrics, or comparisons to the other level-set method discussed. Figure 6's loss-preservation evidence is only one sMNIST Transformer setting (pp. 8–10, 12–13)."
+        ],
+        "score_rationale": "Although the architecture-general projection idea and empirical breadth are promising, the exact-null-space setting used in most experiments should mathematically annihilate the derived teleportation gradient. This unresolved contradiction, together with omitted second-order compute in the efficiency claims and weak compute-matched evaluation, prevents confidence in the main conclusions. There is minor uncertainty because implementation details could involve different batches or objectives, but these are not stated and would weaken the invariance argument."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 2,
+        "confidence": 4,
+        "summary": "The paper proposes accelerating optimization by ascending the gradient-norm objective after projecting its gradient away from layer-input subspaces. The idea is potentially useful and evaluated broadly, but the central derivation is internally inconsistent with the reported experiments, and the evidence does not establish compute-efficient acceleration.",
+        "strengths": [
+          "The layerwise projection framework is simple and, at a high level, more architecture-agnostic than symmetry-specific teleportation (pp. 3–6).",
+          "Experiments span MLPs, CNNs, transformers, several tasks, and four optimizers, with three-run variability shown (pp. 6–9).",
+          "The paper examines runtime scaling and the loss/gradient-norm trade-off as the SVD threshold changes (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core mathematics appears contradictory: the paper asserts that the teleportation gradient lies in the input span (p. 5), yet at τ=1 projects out the complete input span (pp. 5–6). Under that assertion, the projected update must be zero, whereas substantial τ=1 effects are reported (pp. 6–10). More fundamentally, the displayed chain rule overlooks the gradient-norm objective's direct dependence on parameterization; otherwise teleportation could not change that norm along function-invariant directions.",
+          "The claimed loss-level-set guarantee applies at most to represented inputs and is not established for the full training loss. Approximate projection explicitly permits loss changes, while Figure 6 studies only one transformer setting and does not resolve the τ=1 contradiction (pp. 9–10).",
+          "Evidence is not compute-matched: teleportation adds many SVD and second-order gradient-norm updates, yet convergence is plotted primarily against epochs/steps rather than wall-clock or total computation. There are no matched-extra-update baselines, accuracy/perplexity tables, or adequate ablations; the pseudocode also uses descent where the main text specifies ascent (p. 12)."
+        ],
+        "score_rationale": "Despite an interesting projection idea and broad experiments, the central τ=1 method should yield no update under the paper's own derivation, making the reported gains difficult to interpret or reproduce. Combined with non-compute-matched evaluation and an inconsistent algorithm sign, this warrants rejection. Confidence is high, although the exact implementation is unavailable."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The paper proposes projecting the gradient of a gradient-norm teleportation objective onto layer-input null spaces, aiming to extend teleportation from MLPs to CNNs and Transformers. Although the empirical scope is broad, the central mathematical description appears internally contradictory: the paper proves that the teleportation gradient lies in the input span and then projects it onto that span’s orthogonal complement. With the stated exact-null-space setting, this should yield a zero update, conflicting with the reported results.",
+        "strengths": [
+          "The intended architecture-independent formulation is conceptually interesting and potentially more broadly applicable than symmetry-specific teleportation (pp. 2–6).",
+          "Experiments cover several architectures, datasets, and optimizers, with three-run loss trajectories rather than a single narrow setting (pp. 6–9).",
+          "The paper explicitly investigates runtime scaling and the loss/gradient-norm tradeoff under different SVD thresholds (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core algorithm is technically inconsistent. Section 3.2 shows, e.g., that an MLP gradient has form δxᵀ and therefore lies in the representation span; Equations 11–13 then remove precisely that span. For τ=1, used in the main experiments, the projected gradient should be identically zero on the same batch, yet nonzero teleportation effects are reported (pp. 5–6). This makes the implementation and results impossible to verify from the manuscript.",
+          "Exact loss invariance is not established for the implemented finite updates. An exact input-null-space perturbation preserves the current batch outputs but cannot arise from the stated projected gradient; approximate projection permits output and loss changes without a bound. Figure 6 provides only one empirical illustration rather than a general guarantee (pp. 9–10).",
+          "The evidence does not fairly establish practical acceleration: convergence is primarily measured by epochs despite 32×8 extra teleportation updates, there are no end-to-end wall-clock comparisons against ordinary training or matched-compute baselines, and most CNN test-loss improvements are negligible (pp. 7, 9, 12–13)."
+        ],
+        "score_rationale": "The broad empirical ambition and potentially useful projection perspective are positives, but the apparent annihilation of the proposed update at τ=1 is a fatal soundness and reproducibility issue. Combined with unmatched-compute evaluation and limited generalization gains, the paper is not technically reliable in its current form."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes maximizing the training-gradient norm while projecting parameter updates away from layer-input representation subspaces, aiming to make teleportation efficient for MLPs, CNNs, and Transformers. The architectural scope is potentially useful, but a central mathematical inconsistency undermines the method as presented, and the experiments do not establish compute-normalized acceleration or practical gains.",
+        "strengths": [
+          "The projection framework is simple and is formulated for MLP, convolution, and attention layers, giving the work broader architectural scope than the cited symmetry method (pp. 4–6).",
+          "Experiments cover several datasets and four optimizers, with three-run loss trajectories reported (pp. 6–9).",
+          "The paper explicitly studies teleportation runtime scaling and the relationship between the SVD threshold, gradient norm, and loss drift (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The core derivation appears self-contradictory: the paper proves that the teleportation gradient lies in the input span (p. 5), but with the stated τ=1 setting, B spans that full observed input space, so Equations 11–13 should annihilate the gradient and yield no update (pp. 5–6). If gradients and SVD use different data, the update instead is not guaranteed to preserve the relevant loss. This is not resolved.",
+          "Loss-level-set preservation is not established beyond selected batch activations: projections are computed once and reused for multiple updates, layers are updated jointly, and finite changes can alter upstream representations. There is also an ascent/descent sign inconsistency between Equation 5 and Algorithm 1 (pp. 4, 12).",
+          "The evidence is not compute- or quality-complete: plots primarily compare loss per epoch rather than wall-clock time or total training cost, omit standard accuracy/perplexity metrics and tuned learning-rate/scheduler baselines, and use relatively small custom models. The runtime study compares only teleportation implementations rather than end-to-end training (pp. 7–9)."
+        ],
+        "score_rationale": "The extension of teleportation-style projection to CNNs and Transformers is moderately novel and empirically broad, but the τ=1/full-span contradiction directly challenges whether the reported algorithm can produce the claimed updates. Together with insufficient justification of loss invariance and weak compute-normalized evaluation, this warrants rejection. I am highly confident based on the manuscript, although implementation details not shown could potentially reveal a different gradient batch or numerical approximation; either would require substantial clarification and revised claims."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes accelerating training by ascending the primary-loss gradient norm while projecting each layer’s update onto a residual input subspace obtained by SVD. It applies the method to MLPs, CNNs, and small Transformers and reports broadly faster early optimization. However, the central method and experiments contain a fundamental unresolved contradiction, and the evidence does not establish practical acceleration or level-set preservation.",
+        "strengths": [
+          "The layerwise projection formulation is simple and potentially more architecture-agnostic than symmetry-specific teleportation (pp. 2–6).",
+          "The empirical study spans several tasks, architectures, and four optimizers, with three-run loss trajectories (pp. 6–8).",
+          "The paper directly considers teleportation runtime and the effect of the SVD threshold rather than reporting convergence curves alone (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "For τ=1, B spans the full observed input space, while the paper itself derives the teleportation gradient as lying in that same space (p. 5). Equations 11–13 should therefore project the gradient to zero, contradicting the substantial τ=1 updates and gains in Figures 2–6 (pp. 6–10). This undermines either the theory, implementation, or reporting.",
+          "There is no guarantee of remaining on the full-data loss level set: nulling a weight update on one sampled batch preserves only that batch’s layer outputs, and approximate projection has no stated error bound. Figure 6 supplies only one narrowly described example (pp. 9–10). Moreover, Equation 5 performs ascent, whereas Algorithm 1 uses a minus sign (p. 12).",
+          "The evaluation reports curves but few quantitative comparisons, no significance tests or tuning controls, and no end-to-end compute advantage over ordinary training. The runtime analysis omits the cost of differentiating the squared gradient norm, which requires higher-order autodiff, and uses underspecified microbenchmarks (p. 9). Models are also small relative to the claimed modern-architecture scope (pp. 6–8)."
+        ],
+        "score_rationale": "The architecture-independent projection idea and broad experiments are promising, but the exact-null-space setting appears mathematically incapable of producing the reported updates. Together with the sign inconsistency, weak level-set justification, and incomplete compute accounting, this is a major technical-soundness failure rather than a minor presentation issue. There is slight uncertainty because implementation details might reveal that gradients and projection batches differ, but the manuscript and pseudocode do not say so."
+      }
+    }
+  ]
+}

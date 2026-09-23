@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_003",
+  "paper_id": "WoGnnggVCZ",
+  "number": 312,
+  "title": "GenDataAgent: On-the-fly Dataset Augmentation with Synthetic Data",
+  "authors": "Zhiteng Li; Lele Chen; Jerone Andrews; Yunhao Ba; Yulun Zhang; Alice Xiang",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "supervised learning; classification; computer vision; synthetic data; generative AI; responsible AI; fairness",
+  "forum_url": "https://openreview.net/forum?id=WoGnnggVCZ",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    3,
+    8,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents an algorithm for selecting synthetic data generated from Stable Diffusion, adjusting their contribution, and modifying the generation diversity for better closed-set classification model training as the downstream application. The main hypothesis is around the introduction of downstream training signal to provide feedback to the model generation process to better guide and use generated samples for discriminative model training."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The intuition of guiding the sample generation process from signals or feedback from the downstream model training process makes sense. The paper has presented results of both training completely with synthetic data and using synthetic data as augmentations. And they show the proposed method outperforms baselines compared."
+        },
+        "weaknesses": {
+          "value": "Lack of technical novelty. Though the motivation of the idea makes sense, my biggest concern is on the technical novelty of the proposed algorithm. The proposed design components on ensuring sample diversity, generation distribution alignment with real data distribution, and the marginal sample selection are all coming from existing literature or prior works. \n\nLack of sufficient experiment results to validate the effectiveness of the proposed methods and the claims in the contributions. The contribution claims the effectiveness of the proposed method from the three aspects of marginal sample selection, sample diversity and the distribution alignment to real data distribution. However, from the ablation study, it appears that even without these proposed improvements, the classification model trained with synthetic data also show good improvements. And the improvements from the proposed claims are relatively smaller compared to the gains from directly using synthetic samples from SD without these proposed changes, as in Table 3. It then raises the question on the effectiveness of the propose method and the claimed contributions. \n\nIntroduction of additional information from SD. In Table 1 and 2, it shows that the classification performance does increase by adding synthetic samples following the proposed method. However, it is unclear that if the gain is indeed coming from these synthetic augmentation or just distilled information from the diverse datasets which the image generator Stable Diffusion is trained over."
+        },
+        "questions": {
+          "value": "Can you explain the difference of the proposed marginal sample selection algorithm to Focal loss which also adjusts the sample weights based on the difficulty of the sample indicated by the raw softmax score of the classifier being learnt.\n\nLine 13 of algorithm1, S_f is not defined in section 3.4, pls explain."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "2z8W2qmOlK",
+      "forum": "WoGnnggVCZ",
+      "replyto": "WoGnnggVCZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_Ln52"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_Ln52"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730883631812,
+      "cdate": 1730883631812,
+      "tmdate": 1731427234272,
+      "mdate": 1731427234272,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces the on-the-fly data augmentation method. The method first selects important samples using a marginal score. It then performs caption perturbations to increase the diversity of the data. Finally, outliers are filtered out using the gradients at the initial training iterations. The experiments show that the method effectively improves the accuracy."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The paper is easy to follow. \n- The paper includes clear motivation and a detailed analysis of the proposed framework. \n- The experiments show the benefit of the proposed on-the-fly data augmentation method."
+        },
+        "weaknesses": {
+          "value": "The proposed method is slow --- it can be up to 350 times slower than using only real data and 2 times slower than the comparing method (Real-Fake). Although the accuracy increases, this can be a major bottleneck."
+        },
+        "questions": {
+          "value": "Related to the speed issue, I assume the reason is because it's the on-the-fly method. Can the method be adapted/switched between online and offline modes based on its need? Are there other ways to improve the speed?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "HvwIYtPhtN",
+      "forum": "WoGnnggVCZ",
+      "replyto": "WoGnnggVCZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_rGcL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_rGcL"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730661210346,
+      "cdate": 1730661210346,
+      "tmdate": 1731427234505,
+      "mdate": 1731427234505,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a novel approach for training dataset augmentation in computer vision using a generative agent, GenDataAgent. This method addresses the limitations of previous works that uniformly search across the category space and fail to consider the interaction between synthetic data generation and downstream task training. The proposed agent generates high-quality synthetic data on-the-fly, ensuring alignment with the target training dataset distribution while prioritizing diversity and relevance. Evaluations demonstrate that this approach enhances the generalization performance of downstream models fine-tuned on the augmented datasets."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The introduction of GenDataAgent for on-the-fly synthetic data generation represents a significant advancement in training dataset augmentation, addressing the critical challenges of distribution alignment and sample diversity.\n\n- The method effectively enhances the generalization performance of downstream models by prioritizing the sampling of diverse synthetic data that complements marginal training samples, which is crucial for improving model robustness.\n\n- Unlike prior research, this work does not rely on specific distributional assumptions, making the approach more versatile and applicable to a wider range of datasets, including those with varying class distributions and limited examples."
+        },
+        "weaknesses": {
+          "value": "- There exists a conflict: tailoring synthetic data generation for specific downstream tasks limits its generality, while using it for general purposes diminishes its specialty. The authors could provide further insights to clarify this issue.\n\n- Is it necessary for synthetic data to be in-distribution? While aligning the distribution of synthetic data with the training data is important, it does not align with the distribution of the test data, particularly in out-of-distribution (OOD) scenarios. This raises the question of whether this paper focuses solely on generalization within in-distribution contexts, potentially limiting its applicability to real-world situations where test data may vary significantly. The authors may evaluate the proposed agent's capability for OOD generalization. \n\n- Though the on-the-fly generation of relevant data saves the storage cost and improves relevance to the task at hand, how reusable and sustainable is synthetic data?\n\n- For marginal training samples, synthetic data that exhibit higher variance in gradient updates are specifically chosen. Does this imply that these synthetic samples are those that the current model struggles to learn effectively? If so, it suggests that these samples may be more challenging or informative, potentially indicating areas where the model's performance is weak. This focus on high-variance samples could enhance the model's robustness by addressing its limitations and improving its ability to generalize to diverse data distributions. Further clarification on this selection strategy and its implications for model training would be beneficial, e.g., discussing it with the selection criteria in active learning.\n\n- This paper would benefit from a more comprehensive literature review. Specifically, it overlooks some closely related works, such as [a]. I recommend that the authors include a discussion of this work and its connections to their research. This will help to contextualize their contributions within the existing body of knowledge.\n\n[a] A New Benchmark: On the Utility of Synthetic Data with Blender for Bare Supervised Learning and Downstream Domain Adaptation. CVPR, 2023.\n\n- The authors claim that maintaining a consistent prompt format for both adapting stable diffusion and generating synthetic data ensures greater alignment between the distribution of the generated data and the target data. However, it is not entirely clear how a consistent prompt format alone guarantees this distribution alignment. I recommend that the authors provide a more detailed explanation of this relationship.\n\n- Additionally, it would be valuable to discuss whether incorporating domain adaptation (DA) techniques, as described in [a], during the model fine-tuning process could lead to further performance improvements. Exploring this potential synergy could enhance the robustness of the findings presented in the manuscript."
+        },
+        "questions": {
+          "value": "See Weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "N/A"
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "lbfqzrD8zw",
+      "forum": "WoGnnggVCZ",
+      "replyto": "WoGnnggVCZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_rpaL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_rpaL"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730626602525,
+      "cdate": 1730626602525,
+      "tmdate": 1732601081300,
+      "mdate": 1732601081300,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates how to leverage synthetic data generated by text-to-image generation models, such as Stable Diffusion (SD), to enhance image classification performance in terms of both accuracy and fairness. The authors propose a sampling strategy that prioritizes sample utility, which is determined by the proximity of a sample to the decision boundary, as well as in-distributional data samples, using the VoG score. By integrating a series of reasonable treatment, the proposed method achieves state-of-the-art performance across different image classification benchmarks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper is well-written, providing clear motivations and explanations of the proposed method. The introduced metric for valuing synthetic data samples, based on their utility and proximity to the decision boundary, is reasonable. The integration of different techniques, such as perturbing text prompts to enhance diversity and ensuring alignment with the target distribution, appears well-justified and appropriate for the stated problem. The proposed method also demonstrates state-of-the-art performance across all kinds of image classification benchmarks."
+        },
+        "weaknesses": {
+          "value": "The paper's critical weakness lies in its lack of novelty, as most of the techniques employed, including the VoG metric, are derived from previous works. This aspect positions the paper more as an engineering-heavy work rather than an original contribution. Specifically, the extensively discussed VoG metric appears somewhat subjective, as the choice of using gradients from epochs 10, 20, and 30 to compute the metric lacks proper justification or guidelines for other benchmarks or tasks. Moreover, while the proposed method demonstrates significant improvement over using only real data, it performs only marginally better than other synthetic augmentation methods, such as Real-Fake and Internet Explorer, while also taking much longer GPU hours. In fact, synthetic data augmentation has been extensively studied in the context of image classification, and the observed improvement may merely be a result of overfitting to those small-scale benchmarks and may not generalize to real-world or in-the-wild settings."
+        },
+        "questions": {
+          "value": "I'm willing to raise the score if the following questions are well-addressed:\n\n1. Can you also include robustness metrics, such as accuracy under common corruptions and perturbations as well as adversarial settings? Is the proposed method still better than the baselines? \n2. Would the proposed method generalize across different Text2Image generation methods, such as SD3 and Kandinsky (does not have to be the two)?\n3. Would the proposed method generalize to other discriminative CV tasks such as image retrieval or object detection? \n4. Line 474, the statement that accuracy is highly correlated with the synthetic data volume seems to be contradictory with a concurrent ICLR25 submission (Mousterian: exploring the equivalence of generative and real data augmentation in classification). In that work, they state that synthetic data is more valuable when the quantity is small, yet its value diminishes quickly rather than staying correlated with accuracy. \n5. The discussion on overfitting in line 483 requires more clarity and experimental evidence to support the strong statement made. The current evidence on Pets dataset appears quite weak and insufficient."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "p5G5yeCZIg",
+      "forum": "WoGnnggVCZ",
+      "replyto": "WoGnnggVCZ",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_NMJi"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission312/Reviewer_NMJi"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission312/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730235590986,
+      "cdate": 1730235590986,
+      "tmdate": 1732767714455,
+      "mdate": 1732767714455,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes an iterative synthetic-image augmentation pipeline combining classifier-based marginal-example selection, Llama-2 caption perturbation, target-domain adaptation of Stable Diffusion, and VoG filtering. Results are broad and generally favorable, but important methodological ambiguities and weak support for the filtering and fairness claims leave the work marginally below the acceptance bar.",
+        "strengths": [
+          "The feedback-driven, on-the-fly integration of several existing components is practically motivated and evaluated across six datasets and three classifier backbones (pp. 6–8).",
+          "Component, threshold, scaling, corruption, and multi-seed studies provide broader evidence than a single headline comparison (pp. 8–9, 16–21).",
+          "GenDataAgent consistently improves accuracy over the reported real-only and synthetic-data baselines, with especially substantial gains for some CLIP-backbone settings (p. 7)."
+        ],
+        "weaknesses": [
+          "The method is insufficiently specified and internally unclear: the main text omits that generation incorporates real-image latent priors and an image-strength parameter (revealed only on p. 16), while iteration schedules, selection cardinalities, and dataset-specific threshold-selection protocols are not fully reproducible (pp. 3–6, 16–19).",
+          "The premise that low VoG identifies out-of-distribution samples is asserted rather than established; the pixel-gradient definition does not clearly reduce the gradient tensor to a scalar, and only qualitative, potentially cherry-picked examples support OOD detection rather than labeled precision/recall or comparisons to standard filters (pp. 5–6, 16).",
+          "Several conclusions are overstated: the synthetic-only setup still uses real data for generator adaptation/feedback and is therefore not genuinely real-data-free (pp. 2–3, 6–7), while classwise min/max accuracy is presented as fairness despite many zero ratios and no demographic or subgroup analysis (pp. 7–8). Improvements over the strongest baseline are often modest, with three-seed statistics reported for only four datasets (p. 17)."
+        ],
+        "score_rationale": "The paper offers a useful engineering combination and consistently positive empirical results, but its conceptual novelty is moderate and central claims about OOD filtering, synthetic-only learning, and fairness are not adequately validated. Missing procedural details and limited statistical evidence make the reported gains difficult to interpret confidently, yielding a marginally below-acceptance score."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes an iterative synthetic-data augmentation pipeline combining marginal-example selection, Llama-2 caption perturbation, and VoG-based filtering. Results across six classification datasets are promising, but important methodological ambiguities and limited statistical validation leave the central claims insufficiently established for acceptance.",
+        "strengths": [
+          "The feedback-driven combination of dynamic marginal sampling, prompt perturbation, and synthetic-sample filtering is practically useful and moderately novel relative to static augmentation pipelines (pp. 3–6).",
+          "Evaluation spans six datasets and three backbone settings, with consistently positive accuracy results over the reported baselines (pp. 6–9).",
+          "The paper includes component, threshold, compute, corruption, and data-volume analyses rather than relying only on headline results (pp. 8–10, 16–21)."
+        ],
+        "weaknesses": [
+          "Core implementation details are unclear or inconsistent: the important image-conditioned latent prior appears only in Appendix D, VoG is defined from pixelwise gradients without specifying scalar aggregation, and the three-stage checkpoints/10-epoch description does not reconcile clearly with 20 iterations and 200 epochs (pp. 3–5, 16–19).",
+          "Most gains over the strongest baseline are small, yet three-seed statistics are reported for only four datasets and no significance tests are provided; the baseline comparison also changes components rather than reproducing Internet Explorer directly, weakening attribution (pp. 6–8, 17).",
+          "The synthetic-only protocol is conceptually ambiguous because the method still requires real data for SD adaptation and feedback, while the fairness claim rests on a classwise min/max ratio that is frequently zero and is not evidence of demographic fairness (pp. 6–8)."
+        ],
+        "score_rationale": "The method is plausible and empirically broad, but moderate novelty, incomplete reproducibility, ambiguous evaluation protocols, and insufficient statistical support make this marginally below the ICLR acceptance threshold. Some uncertainty remains because the reported empirical improvements are unusually consistent."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "GenDataAgent combines classifier-feedback-driven marginal sampling, LLM caption perturbation, and gradient-variance filtering for iterative synthetic augmentation. Results are broad and generally favorable, but the central on-the-fly contribution is not cleanly isolated, and several methodological and evaluation ambiguities weaken the evidence for the paper’s strongest claims.",
+        "strengths": [
+          "The method presents a coherent practical pipeline that uses downstream-model feedback rather than generating a fixed synthetic dataset; the combination is useful even if the individual ingredients are established (pp. 2–6).",
+          "Evaluation spans six datasets and three backbone settings, with consistent accuracy gains over the reported baselines; component, threshold, scaling, corruption, and limited multi-seed analyses add useful coverage (pp. 7–9, 17–21).",
+          "The paper acknowledges substantial generation cost and other limitations, and reports accuracy–compute tradeoffs rather than ignoring overhead (pp. 9, 18, 20)."
+        ],
+        "weaknesses": [
+          "The defining claim—benefit from iterative on-the-fly regeneration—is not directly ablated against a one-cycle or offline method using the same sampling, perturbation, filtering, and synthetic-data budget. Table 3 isolates ingredients but not iteration itself, so gains cannot be confidently attributed to the main novelty (p. 8).",
+          "Important technical details are unclear or inconsistent: VoG is defined using pixel-gradient vectors without specifying aggregation, its asserted relationship to in-distribution status lacks justification, Algorithm 1 is imprecise about filtering, and the stated three 10-epoch initial iterations do not reconcile clearly with the 200-epoch/20-iteration schedule (pp. 3, 5, 19).",
+          "The fairness and synthetic-only claims are overstated. The “worst-case disparity” appears class-based rather than demographic, is zero on multiple fine-grained datasets, and lacks uncertainty for most results; meanwhile synthetic-only training still requires real data for SD adaptation/feedback, but the replacement/bootstrap protocol is underspecified (pp. 6–8, 17)."
+        ],
+        "score_rationale": "The consistent empirical improvements make this more than a clear reject, but novelty is largely compositional and the experiment suite does not isolate the core iterative mechanism. Ambiguous VoG implementation, underspecified synthetic-only protocol, and weak support for the fairness claim place it marginally below acceptance. I am moderately confident, though exact reproducibility could resolve some concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "GenDataAgent combines classifier-guided marginal-example selection, LLM caption perturbation, and VoG-based filtering for iterative diffusion augmentation. Results span six classification datasets and several backbones, but important methodological ambiguities and insufficiently controlled evidence leave the claimed state-of-the-art generalization and fairness benefits only partially supported.",
+        "strengths": [
+          "The feedback-driven augmentation pipeline is practically motivated and integrates several complementary mechanisms into an iterative procedure (pp. 2–6).",
+          "Evaluation covers six datasets, three backbone settings, component/threshold ablations, corruption tests, and limited multi-seed reporting (pp. 7–9, 17–21).",
+          "The method generally improves top-1 accuracy over real-only and reproduced synthetic-data baselines, with especially notable gains on Flowers and some CLIP settings (p. 7)."
+        ],
+        "weaknesses": [
+          "The method is underspecified and partly inconsistent: image-strength conditioning on real-image latents appears only in Appendix D, although it is central to generation; the vector-valued pixel-gradient VoG equations omit the reduction over pixels; and the asserted link between high VoG and in-distribution status lacks a rigorous validation beyond selected visual examples (pp. 5, 16–18).",
+          "The “synthetic-only” setup still requires real data for diffusion adaptation and feedback, and the description of replacing T does not explain how subsequent marginal feedback operates. Thus it does not substantiate the stated replacement setting cleanly (pp. 6–7).",
+          "Evidence for superiority and fairness is limited: most headline results lack uncertainty, the three-seed table covers only four datasets and differs from the headline values, the Internet Explorer comparison is a hybrid implementation rather than clearly the original method, and the min/max class-accuracy ratio is mislabeled as disparity and is often zero on large-class datasets (pp. 7–8, 17)."
+        ],
+        "score_rationale": "The paper presents a useful, moderately novel synthesis of targeted generation and filtering, with broad empirical gains. However, reproducibility gaps, an unclear synthetic-only protocol, weak justification of VoG as an OOD filter, and incomplete statistical/fairness evidence prevent confidence that the gains establish the broad claims. I therefore place it marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes GenDataAgent, an iterative synthetic-image augmentation pipeline combining low-confidence real-sample selection, Llama-2 caption perturbation, target-adapted Stable Diffusion, and variance-of-gradients filtering. Results cover six classification datasets and several backbones, but methodological ambiguities and weak support for the filtering and fairness claims leave the contribution marginally below the acceptance bar.",
+        "strengths": [
+          "The pipeline addresses a relevant limitation of static synthetic augmentation by repeatedly conditioning generation on the evolving classifier (pp. 2–6).",
+          "Experiments span six datasets and three backbone settings, with generally consistent accuracy gains over reproduced baselines (pp. 6–9).",
+          "Component, threshold, scaling, corruption, and multi-seed studies provide useful empirical breadth (pp. 8, 16–21)."
+        ],
+        "weaknesses": [
+          "The central VoG mechanism is insufficiently specified and justified: the pixel-gradient equations appear vector-valued without stating their reduction to a scalar, and the assertion that in-distribution samples have higher VoG is supported mainly by selected visual examples and downstream accuracy rather than a quantitative OOD-detection evaluation (pp. 5–6, 16–18).",
+          "The fairness analysis is conceptually confused: the reported quantity is a min/max accuracy ratio, for which larger is better, yet the paper repeatedly calls it “disparity” and claims disparity is reduced when the reported value increases. Many results are exactly zero, and no demographic or intersectional groups are evaluated, making the broad fairness claim poorly supported (pp. 7–8).",
+          "Reproducibility and comparison details remain unclear: the synthetic-only protocol says real data are replaced despite the method requiring real-data feedback; per-dataset thresholds are manually chosen without a selection protocol; and only four of six datasets receive multi-seed reporting (pp. 6–7, 16–19)."
+        ],
+        "score_rationale": "The work offers a sensible, moderately novel combination of feedback-guided generation and filtering, and the broad accuracy results are promising. However, the key VoG rationale is not rigorously validated, the fairness claim is misleadingly formulated, and important protocol details are ambiguous. These issues prevent confident acceptance despite substantial empirical effort."
+      }
+    }
+  ]
+}

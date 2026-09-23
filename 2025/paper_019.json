@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_019",
+  "paper_id": "xQBRrtQM8u",
+  "number": 1370,
+  "title": "Adjoint Matching: Fine-tuning Flow and Diffusion Generative Models with Memoryless Stochastic Optimal Control",
+  "authors": "Carles Domingo-Enrich; Michal Drozdzal; Brian Karrer; Ricky T. Q. Chen",
+  "primary_area": "generative models",
+  "keywords": "Reward fine-tuning; stochastic optimal control; flow matching; diffusion models; RLHF; adjoint method",
+  "forum_url": "https://openreview.net/forum?id=xQBRrtQM8u",
+  "venue": "ICLR 2025 Spotlight",
+  "status": "accepted_spotlight",
+  "decision": "Accept (Spotlight)",
+  "human_ratings": [
+    8,
+    6,
+    8,
+    8
+  ],
+  "human_mean_rating": 7.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper provides theorectical insights on why optimizing a KL-regularized reward objective (which is popular and dominant in RLHF for LLM) could lead to a bias in the optimal solution for diffusion models, and how to address this issue by a proper choice of noise schedule. The paper also provides solutions on how to solve the stochastic optimal control problem by adjoint methods, and provide a more efficient alternative than the classical methods and prove its equivalence. Empirical examples are further provided to show the algorithm effectiveness."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "This paper is theorectically well written, with detailed introduction to the literature, explanation of motivations, several interesting theorems and propositions, and provide theorectically-driven approaches for diffusion models fine-tuning. Diffusion Models fine-tuning or RLHF for diffusion models are an important direction which already contributes to improving the performance to SOTA diffusion models. This paper indeed provides a novel model-based SOC method for diffusion models alignment, which is theorectically sound and also yields good performance for tuning Flow Matching based models."
+        },
+        "weaknesses": {
+          "value": "The main weakness is that the paper can be benefited from more comparisons with baseline methods empirically, specifically, there lacks a baseline in experiments in directly optimizing objective (17) (though theorectically there is value bias as shown in the paper), using stochastic control methods like adjoint matching proposed in this paper. There is comparison for this in the synthetic examples in Figure 2, but more practical downstream tasks evaluations are needed to show that the noise schedule proposed in this paper can indeed yield better performance. \n\n**Minors**:\n\n1）On line 229-230, the expression \"Dividing (14) by (15)\" is odd as (14) is not an equality, \"Plug in normalization constant (15) to (14)\" might be better.\n\n2）The adjoint method in Section 4 needs more introduction or discussion, or an earlier pointer to the part in appendix, including more clarification on what is adjoint on line 350-352, what is this loss on Equation (21); The reference in Appendix should be referred earlier instead of being deferred to until line 422.\n\n3）In proposition 2, it is better to first define earlier of the adjoint matching objective instead of combining the definition with the proposition."
+        },
+        "questions": {
+          "value": "What is the complexity/computation cost of computing/sampling adjoints in Equation (26) and (27)? \n\nIn addition, for Diffusion-DPO, how the preference pairs are sampled for further fine-tuning? Can authors explain why Diffusion-DPO tuned models yield a decrease in performance?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "2CC4rdfNQY",
+      "forum": "xQBRrtQM8u",
+      "replyto": "xQBRrtQM8u",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_4cB8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_4cB8"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1370/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730705164824,
+      "cdate": 1730705164824,
+      "tmdate": 1731427415256,
+      "mdate": 1731427415256,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies reward-based fine-tuning for diffusion models. The authors frame the reward fine-tuning problem as stochastic optimal control, and point out an “initial value function bias” problem that exists in previous RLHF fine-tuning approaches. The authors propose using a memoryless noise schedule for fine-tuning in order to turn the learned distribution into the desired reward-tilted distribution without bias. Furthermore, a novel algorithm named adjoint matching is proposed to solve the stochastic optimal control problem. Experimental results show that fine-tuning a flow matching base model with adjoint matching outperforms baselines such as DRaFT, ReFL, and DPO."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper provides a theoretically sound framework for the reward fine-tuning problem, viewing it as a stochastic optimal control problem. The observation of the value function bias problem in previous approaches and proposal of using “memoryless” noise schedules are based on this view.\n\nThe proposed Adjoint Matching algorithm for SOC, casting it as a least-squares regression problem, is novel and effective.\n\nThis paper is well-written, clearly structured and easy to follow."
+        },
+        "weaknesses": {
+          "value": "The main paper presented experimental results on fine-tuning a Flow Matching model, and provided pseudo-code for fine-tuning denoising diffusion models; it would be more convincing if results on denoising diffusion models are provided.\n\nThe experiments with classifier-free guidance do not seem comprehensive. It would be better if there are similar quantitative comparisons with other baselines than selected DRaFT-1."
+        },
+        "questions": {
+          "value": "see above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "DVsq14q33C",
+      "forum": "xQBRrtQM8u",
+      "replyto": "xQBRrtQM8u",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_7e67"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_7e67"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1370/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730679784920,
+      "cdate": 1730679784920,
+      "tmdate": 1731427415367,
+      "mdate": 1731427415367,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper aims to fine-tune a pre-trained diffusion model. The contribution of this paper is two-fold:\n\nFirst, the paper explains the problem of overoptimization when fine-tuning diffusion models based on a learned reward function. To avoid the initial value function bias problem, the paper proposes using a memoryless noise schedule, which is defined as a noise schedule that ensures that the joint distribution over the initial and final states is independent.\n\nSecond, the paper introduces (lean) adjoint matching for stochastic optimal control methods which resolves memory constraints of the discrete adjoint method and makes the continuous adjoint method more scalable by making the simulation of the adjoint ODE cheaper to compute."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The paper is well-written and structured.\n- Strengths of memory-less noise schedule:\n    - The proposed approach is a less complex and provides an arguably more elegant solution to the initial value function bias compared to the work by Uehara et. al. [1].\n    - The proposed approach is compatible with both DDPM and Flow/Bridge-Matching models.\n- Strengths of (lean) adjoint matching:\n    - Simple regression-based objective with circumvents memory problems associated with the discrete adjoint method\n    - Simulating the adjoint ODE does not require control evaluations, making it more scalable than the continuous adjoint method.\n    - Compatible with general SOC problems.\n- Numerical evaluations show that the proposed approach outperforms competing methods on a variety of evaluation criteria."
+        },
+        "weaknesses": {
+          "value": "- Weaknesses of the memory-less noise schedule:\n    - The statement “however, there does not yet exist a simple approach which actually provably generates from the tilted distribution” is, to the best of my knowledge not true: Take for example the approach in [2, 3] and use the base measure as reference process. Then, we have the terminal cost\n    \n    $$\n    g(X_1) =p^{\\text{base}}(X_1)/p_{\\text{target}}(X_1) = p^{\\text{base}}(X_1)/(p^{\\text{base}}(X_1)\\exp(r(X_1)) = 1/\\exp(r(X_1)) \n    $$\n    \n    which es ensures that \n    \n    $$\n    p_{\\text{target}}(X_1) = \\exp(r(X_1)).\n    $$\n    \n    The ‘memoryless’ property thus eludes to the fact, that we need a time-reversal of the base process. A more general discussion compared to [2, 3] can be found in [4, 5].\n    \n- Weaknesses of (lean) adjoint matching:\n    - It is not clear (at least to me) which objective function lean adjoint matching is optimizing. \n    - Lean/Continous Adjoint-matching requires simulating another differential equation which may result in computational overhead.\n- Code is not public"
+        },
+        "questions": {
+          "value": "- Did the authors compare the proposed approach to the work by Uehara et. al. [1]?\n- Did the authors test how adjoint matching works with only a few diffusion steps?\n- How did the authors select the time points to discretize? Uniform in the interval [0,1]?\n- Do the authors have an intuition as to why the lean adjoint matching objective outperforms the discrete/continuous adjoint matching objective? I read the explanation that the continuous adjoint needs clipping and is unstable, but are there other reasons?\n- Are the authors planning to make the code public?\n\n---\n\n- [1] Uehara et al. (2024). Fine-Tuning of Continuous-Time Diffusion Models as Entropy-Regularized Control. *arXiv preprint arXiv:2402.15194*\n- [2] Vargas, F., Grathwohl, W., & Doucet, A. (2023). Denoising diffusion samplers.  *ICLR 2023*. 2024.\n- [3] Zhang, Q., & Chen, Y. (2021). Path integral sampler: a stochastic control approach for sampling. *arXiv preprint arXiv:2111.15141*\n- [4] Nusken, Nikolas, et al. \"Transport meets variational inference: Controlled Monte Carlo diffusions.\" *The Twelfth International Conference on Learning Representations: ICLR 2024*. 2024.\n- [5] Richter, L., & Berner, J. (2023). Improved sampling via learned diffusions. *ICLR 2024*. 2024."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LaAeVUumzM",
+      "forum": "xQBRrtQM8u",
+      "replyto": "xQBRrtQM8u",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_MA7f"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_MA7f"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1370/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730641551621,
+      "cdate": 1730641551621,
+      "tmdate": 1732627476002,
+      "mdate": 1732627476002,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors propose a SOC formulation for fine-tuning flow-based generative models, demonstrating that naive approaches can introduce inherent bias. They introduce a memoryless noise schedule to ensure convergence to the tilted distribution and present the Adjoint Matching objective as a scalable training objective for SOC problems. Their comparisons show improved generalization, consistency, and diversity in the fine-tuned generative models."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The concept of using stochastic optimal control (SOC) to fine-tune diffusion-based generative models is not new, as [1] formulates fine-tuning for diffusion models (specifically forward-reverse models) through Doob's h-transform, which involves optimally controlled diffusion processes. The novelty lies in:\n\n* Reformulating fine-tuning of flow-matching based generative models as an SOC problem, the authors introduce a suitable cost functional for the control policy parameterized by a training neural network. Additionally, they incorporate a memoryless noise schedule to ensure factorizability, thereby eliminating inherent bias.\n* Proposing an adjoint-matching objective to solve the above SOC problem. It is well known that solving SOC problems is computationally challenging due to the need for continuous gradient graph caching. Extending the adjoint methods commonly used in dynamical learning as a dynamic solver for SOC objectives is, in my view, a significant contribution.\n\n\n```\n[1] Denker et al., Efficient Finetuning of Conditional Diffusion Models by Learning the Generalised h-transform.\n```"
+        },
+        "weaknesses": {
+          "value": "* While I may have missed it in the appendix, it appears that the experiments in this paper primarily address the quality of fine-tuning, without providing quantitative results on aspects of the proposed adjoint objective, such as convergence plots or memory usage statistics comparing the adjoint matching loss to traditional SOC objectives, as shown in studies like [2, 3]. From a theoretical standpoint, although the author suggests that the approach could be sufficiently applied, it would strengthen the claim to include experiments validating the numerical effectiveness of the new SOC objective.\n\n\n```\n[2] Nüsken and Ritcher, Solving high-dimensional Hamilton-Jacobi-Bellman PDEs using neural networks: perspectives from the theory of controlled diffusions and measures on path space.\n[3] Domingo-Enrich et al., Stochastic Optimal Control Matching.\n```"
+        },
+        "questions": {
+          "value": "See weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "wbZKbzWUlm",
+      "forum": "xQBRrtQM8u",
+      "replyto": "xQBRrtQM8u",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_pgS7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1370/Reviewer_pgS7"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1370/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730449094816,
+      "cdate": 1730449094816,
+      "tmdate": 1733106019071,
+      "mdate": 1733106019071,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a promising SOC formulation for reward fine-tuning, combining a memoryless training process with a lean Adjoint Matching regression objective. The framing is interesting and the text-to-image results are encouraging, but central necessity claims are not fully established and the empirical algorithm materially departs from the proved formulation.",
+        "strengths": [
+          "The connection between initial-noise dependence, conditional path-space KL regularization, and bias in the desired tilted terminal distribution is insightful and clearly motivated (pp. 5–6).",
+          "Adjoint Matching offers a potentially useful SOC solver with lower computational requirements than the full continuous adjoint, supported by fixed-point/critical-point analysis (pp. 7–8, 47–50).",
+          "Experiments compare several baselines across consistency, preference-proxy, and diversity metrics, with Adjoint Matching generally yielding favorable Pareto tradeoffs (pp. 9–10, 18–21)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is stated as a necessity result, but its proof appears to establish only that the specific schedule σ²=2η is sufficient for recovering a score correction usable with arbitrary inference schedules (pp. 6, 42–44). Moreover, Proposition 1 itself permits a broader family σ²=2η+χ, and its necessity argument ends with an informal “in general” dependence claim rather than a rigorous implication (pp. 39–41).",
+          "The implemented method no longer matches the analyzed objective: it modifies the endpoint-singular schedule, substitutes a noiseless terminal update, evaluates only selected timesteps, and clips the regression loss (pp. 53–55). Clipping can introduce flat/spurious critical regions, so the unique-critical-point guarantee does not directly support the reported results.",
+          "Evidence is limited to one proprietary Flow Matching model and automated reward/preference proxies, without human evaluation or a diffusion-model experiment despite broad claims. Baseline adaptation and tuning are consequential, and the optimized ImageReward is actually higher for DRaFT-1 than for Adjoint Matching in several settings (pp. 8–10, 19–21, 50–53)."
+        ],
+        "score_rationale": "The conceptual contribution and empirical Pareto improvements are substantial enough to avoid rejection, but the unsupported uniqueness/necessity claim and theory–implementation gap affect the paper’s central guarantees. I am therefore marginally below acceptance; uncertainty remains because the sufficiency result may still be valuable even if the stronger theorem is corrected."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper formulates reward fine-tuning as stochastic optimal control, introduces a memoryless noise schedule intended to recover the exponentially tilted target distribution, and proposes a lean regression-style Adjoint Matching solver. The ideas are novel and promising, with strong text-to-image results, but the headline necessity theorem and its connection to the implemented algorithm are not fully convincing.",
+        "strengths": [
+          "The identification of initial-value-function bias and the memoryless construction provide a conceptually valuable treatment of KL-regularized fine-tuning for flow/diffusion models (pp. 5–7).",
+          "Adjoint Matching is a simple, potentially broadly useful SOC solver, supported by fixed-point/critical-point analysis and detailed derivations (pp. 7–8, 47–50).",
+          "Experiments include multiple baselines, three-run uncertainty estimates, diversity–quality tradeoffs, and extensive ablations; the proposed method generally gives favorable Pareto tradeoffs (pp. 9–10, 18–21)."
+        ],
+        "weaknesses": [
+          "The claimed necessity/uniqueness of the memoryless schedule is insufficiently established: the necessity argument ends with an informal “in general” dependence assertion that does not logically prove dependence between the endpoints, while the theorem proof mainly constructs sufficiency rather than excluding alternatives (pp. 41–43).",
+          "The practical method departs materially from the proved continuous-time prescription through endpoint offsets, a noiseless terminal update, timestep subsampling, and tuned loss clipping; no quantitative bias or convergence analysis connects these modifications to the tilted target (pp. 53–55).",
+          "Evidence is limited to one proprietary Flow Matching model and one training reward, with no diffusion-model experiment or human evaluation; automated preference metrics do not fully support broad claims about realism and human-preference generalization (pp. 8–10)."
+        ],
+        "score_rationale": "The paper offers substantial novelty and encouraging empirical gains, making it slightly above the acceptance boundary. However, a gap in the headline necessity claim, theory–implementation discrepancies, and narrow validation prevent a clear accept-level score."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes a stochastic-control formulation for reward fine-tuning of flow/diffusion models, identifies an initial-noise bias, introduces a memoryless fine-tuning schedule, and derives the Adjoint Matching regression objective. The combination is novel and empirically promising, but some necessity claims and the connection between exact theory and the implemented approximation are insufficiently established.",
+        "strengths": [
+          "A conceptually strong connection between tilted-distribution fine-tuning, initial-value bias, and memoryless stochastic dynamics, with substantial derivations and appendices (pp. 5–7, 39–44).",
+          "Adjoint Matching is a useful, comparatively simple SOC objective with population-level critical-point analysis and explicit algorithms for flow and diffusion models (pp. 7–8, 47–52).",
+          "Experiments cover several baselines, three runs, diversity/preference/consistency tradeoffs, guidance, noise schedules, and sampling-step ablations; the method gives favorable Pareto tradeoffs rather than merely maximizing its training reward (pp. 9–10, 18–21)."
+        ],
+        "weaknesses": [
+          "The strongest necessity statements appear under-justified. Proposition 1's converse argues only that dependence holds “in general,” without excluding cancellation or distribution-specific exceptions, while Theorem 1's proof primarily constructs sufficiency rather than proving uniqueness of the fine-tuning schedule (pp. 6, 41–44).",
+          "The implementation materially departs from the exact theory: the singular schedule is offset, terminal noise is replaced by a noiseless update, only selected timesteps are trained, and losses are clipped using a tuned threshold (pp. 53–55). No discretization/error analysis establishes that the tilted-distribution guarantee survives these changes.",
+          "Evidence is limited to one proprietary base model/dataset and one training reward, with no human evaluation. All headline conclusions rely on learned metrics, and baseline adaptation/tuning choices may affect fairness, leaving uncertainty about generalization to standard public diffusion/flow models (pp. 8–10, 19–21, 53)."
+        ],
+        "score_rationale": "The work has meaningful novelty, a compelling core insight, and strong metric-based results, placing it slightly above the acceptance boundary. However, gaps in the claimed necessity proofs and the substantial mismatch between the exact formulation and practical algorithm prevent a higher score; uncertainty remains about broader empirical robustness."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper formulates reward fine-tuning of flow/diffusion models as stochastic optimal control, proposes a singular “memoryless” noise schedule intended to recover the exponentially tilted target distribution, and introduces Adjoint Matching, a regression-style SOC solver. The combination is novel and empirically promising, but key necessity claims and the gap between the exact theory and modified implementation weaken the case.",
+        "strengths": [
+          "The initial-value-function bias is clearly identified, and the memoryless-process perspective provides a useful theoretical explanation for why naïve pathwise KL regularization can miss the desired terminal tilt (pp. 5–7).",
+          "Adjoint Matching is an interesting, broadly applicable SOC contribution, with derivations connecting its regression target to adjoint optimization and an unrestricted-function critical-point result (pp. 7–8, 47–50).",
+          "Experiments report multiple quality/diversity metrics, repeated runs, Pareto comparisons, qualitative samples, and ablations over guidance, noise schedules, and sampling steps (pp. 9–10, 18–26)."
+        ],
+        "weaknesses": [
+          "The strongest theoretical wording is insufficiently established: Proposition 1’s necessity argument ends with an informal “in general” inference, and the proof of Theorem 1 primarily constructs sufficiency rather than rigorously proving that memoryless fine-tuning is uniquely necessary under all stated conditions (pp. 39–44). Regularity and realizability assumptions behind the HJB and critical-point arguments are also largely implicit.",
+          "The implemented schedule is not the proved singular memoryless schedule: both endpoints are offset, a noiseless terminal update is substituted, only selected timesteps are trained, and the loss is clipped with a tuned threshold (pp. 53–55). Consequently, the advertised exact tilted-distribution guarantee does not directly apply to the reported system, and realistic target-distribution accuracy is never measured.",
+          "Empirical scope is limited to one undisclosed proprietary flow model/dataset and one training reward, without human evaluation or a diffusion-model experiment. Baseline tuning/fairness is difficult to assess, and claims of superiority “across all metrics” obscure that baselines attain higher optimized reward while the base or adjoint baselines retain greater raw diversity (pp. 8–10, 19–21, 53–55)."
+        ],
+        "score_rationale": "The paper has a strong and potentially influential core idea, substantial derivations, and encouraging large-scale results, supporting a marginal accept. However, uncertainty remains because the uniqueness/necessity claims appear stronger than their proofs, while practical modifications break the exact assumptions and empirical validation is confined to a single proprietary setup."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "The paper presents a novel stochastic-control formulation for reward fine-tuning of flow and diffusion models, centered on a memoryless noise schedule and a regression-style Adjoint Matching algorithm. The conceptual contribution is substantial and the text-to-image results show favorable quality–diversity tradeoffs, but the strongest exactness claims rely on idealized and singular continuous-time constructions that are modified materially in practice.",
+        "strengths": [
+          "The initial-value-function bias is clearly identified, and the proposed memoryless construction gives an insightful connection between KL-regularized control and tilted target distributions (pp. 5–7).",
+          "Adjoint Matching is an appealing, broadly applicable SOC algorithm with a simpler lean-adjoint regression objective and supporting function-space analysis (pp. 7–8, 47–50).",
+          "Across three runs, the method achieves strong Pareto tradeoffs against DRaFT, ReFL, DPO, and adjoint baselines, particularly retaining more diversity at competitive consistency/preference scores (pp. 9–10, 19–21)."
+        ],
+        "weaknesses": [
+          "The exact memoryless schedule is singular at the initial endpoint; experiments replace it with an offset schedule and further alter the final update, so the implemented method no longer has the stated exact independence or tilted-distribution guarantee. The approximation error is not quantified (pp. 6, 53–54).",
+          "Some theoretical claims appear stronger than their proofs: the necessity argument for Proposition 1 concludes only that dependence remains “in general,” while the unique-critical-point result relies on unstated regularity/HJB-uniqueness assumptions and does not transfer directly to neural parameterizations (pp. 39–41, 47–50).",
+          "Evidence is limited to one proprietary Flow Matching model and one training reward, evaluated mainly by correlated learned metrics without human evaluation; no diffusion-model experiment validates the claimed cross-family applicability, and proprietary data/model details limit reproducibility (pp. 8–10, 53–55)."
+        ],
+        "score_rationale": "The work offers a genuinely original and useful formulation with convincing empirical Pareto improvements, placing it above the acceptance threshold. I stop short of a clear accept because the practical algorithm departs from the schedule underlying the central exactness theorem, while the breadth and human validation of the experiments remain limited."
+      }
+    }
+  ]
+}

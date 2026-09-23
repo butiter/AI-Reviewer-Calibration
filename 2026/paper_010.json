@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_010",
+  "paper_id": "WXFr8Tfj0J",
+  "number": 3574,
+  "title": "SemiHVision: Enhancing Medical Multimodal Models with a Semi-Human Annotated Dataset and Fine-Tuned Instruction Generation",
+  "authors": [
+    "Junda Wang",
+    "Yujan Ting",
+    "Eric Z. Chen",
+    "Hieu Tran",
+    "hong yu",
+    "Terrence Chen"
+  ],
+  "primary_area": "datasets and benchmarks",
+  "keywords": [
+    "Medical Multimodality QA"
+  ],
+  "forum_url": "https://openreview.net/forum?id=WXFr8Tfj0J",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    4,
+    6,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "7reRr7vse8",
+      "forum": "WXFr8Tfj0J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3574/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761832018978,
+      "tmdate": 1762916835899,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "C1g4BRPK9K",
+      "forum": "WXFr8Tfj0J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3574/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761984691137,
+      "tmdate": 1762916834833,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "c8jHDYxHGR",
+      "forum": "WXFr8Tfj0J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3574/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761836787305,
+      "tmdate": 1762916835294,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "ftDEswTjxs",
+      "forum": "WXFr8Tfj0J",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3574/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761203187919,
+      "tmdate": 1762916836135,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a large, case-centric medical multimodal instruction corpus with retrieval, GPT-4o synthesis, expert screening, and annealed training. Although the goal is important and reported VQA gains are large, the manuscript does not provide sufficiently controlled or reliable evidence that retrieval, workflow supervision, or multi-view grounding causes the gains.",
+        "strengths": [
+          "Targets clinically meaningful deficiencies—study-level context, multi-view evidence, and staged diagnostic reasoning—rather than only caption-style supervision (pp. 2–5).",
+          "Reports broad modality coverage and evaluations on four established VQA datasets plus a case-based JAMA task (pp. 7–9, 18).",
+          "Includes some expert review of generated data and model outputs, as well as a second automatic judge, though both are limited (pp. 5, 9, 17–19)."
+        ],
+        "weaknesses": [
+          "Core causal claims are unsupported: there is no controlled retrieval ablation, matched-data workflow/multi-view ablation, or direct cross-view consistency experiment. The sole retriever example converts an unrelated hypertrophic-cardiomyopathy retrieval into a confident, unsupported VSD diagnosis, suggesting retrieval-induced hallucination rather than validation (p. 25).",
+          "Evaluation and contamination risks are severe. Training includes VQA-RAD, SLAKE, PathVQA, PMC-VQA, AMBOSS/JAMA, Eurorad, and Radiopaedia (pp. 17–18), but overlap and patient/article-level deduplication against test sets are not documented. Baseline training conditions are unclear, while the GPT-4o-based judge is closely coupled to GPT-4o-generated training data and style normalization (pp. 7, 12–16).",
+          "Dataset quality and reproducibility are inadequate. The architecture/base checkpoint, exact split construction, dataset composition by pipeline branch, prompts, expert-edit protocol, and release details are incomplete. Presented samples contain incorrect arrow labels and malformed speaker roles (p. 24), and the showcased model rationale contradicts the case by claiming no diabetic retinopathy despite explicit proliferative disease (pp. 20–21)."
+        ],
+        "score_rationale": "The clinical objective and scale are potentially valuable, but the main novelty and soundness claims rest on confounded comparisons and an insufficiently validated construction/evaluation pipeline. Apparent leakage risk, missing controlled ablations, incomplete reproducibility, and concrete sample errors make the reported large gains unreliable; substantial new experiments and auditing are needed."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a large, case-centric medical multimodal instruction corpus with staged diagnostic supervision, retrieval augmentation, and expert screening. Although the direction is valuable and the reported benchmark gains are large, substantial contamination/confounding risks, insufficient methodological specification, and weak validation prevent the evidence from supporting the central claims about multi-view diagnostic reasoning.",
+        "strengths": [
+          "The dataset design targets an important gap by linking study-level images, clinical context, localized evidence, differential reasoning, and next-step decisions across several modalities (pp. 2–5).",
+          "The evaluation spans four established VQA benchmarks and a more clinically oriented JAMA task, with concept matching, rubric-based grading, a second judge, and limited physician evaluation (pp. 7–9, 16–17).",
+          "The paper reports dataset sources, approximate sizes, licenses, training stages, and some expert-quality checks, which are useful starting points for a potentially valuable resource (pp. 5, 13, 17–19)."
+        ],
+        "weaknesses": [
+          "The main causal claims are not isolated: there are no controlled ablations for the retriever, multi-view linkage, ROI grounding, negatives, workflow stages, or data scale. The large improvement is attributed to L1/L2 even though annealing changes the data source and schedule simultaneously, and direct multi-view consistency results promised in the protocol are not reported (pp. 6–9).",
+          "Evaluation integrity is unclear. Training data explicitly include the training splits of all four reported VQA benchmarks and 45,820 AMBOSS/JAMA items (pp. 17–18), yet overlap, deduplication, and JAMA train/test separation are not documented. Thus the very large benchmark gains may reflect task-specific exposure rather than general diagnostic reasoning.",
+          "Reproducibility and quality evidence are inadequate: the backbone/vision architecture, retriever training and fusion score, corpus composition, JAMA construction, prompts, and split details are incomplete or inconsistent. Only 100 cases validate millions of generated examples, modality classification is only 73% accurate (p. 5), and appendix examples contain incorrect arrow labels and unsupported/copied clinical claims (pp. 20–24), undermining confidence in the claimed grounding."
+        ],
+        "score_rationale": "The clinical dataset concept is promising, but the manuscript does not establish that its reported gains arise from the proposed workflow or multi-view mechanisms rather than benchmark exposure, scale, and annealing confounds. Missing implementation details and visibly flawed examples further weaken soundness and reproducibility, warranting rejection despite potentially useful data and strong headline results."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes SemiHVision, a case-oriented medical multimodal corpus and staged training recipe intended to supervise findings, evidence attribution, differential diagnosis, and decisions across views. Although the reported benchmark gains are large, the manuscript does not provide sufficiently controlled or reliable evidence that they arise from the proposed workflow or multi-view grounding rather than benchmark exposure, data scale, or evaluator bias.",
+        "strengths": [
+          "The case-centric schema is clinically motivated and attempts to connect imaging, history, localized findings, differentials, and decisions rather than using isolated captions (pp. 2–5).",
+          "Coverage spans several imaging modalities, and the authors report both automatic metrics and limited physician assessment rather than relying on conventional VQA accuracy alone (pp. 5–9).",
+          "Reported results are numerically strong, particularly the 79.0 average across four VQA benchmarks and improvements after annealing (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "Evaluation contamination and comparability are unresolved: benchmark training sets and JAMA data are listed among training sources (pp. 12, 17–18), while the paper claims benchmark training sets were excluded during annealing (p. 13). No case-level deduplication or source-overlap audit is given, making the headline comparisons difficult to interpret.",
+          "The central multi-view/retrieval claims lack controlled evidence. There is no isolated retriever ablation, view-removal test, or matched data-scale baseline; the showcased retriever example produces a specific 2.7 cm VSD unsupported by the retrieved hypertrophic-cardiomyopathy case (p. 25), directly illustrating hallucination rather than grounding.",
+          "Data and evaluation quality are insufficiently established: the sample annotations contain incorrect arrow/asterisk answers (pp. 23–24), expert screening of millions of items is not quantified, and GPT-4o both helps generate training data and grades style-normalized outputs. The 100-case preference study lacks per-rater statistics and broader clinical validation (pp. 7–9, 16, 19)."
+        ],
+        "score_rationale": "The dataset direction is potentially useful and the reported gains warrant interest, but decisive validity problems—possible benchmark/source leakage, absent causal ablations for the claimed contributions, contradictory qualitative examples, and judge dependence—prevent confidence in the conclusions. Missing architectural/data-processing detail further limits reproducibility (pp. 4–7, 10, 17–19). I therefore rate it a reject rather than a marginal paper."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a case-centric medical multimodal instruction corpus with staged diagnostic supervision, retrieval augmentation, and expert screening. The direction is useful and reported gains are large, but the manuscript does not provide sufficiently controlled or trustworthy evidence that multi-view retrieval and workflow supervision cause those gains.",
+        "strengths": [
+          "The dataset targets an important gap by organizing supervision around clinical context, findings, differentials, diagnosis, and multiple views/modalities (pp. 3–5).",
+          "The evaluation includes both conventional VQA and a more clinically oriented JAMA task, with concept overlap, rubric-based scoring, and limited physician comparison (pp. 7–9).",
+          "The reported VQA improvements are substantial, especially for the annealed 8B model (pp. 7–8)."
+        ],
+        "weaknesses": [
+          "Core causal claims lack controlled ablations: annealing changes data quality and training order simultaneously, while no quantitative retriever ablation, multi-view removal test, or matched workflow-vs-caption comparison is reported. The sole retriever example appears harmful, turning an unrelated retrieved hypertrophic-cardiomyopathy case into a confident VSD hallucination (p. 25).",
+          "Evaluation contamination and benchmark construction are insufficiently addressed. Training includes benchmark QA datasets and JAMA data, yet exact partitions, deduplication, and overlap controls are unclear (pp. 12, 17–18); the JAMA benchmark size, sampling, image availability, and scoring protocol are also not fully specified.",
+          "Data quality and reproducibility are weak: only 100 cases support the 95% consistency claim, modality classification is only 73% accurate (pp. 5–6), the released sample contains incorrect arrow/asterisk labels (pp. 23–24), and essential base-model architecture, exact dataset composition, filtering, and split details are missing."
+        ],
+        "score_rationale": "The dataset idea has practical merit and the headline results are promising, but major contamination risks, erroneous examples, missing ablations, and inadequate methodological detail undermine technical soundness and reproducibility. These are fundamental rather than presentation-only issues, warranting rejection despite the potentially valuable direction."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a case-centric medical multimodal corpus with retrieval, GPT-4o synthesis, expert screening, and staged annealing. The objective is valuable and reported VQA gains are large, but the evidence does not establish that the method improves grounded multi-view diagnostic reasoning; serious data-quality, evaluation, and reproducibility problems undermine the central claims.",
+        "strengths": [
+          "The case-level schema linking history, findings, differentials, diagnosis, and multiple views is a clinically motivated direction (pp. 2–5).",
+          "The evaluation attempts to go beyond standard VQA accuracy through a case-based JAMA task, UMLS overlap, rubric dimensions, and limited physician comparison (pp. 7–9).",
+          "The paper reports broad modality coverage and includes dataset-source and licensing summaries (pp. 17–19)."
+        ],
+        "weaknesses": [
+          "Examples reveal major failures in the claimed grounding pipeline: the supplied training sample misidentifies arrow annotations and even swaps dialogue roles (p. 24), while the retriever example retrieves hypertrophic cardiomyopathy but induces an unsupported 2.7-cm VSD diagnosis (p. 25). This directly contradicts the claimed accuracy benefit.",
+          "The central L2 claim lacks controlled evidence: there is no ablation isolating retrieval, multi-view inputs, ROI supervision, negatives, or clinical context, and no reported view-removal/replacement consistency results despite describing such tests (pp. 6, 9). Improvements after annealing therefore cannot be attributed to multi-view reasoning.",
+          "Evaluation and reproducibility are inadequate: the JAMA construction, splits, size, contamination controls, and uncertainty methodology are unclear; benchmark training datasets and JAMA/AMBOSS data appear in the training sources (pp. 12, 17–18); only 100 cases support human checks; and the base architecture, data composition, filtering, and exact training recipe are insufficiently specified (pp. 5–7, 10, 13)."
+        ],
+        "score_rationale": "The dataset concept has potential, but decisive appendix examples falsify the asserted grounding quality, and the very large gains are not supported by clean contamination analysis or causal ablations. With incomplete reproducibility and weak validation of millions of generated items, the main technical conclusions are presently unreliable, warranting rejection rather than a marginal score."
+      }
+    }
+  ]
+}

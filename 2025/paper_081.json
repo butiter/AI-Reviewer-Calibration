@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_081",
+  "paper_id": "jzneu6AO2x",
+  "number": 10942,
+  "title": "Riemannian Optimization for Hyperbolic Prototypical Networks",
+  "authors": "Samuele Fonio; Roberto Esposito; Marco Aldinucci",
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": "Hyperbolic Representation Learning; Prototype Learning; Image Classification",
+  "forum_url": "https://openreview.net/forum?id=jzneu6AO2x",
+  "venue": "ICLR 2025 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    6,
+    5,
+    3,
+    3
+  ],
+  "human_mean_rating": 4.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents Riemannian Hyperbolic Prototypical Networks for Prototype Learning. The method optimizes prototypes on Riemannian manifolds, specifically the Poincaré ball, leveraging hyperbolic geometry. The approach improves Prototype Learning by dynamically updating prototypes during training and incorporating a regularization term for embedding norms. Experimental results show the effectiveness of the proposed method."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Applying Riemannian optimization in hyperbolic spaces to prototype learning is interesting.\n\n2. Experiments on various datasets demonstrate the effectiveness of the proposed method."
+        },
+        "weaknesses": {
+          "value": "1. More intuitive explanations for the methodology and mathematical concepts are needed for better accessibility.\n\n2. The Riemannian optimization may add extra computational complexity to the model. which is better to also be investigated and discussed in the paper.\n\n3. The slope parameter $\\lambda$ plays a significant role, but its tuning can be complex, as demonstrated by the need for separate tuning across different datasets."
+        },
+        "questions": {
+          "value": "I'm also curious about whether the method can and how the method performs on few-shot learning, where the prototype-based method is more commonly used."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "AXVQcv5fjq",
+      "forum": "jzneu6AO2x",
+      "replyto": "jzneu6AO2x",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_1ESb"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_1ESb"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10942/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730798210315,
+      "cdate": 1730798210315,
+      "tmdate": 1731428242691,
+      "mdate": 1731428242691,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces Riemannian Optimization for Hyperbolic Prototypical Networks (RHPN), a novel approach that leverages hyperbolic geometry within a Prototype Learning framework.  Specifically, RHPN uses Riemannian optimization on the Poincaré ball to update prototypes during training, enhancing performance with a regularization term. Extensive experiments demonstrate RHPN's superiority over state-of-the-art methods in Prototype Learning across various dimensions."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper introduces the RHPN, a method that leverages the Poincaré ball model of hyperbolic geometry to dynamically update prototypes during training for enhances prototype learning. \n\n2. The paper provides a comprehensive experimental evaluation, demonstrating the effectiveness of RHPN across multiple datasets and embedding dimensions. The analysis of δ-hyperbolicity of the learned embeddings contributes to the understanding of how hyperbolic geometries align with the intrinsic structure of data, offering valuable insights into the geometric properties of the representations.\n\n3. The framework's flexibility to be extended to other geometries is a significant strength, indicating the potential for future research and applications in diverse domains where different hyperbolic geometries might be more suitable."
+        },
+        "weaknesses": {
+          "value": "1.This work aims to construct a prototype learning framework on generic Riemannian manifolds, with a particular emphasis on embedding prototype representations as network parameters within the Poincaré ball model. However, the paper's main contribution remains somewhat obscured. Although the related works section acknowledges existing studies on prototype learning in hyperbolic manifolds, the paper's unique focus on the application to image classification tasks, as highlighted on lines 049 and 119, is not clearly articulated, which diminishes the perceived novelty of the research.\n\n2.The description of vanishing gradient problem in Riemannian SGD could be more explicit and comprehensive. It would significantly enhance the paper if the authors could provide a clearer illustration of this issue in Figure 3.\n\n\n3.The discussion on the choice of hyperparameters, particularly the slope parameter , could be more detailed. It is noted that Figure 4(a) and Figure 4(b) illustrate a significant performance variance based on the value of 𝜆, especially when comparing high and low embedding dimensions. Clarifying the reasons behind these performance fluctuations would provide deeper insights into the sensitivity of the model to 𝜆. Furthermore, there seems to be the model collapse during training for 𝜆=0.1 and 𝜆=0.3 as depicted in Figure 4(b) is concerning.\n\n\n4.The experimental results among datasets indicate an improvement in performance for the image classification task with increasing embedding dimensions. This trend is intriguing and warrants further exploration. Are there any potential bottlenecks or limitations associated with this observation?"
+        },
+        "questions": {
+          "value": "Please refer to the weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "7qXUMuRxf0",
+      "forum": "jzneu6AO2x",
+      "replyto": "jzneu6AO2x",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_26WM"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_26WM"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10942/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730549403047,
+      "cdate": 1730549403047,
+      "tmdate": 1731428242684,
+      "mdate": 1731428242684,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper performs hyperbolic prototype learning, where the prototypes are made learnable. Moreover, the method adds clipping and regularization to improve performance. The resulting method is compared on four image classification datasets against several other prototype-based methods. They find reasonable improvements over these methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The structuring of the paper is clear, with an easy to understand presentation of the method and the results. Moreover, the paper contains many visualizations of the training behaviour of the model for various settings. \n\nThe comparison between learnable prototypes and fixed prototype methods are interesting to see."
+        },
+        "weaknesses": {
+          "value": "My main concern is that the paper has limited novelty. While the paper is the first to perform hyperbolic prototype learning with learnable prototypes, this type of setting has been explored before in the usual Euclidean prototype learning setting as mentioned by the authors. Moreover, learnable prototypes can easily be optimized using Riemannian optimization, similar to any other parameter of a hyperbolic model. So, exploring learnable prototypes in hyperbolic learning does not require any technical contributions. The clipping and regularization that the method uses are also coming from other papers, so it seems to me that the paper introduces no new ideas and simply applies existing concepts. \n\nThe comparison between the hyperbolic method and the Euclidean method does not seem completely fair to me. RHPN* uses regularization, whereas it seems that ECL does not use any regularization. As such, the fair comparison for assessing the importance of hyperbolic geometry would be between ECL and RHPN. Indeed, when considering this comparison, the hyperbolic solution is a lot less favorable, even being considerably worse on CUB for large embedding dimension. Based on this, I think the choice for hyperbolic geometry is not well motivated, especially considering the increase in computational complexity."
+        },
+        "questions": {
+          "value": "Hyperbolic geometry is usually beneficial compared to Euclidean geometry when there is a clear hierarchical structure present in the data. Could the method potentially be changed to incorporate hierarchical knowledge in the prototypes that aids in training a classifier for example? That would make the choice for hyperbolic geometry more obvious and, possibly, more impactful."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QwBjzSHrMd",
+      "forum": "jzneu6AO2x",
+      "replyto": "jzneu6AO2x",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_SrhE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_SrhE"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10942/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729677075428,
+      "cdate": 1729677075428,
+      "tmdate": 1731428242641,
+      "mdate": 1731428242641,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a method for optimizing prototypes in Riemannian manifolds. In addition to the contrastive loss, the authors add a regular term to push the data points away from the boundary. They use the Riemannian SGD method to learn backbone parameters and prototypes. The authors also conduct experiments on image classification. tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "Strength:\n1. Learning in hyperbolic spaces is a promising direction.\n2. The experiments have shown the method's effectiveness on the four datasets."
+        },
+        "weaknesses": {
+          "value": "Weakness:\n1. For me, the novelty is limited. Learning prototypes in hyperbolic spaces is not novel, such as [a,b,c,d]. What is the contribution in this paper about prototype learning.\n\n[a] Hyperbolic Image Embeddings\n[b] Curvature generation in curved spaces for few-shot learning\n[c] Curvature-adaptive meta-learning for fast adaptation to manifold data\n\n2. The experiments are weak. This paper only evaluates the performance of four image classification tasks. Few-shot learning, incremental learning, and zero-shot learning are also used to evaluate the performance of methods in hyperbolic space [e,f,g].\n[e] Exploring data geometry for continual learning\n[f] Kernel Methods in Hyperbolic Spaces\n[g] Clipped Hyperbolic Classifiers Are Super-Hyperbolic Classifiers\n\n3. Since the work focuses on Riemannian optimization, some Riemannian optimization methods should be added to the related work, and the difference between them and this work should be claimed. In addition, the novelty of the Riemannian optimization should be claimed."
+        },
+        "questions": {
+          "value": "1. The regular term is an important component in this method. However, its motivation and effectiveness are less explored."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "JEeBufRhat",
+      "forum": "jzneu6AO2x",
+      "replyto": "jzneu6AO2x",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_eihX"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10942/Reviewer_eihX"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10942/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729664389359,
+      "cdate": 1729664389359,
+      "tmdate": 1731428242894,
+      "mdate": 1731428242894,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes learning class prototypes inside a Poincaré ball using Riemannian SGD, together with feature clipping and a norm regularizer. Results on four image-classification datasets are consistently favorable, but the main methodological step is a fairly direct combination of established prototype learning and standard Riemannian optimization. More importantly, inconsistencies in the geometric definitions and insufficiently controlled experiments weaken the technical and empirical claims.",
+        "strengths": [
+          "The evaluation covers four datasets, four embedding dimensions, several prototype-learning baselines, and reports means and standard deviations over three runs (pp. 5–7).",
+          "The proposed regularized method achieves consistent and sometimes substantial accuracy gains, especially on CUB and Cars (p. 6).",
+          "The paper investigates sensitivity to embedding dimension, regularization strength, embedding norms, and δ-hyperbolicity rather than reporting only headline accuracy (pp. 7–10)."
+        ],
+        "weaknesses": [
+          "The Poincaré-ball equations appear internally inconsistent: the stated metric/conformal factor, Riemannian-gradient scaling, and exponential map do not share a clear convention. In particular, Eq. 4 maps a tangent norm of 1 to tanh(0.5)≈0.46 for κ=1, contradicting the claimed clipped ball norm of 0.76 on p. 5 (pp. 3–5).",
+          "The central improvement is not isolated: unregularized RHPN often yields only modest gains or trails ECL, while RHPN* adds a hyperparameter-tuned norm penalty. There is no Euclidean baseline with comparable clipping/norm regularization, nor ablations separating learned prototypes, geometry, clipping, and regularization (pp. 5–7, 13).",
+          "The δ-hyperbolicity analysis is not convincing evidence for geometric fit because raw δ is scale-dependent and is compared across differently normalized or unprojected representations. RHPN is evaluated before its Poincaré projection, and Figure 5 also has unclear/mismatched method labels (pp. 8–9)."
+        ],
+        "score_rationale": "The empirical results are promising, but novelty is incremental and the decisive geometric formulation contains a potentially implementation-relevant contradiction. Without controlled ablations showing that gains arise from hyperbolic learned prototypes rather than the tuned norm regularizer, the evidence falls below the acceptance threshold. Uncertainty remains because released code could clarify whether the equations or only their presentation are wrong."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes learning class prototypes inside a Poincaré ball using Riemannian SGD, feature clipping, and a known radial regularizer. Results across four image-classification datasets are encouraging, especially at low embedding dimensions, but the contribution is incremental and important geometric inconsistencies and experimental gaps weaken the conclusions.",
+        "strengths": [
+          "Broad, controlled evaluation over four datasets, four embedding dimensions, and several prototype-learning baselines; RHPN* generally improves accuracy, sometimes substantially (pp. 6–7).",
+          "The comparison between unregularized RHPN and RHPN* clearly demonstrates that controlling embedding norms is empirically important (pp. 6–8).",
+          "The paper reports three-run variation and provides useful analyses of dimension sensitivity, embedding norms, and optimization dynamics (pp. 5–10)."
+        ],
+        "weaknesses": [
+          "The stated Poincaré geometry appears internally inconsistent: the metric/conformal factor, distance, and exponential-map conventions do not align, and Eq. 4 maps a norm-1 vector to tanh(0.5)≈0.46 rather than the claimed 0.76 (pp. 3–5). This creates uncertainty about what was actually implemented.",
+          "Novelty is limited to combining learned prototypes with standard Riemannian SGD, clipping, and an existing regularizer. The decisive gains mostly come from the regularizer, yet there is no matched Euclidean or projected-optimizer control that isolates hyperbolic geometry from radial regularization (pp. 5–7).",
+          "The δ-hyperbolicity evidence is not convincing because δ depends on scale, methods are evaluated on differently normalized/pre-projection representations, and estimates are batch-based; Figure 5 also contains an undefined “MGP” method (pp. 8–9)."
+        ],
+        "score_rationale": "The consistent empirical gains make the idea potentially useful, but the geometry/implementation mismatch is a significant technical concern, while the main novelty and causal evidence for the hyperbolic component are insufficient for ICLR acceptance. I therefore lean reject rather than marginal acceptance, with some uncertainty because the released implementation might clarify the formulas."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper combines learnable class prototypes updated by Riemannian SGD in a Poincaré ball with feature clipping and norm regularization. Results on four image-classification datasets are promising, especially for compact embeddings, but the contribution is incremental and several technical and empirical issues weaken the conclusions.",
+        "strengths": [
+          "The method is simple and practically motivated: prototypes are optimized directly on the manifold rather than fixed or repeatedly recomputed (pp. 4–5).",
+          "Across four datasets and multiple embedding dimensions, RHPN* generally provides consistent gains over the evaluated prototype baselines, including sizable gains on CUB and Cars (pp. 6–7).",
+          "The paper reports three-run variation, training details, prototype-specific optimization settings, and validation-based slope selection (pp. 5–7, 12–13)."
+        ],
+        "weaknesses": [
+          "The geometry is internally inconsistent: Eq. 1 defines the metric using one factor of λ, Eq. 2 omits the conventional factor 2, while the Riemannian-gradient rule divides by λ² and Eq. 4 appears to follow yet another scaling convention (pp. 3–5). This obscures what manifold and optimizer were actually implemented.",
+          "The δ-hyperbolicity analysis is not valid as a cross-method comparison: it applies different preprocessing to different methods and reports an unnormalized, scale-dependent quantity. Shrinking embeddings toward the origin can itself reduce δ, so Figures 5 and 7 do not establish better alignment with intrinsic hyperbolic structure (pp. 8–9).",
+          "Novelty and isolation of effects are limited: Riemannian SGD, clipping, and the norm regularizer are established components, while the strongest gains come from RHPN* rather than the unregularized prototype update. There is no clean ablation against Euclidean learned prototypes with matched regularization/clipping, and only three seeds are used (pp. 5–7)."
+        ],
+        "score_rationale": "The empirical results justify consideration, but the contribution is largely a combination of known techniques, the manifold equations are inconsistent, and the principal geometric analysis is confounded by scale. The classification gains remain encouraging, placing the work marginally below acceptance rather than a clear reject."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes learning class prototypes inside a Poincaré ball using Riemannian SGD, together with feature clipping and a norm regularizer. Results on four image-classification datasets are promising, but the methodological novelty is incremental and the experiments do not adequately isolate the source of the gains.",
+        "strengths": [
+          "The method is simple and practically relevant, combining learnable hyperbolic prototypes with an explicit manifold-aware update (pp. 4–5).",
+          "Across four datasets and several embedding dimensions, the regularized variant reports consistent gains over the tested prototype-learning baselines, including sizable improvements on CUB and Cars (pp. 6–7).",
+          "The paper examines sensitivity to embedding dimension and regularization strength rather than reporting only a single favorable configuration (pp. 7–10)."
+        ],
+        "weaknesses": [
+          "The key improvement is not cleanly attributed: RHPN* simultaneously uses learnable prototypes, clipping, and a strong norm regularizer, but there is no matched fixed-prototype hyperbolic baseline with the same regularization or other controlled ablations. Indeed, unregularized RHPN is often much less compelling (pp. 5–7).",
+          "The hyperbolicity analysis is difficult to interpret: δ is measured on pre-projection features for RHPN, on normalized features for hyperspherical methods, and on raw outputs otherwise; absolute δ is scale-dependent, so norm shrinkage can mechanically reduce it. Figure 5 also contains an unexplained “MGP” method (pp. 8–9).",
+          "The mathematical presentation appears inconsistent with the standard Poincaré-ball convention: the metric/conformal factor in Eqs. 1–2 lacks the usual squared factor and factor of two, while the exponential map and Riemannian-gradient scaling use conventions that do not obviously agree (pp. 3–5). Only three runs, sparse hyperparameter search, and relatively limited/older baselines further weaken the evidence (pp. 5, 12–13)."
+        ],
+        "score_rationale": "The empirical results are encouraging, but the core idea is a fairly direct extension of learnable prototypes to Riemannian SGD. Missing matched ablations, a confounded hyperbolicity analysis, and apparent geometric-definition inconsistencies prevent the evidence from supporting the paper’s broad claims. I am somewhat uncertain whether the mathematical issues are only notation errors because the unavailable code may implement the standard Geoopt conventions correctly."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes learning class prototypes inside a Poincaré ball using Riemannian SGD, together with feature clipping and a norm regularizer. Results on four image-classification datasets are encouraging, especially at low embedding dimensions, but the evaluation does not isolate whether gains come from hyperbolic geometry or from regularization, and the hyperbolicity analysis is not technically convincing.",
+        "strengths": [
+          "The method is simple and practically motivated: prototypes are optimized intrinsically rather than fixed or repeatedly recomputed (pp. 4–5).",
+          "The evaluation covers four datasets, several embedding dimensions, relevant prototype-learning baselines, and reports variability over three runs (pp. 5–7).",
+          "RHPN* achieves consistent empirical gains in most reported settings, with particularly sizable improvements on CUB and Cars (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "The decisive gains largely arise from the norm regularizer: unregularized RHPN is often close to, or worse than, ECL, yet there is no Euclidean baseline with comparable clipping/norm control. Thus the experiments do not isolate the benefit of hyperbolic geometry or Riemannian prototype updates (pp. 5–7).",
+          "The δ-hyperbolicity comparison uses differently transformed representations across methods and reports an unnormalized, scale-sensitive δ. Because the proposed regularizer explicitly shrinks norms, lower δ can follow from contraction alone and does not establish that embeddings intrinsically fit hyperbolic geometry better (pp. 8–9).",
+          "The mathematical and reproducibility descriptions contain concerning inconsistencies: the stated Poincaré metric, Riemannian-gradient scaling, distance, and exponential-map conventions do not clearly agree (pp. 3–5), while Appendix A conflicts with the dimensional sweep, mentions CIFAR-10 despite no reported experiment, and omits important training/augmentation details (pp. 12–13)."
+        ],
+        "score_rationale": "The empirical results are promising and broad enough to merit consideration, but the contribution is incremental and its central geometric claim is insufficiently controlled. The questionable δ analysis and inconsistent manifold conventions further reduce confidence in technical soundness, placing the work below the acceptance threshold."
+      }
+    }
+  ]
+}

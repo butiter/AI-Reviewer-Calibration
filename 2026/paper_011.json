@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_011",
+  "paper_id": "0lGVMSAazo",
+  "number": 3639,
+  "title": "One Stone Three Birds: Training-free Core-context-aware Attention for Efficient LLM Prefilling, Decoding, and KV Caching",
+  "authors": [
+    "Zeng You",
+    "Yaofo Chen",
+    "Shuhai Zhang",
+    "Zhijie Qiu",
+    "Tingyu Wu",
+    "Yingjian Li",
+    "Yaowei Wang",
+    "Mingkui Tan"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Large Language Models",
+    "Efficient Attention"
+  ],
+  "forum_url": "https://openreview.net/forum?id=0lGVMSAazo",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "4iCyDbdJ2O",
+      "forum": "0lGVMSAazo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3639/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761960015562,
+      "tmdate": 1762916892476,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "9cqAUbnJmp",
+      "forum": "0lGVMSAazo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3639/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761702667600,
+      "tmdate": 1762916893133,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "FE4APsTkyR",
+      "forum": "0lGVMSAazo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3639/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761178688588,
+      "tmdate": 1762916894128,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "XUMaCUB4KM",
+      "forum": "0lGVMSAazo",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3639/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761615621497,
+      "tmdate": 1762916893930,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "TFCA-Attention combines offline head-specific budget calibration with online block/token selection to accelerate prefill and decoding while compressing KV caches. The empirical efficiency–quality trade-offs are promising, but important algorithmic inconsistencies and an overstated theoretical guarantee prevent confidence in the method as currently specified.",
+        "strengths": [
+          "Addresses prefill computation, decoding latency, and KV-cache memory in one training-free framework, with a practically motivated head- and input-adaptive design (pp. 4–7).",
+          "Reports broad evaluation on two 128K models, long- and short-context tasks, and several ablations; the strongest results show roughly preserved quality with substantial measured latency and memory reductions (pp. 8–10, 23–26).",
+          "Provides a custom Triton implementation and a useful latency breakdown showing that selection overhead is included in the reported 128K cost (pp. 22–23, 26–27)."
+        ],
+        "weaknesses": [
+          "The claimed error control is unsupported: calibration uses an aggregate, column-normalized score across queries, which does not imply the per-query condition γ_i≤1−τ asserted in the appendix. The proof also uses maximum absolute value entries of V where an appropriate row ℓ1 norm (or a dimension factor) is required (pp. 6–7, 16–17).",
+          "The core algorithm is not unambiguously defined. The candidate budgets are powers of two, whereas Eqs. 7–8 describe budgets 1,…,b; flooring m·p_k can leave blocks unassigned; and the descending block order, index/rank notation, and increasing budget vector do not clearly implement the stated allocation (pp. 5–7, 22).",
+          "Causal-prefill and decoding behavior need clarification: one final-token query selects keys for all prefill queries, while the equations/algorithm describe a fixed last-w local subset rather than the illustrated sliding causal window. Decoding then replaces adaptive cross-block allocation with a fixed average budget and irreversible selection based on the block-end query. These issues are not isolated experimentally, and end-to-end generation-quality evidence under long decoding is limited (pp. 5–7, 9)."
+        ],
+        "score_rationale": "The unified systems goal and measured gains are valuable, but the theoretical claim is materially overstated and multiple specification gaps affect the causal attention operation and reproducibility. I therefore rate it below the acceptance threshold, with some uncertainty because a correct implementation could resolve several notation-level issues."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes TFCA-Attention, combining offline per-head budget calibration with online block/token selection to accelerate prefill and decoding while reducing KV cache. The unified training-free goal is useful and the reported efficiency–accuracy tradeoff is promising, but the method specification raises a potentially fundamental causal-attention issue and the claimed theoretical control does not follow from the calibration objective.",
+        "strengths": [
+          "The combination of head-specific offline budgets and content-adaptive online allocation is a practically motivated contribution that unifies prefill sparsification and KV-cache compression (pp. 4–7).",
+          "Experiments cover two long-context models, multiple long- and short-context benchmarks, relevant sparse-attention baselines, and several component ablations (pp. 7–9, 23–26).",
+          "The reported systems results are substantial at 128K: about 2.8× attention speedup and 61% KV-cache reduction, with a useful Triton latency breakdown (pp. 9, 26–27)."
+        ],
+        "weaknesses": [
+          "As written, one subset selected using the final-token query is used for all query positions, and Eq. (2) does not show a causal mask; moreover, selection for earlier positions depends on a future query. This can violate autoregressive causality even if future values are masked. The handling of per-query local windows is likewise unclear (pp. 5–7).",
+          "The theoretical guarantee is overstated. The calibration statistic is aggregated across queries and calibration inputs, so ai≥τ does not imply the per-query/test-time γi≤1−τ claimed in the appendix. The proof also mishandles the selected-distribution L1 difference and uses a matrix infinity norm described as a maximum entry without the output-dimension factor (pp. 6–7, 16–17).",
+          "Evidence is narrower than the claims: only two similarly sized models and batch size one are tested; no throughput or larger-model study is provided, small accuracy differences lack uncertainty, and the conclusion incorrectly calls the 2.8× result a decoding speedup although the main text reports about 2.1× decoding speedup (pp. 9–10, 20–21)."
+        ],
+        "score_rationale": "The engineering idea and empirical results are encouraging, but causal correctness is insufficiently specified and the central theoretical claim does not establish the advertised error control. These issues are substantial enough to place the work below the acceptance bar. I am uncertain whether the causal problem reflects only omitted implementation details; clarifying it and correcting the theory could materially change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "TFCA-Attention is a practical training-free proposal that combines per-head offline budget calibration with input-adaptive token selection for prefill, decoding, and KV-cache compression. Results on two 7–8B models are promising, but important causal-computation, theoretical, and evaluation issues prevent the central claims from being fully supported.",
+        "strengths": [
+          "The unified prefill/decoding/cache objective is useful, and the head-specific plus context-dependent design is a meaningful practical combination (pp. 4–7).",
+          "The paper reports broad evaluations across long-context, short-context, reasoning, and dialogue benchmarks, generally preserving accuracy while reducing attention latency and memory (pp. 8–9, 23–26).",
+          "The implementation addresses variable per-head budgets and non-contiguous accesses with Triton-specific strategies, and includes useful component-level latency accounting (pp. 22–23, 26–27)."
+        ],
+        "weaknesses": [
+          "Prefill selection uses the last token’s query to choose keys for every query position (Eq. 5), so representations of earlier causal positions can depend on a later token through the selected set; Eq. 2 also omits an explicit causal mask. The paper does not explain how this preserves causal-model semantics or valid reusable KV states (pp. 5–7).",
+          "The theory does not justify the claimed control: calibration retains an attention mass averaged across queries, which cannot establish the per-query condition γ_i≤1−τ on calibration data, much less unseen inputs. The proof also incorrectly derives γ_i(2−γ_i), whereas the distributional L1 distance is 2γ_i, and the stated value norm may miss a head-dimension factor (pp. 6–7, 16–17).",
+          "Evidence for end-to-end deployment is incomplete: most speed measurements are single-layer attention or inter-token latency at batch size one, Table 5 lacks efficiency numbers, only two similar-sized models are tested, and some claims conflate 2.8× prefill attention speedup with decoding/inference speedup (pp. 8–10, 20–21, 23–24)."
+        ],
+        "score_rationale": "The method is potentially useful and empirically encouraging, but the unresolved causal leakage concern and the disconnect between the calibration rule and theoretical guarantee are major soundness issues. The systems evidence also falls short of fully validating the advertised unified end-to-end speedup, placing the work below the acceptance threshold."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "TFCA-Attention combines one-time head-specific budget calibration with last-query-based block/token selection to address prefill, decoding, and KV-cache costs. The empirical coverage is broad and the reported efficiency gains are promising, but central causal-attention details are internally inconsistent and the claimed theoretical control by the calibration threshold is not established.",
+        "strengths": [
+          "A practical, training-free attempt to unify prefill sparsification, decoding acceleration, and KV-cache compression, with a specialized Triton implementation (pp. 4–7, 22–23).",
+          "Evaluation spans two long-context models, LongBench-E, RULER, short-context tasks, reasoning, conversation, and several useful ablations (pp. 7–10, 23–26).",
+          "Reported gains are substantial: up to 2.8× prefill speedup, 2.1× decoding speedup, and 61% cache reduction at 128K, while benchmark scores remain close to full attention (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The prefill definition is ambiguous or potentially incorrect for causal attention: Eq. (2) applies shared global/local subsets to every query, while Algorithm 2 uses only the final suffix K[L−w:] despite Figure 2 describing a sliding local window. Without a query-relative causal construction this either removes local context for early queries or permits leakage; last-query-derived selection also makes earlier states depend indirectly on future prompt tokens (pp. 5–7).",
+          "The theoretical guarantee is overclaimed. The generic bound depends on each query's omitted mass γ_i, but calibration threshold τ constrains a sum of column-wise averaged scores, not per-query omitted mass, so it does not imply γ_i≤1−τ. The appendix also drops the factor 2 in its interpretation and uses a max-entry value norm where an output ℓ1 bound generally requires a row ℓ1 norm or a dimension factor (pp. 6–7, 16–17).",
+          "Reproducibility and evidence have important gaps: Eq. (7) does not clearly map sorted ranks to budgets and floor rounding can leave blocks unassigned; grouped-query attention and per-head KV storage are not explained; and unified comparison Table 5 omits latency/cache measurements and statistical uncertainty (pp. 7, 9, 22–23)."
+        ],
+        "score_rationale": "The unified training-free direction and empirical results are valuable, but the causal/local selection ambiguity and invalid link between τ and the advertised error guarantee undermine technical soundness. I am uncertain whether the causal issue is merely poor notation or reflects the implementation because code is unavailable; as written, the paper falls below the acceptance bar."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "TFCA-Attention combines per-head offline budget calibration with last-query-based online token selection to accelerate prefill and decoding while compressing KV caches. The empirical results are promising, but important theoretical and algorithmic inconsistencies prevent the claimed guarantees and efficiency conclusions from being fully convincing.",
+        "strengths": [
+          "A practically relevant unified objective, with a reasonably novel combination of head-specific calibration and input-adaptive token selection (pp. 4–7).",
+          "Broad evaluation across two long-context models, long- and short-context benchmarks, reasoning, conversation, and several ablations (pp. 7–9, 23–26).",
+          "Reported systems gains are substantial: up to 2.8× prefill speedup and 61% KV-cache reduction at 128K, with generally preserved task scores (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The theoretical guarantee is not connected to the algorithm: the aggregated calibration score does not imply a per-query bound on discarded mass, so τ cannot ensure γ_i≤1−τ as claimed. Moreover, the proof defines |V|∞ as the maximum entry although the stated ℓ1 bound would require a row-ℓ1 norm or a dimension factor, and its total-variation derivation is algebraically inaccurate (pp. 16–17).",
+          "Core algorithm details are internally inconsistent or incomplete: configurations use only power-of-two budgets but later use p_1,…,p_b; flooring proportions can leave blocks unassigned; Eq. 7's permutation does not clearly implement rank-based allocation; and the single final local window provides no local neighborhood for most prefill queries under causal masking (pp. 5–7).",
+          "Efficiency evidence lacks a clean end-to-end comparison combining prefill, generation, and memory; batch size is only one, variance is largely absent, and reported claims/numbers conflict—for example 2.8× is described as prefill speedup on p. 9 but decoding speedup on p. 10, while FlexPrefill's 128K latency differs substantially between pp. 8 and 24."
+        ],
+        "score_rationale": "The unified training-free direction and empirical gains are valuable, but novelty is mostly an integration of familiar calibration, token scoring, and cache eviction ideas. More importantly, the advertised controllable error guarantee is unsupported by the actual selection criterion, and several specification and latency-reporting inconsistencies impede verification. These issues place the work below the acceptance threshold despite promising experiments."
+      }
+    }
+  ]
+}

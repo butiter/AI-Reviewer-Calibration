@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_067",
+  "paper_id": "BGppv7fa3K",
+  "number": 9919,
+  "title": "Principal-Agent Reinforcement Learning: Orchestrating AI Agents with Contracts",
+  "authors": "Dmitry Ivanov; Paul Duetting; Inbal Talgam-Cohen; Tonghan Wang; David C. Parkes",
+  "primary_area": "reinforcement learning",
+  "keywords": "reinforcement learning; multi-agent systems; contract design; principal-agent MDP; sequential social dilemmas; neural networks",
+  "forum_url": "https://openreview.net/forum?id=BGppv7fa3K",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    5,
+    5,
+    6
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes to apply principal--agent theory to multi-agent RL with the goal of applying their methods to resolve social dilemma-like situations between AI agents, allowing different AI agents to collaborate more effectively. They define principal--agent MDP as a stochastic game with turns, where at each time-step principal observes the state and chooses its action (a contract), the agent observes state and principal's action and then chooses its action. As a solution concept, they choose the subgame-perfect equilibrium. They present a meta-algorithm that is essentially a bilevel optimization problem, which when solved, proven to find the SPE in their setting. Then they propose a Q-learning based approach to instead learn the SPE rather than computing it exactly. They present an early theoretical result connecting the approximation error in Q functions to a bound on principal's utility. They test their approach in the Coin Game environment in terms of both social welfare and convergence."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The problem of orchestrating an ecosystem of AI agents to collaborate with each other is an interesting and relevant problem.\n- The application of principal--agent theory and its combination with RL appears to be novel and also interesting.\n- The paper is easy to read, and ideas are expressed clearly."
+        },
+        "weaknesses": {
+          "value": "- The presented empirical and theoretical results appear too weak. Convergence of the meta-algorithm is not surprising, what is left out is the computational complexity of solving the bilevel optimization problem. Empirical results are also limited, and there is no comparison to other MARL algorithms that tackle social dilemmas (see the question).\n\n- The connection to the motivating example seems lost once the Introduction is over. More discussion at the end about how this allows for orchestrating of AI agents is needed."
+        },
+        "questions": {
+          "value": "1. Is there a reason why you have not benchmarked your method against other MARL methods that allow agents to gift each other rewards? For example [1,2,3]? I would expect these to be at least discussed as an alternative approach.\n\n2. For the case of orchestrating AI agents (your motivating example), what would be the advantage of your principal--agent framework over things like adaptive mechanism design?\n\n[1] Yang, Jiachen, et al. \"Learning to incentivize other learning agents.\" Advances in Neural Information Processing Systems 33 (2020): 15208-15219.\n\n[2] Lupu, Andrei, and Doina Precup. \"Gifting in multi-agent reinforcement learning.\" Proceedings of the 19th International Conference on autonomous agents and multiagent systems. 2020.\n\n[3] Kolumbus, Yoav, Joe Halpern, and Éva Tardos. \"Paying to Do Better: Games with Payments between Learning Agents.\" arXiv preprint arXiv:2405.20880 (2024)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "w8mJsmIpNK",
+      "forum": "BGppv7fa3K",
+      "replyto": "BGppv7fa3K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_qrta"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_qrta"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9919/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730887092109,
+      "cdate": 1730887092109,
+      "tmdate": 1731429358526,
+      "mdate": 1731429358526,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper studies a problem where a principal must guide the actions of an agent (or several agents) to maximize the principal's utility using payments. This problem is formalized using a Markov decision process, where the principal chooses a policy that determines the payment to the agent depending on the state and outcome. The authors propose and analyze a simple meta-algorithm that ensures convergence to subgame perfect equilibrium (SPE). Moreover, experiments are conducted on the Coin Game environment, which is a medium-sized two-player social dilemma. The experiments show the effectiveness of the proposed approach for maximizing the principal's utility (in this case, social welfare)."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The intersection of reinforcement learning and contract design is an interesting area of study. \n- The problem formulation is neat and well motivated. \n- The paper is well-written and overall a pleasure to read."
+        },
+        "weaknesses": {
+          "value": "- I struggle with identifying the technical novelty and the significance of the contributions:  \n\t- From a technical standpoint, it appears that by considering SPE the problem becomes fairly simple and boils down to performing backwards induction (using standard RL techniques). In particular, as far as I can tell, the results of Theorem 3.3 and 3.4 follow straightforwardly from SPE+ well-known RL results. Could you highlight any specific novel technical challenges under the proposed problem setup? \n\t- Conceptually, the idea of a principal orchestrating agents in social dilemma to resolve miscoordination and maximize social welfare has been considered before (this is also essentially what much of mechanism design is about). In Appendix A.3, you argue that your work differs in perspective from prior work on \"solving\" social dilemmas by modifying the agents' rewards. In particular, to distinguish your work from the others you write \"While the principal effectively modifies agents’ reward functions, the payments are costly.\" Are not the payments also costly in the models studied in prior work? For instance, in Yang et al. (2020), the agents transfer the rewards to other agents which is of course costly to the paying agent. Maybe the work of [Jackson and Wilkie (2002)](https://www.jstor.org/stable/3700662) is also relevant / of interest here.  \n- From my undestanding, principal-agent theory is broader than just contract design, and it would be helpful to the reader to discuss this (i.e., principal-agent theory) related work as well. For instance, [Myerson (1982)](https://www.sciencedirect.com/science/article/abs/pii/0304406882900064), [Zhang and Conitzer (2021)](https://arxiv.org/abs/2105.06008), [Gan et al. (2022)](https://arxiv.org/abs/2209.01146). There is also work on Bayesian persuasion which is part of the principal-agent problem family. Appendix A.2 does make it sound like principal-agent problems are just contract design problems."
+        },
+        "questions": {
+          "value": "- $E_t$ in Proposition 4.1 is not defined in the main text. Overall, Proposition 4.1 is very hand-wavy. For example, you write that \"This utility can be achieved through small(?) additional payments that counteract the agent's deviations, ...\". I'm aware that more details are provided in the appendix, but the proposition should be stated rigorously or, alternatively, be made an informal remark.  \n- In your opinion, why would the centralized orchestrating of agents (i.e., the principal-agent perspective) be more appealing to resolve incentive issues than the large-scale decentralized individual bargaining perspective many other works take? (You mentioned some of these works in Appendix A.3)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "hFenuOzgre",
+      "forum": "BGppv7fa3K",
+      "replyto": "BGppv7fa3K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_3zbp"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_3zbp"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9919/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730651296765,
+      "cdate": 1730651296765,
+      "tmdate": 1731429358696,
+      "mdate": 1731429358696,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work introduces a specific contract mechanism into MARL, defined a principal-agent stochastic game based on this mechanism, and solved the game using a straightforward value-based RL algorithm, conducting some experiments as well."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- Introducing contracts into MARL is an issue of interest to the community.\n- This work is comprehensive, thoroughly addressing the bilevel MARL problem related to the contract mechanism."
+        },
+        "weaknesses": {
+          "value": "- Algorithm 1 is vanilla, and lines 3 and 4 imply solving an MDP, which can be very time-consuming in a larger environment. Although a value-based method is used and is model-free, it is a primitive algorithm. Some analyses are straightforward to the community. The main contribution lies in introducing the contract mechanism and reformulating the game. \n\n- Is the contract in this work a mechanism, or is it a problem to be solved?\n    - As a problem: The contract reformulates a new game, and the logic of the experimental design is to verify that their proposed algorithm can solve this problem. So, could some other existing algorithms potentially solve this problem?\n    - As a mechanism: For instance, with this contract mechanism, the prisoner’s dilemma can be effectively resolved, and the coin game can achieve high scores. In this sense, this work should compare with other algorithms to demonstrate the advantages of the contract. The experiments in Figure 2 are clearly insufficient.\n\n- The contract has a very specific meaning here, where after an agent takes an action and a result is achieved, the principal pays the agent based on the result. This setting is a variant of incentivizing agents.\n    - In this way, this setting is closely related to LIO (\"learning to incentivize other learning agents\"). The authors cited LIO but did not discuss the differences or conduct comparative experiments.\n    - In LIO, players are symmetric and do not need to wait for an optimization problem to converge at one level (in the spirit of online cross-validation). And the incentivization occurs during the training phase without changing the game’s structure. So, could similar methods be directly applied?\n\n- Coin Game might not highlight the advantages of the contract. A more suitable scenario would be a task with division of labor, such as the cleanup task. There is already work on MARL contracts in this scenario, \"Formal Contracts Mitigate Social Dilemmas in Multi-Agent Reinforcement Learning.\" And LIO also uses this scenario.\n\nMinors\n- There is a large margin below Figure 1 and Figure 2.\n- Some single quotation marks in the text should be changed to double quotation marks."
+        },
+        "questions": {
+          "value": "1. How do the distinct and possibly conflicting objectives affect the meta-algorithm bilevel optimization procedure compared to same downstream tasks?\n2. Nudging is an interesting solution for learning approximation error. However, who provides such nudging, i.e. in equations (20)-(22)? How does nudging change the discontinuous utility of the principle? \n3. Besides, in the contracts of our general life, breach of contract is also an effective method to steer an agent’s behavior. What is the relationship between breach and nudging?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1LicC6sEhc",
+      "forum": "BGppv7fa3K",
+      "replyto": "BGppv7fa3K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_b1yZ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_b1yZ"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9919/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730551679966,
+      "cdate": 1730551679966,
+      "tmdate": 1731429358873,
+      "mdate": 1731429358873,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper formulates a general framework of principal-agent Reinforcement Learning (RL), which tries to train multi-agent RL agents without centralized control, but instead by using a protocol where a principal agent tries to guide (intentionally misaligned) agent behavior by assigning payments. The paper first constructs a hidden-action principal-agent stochastic game, then propose an meta-algorithm for finding Subgame Perfect Equilibrium (SPE). After analyzing the theoretical property of such meta-algorithm, the paper discusses the possibility of learning it with RL, and then finally how to extend to multi-agent RL. Several experiments show that the proposed method works well in the coin game and tree MDPs"
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. This paper addresses a very interesting problem as it considers a novel scenario where the principal needs to regulate agents' behavior but does not have centralized control on each agent. This is even more interesting considering the potential future use of regulating a herd of LLM agents with a learned principal, many of which can self-reflect and improve according to a protocol but we do not have training access to.\n\n2. This paper is well-written and well-structured. It builds up a framework with many complicated notions, but the paper managed to consider one component at a time: first it is the game itself, then an idealized solution, then function approximator (RL), and finally multi-agent. Generally, the paper is easy to follow.\n\n3. The paper gives detailed analysis and proof for its theoretical performance (e.g., convergence property), which is important for a new, economic-inspired RL framework. In the mean time, the main text is kept clean without too many unnecessary notations using intuitive explanations."
+        },
+        "weaknesses": {
+          "value": "1. The hyperparameter, $\\alpha$ in line 406, could be tricky. As stated by the authors, $\\alpha$ is set as a heuristic approach to downweight the importance of payment minimization compared to social welfare (payment minimization cannot hurt social welfare), and thus $\\alpha$ should be set very small. However, if $\\alpha$ is indeed very close to $0$, the principal agent can simply use its reward to overwhelm all selfish intentions (e.g. sent 1% of its own reward to each individual agent, which is a very large amount for them) and the algorithm would degenerate to independent RL with cooperative objective. Thus, there exists some balance of $\\alpha$ that may require tuning. It would be better if the authors can conduct an ablation study on $\\alpha$ to show how it impacts the balance between social welfare and payment minimization.\n\n2. There is essentially only one gridworld experiment for the proposed algorithm in multi-agent RL (tree MDP in the appendix is for single-agent). It would be better if more and harder environments could also be tested, such as particle world ones (environments like SMAC-like ones would be even better for camera ready (if accepted) / next submission (if rejected)).\n\n**Minor issues**\n\n1. The notations in the beginning of Sec. 2.2 are unclear. For example, $o$ is an outcome, but is then used as a number (\"o-th coordinate of a contract\"); expressions like \"contract corresponds to the outcome $o$\" would be better.\n\n2. The punctuation \".\" at the end of the caption of Tab. 1 is missing.\n\n3. The current contribution part is not stating the paper's contribution, but is rather an outline of the paper. It would be better if the outlines can be more briefly summarized into a paragraph, with each highlight on key novel aspect as one sentence."
+        },
+        "questions": {
+          "value": "I have a question: can the solution proposed by this framework improve social welfare on a more complicated, closer-to-mainstream MARL environment (e.g. a continuous version of coin game in a multi-agent particle world style)?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LEpiaFHwaJ",
+      "forum": "BGppv7fa3K",
+      "replyto": "BGppv7fa3K",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_nJAV"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission9919/Reviewer_nJAV"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission9919/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729832822807,
+      "cdate": 1729832822807,
+      "tmdate": 1731429359265,
+      "mdate": 1731429359265,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a promising synthesis of dynamic contract design and reinforcement learning, with an alternating best-response framework and applications to the Coin Game. However, central theoretical claims—especially the contraction theorem and approximation guarantee—contain serious mathematical gaps, while the multi-agent experiments do not directly establish the claimed equilibrium properties.",
+        "strengths": [
+          "The principal-agent MDP formulation cleanly separates private incentives, observable outcomes, limited-liability payments, and sequential dynamics (pp. 3–5).",
+          "The finite-horizon interpretation as implicit backward induction is conceptually useful, and the single-agent tree experiments compare learned behavior against an exact dynamic-programming solution (pp. 24–25, 34–36).",
+          "The two-phase train/validation protocol is thoughtful and exposes a genuine failure of the approximate IC construction on the smaller Coin Game before nudging (pp. 36–38)."
+        ],
+        "weaknesses": [
+          "The proof of Theorem 3.4 is invalid: Bellman optimality operators containing maximization are not linear, contrary to Observation B.11, and the cited converse to Banach does not establish contraction in the original sup norm. Consequently, neither the claimed meta-level contraction nor monotonic improvement is supported (pp. 23–26).",
+          "The approximation/nudging guarantee assumes that |A|≤|O| implies every action has an outcome whose probability strictly exceeds that under every alternative action; this is false for identical, dominated, or overlapping outcome distributions, so d_min can be zero or negative and Proposition 4.1 needs an explicit identifiability assumption (pp. 32–33).",
+          "The multi-agent extension relies on principal-favorable equilibrium selection and then replaces general deviations with a binary follow/ignore approximation (pp. 8, 34–36). Validation checks only empirical initial-state utility ratios, not all states and deviations required by MPE/SPE or dominant-strategy IC; the failure without ad hoc extra payments on the 3×3 game further weakens the evidence (pp. 37–38)."
+        ],
+        "score_rationale": "The formulation and evaluation protocol are interesting, but a headline theoretical result is unsupported and another guarantee requires a missing assumption. Together with limited equilibrium verification in one multi-agent benchmark, these are substantial rather than presentation-level issues. I am less certain whether the finite-horizon convergence result itself can be made fully rigorous under stronger uniqueness conventions, but correcting it would not resolve the contraction and IC-evidence problems."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes a principal-agent MDP framework in which a principal learns outcome-contingent contracts and alternates optimization with self-interested agents. The integration of sequential contract design with model-free RL and the two-phase train/validation protocol are interesting, but central theoretical claims contain serious proof gaps, while the multi-agent evidence is too narrow and approximate to substantiate convergence or incentive-compatibility claims.",
+        "strengths": [
+          "The formulation explicitly separates principal and agent utilities, limited-liability payments, hidden actions, and sequential dynamics, providing a useful bridge between contract theory and RL (pp. 3–5).",
+          "The two-phase evaluation against newly trained agents is a thoughtful attempt to expose failures hidden by centralized training; indeed, it reveals an incentive-compatibility failure in the smaller Coin Game (pp. 36–38).",
+          "The paper includes extensive derivations, implementation details, and both exact/tree and multi-agent experiments (pp. 20–39)."
+        ],
+        "weaknesses": [
+          "Theorem 3.4 is not established: the Bellman/max operators are not linear, the proof conflates a fixed-point limit with an iteration operator, and convergence to a unique fixed point does not imply contraction in the sup norm. Moreover, contraction alone would not imply the claimed monotonic Q-improvement (pp. 6, 25–26).",
+          "The approximation guarantee relies on an incorrect assertion that |A|≤|O| ensures every action has an outcome with strictly greater probability than under every alternative; identical or overlapping outcome distributions are immediate counterexamples, making d_min zero or invalid. The displayed direction for the nudging utility-loss inequality is also inconsistent with the subsequent lower bound (pp. 32–33).",
+          "The multi-agent theory assumes equilibrium selection and dominant-strategy implementation, but the implementation reduces deviations to a binary follow/ignore abstraction. Evaluation checks only initial-state utility ratios rather than all subgames, uses essentially one modified Coin Game and weak baselines, and empirically fails IC without an ad hoc 10% nudge on the smaller grid (pp. 8–10, 34, 36–38)."
+        ],
+        "score_rationale": "The sequential contracting perspective and experimental protocol are promising, but invalid reasoning behind a headline contraction theorem and the stated error guarantee substantially undermines technical soundness. The limited experiments do not compensate for these issues or validate the stronger SPE/IC claims, so the work is below the acceptance threshold despite meaningful ideas."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes an appealing principal-agent RL framework with alternating agent/principal optimization, hidden-action contracts, and a multi-agent Coin Game application. However, central theoretical claims contain substantial proof gaps or false steps, while the empirical evidence is too narrow to compensate.",
+        "strengths": [
+          "The integration of dynamic contract design with model-free RL is well motivated and potentially useful, with a clear two-phase training/black-box validation protocol (pp. 1–9).",
+          "The distinction between hidden- and observed-action settings and the comparison of SPE with Stackelberg solutions provide helpful conceptual structure (pp. 3–6, 20, 28–29).",
+          "Experiments include exact dynamic-programming comparisons in tree MDPs and validation agents trained from scratch in the Coin Game, exposing a meaningful failure case requiring nudging (pp. 34–38)."
+        ],
+        "weaknesses": [
+          "Theorem 3.4 is not established: the claimed operator contains maximizations and is not linear, contrary to Observation B.11, and convergence to a unique fixed point does not imply contraction in the sup norm via the cited converse theorem (pp. 23–26). Lemma B.12's uniqueness argument is also unsupported because payments generally cannot simply be reduced while preserving incentive constraints.",
+          "Theorem 3.3 relies on an unjustified assertion that a new principal best response changes only the current state; an optimizer may select different equally optimal contracts in already-solved downstream subgames, invalidating the retained agent response unless additional selection rules are imposed (pp. 24–25). Existence is also asserted despite a largely unrestricted contract set.",
+          "The approximation guarantee is flawed: |A|≤|O| does not ensure every action has an outcome with strictly greater probability than all alternatives, and the stated minimum defining d_min includes a=ap, making it zero as written (p. 33). Empirically, only three tree instances and one Coin Game family are tested, and the smaller setting violates IC without heuristic nudging (pp. 36–38)."
+        ],
+        "score_rationale": "The core idea is interesting and the presentation is ambitious, but multiple headline guarantees—contraction, finite-iteration convergence as stated, and the nudging bound—have serious mathematical defects on pp. 24–26 and 33. The limited experiments do not validate the general framework strongly enough to offset these issues, so major theoretical revision is required."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper combines contract theory with model-free RL for sequential principal-agent problems, proposes alternating best-response optimization, and extends the approach heuristically to multi-agent social dilemmas. The framing is interesting, but a central contraction theorem is not established, the approximation guarantee relies on false or unstated assumptions, and the empirical evidence is too limited to support the broad convergence and incentive-compatibility claims.",
+        "strengths": [
+          "The principal-agent MDP formulation clearly separates agents’ private objectives, outcome-contingent payments, and the principal’s welfare objective (pp. 3–5).",
+          "The finite-horizon connection between alternating optimization and backward induction is conceptually useful, and the two-phase train/black-box-validation protocol addresses a genuine discontinuity issue in learned contracts (pp. 5–7).",
+          "The experiments include exact-comparison tree MDPs and transparently report a multi-agent failure case where approximate IC does not transfer without extra payments (pp. 34–38)."
+        ],
+        "weaknesses": [
+          "Theorem 3.4 is not proved: the relevant Bellman optimality maps contain maxima and are not linear, contrary to Observation B.11, while convergence to a unique fixed point does not imply contraction in the sup norm. The claimed monotonic Q-function improvement also does not follow from contraction (pp. 6, 23–26).",
+          "Proposition 4.1’s nudging guarantee rests on the false assertion that |A|≤|O| ensures every action has an outcome on which it has strictly greater probability than all alternatives. Identical or insufficiently separated outcome distributions make d_min zero or negative and some actions non-implementable; the analysis also sets aside coupling between principal and agent approximation errors (pp. 30–33).",
+          "The multi-agent extension assumes equilibrium selection and then replaces genuine dominant-strategy IC with a binary follow/ignore policy approximation (pp. 8–9, 33–36). Evaluation is confined to one modified Coin Game and narrow baselines; the 3×3 case violates IC and fails to beat the matched-budget baseline without ad hoc 10% nudging (pp. 36–38)."
+        ],
+        "score_rationale": "The contract-based RL perspective and validation methodology are promising, but the invalid proof of a headline theorem and unsupported approximation guarantee are central technical defects. Together with the heuristic multi-agent extension and limited evidence, these require substantial correction rather than a minor revision."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes contract-based principal-agent RL, an alternating optimization scheme for finite-horizon games, and a multi-agent application to the Coin Game. The framing is interesting, but a central contraction theorem appears mathematically invalid, the multi-agent extension does not inherit the single-agent theory as claimed, and the empirical evidence is too limited to establish the broader scalability and equilibrium claims.",
+        "strengths": [
+          "The combination of sequential contract design with model-free RL is a potentially useful and reasonably novel framing, with clear distinctions between hidden-action, observed-action, and multi-agent settings (pp. 3–8).",
+          "The finite-horizon alternating-optimization result is motivated through implicit backward induction and could be valuable if its assumptions and policy-selection details were formalized more carefully (pp. 24–25).",
+          "The two-phase training/validation methodology is thoughtful, and the appendix candidly reports a setting where the learned contracts fail incentive compatibility before additional payments are introduced (pp. 36–38)."
+        ],
+        "weaknesses": [
+          "Theorem 3.4 is not supported by its proof. The Bellman optimality operator contains maximizations and is not linear, contrary to Observation B.11; moreover, convergence to a unique fixed point does not imply contraction in the original sup norm via the cited converse theorem. Thus the claimed contraction and monotonic-improvement conclusions are unjustified (pp. 6, 23–26).",
+          "The multi-agent theory treats agents selecting an MPE as a centralized super-agent, although an MPE is a collection of unilateral best responses rather than the optimum of a single MDP. The dominant-strategy constraint is then implemented only through a severe two-strategy approximation, and the appendix itself shows this can violate incentive compatibility (pp. 8–9, 33–38).",
+          "Empirical support is narrow: one synthetic tree family and one modified Coin Game, few trials, limited baselines, and equilibrium checks based mainly on learned-agent return ratios at the initial state. Recommendation accuracy of only 80–90% and the negative small-grid result make the stated approximate-SPE and scalability conclusions uncertain (pp. 9–10, 35–38)."
+        ],
+        "score_rationale": "The contract-RL formulation and validation protocol are promising, but the apparent failure of a headline theorem and the unsupported passage from single-agent optimization to multi-agent equilibrium are major correctness issues. Even if Theorem 3.3 can be repaired under stronger existence and tie-breaking assumptions, the current theory and experiments do not substantiate the paper’s central claims, warranting rejection."
+      }
+    }
+  ]
+}

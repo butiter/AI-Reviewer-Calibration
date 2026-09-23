@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_042",
+  "paper_id": "ZVg8y3ibyM",
+  "number": 10493,
+  "title": "GuidedBench: Measuring and Mitigating the Evaluation Discrepancies of In-the-wild LLM Jailbreak Methods",
+  "authors": [
+    "Ruixuan Huang",
+    "Xunguang Wang",
+    "Zongjie Li",
+    "Daoyuan Wu",
+    "Shuai Wang"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "Large Language Models",
+    "Jailbreak Attacks",
+    "Evaluation System",
+    "Benchmark"
+  ],
+  "forum_url": "https://openreview.net/forum?id=ZVg8y3ibyM",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    4,
+    6
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "1k9QftOAKg",
+      "forum": "ZVg8y3ibyM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10493/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761775922031,
+      "tmdate": 1764359140166,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "2gi6Gtjapu",
+      "forum": "ZVg8y3ibyM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10493/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761932598369,
+      "tmdate": 1762921779524,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "3mMrTwSyqk",
+      "forum": "ZVg8y3ibyM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10493/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761669180333,
+      "tmdate": 1762921781015,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "HWrfByZm1c",
+      "forum": "ZVg8y3ibyM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission10493/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762044782761,
+      "tmdate": 1762921778826,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "GuidedBench proposes case-specific entity/action rubrics for measuring partial jailbreak success and evaluates ten attacks across five victim models. The idea is useful and the empirical study is broad, but the paper’s central claim—more accurate evaluation—is not established convincingly because its validation emphasizes agreement and variance rather than independently adjudicated correctness.",
+        "strengths": [
+          "A practically relevant benchmark design: decomposing harmful fulfillment into explicit, interpretable scoring points is more informative than keyword or coarse binary judgments (pp. 4–5).",
+          "Broad empirical coverage across ten jailbreak methods, six attack categories, five victim models, and multiple evaluator systems exposes substantial ranking discrepancies (pp. 5–8, 17–18).",
+          "The authors include human comparisons, evaluator robustness analysis, and sample-size analysis rather than relying on a single judge/model result (pp. 9–10, 22, 24)."
+        ],
+        "weaknesses": [
+          "The claimed accuracy advantage is not validated against a robust independent gold standard. The false-positive subsets are selected by Doubao, explicitly include some responses with harmful information, and are then treated as failed responses; the human study reports raw agreement without adjudicated correctness, chance-adjusted metrics, or class balance (pp. 8–10, 27).",
+          "Lower cross-evaluator variance and higher score entropy do not demonstrate accuracy. Averaging several binary rubric items mechanically smooths scores and can reduce variance relative to holistic baselines, while a more uniform output distribution is not intrinsically preferable (pp. 9–10, 25–26).",
+          "Benchmark validity and reproducibility remain uncertain: most questions were modified, complete questions/guidelines and expert disagreements are not presented, equal weighting is weakly justified, attack budgets/seeds are underspecified, and the victim models are relatively dated (pp. 4–6, 10–11)."
+        ],
+        "score_rationale": "The paper offers a valuable, moderately novel rubric-based benchmark and substantial experimentation, but decisive evidence that GuidedEval is more accurate—not merely more stable and granular—is missing. The machine-defined false-positive analysis and weak human-ground-truth protocol make the main conclusion uncertain, placing it marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces GuidedBench, a 200-question jailbreak benchmark with case-specific entity/action rubrics, and evaluates ten attacks across five victim models. The rubric-based approach is useful and the empirical scope is substantial, but the evidence does not yet establish the central claim that GuidedEval is more accurate than existing semantic evaluators.",
+        "strengths": [
+          "The case-specific decomposition into identifiable entities and actions is intuitive, interpretable, and potentially more reproducible than a single holistic judgment (pp. 4–5, 25–26).",
+          "The study covers diverse black-box and white-box attacks, victim models, harmful topics, and evaluator models, exposing meaningful ranking discrepancies and attack-context dependence (pp. 5–8, 28–29).",
+          "The dataset construction principles explicitly address refusability, malicious intent, ambiguity, and answerability, with expert review and a sample-size analysis (pp. 3–5, 22)."
+        ],
+        "weaknesses": [
+          "The main accuracy claim lacks an independent comparative gold standard. Human validation reports only raw agreement for GuidedEval judgments—not accuracy of GuidedEval versus each baseline, chance-corrected agreement, class balance, or adjudicated labels—so high agreement could reflect prevalence and does not demonstrate superiority (p. 10).",
+          "The reported false-positive experiment is partly circular: failure cases are selected by a single LLM using definitions closely aligned with GuidedEval, are then treated as objectively failed despite admitting that some contain harmful information, and receive no reported human validation (pp. 8–9, 27).",
+          "Several supporting analyses overreach: lower inter-evaluator variance and higher score entropy establish consistency or dispersion, not correctness; moreover, guideline completeness, equal weighting of qualitatively different components, attack budgets/configurations, and uncertainty over leaderboard estimates are insufficiently validated (pp. 5, 9–10, 22)."
+        ],
+        "score_rationale": "The work has a useful benchmark idea, strong practical motivation, and broad experiments. However, its decisive claim—more accurate jailbreak evaluation—is not established by the current validation, while consistency and entropy are repeatedly used as proxies for accuracy. A rigorous, blinded human comparison of all evaluators with adjudication and uncertainty reporting could move this above the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "GuidedBench introduces question-specific entity/action rubrics for evaluating jailbreak responses and applies them across 10 attacks and five victim models. The direction is useful and the empirical scope is substantial, but the evidence primarily establishes evaluator consistency rather than the claimed correctness or real-world validity of the metric.",
+        "strengths": [
+          "The case-specific, decomposed rubric is interpretable and directly addresses obvious failures of keyword and coarse holistic judges (pp. 4–5, 8–9).",
+          "The evaluation covers diverse black-/white-box attacks, victim models, topics, and multiple judge models, with extensive supplementary analyses (pp. 5–7, 24–29).",
+          "Human annotation provides some independent support: two experts label 700 sampled instances, with high reported human–LLM agreement (p. 10)."
+        ],
+        "weaknesses": [
+          "The main accuracy claim is insufficiently validated. The human study reports only raw agreement, without class prevalence, chance-corrected metrics, confusion matrices, annotation details, or comparison of GuidedEval against baseline evaluators on a human gold standard (p. 10).",
+          "The false-positive analysis is partly circular: Doubao automatically selects presumed failure cases, these cases are not reported as human-verified, and only FPR—not false negatives or overall accuracy—is measured (pp. 8–9, 27).",
+          "Several headline diagnostics do not establish quality: raw variance is compared across systems with different output scales/granularity, while higher score entropy can arise mechanically from averaging multiple binary rubric items and is not evidence of accuracy (pp. 9–10). Equal weighting also lacks validation as a measure of actionable harm (p. 5)."
+        ],
+        "score_rationale": "The paper presents a practical benchmark contribution with broad experiments and promising rubric-based evaluation. However, its decisive claim—that GuidedEval is more accurate—rests mostly on consistency, selected failure-mode analysis, and score-distribution properties rather than a rigorous human-grounded comparison. These validation gaps place it marginally below acceptance, though stronger gold-standard evaluation could substantially improve the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper introduces GuidedBench, a 200-question jailbreak benchmark with case-specific entity/action rubrics, and evaluates ten attacks across five victim models. The problem is important and the study is broad, but the central claim that GuidedEval is more accurate than existing LLM judges is not established as convincingly as its improved consistency.",
+        "strengths": [
+          "The benchmark design is interpretable: case-specific scoring points turn a vague success judgment into explicit checks, with clear construction principles and expert review (pp. 3–5).",
+          "The empirical scope is substantial, covering ten diverse jailbreak methods, five victim models, multiple topics, and several baseline evaluators (pp. 5–8).",
+          "Human–LLM agreement and cross-evaluator variance provide useful evidence that the proposed rubric is reproducible (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The main accuracy claim lacks an independent gold-standard evaluation. The human study reports raw agreement but not accuracy against adjudicated labels, chance-corrected metrics, class balance, or comparison of every baseline against the same human labels (p. 10).",
+          "The false-positive analysis is partly circular: an LLM selects responses belonging to presumed failure modes, after which evaluators are assessed on that subset, without reported human verification of either the subset labels or actual failures (pp. 8–9, 27).",
+          "Construct validity remains uncertain: equal completion of manually chosen entity/action points ignores severity, feasibility, dependencies, and harmful details omitted from the rubric. Several broader conclusions—such as enabling cheaper judges and >90% pairwise power—receive limited direct evidence (pp. 5, 9, 22)."
+        ],
+        "score_rationale": "This is a useful benchmark proposal with strong motivation, interpretable rubrics, and extensive measurements. However, reproducibility is more convincingly demonstrated than correctness: the validation does not directly show that GuidedEval is more accurate than strong existing judges on independently adjudicated data, and the rubric’s construct validity is underexamined. These issues leave the work marginally below acceptance despite its practical value."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "GuidedBench proposes 200 curated harmful prompts and case-specific entity/action rubrics for evaluating jailbreak responses. The benchmark is useful and the evaluation across ten attacks and five victim models is substantial, but the evidence primarily establishes judge consistency rather than the claimed superior accuracy.",
+        "strengths": [
+          "The case-specific decomposition into identifiable entities and actions is intuitive, interpretable, and more informative than refusal-keyword or coarse binary judgments (pp. 4–5, 25–26).",
+          "The empirical study covers ten diverse black-/white-box attacks, five victim models, several evaluator models, and multiple baseline evaluation systems (pp. 5–9).",
+          "The paper includes useful stability analyses: GuidedEval has substantially lower cross-judge variance, broader score usage, and high human–LLM agreement (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central accuracy claim is not convincingly validated. Human evaluation reports pairwise agreement only, without adjudicated ground truth, evaluator-specific precision/recall, or direct comparison against all baselines on the same human-labeled sample (p. 10).",
+          "The reported false-positive analysis is potentially circular: one LLM selects failure-mode cases, some selected cases admittedly contain harmful information, yet the subset is treated as objectively failed; no human validation of subset membership or true labels is reported (pp. 8–9, 27).",
+          "The metric equates the fraction of equally weighted rubric items with attack success, although rubric completeness and item importance are subjective. Six experts reviewed guidelines, but inter-annotator statistics, blind review procedures, sensitivity to alternative rubrics/weights, and guideline coverage tests are absent (pp. 4–5)."
+        ],
+        "score_rationale": "The rubric-based benchmark is practically valuable and supported by broad experiments, placing it near the acceptance boundary. However, the paper’s decisive claim—that GuidedEval is more accurate rather than merely more consistent and granular—lacks a sufficiently independent gold-standard comparison, while rubric subjectivity is under-analyzed. I therefore lean marginally below acceptance; uncertainty remains because the unreproduced dataset may permit stronger auditing than is documented."
+      }
+    }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "year": 2025,
+  "package_id": "paper_017",
+  "paper_id": "m8Rk3HLGFx",
+  "number": 1274,
+  "title": "SynCamMaster: Synchronizing Multi-Camera Video Generation from Diverse Viewpoints",
+  "authors": "Jianhong Bai; Menghan Xia; Xintao Wang; Ziyang Yuan; Zuozhu Liu; Haoji Hu; Pengfei Wan; Di ZHANG",
+  "primary_area": "generative models",
+  "keywords": "Video Generation; Diffusion Model",
+  "forum_url": "https://openreview.net/forum?id=m8Rk3HLGFx",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    6,
+    8,
+    6,
+    3,
+    6
+  ],
+  "human_mean_rating": 5.857142857142857,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "In this manuscript, the authors proposed a plug-and-play module that enhances a pretrained text-to-video model for multi-camera video generation. To achieve this goal, a multi-view synchronization module to ensure appearance and geometry consistency across different viewpoints. The synthesized videos using UE are generated as supplement for training. The proposed SynCamMaster is compared with related works on multi-view video generation, and provides competitive performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The proposed method is simple yet effective for multi-camera video generation. \nThe paper is well-written and easy to understand.\nThe results are impressive."
+        },
+        "weaknesses": {
+          "value": "[Pioneer Status] In terms of pioneering work, it has come to my attention that Sora possesses multi-camera video generation capabilities. Therefore, the claim in the article that \"To our knowledge, SynCamMaster pioneered multi-camera real-world video generation\" warrants reconsideration.\n\n[Novelty of SynCamMaster] The core design of SynCamMaster revolves around the inter-view synchronization module, which can be integrated into a pretrained text-to-video model. However, similar modules are commonly found in other generation models employing cross-view attention, which suggests that the novelty is incremental. It would be beneficial to emphasize how SynCamMaster distinguishes itself from existing methods.\n\n[Camera Encoder] The process for converting 12-dimensional extrinsic parameters to align with the dimensions of spatial features remains unclear. The encoding of camera extrinsics significantly influences the final outcome, so providing additional crucial details would be appreciated.\n\n[Typos] M.V. Images in table 1 and 4, they are mentioned in the manuscript. It is better to make it clear what is it. \n\n[Supplementary files] If the generated video files by all comparison methods are provided as supplementary files, it will provide a better and more intuitive way to understand the proposed SynCamMaster."
+        },
+        "questions": {
+          "value": "See Weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "Yes, Responsible research practice (e.g., human subjects, data release)"
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "JhD5zyTeeu",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_zZFD"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_zZFD"
+      ],
+      "number": 7,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731158058173,
+      "cdate": 1731158058173,
+      "tmdate": 1731427401589,
+      "mdate": 1731427401589,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper focuses on the multi-view video generation with image/video and camera pose  conditions. Specifically, this paper propose a plug-and-play multi-view synchronization module to maintain appearance and geometry consistency. In addition, they collect a small set of 4D data and combine it together with 3D data to improve the generalization ability."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The method is novel and each module and design are reasonable with clear motivation.\n\n2. The proposed method achieved good performance both qualitatively and quantitatively.\n\n3. Extensive experiments and ablation studies demonstrate the effectiveness of the proposed techniques."
+        },
+        "weaknesses": {
+          "value": "1. I am kind of confused with the motivation of this task. The multi-camera videos generated by this work are several videos with fixed cameras. However, the videos we see and use in our daily life are commonly one monocular video with a dynamic camera, like the task that MotionCtrl focuses on. I hope the authors could provide more explanation about the task motivation.\n\n2. As claimed in the introduction section, multi-camera synchronized video generation is crucial for virtual filming. I am not an expert in virtual filming, but I feel it requires highly spatio-temporal consistent videos. Therefore, a good way to demonstrate the 4D consistency is to lift the generated samples to 4D representations, such as 4D gaussian splatting, and to show the rendered views. Plenoptic dataset [A] can be used for this evaluation.\n\n\n3. Evaluation data and metrics should be explained. The details of the evaluation data are not provided. It is more convincing to evaluate on the public dataset. For multi-camera video evaluation, the PSNR, SSIM, and LPIPS metrics on Plenoptic [A]  D-NeRF [B] datasets can be used. For video quality evaluation, VBench [C] would be better than ``100 manually collected text prompts’’. In addition, when evaluating the accuracy of camera control with TansErr, the estimated camera should be normalized before estimating the loss (following [D]), since the SfM is up to a scale and the scale mismatch can greatly increase the TransErr. In CameraCtrl, the scale problem is not significant as the compared methods are all trained on the Re10K dataset. However, this paper trains on a different dataset (DL3DV-10K) with MotionCtrl (Re10K) and the scale problem might be enhanced.\n\n*Reference*\n\n[A] Neural 3D Video Synthesis from Multi-view Video\n\n[B] D-NeRF: Neural Radiance Fields for Dynamic Scenes\n\n[C] VBench: Comprehensive Benchmark Suite for Video Generative Models\n\n[D] CamCo: Camera-Controllable 3D-Consistent Image-to-Video Generation"
+        },
+        "questions": {
+          "value": "My concern is mainly about the evaluation of multi-camera videos. Please refer to Weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "H2O4aIkiHa",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_edwQ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_edwQ"
+      ],
+      "number": 6,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731066409726,
+      "cdate": 1731066409726,
+      "tmdate": 1732774258542,
+      "mdate": 1732774258542,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a multi-view video generation approach based on an input textual prompt or monocular video. To achieve this goal, a multi-view synchronization module is incorporated into a pre-trained text-to-video model, where the goal is to maintain appearance and geometry consistency across multiple viewpoints. To address the scarcity issue of the training data, a progressive training scheme is designed that leverages multi-camera images, synthetic multi-view videos, and real-world monocular videos."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The multi-view video generation is a novel task. This paper shows some promising results in this direction, where the temporal consistency within each single view and spatial consistency across different views are maintained reasonably well.\n\n2. The proposed way of using multi-view images, synthetic multi-view videos, and real-world monocular videos to train the model is novel. Ideally, we could train the model with multi-view videos, which are however hard to obtain, especially the high-quality real-world ones. The proposed approach shows an alternative approach to solve the data scarcity issue."
+        },
+        "weaknesses": {
+          "value": "1. The proposed approach can only generate a single video at a novel viewpoint each time. Compared with generating multiple videos at different viewpoints simultaneously, the view consistency among the generated multi-view videos may not be good. Of course, the proposed approach can be used progressively generate further and further novel-view videos. But the view inconsistency may accumulate.\n\n2. I wish the authors could show more visual results so the quality of the generated videos could be more comprehensively gauged. In the current results (both in the paper and on the project webpage), the same example (e.g., the gorilla eating carrot, the elephant walking on a beach) appears many times."
+        },
+        "questions": {
+          "value": "1. Around the line #189, should $\\phi_t$ be $\\psi_t$? And what do $\\psi_t^{-1}$ and $\\psi_t'$ mean, respectively?\n\n2. Could you please provide more information about the real-world monocular videos used in this paper? Like duration, amount, how they are curated, etc.\n\n3. In the line #140, does $f$ indicate the number of frames?\n\n4. Is there any plan to release the code?\n\n5. Can more visual examples of the generated multi-view synthetic videos be shown?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jl8HuTtslr",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_bc9Q"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_bc9Q"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731035911462,
+      "cdate": 1731035911462,
+      "tmdate": 1731427401791,
+      "mdate": 1731427401791,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces SynCamMaster, a pioneering framework for generating real-world videos across multiple camera perspectives. SynCamMaster also extends to novel view synthesis, allowing re-rendering of input videos from new viewpoints. To address the scarcity of multi-camera video data, the authors propose a hybrid data construction and training paradigm that enhances the model's generalization capabilities. Extensive experiments demonstrate that SynCamMaster significantly outperforms baseline methods, with particularly impressive visualization results."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Simplicity and Efficiency: The proposed method is both straightforward and efficient. This paper introduces a multi-view synchronization module designed to ensure camera-conditioned video consistency, enhancing realism and alignment across views.\n\n2. Innovative Data Construction: This paper addresses the scarcity of multi-view video data by developing a robust hybrid-data collection pipeline. This process effectively collects diverse and comprehensive training data.\n\n3. Thoughtful Training Strategy: The paper provides a clear breakdown of each stage in the training strategy, along with detailed insights into the motivations behind each stage. These insights offer readers a better understanding of the model's optimization process and rationale.\n\n4. High-Quality Visualizations: The visualization results presented in the paper are impressive.\n\n5. Clarity of Presentation: The paper is well-organized and articulated in a way that is accessible and easy to understand."
+        },
+        "weaknesses": {
+          "value": "Lack of Comparison with MotionCtrl: A drawback is the absence of a comparative evaluation with MotionCtrl (\"MotionCtrl: A Unified and Flexible Motion Controller for Video Generation\")."
+        },
+        "questions": {
+          "value": "See weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "k7LNLe25EM",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_KEwM"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_KEwM"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730945602262,
+      "cdate": 1730945602262,
+      "tmdate": 1731427401902,
+      "mdate": 1731427401902,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper \"SynCamMaster: Synchronizing Multi-Camera Video Generation from Diverse Viewpoints\" introduces a novel approach for generating synchronized multi-view videos from arbitrary viewpoints, addressing challenges in open-domain video generation that require consistent geometry and appearance across diverse camera angles. The authors leverage a pre-trained text-to-video model and enhance it with a multi-view synchronization module, designed to integrate inter-view feature consistency, which is achieved by incorporating a camera encoder and a unique attention mechanism. Additionally, they introduce a hybrid dataset and progressive training techniques to improve the generalization of the model to open-domain scenarios, effectively overcoming the scarcity of synchronized multi-view video data. Their experiments demonstrate superior cross-view synchronization and visual fidelity compared to baseline methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper introduces a forward-looking approach by achieving multi-camera real-world video generation, a pioneering advancement that is likely to drive significant progress in several areas in computer vision. Extensive experiments and ablation studies support the reliability of the proposed model, and the project website showcases video results that validate the method's effectiveness."
+        },
+        "weaknesses": {
+          "value": "1.I believe the challenge identification section is unclear. Initially, the authors mention two challenges in this field, then state, \"our research targets open-domain video generation from multiple arbitrary viewpoints, which has not been investigated.\" However, they do not clearly explain the reason for this research, nor do they clarify the limitations of existing methods and the higher demands that necessitate this research.\n2.The explanation of the model structure and model formulation is severely lacking, making it difficult to connect the input-to-output process in the model with the text description, including the loss function and optimization mechanism. Specifically, the figure should indicate what the input is, which step produces the features, and how the loss is calculated, among other key details.\n3.How does SynCamMaster determine the rotation center and radius when generating rotating camera viewpoints? I think that for a method designed to generate multi-view videos, this is an aspect that requires clarification.\n4. Although the paper provides results for camera rotations like 90 degrees or 20 degrees, how can you quantitatively assess that the generated images match the rotation you specified? Without ground truth for reference, it is challenging to determine whether the rotation results are accurate. Could the authors use a COLMAP or similar method to register the spatial relationships of the generated multi-view images in camera space?"
+        },
+        "questions": {
+          "value": "1.The citations for each method in tables should be added.\n2.It appears a new synthetic dataset was proposed in this work for training the model. Will you decide to release this dataset? The dataset could be considered a contribution to the paper, so I suggest naming this synthetic dataset for readability.\n3.In the qualitative experiments, you mention a polar bear case, but Figure 5 uses an elephant and a bus, and I couldn’t find polar bear images in the appendix.\n4.In the quantitative experiments, your method performs worse than I2V-ours in terms of visual quality. I would like to see some analysis on this comparison between your results and those of I2V-ours.\n5.Table 1 entries for I2V and SVD-XT should be unified if they refer to the same method for consistency.\n6.In Figure 6(a), joint training strategy ablation study results are shown, but without ground truth to assess and with images that are too small, it is difficult to judge if the strategy improved the generation results, or if the effect is simply not significant. In contrast, Figure 6(b) shows clear improvements."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "Yes, Privacy, security and safety"
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "In the paper, authors generate some human (little girl) images through the diffusion model, I'm not sure whether it has ethics problem."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "qSCo5eW4my",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_bsPL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_bsPL"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730695200367,
+      "cdate": 1730695200367,
+      "tmdate": 1731427402017,
+      "mdate": 1731427402017,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a multiview video dataset rendered using Unreal Engine. Additionally, it proposes a multiview video generative model architecture and training strategy to adapt a pretrained video diffusion model for simultaneous multiview generation."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "(1) A multiview video dataset is presented.\n(2) A multiview video diffusion model is trained using the proposed dataset.\n(3) Comprehensive visualization results of the proposed method are provided."
+        },
+        "weaknesses": {
+          "value": "(1) Encoding the camera pose matrix directly into the diffusion process as a condition is overly coarse. The authors should consider transforming camera poses into more explicit representations, such as ray positional encoding [1].\n(2) Since the multi-view video is rendered rather than directly collected from real-world scenes, a significant concern is ensuring that the model learns only multi-view-related information rather than features specific to Unreal Engine-rendered models, materials, and textures. For instance, in Fig. 6 (a), how to avoid the output as the rendered scene? Authors should also introduce some real-world multiview videos to help balance the training of the diffusion model.\n(3) The rotation angle in Fig. 6 (b) appears noticeably less than 90 degrees. Additionally, the precision of camera control is low, as indicated in Table 4.\n(4) The proposed multi-view synchronization module is essentially a cross-attention layer, which lacks explicit modeling of 3D information.\n(5) Given that camera poses are static in each rendered video under the proposed setup, it's unnecessary to render arbitrary camera poses. We can greatly lessen the burden of generative models and improve it accuracy by capturing and training more fewer camera poses, e.g., 6 views evenly distributed around 360 degrees, and applying 3D reconstruction on the generated views to get other different views.\n[1] Gao, Ruiqi, et al. \"Cat3d: Create anything in 3d with multi-view diffusion models.\" arXiv preprint arXiv:2405.10314 (2024)."
+        },
+        "questions": {
+          "value": "Please refer to the weakness section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "YPoRx0WCCh",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_zv9N"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_zv9N"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730694047998,
+      "cdate": 1730694047998,
+      "tmdate": 1731427402109,
+      "mdate": 1731427402109,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a plug-and-play module for generating consistent videos from arbitrary viewpoints using 6 DoF camera poses. Unlike methods focused on 4D reconstruction of single objects, this approach enhances a pre-trained text-to-video model for synchronized multi-camera generation, ensuring appearance and geometry consistency across viewpoints. To overcome limited training data, this paper uses a progressive training scheme, leveraging multi-camera and monocular videos along with Unreal Engine-generated data."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The approach of generating synchronized multi-view videos is a strong point, as these videos offer applications beyond traditional 4D reconstruction, such as enhancing virtual filming. By maintaining dynamic consistency across views, this method broadens the potential use cases in various real-time and interactive settings.\n\n2. The visual quality of the generated videos is impressive, particularly with respect to the wide camera baselines achieved. This indicates the model’s robustness in handling significant viewpoint shifts, preserving both appearance and geometric consistency across diverse perspectives, which is essential for applications requiring high-fidelity visual continuity.\n\n3. Leveraging multi-view video data from game engines for fine-tuning is a smart approach, especially given the scarcity of high-quality multi-camera real-world datasets. The method demonstrates effective generalization to real-world data, showing that game engine data can be a viable supplement for improving model performance in open-world video generation tasks."
+        },
+        "weaknesses": {
+          "value": "1. Although 4D video reconstruction is highlighted as a key application, the paper does not provide specific results on this. Including an evaluation of 4D reconstruction performance (like 4DGS) on the output synchronized videos would strengthen the contribution and showcase the practical utility of the generated multi-view videos in real-world 4D reconstruction tasks.\n\n2. The use of camera conditioning is potentially limited, as it may not handle large out-of-distribution camera pose translations during inference (e.g., for training only 3.5m - 9m shifts). Testing the model on such out-of-distribution poses would provide valuable insight into its robustness and adaptability to extreme viewpoint variations, which are common in real-world applications.\n\n3. Multi-view consistency could be better assessed. A qualitative evaluation, such as a cycle consistency check, could help—rendering videos from generated camera poses and then re-rendering from the original poses would allow comparison. The differences between these two renderings could serve as a metric for the model’s ability to maintain consistent content across varying views, giving a clearer measure of its multi-view coherence."
+        },
+        "questions": {
+          "value": "1. Will the data preparation process and resulting dataset be made publicly available? The paper states that data was collected from a game engine, which could be valuable for advancing research in multi-view video generation. Public access to this data would enable reproducibility, facilitate benchmarking, and help other researchers develop and test models in a similar setting.\n\n2. How were the data mixture probabilities (0.6, 0.2, 0.2) chosen, and what role do they play in the model’s performance? It would be helpful to understand the rationale behind this distribution and whether alternative ratios were explored. Insights into how these probabilities impact training dynamics and model generalization would also clarify the importance of the data mixture balance in achieving optimal results."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "Yes, Privacy, security and safety",
+            "Yes, Responsible research practice (e.g., human subjects, data release)"
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "Human faces are shown in the paper. Not sure if they are generated or sampled from some datasets."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZSQbAzniA4",
+      "forum": "m8Rk3HLGFx",
+      "replyto": "m8Rk3HLGFx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_kLvx"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1274/Reviewer_kLvx"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1274/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730687203275,
+      "cdate": 1730687203275,
+      "tmdate": 1731427402204,
+      "mdate": 1731427402204,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SynCamMaster adapts a frozen text-to-video DiT with camera embeddings and per-frame cross-view attention, trained using synthetic synchronized videos, posed images, and monocular videos. The task is valuable and results are visually promising, but limited novelty and a circular/weak evaluation prevent strong validation of arbitrary-view 4D consistency.",
+        "strengths": [
+          "Addresses a useful, underexplored problem: open-domain text-to-synchronized-multiview video generation with specified camera extrinsics (pp. 2–4).",
+          "The hybrid-data recipe is practical, and its ablation shows substantial gains from multi-view images and general videos across quality and synchronization metrics (pp. 8–9).",
+          "Qualitative examples cover varied subjects and viewpoint gaps, while camera-representation and attention ablations provide additional diagnostic evidence (pp. 18–22)."
+        ],
+        "weaknesses": [
+          "The core architecture—camera embeddings plus cross-view self-attention—is incremental, and the claimed plug-and-play nature is only demonstrated on one undisclosed internal base model, limiting reproducibility and attribution of gains (pp. 3–4, 16).",
+          "Baseline evaluation is circular: competing I2V methods receive first frames generated by SynCamMaster, are not native solutions to the task, and no direct comparison to the closely related CVD is reported. Thus the large synchronization advantage does not establish superiority over credible task-specific alternatives (pp. 7–9).",
+          "Evidence for true geometric/dynamic consistency is weak: evaluation uses generated samples without multiview ground truth, while CLIP-V, FVD-V, match counts, and pose estimates can reward semantic similarity or overlapping appearance rather than correct 4D geometry. “Arbitrary viewpoints” is also overstated given fixed-in-time cameras, shared intrinsics, constrained synthetic training poses, and acknowledged detail failures (pp. 5, 7–10, 18, 23)."
+        ],
+        "score_rationale": "The paper presents a useful task, a sensible training recipe, and encouraging qualitative and ablation results. However, the architectural contribution is modest and the circular baselines plus absence of ground-truth multiview evaluation leave the main consistency and superiority claims insufficiently supported. I therefore place it marginally below acceptance, with some uncertainty because the linked videos are unavailable in the supplied manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents SynCamMaster, a frozen text-to-video DiT augmented with camera embeddings and per-frame cross-view attention, trained using synthetic synchronized videos, posed image sequences, and monocular-video regularization. The task is valuable and the visual results are promising, but the empirical comparison and camera-control validation do not yet convincingly establish the broad arbitrary-view, open-world claims.",
+        "strengths": [
+          "Addresses a useful and relatively underexplored task—text-conditioned synchronized multi-camera video generation—and provides a simple plug-in design plus a new rendered dataset (pp. 2–6).",
+          "The hybrid-data and progressive-training strategy is sensible; ablations show substantial gains from posed images and general videos, with the full mixture improving FVD from 1971 to 1401 and CLIP-V from 89.68 to 93.71 (pp. 8–10).",
+          "Qualitative examples cover varied subjects and sizable viewpoint changes, and the paper explicitly documents failures involving scene details and hands (pp. 20–23)."
+        ],
+        "weaknesses": [
+          "The comparison is weak and partly circular: baselines cannot solve text-to-multiview generation and are initialized using first-view images generated by SynCamMaster itself. Relevant CVD/GCD comparisons are absent, and the claimed comparability to GCD is unsupported by a reported GCD row (pp. 7–10).",
+          "Camera evaluation is questionable: GIM-based homography decomposition is applied to general scenes, translation is normalized, and testing covers only 10°–30° azimuth or 10°–15° elevation despite claims of arbitrary viewpoints. Training also assumes fixed intrinsics, fixed cameras over time, and constrained hemispherical poses (pp. 5, 17–18).",
+          "Reproducibility and attribution of gains are limited because the base model and general-video source are internal/unspecified. Cross-view attention itself is technically straightforward, and no controlled comparison isolates performance from the proprietary foundation model (pp. 3–4, 7, 16–17)."
+        ],
+        "score_rationale": "The task, visual quality, and hybrid training recipe are promising, but novelty is moderate and decisive evidence is undermined by non-equivalent baselines, limited pose evaluation, and an unreproducible internal backbone. I therefore place it marginally below acceptance; uncertainty remains because the supplied static figures cannot fully reveal temporal synchronization."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SynCamMaster adapts a frozen text-to-video DiT with camera embeddings and per-frame cross-view attention, trained using rendered synchronized videos, posed image sequences, and ordinary videos. The task is useful and the qualitative results are promising, but the central claims are not supported by sufficiently rigorous or fair evaluation.",
+        "strengths": [
+          "Addresses an important, relatively underexplored setting: open-domain, text-conditioned synchronized video generation from multiple specified viewpoints (pp. 2–4).",
+          "The hybrid-data and progressive-training strategy is practical, and ablations indicate that posed images improve cross-view behavior while ordinary videos improve quality (pp. 8–10).",
+          "Qualitative examples cover multiple subjects and appreciable viewpoint changes, with generally coherent motion and appearance across views (pp. 20–22)."
+        ],
+        "weaknesses": [
+          "The comparison is weak and partly circular: baseline videos are initialized using first frames generated by SynCamMaster, while directly related multi-video work such as CVD is not evaluated; the claimed comparison to GCD for novel-view synthesis is also not actually shown in Table 3 (pp. 7–10).",
+          "The automatic evidence does not convincingly establish correct 4D geometry. CLIP-V and matching counts can reward semantic similarity, while pose estimates obtained by decomposing a GIM-derived homography are questionable for general non-planar dynamic scenes; no human study or evaluation against real synchronized ground truth is provided (pp. 7–9, 18).",
+          "“Arbitrary viewpoints” is overstated: cameras are static, training uses shared intrinsics and constrained hemispherical placements, and camera-accuracy evaluation covers only adjacent differences up to 30° azimuth or 15° elevation. The method also relies on an unavailable internal base model, limiting reproducibility (pp. 3, 5, 16–18)."
+        ],
+        "score_rationale": "The task, dataset construction, and visual results are promising enough to approach acceptance, but the method is technically incremental and the evaluation has major baseline, geometric-validity, scope, and reproducibility gaps. I therefore rate it marginally below acceptance, with some uncertainty because video behavior cannot be fully judged from the supplied frame grids."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SynCamMaster augments a frozen text-to-video DiT with camera embeddings and per-frame cross-view attention, trained using synthetic synchronized videos, posed image sequences, and ordinary videos. The task is timely and the examples are promising, but the fairly incremental architecture and insufficiently controlled evaluation leave the central claims only partially established.",
+        "strengths": [
+          "Addresses a useful, underexplored setting: open-domain text-to-video generation synchronized across multiple specified viewpoints, rather than object-centric 4D generation (pp. 2–3).",
+          "The hybrid-data strategy is practical, and its ablation shows that posed images and general videos complement the limited rendered multi-camera data (pp. 8–9).",
+          "Qualitative results cover varied scenes and substantial viewpoint changes, while reported matching and pose errors favor the method (pp. 7–9, 20–22)."
+        ],
+        "weaknesses": [
+          "The main comparison is weak: baselines are pipelines initialized with SynCamMaster-generated first frames, while the directly relevant CVD is discussed but not evaluated; there is also no human study (pp. 3, 8–9). Cross-view CLIP/FVD and matching counts do not reliably establish detailed 4D consistency.",
+          "Reproducibility and attribution are limited by an undisclosed internal base model and incompletely specified data sources/filter thresholds. This makes it difficult to separate gains from the proposed module versus the foundation model (pp. 3, 6–7, 16–17).",
+          "Claims of arbitrary viewpoints and competitive novel-view synthesis are overstated: training cameras have restricted elevation, fixed intrinsics, and a progressive range only up to 120 degrees; Table 3 contains no competing method despite claiming comparability to GCD (pp. 5, 10, 17–18)."
+        ],
+        "score_rationale": "The paper presents a worthwhile task, sensible engineering, and encouraging results, but the cross-view attention mechanism is modestly novel and the evaluation lacks sufficiently fair, direct baselines and rigorous geometric validation. I am therefore marginally below acceptance; uncertainty remains because videos linked externally cannot be assessed from the supplied manuscript."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "SynCamMaster adapts a frozen text-to-video DiT with camera embeddings and per-frame cross-view attention, trained using rendered multi-camera videos, posed image sequences, and monocular videos. The task is useful and the displayed results are promising, but the architectural novelty is modest and the evaluation does not convincingly establish superiority on the actual text-to-multiview-video task.",
+        "strengths": [
+          "Addresses a practically valuable and relatively underexplored setting: open-domain, synchronized video generation from user-specified viewpoints (pp. 2–4).",
+          "The hybrid-data strategy is sensible and supported by quantitative ablations showing gains from multi-view images and general videos (pp. 8–9).",
+          "Qualitative examples cover varied subjects and substantial viewpoint changes, while camera-representation and attention-design ablations add useful analysis (pp. 18–22)."
+        ],
+        "weaknesses": [
+          "The main comparison is structurally weak: baselines cannot perform text-to-multiview generation and are initialized using first-view images produced by SynCamMaster itself, while the closely related CVD is discussed but not directly evaluated (pp. 7–9).",
+          "Several metrics do not robustly establish 4D consistency: CLIP-V rewards semantic similarity rather than geometric agreement, pose recovery relies on matcher-derived correspondences, evaluation uses only 100 prompts, and no human study or ground-truth synchronized real-video benchmark is provided (pp. 7–9, 18).",
+          "Reproducibility and claimed generality are limited by an unspecified internal foundation model and incompletely characterized data; training uses shared intrinsics, fixed cameras, constrained hemispherical viewpoints, and only 500 rendered scenes, despite claims of arbitrary viewpoints (pp. 3, 5, 16–18)."
+        ],
+        "score_rationale": "The paper presents a useful system with encouraging visuals and meaningful training ablations, but cross-view attention plus camera embeddings is incremental relative to cited concurrent work. More importantly, circular/non-task-matched baselines and limited geometric evaluation leave the central superiority and arbitrary-view claims insufficiently substantiated. I therefore place it marginally below acceptance, with some uncertainty because static figures cannot reveal full temporal synchronization."
+      }
+    }
+  ]
+}

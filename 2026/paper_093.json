@@ -1,0 +1,269 @@
+{
+  "year": 2026,
+  "package_id": "paper_093",
+  "paper_id": "liOHottW7G",
+  "number": 23754,
+  "title": "Adaptive Scaling of Policy Constraints for Offline Reinforcement Learning",
+  "authors": [
+    "Tan Jing",
+    "Xiaorui Li",
+    "Chao Yao",
+    "Xiaojuan Ban",
+    "Yuetong Fang",
+    "Renjing Xu",
+    "Zhaolin Yuan"
+  ],
+  "primary_area": "reinforcement learning",
+  "keywords": [
+    "Offline Reinforcement Learning",
+    "Policy Constraint",
+    "Behavioral cloning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=liOHottW7G",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    4,
+    6,
+    2
+  ],
+  "human_mean_rating": 4.8,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "6FSoMJMBxe",
+      "forum": "liOHottW7G",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23754/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761995015808,
+      "tmdate": 1762942792583,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "QS0ML4SXNv",
+      "forum": "liOHottW7G",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23754/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761552383991,
+      "tmdate": 1762942793242,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "VPz3a7esmo",
+      "forum": "liOHottW7G",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23754/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761989715257,
+      "tmdate": 1762942792796,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "sKyX5LcljK",
+      "forum": "liOHottW7G",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23754/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762164679374,
+      "tmdate": 1762942792239,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "zoId5AGDIX",
+      "forum": "liOHottW7G",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23754/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761911421266,
+      "tmdate": 1762942793003,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 5,
+        "summary": "ASPC uses bilevel differentiation to adapt the RL–behavior-cloning trade-off in offline RL. The empirical study is broad and reports strong average performance, but the claimed theoretical guarantees do not establish guarantees for the implemented algorithm, and several reporting inconsistencies weaken the evidence.",
+        "strengths": [
+          "Broad evaluation across 39 D4RL datasets, with ASPC achieving the highest reported total average and strong MuJoCo/Maze2d results (pp. 6–7).",
+          "Controlled comparisons against fixed, converged, and linear coefficient schedules support the value of dynamic adaptation (p. 8).",
+          "Useful ablations cover the robust critic, loss components, computational overhead, and hyperparameter sensitivity (pp. 9, 28–29)."
+        ],
+        "weaknesses": [
+          "The main guarantee is unsupported: Theorem 4.4 assumes the desired condition rather than proving ASPC enforces it, while its proof merely asserts that an unspecified weight can guarantee improvement before setting it heuristically to one (pp. 5, 17). Theorem 4.5 additionally assumes a positive per-step gain and can yield an impossible negative upper bound (pp. 17–18).",
+          "Theory and implementation are misaligned. The performance proof uses the true Q-function and a behavior-policy occupancy distribution, whereas optimization uses a learned critic and empirical datasets that may be mixtures; no critic-error term connects them. Moreover, the stated meta-update omits the direct derivative of the explicitly alpha-dependent outer loss (pp. 4, 15–17).",
+          "Empirical reporting has unresolved inconsistencies and overclaims: nominally identical TD3+BC settings have different domain averages between Tables 1 and 2 (pp. 6, 8), and OGBench is described as clearly surpassing all baselines despite losing to ReBRAC on several tasks (p. 10). Four seeds and heterogeneous aggregate averages leave some uncertainty about robustness."
+        ],
+        "score_rationale": "The adaptive-scaling idea is practically relevant and the experimental breadth makes the work promising. However, novelty is moderate, the central theoretical claims are substantially overstated, and inconsistencies reduce confidence in the empirical conclusions. I therefore place it marginally below acceptance, while acknowledging that validated results and corrected claims could raise the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper proposes a bilevel, second-order method for adapting the RL–behavior-cloning trade-off in offline RL. The practical idea is relevant and produces strong average results across broad benchmarks, but the claimed theoretical guarantees are not established, and several empirical/generalization claims are overstated.",
+        "strengths": [
+          "Addresses the practically important problem of avoiding dataset-specific constraint tuning with a simple, broadly applicable mechanism (pp. 2–5).",
+          "Evaluates on 39 D4RL datasets with four seeds and includes useful fixed-versus-dynamic, component, runtime, and sensitivity analyses (pp. 6–9, 27–29).",
+          "Reports strong aggregate performance with modest measured overhead, including extensions to several distinct offline-RL objectives (pp. 6, 9–10)."
+        ],
+        "weaknesses": [
+          "The central guarantee is unsupported: Theorem 4.4 assumes the sufficient condition from Proposition 4.3, but the proof merely asserts that curvature matching and an unspecified appropriate weight enforce it; the implemented weight is simply set to one. Theorem 4.5 further assumes a positive per-step gain rather than deriving it (pp. 5, 17–18).",
+          "The optimization equations are internally incomplete: Louter explicitly depends on alpha, yet Eq. 10 includes only the path through the updated actor and omits the direct partial derivative. Positivity/control of alpha, differentiation through normalization, and practical computation of dataset suprema are also unspecified (pp. 4, 19, 27–28).",
+          "Empirical conclusions are too broad: ASPC trails alternatives on AntMaze and Adroit, several +ASPC variants degrade individual tasks, and FQL+ASPC worsens four of ten OGBench tasks despite claims of consistent improvement. Results are also highly sensitive to the alpha learning rate across domains (pp. 6, 10, 29)."
+        ],
+        "score_rationale": "The extensive experiments suggest a potentially useful heuristic, but novelty over standard bilevel hyperparameter optimization is moderate. More importantly, the paper presents its main theoretical claims as guarantees without proving that the actual algorithm satisfies their conditions, while also overstating empirical consistency. These are major issues requiring substantial revision, so the work is below the acceptance threshold despite promising results."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ASPC uses bilevel second-order updates to adapt the RL–behavior-cloning trade-off in offline RL. The empirical study is broad and reports a strong aggregate D4RL improvement with one configuration, but the theoretical guarantees are not established by the supplied proofs, and several generality and fairness claims exceed the evidence.",
+        "strengths": [
+          "Broad evaluation across 39 D4RL datasets, additional OGBench tasks, four seeds, learning curves, runtime measurements, and several component/sensitivity ablations (pp. 6–10, 23–29).",
+          "The controlled fixed-, converged-, linear-, and dynamic-alpha comparison provides useful evidence that a training-dependent schedule can outperform merely selecting a final coefficient (p. 8).",
+          "The approach is computationally practical: infrequent meta-updates add limited reported overhead, and the learned alpha trajectories exhibit meaningful task- and dataset-dependent behavior (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "The main guarantees are unsupported. Theorem 4.4 assumes the desired condition ΔQ≥Φ rather than proving that the implemented outer loss enforces it; its proof merely asserts that an unspecified weight guarantees improvement after dropping constants and higher-order terms (pp. 5, 17). It also substitutes a learned critic for Q^{π_t} and D≈d^{πβ} as if exact (pp. 15–17). Theorem 4.5 assumes a uniform positive δ_min despite convergence, yielding a bound that eventually becomes negative (pp. 17–18).",
+          "The central comparison is partially confounded: ASPC changes both alpha adaptation and the critic architecture, while comparator results mix reproductions with numbers imported from prior work and employ heterogeneous tuning/evaluation configurations (pp. 5–7, 19–22). The robust-critic ablation helps but does not fully isolate adaptive scaling against equally optimized baselines.",
+          "Claims of consistent broad applicability are overstated: ASPC extensions regress on several IQL and Diffusion-QL datasets, while FQL+ASPC degrades on four OGBench tasks and by as much as 50% on one task (pp. 10, 25–26). The sensitivity results also show substantial dependence on the initial alpha and learning rate (p. 29)."
+        ],
+        "score_rationale": "The adaptive-coefficient idea is useful but only moderately novel, and the extensive results make the paper potentially valuable. However, the advertised theory contains fundamental gaps, and empirical confounds and overclaims prevent the current evidence from cleanly establishing that the proposed bilevel mechanism itself delivers the claimed robust generality. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a bilevel, second-order update for adapting the RL–behavior-cloning coefficient in offline RL. The empirical study is broad and suggests useful improvements from a single nominal configuration, but the claimed theoretical guarantees do not actually apply to the implemented algorithm, and important implementation and comparison details remain unclear.",
+        "strengths": [
+          "Broad evaluation across 39 D4RL datasets, additional OGBench tasks, and several algorithmic backbones; the main configuration improves the reported total D4RL average from 57.7 for the strengthened TD3+BC baseline to 77.9 (pp. 6–10).",
+          "Controlled comparisons against fixed, converged, and linear coefficient schedules support the value of dynamic adaptation rather than only selecting a better final coefficient (p. 8).",
+          "Ablations examine the robust critic, outer-loss terms, update frequency, initialization, and learning rate, exposing both benefits and meaningful sensitivity (pp. 9, 27–29)."
+        ],
+        "weaknesses": [
+          "The central guarantee is unsupported: Theorem 4.4 merely assumes the required condition ΔQ≥Φ, while the proof does not establish that minimizing the proposed loss enforces it; it invokes an unspecified “appropriate” weight and then simply sets it to one. The learned critic is also substituted for the true policy value used in the analysis (pp. 16–18).",
+          "The theory makes questionable identifications, including replacing dataset actions by πβ(s), assumes an unproved vector-gradient ordering, and asserts a positive lower bound on per-step gains for Theorem 4.5 without deriving it. Thus the advertised performance-improvement guarantee is substantially overstated (pp. 14, 17–18).",
+          "Reproducibility and evidence have gaps: positivity or constraints for learned α and practical computation of dataset suprema are unspecified; some baseline numbers are imported while others are reproduced; only four seeds are used; and claims of consistent cross-method improvement overlook several degradations in Tables 3–4 (pp. 6–10, 19–22, 25–26)."
+        ],
+        "score_rationale": "The adaptive coefficient mechanism is plausible and empirically promising, with unusually broad benchmarking. However, its novelty is moderate, the strongest theoretical claim is not established, and key implementation/statistical details limit confidence in the reported generality. These issues place the work marginally below acceptance despite the substantial experiments."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "ASPC uses bilevel differentiation to adapt the RL–behavior-cloning trade-off and reports broad benchmark gains with one configuration. The empirical scope is substantial, but the claimed guarantees do not establish that the implemented update improves performance, and several evaluation claims are overstated.",
+        "strengths": [
+          "A simple, practically relevant adaptive-scaling idea with modest reported overhead and controlled comparisons against fixed, converged, and linear schedules (pp. 8–9).",
+          "Broad evaluation over 39 D4RL datasets, with ablations, learning curves, sensitivity analyses, and four-seed results; ASPC improves the reported overall average from 57.7 for the strengthened TD3+BC baseline to 77.9 (pp. 6, 23–29).",
+          "Extensions to several algorithm families and OGBench provide preliminary evidence that the mechanism is not entirely specific to TD3+BC (pp. 9–10, 25–26)."
+        ],
+        "weaknesses": [
+          "The central guarantee is unsupported. Theorem 4.4 merely assumes the required condition ΔQ≥Φ, while the proof never shows that minimizing L1+L2+L3 enforces it; indeed, L2 penalizes ΔQ² although the bound requires sufficiently positive ΔQ. Appendix A.3 jumps from a Taylor approximation and heuristic scaling to claiming a guarantee without an optimization argument (pp. 4–5, 17).",
+          "Theorem 4.5 adds an unproved uniform positive-gain assumption δmin>0, despite describing convergence where gains vanish; its bound can become negative for large T. The derivation also moves from expected BC error to a supremum policy-distance bound without justification (pp. 5, 17–18). Thus the theory does not apply to the approximate learned critic or implemented stochastic optimization.",
+          "Empirical conclusions are stronger than the evidence: ASPC trails wPC/ReBRAC on AntMaze and ReBRAC on Adroit, the aggregate advantage over ReBRAC is only 3.1 points, and variance is large on navigation tasks (p. 6). Claims that FQL+ASPC “consistently improves” FQL conflict with degradation on four of ten OGBench tasks, while detailed protocols and uncertainty for the extension experiments are limited (p. 10)."
+        ],
+        "score_rationale": "The adaptive bilevel formulation is moderately novel and the experiments are unusually broad, supporting potential practical value. However, the paper presents heuristic regularizers as formal performance guarantees through materially incomplete arguments, and some generality claims are not borne out task-by-task. I therefore rate it below the acceptance margin, with limited uncertainty because the decisive theoretical gaps are visible in the supplied proofs."
+      }
+    }
+  ]
+}

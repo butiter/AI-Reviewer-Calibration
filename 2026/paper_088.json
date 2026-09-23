@@ -1,0 +1,244 @@
+{
+  "year": 2026,
+  "package_id": "paper_088",
+  "paper_id": "9AA27en4go",
+  "number": 22159,
+  "title": "Difference-Aware Retrieval Policies for Imitation Learning",
+  "authors": [
+    "Quinn Pfeifer",
+    "Ethan Pronovost",
+    "Paarth Shah",
+    "Khimya Khetarpal",
+    "Siddhartha Srinivasa",
+    "Abhishek Gupta"
+  ],
+  "primary_area": "applications to robotics, autonomy, planning",
+  "keywords": [
+    "behavior cloning",
+    "robotics",
+    "imitation learning",
+    "nearest neighbor",
+    "retrieval",
+    "RAG",
+    "retrieval-augmented generation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=9AA27en4go",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    4,
+    6,
+    6
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "7oBzaxRwis",
+      "forum": "9AA27en4go",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22159/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761989709205,
+      "tmdate": 1762942093988,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "PhZeie3tPj",
+      "forum": "9AA27en4go",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22159/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762528355587,
+      "tmdate": 1762942093718,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "h6NK4UcfDj",
+      "forum": "9AA27en4go",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22159/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761910235196,
+      "tmdate": 1762942094730,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "nr09YNzrXm",
+      "forum": "9AA27en4go",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission22159/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761782910713,
+      "tmdate": 1762942095229,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "DARP is a semi-parametric imitation policy that retrieves expert neighbors, predicts query-conditioned actions from neighbor state/action/difference tuples, and aggregates them. The architectural idea is plausible and the simulations report broad gains, but the paper’s central theoretical guarantees are incorrect or unsupported, and the empirical protocol lacks enough training-level uncertainty and fairness detail to compensate.",
+        "strengths": [
+          "The neighbor-conditioned difference representation is a simple, practically useful extension of retrieval-based imitation, with ablations indicating that difference vectors and permutation invariance matter (pp. 6–9).",
+          "Reported gains are broad across MuJoCo, Robosuite, RoboCasa, visual R3M features, Push-T, and a discontinuous maze, rather than being confined to one benchmark (pp. 8–10, 19–22).",
+          "The appendices examine retrieval sensitivity, recovery from BC failures, diffusion-policy integration, human demonstrations, and runtime overhead (pp. 19–24)."
+        ],
+        "weaknesses": [
+          "The central theory is unsound. Finite Dirichlet energy/H1 membership does not generally imply local Lipschitz continuity, much less a uniform Lipschitz bound; strict variance reduction and sublinear rollout error are asserted without an adequate statistical or dynamical argument (pp. 15–17).",
+          "The claimed equivalence in Theorem 2 is false beyond a first-order approximation: 1−μ and (1+λμ)⁻¹ differ substantially, 1−μ becomes negative for μ>1, and minimizing loss after a learnable aggregation is not equivalent to applying S directly to labels. The symmetric and random-walk Laplacian eigenbases are also conflated (pp. 17–19). Moreover, practical DARP’s query-dependent nonlinear predictor is not the simple operator analyzed.",
+          "Experimental reliability and fairness remain unclear: confidence intervals appear to be over rollout episodes rather than independent training runs; core training/data/model and hyperparameter details are sparse; DARP’s retrieval uses trajectory history unavailable to the stated state-only BC baseline; and performance is sensitive to k, lookback, and decay (pp. 8–9, 19, 23). Results are simulation-only and no substantive limitations discussion is provided."
+        ],
+        "score_rationale": "The method has moderate novelty and encouraging empirical breadth, but its strongest claimed contribution—provable implicit Laplacian regularization and stability—is materially incorrect. The remaining experiments suggest promise but do not establish robust, fair improvements with training-seed uncertainty. Major theoretical revision and stronger controlled evaluation are required, placing it below the acceptance boundary."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "DARP is a moderately novel retrieval-conditioned behavior-cloning architecture that predicts actions from neighboring state-action pairs and query-relative differences. The reported gains are broad and often large, but the central theoretical equivalence and stability claims are incorrect or unsupported, while key experimental details and controls are insufficient for confidently attributing the gains.",
+        "strengths": [
+          "The method is simple, practically relevant, and combines retrieval, relative-state representations, and permutation-invariant aggregation in a useful semi-parametric policy design (pp. 6–7).",
+          "DARP is evaluated across locomotion, manipulation, visual embeddings, multimodal actions, and a discontinuous maze, with consistently favorable headline results (pp. 8–9, 19–22).",
+          "The component ablations support the importance of meaningful retrieval, difference vectors, and permutation invariance, and runtime measurements suggest feasible inference cost (pp. 9, 24)."
+        ],
+        "weaknesses": [
+          "The theory is seriously flawed: finite Dirichlet energy/H1 membership does not generally imply a uniform or even a.e. local Lipschitz bound; variance reduction is not universally strict; and the presented rollout recursion does not establish sublinear accumulation (pp. 15–17).",
+          "Theorem 2 does not prove equivalence. The filters 1−μ and (1+λμ)⁻¹ only agree to first order near μ=0; 1−μ becomes negative and has magnitude 1 at μ=2, so it is not uniformly suppressive. Moreover, optimizing through a learned pre-aggregation predictor can undo smoothing, and the actual difference-conditioned DARP is not covered by the stated linear spectral argument (pp. 17–19).",
+          "Experimental attribution and reproducibility remain uncertain: training-set sizes, architectures, optimization, seed variation, and baseline tuning are inadequately reported; retrieval is highly hyperparameter-sensitive; validation-selected results differ dramatically from the main results without explanation; and pseudocode does not explicitly exclude the query itself from retrieval, creating possible action-label leakage during training (pp. 19, 23–24)."
+        ],
+        "score_rationale": "The empirical breadth and promising gains raise this above a strong reject, but the paper presents invalid results as formal guarantees and leaves consequential ambiguities in training and evaluation. Given that the theoretical contribution is central and the empirical evidence cannot fully compensate for these issues, the manuscript is below the acceptance threshold, although stronger reporting and a corrected, narrower analysis could make the method competitive."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "DARP is an intuitive semi-parametric policy that retrieves expert neighbors, predicts query-adjusted actions from state differences, and aggregates them. The broad simulated results are promising, but the paper’s central claims of provable implicit Laplacian regularization and improved rollout stability are mathematically unsupported, while key experimental ambiguities prevent the empirical gains from fully rescuing the submission.",
+        "strengths": [
+          "The difference-conditioned retrieval architecture is simple, practically relevant, and moderately novel relative to nearest-neighbor imitation and standard behavior cloning (pp. 6–7).",
+          "Experiments span locomotion, manipulation, visual embeddings, multimodal actions, diffusion backbones, and human demonstrations, with consistently large reported gains over BC (pp. 8–9, 20–22).",
+          "Ablations and sensitivity analyses examine neighbor selection, difference representations, permutation invariance, retrieval parameters, distance metrics, and runtime (pp. 9, 19, 21, 24)."
+        ],
+        "weaknesses": [
+          "The main theory is incorrect. Finite Dirichlet energy/H1 membership does not imply local Lipschitz continuity, let alone a uniform Lipschitz bound, and the stated recursion does not establish sublinear rollout error (pp. 15–17). Claims of strictly lower variance also require substantially stronger estimator assumptions.",
+          "Theorem 2 does not prove equivalence: the random-walk and symmetric normalized Laplacians do not generally share the stated orthonormal eigenbasis; 1−μ becomes negative and does not suppress magnitude near μ=2; and first-order agreement with (1+μ)⁻¹ near zero is not equivalence (pp. 17–19). Moreover, minimizing ||Sf−a|| can undo aggregation through f rather than enforce smoothing, and the actual query-conditioned DARP architecture is outside this spectral derivation.",
+          "Experimental validity is insufficiently documented. Algorithm 1 retrieves from the entire training set without explicitly excluding the query, potentially exposing its target action as a neighbor input (p. 23), despite exclusion appearing only in the theoretical lemma (p. 15). Dataset sizes, training seeds, capacity matching, and tuning protocols are also unclear, and validation-selected results differ drastically from the main results (p. 23 versus p. 8)."
+        ],
+        "score_rationale": "The empirical pattern suggests a potentially useful method, so this is not a strong reject. However, both advertised theorems contain fundamental errors, the proof does not apply to practical DARP, and possible self-retrieval leakage plus incomplete protocols leave uncertainty about the magnitude of the gains. These issues place the work below the acceptance threshold despite its breadth."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "DARP conditions action prediction on retrieved expert state-action pairs and query-to-neighbor differences, then aggregates neighbor proposals. The architecture is intuitive and reports broad gains, but the central theoretical claims are not established and key experimental details leave fairness and leakage concerns unresolved.",
+        "strengths": [
+          "The retrieved-neighbor/difference-vector parameterization is a simple, practically interesting semi-parametric alternative to standard behavior cloning, with ablations supporting the importance of meaningful retrieval, relative differences, and permutation invariance (pp. 6–9).",
+          "Reported improvements span locomotion, manipulation, visual features, multimodal actions, diffusion backbones, and a discontinuous maze stress test (pp. 8–9, 19–22).",
+          "The appendices include useful sensitivity, recovery, runtime, and human-demonstration studies, although several are limited to one task (pp. 19–24)."
+        ],
+        "weaknesses": [
+          "The main theory is substantially incorrect or overstated. Finite Dirichlet energy/H1 membership does not generally imply local Lipschitz continuity or a uniform Lipschitz bound; Tikhonov regularization does not unconditionally yield strictly lower variance; and the claimed sublinear rollout error does not follow from the displayed recursion (pp. 15–17).",
+          "Theorem 2 does not prove equivalence: 1−μ is only a first-order approximation to 1/(1+μ), becomes negative for μ>1, and the symmetric normalized Laplacian eigenvectors do not directly diagonalize the random-walk operator as written. More fundamentally, minimizing ||Sf−a|| can learn to invert S rather than enforce smoothing, and the practical query-conditioned DARP network is not covered by this analysis (pp. 17–19).",
+          "Experimental controls are insufficiently specified for the magnitude of the claims: dataset sizes, training budgets, seeds, architecture matching, and tuning procedures are mostly absent; comparisons to CCIL reuse relative improvements from another paper; and training-time retrieval apparently includes the query itself, exposing its target action as a neighbor input unless explicitly excluded (pp. 8, 21, 23)."
+        ],
+        "score_rationale": "The empirical breadth and promising gains make the idea worth further investigation, but the paper presents invalid results as central theorems and does not provide enough protocol detail to rule out leakage or unfair comparisons. These are major issues requiring more than a minor revision, so I rate it below the acceptance threshold despite the potentially useful architecture."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "DARP is a sensible semi-parametric imitation policy that retrieves demonstrations, predicts neighbor-conditioned actions using relative state differences, and aggregates them invariantly. The empirical gains are broad and potentially important, but the central theoretical claims are materially incorrect, and the experimental protocol lacks enough controlled reporting to establish that retrieval—not extra context, tuning, or capacity—causes the gains.",
+        "strengths": [
+          "The difference-aware retrieval formulation is simple, practically motivated, and moderately novel relative to the retrieval and local-regression approaches discussed in the manuscript (pp. 6–7).",
+          "Experiments cover locomotion, manipulation, visual features, multimodal actions, and a discontinuous maze, with consistently large reported improvements (pp. 8–10, 19–22).",
+          "The paper includes useful component ablations, retrieval sweeps, recovery tests, and runtime measurements rather than reporting only aggregate benchmark results (pp. 9, 19–24)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is not established: finite Dirichlet energy/H1 membership does not generally imply local Lipschitzness, much less a uniform Lipschitz bound; variance reduction is not automatically strict; and the claimed sublinear rollout error does not follow from the displayed recursion or an unproved O(h²) error assertion (pp. 15–17).",
+          "Theorem 2 incorrectly calls the filters equivalent. The comparison is only a small-eigenvalue first-order approximation; 1−μ becomes negative for μ>1 and is not monotonically low-pass in magnitude. Moreover, minimizing ||Sf−a|| can undo aggregation when S is invertible, and the random-walk operator is not diagonalized by the stated symmetric-normalized eigenvectors without qualification (pp. 17–19). This analysis also does not cover nonlinear, query-conditioned DARP.",
+          "Experimental controls are insufficient: reported uncertainty largely reflects evaluation trials rather than independent training seeds, several tables omit uncertainty, architecture/capacity matching is unclear, and retrieval uses tuned trajectory history unavailable to a current-state BC baseline (pp. 8–9, 19, 23). Training-time self-retrieval is also ambiguous in Algorithm 1 (p. 23), creating possible target-action leakage."
+        ],
+        "score_rationale": "The empirical results make the idea promising and prevent a strong reject, but two headline theorems are false or substantially overstated, while key experimental confounds and reproducibility details remain unresolved. I therefore rate it below the acceptance threshold despite the breadth of reported gains."
+      }
+    }
+  ]
+}

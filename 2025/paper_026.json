@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_026",
+  "paper_id": "SoUwcVplq4",
+  "number": 2610,
+  "title": "ComPC: Completing a 3D Point Cloud with 2D Diffusion Priors",
+  "authors": "Tianxin Huang; Zhiwen Yan; Yuyang Zhao; Gim Hee Lee",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "Gaussian Splatting; Diffusion Model; Point Cloud Completion",
+  "forum_url": "https://openreview.net/forum?id=SoUwcVplq4",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    8,
+    8
+  ],
+  "human_mean_rating": 7.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper addresses the problem of 3D point cloud completion from partial and noisy data, specifically in an open-set setting, where point clouds from unseen categories are completed. The proposed approach introduces a novel, training-free framework that leverages 3D Gaussian Splatting (3DGS) representations and pre-trained 2D diffusion models for guiding the completion process.\n\nFirst, a Partial Gaussian Initialization (PGI) module estimates a reference viewpoint, $V_p$, that maximizes coverage of the input partial point cloud, $P_{in}$. This viewpoint is used to initialize partial 3D Gaussians, $G_{in}$, and render an image $I_{in}$. The Zero-shot Fractal Completion (ZFC) module then combines $G_{in}$ with another set of 3D Gaussians, $G_m$, which is generated from a noisy variant of the input point cloud, $P_m$. Using the Zero-1-to-3 diffusion model, $G_m$ is refined via Score Distillation Guidance based on the reference viewpoint image $I_{in}$, which optimizes the Gaussians based on a randomly rendered image $I_i$.  A geometric preservation constraint is also introduced by measuring the Chamfer Distance between the input point cloud and the predicted point cloud, $P_{pre}$the predicted one $P_{pre}$ under the reference viewpoint $V_p$. \n\nFinally, the Point Cloud Extraction (PCE) module extracts surface points, $P_{surf}$, from the 3D Gaussian centers, $G_{all} = {G_{in}, G_m}$, excluding those with low opacity and selecting the ones that are visible from a set of uniform camera poses. To address the non-uniform density of $P_{surf}$, a Grid Pulling step is applied that promotes uniform alignment of $P_{surf}$ along the underlying surface. The framework is evaluated on synthetic and real-world point clouds for the point cloud completion task, achieving superior or comparable performance w.r.t. existing methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The proposed framework generates complete point clouds that accurately capture the underlying surface, entirely bypassing the need for training on extensive 3D shape categories. By leveraging a 2D diffusion model to synthesize novel views from a specific input viewpoint, it also removes the need for manual text prompts. Furthermore, this approach achieves superior or comparable performance to other test-time frameworks (e.g., SDS-complete) while significantly reducing computational time. Finally, the adaptation of the NeuraPull approach, using near and far points from the 3D bounding box of the $P_{surf}$ point cloud, while also incorporating geometric details from the input partial point cloud, is able to produce uniformly-sampled point clouds."
+        },
+        "weaknesses": {
+          "value": "Although this method claims to rely solely on 3D coordinates, as required by the point cloud completion task, it implicitly introduces additional information by incorporating the 3D normal of each point to encode the color map $G_{in}^c$. This additional input signal, which is not utilized by other methods such as PCN or SDS-complete, may introduce an advantage, as evidenced by its significant impact on performance shown in Table 3 and Figure 7. Furthermore, the method heavily depends on the input partial point cloud throughout all stages: in the ZFC module, the SDS guidance is conditioned on the reference viewpoint image derived from the input partial point cloud, and a geometric preservation constraint is based on the original point cloud. In the PCE module, the initial point cloud is merged with $P_{pull}$ in the Grid Pulling step, further reinforcing reliance on the input partial point cloud."
+        },
+        "questions": {
+          "value": "- As noted in the **Weaknesses** section, this method incorporates the input point cloud across all stages of the pipeline. It would be beneficial to examine how the method performs under varying occlusion levels and perturbation intensities.\n- Following the above, could the method leverage multiple reference viewpoints during the ZFC step? Would incorporating additional viewpoints lead to more accurate completion of point clouds, particularly in cases with high noise levels and significant occlusions?\n- Could this method benefit from adopting 3D scene representations such as VolSDF [1], as used in SDS-complete, which implicitly encodes the SDF of the underlying surface?\n- Clarity: \n  - It’s important to clarify that the SDS-complete method leverages VolSDF [1], rather than NeuS, to represent the 3D scene.\n  - Adding a horizontal separator line after the Metrics row in Tables 1, 2, and 9 would improve readability. \n  - Please also add the SeedFormer method in line 418.\n\n[1] L. Yariv et al., “Volume Rendering of Neural Implicit Surfaces”, In Proc. NeurIPS, 2021."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "zkvHboIxkk",
+      "forum": "SoUwcVplq4",
+      "replyto": "SoUwcVplq4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_tTgt"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_tTgt"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2610/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731235203012,
+      "cdate": 1731235203012,
+      "tmdate": 1733765511533,
+      "mdate": 1733765511533,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a test-time point cloud completion framework that leverages 2D diffusion priors. Unlike previous methods, which require manually provided information such as text prompts, the proposed method conditions the diffusion model on a reference image from the partial observation. After initializing the partial Gaussians and rendering the reference image, the framework optimizes the parameters of the Gaussians representing the 'missing' parts and then extracts the completed point cloud. The approach is validated on synthetic and real-world scanned point clouds."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "a) The problem of completing partial point clouds in a generalizable way is important, as existing methods mostly yield good results only on in-domain samples. b) 2D/3D priors from diffusion models are well-suited for achieving generalization. c) The paper is well-written, the problem is clearly specified and the solution is well presented."
+        },
+        "weaknesses": {
+          "value": "a) As the incompleteness of the partial point cloud increases, the diffusion model may produce different completion results at each optimization. However, the multi-modal nature of the approach is not analyzed. For a small set of shapes, multiple runs can be performed on the same partial input, and the resulting completions can be evaluated using multi-modal metrics such as TMD, UHD, MMD. b) The experiment in A.5 could be performed on observations with varying levels of incompleteness, rather than artificially eliminating points, to better demonstrate the method’s actual performance. For instance, depth maps could be used to obtain incomplete observations by merging points from a different number of views. c) The paper does not include a comparison with recent related work such as [1, 2]. The authors are suggested to compare ComPC with also these recent baselines to better evaluate its completion and generalization performance.  \n\n[1] Chu, R., Xie, E., Mo, S., Li, Z., Nießner, M., Fu, C. W., & Jia, J. (2024). Diffcomplete: Diffusion-based generative 3d shape completion. Advances in Neural Information Processing Systems, 36.\n[2] Yan, X., Lin, L., Mitra, N. J., Lischinski, D., Cohen-Or, D., & Huang, H. (2022). Shapeformer: Transformer-based shape completion via sparse representation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 6239-6249)."
+        },
+        "questions": {
+          "value": "All of my questions are listed in the weaknesses section, and I may adjust the rating if they are well addressed."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "gS3kF05Czr",
+      "forum": "SoUwcVplq4",
+      "replyto": "SoUwcVplq4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_Xxcz"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_Xxcz"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2610/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730641479835,
+      "cdate": 1730641479835,
+      "tmdate": 1732541846943,
+      "mdate": 1732541846943,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a new pipeline for point cloud completion. The proposed pipeline consists of three steps. The pipeline initializes a single optimal viewpoint for initial render of point cloud. This render is made so the point cloud is most completely observed. The Gaussian Splatting is used to initialize a frozen set of 3D gaussians by utilizing an optimal viewpoint. In the next step the set 3D gaussians are prepared in the optimal way to cover missing point cloud regions. Further Zero 1-to-3 approach is used to complete missing parts of the point cloud. On the final step the point cloud is extracted from the 3D gaussians distributed uniformly (unlike in the start of pipeline) on the shape surface.\n\nDespite the weaknesses, I recommend accepting this work because the authors definitely introduced a new strong pipeline that incorporates many existing methods. Authors proved that the proposed sequence of methods is successfully used for the important complicated task.\n\nThe main reason to accept this work is good results that superior existing point cloud completion methods based on single-modality input data. The method shows good performance in the training domain and out of the training domain. In some cases (depicted in the paper) the density of points seems to be more uniform than in GT point clouds. This feature can be useful in tracking and segmentation tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "Learning-based methods perform not good when tested out of the domain they were trained on. The strong point of the proposed method is that authors propose a framework that performs out of the training domain as good as in it. Moreover, the model does not require any additional modalities, so the possibility of application is maximal. Lastly, there are empirical experiments done that prove that proposed method outperforms overviewed analogical approaches. The ablation study is well done: this part of the paper is split into categories and each one is devoted to the specific part of the pipeline."
+        },
+        "weaknesses": {
+          "value": "Despite the strengths of the work, there are a number of questions about it. There is a method of missing parts completion in section 3.2. Many side methods like Zero 1-to-3, SDS guidance, PFNet are referenced in this section while there are very few particular discussions that are taken from these works. For example, what is the fractal approach discussion taken from PFNet? The second question is: what is the point of applying differentiable quantization to set the gaussians' opacity? It seems that there is a quite simple solution. Another weakness of the proposed work is the absence of the possibility to test the pipeline. The source code that aggregates the mentioned methods can clarify the approach that authors suggest."
+        },
+        "questions": {
+          "value": "It might be interesting to compare the density of completed point clouds and compare it with GT density. What is the reason for the density difference? In the section 4.4. of ablation study we can see that point cloud extraction causes a kind of separate clusters. What is the reason?\n\nIt is recommended to provide a possibility to test the pipeline on a custom dataset. Moreover, it is recommended to split Figure 2 into two-three separate pictures with clarified steps description. The united scheme makes understanding the pipeline hard."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "triO6CgbSk",
+      "forum": "SoUwcVplq4",
+      "replyto": "SoUwcVplq4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_y9Sz"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_y9Sz"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2610/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730475261073,
+      "cdate": 1730475261073,
+      "tmdate": 1731427626258,
+      "mdate": 1731427626258,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The work tries to complete a general partial point cloud using  zero123, which gets an object's image and outputs images of the exact object from any unseen direction.\nThey first model the partial point cloud as gaussians, and render them from the view direction, where the object seems full.\nthan through SDS iterations using zero123 they complete the object from any noval direction."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "They continue works that complete point clouds in the wild and challenge the current weakness of long-running time and the need for textual description.\nThe work exploits advances in 3D generation for further improvement in point cloud completion."
+        },
+        "weaknesses": {
+          "value": "good work"
+        },
+        "questions": {
+          "value": "1. I can't see how your work can generate a surface like SDS-complete?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "6GhM7ldPrJ",
+      "forum": "SoUwcVplq4",
+      "replyto": "SoUwcVplq4",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_p7jk"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission2610/Reviewer_p7jk"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission2610/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729359812228,
+      "cdate": 1729359812228,
+      "tmdate": 1731427626390,
+      "mdate": 1731427626390,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "ComPC is a test-time point-cloud completion pipeline combining Gaussian splatting, image-conditioned Zero-1-to-3 SDS, preservation of observed points, and SDF-based resampling. The approach is practically motivated and reports large gains on selected synthetic and real scans, but the limited, potentially favorable evaluation does not yet establish broad or statistically reliable superiority.",
+        "strengths": [
+          "A coherent prompt-free alternative to SDS-Complete: the reference normal-map rendering conditions an image-to-3D diffusion prior while frozen input Gaussians and a preservation loss retain observations (pp. 4–6).",
+          "Reported CD/EMD gains are substantial on the selected synthetic objects and Redwood scans, including out-of-domain cases, with direct SDS-Complete comparison where available (pp. 7–9).",
+          "The appendices include useful component, noise, incompleteness, multimodality, ShapeNet, and failure-case analyses; runtime is also dramatically lower than SDS-Complete (pp. 10, 14–20)."
+        ],
+        "weaknesses": [
+          "The main evaluation is very small and selectively sampled: ten synthetic objects and a handful of Redwood scans, while ShapeNet uses only 16 models; three-run averages lack variance or significance tests (pp. 7–9, 16, 19). This makes the unusually large gains difficult to generalize.",
+          "Baseline fairness is uncertain: supervised models are evaluated on mismatched datasets, SDS-Complete is compared only on Redwood with re-optimized/renormalized outputs, and no strong image-to-3D or other modern zero-shot completion alternatives are tested (pp. 8–9).",
+          "The method depends on a strong single-view/self-occlusion assumption and 2D priors can hallucinate geometrically plausible but incorrect thickness; LiDAR evidence is qualitative without ground truth, and optimization still takes about 15 minutes per object (pp. 2, 10, 15, 17, 20)."
+        ],
+        "score_rationale": "The GS-based adaptation of image-conditioned diffusion to point completion is useful but largely combines established components, so novelty is moderate. Strong reported results and thoughtful ablations support plausibility, yet the tiny selected benchmarks, uncertain comparison fairness, and limited evidence for difficult real-world settings leave the central generalization claim insufficiently validated for clear acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a training-free point-cloud completion pipeline that renders a partial cloud as a normal-colored Gaussian-splat image, applies Zero-1-to-3 SDS guidance while preserving observed geometry, and extracts a uniform surface through visibility filtering and learned SDF-based resampling. The combination is practically useful and reports strong results, but its novelty is primarily systems-level integration and the limited evaluation leaves uncertainty about broad generalization.",
+        "strengths": [
+          "The method coherently combines reference-view estimation, frozen observed Gaussians, view-conditioned diffusion guidance, and surface resampling; these components directly address preservation and density issues in test-time completion (pp. 4–7).",
+          "Reported gains are large on the selected synthetic and Redwood tests, including out-of-domain objects, and the method is substantially faster than SDS-Complete (pp. 7–10).",
+          "Ablations cover colorization, preservation, surface extraction, grid pulling, Gaussian modifications, noise, and incompleteness, generally supporting the proposed design choices (pp. 9–10, 14–18)."
+        ],
+        "weaknesses": [
+          "The evaluation is small and insufficiently specified: the main synthetic table appears to use only ten named objects, Redwood only a few instances, and sampling/selection details are incomplete, making dataset-level generalization uncertain (pp. 7–9).",
+          "Direct comparison with the closest test-time baseline is restricted to Redwood; KITTI has no quantitative ground truth, and ShapeNet comparisons omit SDS-Complete, so the central advantage over prompt-based test-time completion is not comprehensively established (pp. 8, 16–20).",
+          "The approach assumes a viewpoint from which the partial cloud appears nearly complete, takes about 15 minutes per instance, and can hallucinate incorrect thickness for occluded thin structures; these constraints limit applicability beyond the studied self-occlusion setting (pp. 2, 10, 15–17)."
+        ],
+        "score_rationale": "This is a clear and useful integration with impressive selected results and reasonable ablations, supporting a marginally positive score. However, the contribution is incremental over Zero-1-to-3/DreamGaussian/SDS-Complete, and the sparse, partly qualitative evaluation does not yet firmly validate the broad category-independent claims."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a test-time point-cloud completion pipeline combining Gaussian splatting, image-conditioned Zero-1-to-3 SDS, preservation of observed points, and SDF-based resampling. The approach is plausible and produces strong reported results, but the evidence is too small and underspecified to substantiate broad category-generalization claims.",
+        "strengths": [
+          "The method addresses a useful setting—completion of unseen categories without per-instance text prompts—and the combination of a rendered normal-map condition with frozen observed Gaussians is sensible (pp. 2–6).",
+          "Reported improvements are large on the synthetic and Redwood evaluations, including over the closest test-time baseline on Redwood, and qualitative outputs are generally coherent (pp. 7–9).",
+          "The appendices include component ablations, noise and incompleteness tests, multimodal metrics, failure cases, and runtime disclosure (pp. 14–19)."
+        ],
+        "weaknesses": [
+          "The main evaluations are extremely small and apparently object-level curated: ten synthetic objects, roughly eight Redwood objects, and only sixteen ShapeNet models; stochastic repetitions do not replace independent test instances. Thus the claimed broad generalization is uncertain (pp. 7–9, 16–19).",
+          "Comparison with the closest method is incomplete: SDS-Complete is evaluated only on Redwood because of code availability, while most gains elsewhere are against supervised models deliberately tested under distribution shift. There is no comparison to broader image-to-3D or other contemporary zero-shot reconstruction baselines (pp. 8–9, 16–19).",
+          "Technical specification is insufficient for confident reproduction: the complete optimization objective and schedule, Gaussian counts/densification behavior, camera sampling, learning rates, SDF architecture, and several extraction details are absent despite a short parameter table. The method also assumes a single nearly complete reference view and fails on thin occluded structures (pp. 4–7, 10, 14–17)."
+        ],
+        "score_rationale": "The prompt-free test-time formulation and strong reported numbers are promising, but novelty is largely an integration of existing Zero-1-to-3/DreamGaussian, fractal preservation, and NeuralPull-style components. More importantly, the tiny evaluation sets, incomplete closest-baseline coverage, and missing implementation detail leave the central generalization claim insufficiently established, placing the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a test-time point-cloud completion pipeline combining Gaussian splatting, image-conditioned Zero-1-to-3 SDS, preservation of observed points, and per-instance surface resampling. The approach is promising and reports large gains, but the evaluation is too small and selectively constructed to establish broad generalization, while several central algorithmic details are ambiguous.",
+        "strengths": [
+          "A useful prompt-free alternative to SDS-Complete: the method derives diffusion conditioning directly from a rendered normal-map observation and preserves the input through frozen Gaussians and an explicit constraint (pp. 4–6).",
+          "Large reported CD/EMD improvements over supervised baselines on both synthetic objects and Redwood scans, including out-of-domain categories (pp. 7–9).",
+          "The appendices contain component ablations, noise and incompleteness tests, multimodal metrics, failure cases, and ShapeNet/KITTI extensions (pp. 14–20)."
+        ],
+        "weaknesses": [
+          "Evidence is based on unusually small, hand-sampled evaluations: ten synthetic objects, a small Redwood subset, and only 16 ShapeNet models; KITTI has no ground truth and is purely qualitative (pp. 7–8, 16–20). The sampling protocol and absence of uncertainty bars make the very large gains difficult to assess.",
+          "Technical specification is insufficiently precise or possibly erroneous: the pulling equations divide by the norm of the scalar SDF rather than clearly normalizing its gradient, SDS omits standard timestep weighting, and the visibility filter h is not operationally defined (pp. 4–7). These issues impede reproducibility and confidence in soundness.",
+          "Novelty is primarily an integration of established Zero-1-to-3/DreamGaussian-style SDS, Gaussian splatting, fractal preservation, and NeuralPull-style SDF fitting. It also remains expensive at roughly 15 minutes per object and fails on thin occluded structures (pp. 10, 15–17)."
+        ],
+        "score_rationale": "The prompt-free test-time formulation is practically interesting, and the reported results are strong. However, the limited evaluation scale, incomplete methodological specification, incremental nature of the components, and substantial runtime leave the work marginally below the ICLR acceptance threshold. Some uncertainty remains because a larger standardized benchmark could materially change this assessment."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a test-time point-cloud completion pipeline that renders a normal-map reference from partial points, optimizes additional 3D Gaussians using Zero-1-to-3 SDS while freezing the input Gaussians, and extracts a uniform surface through visibility filtering and learned SDF pulling. The approach is practically interesting and reports strong results, but the contribution is largely an integration of established components, and the limited, partly curated evaluation does not fully substantiate broad category-agnostic completion.",
+        "strengths": [
+          "The pipeline addresses a useful setting—completion without category-specific training or manual prompts—and combines reference-view estimation, preservation, and point extraction coherently (pp. 4–8).",
+          "Reported CD/EMD gains are large on the synthetic and Redwood evaluations, including over SDS-Complete on Redwood, while runtime is reduced from the reported 1950 minutes to about 15 minutes (pp. 7–10).",
+          "Ablations cover colorization, preservation, surface extraction, grid pulling, Gaussian modifications, and fractal completion; the appendix also examines noise and incompleteness (pp. 9–10, 14–18)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the central mechanism closely follows DreamGaussian/Zero-1-to-3 SDS, while freezing input Gaussians, binary opacity, visibility filtering, and NeuralPull-style resampling are mostly adaptations of prior components rather than a fundamentally new completion principle (pp. 3–7).",
+          "Evidence for broad generalization is undersized: the main synthetic test has only ten objects, Redwood only a handful, and ShapeNet uses just 16 models across four categories; the direct test-time baseline is evaluated only on Redwood, and no uncertainty intervals or extensive repeated-seed analysis are provided (pp. 7–9, 16–19).",
+          "Technical presentation and scope have important gaps: the pulling equation appears to normalize by the scalar SDF rather than the gradient norm (p. 7), the single-reference-view preservation constraint cannot ensure full 3D fidelity (p. 6), and thin occluded surfaces demonstrably become implausibly thick (pp. 15–17)."
+        ],
+        "score_rationale": "The method is useful and empirically promising, with unusually strong reported gains and reasonable ablations. However, its incremental construction, small evaluation sets, incomplete baseline coverage, and unresolved technical/geometry issues leave the evidence just below the bar for acceptance. Some implementation details may merely be notation errors, so I remain moderately uncertain."
+      }
+    }
+  ]
+}

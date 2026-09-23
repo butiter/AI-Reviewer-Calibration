@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_026",
+  "paper_id": "YcJnHKVB9v",
+  "number": 7068,
+  "title": "OpenT2M: No-frill Motion Generation with Open-source, Large-scale, High-quality Data",
+  "authors": [
+    "Bin Cao",
+    "Sipeng Zheng",
+    "Hao Luo",
+    "Boyuan Li",
+    "Jing Liu",
+    "Zongqing Lu"
+  ],
+  "primary_area": "datasets and benchmarks",
+  "keywords": [
+    "human motion generation",
+    "large multimodal model",
+    "human motion understanding"
+  ],
+  "forum_url": "https://openreview.net/forum?id=YcJnHKVB9v",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    2,
+    6,
+    6
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "EbJhODfbkl",
+      "forum": "YcJnHKVB9v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7068/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761947836316,
+      "tmdate": 1762919256021,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "S5NEyASM7J",
+      "forum": "YcJnHKVB9v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7068/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761870162865,
+      "tmdate": 1762919256411,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "obynq4w0dm",
+      "forum": "YcJnHKVB9v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7068/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761551728050,
+      "tmdate": 1762919257235,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "rIorx0KB8P",
+      "forum": "YcJnHKVB9v",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission7068/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761829915222,
+      "tmdate": 1762919256877,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces OpenT2M, a claimed million-sequence motion dataset, a synthetic long-horizon subset, and 2D-PRQ, a body-part-aware residual-quantization tokenizer. The scale and reported gains are promising, but the manuscript does not provide enough validation of dataset quality, split integrity, or evaluation fairness to substantiate its central claims.",
+        "strengths": [
+          "The dataset effort is potentially valuable: OpenT2M combines large scale, second-wise annotations, physical-simulation filtering, and 190K long-horizon sequences (pp. 4, 13–15).",
+          "Experiments cover reconstruction, zero-shot transfer, downstream tuning, and long-horizon generation; reported improvements are large, especially for 2D-PRQ reconstruction and OpenT2M-trained models (pp. 7–9).",
+          "The 2D-PRQ design is simple and plausible, jointly modeling body-part and temporal dependencies rather than quantizing parts independently (pp. 5–6)."
+        ],
+        "weaknesses": [
+          "The central “high-quality” claim is insufficiently verified: physical feasibility is equated with successful RL tracking, but success criteria, thresholds, rejection rates, simulator details, and quantitative or human quality comparisons are absent (pp. 4, 14). Annotation accuracy likewise receives no audit beyond examples and retrieval gains (pp. 15–17).",
+          "The generalization evidence is vulnerable to leakage and evaluation bias. OpenT2M aggregates existing datasets and large web sources, yet near-duplicate removal and source-disjoint splitting are not described; “no domain overlap” is asserted without a construction protocol, and random 80/5/15 splits may place related clips across splits (pp. 6, 13). Results also lack uncertainty estimates and human evaluation (pp. 7–9).",
+          "Novelty and reproducibility are limited: 2D-PRQ is largely part decomposition plus 2D convolution and residual quantization, with incomplete architectural/loss details and limited isolating ablations. Moreover, only 10% is initially released despite repeated million-scale open-source claims, while licensing and redistribution constraints for the many source datasets/videos are unaddressed (pp. 2, 5–6, 13)."
+        ],
+        "score_rationale": "The work has meaningful potential and striking empirical results, but decisive claims about an open, physically valid, leakage-resistant benchmark are not supported by adequate audits or reproducible detail. Given these foundational evaluation and release concerns, I lean reject rather than marginal acceptance, while acknowledging uncertainty because the actual released data/code cannot be inspected from the supplied manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents OpenT2M, a million-sequence web-derived motion dataset with automated filtering and annotations, together with a part-structured residual tokenizer (2D-PRQ) and an autoregressive T2M model. The reported reconstruction and zero-shot gains are substantial, but critical dataset, evaluation, and reproducibility details are missing, making the central quality and generalization claims insufficiently supported.",
+        "strengths": [
+          "The dataset scale, second-wise annotations, and 190K synthesized long-horizon sequences could be valuable contributions if fully released and validated (pp. 4, 13–15).",
+          "2D-PRQ is a simple, plausible way to model cross-part and temporal dependencies, and it produces strong reported reconstruction improvements on larger datasets (pp. 5–6, 8–9).",
+          "Experiments cover reconstruction, zero-shot transfer, instruction tuning, long-horizon generation, and several architectures/tokenizers (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "Dataset quality is asserted rather than rigorously established: successful RL tracking does not by itself guarantee physical feasibility, filtering thresholds and acceptance statistics are absent, and there is no human audit, physical-error comparison, or annotation-accuracy study (pp. 4, 13–17). Moreover, only 10% is initially released despite the work's open-source million-scale framing (p. 2).",
+          "The evaluation has serious contamination and protocol ambiguities. OpenT2M incorporates existing datasets such as Motion-X and BABEL, yet random 80/5/15 splitting and the claimed domain-disjoint 12K set are not accompanied by source-, identity-, video-, or near-duplicate-level deduplication details (pp. 6, 13). This is especially concerning given the paper's own leakage critique (pp. 1–2).",
+          "Evidence is incomplete: there are no uncertainty estimates, repeated runs, human perceptual evaluation, physical plausibility metrics, or strong comparisons on established long-horizon benchmarks. Key implementation details for extraction, RL tracking, tokenizer architecture/loss, evaluators, and long-sequence generation are underspecified, while qualitative figures alone cannot validate fidelity (pp. 4–9, 14–17)."
+        ],
+        "score_rationale": "The scale and reported gains suggest meaningful potential, and 2D-PRQ offers moderate methodological novelty. However, the paper's main claims—high quality, physical feasibility, and genuine OOD generalization—are not convincingly validated, with possible cross-source leakage and insufficient reproducibility details. These issues outweigh the promising results and place the submission below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents OpenT2M, a million-sequence motion dataset with automated physical filtering and dense captions, plus a part-aware residual tokenizer and autoregressive T2M model. The scale and reported gains are promising, but insufficient dataset validation, confounded comparisons, and reproducibility inconsistencies prevent the central quality and generalization claims from being established.",
+        "strengths": [
+          "OpenT2M is ambitious in scale and combines physical tracking filters, second-wise annotation, and 190K synthesized long-horizon sequences (pp. 3–4, 13–15).",
+          "The reported improvements are broad and large: training several baselines on OpenT2M improves OOD generation, while 2D-PRQ improves reconstruction and transfer metrics (pp. 7–9).",
+          "The five-part 2D tokenizer is simple and practically motivated, explicitly modeling temporal and cross-part dependencies rather than quantizing parts independently (pp. 5–6)."
+        ],
+        "weaknesses": [
+          "The claimed dataset quality is not convincingly validated: there is no human annotation audit, physical-quality benchmark, acceptance rate, tracking threshold, failure analysis, inter-annotator agreement, or comparison against alternative curation pipelines. Trackability by one RL policy does not itself guarantee physical correctness (pp. 3–4, 13–17).",
+          "The main causal and generalization conclusions are confounded. OpenT2M training uses vastly more data than HumanML3D/Motion-X; the OOD split construction and overlap checks are underspecified despite OpenT2M incorporating existing datasets; and long-horizon evaluation uses a benchmark produced by the authors' own synthesis pipeline with essentially only their model evaluated (pp. 6–8, 13–15).",
+          "Reproducibility and presentation have serious inconsistencies: only 10% is initially released despite calling the million-scale dataset open-source (p. 2); Appendix D says LLMs were used exclusively for polishing although Gemini generated dataset annotations and curated texts (pp. 4, 8, 15–17); and key architecture, filtering, licensing, and source-specific split details are missing."
+        ],
+        "score_rationale": "The dataset scale and quantitative results could be impactful, and the tokenizer offers a useful incremental design. However, the paper's primary claims—high quality, physical feasibility, fair OOD generalization, and open availability—lack the audits and controlled experiments needed to support them. The internal disclosure contradiction and incomplete release further weaken reproducibility, placing the work below the acceptance threshold despite substantial promise."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper presents OpenT2M, a claimed million-sequence motion dataset, a synthetic long-horizon subset, and 2D-PRQ, a body-part-aware residual tokenizer. The reported gains are large, but insufficient dataset validation, unclear split/source contamination, and internal inconsistencies make the central quality and generalization claims difficult to trust.",
+        "strengths": [
+          "A million-scale, physically filtered, temporally annotated motion resource would be valuable, and the paper addresses an important generalization problem (pp. 2–4).",
+          "2D-PRQ is a simple, plausible way to model cross-part and temporal dependencies; reconstruction improvements are substantial on Motion-X and OpenT2M (pp. 8–9).",
+          "Experiments cover dataset scaling, downstream adaptation, long-horizon generation, tokenizer reconstruction, and nominal zero-shot transfer (pp. 6–9)."
+        ],
+        "weaknesses": [
+          "The claimed “high quality” is not adequately established: policy trackability is treated as physical feasibility without thresholds, failure statistics, simulator details, or human/annotation-quality studies; Gemini captions likewise receive no systematic correctness audit (pp. 4, 13–17). Appendix D also says LLMs were used only for polishing, contradicting the Gemini-based annotation generation on pp. 4 and 15–16.",
+          "Generalization evidence has unresolved contamination and evaluation issues. OpenT2M incorporates existing datasets including Motion-X and BABEL (p. 13), yet the construction of duplicate-free train/test splits and the claim of “no domain overlap” are not documented. The provenance/training of the embedding evaluator used for OOD FID and retrieval is also unspecified (pp. 6–9, 16).",
+          "Reproducibility and novelty are limited: only 10% of the advertised dataset is initially released (p. 2), curation/model details and Equation 2 are incomplete or malformed (pp. 5–6), and long-horizon data are mostly interpolated concatenations rather than naturally occurring sequences, with no perceptual or transition-quality evaluation (pp. 8, 14–15)."
+        ],
+        "score_rationale": "The scale and reported tokenizer gains are promising, but the main contribution is a dataset whose quality, openness, split integrity, and annotation accuracy are not convincingly demonstrated. These concerns directly undermine the unusually large zero-shot and long-horizon results, placing the work below the acceptance threshold despite its potential impact."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes OpenT2M, a million-sequence motion dataset, a synthetic long-horizon benchmark, and a part-aware residual-quantization tokenizer. The reported gains are large, but the central dataset-quality and generalization claims are not supported by sufficiently rigorous validation, and several methodological inconsistencies undermine reproducibility.",
+        "strengths": [
+          "The work targets an important bottleneck—scale, diversity, and split contamination in text-to-motion data—and reports improvements across several model families when trained on OpenT2M (pp. 1–2, 6–7).",
+          "The proposed 2D-PRQ tokenizer is simple and shows consistently better reconstruction and cross-dataset results than the tested tokenizers, especially on larger datasets (pp. 8–9).",
+          "The dataset includes detailed temporal annotations and a substantially larger synthetic long-horizon subset than BABEL, addressing underexplored evaluation settings (pp. 13–16)."
+        ],
+        "weaknesses": [
+          "The claimed physical feasibility and annotation quality lack credible validation: trackability by one RL policy is treated as proof of physical validity, but thresholds, acceptance rates, simulator details, quantitative artifact tests, inter-rater studies, and annotation-error audits are absent (pp. 4, 14–16).",
+          "The evaluation does not convincingly establish OOD generalization: OpenT2M incorporates existing datasets including Motion-X and BABEL, while the construction of OpenT2M-zero and its asserted lack of domain overlap are underspecified; evaluator training, deduplication across sources, uncertainty estimates, and controlled equal-compute comparisons are also missing (pp. 6–9, 13).",
+          "Reproducibility and integrity issues are substantial: only 10% of the claimed open million-scale dataset is initially released (p. 2), dataset licensing/privacy are not discussed, implementation details are sparse, and Appendix D says LLMs were used exclusively for polishing and not data generation despite Gemini producing dataset annotations throughout the paper (pp. 3–4, 15–17)."
+        ],
+        "score_rationale": "The dataset scale and 2D-PRQ results are potentially valuable, but the paper's main contribution depends on unverified quality, feasibility, and OOD claims. The contradictory disclosure and incomplete release further weaken confidence. These are central rather than cosmetic deficiencies, so the manuscript is currently a reject despite promising empirical results."
+      }
+    }
+  ]
+}

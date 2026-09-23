@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_078",
+  "paper_id": "cRnCcuLvyr",
+  "number": 10766,
+  "title": "CViT: Continuous Vision Transformer for Operator Learning",
+  "authors": "Sifan Wang; Jacob H Seidman; Shyam Sankaran; Hanwen Wang; George J. Pappas; Paris Perdikaris",
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": "Scientific Machine Learning; Operator Learning; Neural Operators; Neural Fields; Vision Transformer; Partial Differential Equations",
+  "forum_url": "https://openreview.net/forum?id=cRnCcuLvyr",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    8,
+    6,
+    6
+  ],
+  "human_mean_rating": 6.8,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a continuous operator learning method using the vision transformer with a newly introduced coordinate embedding for the query value. The proposed method is based on the previous continuous operator learning method. The authors have provided analysis including comparisons with recent operator learning methods on learning different operator equations, ablation studies for different structure choices, discussions of the proposed method compared to recent arts, theoretical insights of the proposed query embeddings, etc."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The proposed coordinate embedding for the query is interesting, and is effective in the continuous ViT learning, compared to MLP and RFF. Also, it is simple and easy to control through the interpolation parameter $\\beta$.\n- Discussions and analysis in the paper are extensive and interesting. Overall, the paper is well-organized and easy to follow.\n- The proposed coordinate embedding could have the potential to apply to more general continuous learning beyond physical domains. Especially for the vision tasks, such as 3d geometries including point cloud representations, it is worth exploring."
+        },
+        "weaknesses": {
+          "value": "- Why not do coordinate embedding for all query, key, value? Only doing coordinate embedding for query preferable in which way? Maybe some further analysis on this could be included to further highlight the effectiveness of the proposed coordinate embedding.\n- The first question brought to the second one, that in the paper (appendix), the authors discussed the Lipschitz constant for different embeddings from linear embedding to random Fourier features (RFF), and to the proposed coordinate embedding, which is interesting and worth discussing. The authors mentioned that the proposed coordinate embedding is easier to tune since it is mainly based on one parameter $\\beta$. However, for RFF, there is also only one parameter to control the spectral bias, and thus control the Lipschitz constant. I wondered if the authors could also provide an analysis on only using RFF for the proposed framework. \n- Figures 3, 5, and 6 lack notations to distinguish columns."
+        },
+        "questions": {
+          "value": "- I wondered how will the proposed method be applied for more general vision tasks, especially for 3d vision. I wondered what are the authors’ opinions on this? What are the difficulties, such as computations, that might be difficult to apply? \n\nPlease see the above section for detailed comments, too."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "PFqbFkzfTy",
+      "forum": "cRnCcuLvyr",
+      "replyto": "cRnCcuLvyr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_1Did"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_1Did"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10766/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730873164858,
+      "cdate": 1730873164858,
+      "tmdate": 1731428517869,
+      "mdate": 1731428517869,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a new neural operator architecture that tackles recent computer vision techniques (vision transformers, cross-attention). In particular, the CViT model -- for Continuous Vision Transformer for operator learning -- leverages the perceiver architecture to retrieve the representation of a query at a given continuous coordinate from spatiotemporal data. The relevance of the representations learned by CViT is evaluated on a diverse range of PDE such as fluid dynamics, climate modeling, and reaction-diffusion processes."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "This paper is well-written, easy to read, and technically sound. The proposed approach appears to scale more efficiently than the current baseline thanks to the perceiver-inspired architecture. The results seem also promising."
+        },
+        "weaknesses": {
+          "value": "* No clear structure of the related work section. It would help the reader to add more justifications on why transformer approaches struggle with various resolutions. Even if I tend to agree with the conclusion, it is also not clear, why a novel architecture design is required to solve the limitations related to high dimensional data and long-range dependencies.  \n* The transformer architecture in Fig. 1. does not give any insight and is well known. IMO, Authors could either remove it or replace it with the perceiver one. \n* It is unclear how many visual latent queries are used. From the figure and text, it seems that there is only one query which is then duplicated. In the perceiver architectures, these latent queries are learned, does this mean that only one query is learned? The stability of the model with respect to the number of queries could be presented in the ablations.  \n* The ablation with respect to parameter $\\beta$ is difficult to understand as, in Fig. 4, $\\epsilon$ is not introduced. Is $\\epsilon = \\beta$? The value of $\\beta$ seems extremely high ($10^5$) and should be compared to the input's resolution. Here, does eq. (1) reduces to a naive averaging with $\\beta=10^5$? \n* Results on standard benchmarks would help judge the method's efficiency. Here, it seems that the authors show results only on selected equations from PDEBench or PDEArena."
+        },
+        "questions": {
+          "value": "* \"2+1 dimensional spatio-temporal data tensor\" but it is then written that $\\boldsymbol u \\in \\mathbb R^{T\\times H \\times W \\times D} *i.e.* four coordinates. \n* How separating the positional encoding (PE) between 1D temporal and 2D spatial is different than having one spatio-temporal (thus 3D) PE?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ooWSS2r0In",
+      "forum": "cRnCcuLvyr",
+      "replyto": "cRnCcuLvyr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_TxkX"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_TxkX"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10766/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730739399197,
+      "cdate": 1730739399197,
+      "tmdate": 1732634792540,
+      "mdate": 1732634792540,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a variant of Vision transformers which allows handling of continuous outputs. The model works by first encoding an input image sequence into a set of latent vectors using cross attention (a la Perceiver style encoding). The latents compress the input over time. The resulting latents are fed through several transformer layers. The readout is the interesting part - a learnable grid of spatial queries is interpolated using Nadarya-Watson interpolation to produce queries which are used to cross attend into the output of the vision transformer. The resulting attention weighted value is used as the outputs - this is done for every output coordinate.\nThe method is shown to work on several interesting physics oriented datasets with several ablation experiments. More analysis is shown in the appendix."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "I found this paper very interesting.\n\nOriginality:\nI think this is a very good variation of Vision Transformers which significantly expands their capabilities. I found the interpolated readout mechanism of particular novelty.\n\nQuality:\nThis is a well executed paper. There is ample experimental validation using several different datasets. The baselines chosen (as far as I can tell) are diverse and strong. There is a good set of ablation experiments and deep analysis of the method in the appendix.\n\nClarity:\nThe paper is well structures, well written and easy to read. All the nomenclature is well defined and I had no problem following the paper.\n\nSignificance:\nWhile I'm not an expert in the field to me this seems like a significant contribution to the field which greatly expands the expressive power of vision transformers."
+        },
+        "weaknesses": {
+          "value": "All in all I think this is a strong paper, however:\n\n* Other domains? I would have loved to see if the resulting method is applicable to other domain or training setups beyond L2 prediction of physical systems. Does it work, for example, on natural video? Would it be useful as a diffusion model back-bone?\n\n* More analysis of cross attention - one of the more interesting parts is the use of cross attention, both in the encoding and decoding. It would be nice to see visualizations of cross attention patterns emerging in both directions. Do specific latents take on specific roles when decoding? are they responsible over different parts of space? time? both?\n\nWhile I do not expect these to be addressed in the rebuttal I really do think these would maker the paper stronger."
+        },
+        "questions": {
+          "value": "My main point of inclarity is the initialization of latent queries in the encoder. The paper states they are initialized with a unit Gaussian - is this a learned initialization, or are the queries sampled every time the model is learned? The latter would mean, for example, that we would expect to see slightly different outputs every time the model is run - is that the case? (I am not saying this is a bad thing btw, just want to understand). Also - how many query vectors are used? the paper mentions it's more than one, but the number is not supplied in the paper.\n\nRelated to the above - I am not sure I understood why the query vector z is tiled across space? if it's the same vector across all of space then the output of the query would be the same for every spatial location, am I wrong? or is there more positional encodings added there? It would be good to clarify this."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "WQPbU9R4XT",
+      "forum": "cRnCcuLvyr",
+      "replyto": "cRnCcuLvyr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_6yDe"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_6yDe"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10766/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730717879550,
+      "cdate": 1730717879550,
+      "tmdate": 1732613212555,
+      "mdate": 1732613212555,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a neural operator architecture inspired by computer vision to address spatio-temporal scientific problems. The proposed model is structured with a transformer encoder featuring spatio-temporal embedding and time-aggregation layers, a grid-based positional embedding, and a cross-attention decoder. The author employs multiple benchmark datasets and model architectures for comparative experiments."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The author conducts extensive experiments, comparing several recent model architectures to demonstrate performance outcomes. The results are presented with additional clarity by including the number of parameters.\n\n- The detailed discussion of limitations and future directions is appreciated. Notably, the computational inefficiency for high-resolution data should be addressed in future work."
+        },
+        "weaknesses": {
+          "value": "- Since this method draws on the vision transformer, have comparisons been considered with other vision-based extensions for spatio-temporal applications, such as ViViT[1] and VMAE[2]?\n\n- Regarding the datasets selected for experimentation, incorporating more complex, real-world cases could further substantiate performance, as some baseline architectures still yield results similar to those of the proposed model, despite the model size.\n\n[1] Arnab, Anurag, et al. \"Vivit: A video vision transformer.\" Proceedings of the IEEE/CVF international conference on computer vision. 2021.\n\n[2] Tong, Zhan, et al. \"Videomae: Masked autoencoders are data-efficient learners for self-supervised video pre-training.\" Advances in neural information processing systems 35 (2022): 10078-10093."
+        },
+        "questions": {
+          "value": "- Does the grid resolution similarly impact computational efficiency as the patch size?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "5eKRXAE9aO",
+      "forum": "cRnCcuLvyr",
+      "replyto": "cRnCcuLvyr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_Etk6"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_Etk6"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10766/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730527336679,
+      "cdate": 1730527336679,
+      "tmdate": 1732562727612,
+      "mdate": 1732562727612,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores the architectural design of transformers for operator learning methods. To efficiently implement continuous vision transformer architecture, they developed (or adopted) two techniques: perceiver resampler and coordinate embedding. The perceiver modules effectively aggregate temporal dimension, and the coordinate embedding enables the model to handle continuous input domains and improve accuracy. The proposed architecture achieved state-of-the-art results on various challenging PDE benchmarks while maintaining higher parameter efficiency."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. It achieved state-of-the-art performance on various benchmark datasets with the network's great parameter efficiency.\n2. Coordinate embedding is an interesting approach to injecting the coordinate information into the network.\n3. The theoretical result related to coordinate embedding is quite informative and useful for the community."
+        },
+        "weaknesses": {
+          "value": "1. The proposed grid-based positional encoding may not be a desirable solution for high-dimensional PDEs. As the authors said, it requires high-resolution grids to achieve competitive performance, and this approach would not scale up to more than 3-d time-dependent PDEs, e.g., (3+1) NS equation. \n\n2. The proposed Nadaraya-Watson interpolant would not scale with high-resolution grids since it has to look at all grid features. I am curious the inference cost of the proposed approach according to grid resolutions. Is the inference speed as fast as the previous methods?\nThe grid resolution 128 (N_x) x 128 (N_y) x 512 (feature dim) is already > 9M, and CViT-S model size is 13M. Does it mean that most of the parameters are used for grids?\n\n3. Does this scale well for high-resolution solutions? The authors mentioned that the grid resolution should be similar to the solution resolution. Then, 512 resolution means 512^3, which is roughly 134M. Could you show me how the proposed method can make good predictions for high-resolution solutions? e.g., testing 128 grid resolution model for predicting 512 solution resolution.\n\n4. This is a rather suggestion than a question. Why not coordinate embedding for temporal dimension? currently, y \\in R^2, but why not y \\in R^3? Temporal resolution can be coarse in this case to maintain parameter efficiency.\n\n5. How about other datasets? e.g., other PDEs in PDEBench and PDEArena?\n\n[minor comments]\n1. Numbering for all equations would be desirable during the review process.\n2. How do you determine \\beta = 10^5?\n3. L171: is u_f a flattened version of what? u_pe? not mentioned in the paper.\n4. L174: ‘tilling the latent query’, I am not sure “tiling” is a widely accepted term, I think it is a pytorch’s terminology.\n5. Eq (1): why not just using linear interpolation?\n6. Figure 3, 5, 6: what do different columns mean? Time evolution?\n7. Figure 4: (d) \\epsilon -> \\beta?"
+        },
+        "questions": {
+          "value": "Please see the weakness section."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "xem7Jmcle7",
+      "forum": "cRnCcuLvyr",
+      "replyto": "cRnCcuLvyr",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_TXUj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10766/Reviewer_TXUj"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10766/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730206269502,
+      "cdate": 1730206269502,
+      "tmdate": 1731428517735,
+      "mdate": 1731428517735,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CViT combines patchwise ViT encoding, Perceiver-style temporal aggregation, learned grid-based query embeddings, and cross-attention decoding for PDE operator learning. It reports strong rollout accuracy across several benchmarks, but the theoretical analysis is flawed and the central arbitrary-resolution claim is not directly validated.",
+        "strengths": [
+          "Broad empirical evaluation: CViT-L obtains the best reported errors in shallow-water and three rollout benchmarks while using fewer parameters than large pretrained comparators (pp. 7–9).",
+          "Useful ablations examine patch size, embedding choice, grid resolution, interpolation locality, decoder width, and temporal latent queries (pp. 8, 28–30).",
+          "The architecture is clearly described and combines continuous query decoding with effective spatiotemporal processing; qualitative predictions and computational costs are also provided (pp. 3–5, 35–36)."
+        ],
+        "weaknesses": [
+          "The theoretical contribution is unsound as written: the analyzed grid embedding in Eq. 29 omits the normalization used by the actual Nadaraya–Watson embedding in Eq. 7; the lower bound assumes a feature has norm M although only an upper bound is stated, and the argument repeatedly conflates upper bounds with the actual Lipschitz constant (pp. 4, 22–25).",
+          "The claimed consistent evaluation at arbitrary resolutions is not demonstrated through genuine cross-resolution training/testing. The latent grid is usually matched to the dataset resolution, and the reported grid ablation only tests nearby grids on the same evaluation problem (pp. 5, 7, 28).",
+          "Comparative evidence is not fully controlled: several baseline numbers are copied from another paper, while CViT uses its own 200,000-step recipe; compute, optimization budget, variance across seeds, and statistical uncertainty are not reported for accuracy comparisons (pp. 6, 25–26, 30, 32–34)."
+        ],
+        "score_rationale": "The empirical results are promising and broad enough to approach acceptance, but novelty is primarily an integration of established components. More importantly, the stated theoretical justification contains substantive errors, and the paper does not experimentally establish its headline resolution-flexibility claim. These issues place it marginally below the acceptance threshold, with some uncertainty because the reported benchmark gains are substantial."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CViT combines ViT patch encoding, Perceiver-style temporal aggregation, a learned grid coordinate embedding, and query-wise cross-attention for PDE operator learning. The empirical results are promising, but the core novelty is largely architectural recombination, the theoretical justification has serious inconsistencies, and the evidence does not substantiate the claimed resolution independence.",
+        "strengths": [
+          "Strong reported accuracy and parameter efficiency across several PDE families: CViT-L leads the listed shallow-water and rollout comparisons, while smaller variants are competitive with much larger pretrained models (pp. 7–9).",
+          "The architecture is clearly described and supports coordinate-conditioned querying; useful ablations examine patch size, coordinate encoding, grid resolution, beta, latent queries, and decoder configuration (pp. 4, 7–8, 28–30).",
+          "The paper includes extensive implementation, dataset, computational-cost, and qualitative rollout details, including a discontinuous advection test with both relative L2 and total-variation metrics (pp. 25–36)."
+        ],
+        "weaknesses": [
+          "The coordinate-embedding theory is not technically sound as stated: the implemented Nadaraya–Watson embedding is normalized (p. 4), whereas Theorem E.3(c) analyzes an unnormalized Gaussian sum (pp. 22–24); moreover, its claimed lower bound assumes a feature attaining norm M despite only an upper bound being assumed and ignores possible vector cancellation. Thus it does not justify the method or spectral-bias claims.",
+          "The central claim of consistent arbitrary-resolution evaluation is weakly tested. Experiments evaluate on fixed dataset grids; Table 6 changes the latent-grid resolution but apparently retains the same evaluation resolution, so there is no convincing train-low/test-high or off-grid generalization study (pp. 7, 28).",
+          "Comparative evidence is not fully controlled: many Table 3 baselines are copied from another paper, shallow-water baselines receive a different training recipe/budget than CViT, and no multi-seed variation or uncertainty is reported (pp. 6–8, 25–28). Novelty is also moderate because most components are established and learned local grid features closely resemble prior neural-field encodings discussed on p. 18."
+        ],
+        "score_rationale": "The broad empirical gains make the work potentially useful, but the flawed theoretical centerpiece, limited evidence for resolution independence, and incompletely controlled comparisons prevent confidence in its strongest claims. I therefore place it marginally below acceptance, with some uncertainty because the reported benchmark gains are substantial."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CViT combines ViT patch encoding, Perceiver-style temporal aggregation, learned grid interpolation, and query-wise cross-attention for PDE operator learning. The reported benchmark accuracy is strong, but the principal theoretical argument does not analyze the embedding actually used, and the evidence for resolution independence and fair state-of-the-art comparison is incomplete.",
+        "strengths": [
+          "Strong empirical results across several PDE families: CViT-L reports the best errors in the shallow-water benchmark and all three rollout benchmarks while using fewer parameters than large pretrained competitors (pp. 7–9).",
+          "The architecture is clearly motivated and practically useful: query-based decoding permits evaluation at arbitrary coordinates, while temporal aggregation reduces token count (pp. 3–5).",
+          "Ablations cover patch size, coordinate encoding, grid resolution, locality parameter, decoder width/heads, and temporal latent queries (pp. 7–8, 28–30)."
+        ],
+        "weaknesses": [
+          "The theoretical contribution is technically unsound as presented. The implemented embedding uses normalized Nadaraya–Watson weights (p. 4), whereas Theorem E.3 analyzes an unnormalized sum (pp. 22–24). Its lower bound also assumes a feature attains norm M despite only imposing an upper bound and does not adequately exclude cancellation. Consequently, the claimed justification for spectral-bias mitigation is unsupported.",
+          "The comparisons are not cleanly controlled: CViT is trained for 200,000 iterations, while shallow-water baselines use a separate 50-epoch recipe, and many Table 3 numbers are imported from another paper rather than reproduced under matched compute and tuning (pp. 25–26, 28, 30). Parameter count alone does not establish efficiency; CViT-L is also slower than the listed ViT/FNO/U-Net baselines (p. 36).",
+          "The key claim of resolution-independent operator learning is weakly evaluated. The latent grid normally matches dataset resolution, the grid study changes it only slightly, and no genuine train-low/test-high, off-grid, or irregular-query benchmark is provided (pp. 5, 28). With β=10^5, the embedding is effectively highly localized, making extrapolation behavior especially uncertain."
+        ],
+        "score_rationale": "The architecture yields compelling benchmark numbers and useful ablations, but novelty is largely a composition of established components. More importantly, the stated theory mismatches the actual normalized embedding, and the experimental protocol does not convincingly validate resolution generalization or fully fair superiority. These issues place the work marginally below acceptance despite strong empirical promise."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CViT, combining ViT patch encoding, Perceiver-style temporal aggregation, a learned grid coordinate embedding, and query-wise cross-attention for PDE operator learning. Its benchmark results are strong, but the architectural novelty is incremental and central theoretical and experimental claims are not adequately substantiated.",
+        "strengths": [
+          "Strong reported performance across several PDE families: CViT-L leads the listed shallow-water, Navier–Stokes, and diffusion–reaction comparisons while using fewer parameters than large pretrained baselines (pp. 7–9).",
+          "The architecture is clearly motivated and supports coordinate-conditioned querying in principle; ablations cover patch size, embedding type, grid resolution, β, and temporal latent queries (pp. 4, 7–8, 28–30).",
+          "The appendices provide useful implementation, dataset, computational-cost, and qualitative rollout details (pp. 25–36)."
+        ],
+        "weaknesses": [
+          "The coordinate-embedding theory is technically unsound as presented. The analyzed embedding in Eq. 29 omits the normalization used by the actual Nadaraya–Watson embedding in Eq. 7; the lower bound assumes a feature has norm M although only an upper bound is given, and it cannot hold when features are zero or constant. The Fourier-feature derivative also appears to introduce an erroneous √2 factor (pp. 4, 22–24). Thus the claimed explanation of spectral-bias mitigation is unsupported.",
+          "Comparison fairness is unclear: CViT receives 200,000 iterations, whereas shallow-water baselines are trained for only 50 epochs, and many Table 3 results are imported from another paper under potentially different optimization budgets. No multiple-seed uncertainty or matched training-compute comparison is provided (pp. 6–8, 25–28).",
+          "The claimed arbitrary-resolution capability is demonstrated only architecturally. Experiments use a learned grid near the data resolution and test merely small grid-size changes, not genuine cross-resolution training/evaluation or irregular queries; quadratic attention and training instability further limit practicality (pp. 5, 10, 25, 28, 35–36)."
+        ],
+        "score_rationale": "The empirical numbers are promising and broad enough to make the work potentially useful, but the main theoretical contribution contains serious errors, the novelty over established conditioned neural fields and transformer operators is moderate, and key fairness and resolution-generalization claims lack decisive evidence. I therefore place it marginally below acceptance, with some uncertainty because the reported benchmark gains could remain meaningful after controlled reevaluation."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "CViT combines ViT patch encoding, Perceiver-style temporal aggregation, a trainable interpolated coordinate grid, and query-wise cross-attention for PDE operator learning. The reported benchmark results are strong, but the central theoretical justification is materially flawed and the claimed resolution flexibility is not adequately demonstrated.",
+        "strengths": [
+          "Strong empirical results across several PDE families: CViT-L reports the best errors in the shallow-water comparison and all three rollout tasks, while using fewer parameters than large pretrained baselines (pp. 7–9).",
+          "The architecture is clearly specified and combines spatial tokenization, temporal compression, and coordinate-conditioned decoding in a practically useful design (pp. 3–5).",
+          "Ablations cover patch size, coordinate encoding, grid resolution, interpolation locality, latent queries, and decoder capacity, consistently supporting several design choices (pp. 7–8, 28–31)."
+        ],
+        "weaknesses": [
+          "The Lipschitz theory does not analyze the implemented embedding: Eq. 7 uses normalized Nadaraya–Watson weights, whereas Theorem E.3(c) studies an unnormalized sum. Moreover, its nonzero lower bound cannot follow from merely bounded features—identical or zero features are counterexamples—and the derivation contains inconsistencies (pp. 4, 22–25). Thus the claimed theoretical explanation of spectral-bias mitigation is unsupported.",
+          "The principal claim of accurate arbitrary-resolution evaluation is not tested through genuine cross-resolution or off-grid evaluation. Experiments evaluate on dataset grids, while the grid-resolution study only changes the latent grid around the same evaluation resolution; with β=10^5 and a dataset-resolution latent grid, the method is close to localized lookup (pp. 5, 7–8, 28–29).",
+          "Comparison rigor is uncertain: many baseline numbers are copied from another paper, training objectives and budgets differ, no variability or significance estimates are reported, and CViT training sometimes collapses and is restarted without a precise protocol (pp. 6–8, 25–26)."
+        ],
+        "score_rationale": "The architecture has moderate novelty and compelling reported accuracy, making it a credible empirical contribution. However, the invalid/mismatched central theory and missing evidence for the headline resolution-independence claim prevent a clear acceptance recommendation; uncertainty remains because code cannot be assessed from the supplied manuscript."
+      }
+    }
+  ]
+}

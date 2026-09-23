@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_014",
+  "paper_id": "P6HdPrHiQI",
+  "number": 3975,
+  "title": "Estimating Time Series Foundation Model Transferability via In-Context Learning",
+  "authors": [
+    "Qingren Yao",
+    "Ming Jin",
+    "Chengqi Zhang",
+    "Chao-Han Huck Yang",
+    "Jun Qi",
+    "Shirui Pan"
+  ],
+  "primary_area": "learning on time series and dynamical systems",
+  "keywords": [
+    "Time series",
+    "transferability estimation",
+    "foundation model",
+    "forecasting"
+  ],
+  "forum_url": "https://openreview.net/forum?id=P6HdPrHiQI",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    6,
+    2
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "9MihTFJ14N",
+      "forum": "P6HdPrHiQI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3975/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761897997781,
+      "tmdate": 1762917119945,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "ArLM1pcuyn",
+      "forum": "P6HdPrHiQI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3975/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761520390111,
+      "tmdate": 1762917120706,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "tQKLBXsz7j",
+      "forum": "P6HdPrHiQI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3975/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761919610519,
+      "tmdate": 1762917119746,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "voVSZaXGWg",
+      "forum": "P6HdPrHiQI",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3975/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761565199536,
+      "tmdate": 1762917120184,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TIMETIC casts TSFM transferability estimation as tabular in-context regression over dataset features, zero-shot performance, and a proposed layerwise entropy profile. The framing is useful and the benchmark is substantial, but important evaluation and methodological ambiguities prevent the evidence from fully supporting the broad generalization and performance claims.",
+        "strengths": [
+          "The model-selection problem is practically important, and the context-table formulation provides a flexible way to reuse prior fine-tuning observations without retraining a separate meta-estimator (pp. 3–6).",
+          "The benchmark includes 10 model variants, 10 datasets, three horizons, and both standard and few-shot regimes, with fine-tuned performance tables provided in the appendix (pp. 17–23).",
+          "TIMETIC generally improves average rank correlation over the evaluated baselines, and the paper includes useful ablations of features, entropy profiles, context size, and regressors (pp. 8–9, 22–25)."
+        ],
+        "weaknesses": [
+          "The empirical evidence is not sufficiently rigorous for the headline claims: there are no seeds, uncertainty intervals, significance tests, or top-model selection/regret metrics; the weights used for weighted Kendall tau are not specified; and ground truth is based on one epoch with a single fixed learning rate rather than validated fine-tuning configurations (pp. 19–20). Results are also heterogeneous, and the claimed mean Spearman correlation of approximately 0.6 occurs only in the standard medium-horizon setting, while other means are substantially lower (pp. 1, 23).",
+          "Potential target leakage and reproducibility issues remain unresolved. The 20 features are selected using fine-tuned performance labels, but the paper does not state that this supervised selection is nested within each target-dataset/model holdout; the context-size study selects windows “most related” to the target without defining that selection; and Algorithm 1 appears to evaluate f* rather than the candidate f (pp. 5, 9, 15–16).",
+          "The entropy profile lacks a convincing technical foundation: k-nearest-neighbor differential entropy is compared across representation spaces with different dimensionalities without a stated normalization or estimator-stability analysis, so its association with model width may be largely mechanical (pp. 5–6, 24–25). Moreover, unseen-model evidence covers only 10 Transformer variants from five related families, making claims about arbitrary models or unseen model classes too strong (pp. 8, 17–19)."
+        ],
+        "score_rationale": "The paper offers a sensible, moderately novel application of tabular in-context learning and encouraging benchmark results. However, possible supervised feature-selection leakage, underspecified ranking evaluation, weak statistical validation, and limited support for the entropy/generalization claims leave it marginally below the acceptance bar. Uncertainty remains because a leakage-free implementation could materially strengthen the results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TIMETIC represents dataset statistics, model entropy profiles, and zero-shot errors in a table, then uses TabPFN to predict post-fine-tuning performance. The framing is useful and moderately novel, but central characterization and evaluation choices leave uncertainty about genuine unseen-model generalization and practical model selection.",
+        "strengths": [
+          "The in-context tabular formulation is flexible and practically motivated, avoiding retraining the estimator as observations accumulate (pp. 3–6).",
+          "The benchmark covers 10 models, 10 datasets, three horizons, and standard/few-shot regimes, with detailed per-dataset results (pp. 7–8, 17–23).",
+          "Ablations examine data features, entropy profiles, context size, and alternative regressors; TIMETIC generally improves aggregate ranking correlation over the reported baselines (pp. 9, 24–25)."
+        ],
+        "weaknesses": [
+          "The entropy profile lacks a sound comparability argument: kNN differential entropy is sensitive to representation dimension, scaling, and geometry, while the evaluated models have different hidden dimensions. Indeed, entropy magnitude tracks model size, and the supporting performance correlations are modest rather than establishing transfer-relevant information (pp. 5–6, 21, 24).",
+          "The protocol is insufficiently controlled: supervised feature selection uses fine-tuned outcomes without a clearly stated nested, target-excluding fit; the precise leave-model/dataset-out procedure is underspecified; weighted Kendall weights are never defined; and no repeated-run uncertainty or significance is reported (pp. 4–5, 8, 15, 20). Moreover, one epoch with one learning rate for every architecture makes the target ranking specific to an arbitrary fine-tuning recipe (pp. 19–20).",
+          "Claims are stronger than the evidence. Unseen-model tests remain within five Transformer families and mostly paired size variants, not arbitrary model classes (pp. 17–19). Performance is inconsistent across datasets, and the standard-regime mean Spearman correlations are 0.353, 0.600, and 0.418 across horizons—not generally approximately 0.6—with only a small long-horizon gain over zero-shot ranking (pp. 22–23)."
+        ],
+        "score_rationale": "The paper offers a promising, useful formulation and a substantial benchmark, but questionable entropy comparability, ambiguous leakage/generalization controls, recipe-dependent ground truth, and overstated aggregate results prevent confidence above marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TIMETIC predicts post-fine-tuning TSFM performance using TabPFN over dataset features, zero-shot performance, and a layerwise entropy profile. The framing is timely and moderately novel, with encouraging results, but protocol ambiguities and limited validation of the entropy representation and actual model-selection utility leave the evidence marginally below the ICLR acceptance bar.",
+        "strengths": [
+          "A practical, flexible formulation of transferability estimation as tabular in-context regression, together with an architecture-agnostic attempt at model characterization (pp. 3–6).",
+          "The benchmark covers 10 models, 10 datasets, three horizons, and standard/few-shot regimes, with detailed per-dataset results and ground-truth performance in the appendix (pp. 17–23).",
+          "TIMETIC consistently improves average weighted Kendall correlation over the reported baselines, and the ablations support contributions from model features and larger contexts (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "The evaluation protocol risks leakage and is insufficiently specified: supervised feature selection uses transferred-performance labels without stating that it is nested within each held-out split, while selection of the context windows “most related” to the target is undefined (pp. 4–5, 9, 15–16). The exact unseen-model split construction is also unclear, particularly because each family has closely related size variants (pp. 8, 17–19).",
+          "The entropy profile lacks adequate technical justification. Differential entropy values across embeddings with different dimensionalities and scales are not directly comparable, the high-dimensional kNN estimator may be unstable, and observed profiles explicitly track hidden dimensionality. The experiments mainly establish correlation within a small, Transformer-only zoo rather than generalization to arbitrary model classes (pp. 5–6, 21, 24–25).",
+          "Evidence for practical selection is incomplete: ground truth uses one epoch and one fixed learning rate without seeds or uncertainty, the primary weighted Kendall weights are never specified, and no top-1 accuracy or selection regret is reported (pp. 7, 19–20). Moreover, the headline Spearman correlation near 0.6 occurs only for medium-horizon standard evaluation; the other standard-horizon means are 0.353 and 0.418 (p. 23)."
+        ],
+        "score_rationale": "The paper offers a useful and reasonably novel framework with consistent average improvements, but reproducibility and possible leakage concerns, a confounded entropy characterization, and the absence of robust fine-tuning and decision-level evaluation make the central generalization claims insufficiently established."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TIMETIC predicts post-fine-tuning TSFM rankings by feeding dataset statistics, zero-shot error, and layerwise activation-entropy profiles to TabPFN. The formulation is practically relevant and the benchmark is substantial, but unclear evaluation details, a questionable entropy representation, and incomplete model-selection evidence leave the central generalization claims insufficiently established.",
+        "strengths": [
+          "Addresses a useful and timely problem with a flexible context-table formulation that can accommodate different observed model–dataset pairs (pp. 3–6).",
+          "The benchmark covers 10 models, 10 datasets, three horizons, and standard/few-shot regimes, requiring a meaningful fine-tuning effort (pp. 7–8, 17–20).",
+          "TIMETIC generally improves average rank correlation over the tested baselines, with useful per-dataset results and component/regressor ablations (pp. 8–9, 22–25)."
+        ],
+        "weaknesses": [
+          "The main weighted Kendall metric is not reproducible because the decisive pair weights are never specified; moreover, there are no seeds, uncertainty estimates, significance tests, top-1 selection accuracy, or selection regret, despite substantial per-dataset failures and cases where zero-shot ranking is better (pp. 20–23).",
+          "The supervised feature-selection procedure minimizes variance using fine-tuned performance, but the paper does not state that selection is nested within each held-out target split; if target labels contributed, this leaks evaluation information. Context construction and the exact model-holdout protocol are also underspecified (pp. 4–5, 8, 15–16).",
+          "The entropy profile is not an architecture-invariant information measure: differential entropy depends on representation dimension, scaling, and parameterization, and the paper explicitly observes hidden-size effects. Its positive correlation with MASE also conflicts with the interpretation that higher entropy implies better transferability. Comparisons against simple architecture/size metadata or stronger matrix-completion/meta-learning baselines are missing (pp. 5–6, 21, 24–25)."
+        ],
+        "score_rationale": "The paper offers a promising practical formulation and encouraging empirical averages, but the unspecified primary metric, possible supervised feature-selection leakage, fragile entropy characterization, and absence of direct selection-utility/statistical validation are material concerns. I therefore place it marginally below acceptance; uncertainty remains because a leakage-free implementation and specified weighting could strengthen the evidence."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "TIMETIC represents dataset/model characteristics and observed fine-tuning outcomes as a table, then uses TabPFN to predict TSFM rankings. The framing is useful and empirically promising, but key protocol and method ambiguities prevent the reported gains from convincingly establishing reliable transferability estimation.",
+        "strengths": [
+          "The in-context tabular formulation is practical and supports several combinations of seen/unseen models and datasets without training a new regressor for every context (pp. 3–6).",
+          "The benchmark covers 10 models, 10 datasets, three horizons, and standard/few-shot regimes, with detailed ground-truth results and per-dataset correlations (pp. 17–23).",
+          "Ablations examine feature count, entropy profiles, context size, and alternative regressors; TabPFN generally improves ranking correlation (pp. 9, 24–25)."
+        ],
+        "weaknesses": [
+          "The method is not fully specified: zero-shot performance is described as a predictor, yet X_context and X_target are both defined as 26-dimensional characteristics, while the resulting context allegedly has 28 columns; target/context feature schemas therefore do not match as written (p. 6; also Figure A, p. 16). The weights used for the primary weighted Kendall metric are also unspecified (p. 20).",
+          "Potential target leakage is unresolved. The 20 features are selected using fine-tuned performance labels through TotalVariance, but the paper does not state that this selection—and its stopping decision—is repeated using source/context data only inside each held-out evaluation (pp. 4–5, 15). Context rows are additionally highly dependent windows, while no uncertainty intervals or repeated-split tests are reported.",
+          "Evidence for broad generalization is limited: only 10 models from five related Transformer families are tested, the unseen-model split construction is insufficiently detailed, and raw differential entropy is not inherently comparable across representation dimensions/scales. Results are also moderate and heterogeneous: mean weighted tau is 0.305–0.429, with many near-zero per-dataset outcomes; the highlighted approximately 0.6 Spearman result applies only to one setting rather than the overall benchmark (pp. 8, 21–23)."
+        ],
+        "score_rationale": "The paper offers a sensible, moderately novel formulation and substantial experimental work, but reproducibility gaps, possible supervised feature-selection leakage, and weakly validated unseen-model claims undermine technical soundness. I lean reject, though the assessment could improve if the protocol is leakage-free and the dimensional inconsistency is merely expositional."
+      }
+    }
+  ]
+}

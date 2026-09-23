@@ -1,0 +1,318 @@
+{
+  "year": 2025,
+  "package_id": "paper_063",
+  "paper_id": "tYuVjFgEIK",
+  "number": 8571,
+  "title": "Decoupling Variable and Temporal Dependencies: A Novel Approach for Multivariate Time Series Forecasting",
+  "authors": "zhou han; Yuntian Chen",
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": "Time Series Forecasting; transformer; multivariate time series forecasting",
+  "forum_url": "https://openreview.net/forum?id=tYuVjFgEIK",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    3,
+    5,
+    6
+  ],
+  "human_mean_rating": 4.666666666666667,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper, the authors investigate the problem of multivariate time series forecasting. The authors claim that overemphasizing temporal dependencies can destabilize the model making the model sensitive to noise. And the simultaneous learning of time-related and variable-related patterns can lead to harmful interference. So the authors propose the temporal-variable decoupling network to model the temporal and variable relationships respectively. The authors evaluate the proposed method on several datasets and achieve good performance."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "N.A."
+        },
+        "weaknesses": {
+          "value": "1.\tThe relationship of inter-variables in the time sequence should have an instantaneous effect, but I am surprised that the author did not quote related work in this area [1,2].  \n2.\tWhy do learning time-related and variable-related patterns simultaneously harm inference? Please provide some rigorous evidence.  \n3.\tThe author said that Transformer puts too much emphasis on extracting time-dependent patterns and did not provide enough evidence that this statement was suspicious of the rationality of this assertion. From the perspective of the data generation process, future data generation has also received the effects of time delay and cross variables at the same time, which is the opposite of separating these two factors at the same time. This method highlights the intra-and inter- time series relationships, but many methods have studied this problem, such as [3].  \n4.\tWhy does the proposed method need to model cross-variable relationships and then model cross-temporal relationships? What is the motivation behind it, what if it is in turn?  \n5.\tMore recent comparison methods need to be considered, for example [4] [5].\n\n[1] . Identification of hidden sources by estimating instantaneous causality in high-dimensional biomedical time series.  \n[2] . Modeling nonstationary time series and inferring instantaneous dependency, feedback and causality: An application to human epileptic seizure event data.  \n[3] Yu, Guoqi, et al. \"Revitalizing multivariate time series forecasting: Learnable decomposition with inter-series dependencies and intra-series variations modeling.\" arXiv preprint arXiv:2402.12694 (2024).  \n[4] Jia, Yuxin, et al. \"WITRAN: Water-wave information transmission and recurrent acceleration network for long-range time series forecasting.\" Advances in Neural Information Processing Systems 36 (2024).  \n[5] Xu, Zhijian, Ailing Zeng, and Qiang Xu. \"FITS: Modeling time series with $10 k $ parameters.\" arXiv preprint arXiv:2307.03756 (2023)."
+        },
+        "questions": {
+          "value": "Please refer to Weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "lRkztGwFY7",
+      "forum": "tYuVjFgEIK",
+      "replyto": "tYuVjFgEIK",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8571/Reviewer_hsgf"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8571/Reviewer_hsgf"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8571/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730834889847,
+      "cdate": 1730834889847,
+      "tmdate": 1731427901035,
+      "mdate": 1731427901035,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper, the authors argue that overemphasizing temporal dependencies can destabilize Transformer-based models, increasing their sensitivity to noise, overfitting, and weakening their ability to capture inter-variable relationships. Therefore, they propose a new Temporal-Variable Decoupling Networks (TVDN) which decouples the modeling of variable dependencies from temporal dependencies to address this challenge."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1.\tThe proposed TVDN decouples the modeling of variable dependencies and temporal dependencies which useful in long-term time series forecasting.\n2.\tTVDN also separates the modeling of temporal dependencies into historical dependencies and predictive dependencies, with the latter having received relatively little attention in previous works."
+        },
+        "weaknesses": {
+          "value": "1.\tIn line 61, the authors said that “linear models and Cross-Variable Transformers do not extract accurate temporal dependencies because they essentially map historical series as unordered sets … ”, I disagree with the assertion that these models treat historical series as unordered sets. for example, the linear models predict future time steps by the equation $\\hat{x}_{i+1}=\\omega_{1}x_{i-L+1}+…+\\omega_{L}x_{i}$, clearly treating historical series as ordered sets.\n2.\tIn equation (5) and (6), the authors define $T^{0}=Z_{h}+ Z_{CVE}$; however, in figure 2, it seems that the input of PSTD is consists only $Z_{CVE}$.\n3.\tAlso in figure 2, I cannot find the step (2) in the method section.\n4.\tIn line 246, $Z_{proj}$ is mentioned without a prior definition, I believe it should be $Z_{h}$.\n5.\tIn line 215, the notation $Z_{CVE} \\in {R}^{O \\times D}$ is used, yet I cannot find the definition of $D$.\n6.\tIn line 315,“the permutation-invariant models overlook dynamic temporal features ”seems inappropriate. \n7.\tIn line 332, I disagree with the claim that “we identified that the bottleneck of the traditional Transformer model lies in the ineffective utilization of historical sequence information”, because the experimental results of PatchTST have shown that longer historical sequences will lead better performance. In addition, the reason why the transformer model performs poorly is that it over-captures channel dependencies, which can also be seen in the experimental results of PatchTST and DLinear. Furthermore, the poor performance of the Transformer model can be attributed to its tendency to over-capture channel dependencies, as evidenced by the experimental results of both PatchTST and DLinear.\n8.\tThe experiments are unfair, since PatchTST and DLinear perform better with longer historical windows. Although the authors have conducted experiments with $L=144$, I suggest the authors also set $L=336$ and $L=512$, and compared the results with PatchTST and DLinear.\n9.\tIn Figure 9, Transformer performs better than Transformer Decoder only which is insistent with  ”even with a significant reduction in historical information …”in Line 912."
+        },
+        "questions": {
+          "value": "please see weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "I think there is no ethics concerns."
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jMFwt38mFP",
+      "forum": "tYuVjFgEIK",
+      "replyto": "tYuVjFgEIK",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8571/Reviewer_tVnS"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8571/Reviewer_tVnS"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8571/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730631348120,
+      "cdate": 1730631348120,
+      "tmdate": 1731427900978,
+      "mdate": 1731427900978,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a dual-phase deep learning network architecture called the Temporal-Variable Decoupling Network(TVDN), which decouples the modeling of variable dependencies from temporal dependencies. First, during the variable dependence learning phase, the Cross-Variable Encoder (CVE), a permutation-invariant model, completely disregards the temporal dependence of the sequence and only extracts cross-features between variables, generating an initial prediction sequence. Once the CVE stabilizes, the second phase shifts to temporal dependency learning. The Cross-Temporal Encoder (CTE) divides time series dependence into two parts: Historical Sequence Temporal Dependency (HSTD), and Prediction Sequence Temporal Dependency (PSTD). The outputs of HSTD and PSTD are then fused to correct the initial prediction from the variable dependence learning phase. The approach reduces the risk that overemphasizing temporal dependencies can overfit the model, and enables broader parameter space exploration. The experiment in this paper shows that TVDN achieves state-of-the-art (SOTA) performance in electricity, traffic, weather, four ETT, and exchange fields by comparing it with some of the latest Time-Series Forecasting Transformer (TSFT) methods."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.\tTVDN decouples the modeling of variable dependencies from temporal dependencies to reduce the interference between the two, enhance the utilization of temporal features, and improve forecasting accuracy.\n2.\tTVDN adopts a dual-phase architecture, starting with CVE to learn inter-variable dependencies and then shifting to CTE focused on temporal dependency learning. The two-phase approach effectively addresses the interference of variable and temporal learning, which avoids leading to a degradation of models’ performance.\n3.\tThe proposed method demonstrates SOTA performance in real-world forecasting benchmarks by capturing complex dependencies across variables and time. This is achieved with minimal computational overhead, making the model efficient and scalable."
+        },
+        "weaknesses": {
+          "value": "1.\tThe experiment focuses on predicting accuracy and sensitivity to temporal dependencies but does not assess computational overhead and resource requirements. To provide a more comprehensive evaluation, it is recommended to include specific metrics for computational cost, such as training time, inference time, memory usage, and FLOPs. By reporting these metrics, the paper could offer a clearer picture of the model’s practical feasibility, particularly for deployment in large-scale, real-time, or resource-constrained environments.\n2.\tThe experiment in Section 4.3 shows that the model’s performance significantly declines when the temporal order is shuffled, indicating a strong dependency on temporal features. The high dependency may decrease the model’s effectiveness on datasets that don’t have clear temporal patterns, limiting its application domain."
+        },
+        "questions": {
+          "value": "1.\tGiven the complexity of TVDN’s dual-phase network structure, could the authors provide a quantitative comparison of computational costs versus accuracy gains relative to baseline models to allow for a more objective assessment of potential trade-offs between accuracy and efficiency?\n2.\tIn real-world applications, temporal sequences are often affected by various types of noise, which may impact model performance. Could the paper conduct experiments by introducing specific noise types, like Gaussian noise, to simulate random disturbances or missing values to simulate incomplete data, to observe TVDN's performance in these noisy environments, and to assess its robustness to noise?\n3.\tThis paper has shown that TVDN performs excellently on various datasets. Is there any limitation to the model? In cases of data scarcity or extremely complex intervariable relationships, can the model maintain its performance?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "breeJb2wy3",
+      "forum": "tYuVjFgEIK",
+      "replyto": "tYuVjFgEIK",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8571/Reviewer_Jesy"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8571/Reviewer_Jesy"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8571/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730622563090,
+      "cdate": 1730622563090,
+      "tmdate": 1731427900909,
+      "mdate": 1731427900909,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper proposes TVDN, a two-stage multivariate forecasting architecture that first models cross-variable relations and then adds historical- and prediction-sequence temporal modules. Although the reported benchmark results are strong, major specification and empirical-consistency problems prevent confidence in the method or conclusions.",
+        "strengths": [
+          "The variable-first, temporal-second training strategy is intuitive and is tested against joint and reversed-order alternatives (pp. 8, 24).",
+          "The evaluation covers eight standard datasets and four forecasting horizons, with broadly favorable reported MSE/MAE results (pp. 7, 15–16).",
+          "The paper includes useful auxiliary studies on lookback length, input corruption, and computational cost (pp. 18–20, 26)."
+        ],
+        "weaknesses": [
+          "The method is insufficiently specified for reproduction: convolutional kernel shapes, feature dimensions, losses, phase-switch criterion, optimization details, and full hyperparameters are absent. Moreover, phase two updates both CVE and CTE, making the claimed decoupling ambiguous (pp. 5–6).",
+          "There are serious numerical and textual inconsistencies. Table 8 labels its results as ETTh1 averages but reports TVDN MSE 0.186 rather than 0.445 from Tables 1/3, with baseline values likewise resembling another setting (pp. 7, 15, 26). Appendix E attributes robustness to multi-scale extraction and adaptive attention that are not defined in the architecture (pp. 19–20).",
+          "Evidence for the causal claims is weak: the shuffle test equates sensitivity with successful temporal modeling and implausibly claims DLinear is permutation-invariant (pp. 8–9); robustness has no baseline comparison; and results lack repeated runs, uncertainty estimates, or statistical tests. Fixed ten-epoch comparisons also do not establish fair tuning (p. 6)."
+        ],
+        "score_rationale": "The staged optimization idea has some practical novelty and the reported gains are extensive, but the architecture is incremental over cross-variable Transformers plus convolutional residual refinement. More importantly, missing implementation details, unsupported mechanistic conclusions, and decisive result inconsistencies—especially Table 8—substantially undermine technical soundness and reproducibility. I therefore rate it a reject, while allowing uncertainty because the underlying empirical gains might survive a corrected and fully documented evaluation."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes TVDN, combining a cross-variable Transformer with convolutional modules for historical and predicted-sequence temporal modeling, trained in stages. The benchmark results appear promising, but major specification, consistency, and experimental-validity problems prevent the central claims from being trusted or reproduced.",
+        "strengths": [
+          "The variable-first, temporal-second training strategy is a plausible and practically interesting design, with joint-versus-staged and reversed-order comparisons on pp. 8 and 24.",
+          "The evaluation spans eight commonly used forecasting datasets and four horizons, with extensive numerical results (pp. 7, 15–16).",
+          "The paper considers lookback length, corruption robustness, and computational cost in addition to headline accuracy (pp. 18–20, 26)."
+        ],
+        "weaknesses": [
+          "The method is substantially underspecified: convolution configurations, phase lengths/switch criterion, optimization details, and key hyperparameters are absent. Moreover, CVE is updated again during the temporal phase (p. 6), so the claimed decoupling from temporal learning is incomplete and its mechanism is unclear.",
+          "Several results and claims are internally inconsistent. Table 8 reports an ETTh1 averaged MSE of 0.186, whereas Tables 1/3 report 0.445; p. 20 attributes robustness to a “temporal-value decomposition,” multi-scale extraction, and adaptive attention that are not defined in the architecture. Similar editing artifacts further reduce confidence.",
+          "The evidence does not adequately establish the proposed explanation: the shuffle experiment is ambiguous and the claim that DLinear is unaffected is difficult to reconcile with its ordered temporal projection (pp. 8–9); results lack seeds, uncertainty, and significance tests; robustness has no baseline comparison (pp. 19–20); and equalizing all methods to ten epochs is not necessarily a fair tuning protocol (p. 6)."
+        ],
+        "score_rationale": "There is moderate architectural novelty and potentially strong empirical performance, but the incomplete method description, contradictory reported numbers, unsupported component claims, and insufficiently controlled evidence are fundamental rather than cosmetic issues. I therefore rate it as a reject despite uncertainty about whether a corrected implementation would reproduce the gains."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "TVDN combines an inverted cross-variable Transformer with convolutional temporal refinement and staged training. The reported benchmark gains are broad, but conceptual errors, insufficient specification, and serious numerical inconsistencies make the central claims unreliable.",
+        "strengths": [
+          "The variable-first, temporal-refinement design is intuitive and potentially useful, with an explicit comparison against joint and reversed-order training (pp. 8, 24).",
+          "The paper reports broad results across eight forecasting datasets and multiple horizons, often improving over strong cross-variable baselines (pp. 7, 15–16).",
+          "It considers lookback length, perturbations, and computational cost beyond the main benchmark (pp. 18–20, 26)."
+        ],
+        "weaknesses": [
+          "The key permutation premise is technically incorrect or at least badly defined: CVE treats ordered time samples as token features and applies learned projections, so it is not invariant to temporal permutation; DLinear is likewise not generally invariant. Consequently, the shuffle experiment does not establish the claimed temporal-feature mechanism (pp. 4–5, 8–9).",
+          "The method and training protocol are underspecified and internally inconsistent: kernel sizes, feature dimensions, phase-switch criterion, and losses are missing, while the text both claims decoupled training and says CVE and CTE are jointly updated in the second phase. Essential HSTD/PSTD/FDS component ablations and multi-seed uncertainty are absent (pp. 5–8).",
+          "Reported evidence contains severe contradictions. Table 8 labels 0.186 as average ETTh1 MSE, whereas the main tables report 0.445; it also introduces unsupported mechanisms such as multi-scale extraction and adaptive attention in the robustness explanation. Robustness is tested only for TVDN, so comparative resistance claims are unsupported (pp. 15, 19–20, 26)."
+        ],
+        "score_rationale": "The staged architecture is a plausible incremental contribution and the headline results appear promising. However, the faulty invariance argument, ambiguous optimization procedure, missing decisive ablations/statistics, and contradictory efficiency numbers undermine technical soundness and reproducibility enough to warrant rejection."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "TVDN combines a cross-variable Transformer with convolutional temporal refinement and staged training. Although the benchmark tables report strong accuracy, the method is insufficiently specified and several experiments and numerical inconsistencies substantially weaken the central claims.",
+        "strengths": [
+          "The variable-first, temporal-refinement design is intuitive and offers a potentially useful optimization perspective beyond a standard iTransformer-style model (pp. 4–6).",
+          "Reported results cover eight benchmark series and four horizons, with broad gains over listed baselines if the evaluations are valid (pp. 7, 15–16).",
+          "The paper includes ablations on training order, look-back length, perturbations, and computational cost (pp. 8, 18–20, 24, 26)."
+        ],
+        "weaknesses": [
+          "Technical specification is inadequate: tensor operations, convolution axes/kernels, FDS, switching criterion, losses, and training schedule are unclear; moreover, CVE is updated again during the temporal phase, making the claimed decoupling ambiguous (pp. 4–6).",
+          "Evidence does not establish the causal claims. The shuffle experiment ambiguously treats temporally weighted DLinear as permutation-invariant, the robustness study has no baseline comparison, and claims about local minima/global solutions lack analysis beyond test curves (pp. 8–9, 19–22).",
+          "Reproducibility and numerical reliability are poor: there are no seeds, uncertainty estimates, or complete hyperparameters, while Table 8 reports ETTh1 average MSE 0.186 despite Table 3 reporting 0.445 and per-horizon values no lower than 0.386 (pp. 6, 15, 26). Appendix E also attributes robustness to undeclared mechanisms such as multi-scale extraction and adaptive attention (pp. 19–20)."
+        ],
+        "score_rationale": "The architecture has a plausible but incremental idea and impressive reported numbers. However, ambiguous methodology, unsupported mechanistic conclusions, missing statistical/reproducibility details, and a major result inconsistency prevent confidence in technical soundness or empirical validity, warranting rejection."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "TVDN combines a cross-variable Transformer with staged convolutional temporal refinement for long-horizon multivariate forecasting. The reported benchmark gains are broad, but the central invariance/decoupling interpretation is not technically established, and substantial specification and evaluation inconsistencies undermine the conclusions.",
+        "strengths": [
+          "The method is intuitively modular, separating an initial cross-variable forecast from historical- and predictive-sequence temporal refinement (pp. 4–6).",
+          "Results cover eight commonly used datasets and four horizons, with generally strong MSE/MAE numbers relative to many baselines (pp. 7, 15–16).",
+          "The paper includes useful auxiliary studies on training order, longer lookbacks, corruption, and computational cost (pp. 18–20, 24, 26)."
+        ],
+        "weaknesses": [
+          "The core claim that CVE is permutation-invariant to time is questionable: each variable token contains an ordered length-S vector and is mapped to the forecast by learned projections, so permuting time coordinates generally changes the output. Consequently, the shuffle experiment does not validate the stated invariant/equivariant theory, and its protocol is insufficiently described (pp. 4–5, 8–9, 24).",
+          "Evidence for the proposed mechanism is incomplete: there are no controlled ablations isolating HSTD, PSTD, FDS, or comparable-capacity alternatives; split versus joint training is tested on only three datasets, reversed order on one, and no multi-seed uncertainty or statistical tests are reported (pp. 7–8, 24). Robustness evaluates only TVDN, so it cannot support comparative resistance claims (pp. 19–20).",
+          "Reproducibility and numerical consistency are poor. Important architectural and optimization details are omitted, fixed 10-epoch comparisons do not establish fair tuning, and Table 8 claims ETTh1 average MSE 0.186 while the main ETTh1 average is 0.445; several baseline values also conflict (pp. 6, 15, 26). The appendix additionally invokes multi-scale extraction and adaptive attention that are not defined in the method (p. 20)."
+        ],
+        "score_rationale": "The empirical table suggests a potentially useful staged-training recipe, but novelty is incremental and the paper does not substantiate its main theoretical characterization or causal explanation. Missing ablations, absent uncertainty, unclear reproducibility, and a major results inconsistency place it below the acceptance threshold despite promising reported accuracy."
+      }
+    }
+  ]
+}

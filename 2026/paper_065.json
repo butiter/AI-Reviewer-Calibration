@@ -1,0 +1,236 @@
+{
+  "year": 2026,
+  "package_id": "paper_065",
+  "paper_id": "nQRPHjucHJ",
+  "number": 15663,
+  "title": "Finite-time Convergence Analysis of Actor-Critic with Evolving Reward",
+  "authors": [
+    "Rui Hu",
+    "Yu Chen",
+    "Longbo Huang"
+  ],
+  "primary_area": "reinforcement learning",
+  "keywords": [
+    "Reinforcement Learning",
+    "Actor-Critic"
+  ],
+  "forum_url": "https://openreview.net/forum?id=nQRPHjucHJ",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    6,
+    2,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "DAwon7stsF",
+      "forum": "nQRPHjucHJ",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15663/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761719370994,
+      "tmdate": 1762925918976,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "JNUQFh4jUr",
+      "forum": "nQRPHjucHJ",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15663/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761793890054,
+      "tmdate": 1762925918649,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "W0nGtnIC3Y",
+      "forum": "nQRPHjucHJ",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15663/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761934011084,
+      "tmdate": 1762925917919,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "hiP099ndb2",
+      "forum": "nQRPHjucHJ",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15663/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761541461331,
+      "tmdate": 1762925919413,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper studies a relevant and relatively underexplored problem: finite-time single-timescale actor-critic convergence with evolving rewards. It proposes coupled actor/critic bounds governed by average reward variation and a contraction-based treatment of Markovian sampling. However, the central proof appears invalid because it treats the current Markov state as if distributed independently according to an unconditional marginal despite its dependence on the adaptive actor and critic iterates. Since this step underlies both claimed rates, the main contribution is not presently established.",
+        "strengths": [
+          "The evolving-reward formulation and variation-dependent bounds address a meaningful theoretical gap and clearly identify conditions for retaining an O(T^{-1/2}) rate (pp. 5–10).",
+          "The restart-kernel contraction argument is simple and potentially useful for controlling visitation-distribution drift when the policy sequence is fixed or otherwise suitably decoupled (pp. 28–29).",
+          "The manuscript is organized and provides complete derivations, explicit assumptions, and discussion of approximation error and moving critic targets."
+        ],
+        "weaknesses": [
+          "The decisive issue is adaptive Markovian dependence. The proof writes conditional expected updates using the marginal state distribution hat-nu_t (p. 18) and uses hat-nu_t = P_{theta_{t-1}} hat-nu_{t-1} (pp. 28–29). But theta_t and omega_t are random functions of preceding samples and are correlated with s_t; consequently, the conditional law of s_t given the iterates is generally not hat-nu_t, and the displayed marginal recursion with a random adaptive kernel is unjustified. This invalidates the I3/J3 bounds used throughout pp. 18–26.",
+          "Several technical inconsistencies further reduce confidence: the critic tracking derivation alternates between L_omega and S_omega for the Jacobian-dependent term and associated step-size condition (pp. 22–26), while some entropy-reward differentiation terms are omitted or only informally absorbed (pp. 7, 29).",
+          "The claimed practical coverage is substantially broader than the theorem supports. It requires globally controlled linear critics, uniformly nondegenerate features, smooth bounded-score policies, bounded reward moments, diminishing steps, and small actor/critic ratio; no empirical or worked example verifies these assumptions for curiosity rewards or adaptive-entropy SAC (pp. 6–8)."
+        ],
+        "score_rationale": "Although the problem and intended variation-sensitive result are novel and potentially valuable, the adaptive-sampling dependence gap affects the core actor and critic analyses rather than a peripheral lemma. Without a valid filtration-aware or mixing/decoupling argument, neither the static-reward improvement nor the evolving-reward theorem is established. I therefore rate the current manuscript as a reject, while allowing uncertainty that a substantially revised proof could preserve some results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 4,
+        "summary": "The paper studies single-timescale actor–critic with time-varying reward parameters and claims an O(T^{-1/2}) stationary-point/critic-error rate when average squared reward variation is O(T^{-1}). The formulation is interesting, but the central Markovian-sampling argument appears invalid because it neglects dependence between iterates and sampled states, undermining the main theorem and claimed log-factor improvement.",
+        "strengths": [
+          "Addresses an important and relatively underdeveloped setting—actor–critic with evolving rewards—and gives explicit variation-dependent bounds (pp. 5–10).",
+          "The decomposition into actor error, critic tracking error, reward variation, and approximation error is conceptually useful (pp. 8–10).",
+          "The appendices provide extensive proof details and make the intended assumptions and dependence on reward drift relatively transparent (pp. 18–33)."
+        ],
+        "weaknesses": [
+          "Proposition 4.9 treats the state marginal as evolving via a kernel indexed by the random, history-dependent policy parameter. Since θ_{t-1} is correlated with s_{t-1}, the identity underlying the contraction recursion does not generally hold; the same issue appears when the actor proof replaces conditional sample expectations by expectations under the unconditional state marginal (pp. 18–20, 28–29). This is central to both main bounds.",
+          "The practical corollary is overstated: bounded reward-update gradients imply small increments but do not keep φ_t in a fixed domain or ensure uniform reward/value assumptions. Gradient clipping alone therefore does not establish applicability to curiosity methods or adaptive entropy regularization (pp. 7–8, 28).",
+          "The sampling scheme requires reset-kernel states plus a separate environment successor for TD, so its characterization as practical single-sample Markovian actor–critic is questionable. There is also no empirical or concrete worked example demonstrating that the assumptions hold for the highlighted applications (pp. 5–6)."
+        ],
+        "score_rationale": "The evolving-reward formulation and variation-dependent target are potentially novel, but the adaptive-state dependence gap in the distribution-mismatch analysis affects the core theorem rather than a peripheral lemma. Repair would likely require a joint-process or delayed-mixing analysis and may restore additional factors, so the current contribution is not technically sound enough for acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies single-timescale actor-critic with evolving rewards and claims finite-time actor/critic bounds under Markovian sampling. The formulation is relevant and the reward-variation dependence is potentially useful, but a central conditioning error invalidates the treatment of Markovian noise and therefore the main theorem as written.",
+        "strengths": [
+          "The evolving-reward formulation addresses a relevant gap and explicitly quantifies performance through the reward-variation measure FT (pp. 5–8).",
+          "The paper attempts a coupled actor/critic tracking analysis and clearly separates approximation, critic, reward-drift, and sampling errors (pp. 8–10).",
+          "The reset-kernel contraction argument provides a simple marginal-distribution bound that could be useful in a corrected analysis (pp. 28–29)."
+        ],
+        "weaknesses": [
+          "The core Markovian analysis incorrectly replaces the conditional distribution of st given the adaptive iterates by the unconditional marginal hatνt. In particular, E[θt+1|θt] is asserted to equal an expectation under hatνt (p. 18), although θt is correlated with st through the same trajectory. Proposition 4.9 only controls marginal distributions (pp. 28–29) and cannot justify the actor and critic noise bounds on pp. 19 and 22–23. This undermines Theorem 4.7 even for static rewards.",
+          "There are additional proof inconsistencies: obtaining contraction from 1−2ληωt+4LSωηθt requires a factor-four stronger step-size restriction than the stated condition (pp. 22, 24), and the schedule proportional to 1/sqrt(t) is undefined at the algorithm's initial iteration t=0 (pp. 6, 18).",
+          "The claimed coverage of practical methods is substantially broader than the theorem supports. The analysis requires uniformly bounded/smooth score functions, sufficient feature excitation, bounded critic targets, controlled reward derivatives, and a special online reset-kernel sampler; the paper does not establish these for RND, curiosity methods, or practical SAC (pp. 5–8). No experiments or concrete examples assess whether the assumptions and constants are meaningful."
+        ],
+        "score_rationale": "The problem and intended decomposition are worthwhile, but the adaptive-state conditioning gap is fundamental rather than a minor omission: fixing it would require a genuine Markov-noise argument and may reintroduce the logarithmic factors whose removal is a main contribution. I therefore rate the current manuscript as a reject, with little uncertainty about the proof defect."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies a timely problem and claims finite-time guarantees for single-timescale actor-critic with evolving rewards. However, the central Markovian-sampling argument appears invalid because it controls only marginal state distributions while the sampled state is correlated with the adaptively updated actor, critic, and reward parameters. This undermines both the main theorem and the claimed log-factor improvement.",
+        "strengths": [
+          "The evolving-reward formulation is relevant and connects reward shaping, adaptive regularization, and curricula within one framework (pp. 1–5).",
+          "The paper clearly states actor, critic, and reward-variation metrics and attempts to expose how reward drift enters the rates (pp. 7–10).",
+          "The manuscript provides extensive proof details and identifies useful Lipschitz tracking properties for the critic target (pp. 18–33)."
+        ],
+        "weaknesses": [
+          "The decisive flaw is adaptive dependence under Markovian sampling: the proof writes conditional expected updates using the marginal distribution hat-nu_t (p. 18), while s_t is correlated with theta_t, omega_t, and phi_t. Proposition 4.9 likewise applies a deterministic distribution recursion with a history-dependent random policy (pp. 28–29). Marginal distribution mismatch alone does not control the conditional bias used on pp. 19 and 22–24.",
+          "The claimed applicability to arbitrary feedback-driven reward updates is not justified: such updates can introduce additional sample/history dependence, yet the proof only summarizes their increments through F_T without handling this dependence (pp. 5–8). Domain invariance for unconstrained theta updates and reward parameters is also not established.",
+          "Several supporting claims are insufficiently rigorous or erroneous, including deriving reward smoothness from bounded expected reward (p. 7), bounding a feature-weighted expectation by the unweighted expected reward in Lemma B.4 (p. 31), and inconsistent labeling/accounting of variation terms in the critic proof (pp. 24–25)."
+        ],
+        "score_rationale": "Although the problem and intended rate are potentially valuable, the unaddressed correlation between Markovian samples and adaptive iterates breaks the core proof technique and therefore the main convergence theorem. Repair likely requires a substantially different conditional/mixing analysis rather than a local clarification, warranting rejection."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies single-timescale actor–critic with evolving rewards and claims an O(T^{-1/2}) stationary-point rate when average squared reward variation is O(T^{-1}). The problem is relevant and the proposed contraction-based view of discounted sampling is potentially useful, but the central Markovian-sampling argument does not correctly handle dependence between the current state and the adaptively updated policy, undermining the main theorem.",
+        "strengths": [
+          "The formulation addresses an important and comparatively underexplored source of nonstationarity in practical RL (pp. 1–5).",
+          "The paper explicitly tracks both actor and critic errors as functions of reward variation and identifies a plausible O(T^{-1}) variation condition (pp. 7–10).",
+          "The presentation is organized and includes detailed appendices rather than relegating the main claims to unsupported sketches (pp. 18–33)."
+        ],
+        "weaknesses": [
+          "The proof treats the state distribution as if it evolved via a kernel indexed by a fixed or independent policy: it asserts E[θ_{t+1}|θ_t]=θ_t+η_t h̄(…,ν̂_t) (pp. 18–19) and ν̂_t=P̂_{θ_{t-1}}ν̂_{t-1} (pp. 28–29). Under online Markovian updates, θ_t is correlated with s_t, so the conditional law of s_t given θ_t is generally not the marginal ν̂_t. Proposition 4.9 therefore does not establish the required adaptive distribution-mismatch bound, invalidating the claimed removal of log factors and its use throughout the actor/critic proofs.",
+          "The reward oracle is advertised as arbitrary and feedback-driven (pp. 5–6), yet the critic proof replaces sample-dependent updates by averaged update directions while quantities involving φ_{t+1} may depend on that same sample (pp. 23–24). No filtration, measurability, or independence conditions justify these steps.",
+          "Practical claims are substantially broader than the assumptions: bounded scores/Hessians, uniform exploration, linear critics, bounded reward-update gradients, and Lipschitz tracking are not shown for RND, curiosity methods, or adaptive SAC, and the guarantee only concerns stationarity of the instantaneous changing objective with an irreducible approximation term (pp. 6–8)."
+        ],
+        "score_rationale": "The evolving-reward formulation and intended tracking bounds are interesting, but the adaptive Markovian dependence error occurs at the core of Proposition 4.9 and both main recursions. Repair would require a materially different stochastic-dependence analysis and possibly additional assumptions, so the claimed theorem is not currently technically sound."
+      }
+    }
+  ]
+}

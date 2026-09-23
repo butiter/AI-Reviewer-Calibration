@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_061",
+  "paper_id": "HuNoNfiQqH",
+  "number": 8205,
+  "title": "Understanding Jailbreak Success: A Study of Latent Space Dynamics in Large Language Models",
+  "authors": "Sarah Ball; Frauke Kreuter; Nina Panickssery",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "jailbreaks; activation engineering; alignment",
+  "forum_url": "https://openreview.net/forum?id=HuNoNfiQqH",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    3,
+    5,
+    6
+  ],
+  "human_mean_rating": 4.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores how jailbreaking techniques work by analyzing latent space dynamics in large language models. The authors found that different types of jailbreaks might share a common internal mechanism and that a jailbreak vector from one class can mitigate others, and that effective jailbreaks can reduce the model's perception of prompt harmfulness. These findings provide valuable insights for understanding jailbreaks and developing better safeguards in large language models."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "* This paper provides a new perspective to understand jailbreak by analyzing latent space dynamics in large language models. Their findings are very interesting that different types of jailbreaks might share a common internal mechanism and a jailbreak vector can be used to improve/reduce safety of large language models.\n* The paper covers many different kinds of jailbreak methods, making it more convincing that there may exist a common internal mechanism in large language jailbreaking."
+        },
+        "weaknesses": {
+          "value": "* This paper only evaluate 4 models and some of them are not well aligned, e.g. Vicuna is only trained on ShareGPT dataset without RLHF/DPO Stage. In addition, these four models do not behave consistently, e.g. Vicuna shows better cluster patterns than Qwen 14B Chat. In addition, from Vicuna 7B to 13B, I also find that 13B model activation cluster is scattered. This made me question that when the model goes to large sizes and more aligned, will these patterns be less obvious and visible? Hence, I think the authors may compare more aligned models like Llama 3.1 in various sizes and study if they follow similar patterns.\n\n* The authors study how to use the  jailbreak vector to reduce/improve jailbreak success. My question is that in practice, how do we use such techniques? If we minus jailbreak vectors for both harmful and harmless questions, will it reduce the models' helpfulness/correctness/truthfulness? It will be interesting to know these results in general benchmarks like MMLU or AlpacaEval."
+        },
+        "questions": {
+          "value": "See comments in Weaknesses."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "a3Ib3PIiQN",
+      "forum": "HuNoNfiQqH",
+      "replyto": "HuNoNfiQqH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_yyNu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_yyNu"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8205/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731113242841,
+      "cdate": 1731113242841,
+      "tmdate": 1731429050979,
+      "mdate": 1731429050979,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates how different types of jailbreaks in LLMs might share underlying mechanisms, making it possible to counter multiple jailbreaks using shared “jailbreak vectors.” The study finds that effective jailbreaks tend to reduce a model’s perception of harmfulness, suggesting a way to develop more resilient safeguards against these manipulations."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Strengths\n1.\tSome new Insights on Jailbreaks: the paper explores how different jailbreak types in LLMs might share common mechanics, providing a relatively fresh view on understanding and countering them.\n2.\tPossible Mitigation Solution: By identifying shared jailbreak properties, the study suggests ways to create more robust defenses against jailbreak attacks."
+        },
+        "weaknesses": {
+          "value": "Weaknesses\n1.\tLimited Model Range: The study focuses on only a few models, which may make its conclusions less generalizable. Moreover, the choice of Vicuna lacks sufficient justification, as it may not adequately represent the current SOTA among 7B/13B models.\n2.\tRelated work is not highly related to the research topic of this paper and did not include the most recent studies on understanding the how jailbreak works in the LLMs."
+        },
+        "questions": {
+          "value": "The authors said \"layer 16 for 7B and layer 20 for 13B and 14B parameter models\" in line 162, my question is \"Multiple layers, rather than a single layer, should be considered as the middle layers. what if we select a different middle layer, e.g., layer 14 for 7B, layer 24 for 13B. will this have some influences on the results?\""
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "HjukkXYiez",
+      "forum": "HuNoNfiQqH",
+      "replyto": "HuNoNfiQqH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_c6to"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_c6to"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8205/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730650707167,
+      "cdate": 1730650707167,
+      "tmdate": 1731429051232,
+      "mdate": 1731429051232,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper aims to understand existing jailbreak methods over LLMs by analyzing the latent space dynamics. First, they constructed jailbreak vectors based on the activations of LLMs calculated on harmful datasets and harmless datasets. They find that the jailbreak vector from a single class of jailbreaks can also work to mitigate jailbreak effectiveness from other semantically-dissimilar classes. Second, they analyze the evolution of cosine similarity between harmfulness direction and activations at each token position for one harmful question without jailbreak (none) and for different jailbreak types. They find that successful jailbreaks have significantly lower representations of harmfulness at the end of instruction for most models, which indicates that the jailbreaks suppress the harmfulness feature on the prompts."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1.\tIt is interesting to use jailbreak vectors for analysis. The paper also demonstrated that jailbreak vectors can  effectively prevent the success of jailbreaks across different types via activation steering, pointing to a shared underlying mechanism.\n\n2.\tThe paper discussed the concept of models’ perception of prompt harmfulness, and suggested that some jailbreaks succeed by reducing the perception of prompt harmfulness, preventing the refusal response."
+        },
+        "weaknesses": {
+          "value": "1.\tThe presentation of methodology part can be improved by providing a workflow figure. This can help people better understand how and where the jailbreak vectors are calculated, and also how the mitigation is performed. \n\n2.\tThe findings in Section 5.2 need to be re-evaluated carefully. They find that jailbreak steering vectors have a positive cosine similarity with one another, and hypothesize that jailbreak vectors from one class will work to steer away from successful jailbreaks of other classes. However, the positive cosine similarity could result from the representation degeneration issues, which find that the representations learned by Transformer models tend to clustered in a cone in representation space.\n\n3.\tSubtracting jailbreak vectors may reduce ASR, but also potentially destroy the model parameters, making it hard for practice use. For example, in line 371, it may induce content repetition in the response. In addition, it also better if the performance of a general task can be included in this part for comparison."
+        },
+        "questions": {
+          "value": "1.\tIn model settings, are the included LLMs trained with RLHF for safety issues? Will this affect the validity of analysis in this paper?\n\n2.\tThe paper said no sampling is used when decoding. However, in practice, LLM based chatbots usually use sampling for diversity. This discrepancy may affect the conclusions in this paper. A study on the temperature selection can also verify the robustness of the proposed method.\n\n3.\tThe paper uses middle layers for calculating jailbreak. Did you try the lower or upper layers? Or maybe an ablation study can further enhance our understanding. \n\n4.\tIn Section 4.4, the harmless dataset was generated by instructing ChatGPT. Were these samples checked by human annotators to guarantee the data quality?\n\n5.\tIn line 256, the LLMs do not behave the same. What affects this, data or architecture?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Gt16ROIEe7",
+      "forum": "HuNoNfiQqH",
+      "replyto": "HuNoNfiQqH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_2nR9"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_2nR9"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8205/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730618707999,
+      "cdate": 1730618707999,
+      "tmdate": 1733066706741,
+      "mdate": 1733066706741,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper provides an empirical understanding about jailbreak success, specifically focused on the activation vectors. Authors hypothesized that jailbreak attacks with different attacks will have lead to similar underlying intermediate vectors from the language model, and this \"jailbreak vector\" can be used to promote or suppress the harmful behaviors. Their empirical results validate their claim, showing that (1) different jailbreak steering vectors have high cosine similarities (in Figure 3) and (2) these vectors can be transferred so that jailbreak vector from tactic A can be used to make model safer on tactic B (and other tactics). \n\nThe paper further discussed about the hypothesis that jailbreaking attacks lead LMs fail to detect the harmfulness of the prompt, which is previously argued in Zou et al, 2023. The paper showed the result of PCA anaylsis (in Figure 5) and cosine similarity plots (in Figure 6) to show that jailbreaking often leads to the reducing the harmful features from the harmful instructions. But it also mentioned that low harmfulness always lead to low ASR score."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper is well-written and the claim is clear.\n\nThis paper presents clear empirical observations through multiple experiments about their claim that jailbreak vector exists. The authors tested on multiple LMs (7B-14B models) and tested multiple jailbreak tactics. Also, this claim is meaningful to understand the jailbreak success, and can be used to steer LMs to behave safer without additional fine-tuning.\n\nThe paper seems not to over-claim but tried to present their results objectively. For example, in Section 5.4, authors discussed about the harmfulness suppression, mentioning the exceptional cases where low harmfulness scores do not lead to low ASR scores. This helps readers and future researchers to understand the phenomenon in better ways."
+        },
+        "weaknesses": {
+          "value": "I can't find significant weaknesses from the paper, though I think the paper could be improved if the authors include automatic jailbreak attacks like PAIR or TAP. These attacks don't specify the type of attacks but LLMs automatically find the attack. I think understanding their jailbreak success using latent space dynamics can be helpful to build successful defenses on such attacks."
+        },
+        "questions": {
+          "value": "- There are bunch of automatic jailbreaking attacks that are trying not to use pre-defined tactics but discover different tactics using LLMs or other optimization-based approaches (for example, TAP or PAIR.) Do these attacks conclude to similar results?\n- I wonder this observation can be also applicable to the safety-trained models -- for example, Llama2 or Llama3 are known to have low ASR on well-known jailbreak attacks due to safety training such as SFT or RLHF. Have you tried studying the vectors from these models?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "N4SxGkQwLL",
+      "forum": "HuNoNfiQqH",
+      "replyto": "HuNoNfiQqH",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_5pMp"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8205/Reviewer_5pMp"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8205/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730020276834,
+      "cdate": 1730020276834,
+      "tmdate": 1733636692023,
+      "mdate": 1733636692023,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper studies residual-stream directions associated with 25 jailbreak types across four open models. Its strongest result is that subtracting a direction learned from one jailbreak class often suppresses successful attacks from other classes, while adding it can induce unsafe responses. This is interesting preliminary evidence of shared representational structure, but the experiments do not adequately isolate a jailbreak-specific mechanism from generic refusal steering or prompt/template confounds.",
+        "strengths": [
+          "The cross-class intervention result is striking and broad: attack success on selected successful examples falls from 100% to near zero for many source/target pairs, substantially outperforming random-vector controls across four models (pp. 6–8, 20–22).",
+          "The study covers diverse attacks, including prompt-specific GCG suffixes, and reports useful model-, layer-, and temperature-dependent analyses rather than relying on one configuration (pp. 3, 7–8, 22).",
+          "Adding the learned vectors also induces jailbreaks far more often than a random vector, providing stronger causal evidence that the directions affect safety behavior rather than merely corrupting generation (p. 27)."
+        ],
+        "weaknesses": [
+          "The central mechanistic interpretation is undercontrolled. Each vector contrasts a long jailbreak-modified prompt against the bare harmful request at a different final-token context; no matched benign formatting/length directions, refusal-direction comparison, or projection/orthogonalization analysis rules out generic instruction, formatting, or refusal-steering effects. Italian and happiness controls are insufficient (pp. 4, 6, 18–19).",
+          "The harmfulness-suppression evidence is correlational and weakly quantified: prompts differ greatly in length and endpoint semantics, Figure 8 reports averages without uncertainty or significance tests, MPT shows little suppression, and suppression magnitude does not track attack success (pp. 8–10, 29–33). Thus it does not establish the proposed common mechanism.",
+          "Evaluation is selective and of uncertain reliability: steering is tested on only 20 already-successful examples per class, the maximum score from two automated judges defines success, manual inspection procedures are unspecified, and utility can drop by 16 MMLU points on Qwen (pp. 3–4, 7–8, 15, 20–22). Broader modern models, benign-generation evaluations, and held-out attack families are absent."
+        ],
+        "score_rationale": "The paper offers a useful empirical observation and unusually strong cross-class steering effects, but novelty beyond prior activation/refusal-direction work is moderate and the claimed shared jailbreak mechanism is not convincingly identified. Major missing controls, selective evaluation, and substantial utility degradation place it slightly below the ICLR acceptance bar, though uncertainty remains because the intervention results could become compelling with stronger causal disentanglement."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper studies residual-stream directions induced by 25 jailbreak templates across four open chat models. Its main empirical result is that subtracting a direction derived from one jailbreak class often suppresses successful attacks from other classes, while adding it can induce unsafe behavior; it also reports correlational evidence that many jailbreaks reduce alignment with a constructed harmfulness direction. The phenomenon is interesting, but the experiments do not yet establish the claimed shared jailbreak mechanism rather than a generic refusal/safety-control direction or prompt-format confound.",
+        "strengths": [
+          "Broad empirical coverage across four model configurations and many semantically diverse attacks, including prompt-specific GCG suffixes (pp. 2–7, 13–17).",
+          "The cross-class interventions are striking and bidirectional: subtraction greatly reduces ASR relative to a random vector, while addition induces jailbreaks (pp. 6–8, 20–27).",
+          "The appendices provide extensive pairwise results, layer/temperature checks, qualitative examples, and explicit acknowledgment of causality and coverage limitations (pp. 20–33)."
+        ],
+        "weaknesses": [
+          "The central mechanistic interpretation is underidentified: mean differences between jailbroken and base prompts encode added template tokens, length, style, and likely the already-known refusal direction. Random, Italian, and happiness controls do not distinguish a shared jailbreak mechanism from generic movement toward refusal; projection/orthogonalization and matched-format or refusal-direction baselines are missing (pp. 4, 6, 19).",
+          "Evaluation is fragile: ASR takes the maximum of two automated judges, counts only score 5 as success, uses manual inspection inconsistently, and reports no judge validation, uncertainty intervals, or systematic utility/safe-overrefusal analysis. The defense also costs up to 16 MMLU points on Qwen, substantially weakening practical claims (pp. 3, 7–8, 15–17).",
+          "Generalization is limited to selected successful examples and known attack families on older, deliberately susceptible models. Only 20 examples per attack are used for mitigation, construction/test split details are incomplete, and there is no evaluation on genuinely unseen attack families, stronger contemporary models, or benign prompts beyond MMLU (pp. 2–4, 7, 10)."
+        ],
+        "score_rationale": "The cross-class causal steering result is potentially valuable and sufficiently broad to merit attention, but novelty over prior single-direction refusal work is moderate and decisive controls are absent. Because the evidence supports a transferable safety/refusal direction more clearly than a common jailbreak mechanism, and evaluation/generalization remain limited, I place the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper studies residual-stream differences induced by 25 jailbreak types across four open models. It reports that class-specific mean-difference vectors are geometrically similar, that subtracting one class’s vector often suppresses other successful jailbreaks, and that effective jailbreaks generally reduce alignment with a constructed harmfulness direction. The cross-class intervention result is interesting, but the evidence does not yet establish a shared jailbreak mechanism rather than a generic refusal-inducing intervention or prompt-format confound.",
+        "strengths": [
+          "The cross-class steering experiment is broad and produces striking reductions relative to a norm-matched random vector across four models, including transfer involving GCG suffixes (pp. 6–8, 20–22).",
+          "Adding the same vectors can induce unsafe behavior far more often than a random vector, providing a useful bidirectional intervention rather than purely correlational similarity evidence (pp. 8, 27).",
+          "The paper reports important limitations and utility costs, including a 16-point MMLU decrease for Qwen and weaker harmfulness-suppression evidence for MPT (pp. 8–10)."
+        ],
+        "weaknesses": [
+          "The jailbreak vectors contrast long, stylistically distinct jailbreak prompts against bare requests, so they entangle jailbreak efficacy with length, formatting, persona, language, and instruction-following features. Random-vector controls do not rule out the possibility that subtracting many ordinary prompt-feature directions generically triggers refusal; effect controls from ineffective jailbreaks, benign style transformations, or the known refusal direction are missing (pp. 4, 6, 18–19).",
+          "The main transfer evaluation uses only 20 preselected successful examples per attack, mixes Llama Guard with unspecified manual inspection, and gives no uncertainty over vector construction, prompts, or seeds. Initial ASR takes the maximum of two judges, whereas later evaluations use different judging procedures, weakening comparability and reliability (pp. 3–4, 7, 15, 20–22).",
+          "The harmfulness claim remains correlational and poorly controlled: cosine shifts are measured at endpoint tokens that differ substantially across prompt templates, no statistical tests or uncertainty intervals support the stated significance, and suppression magnitude does not track ASR. Thus it does not identify a causal common mechanism (pp. 8–10, 28–33)."
+        ],
+        "score_rationale": "This is a relevant and moderately novel empirical extension of activation steering, with unusually broad cross-attack results. However, central mechanistic claims are underdetermined by prompt-feature confounds, limited controls, selected small test sets, and inconsistent evaluation. I therefore place it marginally below acceptance; stronger causal controls and statistically robust evaluation could change the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper studies 25 jailbreak types across four open chat models using contrastive residual-stream vectors. It finds strong cross-attack transfer when subtracting these vectors, jailbreak induction when adding them, and correlational evidence that jailbreak prompts reduce alignment with a constructed harmfulness direction. The empirical phenomenon is interesting, but the evidence does not yet establish the claimed shared jailbreak mechanism.",
+        "strengths": [
+          "Broad empirical coverage across four model configurations and semantically varied attacks, including prompt-specific GCG suffixes (pp. 2–3, 17).",
+          "The bidirectional intervention result is compelling: subtraction sharply reduces attack success across classes, while addition induces unsafe responses far more often than a random vector (pp. 6–8, 27).",
+          "The paper includes useful controls and diagnostics, including random, ineffective-Italian, and happiness vectors; layer and temperature sweeps; and explicit reporting of utility degradation (pp. 6, 8, 19, 22)."
+        ],
+        "weaknesses": [
+          "The contrastive vectors encode all differences introduced by jailbreak templates—length, formatting, persona, language, and end-token context—not specifically jailbreak success. No matched ineffective-template or unsuccessful-instance controls isolate a shared causal jailbreak component; positive cosine similarity may also reflect residual-space anisotropy (pp. 4, 6, 18–19).",
+          "The harmfulness-suppression analysis is correlational and strongly confounded by comparing the final token of a long modified prompt against that of the bare request. Suppression magnitude does not track attack success and is weak for MPT, so it provides limited mechanistic support (pp. 8–10, 32–33).",
+          "Practical defense evidence is incomplete: evaluation uses only 20 preselected successful cases per attack, takes the larger score from two automated judges, and lacks a broad benign over-refusal assessment. MMLU drops by up to 16 points for Qwen, indicating substantial collateral damage (pp. 4, 8, 15, 20–22)."
+        ],
+        "score_rationale": "The cross-class and bidirectional steering results are substantial and merit attention, but the central mechanistic conclusion is underidentified by the current controls. Together with small conditional test sets and severe utility loss on one model, this places the work marginally below acceptance; uncertainty remains because stronger matched controls could materially change the interpretation."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper studies activation differences induced by 25 jailbreak types across four open chat models. Its main result is that mean-difference vectors from one jailbreak class can often suppress or induce jailbreak behavior in other classes, while effective jailbreak prompts generally reduce cosine similarity to a constructed harmfulness direction. The empirical phenomenon is interesting, but the experiments do not yet establish that the vectors isolate a shared jailbreak mechanism rather than a generic refusal/control direction or prompt-format perturbation.",
+        "strengths": [
+          "The cross-class steering result is striking and broad: substantial mitigation is reported across four models and semantically diverse attacks, including GCG, with random-vector comparisons and pairwise results (pp. 6–8, 20–22).",
+          "The study includes useful bidirectional interventions: subtracting vectors suppresses successful attacks, while adding them induces unsafe responses much more often than a random vector (p. 27).",
+          "The paper is transparent about important limitations and reports layer, temperature, utility, and alternative-harmfulness-vector checks (pp. 8, 10, 22, 33)."
+        ],
+        "weaknesses": [
+          "The decisive mechanistic inference is undercontrolled. A jailbreak vector contrasts a long, reformatted jailbreak prompt with a short base prompt at their different final tokens, so it can encode length, syntax, task framing, or generic refusal propensity. The unrelated happiness and ineffective-Italian controls are insufficient; matched benign-format controls and comparisons to the known refusal direction are needed (pp. 4, 6, 18–19).",
+          "Near-universal mitigation does not uniquely demonstrate shared jailbreak computation: repeatedly adding a large vector at every token may simply force refusal or degrade generation. This concern is supported by malformed random-vector outputs, repetitive steered refusals, and a 16-point MMLU loss for Qwen; one random direction is a weak functional control (pp. 7–8, 20–26).",
+          "The harmfulness-suppression evidence is correlational and confounded by measuring cosine similarity at different end-of-instruction tokens after large prompt additions. There are no uncertainty estimates or statistical tests in the aggregate plot, no clear relationship with ASR, and MPT shows little or inconsistent suppression (pp. 8–10, 32–33)."
+        ],
+        "score_rationale": "This is a promising and potentially useful empirical observation with broader model and attack coverage than many activation-steering studies. However, the central novelty claim—a shared underlying jailbreak mechanism—is not adequately distinguished from generic activation steering toward refusal or from prompt-format/length confounds. Given these missing controls and the limited causal support for harmfulness suppression, I place it marginally below acceptance, while acknowledging uncertainty about how much stronger controls might preserve the reported effect."
+      }
+    }
+  ]
+}

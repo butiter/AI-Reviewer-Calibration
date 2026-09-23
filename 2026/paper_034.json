@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_034",
+  "paper_id": "Mz98kwANpF",
+  "number": 9340,
+  "title": "Align, Don’t Divide: Revisiting the LoRA Architecture in Multi-Task Learning",
+  "authors": [
+    "Jinda Liu",
+    "Bo Cheng",
+    "Yi Chang",
+    "Yuan Wu"
+  ],
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": [
+    "Large Language Models",
+    "Low-rank Adaptation",
+    "Multi-Task Learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=Mz98kwANpF",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "G157iFTLfF",
+      "forum": "Mz98kwANpF",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9340/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761300760785,
+      "tmdate": 1764359638852,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "IJTDkUA4re",
+      "forum": "Mz98kwANpF",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9340/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762911092023,
+      "tmdate": 1762920970917,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "L99PE6j6oW",
+      "forum": "Mz98kwANpF",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9340/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761722670842,
+      "tmdate": 1762920971739,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "RkrldotJgn",
+      "forum": "Mz98kwANpF",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission9340/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762050997128,
+      "tmdate": 1762920971278,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper argues that shared rather than task-isolated LoRA representations improve multi-task learning, introduces a router-free M-LoRA diagnostic, and proposes Align-LoRA, which aligns task distributions in the down-projected latent space. The empirical gains are promising, but the main mechanistic claims are not adequately isolated and the purported theoretical guarantee contains fundamental mathematical errors.",
+        "strengths": [
+          "The paper asks a useful practical question and presents a simple, mergeable method with no added inference-time modules (pp. 6–8, 13–14).",
+          "Align-LoRA-K shows fairly consistent empirical gains across model sizes, in-domain tasks, BBH transfer, heterogeneous tasks, and attention-only adaptation (pp. 8, 21–22).",
+          "The high-rank single-adapter comparisons are valuable evidence that parameter-matched standard LoRA is a stronger baseline than often assumed (p. 6)."
+        ],
+        "weaknesses": [
+          "The theory is unsound: the claimed equality relating divergence to the distribution centroid is false for KL, the confidence-term inequality has incorrect scaling (already contradicted by balanced sample sizes), and comparing upper bounds cannot establish the asserted strict risk ordering (pp. 17–19). The initial single-task bound is also assumed without the required hypothesis-complexity and loss conditions.",
+          "The central causal interpretation is under-supported. The claim that dropout plus router removal is the critical mechanism is inferred from HydraLoRA without a router, which also differs from M-LoRA in randomization/dropout; the necessary M-LoRA-without-dropout and controlled router ablations are absent (pp. 4–5). Likewise, closer task distributions do not by themselves establish that beneficial shared knowledge was learned.",
+          "Experimental reporting is insufficient for strong claims of significance: no seeds, variances, significance tests, or sufficiently detailed sampling/evaluation protocol are given, while ranks and parameter budgets vary across methods. Some prose overstates the tables—for example, A-LoRA-M does not outperform LoRA on Qwen2.5-7B BBH (p. 8)."
+        ],
+        "score_rationale": "The mergeable alignment objective and broad positive results constitute a potentially useful incremental contribution, but representation alignment is not conceptually new, causal evidence is incomplete, and the claimed theoretical support is materially incorrect. Missing multi-run uncertainty further weakens confidence in modest gains, placing the work below the acceptance threshold despite promising empirical observations."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper proposes M-LoRA, a router-free multi-head variant, and Align-LoRA, which regularizes task distributions in LoRA’s down-projection space using KL divergence or MMD. The KL variant reports promising gains across several models and benchmarks, but the claimed theoretical guarantee is mathematically unsound, the empirical reporting lacks uncertainty and essential protocol details, and the novelty is incremental over established representation-alignment methods.",
+        "strengths": [
+          "The parameter-aware comparisons suggest that a higher-rank single adapter can rival more complicated routed architectures, an important practical observation (pp. 5–6).",
+          "Align-LoRA remains mergeable into the backbone and therefore avoids the inference overhead of input-dependent routing (pp. 7, 13–14).",
+          "The empirical scope includes multiple model families and sizes, in-domain and BBH evaluations, heterogeneous tasks, and attention-only adaptation (pp. 8, 20–21)."
+        ],
+        "weaknesses": [
+          "The theoretical analysis is invalid. The asserted equality relating KL divergence to a mixture centroid and pairwise KL is generally false, and the confidence-term inequality has the wrong scaling; for balanced tasks its two sides differ by a factor of approximately sqrt(M) (pp. 17–18). Moreover, a smaller upper bound cannot establish the strict risk inequality claimed on p. 19.",
+          "There are no seeds, error bars, significance tests, or sufficiently complete sampling/evaluation details. Claims that both alignment variants significantly outperform baselines are contradicted by Table 4, where A-LoRA-M is worse than LoRA on both Qwen models, and by Table 5, where it trails M-LoRA (pp. 8, 23).",
+          "The interpretation is insufficiently established: high cosine similarity among B heads does not itself demonstrate task-shared knowledge, and the HydraLoRA router ablation does not isolate dropout from initialization and other differences, despite being presented as confirmation of the mechanism (pp. 4–5). Distribution alignment itself is also well established, making its application to LoRA a relatively modest novelty (pp. 7, 15–16)."
+        ],
+        "score_rationale": "The mergeable method and KL-based empirical improvements are potentially useful, but the central theoretical claim contains decisive mathematical errors and the experiments do not establish statistical reliability or the proposed causal explanation. These issues place the work below the ICLR acceptance bar despite a promising practical direction."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper argues that shared rather than task-isolated LoRA representations benefit multi-task learning, introduces a mergeable single-adapter alignment objective, and reports promising gains for KL-based Align-LoRA. The practical idea is interesting, but incomplete methodological reporting, unsupported significance claims, and serious errors in the theoretical analysis prevent the evidence from substantiating the paper’s broad conclusions.",
+        "strengths": [
+          "The paper asks a useful practical question and shows that parameter-matched high-rank vanilla LoRA can rival more complex routed variants across several backbones (pp. 5–6).",
+          "KL-based Align-LoRA produces consistent reported improvements on BBH and the eight-task benchmark while remaining mergeable and parameter-efficient (pp. 7–9).",
+          "The appendices examine module choice, heterogeneous tasks, integration with multi-head models, efficiency, and alignment-weight sensitivity (pp. 14, 21–22)."
+        ],
+        "weaknesses": [
+          "The theoretical result is unsound: the claimed equality between divergence to a mixture centroid and average pairwise KL is generally false, the confidence-term inequality has incorrect sample-size scaling, and the derivation simply assumes a task bound before inserting the training-loss weight as its constant (pp. 17–19). Thus it neither proves a tighter bound nor superiority.",
+          "Experimental rigor and reproducibility are insufficient: no seeds, variance, significance tests, sample counts, decoding/evaluation protocol, batch construction, or precise specification of token/layer aggregation for estimating task-wise Gaussian statistics is given (pp. 7–9, 19–23). This is especially consequential for small reported margins and batch-level pairwise alignment.",
+          "Several claims overstate the tables: the MMD variant often fails to outperform LoRA or M-LoRA in Table 4 and trails M-LoRA in Table 5, despite the assertion that both variants significantly outperform baselines (pp. 8–9). Head similarity is also only correlational and does not establish that shared knowledge, rather than capacity or regularization, causes the gains (pp. 4–6)."
+        ],
+        "score_rationale": "The KL-alignment method is simple, deployable, and empirically promising, but its novelty over standard domain-invariant representation alignment is moderate. More importantly, the purported theory contains fundamental mathematical errors, and the empirical comparisons lack uncertainty estimates and essential implementation details. These issues place the work below the acceptance threshold despite encouraging reported results."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper argues that shared representations, rather than task-specific LoRA components, improve multi-task adaptation. It introduces a router-free multi-head baseline and Align-LoRA, which regularizes down-projected representations across tasks using KL divergence or MMD. The KL variant reports promising gains across several models and benchmarks, but the causal evidence, experimental reporting, and theoretical analysis have substantial weaknesses.",
+        "strengths": [
+          "The paper identifies a useful practical baseline: parameter-matched, higher-rank vanilla LoRA is competitive with substantially more complex routed architectures (pp. 5–6).",
+          "Align-LoRA remains mergeable at inference and its KL variant shows consistent, practically meaningful gains in the main BBH and eight-task evaluations (pp. 7–9).",
+          "Experiments cover multiple backbone families, model sizes, in-domain and unseen-task evaluations, along with module and heterogeneous-task checks (pp. 8, 21)."
+        ],
+        "weaknesses": [
+          "The theoretical analysis is unsound. In particular, the claimed equality relating divergence to a mixture centroid and average pairwise KL is generally false, the confidence-term simplification is incorrect, and comparing upper bounds cannot establish the strict risk inequality claimed on pp. 17–19.",
+          "The experiments omit seeds, uncertainty estimates, significance tests, and important procedural details such as batch construction for task-pair alignment. Thus relatively small differences—especially those supporting the M-LoRA narrative—cannot be assessed reliably (pp. 4–8, 23).",
+          "Head cosine similarity does not establish that heads learn task-shared knowledge, and the proposed dropout-plus-router explanation lacks a controlled factorial ablation. Moreover, the claim that both alignment variants significantly outperform baselines is contradicted by A-LoRA-M losing to vanilla LoRA on two of three models in Table 4 (pp. 5, 8)."
+        ],
+        "score_rationale": "The mergeable alignment objective is simple and empirically promising, especially for the KL variant, and the stronger high-rank LoRA baseline is valuable. However, novelty is moderate, central mechanistic claims are not isolated experimentally, reported evidence lacks variance and reproducibility detail, and the purported theoretical guarantee contains major mathematical errors. These issues place the work below the acceptance threshold despite encouraging results."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper argues that shared representations can outperform task-specialized multi-component LoRA designs, introduces a router-free M-LoRA diagnostic, and proposes Align-LoRA, which aligns task distributions in LoRA’s low-rank latent space. The empirical direction is interesting, but the evidence and theory do not substantiate several central claims.",
+        "strengths": [
+          "The paper identifies a useful practical baseline: parameter-matched, higher-rank vanilla LoRA is competitive with substantially more complex routed methods across multiple backbones (pp. 5–6).",
+          "Align-LoRA is simple, mergeable, and shows consistent gains for its KL variant across the reported BBH and in-domain evaluations (pp. 7–9).",
+          "The study spans several model sizes, task collections, architectural placements, and an alternative MMD alignment objective (pp. 8, 15, 21)."
+        ],
+        "weaknesses": [
+          "The theoretical analysis is invalid: the claimed KL centroid/pairwise identity is generally false, the confidence-term inequality loses an essential dependence on the number of tasks, and comparing upper bounds cannot establish the asserted strict ordering of actual risks (pp. 17–19).",
+          "The empirical protocol is insufficiently specified and lacks seeds, uncertainty intervals, or significance tests; Appendix K omits such basics as batch construction, epochs, sample counts, prompting, and decoding, making small reported differences difficult to interpret or reproduce (pp. 5–6, 23).",
+          "Claims are overstated and sometimes contradicted by results: A-LoRA-M often does not beat LoRA or M-LoRA in Table 4, and the assertion that dropout is the critical mechanism is not supported by a controlled M-LoRA-without-dropout ablation (pp. 5, 8)."
+        ],
+        "score_rationale": "The simple shared-representation perspective and KL results are promising, but novelty is incremental over established representation-alignment methods, key mechanistic claims lack controlled evidence, and the purported theoretical guarantee contains fundamental errors. These issues place the work clearly below the acceptance threshold despite encouraging experiments."
+      }
+    }
+  ]
+}

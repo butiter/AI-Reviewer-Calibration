@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_079",
+  "paper_id": "3q9vHEqsNx",
+  "number": 19383,
+  "title": "FantasyWorld: Geometry-Consistent World Modeling via Unified Video and 3D Prediction",
+  "authors": [
+    "Yixiang Dai",
+    "Fan Jiang",
+    "Chiyu Wang",
+    "Mu Xu",
+    "Yonggang Qi"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "World Model",
+    "Video Generation",
+    "3D Genearation",
+    "3D-aware video generation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=3q9vHEqsNx",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    8,
+    8,
+    6,
+    4
+  ],
+  "human_mean_rating": 6.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "1239pE2CUk",
+      "forum": "3q9vHEqsNx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19383/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761890599733,
+      "tmdate": 1762931307208,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "OOhzbjYJVG",
+      "forum": "3q9vHEqsNx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19383/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761792399554,
+      "tmdate": 1762931307660,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "bIDed3Mcu1",
+      "forum": "3q9vHEqsNx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19383/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762070277538,
+      "tmdate": 1762931306463,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "i1oJz0CdK6",
+      "forum": "3q9vHEqsNx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission19383/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761997598937,
+      "tmdate": 1762931306881,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FANTASYWORLD augments a frozen Wan2.1 video diffusion model with a VGGT-style geometry branch, preconditioning blocks, bidirectional cross-attention, and DPT heads to jointly generate camera-conditioned video and predict depth, point maps, and poses. The direction is relevant and the reported consistency gains are promising, but the contribution appears incremental relative to closely related unified video–geometry systems, and the evidence does not yet substantiate the broader claims about reusable 3D representations or downstream utility.",
+        "strengths": [
+          "The architecture is practically motivated: freezing the video backbone while adding geometry-specific interaction modules aims to preserve generation priors and limit trainable components (pp. 4–6).",
+          "The paper reports both generation-oriented WorldScore measurements and reconstruction-oriented PSNR/SSIM/LPIPS, with a geometry-branch ablation showing consistent improvements (pp. 7–9).",
+          "Implementation details are relatively extensive, including training compute, tensor dimensions, losses, baseline commits, and inference resource measurements (pp. 7, 15–18)."
+        ],
+        "weaknesses": [
+          "Novelty is limited and insufficiently isolated from AETHER, Geometry Forcing, Voyager, and other joint video–3D approaches: the main ingredients are a frozen video backbone, a VGGT-style branch, and cross-attention, without a controlled comparison that establishes the distinct value of this formulation (pp. 2–6).",
+          "The central claim of versatile, reusable 3D features is largely unevaluated. There are no standard depth, pose, point-cloud, novel-view, or navigation benchmarks; the model's own point-cloud initialization is worse than VGGT initialization in PSNR and LPIPS, and comparison to VGGT is only qualitative (pp. 8–9, 18–19).",
+          "Evaluation has important confounds and missing detail: baselines use different resolutions and frame counts, the 100-case large-motion set is curated, reconstruction evaluation does not clearly specify held-out views or optimization protocol, and gains on the official small split are modest while camera/object/content control often degrades (pp. 7–9, 17–18)."
+        ],
+        "score_rationale": "The paper presents a plausible, useful integration and encouraging ablations, but its novelty over adjacent unified video–geometry work is moderate and its strongest representation claims lack direct quantitative validation. Given the confounded comparisons and incomplete geometry/downstream evaluation, I lean marginally below acceptance, while acknowledging uncertainty because the supplied qualitative figures and reported consistency results are promising."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FANTASYWORLD augments a frozen Wan2.1 video diffusion model with a VGGT-style geometry branch and bidirectional cross-attention to jointly generate camera-conditioned video and predict depth, point maps, and poses. The architecture is plausible and improves consistency metrics, but the central claims about reusable feed-forward 3D representations are insufficiently validated, making the contribution marginally below the ICLR acceptance bar.",
+        "strengths": [
+          "The frozen-backbone, two-stage design is technically sensible and preserves the pretrained video prior while introducing explicit geometric supervision (pp. 4–7).",
+          "The geometry ablation improves WorldScore consistency under both small and large camera motion, and improves VGGT-initialized 3DGS reconstruction from 26.89 to 28.24 PSNR (pp. 7–9).",
+          "The paper reports substantial training and inference details, baseline commits, resource usage, and relevant limitations concerning fixed-length and mostly static scenes (pp. 7, 9–10, 15–19)."
+        ],
+        "weaknesses": [
+          "The claimed task-agnostic, reusable 3D representation is not evaluated on direct depth, pose, point-map, novel-view, or navigation benchmarks. Geometry evaluation instead applies optimized 3DGS to generated videos; the model's own point-cloud initialization is slightly worse than the ablated model with VGGT on PSNR and LPIPS (pp. 8–9).",
+          "Novelty over closely related joint video–geometry systems appears incremental: the method combines a frozen Wan backbone, a VGGT-inspired branch/DPT head, and established bidirectional cross-attention, without isolating the effects of cross-attention, geometric losses, initialization, or individual output heads (pp. 3–6).",
+          "Evaluation comparability is limited: baselines use different resolutions and clip lengths, the challenging 100-case split is curated, no statistical significance is reported, and native camera/object control remains weak. Moreover, the repeated “single forward pass” framing is potentially misleading for an iterative diffusion model taking 475.9 seconds per sample (pp. 7–8, 17–18)."
+        ],
+        "score_rationale": "The work presents a useful engineering direction and credible gains in video consistency, but evidence for its main 3D-representation claims is incomplete and the novelty is modest. Missing direct geometry/downstream evaluations and limited ablations outweigh the positive consistency results, yielding a marginal reject."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FANTASYWORLD augments a frozen Wan2.1 video diffusion model with a VGGT-style geometry branch and bidirectional cross-attention to jointly generate camera-conditioned video and predict depth, point maps, and poses. The approach is practically interesting and improves several consistency metrics, but the evidence does not yet substantiate the broader claims of reusable, task-agnostic 3D representations or clearly isolate the proposed components.",
+        "strengths": [
+          "The asymmetric frozen-video/trainable-geometry design is sensible and potentially useful, with a reasonably clear two-stage training procedure and explicit 3D supervision (pp. 4–6, 15–17).",
+          "The method improves 3D, photometric, and style consistency over the reported baselines, especially under the challenging large-camera-motion setting (pp. 7–8).",
+          "The paper reports computational footprint, baseline commits/settings, limitations on fixed-length and mostly rigid scenes, and useful qualitative examples (pp. 9–10, 17–20)."
+        ],
+        "weaknesses": [
+          "The central claim that the learned features are versatile for downstream 3D tasks is largely prospective: there are no navigation or novel-view benchmarks, direct pose/depth/point-map metrics, or quantitative comparison against VGGT; the main geometry table contains only internal variants (pp. 3–4, 8–9, 18–19).",
+          "Experimental isolation is insufficient. Removing both the geometry branch and bidirectional interaction at once does not establish which component causes the gains, and there are no ablations for PCB depth, cross-attention direction, DPT inversion, loss terms, or pseudo-label sources (pp. 5–9).",
+          "Evaluation has important comparability and generalization uncertainties: baselines use different frame counts and resolutions, the large-motion set is only 100 curated cases, and RealEstate10K is used for both training and geometric evaluation without an explicit disjoint split. Camera/object control also remains weak despite the paper's controllable-world framing (pp. 6–8, 17–19)."
+        ],
+        "score_rationale": "The paper offers a plausible engineering combination and encouraging consistency gains, but novelty over closely related joint video–geometry systems is moderate, while decisive 3D-task evidence and component-level validation are missing. I therefore place it marginally below acceptance; uncertainty remains because qualitative video quality and split hygiene cannot be fully assessed from the manuscript alone."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FANTASYWORLD augments a frozen video diffusion backbone with a trainable VGGT-style geometry branch and bidirectional cross-attention, jointly producing video and depth/point/pose predictions. The architecture is plausible and yields improved WorldScore consistency, but the evidence does not yet substantiate the broader claims of reusable, generalizable 3D representations.",
+        "strengths": [
+          "The frozen-backbone, asymmetric dual-branch design is a sensible and moderately novel integration of video priors and explicit geometry, with a reasonably clear two-stage training procedure (pp. 4–6).",
+          "The method improves 3D, photometric, and style consistency over the reported baselines, especially under large camera motion, and the full model consistently exceeds its no-3D ablation (pp. 7–9).",
+          "The paper reports training and inference costs, baseline commits, resolutions, and acknowledged limitations concerning fixed-length, mostly rigid scenes (pp. 9–10, 17–18)."
+        ],
+        "weaknesses": [
+          "The central claim that the learned geometry is task-agnostic and useful for downstream 3D tasks is not directly tested: there are no depth, pose, point-map, navigation, or adaptation-free novel-view benchmarks. With its own point-cloud initialization, the model is slightly worse than the no-3D model using VGGT on two of three reconstruction metrics (pp. 8–9).",
+          "The comparison is insufficiently controlled: baselines generate different resolutions and frame counts, the large-motion set is only 100 curated cases, and reconstruction metrics are reported for only three variants of the proposed method rather than competing feed-forward geometry models (pp. 7–9, 17–18).",
+          "Ablations remove the geometry branch and cross-attention together, so they do not isolate the bidirectional exchange, PCB choice, DPT inversion, supervision components, or two-stage schedule. Thus the claimed causal contribution of the individual innovations remains unclear (pp. 7–9, 15–17)."
+        ],
+        "score_rationale": "The work presents a useful engineering direction and promising consistency gains, but its novelty over recent joint video–geometry systems is incremental and the evaluation leaves the main reusable-3D-representation claim largely unverified. Stronger controlled baselines, direct geometry/downstream evaluation, and component-wise ablations are needed for clear acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper augments a frozen Wan2.1 video model with a VGGT-style geometry branch and bidirectional cross-attention, jointly producing video and depth/point-map/camera outputs. The architecture is plausible and shows improved WorldScore consistency and 3DGS reconstruction in the reported experiments, but the evidence does not yet substantiate the broader claims of reusable, task-agnostic 3D representations or compelling advantages over closely related joint video–geometry systems.",
+        "strengths": [
+          "The two-stage latent bridging and asymmetric cross-branch design are coherent engineering choices that preserve the pretrained video backbone while injecting explicit geometric supervision (pp. 4–6).",
+          "Reported consistency gains are broad across small and large camera motion, and the geometry-branch ablation improves both WorldScore consistency and 3DGS reconstruction metrics (pp. 7–9).",
+          "The appendix provides useful architectural, normalization, baseline-version, resource, and efficiency details, while explicitly acknowledging fixed-length and static-scene limitations (pp. 10, 15–19)."
+        ],
+        "weaknesses": [
+          "Novelty is limited relative to AETHER, Geometry Forcing, Voyager, and other joint video/3D approaches: the main advance is largely the particular combination of a frozen Wan backbone, a VGGT-style branch, and bidirectional adapters, without a sufficiently sharp conceptual or empirical separation from these precedents (pp. 2–5).",
+          "The geometry evidence is inadequate for the central representation claims. Table 2 has only three internal configurations on 100 samples, no external feed-forward reconstruction baselines, no direct depth/pose/point-map accuracy, and no demonstrated downstream navigation or novel-view task; the VGGT comparison is qualitative only (pp. 8–9, 18–19).",
+          "Evaluation fairness and technical clarity are concerning: baselines use substantially different resolutions and frame counts, the large-motion set is author-curated, statistical significance is absent, pseudo-label quality is not analyzed, and “single forward pass” obscures costly diffusion inference (475.9 seconds) (pp. 6–8, 17–18)."
+        ],
+        "score_rationale": "The paper presents a credible, useful system with consistent ablation gains, but these gains are modest and evaluated too narrowly to validate its strongest 3D-world-model and reusable-feature claims. Incremental novelty, unequal evaluation settings, and missing direct geometry/downstream comparisons place it marginally below acceptance; uncertainty remains because video quality is difficult to judge from sparse manuscript frames alone."
+      }
+    }
+  ]
+}

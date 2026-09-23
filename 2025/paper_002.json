@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_002",
+  "paper_id": "kynD1UUk6q",
+  "number": 281,
+  "title": "Collapsed Language Models Promote Fairness",
+  "authors": "Jingxuan Xu; Wuyang Chen; Linyi Li; Yao Zhao; Yunchao Wei",
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": "Neural Collapse; Fairness",
+  "forum_url": "https://openreview.net/forum?id=kynD1UUk6q",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    5,
+    8
+  ],
+  "human_mean_rating": 6.75,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This work explores fairness in language models from the perspective of Neural Collapse (NC), a phenomenon observed during the final stages of training neural networks on classification tasks (thus can also be applied to language modeling), where the variability and alignment of the penultimate layer and the final classifier reach a structured state. This work further applies NC to debiased LMs and demonstrates that  $\\mathcal{NC}3$, which measures the alignment between token representations (contextual class means) and word embeddings (classifiers), consistently improved with debiasing. The author argues that other NC perspectives are less evident in debiased LMs due to common training configurations that violate NC’s typical conditions—such as vocabulary sizes exceeding embedding dimensions and imbalanced token distributions. To address this, they propose calibrated versions of  $\\mathcal{NC}1$ and  $\\mathcal{NC}2$ by replacing class means with classifier weights. Debiased LM shows significant collapse on these two metrics, and fairness-sensitive words demonstrate more collapse.\n\nBased on the empirical analysis, the authors suggest using  $\\mathcal{NC}3$ as a regularization term during fine-tuning to enhance fairness in LMs. Experiments on four fairness datasets demonstrate consistent gains on fairness metrics over three prior debiasing approaches and standard masked language modeling and also doesn't hurt the model's NLU ability."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. Analyzing the debiased language models from the perspective of neural collapse is novel. This offers valuable insights into the structure of the model's embedding space across different debiasing approaches.\n2. The proposed method is simple but effective and can be easily integrated with other approaches. It's interesting to see that by only adding a NC-based regularization term in the loss function, all the compared debiasing methods can be enhanced.\n3. The experiments are comprehensive and well-motivated, with the proposed method grounded in observations of $\\mathcal{NC}$ perspectives on both biased and debiased LMs, effectively establishing a strong rationale for the proposed method, making it clear and convincing."
+        },
+        "weaknesses": {
+          "value": "1. **Clarify of Notations**: Some notations are not clearly defined, which could impact readability.\n    - The class embedding variances mentioned on line 161 and line 240 could benefit from a more explicit definition, similar to how it is presented in Eq. 3 of the Linguistic Collapse[1] paper. \n    - In Eq. 1, to align with the token representation defined at line 137, the notation should ideally be ${h}(E(x_{1:t}))$ rather than ${h}(x_{1:t})$ for clarity and consistency. \n2. **Evaluation Metrics**: I have concerns regarding the evaluation metrics used in section 3.3 and section 4.2.1. Please see question 2 and 3 in the following section.\n3. **Definition of Unfairness**: Some definition of unfairness were not explicitly defined, which could make the paper less accessible to readers unfamiliar with the fairness literature. For example, in the *BEC-Pro* subsection of section 4.1.2, the average association score is used to measure model unfairness. While this is defined in [2] as $\\log \\frac{P_T}{P_\\text{prior}}$, it's not explicitly explained here, which may cause confusion.\n\n[1] Wu, Robert, and Vardan Papyan. \"Linguistic Collapse: Neural Collapse in (Large) Language Models.\" arXiv preprint arXiv:2405.17767 (2024).    \n[2] Bartl, Marion, Malvina Nissim, and Albert Gatt. \"Unmasking contextual stereotypes: Measuring and mitigating BERT's gender bias.\" arXiv preprint arXiv:2010.14534 (2020)."
+        },
+        "questions": {
+          "value": "1. In section 3.2.2, the authors present a calibrated version of $\\mathcal{NC}1$ and  $\\mathcal{NC}2$. While I can understand that the main reason to replace class means with classifier weights is because the authors find that $\\mathcal{NC}3$ (solely derived from classifier weights) is significant on the debiased models, could this modification compromise the original physical meaning of these metrics Specifically, \n    - $\\mathcal{NC}1$, as proposed in [1], measures the variability via an inverse signal-to-noise ratio. However, in the calibrated $\\mathcal{N}\\mathcal{C}_{1}^{(w)}$, the numerator is the variance of the _class means_, while the denominator measures the distance of the _classifier weight_, which seems to lack physical coherence.\n    - Why is $w_c$ not normalized in $\\mathcal{(G)NC_2^{(w)}}$ while $\\mu_c$ is normalized in $\\mathcal{(G)NC_2}$ to measure uniformity?\n    - I hope the authors can elaborate more on the reason they choose these calibrated metrics.\n2. In section 3.3, the authors argue that _\"debiased BERT models exhibit more different token representations and word embeddings only on gender-related vocabulary\"_ based on __numerical gaps__ in $\\mathcal{NC}$ metrics. However, the baseline level of the base BERT model differ across gender-related words, full vocabulary, and a randomly selected subset. By looking at the __ratios__ of the gap w.r.t. base BERT model's performance under $\\mathcal{NC_1^{(w)}}$, I cannot tell there are significant differences among Table 1-3. Similarly, with $\\mathcal{(U)NC_3}$, for the gap of ASE and BEC, it's still hard to tell the difference among these three tables.\n3. In section 4.1.2, could the authors clarify why the difference in association scores between female and male groups is measured? If the association score is defined as $\\log \\frac{P_T}{P_\\text{prior}}$, I feel it's more reasonable to measure the absolute value of the association score since if the absolute value is close to 0, it should suggest that <person word> predictions are less likely influenced by <profession>, which indicates a less biased LM.\n4. All experiments in this paper are conducted on masked language models (e.g, BERT and RoBERTa). Could the proposed method also generalize to casual language models, as explored in the Linguistic Collapse[1] paper?\n\n[1] Wu, Robert, and Vardan Papyan. \"Linguistic Collapse: Neural Collapse in (Large) Language Models.\" arXiv preprint arXiv:2405.17767 (2024)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "TeODoga2Wu",
+      "forum": "kynD1UUk6q",
+      "replyto": "kynD1UUk6q",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_ypXD"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_ypXD"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission281/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730941337822,
+      "cdate": 1730941337822,
+      "tmdate": 1732659385408,
+      "mdate": 1732659385408,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "### Summary\n\n- The paper studies the relationship between neural collapse and fairness and tries to answer two research questions\n\t- \"Do debiased LMs exhibit greater neural collapse\"\n\t- \"Can this inductive bias be leveraged to improve fairness\"\n- Background on neural collapse:\n\t- This is a phenomenon that happens in the last layer representations of classifiers.\n\t- Since the last layer of LM predicts the next word, it can be viewed as a classifier\n\t- The phenomenon of neural collapse causes the representations of certain gender sensitive words to collapse closer to their class means in debiased LMs\n- The paper presents 4 ways to quantify neural collapse borrowing it from prior work. These metrics measure separability between classes.\n\t- NC1: intra-class variance over inter class variance\n\t- NC2: Measures separability from a geometric perspective\n\t- NC3: Uses dot products\n\t- NC4: Uses a linear projection\n\nIn section 3.2.1 the paper provides a worry about diverging values for various NC metrics but convincingly provides a resolution. This is achieved by calibrating the NC metrics by replacing class means with classifier weights in the expressions.\n- The experimental results justify the claim of the presence of neural collapse for gender words.\n- The second part of the paper deals with proposing a bias mitigation strategy by explicitly enforcing Neural collapse. To this end, they use the NC3 formulation as an auxiliary objective during fine-tuning.\n- Both intrinsic and extrinsic metrics show improvements with this modified objective.\n\nPlease consider citing the following additional work in the field of LM fairness and evaluation of bias in LMs\n- https://arxiv.org/pdf/2208.01448#page=14.61\n- https://aclanthology.org/2022.findings-acl.55.pdf\n- https://aclanthology.org/2022.acl-long.401.pdf\n \nnits\n- 3.2.2 CALIBRATIONS -> CALIBRATION\n- Section 4.1.3\n\t- TPR-1 (Type 1: pro-stereotypical minus anti-stereotypical) and TPR-2 (Type 2: pro-stereotypical minus anti-stereotypical) -> TPR-1 (Type 1: pro-stereotypical minus anti-stereotypical) and TPR-2 (Type 2: pro-stereotypical minus anti-stereotypical) reads a bit odd. I think Type 1 are ambiguous sentences and Type 2 are non-ambiguous sentences. Explicitly call this out with a simple example."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "### Strengths\n\n- The paper studies a missing link between neural collapse and fairness and proposes a bias mitigation strategy based on neural collapse objective that is agnostic to pre-training or fine-tuning methods. This also avoids manual data balancing or filtering.\n- Both intrinsic and extrinsic fairness metrics see improvements with this approach."
+        },
+        "weaknesses": {
+          "value": "### Weakness\n\n- Table 9 does not have the best results bold which makes it reading a little harder. \n- While the paper is well-written, simple to follow and proposes a simple technique which works, all the experiments conducted are on BERT based MLM based models. I understand this is intentional to ensure fair comparison with prior work but this also limits understanding the degradation on non MLM tasks. For eg. in Table 9, the results reported are on the GLUE benchmark which are all multiple choice questions. I am curious if this technique can really prove to be a generic technique even for generation tasks."
+        },
+        "questions": {
+          "value": "No questions, see weakness section above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "dF9CslNVJg",
+      "forum": "kynD1UUk6q",
+      "replyto": "kynD1UUk6q",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_adpT"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_adpT"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission281/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730914497721,
+      "cdate": 1730914497721,
+      "tmdate": 1731427229322,
+      "mdate": 1731427229322,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a method to enhance model fairness based on the phenomenon of Neural Collapse (NC). The authors first analyze NC in the context of fairness-related words and find that debiased language models exhibit more aligned token representations with word embeddings. Inspired by this observation, they introduce a regularization method based on NC to reduce bias in gender-sensitive words during fine-tuning. The experiments demonstrate that this method can improve fairness across various debiasing algorithms while maintaining the language model's performance on standard natural language understanding tasks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The paper is logically structured and easy to follow, with a clear progression from problem statement to method proposal and experimental validation."
+        },
+        "weaknesses": {
+          "value": "1. In Section 4, the details of the datasets and metrics can be more concisely presented, with some details moved to the appendix. Conversely, the discussion of results is somewhat inadequate. It would be beneficial to highlight the advantages of the proposed method in comparison to the baselines.\n2. Additional analysis should be included in section 4.2. From the results alone, it is observed that many outcomes with the addition of (U)NC3 have significantly decreased.\n3. It is unclear whether the proposed method is also effective for LLMs.\n4. It is uncertain whether the method remains effective for aspects of fairness beyond gender"
+        },
+        "questions": {
+          "value": "Clarifications Needed: \n1. The σ symbol on line 161. \n2. On line 235, the authors hypothesize that \"noises in language data and the complexity of different fine-tuning methods make measurements of NC1/2/4 unstable and inconsistent.\" Could the authors elaborate on why they consider these factors to be influential? \n3. Could the authors justify the rationale behind replacing class means with classifier weights in NC1/2?\n4. Besides gender-related words, have the authors explored other words that might cause the model to collapse more? This experiment would complement Section 3.3.\n5. I am curious about the effectiveness of the proposed method in fairness scenarios beyond gender. Firstly, what if it is challenging to obtain relevant word lists? Secondly, will the model’s general performance being affected by other word lists? I think the authors could counduct experiments by adding random words/high frequency words to the word list.\n6. Can the authors provide further insights into the results of the visualization in Section 5? Why do they consider this to be a better feature distribution?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "QoPqOqPGdB",
+      "forum": "kynD1UUk6q",
+      "replyto": "kynD1UUk6q",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_fRsu"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_fRsu"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission281/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730778044858,
+      "cdate": 1730778044858,
+      "tmdate": 1731427229427,
+      "mdate": 1731427229427,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper investigates the relationship between the neural collapse phenomena and fairness in language models. The paper demonstrates that debiased language models naturally exhibit more \"collapsed\" representations for fairness-sensitive words, and leverage this insight to develop a neural collapse-based regularization method. The proposed approach enhances fairness across different debiasing methods while maintaining model performance on general language tasks."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.the paper draws the connection between neural collapse theory and fairness in language models in a principal way. It provides novel analytical tools for understanding debiasing mechanisms and offers new insights into how representation geometry relates to model fairness. \n\n2.  Comprehensive empirical experiments across multiple models and datasets, demonstrating the practical utility of the proposed approach.\n\n3. The proposed regularization method seems to be simple yet effective. It can be easily integrated with existing debiasing approaches without significant computational overhead, making it highly practical for real-world applications. \n\n3. The empirical evaluation is thorough, covering both intrinsic and extrinsic fairness metrics. The results clearly demonstrate improvements across various benchmarks while preserving model performance on downstream tasks. \n\n5. The authors also provide helpful visualizations and analyses that illuminate how their method affects model representations."
+        },
+        "weaknesses": {
+          "value": "1. The primary weakness of the paper lies in its theoretical foundation. While the empirical results are promising, the authors don't provide sufficient theoretical justification for why NC3 and calibrated metrics work better than others. The paper would benefit from a formal analysis or proof connecting neural collapse to fairness improvements. \n\n2. The scope of the evaluation is somewhat limited, focusing primarily on **binary** gender bias. While this allows for deep analysis in one area, it leaves questions about the method's generalizability to other (possibly non-binary) demographic groups."
+        },
+        "questions": {
+          "value": "1. Can this approach generalize to non-binary protected attributes? If so, how?\n\n2. How does the method work for decoder-only models, like gpt and llama?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "yW0pvmzpV2",
+      "forum": "kynD1UUk6q",
+      "replyto": "kynD1UUk6q",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_6ic8"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission281/Reviewer_6ic8"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission281/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730667997794,
+      "cdate": 1730667997794,
+      "tmdate": 1731427229572,
+      "mdate": 1731427229572,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper connects neural collapse with gender debiasing and proposes minimizing the across-word variance of classifier–class-mean cosine alignment during fine-tuning. The idea is interesting and evaluated across several debiasing methods and benchmarks, but the central interpretation and empirical support are not sufficiently rigorous.",
+        "strengths": [
+          "The neural-collapse perspective on language-model fairness is a novel and potentially useful framing, with comparisons across several debiasing methods and vocabulary controls (pp. 4–6, 17–19).",
+          "The proposed regularizer is simple and appears broadly compatible with existing methods; it often improves StereoSet, BEC-Pro, and WinoBias fairness metrics (pp. 6–8).",
+          "The paper checks downstream utility on GLUE and includes a regularization-strength ablation and an NC-only experiment (pp. 9–10, 16–17)."
+        ],
+        "weaknesses": [
+          "The objective minimizes only the standard deviation of cosine alignments, not their magnitude; all classes can have equally weak or negative alignment. Thus it does not necessarily enforce neural collapse, undermining the central technical interpretation (pp. 4, 6).",
+          "Evidence lacks seeds, uncertainty estimates, significance tests, and sufficiently clear computation details for batchwise class means. Several gains are small or mixed: BEC worsens GAP-RMS, while MABEL and BEC degrade some Bias-NLI metrics (pp. 7–9, 18).",
+          "The fairness scope is restricted to a manually assembled binary-gender list containing duplicates, typos, and questionable/asymmetric entries, while limitations and broader intersectional or harm-oriented evaluations are absent (pp. 16, 18–20)."
+        ],
+        "score_rationale": "The paper offers a creative connection and a lightweight method with encouraging results, but the regularizer does not mathematically guarantee the claimed collapse and the evaluation is statistically under-specified and sometimes inconsistent. These central weaknesses place it below the acceptance threshold despite promising empirical observations."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper connects gender debiasing in BERT-like models to a neural-collapse-inspired alignment statistic and proposes minimizing its cross-word standard deviation during fine-tuning. The idea is interesting and evaluated with several debiasing methods and intrinsic/extrinsic benchmarks, but the formulation and evidence do not yet establish the claimed principled connection between collapse and fairness.",
+        "strengths": [
+          "The proposed regularizer is simple and appears readily composable with several existing debiasing objectives (pp. 6–9).",
+          "The evaluation covers multiple intrinsic, extrinsic, and general-language benchmarks, with additional word-set and regularization-strength ablations (pp. 7–10, 16–20).",
+          "Gender-word versus random-word comparisons provide some evidence that changes in the reported collapse statistics are localized rather than vocabulary-wide (pp. 5–6, 20–21)."
+        ],
+        "weaknesses": [
+          "The technical definition is unclear for the studied bidirectional masked LMs: Sec. 3 formulates causal next-token representations h(x1:t), yet experiments use BERT/RoBERTa and do not precisely explain how class means are estimated, masked contexts sampled, or gradients through accumulated means computed (pp. 3–7). This makes the central metric and regularizer difficult to interpret or reproduce.",
+          "The causal claim is weak: lower variance of cosine alignment across a manually selected gender vocabulary does not theoretically imply fairness, and correlation is shown using models already optimized for fairness. The standalone ablation is limited to one BERT/StereoSet setup, with no alternative regularizers or controls showing that gains specifically arise from neural collapse rather than generic representation regularization (pp. 4–6, 9–10).",
+          "Evidence lacks seeds, uncertainty, and significance tests, while several improvements are small or inconsistent. Bias-NLI degrades for MABEL and BEC on some metrics, BEC worsens GAP-RMS on Bias-in-Bios, and MABEL loses 3.6 RTE points, contradicting the broad claims of consistent debiasing without performance sacrifice (pp. 9–10, 18). Evaluation is also restricted largely to binary gender and base-size encoders."
+        ],
+        "score_rationale": "The neural-collapse/fairness connection is novel and the empirical scope is useful, but ambiguity in applying the formulation to masked LMs, the absence of a compelling mechanism or decisive controls, and unreported experimental uncertainty substantially weaken soundness. The inconsistent results also make the headline claims too strong, placing the work below the ICLR acceptance bar in its current form."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper connects gender debiasing with a neural-collapse-inspired alignment statistic and proposes minimizing its variance during fine-tuning. The idea is simple and evaluated across several debiasing methods and intrinsic/extrinsic benchmarks, but the claimed principled connection is not established, and the empirical evidence lacks the rigor needed to support the broad consistency and no-performance-loss claims.",
+        "strengths": [
+          "The proposed regularizer is simple, inexpensive in principle, and tested as an add-on to three distinct debiasing approaches (pp. 6–9).",
+          "The evaluation covers intrinsic bias, downstream fairness, and general NLU utility, rather than relying on a single benchmark (pp. 7–10, 17–18).",
+          "Matched random-vocabulary controls provide useful evidence that some measured changes are concentrated among the selected gender words (pp. 5–6, 17)."
+        ],
+        "weaknesses": [
+          "Minimizing (U)NC3 only reduces the across-class standard deviation of cosine alignments; it does not require strong positive alignment and is equally minimized by uniformly orthogonal or anti-aligned representations. Thus it is not sufficient to enforce neural collapse, and no theory explains why it should imply fairness (pp. 4, 6).",
+          "The evidence has no seeds, uncertainty intervals, or significance tests, despite mostly small changes. Several results contradict the claimed consistency: BEC worsens GAP-RMS, MABEL loses overall accuracy (p. 9), MABEL worsens Bias-NLI TN and T:0.7 (p. 18), and MABEL+(U)NC3 drops RTE substantially (p. 10).",
+          "Important implementation and evaluation details are unclear: how class means for hundreds of sparse words are estimated and differentiated is described only as direct accumulation (pp. 6–7); NC4 is called an accuracy but takes values above 1, including 10.44 (p. 5); and the study is restricted to binary-gender word lists containing duplicates, misspellings, and questionable pairings (p. 16), limiting broader fairness conclusions."
+        ],
+        "score_rationale": "The neural-collapse framing and plug-in regularizer are interesting, and the breadth of benchmarks is promising. However, the objective does not mathematically enforce the claimed collapse property, causal or principled links to fairness are missing, and the single-run results contain meaningful counterexamples to the paper’s central claims. These issues place the work below the acceptance threshold, though the empirical idea may be salvageable with a corrected objective and substantially stronger analysis."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper connects gender debiasing in BERT-like models with a neural-collapse statistic and proposes minimizing the dispersion of cosine alignments between gender-token representations and output embeddings. The regularizer yields broadly favorable results across several bias benchmarks and largely preserves GLUE performance, but the central metric and causal interpretation are insufficiently justified.",
+        "strengths": [
+          "The connection between neural collapse and language-model fairness is novel and leads to a simple plug-and-play regularizer applicable to several existing debiasing methods (pp. 4–7).",
+          "Evaluation is reasonably broad, covering intrinsic metrics, WinoBias, Bias-in-Bios, Bias-NLI, and GLUE across multiple debiasing baselines (pp. 7–10, 17–18).",
+          "The paper includes useful controls over full/random vocabularies, regularization strength, alternative backbones, and training without another debiasing method (pp. 5–6, 9–10, 16–19)."
+        ],
+        "weaknesses": [
+          "The key objective is only the standard deviation of per-class cosine alignments (Eq. 4, p. 6). Minimizing it enforces uniformity, not high positive alignment: equally zero or negative cosines are also optima. Thus calling it “collapsed alignment” and attributing fairness gains to neural collapse is not technically established.",
+          "The empirical evidence lacks repeated runs, uncertainty estimates, significance tests, and a matched generic-regularizer control. Some gains are small or inconsistent: MABEL worsens Bias-NLI probabilities, and BEC worsens Bias-in-Bios GAP-RMS after regularization (pp. 9, 18).",
+          "The fairness scope is narrow and potentially fragile: it is restricted to binary gender, relies on a manually assembled list containing duplicates, misspellings, and questionable terms (p. 16), and does not evaluate intersectional or non-gender biases or modern generative LMs."
+        ],
+        "score_rationale": "The method is simple and empirically promising, with broader evaluation than many fairness papers. However, the central regularizer does not mathematically enforce the alignment claimed, and the experiments do not isolate whether its gains arise from neural collapse rather than generic representation regularization. Together with missing variance analysis and limited fairness scope, this places the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper connects gender debiasing in BERT-style models to a neural-collapse statistic and proposes minimizing the cross-class standard deviation of classifier/representation cosine alignment. The perspective and plug-and-play experiments are interesting, but the objective does not actually enforce strong alignment, and the empirical evidence lacks the controls and uncertainty estimates needed to support the broad causal and consistency claims.",
+        "strengths": [
+          "The neural-collapse perspective on language-model debiasing is a novel and potentially useful framing, with comparisons across several debiasing approaches and vocabulary controls (pp. 4–6, 17–19).",
+          "The proposed regularizer is simple and tested with multiple intrinsic and extrinsic benchmarks and three base debiasing methods (pp. 6–10).",
+          "Results generally improve StereoSet, BEC-Pro, and WinoBias disparity metrics while leaving most reported GLUE scores near their baselines (pp. 7–10)."
+        ],
+        "weaknesses": [
+          "The central objective minimizes only the standard deviation of cosine alignments, not their magnitude: uniformly weak, zero, or negative alignments also minimize it. Thus Eq. 4 does not necessarily enforce classifier–mean alignment or neural collapse, undermining the claimed mechanism (p. 6).",
+          "Evidence is based on single reported runs without error bars, significance tests, or matched controls for adding an arbitrary regularizer. Gains are sometimes small or mixed: BEC worsens GAP-RMS, MABEL loses 3.6 RTE points, and Bias-NLI metrics often decline (pp. 9–10, 18).",
+          "The setup is underspecified and narrow: the class means are defined through next-token prediction although BERT is a masked bidirectional model, online estimation for rare gender classes is unclear, and evaluation covers only a noisy binary-gender word list with duplicates rather than broader fairness dimensions (pp. 3, 6–7, 16)."
+        ],
+        "score_rationale": "The paper offers a moderately novel lens and promising empirical trends, but the mismatch between the claimed collapse mechanism and the actual regularizer is a substantial technical flaw. Combined with missing variance analyses, unclear representation estimation, and mixed results, the current evidence falls below the bar for acceptance, though the idea could become compelling with a corrected objective and stronger controls."
+      }
+    }
+  ]
+}

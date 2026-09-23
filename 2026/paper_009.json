@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_009",
+  "paper_id": "N4syb99uBu",
+  "number": 3256,
+  "title": "Safe Autoregressive Image Generation with Iterative Self-Improving Codebooks",
+  "authors": [
+    "Yunqi Xue",
+    "Zhijiang Li",
+    "Philip Torr",
+    "Jindong Gu"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "Autoregressive Image Generation",
+    "Unified multimodal models",
+    "self-improving"
+  ],
+  "forum_url": "https://openreview.net/forum?id=N4syb99uBu",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    4,
+    4,
+    6
+  ],
+  "human_mean_rating": 5.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "3m6kf3CJbq",
+      "forum": "N4syb99uBu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3256/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761989817787,
+      "tmdate": 1764359635277,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "UVjtxTDois",
+      "forum": "N4syb99uBu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3256/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762060695499,
+      "tmdate": 1762916630318,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "sG7LZblUPw",
+      "forum": "N4syb99uBu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3256/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762057128576,
+      "tmdate": 1762916630505,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "yvfpq8vXIv",
+      "forum": "N4syb99uBu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission3256/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761844840038,
+      "tmdate": 1762916630810,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes suppressing unsafe autoregressive image generation by estimating harmful directions from paired generations, projecting those directions out of the visual codebook, and restoring quality through null-space-constrained fine-tuning. The target problem is timely and the reported reductions are broad, but substantial methodological ambiguities and weak validation prevent the evidence from firmly supporting the claims.",
+        "strengths": [
+          "Addresses an underexplored and practically important setting—safety interventions for discrete-token autoregressive image models—with a lightweight codebook-level mechanism (pp. 2–6).",
+          "Reports consistent safety reductions across several prompt datasets, harm categories, and model families, while measuring utility with FID, GenEval, MMMU, CLIP-Score, and TIFA (pp. 7–9, 16–19).",
+          "Includes useful ablations on constrained fine-tuning, iteration count, rank, OOD prompts, and direct weight/codebook modification (pp. 8–10, 18–19)."
+        ],
+        "weaknesses": [
+          "The method is not specified consistently enough to establish soundness or reproducibility: Eq. 4 and Algorithm 1 multiply the projection on opposite sides, the algorithm loops over individual examples while the text first averages them, Eq. 5 is not a well-formed optimization objective, and choices such as λ and the null-space singular-value threshold are missing (pp. 5–6, 16).",
+          "The central self-judgment premise is inadequately validated. Table 8 reports only aggregate positive counts, not per-example agreement, precision/recall, or inter-rater protocol; similar totals do not demonstrate consistency with human labels (p. 17). Safety evaluation otherwise relies heavily on automated detectors without uncertainty estimates or detector-robust human evaluation (pp. 7–9).",
+          "Comparative evidence is weak: the only main alternative is an adapted hallucination-editing method, with no strong safety filtering, prompt-side guard, or autoregressive concept-erasure baselines. The iterative comparison also changes cumulative data/training and lacks repeated trials, so it does not isolate iteration as the cause of improvement (pp. 9–10, 18)."
+        ],
+        "score_rationale": "The codebook intervention is potentially novel and the empirical breadth is promising, but unclear mathematics/implementation and insufficient validation of the self-labeling and comparative claims are major issues. I therefore rate it below the acceptance threshold; uncertainty remains because a corrected implementation and stronger human/baseline evaluation could materially improve the assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes mitigating unsafe autoregressive image generation by estimating harmful directions from paired unsafe/safe generations, projecting those directions out of the visual codebook, and fine-tuning in an alleged harmless null space. The codebook-level intervention is relevant and moderately novel, and reported reductions span several models and datasets, but substantial mathematical, algorithmic, and evaluation gaps prevent the evidence from supporting the paper’s strong safety claims.",
+        "strengths": [
+          "The work targets an important and comparatively underexplored setting—safety interventions for discrete-token autoregressive image generators—and introduces a lightweight codebook-level intervention rather than retraining the full model (pp. 1–6).",
+          "The empirical scope is broad: seven harm categories, several attack/prompt datasets, multiple architectures and model sizes, plus benign-generation and understanding metrics (pp. 7–9, 16–19).",
+          "The projection/fine-tuning ablation indicates that constrained fine-tuning largely recovers the substantial CLIP/TIFA loss caused by hard projection (p. 8), while the rank study exposes a meaningful safety–quality tradeoff (p. 19)."
+        ],
+        "weaknesses": [
+          "The technical specification is internally inconsistent and under-justified. Equation 4 and Algorithm 1 multiply the projection on different sides; the algorithm repeatedly projects from W_ori rather than clearly composing iterations; its loops over samples/tokens do not match the described two-stage iteration; and Equation 5 is not a well-defined cross-entropy objective. Moreover, being in null(E) does not establish absence of the semantic concept, especially when the removed space uses only top-k directions (pp. 5–6, 16).",
+          "Safety evidence relies predominantly on imperfect automated detectors without uncertainty estimates, adversarial evaluation, or sufficiently strong baselines. Table 8 reports only aggregate positive counts—not per-example agreement, precision/recall, or annotator protocol—so it cannot substantiate the claimed consistency with humans. The sole weight-editing baseline is an adaptation of a hallucination method rather than competitive safety defenses (pp. 7–9, 17–18).",
+          "The iterative and generalization claims are weakly isolated. Iterations also add data, the comparison protocol is insufficiently detailed, and the purported OOD sets are merely violence subcategories. Qualitative results sometimes suppress safety scores by blurring or changing requested semantics, raising detector-gaming and over-erasure concerns (pp. 9–10, 18–21)."
+        ],
+        "score_rationale": "The discrete-codebook safety direction and breadth of reported results are promising, but unclear/mismatched mathematics and algorithms, weak human validation, lack of competitive baselines, and insufficiently controlled iteration/OOD studies are major soundness concerns. I therefore rate it below the acceptance threshold, while allowing uncertainty because complete implementation details or stronger evaluations could materially change the assessment."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes editing autoregressive image codebooks by projecting out an SVD-derived harmful subspace, followed by null-space-constrained fine-tuning and iterative self-labeling. The direction is timely and the reported reductions span several models and datasets, but major methodological and evaluation ambiguities prevent the evidence from supporting the safety claims.",
+        "strengths": [
+          "Targets the comparatively underexplored safety of discrete-token autoregressive image generators with a lightweight codebook-level intervention (pp. 1–6).",
+          "Reports broad empirical coverage across harmful categories, model families, OOD prompts, and benign-capability metrics (pp. 7–10, 16–19).",
+          "Ablations indicate that constrained fine-tuning recovers much of the alignment lost after projection, and iterative updates outperform a one-shot variant in the reported setting (pp. 8, 9–10)."
+        ],
+        "weaknesses": [
+          "The mathematical specification is not technically coherent enough to reproduce or justify the claimed guarantee: Eq. 4 and Algorithm 1 use inconsistent projection orientations, Eq. 5 is a malformed optimization objective, the null-space threshold is unspecified, and orthogonality to an estimated feature-difference subspace does not imply that harmful generation is eliminated (pp. 5–6, 16).",
+          "Evaluation leakage is unclear and potentially severe: I2P's entire 4,703 prompts are evaluated, yet the manuscript does not state disjoint data used to construct the harmful space; analogous construction/evaluation splits and exact per-model protocols are missing (pp. 4, 7, 9, 16).",
+          "Safety evidence relies mainly on automated detectors, with no strong autoregressive-safety baselines or robust human evaluation. Table 8 reports only marginal positive counts rather than paired agreement, accuracy, or inter-annotator statistics, while qualitative outputs often evade unsafe prompts by changing semantics (pp. 10, 17, 20–21)."
+        ],
+        "score_rationale": "The codebook-editing idea has moderate novelty and promising breadth, but underspecified/inconsistent mathematics, unclear train-test separation, and weak safety validation are substantial correctness concerns. I therefore lean reject rather than marginal acceptance; uncertainty remains because the reported gains could be meaningful if clarified and independently validated."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes Safe-CB, which estimates harmful directions from differences between token embeddings generated for paired harmful/safe prompts, projects those directions out of an autoregressive image codebook, and fine-tunes a constrained residual to restore quality. The codebook-focused intervention is potentially useful and results show broad reductions in detector-flagged outputs, but substantial formulation and evaluation gaps prevent the evidence from establishing a technically sound, competitive safety method.",
+        "strengths": [
+          "The paper targets the timely and relatively underexplored safety of discrete autoregressive image generators with a lightweight, codebook-level intervention (pp. 2–6).",
+          "Experiments cover several model families and harmful-prompt datasets, with consistently lower detector rates and only modest reported degradation on benign generation metrics (pp. 7–9, 16, 18–19).",
+          "The projection/fine-tuning ablation supports the motivation for constrained quality recovery: CLIP-Score and TIFA largely recover after fine-tuning (p. 8)."
+        ],
+        "weaknesses": [
+          "The technical formulation is under-specified and internally inconsistent. Tokenwise subtraction assumes alignment between independently generated harmful and safe sequences, which is unjustified; matrix orientations differ between Eq. 4 and Algorithm 1; Eq. 5 is not a valid explicit loss; and the stated null-space constraint does not establish that harmful behavior cannot be reintroduced (pp. 5–6, 16).",
+          "The evaluation lacks credible competitive baselines. The sole Safe-Model comparison adapts a hallucination-editing method rather than comparing against strong safety filters, decoding controls, or relevant concept-erasure approaches, so the claimed advantage is weakly supported (pp. 10, 18).",
+          "Safety evidence relies heavily on automated detectors and the same model's judgments. The validation reports only aggregate positive counts rather than per-example agreement, precision/recall, or inter-annotator statistics; OOD categories are merely close subclasses of violence; and the iterative comparison is confounded by increasing data across rounds (pp. 9–10, 17–19)."
+        ],
+        "score_rationale": "The codebook-level idea has moderate novelty and the reported breadth is promising, but unresolved mathematical ambiguities and insufficiently rigorous safety validation undermine the main claims. In particular, the lack of aligned representations, agreement statistics, and meaningful baselines makes it uncertain whether gains reflect robust concept removal rather than detector-specific suppression or general semantic degradation. These issues place the work below the acceptance threshold despite encouraging empirical trends."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes suppressing unsafe outputs from autoregressive image generators by estimating harmful directions from paired generations, projecting those directions out of the visual codebook, and restoring quality through null-space-constrained fine-tuning. The problem is timely and the empirical scope is broad, but substantial mathematical, experimental, and reproducibility weaknesses prevent the reported gains from convincingly validating the method.",
+        "strengths": [
+          "Targets an important and comparatively underexplored setting—safety interventions for discrete-token autoregressive image generation—and proposes a lightweight codebook-level intervention (pp. 1–6).",
+          "Reports consistent reductions in detector-flagged content across several datasets, harm categories, and model families, with relatively small changes in FID and standard capabilities (pp. 7–9).",
+          "Includes useful analyses of iterative updates, rank k, benign prompt alignment, and an OOD violence split (pp. 9–10, 17–19)."
+        ],
+        "weaknesses": [
+          "The technical formulation is not sound or reproducible as written: projection multiplication order conflicts between Eq. 4 and Algorithm 1; Eq. 5 is a malformed optimization objective; the definition of the exact null space versus the top-k harmful subspace is inconsistent; and position-wise differences between independently generated token sequences are not justified as aligned concept representations (pp. 5–6, 16).",
+          "Safety evidence relies primarily on automated detectors, while validation of the model's self-judgment reports only aggregate positive counts rather than per-example agreement, precision/recall, or inter-rater statistics. There are no uncertainty estimates or significance tests for most safety results, nor strong safety baselines tailored to autoregressive generators (pp. 7–9, 17–18).",
+          "Several controls and reporting details are insufficient or contradictory: iteration changes both data volume and repeated projection; training/test separation and prompt-pair construction are unclear; FID is defined against natural images on p. 7 but against original-model generations on p. 19; and important implementation choices such as thresholds, k selection, projection strength, null-space tolerance, and stopping criteria are missing (pp. 4–6, 9–10, 16, 19)."
+        ],
+        "score_rationale": "The codebook-projection idea has moderate novelty and the reported breadth is promising, but central equations and algorithmic details are inconsistent, and detector-centric evaluation does not establish robust safety. Without clearer mathematics, stronger baselines, per-example human validation, and reproducible controls, the work is below the ICLR acceptance bar; uncertainty remains because code was not supplied."
+      }
+    }
+  ]
+}

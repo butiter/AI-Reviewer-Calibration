@@ -1,0 +1,210 @@
+{
+  "year": 2026,
+  "package_id": "paper_021",
+  "paper_id": "rRvlnXFZJu",
+  "number": 6466,
+  "title": "Adaptive Multi-Prototype Grouping Alignment for Domain Adaptive 3D Detection",
+  "authors": [
+    "Shijie Chen",
+    "Junbao Zhuo",
+    "Bochao Zou",
+    "Jiansheng Chen",
+    "Huimin Ma"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "domain adaptation",
+    "3d object detection"
+  ],
+  "forum_url": "https://openreview.net/forum?id=rRvlnXFZJu",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    4,
+    2,
+    4
+  ],
+  "human_mean_rating": 3.3333333333333335,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "75AuS3YGLW",
+      "forum": "rRvlnXFZJu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6466/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761968456598,
+      "tmdate": 1762918853755,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "c1dBcsTSPZ",
+      "forum": "rRvlnXFZJu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6466/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761893354003,
+      "tmdate": 1762918854121,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "lirk1dmG58",
+      "forum": "rRvlnXFZJu",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6466/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761969874464,
+      "tmdate": 1762918853434,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a sensible extension of prototype-based self-training for multi-class 3D UDA: GMM-based adaptive grouping, prototype alignment, and two mechanisms targeting ambiguous foreground/background samples. Results are consistently positive, especially on nuScenes→KITTI, but the contribution is largely an incremental combination of established techniques, and important mathematical, reproducibility, and evaluation gaps prevent a clear acceptance recommendation.",
+        "strengths": [
+          "The method addresses practically relevant weaknesses of fixed, single-prototype alignment and gives an intuitive class-specific adaptive grouping formulation (pp. 2–6).",
+          "Experiments cover three transfer settings and two detector architectures; the strongest gains on nuScenes→KITTI are substantial, while unified baseline reruns improve fairness (pp. 7–8, 14–15).",
+          "Component, prototype-strategy, sensitivity, and prototype-count analyses provide useful empirical diagnostics (pp. 8–9, 13–15)."
+        ],
+        "weaknesses": [
+          "The GMM formulation is technically inconsistent: posterior assignment omits mixture weights despite fitting them, and the Gaussian normalization uses the number of groups rather than the feature dimension; covariance parameterization and numerical treatment for high-dimensional BEV features are also unspecified (p. 5).",
+          "Evidence lacks repeated runs, uncertainty estimates, and clear tuning protocol. Six hyperparameters and class-specific prototype counts appear empirically selected on the evaluated target validation setting, creating possible target-label tuning leakage; the Waymo→nuScenes improvement is also very small (pp. 7, 13–15).",
+          "Several ablations do not cleanly isolate the claimed mechanisms: Tables 5 and 7 compare alternatives against values matching the complete model, while the “GMM without prototypes” objective is not defined. NFCL also repels all low-confidence proposals, potentially reinforcing false negatives, without an analysis of this failure mode (pp. 6, 9)."
+        ],
+        "score_rationale": "The consistent benchmark gains and reasonable design make the work promising, but novelty over GPA-style prototype alignment and prior pseudo-label augmentation is moderate. More importantly, errors in the core GMM equations, underspecified implementation, potentially confounded ablations, and absent statistical/tuning controls weaken technical confidence. I therefore rate it marginally below acceptance, with some uncertainty because the reported gains could remain valid after clarification."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a moderately novel combination of dynamically fitted GMM groups, learnable prototypes, foreground repulsion, and hybrid copy-paste augmentation for multi-category 3D UDA. Results are encouraging, especially for nuScenes→KITTI, but mathematical inconsistencies, substantial implementation ambiguity, and limited statistical/per-class evidence prevent the empirical gains from fully establishing the claims.",
+        "strengths": [
+          "The method addresses a relevant multi-category setting and offers an intuitive decomposition of feature-alignment and foreground/background ambiguity problems (pp. 2–6).",
+          "It consistently improves the reported mean AP across three transfer settings, with particularly substantial nuScenes→KITTI gains, and also transfers to PVRCNN (pp. 7–8).",
+          "Component, grouping-strategy, prototype-count, and hyperparameter ablations provide useful empirical diagnostics (pp. 8–9, 13–15)."
+        ],
+        "weaknesses": [
+          "The grouping formulation is not technically precise: the purported GMM posterior omits mixture weights, its Gaussian normalization uses the number of components rather than feature dimensionality, and covariance regularization, component initialization/identity across updates, and feature sampling are unspecified (p. 5). These issues materially affect reproducibility and potentially correctness.",
+          "The evidence reports mostly category-averaged AP, despite emphasizing multi-category interference; it lacks full per-class results, multiple seeds/error bars, and sufficiently broad backbone validation. Some winning margins are very small, such as Waymo→nuScenes, while ablations are restricted to one transfer direction (pp. 7–9).",
+          "NFCL assumes low-confidence predictions are background and repels them from every foreground prototype, although they may be hard true positives; no analysis validates this assumption. NBHA likewise lacks enough detail about collision handling and transformed instance placement, and the paper gives little discussion of failure cases or computational overhead (p. 6)."
+        ],
+        "score_rationale": "The strong benchmark results and sensible ablations make the work competitive, but the core GMM equations and dynamic grouping procedure are insufficiently sound or specified, while the evaluation lacks statistical and per-class support for its central multi-category claim. I therefore place it marginally below acceptance, with some uncertainty because corrected equations or omitted implementation details could reduce these concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper combines dynamically fitted GMM groups, learnable prototypes, source/target instance augmentation, and low-confidence feature repulsion for multi-category 3D UDA. Results are generally favorable, especially on nuScenes→KITTI, but the contribution is largely an incremental combination and important algorithmic and evaluation details remain unresolved.",
+        "strengths": [
+          "The method addresses a relevant limitation of category-level prototype alignment with a coherent group-specific alignment framework (pp. 2–6).",
+          "Experiments cover three transfer settings and two detector architectures, with substantial gains on nuScenes→KITTI and consistent, though sometimes small, gains elsewhere (pp. 7–8).",
+          "Component, prototype-strategy, and hyperparameter ablations provide useful evidence that NBHA and the combined system improve the chosen baseline (pp. 8–9, 13–15)."
+        ],
+        "weaknesses": [
+          "The central grouping mechanism is not technically specified reliably: the posterior in Eq. 4 omits mixture weights, Eq. 5 uses the number of groups rather than feature dimensionality in its normalization, and no component-to-prototype matching prevents arbitrary GMM label permutations after refitting (pp. 5, 13).",
+          "Evidence is incomplete for the claimed robustness: there are no multi-seed uncertainties, limited per-class reporting, only one ablation domain, and gains are small on Waymo→nuScenes and PVRCNN. The class-specific prototype counts and several sensitive hyperparameters appear selected using target performance without a stated label-free selection protocol (pp. 7–9, 13–15).",
+          "Reproducibility and mechanism are unclear: pretraining learning rates conflict between pp. 8 and 13, thresholds are only given as a range, and the paper does not precisely explain how uncertain regions/features receive categories or why pasting objects into likely-positive regions and repelling all low-confidence proposals improves rather than corrupts supervision (p. 6, p. 13)."
+        ],
+        "score_rationale": "The empirical improvements make the approach promising, but novelty over existing prototype alignment and pseudo-label augmentation is moderate. More importantly, flaws and omissions in the GMM/prototype correspondence and target-domain model-selection protocol prevent confidence that the method is fully sound and reproducible. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a multi-category 3D UDA framework combining dynamically fitted GMM groups, learnable prototypes, foreground repulsion, and source/target instance augmentation. Results are promising, especially for nuScenes→KITTI, but the methodological specification and experimental controls are not yet strong enough to substantiate the claimed superiority reliably.",
+        "strengths": [
+          "Addresses a practically important multi-category 3D adaptation setting and combines feature alignment with explicit treatment of foreground/background ambiguity (pp. 2–6).",
+          "Reports improvements across three dataset transfers and two detector architectures; the nuScenes→KITTI gains are substantial (pp. 7–8).",
+          "Includes component, grouping-strategy, hyperparameter, and prototype-count studies, with the main ablation showing incremental gains from the proposed components (pp. 8–9, 13–15)."
+        ],
+        "weaknesses": [
+          "The core grouping formulation is technically inconsistent or underspecified: Eq. 4 omits GMM mixture weights despite fitting them, Eq. 5 uses the number of groups rather than feature dimensionality in the Gaussian normalization, and component-to-prototype identity across refits is not explained (pp. 5–6).",
+          "Evidence is weakened by modified/reimplemented baselines, unequal schedules, no multi-seed uncertainty, and no per-class main results despite emphasizing multi-category adaptation; several ablations also do not clearly isolate the compared alternatives (pp. 7–9, 14–15).",
+          "Reproducibility details conflict or remain vague: pretraining learning rates differ between pp. 8 and 13, thresholds are only described as lying between 0.2 and 0.5, and low-confidence true objects may be repelled from every prototype without analysis of this failure mode (pp. 6, 8, 13)."
+        ],
+        "score_rationale": "The empirical gains and breadth make the work potentially useful, but novelty is largely a combination of established GMM/prototype, contrastive, and copy-paste ideas. More importantly, errors and omissions in the central formulation plus insufficiently controlled reporting prevent confident validation. I therefore place it marginally below acceptance, with some uncertainty because the apparent equation errors could be presentation mistakes rather than implementation errors."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a multi-category 3D UDA framework combining dynamically fitted GMM groups, learnable prototypes, source/target instance augmentation, and repulsion of low-confidence proposals. Results are strong on Waymo→KITTI and nuScenes→KITTI, but the contribution is largely an incremental combination and important formulation and evaluation-protocol concerns prevent the evidence from being fully convincing.",
+        "strengths": [
+          "The framework targets a meaningful limitation of prior single-category or fixed-grouping approaches and presents a coherent training pipeline (pp. 2–6).",
+          "Experiments cover three adaptation directions, two detector architectures, and reasonably competitive baselines under largely unified pretraining settings (pp. 7–8, 14–15).",
+          "Component, grouping-strategy, augmentation, prototype-count, and hyperparameter ablations provide useful empirical diagnosis (pp. 8–9, 13–15)."
+        ],
+        "weaknesses": [
+          "The GMM formulation is technically inconsistent: posterior assignment omits mixture weights, Equation 5 uses the number of components rather than feature dimensionality in the Gaussian normalization, and fitted mixing weights are never subsequently used (p. 5). It is uncertain whether these are manuscript errors or reflect the implementation.",
+          "Model selection may violate the unlabeled-target premise: six coefficients and class-specific prototype counts are justified using target-domain 3D/class AP, with no label-free selection protocol described (pp. 13–15). Implementation details also give conflicting pretraining learning rates, 0.003 versus 0.01 (pp. 8, 13).",
+          "Evidence lacks repeated-run uncertainty or significance tests; some gains are small, especially Waymo→nuScenes and PVRCNN, while several baselines are modified or reimplemented. The paper also does not directly isolate the claimed benefit of inter-category repulsion or demonstrate that repelled low-confidence proposals are truly background rather than difficult objects (pp. 6–9)."
+        ],
+        "score_rationale": "The method is practically relevant and produces substantial gains in two settings, supporting a borderline contribution. However, moderate novelty, an erroneous or underspecified core GMM formulation, possible target-label-dependent tuning, and limited statistical evidence leave technical soundness and generalization insufficiently established."
+      }
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_023",
+  "paper_id": "i5cjA1ApHW",
+  "number": 6661,
+  "title": "FuseRL: Dense Preference Optimization for Heterogeneous Model Fusion",
+  "authors": [
+    "Longguang Zhong",
+    "Fanqi Wan",
+    "Ziyi Yang",
+    "Guosheng Liang",
+    "Tianyuan Shi",
+    "Xiaojun Quan"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "Model fusion",
+    "Large Language Models",
+    "Preference Alignment"
+  ],
+  "forum_url": "https://openreview.net/forum?id=i5cjA1ApHW",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    2,
+    4,
+    6
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "IhbwNAbROt",
+      "forum": "i5cjA1ApHW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6661/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761377230901,
+      "tmdate": 1762918972413,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "YjNMwKjB0L",
+      "forum": "i5cjA1ApHW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6661/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761997761248,
+      "tmdate": 1762918970826,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "sUDp3kABr2",
+      "forum": "i5cjA1ApHW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6661/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761988629000,
+      "tmdate": 1762918971290,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "txWoU9CQa3",
+      "forum": "i5cjA1ApHW",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission6661/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761948988790,
+      "tmdate": 1762918971724,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FuseRL combines reward-weighted multi-source SFT with reward-weighted preference optimization to distill heterogeneous large models into one target. The empirical gains are promising and broad, but the contribution is incremental over WRPO/multi-teacher training, and confounded comparisons, circular evaluation, and an invalid theoretical argument prevent the paper from firmly establishing its main claims.",
+        "strengths": [
+          "The framework is simple, practically relevant, and evaluated with three optimization methods and target sizes; FuseRL usually improves over the corresponding SFT+PO baseline on AlpacaEval-2 (pp. 6, 9).",
+          "A useful set of ablations examines source count, response count, temperature, training cost, and downstream capability retention (pp. 8–9, 18–20).",
+          "The main 8B results are sizable on AlpacaEval-2, with smaller but generally positive Arena-Hard gains, and generation lengths are reported to expose verbosity effects (p. 6)."
+        ],
+        "weaknesses": [
+          "The central comparison changes both diversity and training quantity: FuseRL uses multiple responses/pairs per prompt while SFT+PO uses one (pp. 6, 15). Table 8 partly studies compute, but does not provide a matched-token/example multi-response control, so gains cannot be attributed specifically to weighting or heterogeneous fusion (p. 19).",
+          "Proposition 2 incorrectly treats reward-derived weights as fixed/independent of source errors when moving expectations through products and computing variance; its i.i.d. source-bias assumption is also implausible. It proves preserved mean bias, not the claimed bias reduction (pp. 16–17).",
+          "Evaluation relies almost entirely on one GPT-4 judge without uncertainty or human validation (p. 6), while the bias/variance analysis uses that same judge to define both scores and the GPT4-Top1 'ideal,' making it circular; reported differences are very small (pp. 8, 20–21)."
+        ],
+        "score_rationale": "The work offers a useful engineering recipe and substantial empirical coverage, warranting more than a clear reject. However, novelty beyond combining standard weighted multi-source SFT and preference optimization is limited, the key causal comparison is insufficiently controlled, and the theoretical and bias/variance claims are not soundly supported. I therefore rate it marginally below acceptance, with some uncertainty because code and run-level statistics are unavailable."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "FuseRL combines reward-weighted multi-source SFT with reward-weighted preference optimization over heterogeneous-model outputs. The empirical gains on AlpacaEval-2 are promising, but the contribution is incremental and key comparisons, theoretical claims, and the RLOO formulation do not yet support the paper’s broader conclusions.",
+        "strengths": [
+          "The framework is simple, broadly applicable to DPO/SimPO-style objectives, and evaluated with four heterogeneous teachers and several target sizes (pp. 5–9).",
+          "Main results show consistent AlpacaEval-2 improvements over the reported single-source SFT+PO counterparts across RLOO, SimPO, and DPO (p. 6), with useful source-count and target-scale studies (pp. 8–9).",
+          "The appendices provide substantial implementation detail and additional studies of response count, runtime, temperature, and downstream capability retention (pp. 16, 18–20)."
+        ],
+        "weaknesses": [
+          "The main comparison changes both source diversity and supervision volume: FuseRL uses multiple responses/pairs per prompt while SFT+PO uses one. The equal-budget evidence is unfavorable on the primary LC metric—15K prompts × 4 responses obtains 64.2 versus 67.1 for SFT+DPO with 60K × 1—and therefore does not isolate the claimed fusion benefit (p. 19).",
+          "Applying REINFORCE/RLOO to fixed responses sampled from other source policies is technically under-specified and generally yields a biased off-policy policy-gradient estimator without importance correction; Eq. 2 assumes samples from the target policy, whereas FusePO trains on source-model outputs (pp. 3–5, 15).",
+          "Theoretical and diagnostic support is weak: Proposition 2 treats reward-derived weights as if independent of source errors and only shows variance reduction under strong i.i.d. assumptions, not bias reduction (pp. 17); the empirical “bias” is actually mean absolute error against a GPT-4-selected proxy judged by the same GPT-4 model, making the analysis circular (pp. 8, 20–21)."
+        ],
+        "score_rationale": "The paper has a practical recipe and encouraging automatic-evaluation results, but its novelty over weighted multi-teacher training is modest. More importantly, supervision/compute confounds, an unjustified off-policy RLOO implementation, and flawed bias/variance arguments prevent the current evidence from establishing the central claims. I therefore lean reject, while acknowledging that carefully controlled comparisons and a corrected technical treatment could materially improve the work."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FuseRL combines reward-weighted multi-source SFT with reward-weighted preference optimization. The empirical gains are fairly consistent, but the contribution is incremental and several central technical and evaluation claims are not adequately supported.",
+        "strengths": [
+          "The framework is simple, practically relevant, and tested with several target sizes and nominal optimization variants; it consistently improves AlpacaEval-2 over the reported SFT+PO baselines (pp. 6, 8–9).",
+          "Useful ablations examine source count, responses/pairs per prompt, temperature, selection strategy, and training cost (pp. 8, 19–20).",
+          "The appendix checks retention on knowledge, reasoning, mathematics, and coding tasks rather than reporting conversational preference benchmarks alone (p. 18)."
+        ],
+        "weaknesses": [
+          "The RLOO formulation is technically unclear: FusePO trains on fixed source-model responses, yet REINFORCE/RLOO requires policy samples or an off-policy correction. No such correction or sufficiently precise objective is given, while the paper even describes these experiments as off-policy (pp. 3, 5, 7).",
+          "The main comparison is confounded by supervision volume and source coverage: FuseRL uses responses/pairs from multiple sources whereas SFT+PO uses only one. The k/source-count ablations show that extra pairs help, but there is no equal-number, equal-compute baseline using additional samples from one source or unweighted pooled data (pp. 6, 8, 19).",
+          "The bias/variance justification is weak: Proposition 2 treats reward-dependent weights as if independent of i.i.d. source biases, and the empirical “absolute bias” is merely mean absolute error to a GPT-4-selected proxy scored by the same judge. Thus it does not establish reduced statistical bias or human-preference error (pp. 8, 17, 20–21)."
+        ],
+        "score_rationale": "The paper offers a plausible and reasonably broad empirical recipe, with strong AlpacaEval-2 results. However, novelty over weighted multi-teacher training is limited, the RLOO implementation lacks a sound off-policy account, and decisive controls and human or uncertainty-aware evaluation are missing. I therefore place it marginally below acceptance; uncertainty remains because the supplied text says code exists but it cannot be inspected."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FuseRL combines reward-weighted multi-source SFT with reward-weighted preference optimization over heterogeneous teachers. The conversational benchmark gains are promising, but the contribution is incremental and the evidence does not isolate weighting or heterogeneity from simply using more source responses; moreover, the bias–variance theory and analysis are not sound as stated.",
+        "strengths": [
+          "The method is practically relevant and supports several optimization objectives (RLOO, DPO, and SimPO), with clear improvements over the corresponding SFT+PO baselines on AlpacaEval-2 and generally smaller gains on Arena-Hard (pp. 6–7).",
+          "Useful scaling and ablation studies cover source count, target size, response count, temperature, and training cost (pp. 8–9, 19–20).",
+          "The appendices provide substantial implementation detail, and downstream evaluations suggest that the final model roughly preserves average general capability despite task-specific regressions (pp. 16, 18)."
+        ],
+        "weaknesses": [
+          "The decisive controls are missing: no uniform-weighted multi-source baseline, no controlled comparison using the same number of responses/tokens, and no uncertainty across training seeds or judge evaluations. Table 8 in fact suggests that much of the benefit may arise from processing four times as many responses rather than from the proposed weighting (p. 19).",
+          "Proposition 2 is unjustified because the softmax weights are reward-dependent random variables and may correlate with source errors; the proof treats them as fixed when taking expectations and variances. Its i.i.d. source-bias assumption is also implausible, and the result preserves rather than reduces expected bias (pp. 17–18).",
+          "The claimed bias analysis is circular and mislabeled: GPT4-Top1 is selected using the same GPT-4 judge used to define the reference scores, while “absolute bias” is defined as mean absolute error and “variance” as variance of absolute errors (pp. 8, 20–21). Method specification is also inconsistent about per-source maxima versus globally selected top-four responses (pp. 4, 6, 20)."
+        ],
+        "score_rationale": "The empirical gains are substantial enough to merit consideration, especially on AlpacaEval-2, but novelty over weighted preference optimization is modest, Arena-Hard improvements are limited, and missing matched-data controls prevent attributing gains to the proposed mechanism. The invalid theoretical claim and circular bias–variance analysis further weaken technical soundness, placing the work marginally below acceptance."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "FuseRL combines reward-weighted multi-source SFT with reward-weighted preference optimization over heterogeneous teachers. The empirical gains are promising, but the contribution is largely a straightforward extension of existing fusion/alignment pipelines, and several central technical and evaluation claims are insufficiently supported.",
+        "strengths": [
+          "Consistent improvements over the stated SFT+PO baselines across DPO, SimPO, and RLOO, with useful ablations over target size and number of sources (pp. 6, 8–9).",
+          "The paper evaluates both conversational alignment and eight downstream tasks; FuseRL approximately preserves the target model’s aggregate downstream capability while substantially improving AlpacaEval-2 (p. 18).",
+          "Implementation details, hyperparameter ranges, sampling settings, and a partial training-cost comparison are provided (pp. 16, 19)."
+        ],
+        "weaknesses": [
+          "Theoretical support is flawed or weak: Proposition 2 factors expectations despite reward-derived weights depending on source outputs/errors, assumes i.i.d. source biases without justification, and only shows variance reduction relative to one individual term under restrictive assumptions (pp. 16–17). The reported “absolute bias” is actually mean absolute error, further weakening the claimed bias–variance interpretation (pp. 20–21).",
+          "Evidence relies heavily on two correlated LLM-judge benchmarks, with GPT-4-1106 used as judge and also involved in the constructed “ideal” reference; no uncertainty estimates or human evaluation are reported (pp. 6, 8). Arena-Hard gains are modest, including a -0.1 raw-win-rate change for DPO (p. 6).",
+          "Method specification is internally unclear: Eq. 10 uses one maximum-reward response per source, whereas the main setup selects the global top four responses, potentially including multiple outputs from one source (pp. 4, 6, 20). Moreover, source-generated responses are described as implementing RLOO, whose policy-gradient validity normally requires on-policy samples; the manuscript does not explain an appropriate off-policy correction (pp. 5, 9)."
+        ],
+        "score_rationale": "The approach is practically useful and shows broad, mostly consistent empirical gains, supporting a borderline score. However, novelty is incremental, the RLOO/method specification is unclear, the theoretical bias–variance argument is not sound as written, and the strongest conclusions rest on limited, potentially circular LLM-judge evidence. I am moderately confident, though unavailable code-level details could resolve some implementation ambiguity."
+      }
+    }
+  ]
+}

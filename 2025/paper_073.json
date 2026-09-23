@@ -1,0 +1,384 @@
+{
+  "year": 2025,
+  "package_id": "paper_073",
+  "paper_id": "AEwtGiJVPi",
+  "number": 10273,
+  "title": "OwLore: Outlier-weighed Layerwise Sampled Low-Rank Projection for Memory-Efficient LLM Fine-tuning",
+  "authors": "Pengxiang Li; Lu Yin; Xiaowei Gao; Shiwei Liu",
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": "parameter efficient fine-tuning; large language model; low-rank; layerwise sampling",
+  "forum_url": "https://openreview.net/forum?id=AEwtGiJVPi",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    5,
+    6,
+    5
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes the combination of the following two techniques:\n- Outlier-Weighed Sampling (OWS): a heuristics for stochastic & selective layer wise fine-tuning.\n- GaLore: a low-rank-update optimization method family proposed by Zhao _et al._ (2024).\n\nComparing against Full FT, GaLore, and LoRA, both OWS and OwLore (OWS + Galore) are competitive while keeping peak memory usage lower than 1/2 of Full FT."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper presents an effective and memory-efficient fine-tuning method that is competitive. Empirical evaluation spans multiple datasets."
+        },
+        "weaknesses": {
+          "value": "1. Presentation seems a bit confusing. This paper first introduces OWS as a technique but in Tables 4-7 it is listed as OwLore (full-rank). Selective layer freezing / GaLore are distinct techniques. And I think the presentation would be clearer if their respective contributions are separately evaluated.\n2. Paper could be strengthened if more LISA-D experiments are included. From Table 1 it seems the even simpler heuristics of favoring shallower layers is already effective - is Eq 2 really necessary? Including LISA-D as one of the baselines in Tables 4-7 will help answer this question."
+        },
+        "questions": {
+          "value": "What are the # of trainable parameters of methods compared in this paper?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1GLlQJ6MDV",
+      "forum": "AEwtGiJVPi",
+      "replyto": "AEwtGiJVPi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_wV28"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_wV28"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10273/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730675931884,
+      "cdate": 1730675931884,
+      "tmdate": 1731429411464,
+      "mdate": 1731429411464,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces Outlier-weighed Layerwise Sampled Low-Rank Projection (OwLore), a memory-efficient fine-tuning method for large language models. OwLore improves performance by focusing on layers with higher outlier distributions and selectively fine-tuning those layers. It also employs gradient low-rank projection to enhance efficiency further. Experimental results show that OwLore outperforms baseline methods, achieving significant accuracy gains on benchmarks like Commonsense Reasoning, MMLU, and MT-Bench."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The proposed method achieves better performance with lower memory requirements.\n - The proposed OwLore includes a novel evaluation of outlier of weights in each layer, hence enable an effective selection algorithm.\n - Incorporating GaLore, further decrease the memory requirements."
+        },
+        "weaknesses": {
+          "value": "- The only contribution of the paper is the metric of how to evaluate the outlier in weights, which is kind of marginal. \n- The paper should elaborate why this kind of evaluation is useful, where the idea comes from.\n- The author should not only just focus the experiments on how much memory is saved, but also, how much the hyperparameter in OwLore affects the performance. \n- The paper should provide some insights from the methods that why combine selection and GaLore con boost performance. Why from the results the two methods are compatible.\n\n\nA follow-up comment:\n\nIn my opinion, a research paper being accepted should propose a novel, interesting methodology, give a clear explanation of where this idea comes from and why it results in such a form, and also demonstrate the effectiveness of the designs and how they relate with intuition. \nMaybe the author could detail why the outlier matters so much and why they use such a function to evaluate this.\n\nFor the hyperparameter ablations, maybe the tau? and also gamma? Does the method excel at different combinations of hyperparameters? This is one key experiment and the result will show whether the method is superior.\n\nAn ablation study can be added to the paper to decompose the contribution of the designs, or just the authors share the insight for this. \n\nOverall, given all this, the paper is not that kind of paper qualified to be accepted, and there are a lot of experiments and analyses that need to be included in the paper, and also the authors' explanation of the results. In my opinion, you can only do so many things with methodology design, and the thing that really matters are those ideas from the experiments from whatever designs which this paper lacks.\n\nI am open to rebuttal and any further demonstrations to change my score."
+        },
+        "questions": {
+          "value": "N/A"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "UwXeqpqS1O",
+      "forum": "AEwtGiJVPi",
+      "replyto": "AEwtGiJVPi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_WvN5"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_WvN5"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10273/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730667849487,
+      "cdate": 1730667849487,
+      "tmdate": 1731429411789,
+      "mdate": 1731429411789,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper \"OWLORE: Outlier-Weighed Layerwise Sampled Low-Rank Projection for LLM Fine-Tuning\" presents a memory-efficient fine-tuning approach for large language models (LLMs). The proposed method, OwLore, introduces an outlier-weighted sampling strategy, focusing on layers with a higher concentration of outliers, which are considered more critical for fine-tuning (though more insights can be provided on why? See weakness). Unlike previous methods such as LISA, OwLore selectively fine-tunes layers based on their outlier distribution, and to further enhance memory efficiency, it uses a gradient low-rank projection for these layers. Experimental results show that OwLore outperforms both full fine-tuning and baseline methods in terms of memory efficiency and accuracy across benchmarks, including Commonsense Reasoning and MT-Bench."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The authors present a straightforward method to reduce the memory costs of fine-tuning large language models. They propose a more effective layer sampling strategy than the uniform approach used in the LISA baseline, selecting pretrained layers based on a targeted sampling method. Additionally, to further increase the number of pretrained layers involved in fine-tuning without raising memory costs, they incorporate GaLore-based gradient low-rank projection. While the method itself may not be highly innovative, the combination of these techniques is intriguing. Experimental results indicate consistent improvements across various datasets and baseline methods."
+        },
+        "weaknesses": {
+          "value": "1. Importance of Outlier Weights for Fine-Tuning: Why are outlier weights more important for fine-tuning? Lines 91-94 lack supporting evidence. The statement that “we assign higher sampling probabilities to layers with a greater concentration of outliers, essentially forming a rich-get-richer phenomenon, substantially improving the fine-tuning performance” requires additional justification.\n\n2. Unclear Rationale for the Choice of Outlier Score: The rationale behind the choice of outlier score is unclear.\n\n3. The results presented are not fully convincing without detailed hyperparameter settings for the baseline methods, including the number of iterations for each method. It is particularly unclear why full-model fine-tuning is less effective than the proposed approach, which uses gradient low-rank projection and fine-tunes only five layers instead of the full model. Claims such as “our method outperforms full fine-tuning by a large margin” are potentially misleading, as the gains reported are relatively modest and may fall within standard deviation. Further clarification is needed on why OwLore (Full-Rank) is less effective than OwLore with gradient low-rank projection. Additionally, how does OwLore (Full-Rank) with a gamma setting applied to five layers compare directly to the proposed method? Memory costs should not increase significantly and warrant examination.\n\n4. Comparative Performance of LoRA and Iteration Counts: How does LoRA with rank 16 perform? It would also be useful to know the number of iterations used for LoRA compared to other methods, as it might perform better with longer training durations.\n\n5. It would be more informative to compare with GaLore, with the rank set to 128, similar to OwLore with gradient low-rank projection.\n\n6. LISA Performance and Suggested Ablation Study: Since OwLore with gradient low-rank projection uses five layers, it would be insightful to examine how LISA performs with five layers under the same conditions. If LISA is expected to require more memory, consider conducting an ablation study on OwLore using gradient low-rank projection but without the outlier score, employing uniform sampling across five layers.\n\n7. I request the authors to run the experiments on table 4 for 5 different seeds and provide the standard deviation. Furthermore, please provide the statistical significance test on the results."
+        },
+        "questions": {
+          "value": "See above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "Not needed."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "MvJBVfEO9Y",
+      "forum": "AEwtGiJVPi",
+      "replyto": "AEwtGiJVPi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_gXqP"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_gXqP"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10273/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730618761840,
+      "cdate": 1730618761840,
+      "tmdate": 1732649789202,
+      "mdate": 1732649789202,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes OwLore, a novel method for updating LLM layers using a sampling-based strategy. Specifically, layers with a higher concentration of outliers have an increased probability of being updated. OwLore also incorporates gradient low-rank projection to further reduce memory costs. Extensive experiments across various architectures on commonsense reasoning, MMLU, and MT-Bench demonstrate the effectiveness of OwLore."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The method is well-motivated, with a novel and intuitive outlier-based sampling strategy.\n\n2. Experiments using several LLMs, including Llama2, Llama3 and Mistral, across various tasks like commonsense reasoning, MMLU and MT-Bench confirm the effectiveness of the approach, boosting performance over baselines without increased memory cost.\n\n3. The code for OwLore is available, supporting reproducibility and further exploration."
+        },
+        "weaknesses": {
+          "value": "1. OwLore may lead to increased time costs, as the outlier ratio for layers must be computed with each update. However, the experiments do not include a comparison of time costs, which seems unfair to baseline methods, especially PEFT methods that do not use sampling. Even with sampling based methods like LISA, its random sampling strategy will likely lead to less time cost than OwLore. Including time cost metrics would provide a more balanced comparison and highlight the efficiency trade-offs of OwLore.\n\n2. In Figure 4.4, the finetuning loss curve is not converging, with an even sharper drop in the last few optimization steps, making the analysis in this section less convincing. Furthermore, a similar pattern is also observed in Figure 5."
+        },
+        "questions": {
+          "value": "1. In Figure 2, it appears that the last (bottom) layer does not have a high outlier score in OwLore, while the LISA paper indicates that the bottom layer should have a higher importance score and is consistently optimized. What might account for this discrepancy between LISA and OwLore?\n\n2. In Line 215, the phrase \"rich-get-richer\" likely means that layers sampled and fine-tuned more frequently will, in turn, accumulate more outliers. This creates a feedback loop where layers with more outliers are sampled more often, which then leads to even more outliers in those layers. Could the authors clarify if this effect is intended?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "FlEGBYbPCG",
+      "forum": "AEwtGiJVPi",
+      "replyto": "AEwtGiJVPi",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_2nYd"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission10273/Reviewer_2nYd"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission10273/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730233505084,
+      "cdate": 1730233505084,
+      "tmdate": 1731429412485,
+      "mdate": 1731429412485,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes OwLore, which combines activation-weight outlier-based nonuniform layer sampling with GaLore-style low-rank gradient projection. Results across three 7–8B models and several benchmarks suggest a useful memory/performance trade-off, but the contribution is incremental and the evidence and algorithm specification are not sufficiently rigorous for clear acceptance.",
+        "strengths": [
+          "The method addresses a practical problem and combines layer sampling with low-rank optimizer states to achieve substantially lower reported memory than full fine-tuning (pp. 7–9).",
+          "Evaluation covers three model families and commonsense reasoning, MMLU, and MT-Bench; OwLore generally matches or exceeds the reported baselines (pp. 7–8).",
+          "The paper includes comparisons of sampling scores, a full-rank OWS variant, memory breakdowns, and limited hyperparameter analysis (pp. 5, 7, 9, 14–15)."
+        ],
+        "weaknesses": [
+          "The central mechanism is underspecified: the activation data used to compute X and D_l, treatment of multiple matrices per Transformer layer, and recomputation policy are unclear. Moreover, p_l=γD_l/ΣD can exceed 1, yet no clipping or exact-size sampling rule is given, so the claimed expected γ layers need not hold (pp. 5–6).",
+          "Evidence lacks uncertainty: most tables report no seeds, standard deviations, or significance despite gains often being only 0.1–1.1 points; even the stated three-seed MT-Bench result has no variance. The identical LLaMA3 and Mistral LoRA rows also raise concern about a possible reporting error (pp. 7–8).",
+          "Novelty is limited to combining LISA-style sampling and GaLore with a heuristic outlier score, while the causal premise that outlier-rich layers are more important is not directly validated. Ablations do not fully separate sampling distribution, sampled-layer count, and rank, and τ=13 is selected despite τ=11 performing better in the reported sweep (pp. 5–7, 15)."
+        ],
+        "score_rationale": "The practical idea and broad positive results are promising, but limited conceptual novelty, reproducibility gaps in the core algorithm, and weak statistical/reporting support make the claimed superiority uncertain. This places the work marginally below the ICLR acceptance threshold."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "OwLore combines outlier-weighted stochastic layer selection with GaLore-style low-rank gradient projection for memory-efficient LLM fine-tuning. The idea is practically motivated and tested across three model families and several benchmarks, but the submission does not provide sufficiently controlled or statistically robust evidence for its headline performance claims.",
+        "strengths": [
+          "The method addresses two concrete limitations of LISA—uniform layer sampling and rapidly growing optimizer memory—and gives a reasonably clear algorithmic construction (pp. 4–6).",
+          "Evaluation spans LLaMA2, LLaMA3, and Mistral and covers commonsense reasoning, MMLU, MT-Bench, GSM8K diagnostics, and memory measurements (pp. 7–9, 14–15).",
+          "Reported memory results suggest a useful trade-off: OwLore permits more sampled layers or higher projection rank at substantially lower peak memory than full fine-tuning and LISA (pp. 4, 9)."
+        ],
+        "weaknesses": [
+          "The central outlier-importance premise is asserted rather than established: activation data used to compute scores, aggregation across transformer matrices, stability across datasets, and why outlier ratio predicts fine-tuning utility are insufficiently specified or analyzed (pp. 4–6). The method is largely a combination of an existing outlier score and GaLore with LISA.",
+          "Evidence is not statistically convincing. Most tables omit seeds, deviations, and significance despite many gains being only 0.1–1.1 points; even the table claiming three MT-Bench seeds reports no uncertainty (pp. 7–8). The identical eight-task LoRA results for LLaMA3 and Mistral also suggest a possible copy/reporting error (p. 7).",
+          "Comparisons are not fully controlled: OwLore uses rank 128 and five sampled layers while LoRA/GaLore use rank 8; GaLore memory is explicitly measured without its layer-wise update optimization, inflating that baseline; runtime and SVD overhead are absent (pp. 6–9). Moreover, the τ ablation peaks at τ=11, contradicting the unsupported choice of τ=13 as consistently effective (p. 15)."
+        ],
+        "score_rationale": "The approach is plausible and potentially useful, but its novelty is incremental and decisive claims of outperforming full fine-tuning are supported by small, variance-free gains under incompletely controlled comparisons. Specification and reporting inconsistencies prevent confidence in the empirical conclusions, placing it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "OwLore combines outlier-weighted layer sampling with GaLore-style low-rank gradient projection for memory-efficient LLM fine-tuning. The approach is plausible and reports favorable memory–accuracy trade-offs, but the contribution is largely a combination of existing techniques and the empirical evidence is not sufficiently rigorous or reproducible to substantiate the broad superiority claims.",
+        "strengths": [
+          "The method addresses a practical limitation of LISA by combining non-uniform sampling with low-rank optimizer states, and the reported memory scaling is favorable as more layers are sampled (pp. 4–6, 9).",
+          "Evaluation covers three model families and several task categories; OwLore generally improves over LISA and GaLore in the reported tables (pp. 7–8).",
+          "The comparison of multiple layer-importance measures provides some direct evidence that the proposed outlier score is useful relative to uniform, BI, and RM sampling (p. 5)."
+        ],
+        "weaknesses": [
+          "The algorithm is materially underspecified: the calibration data and procedure for computing activation-dependent outlier scores are absent, the sampling period K is not reported, aggregation across a transformer's multiple matrices is unclear, and p_l can exceed one without a stated clipping rule (pp. 5–6, 15).",
+          "Most results lack variances or statistical tests despite small gains; MT-Bench has only 80 prompts, and even its stated three-seed result reports no dispersion. A suspicious exact duplication of all Mistral-7B and LLaMA3-8B LoRA scores further undermines confidence in Table 4 (pp. 7–8).",
+          "The rationale connecting pretrained outliers to fine-tuning importance is asserted rather than established, novelty over LISA plus GaLore is incremental, and important efficiency evidence such as wall-clock time and SVD overhead is missing. The tau ablation also favors tau=11 rather than the chosen tau=13 (pp. 5, 9, 15)."
+        ],
+        "score_rationale": "The reported gains and memory savings are promising, but limited novelty, missing implementation details, weak uncertainty reporting, and apparent result-table inconsistencies make the central empirical claims insufficiently reliable for acceptance. I therefore rate it below the acceptance threshold, with some uncertainty because code could resolve several reproducibility concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes OwLore, combining outlier-weighted layer sampling with GaLore-style projected gradients for memory-efficient LLM fine-tuning. The combination is intuitive and produces encouraging results, but its novelty is incremental and the evidence does not yet robustly support the broad superiority claims.",
+        "strengths": [
+          "The method addresses two concrete limitations of LISA and combines layer sampling with low-rank optimizer states in a practically sensible way (pp. 4–6).",
+          "Evaluation covers three model families and several benchmark types; OwLore generally provides a favorable accuracy–memory trade-off, especially for LLaMA2-7B (pp. 7–9).",
+          "The paper includes useful memory scaling and component breakdowns rather than reporting trainable parameter counts alone (p. 9)."
+        ],
+        "weaknesses": [
+          "The outlier score is underspecified: the calibration data and aggregation of activations across samples, batches, and the multiple matrices within each Transformer block are not explained. The sampling rule can also yield probabilities above one, while Algorithm 1 gives no clipping or fixed-size sampling procedure (pp. 5–6).",
+          "Most reported gains are small and lack uncertainty estimates or significance tests. Commonsense improvements over full fine-tuning are only 0.1–1.1 points, and MT-Bench/MMLU are evaluated on only one model; even the stated three-seed MT-Bench results omit standard deviations (pp. 7–8).",
+          "Baseline and efficiency comparisons are not fully convincing: OwLore uses rank 128 while LoRA/GaLore use rank 8, GaLore is measured without its memory-saving layer-wise update, wall-clock and outlier-computation costs are absent, and the claimed approximately equal memory setting conflicts with the 23G versus 36G figures (pp. 7, 9)."
+        ],
+        "score_rationale": "This is a useful engineering combination with promising empirical trends, but the core importance hypothesis is weakly validated, key implementation details are missing, and small gains are presented without adequate variance analysis. I am uncertain whether stronger reproducibility details and multi-seed results would move it above the acceptance boundary."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "OwLore combines outlier-weighted layer sampling with GaLore-style low-rank gradient projection. Results across three 7–8B models and several benchmarks suggest a favorable memory–accuracy trade-off, but incomplete algorithmic specification, weak statistical reporting, and apparent result inconsistencies prevent the evidence from firmly supporting the broad claims.",
+        "strengths": [
+          "The method addresses a practically important problem and combines layer sampling with low-rank optimizer states in a simple, potentially useful way (pp. 4–6).",
+          "Evaluation spans commonsense reasoning, MMLU, and MT-Bench across LLaMA2, LLaMA3, and Mistral, with ablations separating outlier-weighted sampling from low-rank projection (pp. 7–9).",
+          "Reported peak memory is substantially below full fine-tuning, and the memory breakdown provides useful qualitative insight into where savings arise (p. 9)."
+        ],
+        "weaknesses": [
+          "Critical implementation details are underspecified: how activation-dependent outlier scores are calibrated and aggregated across batches/matrices, the sampling period K, and whether optimizer states persist when layers are frozen are unclear; these choices directly affect reproducibility, memory, and optimization (pp. 5–6).",
+          "Evidence lacks uncertainty estimates or significance tests for mostly sub-point gains; even the stated three-seed MT-Bench experiment reports only means, despite noisy LLM judging (p. 8). No throughput or runtime results quantify the cost of repeated SVDs.",
+          "There are concerning consistency and fairness issues: the Mistral LoRA row exactly duplicates all eight LLaMA3 LoRA task scores, suggesting a copy/reporting error (p. 7); baseline ranks and sampled-layer budgets differ substantially, while the claimed approximately matched memory is not achieved for GaLore (pp. 6–7)."
+        ],
+        "score_rationale": "The practical idea is plausible and the reported results are promising, but novelty is mainly an incremental combination of existing techniques. Missing optimization details, absent variance, unequal configurations, and a conspicuous duplicated result row materially weaken technical confidence. I therefore place it marginally below acceptance, with some uncertainty because code could clarify several issues."
+      }
+    }
+  ]
+}

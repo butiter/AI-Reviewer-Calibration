@@ -1,0 +1,242 @@
+{
+  "year": 2026,
+  "package_id": "paper_092",
+  "paper_id": "latGrBzs6m",
+  "number": 23322,
+  "title": "MeasureNet: Polyline Detection Based Measurement for Celiac Disease Identification and Grading",
+  "authors": [
+    "Aayush Kumar Tyagi",
+    "Vaibhav Mishra",
+    "Ashok Tiwari",
+    "Lalita Mehra",
+    "Prasenjit Das",
+    "Govind Makharia",
+    "Prathosh AP",
+    "Mausam"
+  ],
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": [
+    "Medical Images",
+    "Measurement",
+    "Celiac Disease Detection"
+  ],
+  "forum_url": "https://openreview.net/forum?id=latGrBzs6m",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    6,
+    2,
+    2
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0z1RBUaWOY",
+      "forum": "latGrBzs6m",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761307011414,
+      "tmdate": 1762942603454,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "4AMbgvfPUp",
+      "forum": "latGrBzs6m",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761948140114,
+      "tmdate": 1762942602722,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "9IMM2zV91C",
+      "forum": "latGrBzs6m",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761737817078,
+      "tmdate": 1762942603248,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "AirPAGNoid",
+      "forum": "latGrBzs6m",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23322/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761895298482,
+      "tmdate": 1762942602947,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MeasureNet adapts DINO-DETR to predict villus/crypt polylines, adds geometric and length losses, and fuses auxiliary segmentation features using strong/weak-mask mixup. The new 752-image CeDeM dataset is potentially valuable, and reported gains over LETR and segmentation baselines are substantial, but ambiguities in evaluation and limited clinical validation prevent the evidence from firmly supporting the grading claims.",
+        "strengths": [
+          "The problem is clinically motivated, and inexpensive polyline annotations plus the proposed CeDeM dataset constitute a useful contribution (pp. 2, 6, 13).",
+          "Results consistently improve measurement, localization, and derived grading metrics over several adapted baselines; component ablations support contributions from losses, masks, and mixup (pp. 7–9).",
+          "Evaluation on DeepBacs provides some evidence that the polyline formulation transfers beyond the primary histopathology task (pp. 8, 19)."
+        ],
+        "weaknesses": [
+          "Evaluation validity is unclear: the paper reports image-level splits but not patient/slide-level separation, leaving possible leakage among correlated biopsy images; the test set has only 70 images, while Grade 3 has merely 18 images in the entire dataset (p. 6). No external clinical cohort or inter-reader measurement comparison is provided.",
+          "M-MAE is underspecified and potentially permissive: the main text states Hungarian matching, whereas the appendix describes independent nearest matches and admits duplicate predictions are largely unpenalized (pp. 6, 16). The fixed Chamfer threshold of 50 and the reported “mAP” construction are also insufficiently justified (p. 6).",
+          "Several technical details are not rigorous enough for reproduction: “50% capacity” for the weak segmenter is undefined, differentiable DTW over predicted mask contours is not explained, and loss terms with different scales are simply summed without weights (pp. 4–5, 14). The novelty is consequently mostly an effective combination of established components rather than a major methodological advance."
+        ],
+        "score_rationale": "The dataset and measurement-oriented formulation are useful, and the reported improvements are promising. However, possible split leakage, severe class scarcity, inconsistent matching definitions, and missing external/clinical validation materially weaken the central disease-grading evidence. I therefore place the work marginally below acceptance, with some uncertainty because patient-level provenance may exist but is not reported."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MeasureNet reframes celiac grading as interpretable villus/crypt polyline measurement, combining a DINO-DETR detector, measurement-oriented losses, auxiliary segmentation cues, and feature mixup. The new CeDeM dataset and sizable reported gains are promising, but evaluation and methodological ambiguities prevent the clinical and robustness claims from being fully established.",
+        "strengths": [
+          "The task formulation is clinically motivated and more interpretable than direct image classification; CeDeM provides 752 expert-annotated images and over 6,800 polylines (pp. 2, 6, 13).",
+          "MeasureNet improves consistently over diverse segmentation and polyline baselines on CeDeM, including ratio MAE 0.406 versus 0.704 for LETR, with supporting component ablations (pp. 7–9).",
+          "Evaluation on DeepBacs provides some evidence that the measurement-oriented formulation transfers beyond the target histology domain (pp. 8, 19)."
+        ],
+        "weaknesses": [
+          "CeDeM is small, highly grade-imbalanced (only 18 Grade-3 images), apparently single-center/single-acquisition, and the paper does not state whether splitting is patient-level. The 70-image test set and lack of external clinical validation make the grading results uncertain (p. 6).",
+          "The proposed M-MAE can match spatially incorrect predictions to their nearest instance and is explicitly largely unaffected by duplicate predictions; thus it can reward correct length distributions without reliable instance detection. Moreover, the main text invokes Hungarian matching while the appendix describes independent closest matching (pp. 6, 16).",
+          "Important technical and statistical details are insufficient: “50% capacity” for the weak segmenter is undefined, differentiable contour extraction for DTW is unclear, uncertainty/error bars and the reported p-value lack protocols, and some reporting is inconsistent (e.g., the claimed 0.014 EMD gain is actually 0.140 in Table 4) (pp. 4, 8–9, 14)."
+        ],
+        "score_rationale": "The dataset, interpretable formulation, and empirical improvements are valuable, but the architecture is largely a combination of established components and the central evidence is weakened by a potentially permissive measurement metric, limited/imbalanced clinical testing, and reproducibility ambiguities. I therefore rate it marginally below acceptance, with uncertainty because patient-level split information and statistical protocols may resolve some concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MeasureNet reformulates villus/crypt measurement as polyline detection, combining DINO-DETR, auxiliary segmentation features, geometric/length losses, and feature mixup. Results are promising, but the clinical and statistical validation is too limited and underspecified to establish robust generalization.",
+        "strengths": [
+          "The clinically motivated polyline annotations and 752-image CeDeM dataset are potentially valuable contributions that reduce the need for full tissue masks (pp. 2, 6, 13).",
+          "MeasureNet substantially improves ratio error, detection, and downstream grading over the reported baselines, with component ablations supporting contributions from mask guidance and mixup (pp. 7–9).",
+          "Evaluation on DeepBacs provides some evidence that the formulation transfers beyond celiac histology (pp. 8, 19)."
+        ],
+        "weaknesses": [
+          "The split is described only at image level, without patient/slide independence, institution diversity, or external celiac validation. Leakage through correlated images is therefore uncertain, and the 70-image test set—drawn from only 18 total Grade-3 images—is inadequate for reliable clinical grading claims (p. 6).",
+          "Evaluation is insufficiently specified: reported accuracies are not obviously compatible with a 70-image test set, classification averaging and uncertainty are omitted, the meaning of ± values and the statistical test protocol are unstated, and M-MAE is described inconsistently as Hungarian matching versus independent nearest matching (pp. 6–8, 16). The latter also weakly penalizes duplicate predictions.",
+          "Novelty is moderate rather than fundamental: the system largely combines established detection, segmentation, EMD, and length losses. The claimed robustness benefit of strong/weak-mask mixup is supported only by an in-distribution ablation, with “50% capacity” undefined and no controlled mask-corruption or domain-shift study (pp. 4, 8–9)."
+        ],
+        "score_rationale": "The dataset, task formulation, and sizable empirical gains make the work promising, but unclear split independence, fragile class coverage, metric/reporting ambiguities, and limited evidence for robustness leave it marginally below the acceptance bar."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "MeasureNet adapts DETR to predict villus/crypt polylines, adds geometric/length losses, and fuses auxiliary segmentation features with strong–weak mask mixup. The accompanying expert-annotated CeDeM dataset is potentially valuable, and reported gains are substantial, but weaknesses in evaluation design and metric specification prevent the clinical and grading conclusions from being convincing.",
+        "strengths": [
+          "The paper frames an important, interpretable measurement problem and contributes a sizable specialized dataset with 6,828 expert-annotated polylines (pp. 2, 6, 13).",
+          "MeasureNet improves consistently over several segmentation and polyline baselines, including sizable CeDeM ratio-error and grading gains, with supporting component ablations (pp. 7–9).",
+          "Evaluation on DeepBacs provides some evidence that the polyline design transfers beyond the target histology task (pp. 8, 19)."
+        ],
+        "weaknesses": [
+          "The clinical evaluation is too limited: the split is not stated to be patient-level, data appear single-center/single-device, and only 18 Grade-3 images exist in the entire dataset, leaving roughly two in a stratified test split; nevertheless, strong four-grade conclusions are drawn without uncertainty or external validation (p. 6).",
+          "M-MAE is insufficiently and inconsistently specified: the main text invokes Hungarian matching, while the appendix describes independent nearest-neighbor matching and says duplicate predictions are largely unpenalized. Matching unrelated instances by length can obscure localization failures, undermining the central measurement evidence (pp. 6, 16).",
+          "Technical novelty is largely an incremental assembly of existing components, and some mechanisms lack convincing validation or clarity: DTW directly minimizes distance between two distinct VS/CB contours, mask mixup's unusually large gain is not tested under controlled segmentation corruptions, and the lone significance claim lacks test/unit details (pp. 4, 8, 14)."
+        ],
+        "score_rationale": "The dataset, interpretable formulation, broad baselines, and large reported gains make the work promising. However, possible patient leakage, extremely sparse severe-grade evaluation, ambiguous matching metrics, and limited validation of the novel components leave the main medical-grading claims below the reliability expected for acceptance. My assessment is therefore marginally below acceptance, with some uncertainty because patient grouping and repeated-run details may simply be omitted."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "MeasureNet reframes villus/crypt measurement as three-point polyline detection, combining a DINO-style detector, standard geometric losses, auxiliary segmentation features, and strong/weak-mask feature mixup. The expert-annotated CeDeM dataset and interpretable measurement objective are valuable, and the reported results are promising, but methodological and evaluation ambiguities prevent strong conclusions.",
+        "strengths": [
+          "CeDeM provides 752 expert-annotated biopsy images with 6,828 villus/crypt polylines plus clinically motivated auxiliary annotations, addressing an important annotation bottleneck (pp. 2, 5–6, 13).",
+          "The method produces visually inspectable structures and substantially improves reported ratio error and grading accuracy over the evaluated baselines; component ablations and qualitative error analysis are included (pp. 7–9).",
+          "Evaluation on DeepBacs offers some evidence that the polyline formulation transfers beyond the primary dataset (pp. 8, 19)."
+        ],
+        "weaknesses": [
+          "Technical novelty is limited: most components and losses are established, while the claimed contributions are insufficiently justified. In particular, the differentiable construction of DTW over predicted contours is unclear, EMD is only marginally better than alternatives, and unweighted summation of differently scaled losses is not analyzed (pp. 4–5, 14, 17).",
+          "The evaluation protocol is underspecified or problematic: patient-level separation is not stated; the highly imbalanced 70-image test set likely contains very few Grade-3 cases; classification averaging and macro/micro definitions are absent; and the reported accuracies do not clearly correspond to integer counts from 70 samples (pp. 6, 8). This makes the clinical grading gains uncertain.",
+          "M-MAE and localization evaluation are not sufficiently rigorous. The text alternates between Hungarian matching and independent nearest matches, admits duplicate predictions are largely unpenalized, and defines “mAP” using a single unexplained Chamfer threshold of 50 without standard AP details (pp. 6, 16). No external clinical cohort or inter-annotator measurement agreement is reported."
+        ],
+        "score_rationale": "The application, dataset, interpretable outputs, and empirical improvements are meaningful. However, the method is primarily an engineering combination of known elements, and ambiguities in matching metrics, split construction, class-imbalanced grading, and statistical reporting materially weaken the evidence. I therefore rate it below the acceptance threshold, with some uncertainty because clearer patient-level and repeated-run evaluation could improve the assessment."
+      }
+    }
+  ]
+}

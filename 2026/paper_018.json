@@ -1,0 +1,217 @@
+{
+  "year": 2026,
+  "package_id": "paper_018",
+  "paper_id": "aVGg6lRCVi",
+  "number": 5837,
+  "title": "Geometric Variational Inference: Elliptic Multi-Marginal Schrödinger Bridge, Anchor Compatibility, and Rates Entropic to Wasserstein",
+  "authors": [
+    "Gao Jiang"
+  ],
+  "primary_area": "probabilistic methods (Bayesian methods, variational inference, sampling, UQ, etc.)",
+  "keywords": [
+    "Variational Inference",
+    "Schrödinger Bridge",
+    "Bayesian Smoothing",
+    "Smoothers",
+    "HJB–Fokker–Planck",
+    "Optimal Transport",
+    "Information Geometry",
+    "Multi-Marginal",
+    "IPFP/Sinkhorn",
+    "Ornstein–Uhlenbeck",
+    "Kalman–Bucy",
+    "Rauch–Tung–Striebel",
+    "Hellinger–Kantorovich (Reaction–Transport) Geometry"
+  ],
+  "forum_url": "https://openreview.net/forum?id=aVGg6lRCVi",
+  "venue": "ICLR 2026 Conference Desk Rejected Submission",
+  "status": "desk_rejected",
+  "decision": "",
+  "human_ratings": [
+    6,
+    8,
+    4
+  ],
+  "human_mean_rating": 6.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "bxf6eE5961",
+      "forum": "aVGg6lRCVi",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5837/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761660476471,
+      "tmdate": 1764359064181,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "fR763m2Ciy",
+      "forum": "aVGg6lRCVi",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5837/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762345263277,
+      "tmdate": 1764359064192,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "pEhL0syO43",
+      "forum": "aVGg6lRCVi",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission5837/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761710130269,
+      "tmdate": 1762918293760,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The manuscript proposes an exact path-space VI/MMSB interpretation, diffusion-dependent geometry, asymptotic regimes, and an HK extension. However, the central equivalence is circular, several principal geometric and limiting claims are incorrect or unsupported, and the implemented algorithm does not solve the posterior-anchor problem stated in the theory.",
+        "strengths": [
+          "The manuscript highlights the important distinction between posterior marginals and independent per-time likelihood tilts, with a clear conditional-factor identity (pp. 4–5, 18–19).",
+          "It attempts a broad synthesis of smoothing, Schrödinger bridges, stochastic control, and optimal transport, and openly states the grid solver’s scalability limitations (pp. 6–7, 43–45).",
+          "The appendices provide extensive definitions and implementation descriptions, which make many of the inconsistencies identifiable."
+        ],
+        "weaknesses": [
+          "The claimed VI=MMSB result is essentially tautological and computationally circular: the MMSB anchors are defined as the unknown exact posterior marginals, so obtaining them already solves smoothing (pp. 4, 27). Worse, the actual IPFP algorithm instead constrains the per-time tilts rho_obs (pp. 37–40), which the manuscript itself proves generally differ from posterior anchors for K>1 (pp. 4–5).",
+          "Core mathematics is unsound. The KL control action relative to a drifted diffusion is not simply geodesic energy for the stated drift-independent metric; the FP diffusion and reference drift cannot be removed as done in the length-energy argument (pp. 5–6, 29–32). The high-diffusion assertion that independent endpoint coupling implies affine mixture interpolation is false and is not established by I-projection theory (pp. 32–34). The low-diffusion rate upgrades a cited cost rate to uniform path convergence without proof, while its recovery sequence assumes unjustified sigma-uniform gradient bounds (pp. 34–37).",
+          "The unbalanced 'path-space VI–HK equivalence' is not derived from a probability path measure: Q absolutely continuous with respect to a diffusion remains mass-preserving, whereas the reaction equation changes mass (pp. 8, 20–26). The experiments cannot rescue these issues: they are small synthetic diagnostics, omit adequate uncertainty and protocol details, compare against baselines under unclear matching, and often test constructed anchors rather than end-to-end posterior inference (pp. 8–10, 14–20)."
+        ],
+        "score_rationale": "Strong reject. Although the topic is potentially interesting, the main contribution reduces exact Bayesian inference to an SB whose constraints require the already-known answer, while the solver uses different constraints. Multiple flagship theorems—geodesic characterization, high-diffusion mixture limit, quantitative rates, and VI–HK equivalence—contain decisive conceptual errors or proof gaps. These are foundational rather than repairable presentation issues."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The manuscript proposes a geometric interpretation of exact path-space Bayesian smoothing through multi-marginal Schrödinger bridges, diffusion limits, and an unbalanced extension. Although the Gibbs identity and cross-time marginal formula are useful observations, the central theory contains fundamental contradictions and the implemented algorithm does not solve the stated posterior-anchor problem.",
+        "strengths": [
+          "The Gibbs/Donsker–Varadhan identity and the distinction between posterior marginals and individual likelihood tilts are clearly stated; the cross-time factor in Eq. 6 is a useful compatibility diagnostic (pp. 4–5).",
+          "The paper addresses a relevant problem and collects connections among smoothing, stochastic control, and Schrödinger bridges.",
+          "The authors acknowledge the grid solver’s scalability limitations and label the neural extension as unvalidated future work (pp. 6–7, 43–45)."
+        ],
+        "weaknesses": [
+          "The main VI–MMSB equivalence is circular: its anchors are the unknown posterior marginals, so it does not compute the posterior. Worse, the algorithm explicitly constrains the per-time tilts rho_obs (pp. 37–39), despite the paper proving that these generally differ from posterior anchors for K>1 (pp. 4–5). Thus the solver and empirical claims do not implement Proposition 1.",
+          "Several central geometric/limit claims are unsupported or false. The derivation equates relative-drift control cost with a drift-independent Wasserstein metric energy despite the Fokker–Planck diffusion and drift terms (pp. 30–32). In the small-noise argument it effectively replaces u=v-b by v and dismisses nonconstant drift terms (pp. 34–35). In the large-noise argument, convergence of endpoint couplings to independence does not imply affine-mixture intermediate marginals (pp. 32–33).",
+          "The unbalanced theory is internally inconsistent: ordinary probability path measures cannot have nonconservative marginals without a newly defined killed/branching reference model, and Theorem 6 states 0 <= inf A_HK - inf A_W2 (p. 25), whereas allowing reaction enlarges the feasible set and gives the opposite inequality. The largely synthetic, under-specified diagnostics cannot rescue these theoretical failures (pp. 9, 14–20)."
+        ],
+        "score_rationale": "Strong reject. The claimed novelty is largely a tautological posterior characterization, while the actual IPFP targets different anchors. Fundamental errors in the geodesic, diffusion-limit, RTS/HK reasoning undermine the principal contributions, and the evidence is too limited and self-referential to validate them."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The paper proposes to reinterpret exact path-space Bayesian smoothing as a multi-marginal Schrödinger bridge and derives geometric limits and an unbalanced extension. Although the anchor-compatibility identity is useful, the central equivalence is largely tautological and the main geometric, limiting, and HK claims contain fundamental errors.",
+        "strengths": [
+          "The distinction between posterior marginals and independent per-time likelihood tilts is important, and the conditional cross-time factor in Theorem 1 is a useful observation (pp. 4–5, 18–19).",
+          "The manuscript attempts broad coverage of assumptions, numerical stabilization, and limitations, and explicitly positions the grid solver as diagnostic rather than scalable (pp. 6–7, 37–41).",
+          "The topic—connecting smoothing, stochastic control, and Schrödinger bridges—is potentially valuable."
+        ],
+        "weaknesses": [
+          "The principal VI–MMSB result defines the bridge anchors as the unknown exact posterior marginals, so it follows immediately that the posterior is the entropy projection onto its own marginals and does not yield an inference method. Worse, the actual IPFP algorithm instead constrains the per-time tilts rho_obs (pp. 4–5, 37–39), which the paper itself proves generally differ from the posterior anchors.",
+          "The claimed finite-diffusion geodesic geometry is incorrect. The controlled Fokker–Planck equation contains diffusion, so its tangent velocity is the current velocity v-D∇log rho, whereas the KL action penalizes v-b; these are not generally the same metric energy. The asserted equality and geodesic conclusion on pp. 5–6 and 30–32 omit entropy/Fisher-information and drift terms and even use inconsistent tangent equations.",
+          "Several subsequent central results are unsupported or false. Independence of endpoint couplings at high diffusion does not imply affine mixture interpolation; an intermediate state instead follows the reference bridge/mixing behavior (pp. 32–34). The low-noise rescaling incorrectly drops the drift and asserts uniform Doob-gradient bounds that generally fail as noise vanishes (pp. 34–37). The HK construction also cannot be an ordinary probability path measure absolutely continuous to a conservative diffusion while its marginals change mass (pp. 8, 20–26). Experiments use prescribed/exogenous anchors and therefore do not validate posterior inference, while the reported machine-precision grid agreement and comparative table lack sufficient protocol detail (pp. 8–10, 14–17)."
+        ],
+        "score_rationale": "These are not localized proof gaps: they invalidate the claimed metric structure, both principal diffusion limits, the unbalanced VI interpretation, and the connection between the proposed solver and the stated posterior problem. The valid Gibbs identity and anchor-compatibility observation are insufficient to support the paper’s novelty or conclusions."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The manuscript proposes an exact path-space VI/MMSB identity, diffusion-dependent geometry, diffusion-scale limits, an unbalanced HK extension, and an IPFP solver. Although the posterior-tilting identity itself is elementary and correct, the main geometric, limiting, and algorithmic conclusions contain fundamental inconsistencies or false steps, so the claimed contribution is not technically sound.",
+        "strengths": [
+          "The manuscript clearly distinguishes posterior marginals from independent per-time likelihood tilts and gives the correct cross-time factorization underlying that distinction (pp. 4–5, 18–19).",
+          "It attempts to connect smoothing, Schrödinger bridges, stochastic control, and optimal transport in a unified presentation, with extensive appendices.",
+          "The exact Gibbs identity F[Q]=KL(Q||Ppost)-log Z is correct under the stated domination and integrability assumptions (pp. 3–4, 27)."
+        ],
+        "weaknesses": [
+          "The central VI=MMSB result is largely tautological and not computationally usable: the bridge is constrained by posterior marginals that already require solving the posterior. Worse, the proposed IPFP algorithm instead enforces per-time tilts rho_obs (pp. 37–40), even though the paper explicitly proves these generally differ from posterior anchors for K>1 (pp. 4–5, 27). Thus the solver does not generally compute the claimed posterior.",
+          "Several main theorems are incorrect. The KL control action relative to a drifted diffusion is not simply the squared length of the stated drift-independent Wasserstein metric; the FP diffusion and reference drift introduce additional structure, and the tangent/metric identities on pp. 5–6 and 29–32 are inconsistent. The small-noise rate function should retain the reference drift through |v-b|^2, contrary to the Euclidean W2 functional on pp. 34–36. The large-diffusion argument is also false: independent endpoint coupling does not imply affine mixture interpolation, and on an unbounded domain the intermediate Brownian variance need not even be tight (pp. 32–34).",
+          "The HK section is not derived from path-space VI: reaction changes total mass and therefore is not represented by probability path measures absolutely continuous to the reference diffusion. Its asserted static cost and limit/rate proofs are largely unsupported or internally contradictory (e.g., the comparison gives inf A_HK <= inf A_W2, while Theorem 6 states the opposite inequality; pp. 20–26). Empirical evidence is also insufficiently specified and appears disconnected from the stated rates, with unclear protocols, synthetic anchors, and no reproducible statistical accounting (pp. 8–10, 14–20)."
+        ],
+        "score_rationale": "This is a strong reject because the core algorithm uses the wrong anchors and multiple headline results—the geodesic characterization, both diffusion limits, and VI–HK equivalence—are unsupported or demonstrably false. The valid Gibbs/posterior identity and compatibility observation do not compensate for these foundational errors."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 1,
+        "confidence": 5,
+        "summary": "The manuscript proposes to reinterpret exact path-space Bayesian smoothing as a multi-marginal Schrödinger bridge and derives geometric limits, an unbalanced extension, and an IPFP solver. Although the topic is interesting, the main equivalence is largely a circular restatement using the unknown posterior marginals, while multiple central geometric and limiting claims are incorrect or unsupported. The implementation and experiments also appear to solve a different anchor problem from the stated posterior problem.",
+        "strengths": [
+          "The paper clearly identifies that posterior marginals generally differ from independently tilted one-time marginals and gives a useful conditional-factor criterion (pp. 4–5, 18–19).",
+          "The manuscript attempts a broad synthesis of smoothing, Schrödinger bridges, stochastic control, and optimal transport, with extensive appendices.",
+          "The use of log-domain message passing and controlled linear-Gaussian sanity checks is sensible for small-grid diagnostics (pp. 6–9, 37–38)."
+        ],
+        "weaknesses": [
+          "The headline VI–MMSB equivalence is circular and algorithmically inconsistent: Proposition 1 defines anchors as the already-unknown posterior marginals (p. 4), while the stated IPFP algorithm instead enforces per-time tilts rho_obs (pp. 37–38), which the paper itself proves are generally unequal to posterior marginals for K>1 (pp. 4–5). Thus the proposed solver does not generally compute the claimed posterior.",
+          "Several core theorems are mathematically untenable. The relative-control action involving drift and diffusion is equated with an intrinsic metric energy after dropping essential Fokker–Planck/drift terms (pp. 30–32); the small-noise argument likewise replaces |v-b|^2 by |v|^2 without justification (pp. 34–36). Most decisively, independent endpoint coupling at high diffusion does not imply affine mixture interpolation: a Brownian bridge develops large intermediate variance, while a rapidly mixing compact diffusion approaches its invariant marginal, not (1-theta)mu+theta nu (pp. 32–34).",
+          "The VI–HK construction is not actually derived from path-space VI: probability path measures cannot have non-conserved marginal mass, and no augmented reference measure or Radon–Nikodym identity is defined (pp. 8, 20–26). Its stated static cost and limits are also inconsistent with canonical HK geometry. Empirical evidence is limited to synthetic, incompletely specified diagnostics, with no uncertainty for the main benchmark and no convincing validation of the disputed theorems (pp. 8–10, 14–20)."
+        ],
+        "score_rationale": "This is a strong reject because the central contribution is either tautological/circular or contradicted by the supplied algorithm, and the claimed geodesic, high-/low-diffusion, and unbalanced results contain fundamental mathematical errors. The extensive presentation and useful anchor-compatibility observation do not compensate for failures in the main technical claims and evidence."
+      }
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_068",
+  "paper_id": "8yhSDIcu1R",
+  "number": 16857,
+  "title": "Revisiting Differential Attention: A Fine-Tuning Perspective on Practical Noise Mitigation",
+  "authors": [
+    "Mucun Xie",
+    "JiaoZhenyang",
+    "Jian Li",
+    "Hua Huang"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "LLMs",
+    "Differential Attention",
+    "Model Fine-Tuning",
+    "Architecture Migration"
+  ],
+  "forum_url": "https://openreview.net/forum?id=8yhSDIcu1R",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "GLOFpSjyMq",
+      "forum": "8yhSDIcu1R",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16857/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761962963518,
+      "tmdate": 1764360194522,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 2
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "I6kv4pzsSk",
+      "forum": "8yhSDIcu1R",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16857/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761967727385,
+      "tmdate": 1762926876072,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "Q66psqv02i",
+      "forum": "8yhSDIcu1R",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16857/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761814295605,
+      "tmdate": 1762926877575,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "hMVI9x1Tls",
+      "forum": "8yhSDIcu1R",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission16857/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761828330780,
+      "tmdate": 1762926877121,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes DAA, a lightweight fine-tuning modification that subtracts a second attention map formed with a learned per-head bilinear matrix. Although the idea is simple and potentially useful, the claimed noise-cancellation interpretation is not technically established, and the modest empirical gains are undermined by insufficient reporting and internal inconsistencies.",
+        "strengths": [
+          "DAA is straightforward to integrate into pretrained attention layers and adds relatively few parameters; the paper also explicitly analyzes its additional quadratic inference cost (pp. 5, 16–18).",
+          "The experiments cover GPT-2 and two Llama scales and compare several possible locations for differential adaptation (pp. 7–9).",
+          "The appendices provide equations, pseudocode, and core optimizer settings, making the architectural proposal reasonably clear (pp. 18–21)."
+        ],
+        "weaknesses": [
+          "The theory is unsound or incomplete: subtracting Softmax(Sdiff), a nonnegative unit-sum distribution, cannot generally represent the signed, zero-sum Taylor correction ∇Softmax(S)·ξ. Moreover, the text alternately claims intervention before softmax while the method subtracts two post-softmax maps, and it simply assumes that attention noise is bilinear/low-rank and learnable without justification (pp. 6–7, 21–23).",
+          "The evidence is weak for the broad claims: improvements over DEX are only 0.44 and 0.17 average points on the two Llama settings, with no seeds, uncertainty, significance tests, matched-compute analysis, or quantitative attention-noise metric. The visual evidence is a single unexplained example and does not establish that A2 represents noise (pp. 9–10).",
+          "Reproducibility and numerical inconsistencies are substantial: the fine-tuning dataset is identified as Tulu-3 in the main text but Tulu-v2 in the appendix; subset sizes and evaluation details are missing; Table 3's DiffK-1B average/delta are arithmetically inconsistent; and Table 5 cites the wrong table and reports averages inconsistent with Table 3 (pp. 8–9, 20–21)."
+        ],
+        "score_rationale": "The method has modest practical novelty and encouraging point estimates, but the central mechanistic/theoretical claims are unsupported and the experimental reporting is not reliable enough to establish a robust advantage. These issues place the work clearly below the ICLR acceptance threshold despite its implementational simplicity."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes DAA, a per-head bilinear adapter that creates a second attention map and subtracts it during fine-tuning. The idea is plausible and lightweight in added parameters, but the claimed noise-cancellation interpretation is not theoretically established, and the small empirical gains lack the controls needed to demonstrate significance.",
+        "strengths": [
+          "The method is simple, clearly formulated, and applicable to pretrained Transformers without training from scratch (pp. 5, 18).",
+          "Experiments cover GPT-2 and two Llama scales and compare several possible locations for differential adaptation (pp. 8–9).",
+          "The paper reports parameter and asymptotic computational overhead, including the additional quadratic attention-map cost (pp. 15–18)."
+        ],
+        "weaknesses": [
+          "The theoretical argument is unsound: the actual primary logits contain no explicit additive noise term, a softmaxed bilinear map is not the Taylor correction/Jacobian term, and DAA subtracts two post-softmax maps despite later being described as intervening before softmax (pp. 6–7, 22–23).",
+          "Evidence is insufficient: gains over DEX are only 0.44 and 0.17 average points on the Llama evaluations, with no multiple seeds, uncertainty, significance tests, matched-compute analysis, or rigorous attention-noise metric; the single visualization lacks case, layer, and head selection details (pp. 9–10).",
+          "Reproducibility and consistency are poor: the fine-tuning corpus changes from Tulu-3 to Tulu-v2, subset sizes are omitted, the promised synthetic-data construction is absent, Table 3 contains inconsistent DiffK averages/deltas, and the lambda ablation references the wrong table and reports incompatible values (pp. 8–9, 11, 21)."
+        ],
+        "score_rationale": "The core adapter is an incremental but potentially useful extension of differential attention. However, major theoretical overclaims and weak, internally inconsistent empirical validation prevent the work from meeting ICLR's soundness and evidence bar."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "DAA adds a per-head bilinear transform to construct a second attention map and subtracts it during fine-tuning. The mechanism is simple and potentially useful, but the paper does not establish that the learned map represents noise, and the reported modest gains are undermined by theoretical, experimental, and reproducibility problems.",
+        "strengths": [
+          "The adapter is straightforward, parameter-efficient in added parameters, and accompanied by pseudocode and complexity calculations (pp. 16–20).",
+          "Experiments cover GPT-2 and two Llama scales and compare several differential-operation placements, including the closest cited baseline DEX (pp. 7–9).",
+          "The paper acknowledges the additional quadratic attention-map cost rather than presenting the method as computationally free (pp. 17–18)."
+        ],
+        "weaknesses": [
+          "The central theory is unsupported and internally inconsistent: noise is first assumed Gaussian but later asserted to be low-rank bilinear; subtracting Softmax(QWKT) is not generally the Taylor correction Jacobian-times-noise; and the Data Processing Inequality argument against DEX is inapplicable (pp. 6–7, 22–23). Identity initialization also makes A2=A1, yielding a scaled attention output rather than the claimed preserved standard mechanism when λinit is nonzero (pp. 5, 18, 21).",
+          "Evidence is too weak for the causal claim of noise mitigation: there are no seeds, variances, significance tests, controlled noise measurements, latency/memory results, or strong PEFT baselines. Improvements over DEX are only 0.44 and 0.17 average points on the two Llama settings, while the attention visualizations are isolated, underspecified examples that do not demonstrate learned noise (pp. 9–10).",
+          "Reproducibility and reporting contain material contradictions: the main text uses Tulu-3 while the appendix says Tulu-v2 (pp. 8, 21); the DiffK 1B delta is arithmetically inconsistent with its average; Table 5 reports averages inconsistent with Table 3 and mistakenly references Table 2 (pp. 9, 21); and the subset sizes, evaluation protocol, Needle construction, and λ schedule details are missing."
+        ],
+        "score_rationale": "This is an incremental but plausible adapter-placement idea with some multi-scale empirical support. However, the purported theoretical justification does not follow, the experiments cannot distinguish noise cancellation from ordinary adaptation or scaling effects, and multiple numerical and setup inconsistencies substantially weaken reliability. I therefore judge it a reject; uncertainty remains about whether corrected, multi-seed experiments could validate the empirical benefit."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes DAA, a parameter-efficient adaptation that subtracts a second attention map generated through a learned per-head bilinear query–key transformation. The idea is simple and practically relevant, but the claimed noise-cancellation interpretation is not technically established, and the modest empirical gains are undermined by incomplete reporting, inconsistencies, and lack of statistical validation.",
+        "strengths": [
+          "DAA is straightforward to insert into pretrained attention layers and adds relatively few new parameters; the paper also discusses its inference-time complexity (pp. 5, 16–18).",
+          "The comparison spans several insertion points and three model scales, with DAA generally achieving the best reported average among the tested adaptations (pp. 8–9).",
+          "The appendices provide equations, pseudocode, and core optimization hyperparameters (pp. 18–21)."
+        ],
+        "weaknesses": [
+          "The theoretical account is unsound or unsupported: DAA subtracts two post-softmax distributions rather than removing logit noise before softmax; a softmax of a learned bilinear score is not the Taylor correction term, and the assertion that attention noise has the required bilinear/low-rank form is assumed rather than proved (pp. 6–7, 22–23). LayerNorm scale invariance also does not justify the changed direction, residual interaction, or potentially negative weights.",
+          "The empirical advantage over DEX is small (0.44 and 0.17 average points for the 1B and 8B models), with no seeds, error bars, significance tests, or matched efficiency/latency measurements. Single illustrative attention examples do not establish noise removal (pp. 9–10).",
+          "Reproducibility and numerical consistency are inadequate: training-subset sizes and evaluation protocols are omitted; the main text names a Tulu-3 mixture while Appendix E names Tulu-v2; Table 3 reports DiffK-1B average 50.1 but a +0.37 delta despite the 51.31 base; and Table 5 refers to eight tasks from Table 2 while reporting values inconsistent with Table 3 (pp. 8–9, 21)."
+        ],
+        "score_rationale": "The learned query–key correction is a plausible incremental adaptation and the reported results suggest some utility. However, the central explanation is not supported by the mathematics, the gains over the strongest baseline are too small to interpret without repeated trials, and multiple reporting inconsistencies materially weaken confidence in the evidence. These issues warrant rejection in the present form."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes DAA, a lightweight fine-tuning modification that subtracts a second attention map produced by a learned per-head query–key transformation. Although the idea is simple and potentially useful, the theoretical interpretation is not justified and the empirical evidence is insufficient to establish reliable gains over DEX or ordinary fine-tuning.",
+        "strengths": [
+          "DAA is a straightforward, parameter-efficient adaptation applicable to pretrained Transformers, with clear equations, pseudocode, and parameter/complexity accounting (pp. 5, 15–20).",
+          "The evaluation covers GPT-2 and two Llama scales and compares several plausible locations for differential adaptation (pp. 8–9).",
+          "The paper acknowledges the additional quadratic inference cost from computing a second attention map (pp. 16–18)."
+        ],
+        "weaknesses": [
+          "The central theory is unsound: the implemented method subtracts two post-softmax maps rather than cancelling logit noise before softmax; the additive noise variable is absent from the actual computation, and Softmax(QWKT) is not the Taylor correction Jacobian-times-noise claimed in Appendix F. The low-rank noise assumption and Data Processing Inequality argument are also unsupported (pp. 6–7, 21–23).",
+          "The improvements are small and reported without seeds, variances, significance tests, or matched-compute controls. The attention visualizations are isolated examples with no selection protocol or quantitative noise metric, so they do not demonstrate that the learned second map represents noise (pp. 8–10).",
+          "Experimental reporting contains consequential inconsistencies and omissions: the main text uses Tulu-3 while Appendix E says Tulu-v2; Table 3's DiffK-1B average/delta are arithmetically inconsistent; Table 5 cites the wrong table and reports averages inconsistent with Table 3; dataset subset sizes, annealing duration, retrieval construction, and detailed evaluation settings are missing (pp. 8–9, 11, 20–21)."
+        ],
+        "score_rationale": "The method is implementable and modestly novel, but its claimed mechanism is not theoretically supported, and the small reported gains are undermined by absent uncertainty estimates and multiple reproducibility inconsistencies. I therefore judge it below the bar for ICLR; uncertainty is low because these issues are evident in the supplied manuscript."
+      }
+    }
+  ]
+}

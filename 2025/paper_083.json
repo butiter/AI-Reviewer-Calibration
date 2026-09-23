@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_083",
+  "paper_id": "bhOysNJvWm",
+  "number": 11262,
+  "title": "Diffusion Transformers for Tabular Data Time Series Generation",
+  "authors": "Fabrizio Garuti; Enver Sangineto; Simone Luetto; Lorenzo Forni; Rita Cucchiara",
+  "primary_area": "generative models",
+  "keywords": "tabular data generation; time series; diffusion models",
+  "forum_url": "https://openreview.net/forum?id=bhOysNJvWm",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    6,
+    5
+  ],
+  "human_mean_rating": 5.666666666666667,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a system based on Diffusion Transformer to generate tabular data series. Particularly the difficulties of handling heterogeneity and variable length of tabular data are tackled. The paper makes a couple of proposals such as 1) transformer denoising combined with latent encoding of VAE, 2) Autoregressive VAE decoder, 3) several data encoding techniques. Experimental results are presented with multiple datasets using proper metrics for the tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "Each proposal is clearly described and well motivated to solve the targeted issue. Experiments show that the proposed system outperforms the baseline methods in a large margin across different datasets for both unconditional and conditional generation tasks."
+        },
+        "weaknesses": {
+          "value": "There is a minor question around VAE encoder/decoder which are listed in Questions below."
+        },
+        "questions": {
+          "value": "- In VAE decoder, one naïve architecture is to feed z instead of [Start] without using the attention from z. Would it work at all, and is there ablation study to compare this and the proposed approach?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "9DPNzfdRh4",
+      "forum": "bhOysNJvWm",
+      "replyto": "bhOysNJvWm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11262/Reviewer_Eh8R"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11262/Reviewer_Eh8R"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11262/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730685109813,
+      "cdate": 1730685109813,
+      "tmdate": 1731428544839,
+      "mdate": 1731428544839,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper introduces a novel method for generating time series of tabular data using DiTs. The authors highlight the challenges in this domain, such as the heterogeneity of tabular data and the variable length of time series. They propose the TabDiT framework, which extends the LDM paradigm to handle the complexities of tabular data. The method involves decomposing the representation of time series into independent tabular rows compressed by a VAE and combined by a Transformer-based denoising network. Through extensive experiments on six datasets, the paper demonstrates the superiority of TabDiT over existing methods in both conditional and unconditional generation tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- Utilizing DiT for tabular data time series generation seems an innovative contribution to the field, which extends DiT to multi-modal data distributions that could pave the way for future research.\n\n- The authors conduct extensive experiments on six diverse datasets, covering a wide range of application scenarios. This includes both conditional and unconditional generation tasks, providing a thorough assessment of the method's performance. The ablation study also strengthens the credibility of the paper results.\n\n- The proposed method is methodologically sound, with detailed explanations of the VAE encoder/decoder, the denoising network, and the variable-length sequence generation process. The introduction of a variable-range decimal representation for numerical values and an autoregressive VAE decoder are novel and improve the quality and consistency of the generated data."
+        },
+        "weaknesses": {
+          "value": "- While the paper introduces new evaluation metrics for tabular data time series generation, these metrics may not be universally accepted or standardized. The authors should provide a more in-depth comparison with existing metrics and justify their choices. \n\n- Some parts of the methodology, particularly the training process and parameter settings, could benefit from more detailed explanations. Providing clear guidelines and examples would help in better understanding and implementing the proposed approach."
+        },
+        "questions": {
+          "value": "- How does the proposed method scale with increasing dataset size and complexity? Have you tested the method on larger datasets, and if so, what were the results?\n\n- The paper includes several hyperparameters, such as the number of digits for numerical representation and the length of the latent sequence. How sensitive is the performance to these hyperparameters, and how were they chosen?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "DPY3oPGrMr",
+      "forum": "bhOysNJvWm",
+      "replyto": "bhOysNJvWm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11262/Reviewer_61wY"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11262/Reviewer_61wY"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11262/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730276573570,
+      "cdate": 1730276573570,
+      "tmdate": 1731428544464,
+      "mdate": 1731428544464,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work introduces a Diffusion Transformers (DiTs) based approach for generating time series of tabular data, addressing the challenges of data heterogeneity and variable sequence lengths. Inspired by the success of DiTs in image and video generation, the framework is extended for tabular data series. Extensive experiments on six datasets demonstrate that the proposed method significantly outperforms previous approaches, with the code to be made public upon acceptance of the article."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper introduces a novel Diffusion Transformers (DiT)-like approach combined with an Auto-Regressive (AR) Variational Autoencoder (VAE) decoder and explicit padding prediction mechanisms. This design effectively addresses the complex challenges associated with generating time series of tabular data, such as maintaining intra-row statistical dependencies and managing variable-length sequences. This comprehensive framework ensures that the generated data preserves the intricate relationships within each row and adapts to varying sequence lengths, which are critical for accurate and realistic data generation.\n\nThe authors propose a new metric specifically tailored for the evaluation of tabular data time series generation. This metric provides a standardized and objective means to assess the quality and performance of generated data, facilitating more reliable comparisons across different methods. By introducing this metric, the paper sets a benchmark for future research in this domain, promoting the development of more robust and effective data generation techniques.\n\nThe proposed method is rigorously evaluated using a diverse set of public datasets, demonstrating its versatility and robustness across various types of tabular data. This extensive experimental validation highlights the method's superior performance compared to existing approaches, showcasing its applicability to a wide range of real-world scenarios. The thorough evaluation not only underscores the effectiveness of the approach but also provides a solid foundation for its adoption and further development in the field."
+        },
+        "weaknesses": {
+          "value": "While the paper introduces numerous model modifications aimed at addressing the challenges of tabular data time series generation, it lacks ablation experiments to isolate and evaluate the impact of each modification. Ablation studies are crucial for understanding the contribution of individual components to the overall performance of the model. Without these experiments, it is difficult to determine which modifications are most effective and how they interact to improve the model's capabilities.\n\nThe paper does not include any case studies that showcase the generated tabular data time series. Given that the primary focus of the research is on generating realistic and useful time series data, it is surprising that the paper does not provide examples to illustrate the differences between the outputs of various models. Including case studies would provide valuable insights into the practical implications of the proposed method and allow readers to visually assess the quality and realism of the generated data.\n\nThe paper does not present experiments that demonstrate the practical utility of the generated time series tabular data. It is important to show how the generated data can be used in real-world applications, such as improving predictive modeling, anomaly detection, or decision-making processes. Without such experiments, it is challenging to gauge the practical relevance and impact of the proposed method. Demonstrating the usefulness of the generated data in specific applications would significantly strengthen the paper's contributions and highlight its value to practitioners."
+        },
+        "questions": {
+          "value": "See weaknesses section"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "8nbjwbOZhC",
+      "forum": "bhOysNJvWm",
+      "replyto": "bhOysNJvWm",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission11262/Reviewer_PrJn"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission11262/Reviewer_PrJn"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission11262/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730257582503,
+      "cdate": 1730257582503,
+      "tmdate": 1735191380437,
+      "mdate": 1735191380437,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TabDiT combines a row-level VAE, a diffusion Transformer over row latents, autoregressive field decoding, and explicit padding generation for heterogeneous tabular time series. The approach is plausible and empirically promising, but its novelty is largely integrative and important data-handling and evaluation gaps prevent the reported gains from being fully convincing.",
+        "strengths": [
+          "The row-level VAE plus sequence-level DiT is a sensible decomposition for heterogeneous, variable-length sequences, and explicit length generation is practically useful (pp. 5–7).",
+          "Experiments cover six public datasets, conditional and unconditional settings, multiple metrics, and several architectural ablations (pp. 8–10, 16–18).",
+          "TabDiT substantially improves MLD-TS over the authors' matched autoregressive baseline on most datasets, with particularly strong Age1/Age2 results (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Handling of sequences longer than τmax is undefined. Several datasets have far more rows per series on average than τmax permits—e.g., Age1 has 44.1M rows over 50K series but τmax=50—despite the claim of no filtering (pp. 7, 19). This omission materially affects reproducibility and may discard most temporal data.",
+          "Evidence relies heavily on the proposed CatBoost/tsfresh discriminator and an authors-designed AR baseline; unconditional evaluation lacks established recurrent, GAN, or statistical sequence generators. Some claimed universal superiority is also false: the AR baseline beats TabDiT on LD-SR for Airbnb and PKDD'99 child-gt-cond (p. 10).",
+          "Length evidence is potentially confounded: Airbnb's parent data explicitly contain n_sessions (p. 16), making the near-exact conditional length prediction shown on p. 23 potentially direct target leakage rather than learned sequence dynamics. Privacy, constraint validity, and broader utility are not evaluated despite motivating claims."
+        ],
+        "score_rationale": "The method is technically reasonable and results suggest value, but moderate incremental novelty, unclear truncation of long sequences, limited baselines, and metric/confounding concerns weaken the central empirical case. I am moderately confident, though the missing preprocessing detail could either substantially worsen or partially resolve this assessment."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TabDiT combines a row-level VAE, a diffusion Transformer over row latents, autoregressive field decoding, and explicit padding generation for mixed-type, variable-length time series. The approach is promising and often improves over the evaluated baselines, but the novelty is primarily architectural integration and the evidence is not yet sufficient for the paper’s broad fidelity claims.",
+        "strengths": [
+          "The row-level VAE plus sequence-level DiT is a sensible decomposition for heterogeneous, variable-length data, and explicit length generation is practically useful (pp. 5–7).",
+          "Experiments cover six public datasets, conditional and unconditional settings, several ablations, and a larger private dataset (pp. 8–10, 17–21).",
+          "TabDiT consistently improves the reported MLD-TS results over the in-house autoregressive baseline, sometimes substantially, such as on Age1 and Age2 (p. 10)."
+        ],
+        "weaknesses": [
+          "Evaluation relies heavily on one proposed CatBoost/tsfresh discriminator metric. Near-chance detection does not establish distributional fidelity, temporal constraint satisfaction, diversity, or absence of memorization; the MLE tasks are sometimes trivial or weak (e.g., Airbnb 100% and PKDD near chance even with real training data, p. 17).",
+          "The dataset accounting is unclear and apparently inconsistent: Age1 contains 44.1M rows across 50K series, yet τmax is 50 and the text claims no filtering, without explaining truncation/window selection (p. 19). This materially affects reproducibility and what distribution is generated.",
+          "Comparisons are limited, especially for unconditional generation, where only the authors’ baseline is used. Several absolute results remain poor (e.g., MLD-TS 82.6 on Rossmann and 85.5 on PKDD’99), while component ablations lack variability or significance estimates (pp. 9–10)."
+        ],
+        "score_rationale": "The method is coherent and potentially useful, with encouraging multi-dataset gains. However, its contribution is moderately incremental, the principal metric provides narrow evidence, dataset preprocessing is insufficiently specified, and baseline coverage is too limited to support strong state-of-the-art claims. These issues place it marginally below acceptance."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TabDiT combines a row-level VAE, latent Diffusion Transformer, autoregressive row decoder, decimal tokenization, and explicit padding generation for heterogeneous tabular time series. The approach is practically relevant and often improves the reported detection and utility metrics, but the evidence does not yet establish broad superiority or faithful temporal generation.",
+        "strengths": [
+          "A coherent architecture addresses mixed fields and variable-length sequences, with joint content/length generation and both conditional and unconditional modes (pp. 5–7).",
+          "Experiments cover six public datasets, several tasks, repeated splits, component ablations, and downstream utility evaluation (pp. 8–10, 16–18).",
+          "Reported gains over the authors' closely matched AR baseline are substantial on several datasets, especially Age1 and Age2 (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central MLD-TS metric reduces each sequence to fixed tsfresh features and uses one CatBoost discriminator, so it may miss ordering or other dependencies; most unconditional comparisons are only against the authors' own AR baseline, and absolute MLD-TS remains poor on Rossmann and PKDD'99 (82.6 and 85.5; pp. 8–10, 15–16).",
+          "Dataset handling is materially underspecified: Age1 averages roughly 882 rows per series while τmax is 50, implying extensive truncation/windowing despite the claim of no filtering; the selection procedure and its effect on temporal structure are not reported (p. 19).",
+          "Several claims overreach the evidence: the ablation calls all changes significant without uncertainty (including 50.8 versus 51.2), the striking Airbnb length result may be largely explained by conditioning on the parent field n_sessions, and privacy preservation is motivated but never evaluated (pp. 1, 9, 16, 23)."
+        ],
+        "score_rationale": "The method is a useful, moderately novel synthesis with encouraging empirical results, but weak baseline coverage, a narrow discriminator-based primary evaluation, and unclear sequence truncation prevent confident acceptance. I am uncertain whether omitted preprocessing details would resolve the most serious concern."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "TabDiT combines a row-level VAE, a diffusion Transformer over row latents, autoregressive row decoding, and explicit padding generation for variable-length heterogeneous tabular time series. The approach is technically plausible and broadly evaluated, but its novelty is mainly compositional and the evidence relies heavily on a custom discriminator metric and limited baselines.",
+        "strengths": [
+          "The decomposition into independently encoded rows followed by sequence-level latent diffusion is coherent and directly addresses heterogeneous fields and variable-length sequences (pp. 5–7).",
+          "Experiments cover six public datasets, conditional and unconditional settings, three-run reporting, several ablations, and additional utility and scale studies (pp. 8–10, 16–21).",
+          "Results consistently improve over the implemented AR baseline and generally over REaLTabFormer, with especially strong conditional MLD-TS results on Airbnb, Age2, and PKDD’99 (p. 10)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the principal design combines established VAE, DiT, classifier-free guidance, autoregressive decoding, and padding ideas; the proposed numerical encoding is lossy beyond four significant digits and is tuned on one dataset (pp. 6, 13–14).",
+          "The main evidence depends on the newly proposed MLD-TS metric using tsfresh features and CatBoost. A score near chance need not establish distributional fidelity, diversity, or temporal correctness, and the paper provides no strong validation against complementary sequence-level distances or human/domain checks (pp. 8, 15–16).",
+          "Unconditional comparisons include only an in-house AR baseline, while several reported MLD-TS values remain far from chance (e.g., 82.6 on Rossmann and 85.53 on PKDD’99); privacy is also presented as a motivation without leakage or privacy evaluation (pp. 1, 9–10)."
+        ],
+        "score_rationale": "The work is relevant, technically reasonable, and empirically substantial, supporting a marginally positive score. However, incremental novelty, weak unconditional baseline coverage, and overreliance on a custom classifier-based metric prevent a clear accept; uncertainty remains about whether omitted sequence-quality evaluations would confirm the reported gains."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "TabDiT combines a row-level VAE, a diffusion Transformer over row latents, autoregressive mixed-field decoding, and explicit padding generation for conditional and unconditional heterogeneous tabular time-series synthesis. The construction is plausible and results are encouraging, but novelty is primarily integrative and the evaluation does not yet establish broad superiority or faithful sequence generation.",
+        "strengths": [
+          "The decomposition into independently encoded rows and a sequence-level DiT is a sensible way to handle heterogeneous, variable-length records, while explicit padding prediction provides a practical content-dependent length mechanism (pp. 5–7).",
+          "Experiments cover six public datasets and both conditional and unconditional settings; reported gains over the implemented autoregressive baseline are consistent across datasets (pp. 9–10).",
+          "Ablations examine the decoder, numeric representation, length prediction, diffusion steps, and classifier-free guidance, and generally support the proposed components (pp. 8–9, 18–19)."
+        ],
+        "weaknesses": [
+          "Baseline coverage is weak: unconditional comparisons use only the authors' own AR baseline, while conditional comparisons mainly involve REaLTabFormer and SDV. This makes the broad state-of-the-art claim difficult to substantiate (pp. 9–10).",
+          "Evidence relies heavily on learned discriminator metrics using tsfresh/CatBoost; there is no systematic assessment of diversity/coverage, temporal constraints, rare modes, or privacy despite privacy being a central motivation. Some datasets remain readily distinguishable, e.g. unconditional Rossmann and PKDD'99 have MLD-TS 82.6 and 85.5 (pp. 8–10, 15–17).",
+          "Handling of sequences longer than τmax is not explained. This is consequential because several datasets average far more rows per series than τmax—for example Age1 has 44.1M rows over 50K series but τmax=50, and the large-scale data use τmax=100 despite roughly 873 rows per training account—so the effective task, truncation/windowing protocol, and claimed variable-length coverage are unclear (pp. 17–19)."
+        ],
+        "score_rationale": "The paper presents a useful and technically plausible synthesis of established components with substantial experiments. However, limited baselines, narrow classifier-centric evaluation, and the unresolved long-sequence preprocessing issue materially weaken the empirical claims and reproducibility, placing it marginally below acceptance."
+      }
+    }
+  ]
+}

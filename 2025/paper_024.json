@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_024",
+  "paper_id": "6EadiKkfgR",
+  "number": 1966,
+  "title": "Contrastive Learners Are Semantic Learners",
+  "authors": "Francesco Bertolotti; Walter Cazzola",
+  "primary_area": "unsupervised, self-supervised, semi-supervised, and supervised representation learning",
+  "keywords": "contrastive learning; self-supervised learning; embedding",
+  "forum_url": "https://openreview.net/forum?id=6EadiKkfgR",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    6,
+    5,
+    5
+  ],
+  "human_mean_rating": 5.25,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores the theoretical foundation of contrastive learning, a popular self-supervised technique used to generate high-quality embedding representations across various data modalities (e.g., images, audio, text). While contrastive learning has shown empirical success in encoding semantically similar objects into close embedding representations, a formal understanding of this process is lacking. To address this gap, the authors propose a formalization of semantic equivalence in contrastive learning, inspired by principles from programming language theory. They introduce the distributional alignment hypothesis, which posits that the alignment of distributions in contrastive tasks is essential for effective downstream performance. Through analysis of the SimCLR method, they demonstrate that contrastive learning can inherently encode semantically equivalent symbols in close proximity within the embedding space."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.The paper provides a theoretical perspective on contrastive learning, bridging the gap between empirical success and formal understanding.\n\n2.Introducing the concept of semantic equivalence in the context of contrastive learning is innovative, borrowing ideas from programming languages to define how two symbols can be considered equivalent in the embedding space.\n\n3.The proposal of the distributional alignment hypothesis offers a new framework for understanding when contrastive tasks are effective for downstream applications, potentially guiding future work in contrastive learning model design."
+        },
+        "weaknesses": {
+          "value": "1.While the theoretical findings are compelling, the paper might benefit from empirical experiments to validate the proposed hypotheses, particularly the distributional alignment hypothesis, across different contrastive learning frameworks. As the study is heavily focused on theoretical formalism, which may limit its immediate applicability for practitioners who are looking to implement contrastive learning solutions without deep theoretical knowledge.\n\n2.The paper’s formalism of semantic equivalence is based on an analogy to programming languages, which may not translate perfectly to the nuances of different data modalities (e.g., images vs. text), potentially limiting its generalizability across tasks.\n\n3.There have been a number of analysis to study the effectiveness of contrastive learning, but it is hard to say how the new perspective would help the improvement of contrastive learning method."
+        },
+        "questions": {
+          "value": "Please refer to the weaknesses"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "R64xshUnL1",
+      "forum": "6EadiKkfgR",
+      "replyto": "6EadiKkfgR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_fYp9"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_fYp9"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1966/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731059667641,
+      "cdate": 1731059667641,
+      "tmdate": 1731427517701,
+      "mdate": 1731427517701,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The core argument is that if a pretraining task is \"distributionally aligned\" with a downstream task, this alignment benefits the downstream task. The concept of distributional alignment relies on \"semantic equivalence\" -- where 2 features are interchangeable for a prediction task without altering the target label's probability (e.g., synonyms). Two tasks are then distributionally aligned if they share these equivalences; that is, if tokens are semantically equivalent in one task, they remain so in another. The paper suggests that pretraining with a contrastive loss facilitates this by encouraging the model to capture these contextual equivalences on  context prediction task, making it beneficial for downstream tasks (when this alignment holds)."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper presents an interesting theoretical exploration, backed by set of empirical experiments that, while somewhat limited, suppor t and illustrate the main theoretical arguments. Overall, the paper is clearly written, and the theoretical results, though potentially unsurprising, appear to offer novel insights."
+        },
+        "weaknesses": {
+          "value": "Comments\n\n1. This framework seems to have parallels with the learning theory in multitask learning. For instance, Maurer et al. (2016) (multitask subspace learning) argue that multitask learning can be advantageous when task-specific functions can be decomposed into shared and unique components, i.e., f_k = g_k cdot h, where function h is shared across tasks. Drawing on these connections with LT for MTL may be beneifical, and may clarify the novelty. Currently, previous research on MTL is not discussed in the paper.\n\n2. The focus on token representations (word embeddings) as the primary benefit of pretraining is interesting, but it raises a question: could this analysis extend beyond token-level representations to contextualized models as a whole? It would be valuable to explore if and how these insights might generalize.\n\n3. Lastly, the assumption of strict equivalence across all predictions might be too strong. A more nuanced setting, where only some predictions share semantic equivalences with the downstream task, would broaden the applicability. For example, if predicting continuations like \"thumbs_up\" and \"thumbs_down\" shares equivalences with a downstream sentiment classification task, but other alternative may not share them, the theory should ideally capture this partial alignment.  The intuition is that probably some of the pretrainintg decision share equivalencess, some unrelated, some require more 'fine-grain' equivalences' or more coarse-ones, this still works.\n\nReference: Maurer, A., Pontil, M, Romero-Paredes, B. (2016). The Benefit of Multitask Representation Learning. JMLR. https://jmlr.org/papers/volume17/15-242/15-242.pdf"
+        },
+        "questions": {
+          "value": "See the three comments above, I'd appreciate authors view on these points."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "5BfDtSbq9Y",
+      "forum": "6EadiKkfgR",
+      "replyto": "6EadiKkfgR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_iHA7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_iHA7"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1966/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730737208846,
+      "cdate": 1730737208846,
+      "tmdate": 1731427517780,
+      "mdate": 1731427517780,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper explores contrastive learning and investigates under which conditions contrastive learning can be effective for downstream tasks. The paper introduced a \"distribution alignment hypothesis\": if the data distributions used in contrastive learning and downstream tasks are aligned, then contrastive learning will learn semantic representations that good for the task. To support the hypothesis, the paper provides a controlled experiment using a mod-addition task."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "At a high level, the work is well motivated: the match between the data used in contrastive learning and final downstream task is crucial for good empirical performance."
+        },
+        "weaknesses": {
+          "value": "- The main limitation I see is similar to that the authors identify in Section 7: the alignment hypothesis introduced is very strong and verifying it is not possible in practice. On the other hand, the intuitions that it sheds light on are not novel: despite the claims made, it's been known for a long time that one can learn similarity from this type of data (please see work such word2vec, or subsequent papers such as Levy and Goldberg, showing the relation to the classic distributional semantics work)   \n- The paper considers a very specific form of contrastive learning using a specific augmentation function. In general the term contrastive learning is much wider, and the data used varies widely, from data with labels in classification, to question answer pairs in retrieval. I would recommend being much more specific in the claims made.  \n- The paper is very loose with the terminology that is at the basis at its main questions and claims, leading to vague or in-accurate statements. For example the answer to RQ2 in intro is clearly yes: we can train embeddings to reflect semantic similarity (see more in suggestions below). Similarly, what is a semantic learner? Semantics is a very wide term (see the field of semantics in linguistics) and yes, speaking in general terms, we already know we can learn meaning from raw data."
+        },
+        "questions": {
+          "value": "The paper needs to provide definitions or be very specific about the terms such as \"semantic relations\". For example in RQ2 (line 47): \"can we train embeddings that effectively encode semantical relations?\" What do you mean by semantic relations here? And the answer to this question is yes, clearly more than ten years of research in the field of distributional semantics have shown that we can train them to reflect semantic similarity.    \nI would also encourage the authors to try and get to core of their findings and explain them better: I struggled to figure out if there is actual content to the definitions and theorem given, or I was simply walked through re-writing of formulas. For this, the paper would benefit from focusing on the actual setup (for example the SimCLR variants used) and less on making wider claims about the findings."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "u13WDVd5Ie",
+      "forum": "6EadiKkfgR",
+      "replyto": "6EadiKkfgR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_t6m4"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_t6m4"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1966/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730647710157,
+      "cdate": 1730647710157,
+      "tmdate": 1733153498882,
+      "mdate": 1733153498882,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This work presents an analysis that contrastive loss (InfoNCE) learns representations that encode semantic relationships effective for downstream tasks. The paper proves that, under certain assumptions, semantically equivalent symbols have the same learned embeddings."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The paper borrows frameworks from programming languages to analyze theoretical properties of contrastive embeddings, which is an original and interesting perspective.\n2. The paper is written clearly. The exposition is very good for building up reader intuition and the assumptions are clearly stated for each proof."
+        },
+        "weaknesses": {
+          "value": "> Weakness 1. Corollary 4.3 states an **iff** relationship between the alignment of symbols and their respective embeddings. However, the authors only prove the forward direction.\n\nConditional on Corollary 4.3 being a typo, and only the forward direction holding: $u \\doteq_{\\mathcal{D}} v \\Rightarrow \\mathcal{E}^*(u) = \\mathcal{E}^*(v)$, why is this conclusion valuable? An encoder that maps every input to 0 also has this property.\n\n> Weakness 2. The assumptions are unrealistic and lead trivially to the Theorems 3.1 and 4.2.\n\nI believe the proof for Theorem 3.1 is a bit obfuscated. The authors essentially make two assumptions:\n\n1. that contrastive encoders learn the following probability ratio up to a multiplicative constant: $f_i = c \\cdot \\frac{p(\\rho, y \\mid \\sigma_i)}{p(\\rho, y)}$. (taken from van den Oord et al. (2018))\n2. that $p(\\rho, y \\mid u) = p(\\rho, y \\mid v)$, which is a trivial result of (1) $u \\doteq_{\\mathcal{D}} v$, which implies to $p(y \\mid u, \\rho) = p(y \\mid v, \\rho)$,  and (2) $p(\\rho \\mid u) = p(\\rho \\mid v)$.\n\nBecause of Assumption 2, we can immediately conclude that $f_u = f_v$, and use the basis argument to conclude that $u$ and $v$ must have the same embeddings.\n\nThe direct assumption that $p(\\rho, y \\mid u) = p(\\rho, y \\mid v)$ seems quite strong and substantially simplifies the analysis, as the desired result follows almost immediately from this condition. Also, it is unclear that this result is meaningful in any way for learnability. As stated previously, the encoder that maps every input to 0 also satisfies this property. It is only this property in conjunction with the reverse direction *(that semantically dis-similar symbols are not mapped to the same encoding)* that is interesting. I may be misunderstanding, but I do not see any proof of the reverse direction in the paper.\n\nTheorem 4.2 follows the same basic structure, and the same concerns apply.\n\n > Weakness 3. Limited experimentation\n\nThe ModAdd experiment, while very illustrative of the beneficial properties of contrastive learning, can be solved symbolically. It lacks complexity and noise seen in real data. Simple experiments in language or vision would better illustrate the developed theoretical results. Possibly an evaluation on an MLM task (as shown as an example in Section 2.1)?\n\n---\nReferences:\n\nAaron van den Oord, Yazhe Li, and Oriol Vinyals. Representation Learning with Contrastive Predictive Coding. 2018."
+        },
+        "questions": {
+          "value": "Mentioned in weaknesses.\n\nSome additional remarks:\n1. In Figure 2(a), the semantically equivalent pairs on average converge to a lower euclidean distance compared to non-semantically equivalent pairs. However, it does not converge to 0, as the previously developed theory would suggest. Why is this the case?\n \n2. Minor remark: There should be better ways of motivating the assumption $E^*(\\rho_i, y_i)$ forms a basis for $\\mathbb{R}^d$. There exists prior work on hyper-spherical contrastive learning that proves certain uniformity results that seem related to the author's assumption of uniformity [1]. \n\n*Minor*\n- line 176: mentions \"both\" but only lists Theorem 3.1.\n- line 385: \"potetial\"\n- Appendix A.9 Title: \"SLIGTHLY\"\n\n---\nReferences:\n\n[1] Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere. Tongzhou Wang, Phillip Isola 2022"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "1ypQwDklhI",
+      "forum": "6EadiKkfgR",
+      "replyto": "6EadiKkfgR",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_5kK9"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission1966/Reviewer_5kK9"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission1966/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730610917210,
+      "cdate": 1730610917210,
+      "tmdate": 1732601446836,
+      "mdate": 1732601446836,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes a task-dependent notion of semantic equivalence and a “distributional alignment” condition intended to explain when contrastive pretraining recovers downstream equivalence classes. The framing is interesting and the controlled experiments illustrate the intuition, but central theoretical claims are not established by the supplied proofs, and the empirical evidence is too limited to compensate.",
+        "strengths": [
+          "The task-relative definition of semantics and explicit contrastive/downstream alignment condition provide a clear conceptual lens (pp. 2, 4–5).",
+          "The paper openly discusses the strength and practical unverifiability of its assumptions and includes failure/misalignment studies (pp. 8, 22–24).",
+          "Controlled modular-addition experiments clearly visualize equivalence-class clustering and faster downstream optimization (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "The key lemma analyzes a different softmax direction from the stated training loss: Equation 2 contrasts contexts for a fixed symbol, whereas Lemma A.1 and its derivation contrast symbols for a fixed context (pp. 3–4, 17–18). The main theorems therefore do not follow for the proposed objective; the fixed-symbol softmax also permits symbol-dependent score offsets.",
+          "Calling the dot-product model class “unconstrained” is unjustified: finite-dimensional scores are rank constrained, so the Bayes-optimal softmax distribution used in Lemma A.1 need not be realizable (p. 17). Moreover, Proposition A.2 assumes conditional equivalence while purporting to prove the reverse implication, so it cannot establish the claimed biconditional in Corollary 4.3 (pp. 5, 20–21).",
+          "Evidence is mostly one tiny synthetic task and is highly sensitive to regularization/initialization; the BookCorpus study defines no downstream task whose formal semantic equivalence is measured, so it does not validate the main semantic-alignment claim (pp. 22–25). The assertion that alignment characterizes when a contrastive dataset is useful is also stronger than the demonstrated necessary/sufficient results."
+        ],
+        "score_rationale": "The conceptual formalization has some novelty and the experiments are illustrative, but errors in the objective-to-proof correspondence and the unsupported biconditional undermine the principal contribution. A corrected analysis of the actual loss and broader downstream validation could be valuable; I am uncertain whether the current theorem can be salvaged without changing the objective or adding substantial realizability/identifiability assumptions."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes “distributional alignment” to connect context-prediction contrastive learning with a task-dependent semantic-equivalence relation, then illustrates the idea on modular addition and word embeddings. The perspective is potentially useful, but the central bidirectional guarantee is not established and the empirical validation is too limited for the paper’s broad claims.",
+        "strengths": [
+          "The task-dependent definition of semantic equivalence and the symbol/context formulation provide a clear conceptual lens for discussing when pretraining may transfer (pp. 2–5).",
+          "The manuscript explicitly states its strong assumptions and includes controlled failure or perturbation studies involving dimension, regularization, initialization, and imperfect alignment (pp. 8, 22–24).",
+          "The modular-addition experiment is interpretable and shows faster downstream optimization from the learned initialization (pp. 6–7)."
+        ],
+        "weaknesses": [
+          "Corollary 4.3 claims an iff result, but Theorem 4.2 proves only conditional-distribution equality implies embedding equality. Proposition A.2, offered for the reverse direction, already assumes conditional equality and is therefore circular for proving that an embedding collision implies semantic equivalence (pp. 5, 20–21).",
+          "Lemma A.1 assumes that a finite-dimensional bilinear encoder can attain the unrestricted Bayes-optimal softmax distribution, without a realizability/rank assumption; it also analyzes candidates consisting of symbols for a fixed context, whereas Equation 2 uses contexts as negatives for a fixed symbol. Thus the main proofs do not directly justify the stated training objective (pp. 3–4, 17–20).",
+          "Evidence is narrow: the main downstream result uses one tiny synthetic task, while the real-text study reports only embedding distances with fabricated synonyms and unspecified controls for natural synonyms. Moreover, the prominent use of weight decay changes the optimized objective relative to the theory (pp. 7, 22–25)."
+        ],
+        "score_rationale": "The density-ratio intuition and formal framing are interesting, but the claimed equivalence theorem has a major logical gap and rests on unstated realizability assumptions. The specially constructed experiments support a limited forward intuition rather than the broad claim that contrastive learners are semantic learners. Novelty beyond existing density-ratio and contrastive-learning analyses is also uncertain from the supplied treatment, so this falls below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes “distributional alignment” as a condition under which contrastive representations recover task-specific semantic equivalence, then evaluates the idea on modular addition and word prediction. The framing is potentially useful, but the central guarantees are not established for the stated contrastive objective, and the experiments are too limited to compensate.",
+        "strengths": [
+          "The task-relative definition of semantic equivalence and the attempt to connect it explicitly to contrastive pretraining provide a clear conceptual perspective (pp. 2, 4–5).",
+          "The controlled modular-addition setup makes the intended equivalence classes and alignment assumption transparent (pp. 6–7).",
+          "The appendices explore embedding dimension, regularization, initialization, imperfect alignment, and artificial versus natural synonym behavior rather than reporting only a favorable base setting (pp. 22–25)."
+        ],
+        "weaknesses": [
+          "The main proof analyzes a different negative-sampling direction from the stated loss: Equation 2 holds the symbol fixed and contrasts contexts (pp. 3–4), whereas Lemma A.1 holds the context fixed and contrasts symbols (p. 17). Appendix A.5 is itself inconsistent about which symbol appears in the denominator (p. 21). Thus Theorems 3.1 and 4.2 are not proved for the proposed objective.",
+          "The claimed biconditional in Corollary 4.3 is unsupported. Theorem 4.2 establishes only conditional equivalence implying equal embeddings, while Proposition A.2 assumes conditional equivalence in proving the alleged reverse direction, making that argument circular or tautological (pp. 5, 20–21). The Bayes-optimal cross-entropy argument also assumes exact realizability by a fixed-dimensional bilinear model without justification (pp. 17–18).",
+          "Evidence is narrow: the principal result uses a tiny synthetic N=16 modular task, does not verify attainment of the theorem’s basis/optimality assumptions, and observes nonzero within-class distances contrary to the exact theorem (pp. 6–7). The BookCorpus experiment uses artificial synonyms and only 1% of the corpus, with no downstream evaluation or sufficiently specified natural-synonym protocol (p. 25)."
+        ],
+        "score_rationale": "The semantic-equivalence framing has some novelty and the synthetic studies illustrate the intuition, but the loss/proof mismatch and invalid reverse implication affect the paper’s central theoretical claim. Given that empirical validation is mostly small and constructed, substantial correction and broader evidence are required."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes “distributional alignment” as a condition under which contrastive representations encode a downstream task’s formal semantic-equivalence classes, and illustrates the idea on modular addition and word embeddings. The framing is potentially interesting, but the central guarantees are not established for the stated objective, and the empirical support is too limited to compensate.",
+        "strengths": [
+          "Provides a clear task-relative definition of semantic equivalence and an intuitive connection to conditional context distributions (pp. 2, 4–5).",
+          "The controlled modular-addition setup directly visualizes equivalence-class geometry and downstream optimization benefits (pp. 6–7).",
+          "The appendices explore sensitivity to dimension, regularization, initialization, imperfect alignment, and text data rather than reporting only a favorable base case (pp. 22–25)."
+        ],
+        "weaknesses": [
+          "The proof analyzes a different contrastive direction from the stated loss: Equation 2 fixes the symbol and contrasts contexts (p. 4), whereas Lemma A.1 fixes a context and contrasts candidate symbols (p. 17). Further indexing inconsistencies appear in the gradient derivation (p. 21), so Theorems 3.1/4.2 do not follow for the advertised objective.",
+          "Lemma A.1 equates the model distribution with the Bayes conditional by calling finite-dimensional dot-product functions “unconstrained,” without a realizability argument. A low-rank dot-product model need not attain the unrestricted cross-entropy optimum (pp. 17–18), undermining the subsequent exact-equality guarantees.",
+          "The claimed biconditional in Corollary 4.3 is not properly proved: Proposition A.2 assumes conditional equivalence while purporting to establish the reverse implication (pp. 5, 20–21). Empirically, evidence is dominated by one tiny constructed task; the text experiment lacks downstream evaluation and detailed synonym controls (p. 25)."
+        ],
+        "score_rationale": "The semantic framing has some novelty and the experiments are thoughtfully varied, but objective/proof mismatch, missing realizability conditions, and a circular or incomplete converse affect the paper’s main theorem. With only narrow synthetic evidence and an exploratory text result, this is a reject in its current form."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes “distributional alignment” to connect equivalence of contrastive context distributions with downstream semantic equivalence, then studies a modified asymmetric InfoNCE objective. The framing is intuitive, but the central guarantees appear technically invalid, and the empirical evidence is too narrow to compensate.",
+        "strengths": [
+          "The formal, task-relative definition of semantic equivalence provides a clear perspective on what a representation might preserve (pp. 2–5).",
+          "The controlled modular-addition experiment directly visualizes equivalence-class geometry and downstream optimization benefits (pp. 6–7).",
+          "The appendices report useful failure and robustness cases involving dimension, regularization, initialization, and imperfect alignment (pp. 22–25)."
+        ],
+        "weaknesses": [
+          "The key proof mishandles InfoNCE normalization. Equation 2 normalizes over contexts for each fixed symbol, so optimal scores are identifiable only up to a symbol-dependent additive constant. Equal conditional context distributions therefore need not give equal dot products, undermining Theorem 4.2 and Corollary 4.3; Lemma A.1 instead conditions on a reversed candidate-symbol problem (pp. 4–5, 17–20).",
+          "The claimed reverse implication is unsupported: Proposition A.2 invokes a label-conditioned lemma for an unlabeled encoder and assumes context-distribution equivalence, while embedding equality alone cannot establish downstream semantic equivalence. The theorem also presumes exact realizability/attainment by a finite-dimensional inner-product model without stating sufficient conditions (pp. 20–21).",
+          "Evidence is limited mainly to a tiny synthetic task; the text experiment has injected synonyms, lacks a downstream evaluation, and treats natural synonyms as semantic similarity without verifying Definition 2.1. Thus it does not substantiate broad claims about practical contrastive learning (pp. 6–8, 25)."
+        ],
+        "score_rationale": "The semantic framing has some novelty and the experiments illustrate the intended intuition, but the normalization/invariance issue is fatal to the main theorem as written. With only small or partly artificial experiments and no strong realistic validation, this is a reject despite uncertainty about whether a corrected theorem could be obtained under additional centering or identifiability assumptions."
+      }
+    }
+  ]
+}

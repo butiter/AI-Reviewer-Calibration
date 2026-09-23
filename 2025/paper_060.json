@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_060",
+  "paper_id": "EDJ7cPZk7V",
+  "number": 8123,
+  "title": "Forgetting Order of Continual Learning: What is Learned First is Forgotten Last",
+  "authors": "Guy Hacohen; Tinne Tuytelaars",
+  "primary_area": "transfer learning, meta learning, and lifelong learning",
+  "keywords": "continual learning; catastrophic forgetting; replay buffer",
+  "forum_url": "https://openreview.net/forum?id=EDJ7cPZk7V",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    8,
+    3,
+    6,
+    5,
+    10
+  ],
+  "human_mean_rating": 6.4,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper analyzes the forgetting discrepancies among different examples and provides a theory that the examples that are learned the first and last are the least prone to forgetting. The paper also proposes a practical algorithm for sample selection for the replay buffer where it removes the examples that are learned first or last."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "- The paper demonstrates simplicity bias in neural networks.\n- The paper proposes an effective replay buffer sample selection algorithm that outperforms uniform in many cases and also other subsampling algorithms in some cases."
+        },
+        "weaknesses": {
+          "value": "- Completeness: Table-1 should also include CIFAR-100-5, CIFAR-100-20 and Tiny-ImageNet.\n- Limitation: The conclusion may depend on the training time on each task. For example, if the number of epochs is small, then the hardest to learn examples have not been learned, then it may also need to stay in the replay buffer. The paper has also acknowledged that the method may not be suitable for stream learning in its limitation section. However, it would be better if the paper can give guidance on the number of epochs required for the proposed method to work well.\n- Hyperparameters: The algorithm may rely on selecting hyperparameters (e.g. s and q) for removing the slowest and fastest examples. And it might be unclear how that parameter varies across different datasets. If choosing a hyperparameter repetitive experiments, then it may defeat the premise of continual learning."
+        },
+        "questions": {
+          "value": "- I wonder if the authors can provide experiments on other datasets, and show how hyperparameters will vary across different datasets."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "LEOdGY1Zpr",
+      "forum": "EDJ7cPZk7V",
+      "replyto": "EDJ7cPZk7V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_XrZi"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_XrZi"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8123/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730665325342,
+      "cdate": 1730665325342,
+      "tmdate": 1731429030673,
+      "mdate": 1731429030673,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper, the authors present an empirical study that reveals a strong correlation between catastrophic forgetting and the learning speed of examples. They found that the examples that are learned early in the continual learning process are rarely forgotten, while those learned later are more susceptible to forgetting. Leveraging this finding, they introduced a new replay buffer sampling method - Goldilocks that filters out examples learned too quickly or too slowly, keeping those learned at an intermediate speed. On several low to mid-complexity image classification tasks, they showed the efficacy of their proposed method."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "Strength: \n\n* The analysis of learning speed and catastrophic forgetting in continual learning is new. \n* The authors presented the idea clearly. \n* Illustrations and figures - especially the binary classification matrix plots are very useful in understanding the concept of the paper."
+        },
+        "weaknesses": {
+          "value": "Weaknesses:\n* The observed correlation between example learning speed and catastrophic forgetting is empirical, with no theoretical analysis provided, hence of limited significance. \n* Empirical analysis provided to establish the correlation is not sufficient. For example, learning dynamics depend on various factors such as learning rate, network architecture, optimizer, regularization etc. One of the major issues with the current paper is that it does not explore these dimensions to establish the correlation between example learning speed and catastrophic forgetting.\n* How learning rate for different tasks (initial tasks and later tasks) impact the correlation? If we use a smaller learning rate for later tasks how do forgetting dynamics change? A detailed study is missing here. \n* How does the correlation change if plain SGD, Adam, Ada-Grad, etc. optimizers are used? \n* The paper only explores ResNet and its smaller variants for the analysis. For other architectures such as transformers, VGG net, etc do the same conclusions stand? \n* Gridlock is evaluated on low-to-mid complexity image classification tasks only. Detailed analysis on higher complexity classification tasks on ImageNet is missing. \n* As stated in the limitation section, the method does not apply to online CL settings and is only limited to classification tasks."
+        },
+        "questions": {
+          "value": "See the Weakness section above."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "idkJ1jHNQP",
+      "forum": "EDJ7cPZk7V",
+      "replyto": "EDJ7cPZk7V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_pNCs"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_pNCs"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8123/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730662653772,
+      "cdate": 1730662653772,
+      "tmdate": 1731429030998,
+      "mdate": 1731429030998,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper explores a strategy for selecting examples to include in a replay buffer for continual learning. The main idea is to exclude two sets of examples: those that are learned too easily and those that are difficult to learn, with the aim of improving generalization across a sequence of classification tasks."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The authors take this fairly simple idea and run a series of tests.  These experiments cover a range of datasets and settings for the size of the buffer of replayed examples. They also explore two different task orderings and show that the results are consistent across them. Most of the experiments focus on a sequence consisting of just a pair of tasks, but there are some results with a more extensive set of tasks.  The experimentation and reporting of results is clear and fairly complete, especially with the standard error discussion and class incremental results presented in the Appendix."
+        },
+        "weaknesses": {
+          "value": "The chief weakness is a lack of significance.  The paper is mostly an exploration of whether a type of simplicity bias can be used to guide the selection of examples in the replay buffer. It does not advance a substantive new method or analysis, but seems like a straightforward application of existing ideas.  The results show a consistent but not whopping win for this approach,\n\nA second weakness is a lack of analysis of the types of examples that fit into the too-easy and too-hard categories. Showing that the examples that are learned earlier are forgotten less and those that are learned later are forgotten more is not surprising, as it fits well with various studies such as the simplicity work (as acknowledged by the authors).\n\nAs well there is quite a bit of variation across the datasets and experimental conditions, such as buffer size, in terms of the relative performance of different percentages of the too-small and too-fast sets that should be excluded.  There is no analysis of this, which begs the question of how to set these hyperparameters in a new setting."
+        },
+        "questions": {
+          "value": "I'd recommend that the authors make the method more practically applicable by showing how it can be deployed in a few new settings (e.g., combination of dataset and replay buffer size). One way to address this would be to demonstrate that a small amount of data and experimentation can be used to determine a set of hyperparameters that exhibit strong performance.\n\nOne minor question concerns the title, which doesn't quite fit the primary message of the paper."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Ndv7qGibuh",
+      "forum": "EDJ7cPZk7V",
+      "replyto": "EDJ7cPZk7V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_NS7R"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_NS7R"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8123/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730644937284,
+      "cdate": 1730644937284,
+      "tmdate": 1733147727000,
+      "mdate": 1733147727000,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "In Continual Learning, the methods that have worked best are memory-based. These methods work by sampling a percentage of the training set of each task that is then used in the training of subsequent tasks to ‘remember’ past tasks. In this paper, the authors analyse the best examples to populate the buffer. They analyse the learning speed, showing how it affects performance when sampling from the training set by leaving out the top slower or quickest-to-learn samples. The authors show that items learned quickly are the least forgotten, and conversely, items learned more slowly are the first to be forgotten. With this insight, the authors present a new methodology for populating memory called ‘Goldilocks’. Empirically, the authors show that sampling only from items with an intermediate learning speed can have comparable or better results than current methods for populating memory across different benchmarks."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The authors' motivation for presenting the problem is evident in their approach, which aids in understanding the problem and its relevance. \n- An analysis is presented that helps to understand the method before it is presented. Multiple experiments show the usefulness of eliminating the very fast and slow-to-learn examples, to sample only intermediate ones."
+        },
+        "weaknesses": {
+          "value": "- Despite the authors' thorough analysis, no explanation or intuition is provided as to why medium learning speed items are the most useful for populating memory. It would be good if the authors provided a rationale beyond the empirical results. This rationale could be based on intuition or other work.\n- The results shown are limited to a small group of scenarios. The analyses performed are only based on CIFAR10 and CIFAR100 divided into 2 tasks. A better analysis should emphasize a broader set of scenarios and benchmarks to ensure the generalisability of the performance.\n    - Other works have shown that performance can change drastically as the number of tasks increases.\n    - The analysis shown is with the Task-Incremental learning scenario, I recommend considering the class-incremental scenario as it is a more widely accepted scenario. The authors mention that the analysis is in the Appendix, but I did not find corresponding results.\n    - This may affect figures such as Fig2a, where you can see that the forgetting is not as drastic as in class incremental and even a slight increase is seen near epoch 150.\n- Although the authors show, both in their analysis and with their method, that the results achieved are better than other alternatives, the benefit is only marginal. Often even less than the standard deviation.\n    - During the analysis, the difference is often at most 2%, between all removal combinations slowest/quickest. This shows that the margin of improvement is very slight compared to uniformly populating the memory.\n- Some arguments and comments in the paper are difficult to extract from the results.\n    - One example is in line 397: 'We find that regardless of the similarity or dissimilarity between subsequent tasks and the original task, the optimal replay buffer composition remains largely independent and consistent'. Nowhere does it show how different or similar the tasks they use are, and they base this only on experiments in CIFAR100."
+        },
+        "questions": {
+          "value": "- A score called c-score [1] seeks to explain how consistent an example is during training. Can learning speed be related to this score?\n- The same order of classes is always used, which may affect the conclusions drawn. Is there a reason for this?\n    - Each seed used to run the experiments commonly brings a new class order. This helps to not bias the results to a particular order that may benefit one method over another.\n- In line 212, the authors mention using an experience replay strategy that alternates batches of data from the new task and the replay buffer. Why use this and not the standard approach of mixing samples from the current task and the buffer in a 50-50 way?\n- Can the learning rate chosen affect the results and conclusions? \n    - For example, in fine-tuning, it is recommended to use a small learning rate so as not to modify the old weights significantly.\n- Do the authors have results for different CL methods with different strategies to populate the memory? The methods are usually independent of how the data is sampled, so a complete comparison of how much sampling methods affect different memory-based methods can be done.\n- I understand using 500 examples for CIFAR10 and CIFAR100, but in TinyImagenet, this means less than 3 elements per class, which can strongly affect the sampling methods used. Do you have experiments with a higher number? It would also be essential to mention the reference to the 'original work' in line 466.\n\n[1] Jiang, Ziheng, et al. \"Characterizing Structural Regularities of Labeled Data in Overparameterized Models.\" International Conference on Machine Learning. PMLR, 2021."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "zlTKa1jGdi",
+      "forum": "EDJ7cPZk7V",
+      "replyto": "EDJ7cPZk7V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_9eZ5"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_9eZ5"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8123/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730196394785,
+      "cdate": 1730196394785,
+      "tmdate": 1732703577962,
+      "mdate": 1732703577962,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors claim & show that examples that are learned first (simple examples), are in general not forgotten, while examples that are the hardest are forgotten quickly. They propose a replay sampling method that attempts to counter-balance this phenomenon by replaying only samples that are of medium difficulty."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 4
+        },
+        "strengths": {
+          "value": "- The authors make an interesting observation that could have strong impact in understanding the learning process of neural networks and improving the replay-based continual learning methods.\n- Strong evidence is brought on CIFAR100, using different tools (Figure 2), among which training of multiple networks and consistent observation across these networks that learning speed is strongly correlated with forgetting rate.\n- They obtain consistent improvements when applying their sampling method on top of existing methods, and across datasets (CIFAR 100 , CIFAR 10 and TinyImagenet)\n- The results are clearly presented using several demonstration tools and the designed method is simple, the ablation of the number of quickly learned samples and slowly learned samples is comprehensive and easy to read."
+        },
+        "weaknesses": {
+          "value": "- **W1** Maybe a bit more attention could be given to the engineering of class-incremental learning results to make them comparable to the sota one. Right now they are only given on CIFAR100-2 with buffer size of 500. Would be interesting to have them on CIFAR100-10 with bs of 1k or 2k for instance, and maybe applying some anti task-recency bias method or simply probing the representations to show whether the probed representation from the model using the new sampling method is better."
+        },
+        "questions": {
+          "value": "- **Q1** It is good that results for both CIL and TIL are presented, but for the CIL, they are way less furnished. Would it be possible to have the same than Figure 2 for the CIL in the appendix ?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 10
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "fUNfVHstPS",
+      "forum": "EDJ7cPZk7V",
+      "replyto": "EDJ7cPZk7V",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_m8pC"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission8123/Reviewer_m8pC"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission8123/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730123847919,
+      "cdate": 1730123847919,
+      "tmdate": 1731429031836,
+      "mdate": 1731429031836,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper identifies a useful empirical association between within-task learning speed and later forgetting, then proposes Goldilocks, a simple replay-buffer rule that excludes the fastest- and slowest-learned examples. The method improves several replay algorithms across TIL/CIL benchmarks and many robustness checks, but causal interpretation, protocol clarity, and state-of-the-art claims are not fully convincing.",
+        "strengths": [
+          "Goldilocks is simple, inexpensive, and modular: it requires a running per-example statistic and changes only buffer selection (pp. 3–6).",
+          "The empirical evaluation is unusually broad, covering multiple datasets, task counts, architectures, optimizers, training schedules, TIL/CIL settings, and eight replay methods (pp. 9–10, 14–23).",
+          "Reported improvements are consistent and often substantial; comparisons use 10 runs and include standard errors, including against several alternative sampling strategies (pp. 10, 21–22)."
+        ],
+        "weaknesses": [
+          "The headline correlation is partly mechanically induced: learning speed averages correctness through the end of the first task, while being “remembered” requires correctness at that same endpoint. Thus the near-perfect correlation does not cleanly establish prospective predictiveness or the proposed simplicity-based explanation (pp. 3–5).",
+          "Multi-task buffer maintenance is underspecified: Algorithm 1 returns a buffer-sized sample for each task, while the text only vaguely describes uniformly removing old items under a fixed global budget. This limits reproducibility, especially for the strongest multi-task results (pp. 6, 8–9).",
+          "The state-of-the-art claim is insufficiently supported. Comparisons cover only a limited set of sampling baselines under the authors’ ER setup, omit several relevant replay/coreset approaches, and do not clearly document comparable tuning budgets; Goldilocks itself is tuned using an auxiliary RotNet procedure (pp. 8–10)."
+        ],
+        "score_rationale": "The method is practically valuable and backed by extensive, consistent experiments, placing it slightly above the acceptance threshold. However, leakage in the central correlational analysis, ambiguity in the multi-task implementation, and incomplete/fairness-unclear baseline comparisons prevent a stronger score. Some uncertainty remains because implementation details needed to assess these issues are absent."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper identifies a strong empirical association between per-example learning speed and later forgetting, then proposes Goldilocks, which excludes the fastest- and slowest-learned examples when constructing replay buffers. The idea is simple and practically useful, with broad experiments across continual-learning settings, but the mechanistic claims and state-of-the-art framing exceed what the evidence establishes.",
+        "strengths": [
+          "Goldilocks is simple, modular, and inexpensive once its thresholds are fixed; it can be inserted into multiple replay-based algorithms without changing their replay objectives (pp. 6, 9).",
+          "The empirical evaluation is unusually broad: multiple datasets, task- and class-incremental settings, architectures, optimizers, task counts, buffer sizes, and continual-learning algorithms generally show consistent gains (pp. 9–10, 14–24).",
+          "Comparisons against several established buffer-selection methods show consistent improvements with small reported standard errors, rather than only improvements over uniform replay (pp. 10, 22)."
+        ],
+        "weaknesses": [
+          "The central correlation is partly structurally induced: learning speed averages correctness during task training, while being “remembered” requires correctness at the end of that same task. Binning examples by the percentage of only 10 networks that remember them can further inflate the near-perfect reported correlation; controls using end-of-task confidence/accuracy or conditioning on equally well-learned examples are missing (pp. 3–5).",
+          "The claimed explanation through simplicity bias is speculative. Goldilocks shows predictive utility, but the experiments do not establish that learning speed measures semantic complexity or causally governs forgetting; alternative scores receive only a largely qualitative comparison (pp. 7–8, 24–25).",
+          "Hyperparameter selection and applicability are not fully convincing: RotNet grid search adds unreported tuning cost, the heuristic guidance on p. 8 appears reversed relative to the buffer-size findings on p. 7, and the method does not support important single-pass streaming settings (pp. 7–10). The “state-of-the-art” claim is also too broad given the limited sampling baselines and older image benchmarks (p. 10)."
+        ],
+        "score_rationale": "This is a clear, useful empirical contribution with a low-complexity method and extensive, statistically stable experiments. However, the main explanatory claim is not causally supported, the headline correlation has a notable definitional confound, and tuning/fairness and modern-benchmark evidence are incomplete. I therefore place it marginally above the acceptance threshold, with some uncertainty about whether stronger controlled analyses would preserve the central conclusion."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper identifies a relationship between an example-level learning-history score and later retention, then uses this score to exclude very easy and very hard examples from replay buffers. The resulting Goldilocks sampler is simple and shows broad empirical gains on standard image continual-learning benchmarks, though the mechanistic interpretation and evaluation protocol need tighter validation.",
+        "strengths": [
+          "Goldilocks is simple, inexpensive once its thresholds are fixed, and can be inserted into many replay-based methods without changing their objectives (pp. 6, 9).",
+          "The empirical study is unusually broad: it covers task- and class-incremental settings, multiple datasets, buffer sizes, architectures, optimizers, task counts, and several continual-learning algorithms (pp. 7–10, 14–23).",
+          "Reported improvements over random and alternative buffer samplers are consistent and generally much larger than the reported standard errors (pp. 9–10, 22–23)."
+        ],
+        "weaknesses": [
+          "The central correlation is partly structurally confounded: “learning speed” is the fraction of epochs classified correctly, while being “remembered” also requires correct classification at the end of the original task. Thus the score measures correctness persistence/margin, not purely time-to-learning, and shares outcomes with the retention definition; conditional analyses controlling for pre-switch correctness, margin, and loss are missing (pp. 3–5).",
+          "The practical selection and tuning protocol is insufficiently controlled. Goldilocks has two benchmark-dependent thresholds, sometimes chosen through an additional RotNet grid search, but Table 1 does not state the selected values or provide comparable tuning budgets for competing samplers; this weakens the fairness of the claimed state-of-the-art comparison (pp. 8–10).",
+          "Multi-task buffer management is underspecified: Algorithm 1 appears to return a full buffer for each task, whereas the paper later assumes a fixed global buffer and only vaguely states that examples can be removed uniformly. Class balancing, tie handling for discrete scores, and exact reservoir interactions are not described, limiting reproducibility (pp. 6, 8–9)."
+        ],
+        "score_rationale": "The method is practically useful and supported by extensive, statistically convincing experiments, meriting a score slightly above the acceptance boundary. However, novelty is moderate, the claimed explanation of forgetting is stronger than the correlational design supports, and important tuning and multi-task implementation details remain unclear. I am therefore positive but not confident enough for a clear accept."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 7,
+        "confidence": 4,
+        "summary": "The paper identifies a robust association between example learning speed and later catastrophic forgetting, then uses it to select intermediate-difficulty replay examples via Goldilocks. The method is simple and produces consistent gains across several continual-learning algorithms, datasets, buffer sizes, and both task- and class-incremental settings. The empirical contribution is compelling, although the explanatory claims and state-of-the-art positioning are stronger than the evidence supports.",
+        "strengths": [
+          "A simple, broadly compatible buffer-selection method with negligible per-example storage overhead and no modification to the underlying replay algorithm (pp. 2, 6).",
+          "Extensive empirical support: 10-run studies span multiple datasets, architectures, optimizers, task counts, buffer sizes, and TIL/CIL settings, with standard errors reported (pp. 7–10, 15–23).",
+          "Goldilocks consistently improves all tested continual-learning methods and outperforms several alternative sampling strategies in the reported comparisons (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The learning-speed/forgetting relationship is primarily correlational and partly reflects shared example difficulty; the proposed simplicity-bias mechanism is not causally established, and the learning-speed score also overlaps conceptually with final correctness (pp. 3–5, 10).",
+          "Claims of state-of-the-art performance are insufficiently substantiated: comparisons cover only a limited set of older sampling approaches and small image benchmarks, without broader modern baselines or non-vision evidence (pp. 9–10).",
+          "Hyperparameters are selected through an additional RotNet grid search, whose computational cost and fairness relative to baselines are not quantified; guidance on buffer size is also internally inconsistent between the observed trend and the heuristic wording (pp. 7–9)."
+        ],
+        "score_rationale": "The paper offers a novel, practical insight and unusually broad controlled evidence for a lightweight replay-buffer improvement. I lean accept because the gains are consistent and often substantial, but not higher because the causal interpretation is weak, tuning costs are underreported, and the state-of-the-art/generalization claims exceed the benchmark coverage."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper connects per-example learning speed to later forgetting and proposes Goldilocks, which excludes very fast- and slow-learned examples when constructing replay buffers. The method is simple and empirically useful across several continual-learning algorithms, but the central correlation is partly built into the definitions and the evaluation does not fully establish the claimed mechanism or state of the art.",
+        "strengths": [
+          "Goldilocks is simple, inexpensive, and modular: it stores one score per example and only changes buffer selection (pp. 4, 6).",
+          "Experiments cover task- and class-incremental settings, multiple datasets, buffer sizes, optimizers, architectures, and replay algorithms, generally showing consistent improvements (pp. 9–10, 14–23).",
+          "The paper reports repeated runs and standard errors, with sizable improvements over uniform and several alternative sampling strategies (pp. 10, 21–22)."
+        ],
+        "weaknesses": [
+          "The headline correlation is partly tautological/confounded: learning speed averages correctness throughout task training, while “remembered” requires correctness at the end of that same task and after the next one. Thus persistently correct/easy examples mechanically receive higher scores; no conditional analysis controlling for end-of-task correctness, margin, loss, or difficulty establishes a distinct forgetting phenomenon (pp. 3–5).",
+          "The simplicity/complexity explanation is speculative. The experiments establish association and useful selection behavior, but not that learning speed measures complexity or causally determines forgetting; the alternative-score comparison is only qualitative (pp. 7–8, 24–25).",
+          "The strongest “state-of-the-art” claim is insufficiently supported: comparisons use a limited set of mostly older sampling baselines, Goldilocks hyperparameters are tuned through an auxiliary RotNet procedure whose per-setting choices and cost are not fully reported, and evaluation is restricted to small image benchmarks (pp. 8–10, 23–24)."
+        ],
+        "score_rationale": "The method is practical and the empirical breadth makes this a credible contribution, warranting a marginally positive score. However, the core scientific interpretation is weakened by definitional confounding, and the comparative protocol does not justify the broad state-of-the-art claim. I am moderately confident because the full appendix is available, though exact tuning details and implementation are absent."
+      }
+    }
+  ]
+}

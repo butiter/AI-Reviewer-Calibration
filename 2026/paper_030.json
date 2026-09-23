@@ -1,0 +1,242 @@
+{
+  "year": 2026,
+  "package_id": "paper_030",
+  "paper_id": "tqOBZbW6j8",
+  "number": 8579,
+  "title": "DiffPBR: Point-Based Rendering via Spatial-Aware Residual Diffusion",
+  "authors": [
+    "Yiping Xie",
+    "Yuchi Huo",
+    "Yunlong Ran",
+    "Zijian Huang",
+    "Lincheng Li",
+    "Yingfeng Chen",
+    "Jiming Chen",
+    "Qi Ye"
+  ],
+  "primary_area": "applications to computer vision, audio, language, and other modalities",
+  "keywords": [
+    "Point-based graphics",
+    "Novel view synthesis",
+    "Neural rendering"
+  ],
+  "forum_url": "https://openreview.net/forum?id=tqOBZbW6j8",
+  "venue": "ICLR 2026 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    4,
+    6,
+    4,
+    8
+  ],
+  "human_mean_rating": 5.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "5Rpqgykjzj",
+      "forum": "tqOBZbW6j8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8579/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761731260714,
+      "tmdate": 1762920428858,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "U4EO9wI67k",
+      "forum": "tqOBZbW6j8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8579/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761947874310,
+      "tmdate": 1762920428086,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "b4ItHo2fzV",
+      "forum": "tqOBZbW6j8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8579/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761858257420,
+      "tmdate": 1762920428469,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "vQEjgyuxli",
+      "forum": "tqOBZbW6j8",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8579/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761724296413,
+      "tmdate": 1762920429386,
+      "content": {
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DiffPBR combines adaptive point splatting, fixed point-attached noise, and residual diffusion for generalizable point-cloud rendering. The empirical gains are substantial, but protocol ambiguity and serious inconsistencies in the mathematical/algorithmic specification prevent confident validation.",
+        "strengths": [
+          "Strong quantitative improvements over generalizable baselines across ScanNet, DTU, and THuman2.0, with useful quality–speed variants (pp. 7–9, 21).",
+          "Broad ablations examine scale regularization, diffusion parameterization, point density/perturbation, and structured versus random noise (pp. 9–10, 18–21).",
+          "The use of fixed point-attached noise as cross-view-correlated diffusion guidance is a practical, moderately novel integration, and TSED results provide some direct consistency evidence (pp. 14–16, 23)."
+        ],
+        "weaknesses": [
+          "The evaluation protocol does not clearly establish strict separation between source observations and held-out target views: ScanNet point clouds aggregate nearest views and testing uses an entire preprocessed point cloud, while DTU clouds are constructed from RGB-D images (p. 17). Whether target-view color/depth enters the input is therefore uncertain and potentially decisive.",
+          "The technical specification contains consequential contradictions: τ and ρ definitions are reversed between pp. 6 and 14–15, the one-step training/inference algorithm captions appear swapped (p. 15), and Eq. 20 repeats Lcov instead of Lcmp (p. 18). The claimed diffusion equivalence is also insufficiently derived.",
+          "Novelty is largely an integration of existing residual diffusion and consistent-noise ideas, while the central consistency claim is only lightly validated: TSED is reported on one dataset, and splatted noise is claimed to remain i.i.d. despite induced spatial/cross-view correlations (pp. 16, 23)."
+        ],
+        "score_rationale": "The method is promising and unusually well ablated, but I place it marginally below acceptance because the unclear source/target construction could undermine the large reported gains and the inconsistent equations impede reproducibility. If strict no-target-leakage evaluation and corrected formulations were demonstrated, the evidence could support a higher score."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "DiffPBR combines adaptive point splatting with residual diffusion driven by point-attached, view-correlated noise. The approach is practically interesting and reports strong quality/efficiency results, but novelty is largely compositional and several mathematical, reporting, and reproducibility inconsistencies weaken confidence.",
+        "strengths": [
+          "Broad evaluation reports substantial gains over generalizable point-rendering baselines across ScanNet, DTU, and THuman2.0, including density and perturbation tests (pp. 7–10, 21, 25–26).",
+          "Ablations separately examine residual diffusion, structured noise, adaptive scale regularization, prediction targets, and sampling steps; the TSED experiment directly addresses the central multi-view-consistency claim (pp. 9–10, 18–20, 23).",
+          "The one-step variant offers a favorable empirical quality/speed trade-off, while experiments on unbounded scenes and per-scene methods broaden the evidence beyond the primary benchmarks (pp. 8, 21–23)."
+        ],
+        "weaknesses": [
+          "The technical presentation contains consequential inconsistencies: τ and ρ are defined oppositely across pp. 6 and 14, the training/inference algorithms appear title-swapped on p. 15, Eq. 20 repeats Lcov instead of Lcmp, and several rasterization expressions are malformed or underspecified (pp. 4–6, 14–18).",
+          "The claim that splatted noise preserves i.i.d. Gaussian properties is not justified and is generally false after visibility-weighted spatial aggregation; the displayed variance is already 0.86 and the covariance plot shows structure (pp. 15–16). Thus the mechanism is plausible, but its theoretical characterization is overstated.",
+          "Reproducibility and comparison clarity remain limited: important kernel, visibility, optimizer, schedule, and loss details are missing; no seeds or uncertainty are reported; cross-dataset evidence is only qualitative; and the large ScanNet discrepancy between Tables 1 and 19 relies on an unspecified evaluation subset (pp. 7–9, 17–18, 22–23)."
+        ],
+        "score_rationale": "The empirical package is strong enough for marginal acceptance, especially the consistent gains and targeted ablations. However, the contribution mainly combines established residual diffusion and consistent-noise ideas, while formula/algorithm errors and incomplete experimental specification prevent a confident accept. I therefore assign 6, with some uncertainty about whether the reported gains would reproduce exactly."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DiffPBR combines adaptive point splatting, fixed point-attached noise, and residual diffusion for generalizable point-cloud rendering. The reported fidelity and efficiency gains are substantial, but mathematical inconsistencies and insufficiently controlled evaluation make the central consistency and efficiency claims difficult to verify conclusively.",
+        "strengths": [
+          "Strong quantitative results across ScanNet, DTU, and THuman2.0, including roughly 3–6 dB gains over the strongest generalizable baseline (p. 7), supported by useful qualitative comparisons (pp. 8, 27–28).",
+          "Broad ablations examine splatting, residual versus conventional diffusion, noise construction, density, perturbations, and sampling configurations (pp. 9–10, 18–21).",
+          "The point-attached fixed-noise mechanism is simple and practically appealing; the paper also directly evaluates multi-view consistency with TSED (p. 23) and reports favorable quality–runtime trade-offs (pp. 8, 21)."
+        ],
+        "weaknesses": [
+          "The diffusion formulation is internally inconsistent: the definitions of τ and ρ on pp. 6 and 14 are reversed, equations and algorithms are difficult to reconcile, and Eq. 20 repeats Lcov instead of Lcmp (p. 18). These issues prevent verification or faithful reproduction of the claimed reverse process.",
+          "The claim that splatted noise preserves i.i.d. Gaussian properties is not technically justified: weighted splatting generally changes variance and creates spatial correlation, while Fig. 6 itself reports variance 0.86 and structured covariance (p. 16). The consequences for the diffusion derivation are not analyzed.",
+          "Evidence for generalization and consistency remains incomplete: cross-dataset transfer is only qualitative (p. 9), TSED is the sole temporal/multi-view metric (p. 23), results lack uncertainty over runs, and per-scene comparisons use an unspecified reduced subset whose scores differ greatly from the main table (pp. 22–23)."
+        ],
+        "score_rationale": "The method is promising and empirically strong, with moderate novelty arising from its specific combination of residual diffusion and point-attached consistent noise. However, central mathematical definitions are contradictory and key consistency/generalization claims lack sufficiently rigorous controls. I therefore place it marginally below acceptance, with some uncertainty because corrected notation and fuller protocol details could materially improve the assessment."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DiffPBR combines adaptive point splatting, fixed per-point noise projected across views, and residual diffusion for generalizable point-cloud rendering. The empirical results are extensive and promising, but inconsistencies in the mathematical specification and incomplete validation of the central consistency claim leave the technical contribution insufficiently established.",
+        "strengths": [
+          "Strong reported reconstruction gains across ScanNet, DTU, and THuman2.0, supported by qualitative comparisons and evaluations against both generalizable and per-scene methods (pp. 7–9, 22–25).",
+          "Useful ablations isolate residual diffusion, projected noise, scale regularization, point density, perturbations, and diffusion configurations (pp. 9–10, 18–21).",
+          "The fixed per-point noise construction is simple and computationally attractive, while the one-step variant offers a favorable reported quality–speed trade-off (pp. 14–18, 21)."
+        ],
+        "weaknesses": [
+          "The formulation contains consequential inconsistencies: τ and ρ are defined oppositely on pp. 6 and 14, Eq. 20 repeats Lcov instead of Lcmp, and the transition from the forward process to the reverse algorithms is insufficiently justified, impairing reproducibility (pp. 6, 14–18).",
+          "The claim that splatted noise preserves i.i.d. Gaussian properties is technically questionable because weighted splatting changes variance and creates spatial correlation; the displayed standard deviation is already 0.86 rather than 1 (p. 16). Likewise, consistent conditioning alone does not guarantee consistent independently decoded images.",
+          "Evidence for the headline multi-view/generalization claims is incomplete: cross-dataset transfer is primarily qualitative (p. 9), TSED lacks protocol details and uncertainty (p. 23), and efficiency/baseline comparisons do not provide variance or sufficiently clear accounting of training and preprocessing costs (pp. 8, 21)."
+        ],
+        "score_rationale": "The idea is plausible and the reported empirical gains are substantial, warranting serious consideration. However, the contradictory notation, questionable noise characterization, and limited rigor around the key view-consistency claim put the work marginally below acceptance. My assessment remains somewhat uncertain because independent verification and implementation details beyond the manuscript are unavailable."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DiffPBR combines adaptive point splatting, fixed per-point noise projected across views, and residual diffusion for generalizable point-cloud rendering. The approach is practically appealing and reports strong fidelity, efficiency, robustness, and consistency results, but important formulation inconsistencies and insufficiently specified evaluation inputs weaken confidence in the conclusions.",
+        "strengths": [
+          "Strong reported gains over generalizable baselines across ScanNet, DTU, and THuman2.0, supported by PSNR/SSIM/LPIPS and qualitative comparisons (pp. 7–9, 27–28).",
+          "Useful ablations isolate residual diffusion, projected noise, adaptive scale losses, point density, perturbations, and sampling configurations (pp. 9–10, 18–21).",
+          "The simple global scale control and one-step variant offer an attractive quality-efficiency trade-off, with runtime analysis and comparisons provided (pp. 8, 18, 21)."
+        ],
+        "weaknesses": [
+          "The mathematical presentation contains consequential contradictions: the definitions of τ and ρ are reversed between the algorithm note and symbol table, while the training/inference equations depend on them; the loss is also miswritten with Lcov twice (pp. 6, 14–15, 18). This prevents unambiguous reproduction and clouds the claimed diffusion derivation.",
+          "The claim that splatted noise preserves i.i.d. Gaussian properties is not justified: normalized visibility-weighted mixtures generally have location-dependent variance and spatial correlation, and the displayed covariance is visibly non-diagonal (pp. 14–16). Fixed projected noise encourages correspondence but does not by itself guarantee output consistency.",
+          "Evaluation protocol details leave possible target-view leakage or unfair supervision uncertain: ScanNet and DTU point clouds are constructed from RGB-D images, sometimes using the “whole” point cloud, without clearly stating whether held-out target-view colors/depth are excluded (p. 17). The principal consistency evidence is only TSED, without trajectory-level perceptual or flicker analysis (p. 23)."
+        ],
+        "score_rationale": "The core combination is moderately novel and the empirical package is broad, with compelling reported improvements. However, unresolved diffusion-definition errors, an overstated statistical argument, and ambiguity about target-view exclusion are central soundness and reproducibility concerns. I therefore place it marginally below acceptance; the score could rise if these issues are clarified and leakage-free evaluations are confirmed."
+      }
+    }
+  ]
+}

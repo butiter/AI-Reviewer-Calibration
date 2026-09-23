@@ -1,0 +1,238 @@
+{
+  "year": 2026,
+  "package_id": "paper_091",
+  "paper_id": "mcBAMstQmM",
+  "number": 23080,
+  "title": "Finish First, Perfect Later: Test-Time Token-Level Cross-Validation for Diffusion Large Language Models",
+  "authors": [
+    "Runchu Tian",
+    "Junxia Cui",
+    "Xueqiang Xu",
+    "Feng Yao",
+    "Jingbo Shang"
+  ],
+  "primary_area": "generative models",
+  "keywords": [
+    "Diffusion Language Model",
+    "Decoding Strategy"
+  ],
+  "forum_url": "https://openreview.net/forum?id=mcBAMstQmM",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    4,
+    4,
+    4
+  ],
+  "human_mean_rating": 3.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "ZvBnC21lLf",
+      "forum": "mcBAMstQmM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23080/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762127206382,
+      "tmdate": 1762942503154,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "omyKD5azaD",
+      "forum": "mcBAMstQmM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23080/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761954816754,
+      "tmdate": 1762942503457,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "uDjQFOzmBF",
+      "forum": "mcBAMstQmM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23080/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761904135988,
+      "tmdate": 1762942503673,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "yiAOeFcA8r",
+      "forum": "mcBAMstQmM",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission23080/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762227861990,
+      "tmdate": 1762942502897,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple training-free decoder for masked diffusion LLMs: generate a complete draft, then repeatedly remask random token subsets and reconstruct them with an annealed masking rate. Results on two models and five benchmarks suggest useful gains, particularly for math and highly parallel decoding. However, the central refinement mechanism is incremental over existing remasking methods, and the experiments do not cleanly establish that refinement—rather than the separately introduced EoT penalty or benchmark-specific tuning—drives the reported advantage.",
+        "strengths": [
+          "The method is simple, model-agnostic, training-free, and described sufficiently clearly to implement (pp. 4–6).",
+          "Evaluation covers two open dLLMs, five benchmarks, multiple forward-pass budgets, three seeds, and competing remasking decoders; detailed numbers are supplied in the appendix (pp. 6–8, 15–16).",
+          "The paper includes useful ablations and candidly identifies code-format instability and lack of natural convergence (pp. 7–9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: randomly remasking and reconstructing parts of a completed draft is closely related to prior inference-time remasking, while the claimed “cross-validation” is essentially ordinary masked conditional reconstruction and lacks a new validation criterion or technical analysis (pp. 2–5).",
+          "The main comparison confounds refinement with an EoT penalty applied only to TOLERATOR. This component alone produces very large gains—e.g., GSM8K changes from 54.61 to 67.93 and from 46.25 to 68.99 at 128 steps in Table 3—yet it is not applied to baselines, so attribution and fairness are unclear (pp. 5–6, 16).",
+          "Claims of consistent superiority are overstated: Table 1 contains numerous losses to vanilla at low or high budgets, including Dream HumanEval at 4 and 256 steps, Dream MBPP at 4 and 256, and LLaDA TriviaQA from 64–256 (p. 15). Runtime evidence is also incomplete because Figure 2 reports only one TPS series rather than method-specific throughput (p. 6)."
+        ],
+        "score_rationale": "The approach is practical and the empirical breadth is respectable, but its modest conceptual novelty and the EoT-penalty confound prevent the evidence from securely supporting the headline decoding claim. I am uncertain whether a baseline-controlled EoT experiment would preserve the reported advantage; as submitted, this is marginally below the acceptance bar."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple training-free two-stage decoder for diffusion LLMs: produce a complete draft, then repeatedly remask random token subsets and regenerate them under an annealed masking rate. Results on two models and five benchmarks suggest useful gains, especially for mathematics and highly parallel decoding, but the novelty and experimental support are insufficiently convincing for acceptance in the current form.",
+        "strengths": [
+          "The method is simple, model-agnostic, and practically relevant, directly addressing irreversible early decoding errors (pp. 4–5).",
+          "Evaluation covers two open dLLMs, five benchmarks, multiple forward-step budgets, and provides exact results and component ablations (pp. 6–8, 15–16).",
+          "Large improvements appear in some important regimes, notably LLaDA on GSM8K and Dream on several low-to-moderate-step settings (p. 15)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the core operation is random remasking and regeneration, closely related to prior inference-time remasking; the main distinction is largely postponing refinement until after draft completion, without a deeper technical justification or comparison isolating that distinction (pp. 2–5).",
+          "The claim of consistent superiority is overstated. Table 1 contains many losses against vanilla decoding, including LLaDA TriviaQA at most moderate/high budgets and several HumanEval/MBPP settings; gains therefore depend materially on task and budget (p. 15).",
+          "Reproducibility and fairness remain unclear: the pretrained model's diffusion-time/noise-level input during refinement is not specified, lambda_eot's dependence on T is underspecified, and the EoT modification is applied only to the proposed pipeline, confounding gains attributed to refinement (pp. 5–6)."
+        ],
+        "score_rationale": "The paper offers a useful, inexpensive decoding heuristic with broad experiments, but its incremental novelty, incomplete refinement specification, EoT-related comparison confound, and exceptions to the headline consistency claim place it marginally below the ICLR acceptance threshold. Uncertainty remains because the supplied anonymous code cannot be inspected."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes TOLERATOR, a training-free two-stage decoder for masked diffusion LLMs: rapidly fill a complete draft, then repeatedly remask random token subsets and reconstruct them from the remaining context. Experiments on two 7–8B dLLMs and five benchmarks show promising average gains at equal forward-pass counts, especially for GSM8K and highly parallel decoding. However, the conceptual novelty is modest, several claims overstate the consistency of the results, and important evaluation and decoding details remain insufficiently controlled.",
+        "strengths": [
+          "The approach is simple, model-agnostic, and directly addresses the irreversibility of accepted tokens without retraining (pp. 4–5).",
+          "Evaluation spans two open dLLMs, five benchmarks, multiple forward-step budgets, and three seeds; the appendix provides detailed numerical results (pp. 6, 15–16).",
+          "Strong gains occur in several practically relevant high-parallelism settings, particularly GSM8K, and component ablations support benefits from refinement and the EoT penalty (pp. 7–8, 15–16)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the core operation is repeated random remasking and reconstruction, closely related to prior inference-time remasking. Calling it “token-level cross-validation” does not introduce a formal validation criterion, confidence signal, or principled target selection (pp. 2–5).",
+          "The claim of consistent superiority is contradicted by Table 1: TOLERATOR is substantially worse than the strongest baseline in multiple settings, including LLaDA TriviaQA for many budgets and several HumanEval endpoints; averaging over tasks and budgets obscures these failures (pp. 6–7, 15).",
+          "Evaluation details raise uncertainty: EoT suppression and fixed length can alter answer extraction and verbosity, hyperparameter selection is not separated from test evaluation, sampling details and EoT handling during refinement are unclear, and equal forward-pass count alone does not establish equal latency. The showcased final reasoning remains malformed despite containing the extractable answer (pp. 5–6, 16–17)."
+        ],
+        "score_rationale": "The paper offers a useful and empirically promising decoding heuristic, with broad experiments and particularly strong math gains. Nevertheless, its contribution is incremental over existing remasking methods, its “consistent improvement” narrative is not supported by the full table, and unresolved evaluation confounds weaken the evidence. I therefore place it marginally below acceptance; uncertainty mainly concerns whether fuller implementation and extraction details would resolve these concerns."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple training-free decoder that spends part of a fixed forward-pass budget producing a complete draft and the remainder repeatedly remasking random token subsets. Results on two dLLMs and five benchmarks show useful gains, especially at low-to-moderate step budgets, but the contribution is incremental and the evidence does not fully support the paper’s broad consistency and efficiency claims.",
+        "strengths": [
+          "The two-stage decoder is simple, model-agnostic, and directly addresses irreversible token acceptance without retraining (pp. 4–5).",
+          "The study covers two open dLLMs, five benchmarks, multiple task types, and forward-step budgets from 4 to 256, with exact results and three-seed estimates (pp. 6, 15).",
+          "Ablations separately examine refinement steps, EoT penalization, and rate annealing; refinement produces large improvements on GSM8K in several settings (pp. 7–8, 16)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the core operation is random iterative remasking and parallel re-decoding, closely related to the remasking approaches discussed on pp. 2–3. Calling this “cross-validation” overstates the mechanism, and no theory or targeted validation criterion explains why random subsets should reliably correct rather than corrupt tokens.",
+          "Claims of consistent improvement are contradicted by Table 1: TOLERATOR loses to vanilla in multiple settings, including Dream HumanEval and MBPP at 256 steps and LLaDA TriviaQA across most moderate/high budgets (p. 15). The reported aggregate relative gains obscure these regressions, and no significance tests accompany the three-seed results.",
+          "The quality–efficiency evaluation is incomplete. Figure 2 reports a single TPS curve rather than method-specific wall-clock latency, while remasking patterns may affect implementation costs (p. 6). Reproducibility also lacks the exact mapping from step count to EoT penalty and details of EoT/output handling under fixed length 256, which are important because the EoT penalty itself yields large gains (pp. 6, 8, 16)."
+        ],
+        "score_rationale": "The method is practical and the low-budget gains are promising, but it is a modest variation on prior remasking, lacks a convincing mechanism beyond iterative resampling, and overstates consistency and efficiency. I therefore place it marginally below acceptance; uncertainty remains because independent replication or more precise runtime reporting could materially change the assessment."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes a simple training-free decoder that first completes a draft and then repeatedly remasks random token subsets for conditional regeneration. Results on two dLLMs and five benchmarks show useful gains, particularly with highly parallel decoding, but the evidence does not cleanly establish that the proposed token-level “cross-validation” is responsible for the improvements.",
+        "strengths": [
+          "The method is simple, model-agnostic, and evaluated across two open dLLMs, five diverse benchmarks, and forward-step budgets from 4 to 256 (pp. 6, 15).",
+          "Exact per-task results and several component studies are supplied; the largest improvements occur in the practically relevant low-step regime, especially for GSM8K (pp. 7–8, 15–16).",
+          "The paper candidly identifies format instability and lack of natural convergence as limitations (p. 9)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: the central operation is unconditional random-subset remasking and replacement, closely resembling established iterative denoising/remasking. “Cross-validation” adds no validation score, acceptance test, or clear technical principle beyond contextual regeneration (pp. 3, 5).",
+          "The main comparison confounds refinement with an EoT-logit penalty applied only to TOLERATOR. The λ=1 ablation is frequently worse than vanilla—for example at 128 steps on Dream GSM8K and LLaDA GPQA/GSM8K—while nontrivial penalties create large gains (pp. 8, 15–16). Baselines with the same penalty, output-length statistics, and length-controlled evaluation are necessary.",
+          "Claims of consistent superiority are overstated: TOLERATOR loses to vanilla in multiple high-step settings, including Dream HumanEval/MBPP/GSM8K and LLaDA TriviaQA/HumanEval (p. 15). The paper also omits significance tests, actual method-specific latency, and sufficiently precise refinement-time/timestep and sampling details (pp. 5–6)."
+        ],
+        "score_rationale": "The broad experiments suggest a potentially useful decoding heuristic, but low conceptual novelty and the missing EoT-penalty control prevent attribution of the reported gains to the claimed refinement mechanism. Together with inconsistent high-budget results and underspecified inference details, this places the work marginally below acceptance."
+      }
+    }
+  ]
+}

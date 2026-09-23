@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_091",
+  "paper_id": "Mfnh1Sqdwf",
+  "number": 12644,
+  "title": "Learning to Discover Regulatory Elements for Gene Expression Prediction",
+  "authors": "Xingyu Su; Haiyang Yu; Degui Zhi; Shuiwang Ji",
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": "Gene Expression; Deep Learning; Sequence Modeling",
+  "forum_url": "https://openreview.net/forum?id=Mfnh1Sqdwf",
+  "venue": "ICLR 2025 Oral",
+  "status": "accepted_oral",
+  "decision": "Accept (Oral)",
+  "human_ratings": [
+    8,
+    8,
+    8,
+    6
+  ],
+  "human_mean_rating": 7.5,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "In this paper the authors have highlighted the importance of gene expression as the fundamental process in biology, and have introduced a framework for predicting gene expressions by leveraging causal relationships between DNA sequences, epigenomic signals and regulatory elements or motifs. They have provided viability of this approach over two cell types and also state that adding the \"extra info\" in form of epigenomic signals is not always useful and may act as noise in some prediction tasks. To agree on generalization of this approach it has to be tested on more cell types and diverse epigenomic data."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "When I compare this paper with other benchmarks (except EPInformer) in the field and for the same problem definition - I would rate this paper as high in terms of originality & significance. Yes, this work shows that gene expression prediction is not a siloed process, and that there are causal relationships between DNA sequences, epigenomic data, regulatory elements, and surrounding causal / non-causal parts of the input data. Also, deep learning algorithms can learn from these relationships and perform better gene expression predictions."
+        },
+        "weaknesses": {
+          "value": "This follows from my comments on the strengths of the paper. After reading the EPInformer paper (released in early 2024), my rating reduces. Was this idea a new approach? I respectfully decline. EPInformer highlights the same intent, experimental approach and even comes very close in performance benchmarks & standard metrics. Not sure if this paper has added anything new for the ICLR community? To me as a reader, it has only reinforced the claims of EPInformer. I would have been happier if they can show viability of this approach over multiple cell types. But, data availability may be a limitation here.\n\nUpdate: Thanks to the authors for reviewing my feedback and responding with relevant updates in the paper and their explanation. My concerns are settled. I would like to update my rating for this paper accordingly."
+        },
+        "questions": {
+          "value": "Table 1 shows good comparison with previously available benchmark models and datasets. However, looking at EPInformer row, my question is did the authors run the EPInformer code or model over the CAGE prediction data? Because I only saw Pearson metric in the EPInformer paper. How were they able to get MSE, MAE, R2 numbers for comparison?\n\nIn the same table, GM12878 CAGE prediction numbers between EPInformer and Seq2Exp are exactly the same at two decimal places (not a significant improvement). This also indicates that the approach presented in the two papers is very similar. Neither one is better than the other. Originality in terms of problem definition and solution is also similar.\n\nAlso, some numbers do not match between the EPInformer row in this paper and the original EPInformer paper. For example, in the original EPInformer paper, figure 2C, Pearson coefficient for K-562 on CAGE-seq hold out test set is 0.848. But, the same info in Seq2Exp paper, table 1, says is 0.8517. How come?\n\nUpdate: Questions / Concerns were settled by reply from the authors. Thanks!"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "jKlrZhVwsk",
+      "forum": "Mfnh1Sqdwf",
+      "replyto": "Mfnh1Sqdwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_hbLE"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_hbLE"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12644/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731172101966,
+      "cdate": 1731172101966,
+      "tmdate": 1732723457455,
+      "mdate": 1732723457455,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper is aimed at predicting gene expression from DNA sequence. In addition to the sequence itself, it also incorporates epigenetic information at each based. The model consists of two MAMBA-based Caduceus networks: the first network is trained to estimate a sparse mask over the bases to select regulatory regions, and the second one uses the selected DNA regions to predict the expression of the gene."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The paper showcases a successful application of the recently-proposed Selective State Space models (specifically, MAMBA-based Caduceus) on relatively long sequences (200k). \n\nThe model goes beyond most current approaches by combining sequence with epigenetic signaling in a single, jointly optimized architecture. The architecture is sound, and uses information bottleneck principle to promote sparsity of the mask for selecting sequence regions, and then a straight-through estimator to allow differentiability through the hard mask being produced by the first network.\n\nExperimental evaluation shows that the proposed architecture leads to improved prediction, in comparison with Transformer- and State-space-based models."
+        },
+        "weaknesses": {
+          "value": "While the manuscript is mostly well written, it could use a more detailed explanation in several places, specifically related to:\n- gene expression Y: it is often just described as \"target variable Y\", or \"$Y \\in R$. From 5.1.4 we read that ultimately the model is applied to a 200kbp region around a specific target gene, and one can understand that Y is the expression of that gene; it would be helpful to provide this information clearly earlier in the paper. \n- model architecture: it also deferred to 5.1.4, and only described in one sentence (Caduceus-Ph). One would expect it to be in 4.1. entitled \"Model architecture\". Also, key details are missing: what are the specific hyperparameters (#layers, hidden dimension, etc.)? Is this a network trained de-novo for the expression task, or pre-trained (Caduceus has pretrained models of up to 131kbp, this one is 200kbp, if it was pre-trained by the authors, more details should be provided)."
+        },
+        "questions": {
+          "value": "Details about the network training (and pre-training, if used), including architectural hyperparameters, as well as training procedure details (# steps, etc)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "HejRtowXPJ",
+      "forum": "Mfnh1Sqdwf",
+      "replyto": "Mfnh1Sqdwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_KQDw"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_KQDw"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12644/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730718494759,
+      "cdate": 1730718494759,
+      "tmdate": 1731429074313,
+      "mdate": 1731429074313,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper describes a model, Seq2Exp, that predicts gene expression values from two inputs: DNA sequence and a corresponding matrix of epigenomic measurements.   A key component of the model is a binary masking strategy that aims to automatically identify relevant regulatory elements in the DNA sequence.  The model uses an information bottleneck approach to try to ensure accurate extraction of relevant sequence signals.  The method is compared to a variety of state-of-the-art methods and yields better performance according to a variety of measures."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The main idea is well articulated and sensible.\n\nThe paper is very clearly written.\n\nThe related work section does a reasonable job of covering the recent, relevant literature.\n\nThe model is well formulated and modeling choices are well motivated in the text.\n\nThe empirical results are strong."
+        },
+        "weaknesses": {
+          "value": "I think the sentence \"Gene expression prediction is one of the fundamental tasks in bioinformatics.\" should be supported with a citation or two from some of the seminal works in this area, e.g., Nir Friedman's 2000 paper on predicting gene expression from promoter sequences.\n\nThe task description should be expanded.  It's not clear, from the description, how the inputs are registered to the output value Y.  Is the idea that the length-L input window is centered on the TSS?  To my mind, it would be clearer to represent Y as a vector over genes, and then include some formalism to represent the indexing of genes relative to X_{seq} and X_{sig}.\n\nLine 420 (\"Furthermore, we incorporate additional features such as mRNA half-life and promoter activity ...\") is problematic because it sounds like this is an incomplete list.  For reproducibility, all inputs should be precisely described.  These features are not mentioned at all in Appendix A.3.\n\nI don't see any point in using both R and R^2 as two distinct performance measures.  One is just the square of the other.\n\nMinor point, but I think you should mention in the description of the baseline methods the size of the field of view of each one."
+        },
+        "questions": {
+          "value": "A priori, I would expect the true binary mask to be \"lumpy,\" i.e., groups of nearby base pairs should tend to be either relevant or irrelevant, reflecting the fact that, e.g., TFs tend to bind to regions rather than single base pairs.  How does your model handle this?\n\nSection 5.1.2 does not make clear whether the competing methods were trained using your cross-chromosome train/test splits.  Is that the case?  I think you should clarify this point in the paper and also discuss how it may impact your results.  If you trained from more or a different type of data than your competitors, the comparison might be unfair.  OTOH,  if your competitors trained on data from your test chromosomes, then it might be unfair in the other direction.\n\nI like the idea of Section 5.3, but I had trouble understanding exactly what was done here. MACS3 is a peak caller, so what is the model that predicts expression in this setting?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ckaWfgPYVe",
+      "forum": "Mfnh1Sqdwf",
+      "replyto": "Mfnh1Sqdwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_AbGL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_AbGL"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12644/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730505301170,
+      "cdate": 1730505301170,
+      "tmdate": 1731429074301,
+      "mdate": 1731429074301,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper deals with integrating genomic and epigenomic data to extract relevant regulatory DNA regions to predict gene expression, through the learning of a mask on DNA base pairs. The mask is then applied on the data, base-pair-position wise, and the masked data is used to train the predictor for gene expression. The paper describes the corresponding model in detail, and tests it alongside several baselines on genomic and epigenomic data."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- Quality: The submission seems technically correct and experimentally rigorous (however, I did not check the appendix in detail). The experimental results are convincing and appropriately compared to the numerous baselines.\n- Clarity: It is well-grounded in the literature. The paper is well written and the contribution is clear. \n- Originality: The paper proposes a novel decomposition of regulatory regions into three groups, that have different causal relationships to genomic and epigenomic data."
+        },
+        "weaknesses": {
+          "value": "- Quality: The submission is not reproducible, as no code is provided (nor is the availability of the code discussed in the main paper nor in Appendix). There is no mention of hyperparameter tuning or value selection, especially for $\\alpha_3$ and $\\beta_3$, which parametrize the distribution of the soft mask on the regulatory regions. Performance is important for these methods, but I think runtimes across baselines and Seq2Exp should also be reported for practical purposes.\n- Clarity: Some parts are not clear, for instance, the inclusion of additional data in the experiments, or the use of Hi-C data (see questions). \n- Significance: The assumption of independence of selection of regulatory regions across base pair positions at fixed (epi)genomic data (assumption written at the bottom of page 4) might be a bit too strong for the real-life data (for instance, for CpG islands -although, no methylation peaks are considered in these papers). I understand that it simplifies the computations and allows for a tractable model training, but perhaps it should be discussed further in the paper. \n\nThe non-reproducibility and the unclear parts are the main reasons why I rate this paper 6 instead of 7-8."
+        },
+        "questions": {
+          "value": "- What values were used for $\\alpha_3$, $\\beta_3$ in the experiments?\n- Hi-C data usually gives access to a contact matrix between regions of length at least 5,000 base pairs. The appendix mentions that the paper “calculat[es] the frequency of contacts between a specific region (TSS) and all other regions, generating a Hi-C frequency distribution across the genome.” (page 15) What is exactly concatenated to the remainder of epi/genomic data? A matrix of size #base pairs x #regions that contains the frequency of contacts between the region to which a base pair belongs and all other regions? Doesn’t the number of regions change across chromosomes? Or is it a fixed number in your implementation?\n- At page 8, “we incorporate additional features such as mRNA half-life and promoter activity from previous studies”. Where are those features added? To train the gene expression predictor $g_\\phi$? Are they also added to all other baselines, and if so, at which point in their model of gene expression? \n- Why don’t you use a neural network for also learning the parameters of the beta distribution for epigenomics ($\\alpha_2$, $\\beta_2$)?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "TCIkBBubep",
+      "forum": "Mfnh1Sqdwf",
+      "replyto": "Mfnh1Sqdwf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_XARj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12644/Reviewer_XARj"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12644/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729693112131,
+      "cdate": 1729693112131,
+      "tmdate": 1731429074256,
+      "mdate": 1731429074256,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Seq2Exp combines sequence and epigenomic signals through a Beta-distributed information-bottleneck mask, then predicts CAGE expression from the masked input. The approach is potentially useful and improves predictive metrics on two cell types, but its causal interpretation is unsupported, the core probabilistic derivation is flawed, and regulatory-element discovery is not biologically validated.",
+        "strengths": [
+          "The model offers a reasonably novel multimodal adaptation of stochastic rationale extraction to 200-kbp genomic inputs, with both hard and soft mask variants (pp. 5–8).",
+          "Across K562 and GM12878, Seq2Exp consistently improves MSE/MAE over the strongest signal-augmented baseline; five-run standard deviations are reported (pp. 10, 16).",
+          "The manuscript provides chromosome-held-out evaluation, data accessions, preprocessing descriptions, and key hyperparameter ranges (pp. 9, 14–16)."
+        ],
+        "weaknesses": [
+          "The central decomposition is mathematically incorrect as stated: Bayes' rule yields a factor proportional to p(m|Xseq)p(m|Xsig)/p(m), but the paper drops p(m) merely because its parameters are fixed, although it remains a function of m (p. 14). Moreover, conditional independence given a learned mask does not establish the claimed structural causal model or identify causal regulatory elements (pp. 4–6).",
+          "Evidence for regulatory-element discovery is inadequate. Better expression prediction than a MACS3-derived mask is not ground-truth validation of causal enhancers; there is no comparison to CRISPR perturbations, validated enhancer–gene links, motif enrichment, localization metrics, or representative locus analysis (p. 10).",
+          "Important implementation and attribution details are underspecified: Xsig is multidimensional but is directly assigned to a single Beta parameter, signal scaling and positivity/validity constraints are unclear, and there are no ablations isolating the Beta product, KL bottleneck, modalities, or auxiliary gene features (pp. 6–8, 15). Generalization is assessed only in two cell types (p. 10)."
+        ],
+        "score_rationale": "The consistent predictive gains make the work promising, but they do not rescue the erroneous core factorization or substantiate the paper's causal discovery claims. With limited biological validation and missing ablations, the submission is below the acceptance threshold despite solid empirical prediction results."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "Seq2Exp combines sequence and cell-type-specific epigenomic signals through a Beta-distributed information-bottleneck mask for expression prediction. The approach is potentially useful and reports consistent predictive improvements, but its causal/theoretical justification is flawed and the experiments do not establish that the learned masks correspond to genuine regulatory elements.",
+        "strengths": [
+          "The model offers an interpretable, end-to-end mechanism for integrating long DNA sequences with DNase-seq, H3K27ac, and Hi-C signals rather than relying on fixed peak calls (pp. 6–8).",
+          "Seq2Exp-soft achieves the best reported metrics in both cell types, with five-seed standard deviations supplied; improvements over the strongest signal-aware baseline are clearest for K562 (pp. 10, 16).",
+          "Chromosome-held-out evaluation and inclusion of a direct Caduceus-with-signals baseline help isolate some benefit of the masking mechanism (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Proposition 1 is not correctly derived: the posterior product should be divided by p(m), which cannot be discarded merely because its parameters are predefined; it remains a function of m. Moreover, the asserted conditional independence and causal interpretation of an inferred mask are not justified empirically (pp. 4–5, 14).",
+          "The regulatory-element discovery claim lacks biological validation. Better expression prediction than a MACS3 mask does not demonstrate causal or even correctly localized elements; there is no comparison against validated enhancer–gene links, perturbation data, or annotation-based localization metrics (p. 10).",
+          "Evidence is narrow and several implementation/fairness details are unclear: only two cell lines are studied, gains over Caduceus-with-signals are small or within reported variability for some GM12878 metrics, and the construction/normalization of multichannel signals as Beta parameters and enforcement of valid positive parameters are underspecified (pp. 7, 10, 15–16)."
+        ],
+        "score_rationale": "The predictive results and explicit signal-aware masking are promising, but novelty is moderate and the central probabilistic derivation is unsound. Most importantly, the evidence supports improved prediction more than discovery of causal regulatory elements. I therefore rate it marginally below acceptance, with some uncertainty because missing implementation details could clarify the Beta parameterization and baseline comparability."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Seq2Exp combines sequence and cell-specific epigenomic signals through a learned Beta-distributed mask and a Caduceus predictor. It reports consistent predictive improvements on two cell types, but the central probabilistic derivation is incorrect and the experiments do not substantiate the claimed discovery of causal regulatory elements.",
+        "strengths": [
+          "The framework addresses a meaningful problem and integrates long-range DNA sequence with DNase-seq, H3K27ac, and Hi-C signals in an interpretable masking architecture (pp. 7–9).",
+          "Seq2Exp improves MSE, MAE, and Pearson correlation over the reported baselines in both K562 and GM12878, with results over five seeds (pp. 10, 16).",
+          "Chromosome-held-out evaluation is preferable to random gene splitting and reduces straightforward genomic leakage (p. 9)."
+        ],
+        "weaknesses": [
+          "Proposition 1 is mathematically invalid as stated: Bayes' rule yields p(m|Xseq,Xsig) proportional to p(m|Xseq)p(m|Xsig)/p(m), but the appendix drops p(m) merely because its parameters are fixed, although it remains a function of m (p. 14). Consequently, the product-of-Betas rule used to construct the mask does not follow from the claimed model.",
+          "The causal and regulatory-element-discovery claims are unsupported. The SCM is asserted rather than identified, and validation only compares downstream prediction after masking against MACS3; there is no CRISPR/perturbation evidence, enhancer ground truth, motif enrichment, or locus-level analysis showing that selected bases are causal regulatory elements (pp. 4–5, 10).",
+          "Experimental and implementation reporting is insufficient for strong conclusions: the handling and scaling of multiple signal channels in α2=Xsig is unclear, positivity constraints are unspecified, baseline training/computational matching is not established, and evaluation covers only two cell types with modest gains over Caduceus plus signals (pp. 7–10, 15)."
+        ],
+        "score_rationale": "The predictive results are promising and reasonably consistent, but the paper's key theoretical justification contains a consequential error, while its principal causal-discovery claim is not directly evaluated. These issues outweigh the modest empirical gains, placing the work below the acceptance threshold despite uncertainty about omitted implementation details."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Seq2Exp combines sequence and epigenomic inputs through a Beta-distributed information-bottleneck mask and reports modestly improved expression prediction on two cell types. The predictive results are promising, but the central causal/regulatory-element interpretation is not technically or empirically established.",
+        "strengths": [
+          "The model offers a coherent, end-to-end mechanism for sparse, nucleotide-level masking of long multimodal genomic inputs (pp. 5–8).",
+          "Seq2Exp consistently improves MSE/MAE over the strongest signal-aware Caduceus baseline, with results averaged over five seeds (pp. 10, 16).",
+          "The manuscript includes both hard and soft variants and a chromosome-held-out evaluation rather than a random gene split (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Proposition 1 is generally incorrect as stated: Bayes' rule yields a factor of 1/p(M), which cannot be omitted merely because the prior has fixed parameters unless its density is uniform. Moreover, the conditional-independence assumption and proposed SCM do not justify treating the learned mask as a causal regulatory element (pp. 4–5, 14).",
+          "Evidence for regulatory-element discovery is inadequate. Predictive utility of a supervised mask does not establish biological or causal validity, and the MACS3 comparison confounds methods, modalities, supervision, and mask ratios; there is no validation against CRISPR perturbations, curated enhancer–gene links, motifs, or locus-level examples (p. 10).",
+          "Experimental support is narrow and incompletely specified: only two cell types are tested, gains over the signal-aware baseline are small relative to reported variation on some metrics, and important details such as signal aggregation into Beta parameters, positivity constraints, Cβ, and baseline training parity are unclear (pp. 7, 9, 15–16)."
+        ],
+        "score_rationale": "The multimodal masking idea and predictive improvements provide some value, but the faulty decomposition and unsupported causal interpretation undermine the main methodological claim. With only limited predictive benchmarks and no convincing biological validation of the discovered regions, the work falls below the acceptance threshold despite promising empirical results."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "Seq2Exp learns a sparse nucleotide-level mask from DNA sequence and epigenomic signals, then predicts CAGE expression from the masked inputs. The reported results on two cell types are promising, but the causal interpretation and regulatory-element discovery claims are not adequately supported, and the central probabilistic derivation has important inconsistencies.",
+        "strengths": [
+          "The framework combines long-range sequence modeling, multimodal epigenomic inputs, and an explicit sparse mask in a conceptually useful architecture (pp. 6–8).",
+          "Seq2Exp-soft consistently improves the reported predictive metrics over the tested baselines in both K562 and GM12878, with five-seed variability provided (pp. 10, 16).",
+          "The chromosome-held-out evaluation and comparison against both sequence-only and signal-aware baselines are appropriate first steps (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The key decomposition is not generally valid as presented: Bayes' rule yields a factor of 1/p(m), which cannot be omitted merely because the prior has fixed parameters; this is especially inconsistent with the later non-uniform sparse Beta prior (pp. 5–6, 14). The claimed causal graph and conditional-independence assumption are asserted rather than identified or empirically tested (pp. 4–5).",
+          "Regulatory-element discovery is not validated against independent biological ground truth, perturbation assays, or established enhancer–gene links. Better expression prediction than a MACS3 mask does not establish that selected bases are causal regulatory elements, and the comparison also uses differing mask ratios (p. 10).",
+          "Evidence is narrow and lacks decisive ablations: only two cell types are evaluated; there is no isolation of sequence-derived versus signal-derived masks, Beta fusion, bottleneck strength, or individual signal contributions. The construction α2=Xsig and subtraction of one in the combined Beta parameters also lacks a clearly specified positivity-preserving preprocessing (pp. 7, 10, 15–16)."
+        ],
+        "score_rationale": "The paper offers a moderately novel masking formulation and encouraging predictive gains, but its main causal/probabilistic justification is flawed and its central biological discovery claim is supported only indirectly. The limited scope and missing ablations make the contribution fall below the ICLR acceptance bar, though implementation details not fully specified in the manuscript leave some uncertainty."
+      }
+    }
+  ]
+}

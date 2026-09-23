@@ -1,0 +1,210 @@
+{
+  "year": 2026,
+  "package_id": "paper_094",
+  "paper_id": "4ihxXIakoY",
+  "number": 24048,
+  "title": "On the Adversarial Robustness of Discrete Image Tokenizers",
+  "authors": [
+    "Rishika Bhagwatkar",
+    "Irina Rish",
+    "Nicolas Flammarion",
+    "Francesco Croce"
+  ],
+  "primary_area": "alignment, fairness, safety, privacy, and societal considerations",
+  "keywords": [
+    "adversarial robustness",
+    "unsupervised attacks",
+    "discrete image tokenizers"
+  ],
+  "forum_url": "https://openreview.net/forum?id=4ihxXIakoY",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    6,
+    2
+  ],
+  "human_mean_rating": 4.666666666666667,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "6a7fVJjphj",
+      "forum": "4ihxXIakoY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24048/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762181018237,
+      "tmdate": 1762942911408,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "HuYafVXr0F",
+      "forum": "4ihxXIakoY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24048/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762137686879,
+      "tmdate": 1762942911628,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 1
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "iBxlNHvIKs",
+      "forum": "4ihxXIakoY",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission24048/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761614309855,
+      "tmdate": 1762942911916,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper identifies an important, apparently underexplored vulnerability of discrete image tokenizers and adapts unsupervised embedding-space attacks/adversarial fine-tuning to this setting. Results span classification, retrieval, VQA, reconstruction, and captioning, with substantial robustness gains after replacing only the tokenizer encoder. However, the central robustness evidence depends heavily on straight-through-gradient attacks against a discrete quantizer, without sufficiently strong checks against gradient masking, and some safety/generalization claims exceed the presented evidence.",
+        "strengths": [
+          "Timely problem formulation: tokenizer-level attacks are task-agnostic and computationally cheaper than attacking an entire multimodal system, while the first-study claim appears plausible from the supplied related work (pp. 1–4).",
+          "Broad empirical coverage shows large gains against end-to-end attacks across FuseLIP classification/retrieval and UniTok classification/VQA, while exposing clear clean–robust trade-offs (pp. 6–7, 15–17).",
+          "The plug-in defense is practical: only the tokenizer encoder is fine-tuned, and the cross-task comparison suggests better transfer than one task-specific end-to-end baseline (pp. 5, 9, 18)."
+        ],
+        "weaknesses": [
+          "Robustness evaluation through a straight-through estimator is not conclusive for a piecewise-constant quantizer. The paper lacks transfer, score-based/black-box, randomized, or other adaptive sanity checks; the zero changed-token counts for most robust models make gradient masking a material concern (pp. 14, 18). Table 8 also reports attacked accuracy above clean accuracy in several cells, suggesting the reported metric does not always enforce the clean point as part of the adversarial minimum (p. 17).",
+          "The strongest safety claims rely on only three qualitative targeted-caption examples per attack, with no success rates, larger evaluation, alternate targets, or adaptive evaluation of the defended model (pp. 7–9). Thus claims of reliably preventing harmful outputs are under-supported.",
+          "Novelty is moderate rather than high because both the feature-distortion attack and unsupervised adversarial fine-tuning substantially adapt prior continuous-encoder/robust-CLIP methods. Moreover, the comparison to supervised adversarial training changes objectives, radii, steps, and trainable components, so it does not isolate the source of transfer or efficiency gains (pp. 2, 4–5, 9)."
+        ],
+        "score_rationale": "The paper offers a useful new application area, a simple practical defense, and encouraging breadth of results, placing it slightly above the acceptance boundary. The main uncertainty is whether the reported robustness survives stronger adaptive evaluation of the discrete quantization boundary; resolving that issue and quantifying caption attacks would materially strengthen the work."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper studies adversarial attacks and tokenizer-only adversarial fine-tuning for discrete image tokenizers. The topic is timely and the empirical scope is broad, with substantial robustness gains across classification, retrieval, VQA, and captioning, but the evidence does not yet fully rule out attack weakness around discrete quantization.",
+        "strengths": [
+          "A novel and practically relevant focus: tokenizer-level attacks are task-agnostic and cheaper than attacking an entire multimodal system (pp. 3–4, 18).",
+          "Replacing only the tokenizer yields large gains under end-to-end attacks across several downstream tasks and datasets, with explicit clean–robust trade-offs (pp. 6–7).",
+          "The paper includes useful analyses of training-data transfer, supervised versus unsupervised fine-tuning, attack objectives, token changes, and runtime (pp. 9, 15–18)."
+        ],
+        "weaknesses": [
+          "Robustness evaluation relies heavily on straight-through gradients through quantization. Zero changed tokens for most robust tokenizers and identical/non-monotonic attacked accuracies are warning signs of gradient masking; stronger adaptive BPDA, score-based, transfer, and multi-restart attacks are needed (pp. 14, 17–18).",
+          "Several evaluations are limited: classification uses only 500 images, captioning safety evidence is qualitative with a few examples, and sample counts or uncertainty estimates for VQA/retrieval are not reported (pp. 7–8, 14).",
+          "The defense is a fairly direct adaptation of prior unsupervised robust-encoder fine-tuning, and claims such as robustness to “all attacks” and broad safety implications exceed the tested ℓ∞ white-box settings (pp. 2, 5, 9)."
+        ],
+        "score_rationale": "This is a useful, likely publishable first study with convincing apparent gains and good task coverage. However, quantization makes attack validation decisive, and the reported token stability and unusual attack results leave meaningful uncertainty about whether the robustness is genuine. I therefore lean marginally above acceptance rather than clear accept."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper studies adversarial attacks on discrete image tokenizers and adapts unsupervised adversarial feature fine-tuning to robustify them. The topic is timely and the evaluation spans classification, retrieval, VQA, captioning, and reconstruction. However, the central robustness evidence is undermined by signs of gradient masking and an insufficiently adaptive evaluation for discrete quantization.",
+        "strengths": [
+          "The tokenizer-level threat model is relevant and comparatively underexplored, with attacks and defenses evaluated across several downstream architectures and tasks (pp. 4–8).",
+          "Tokenizer-only adversarial fine-tuning produces large reported gains under both feature-space and end-to-end attacks while leaving downstream components frozen (pp. 6–8, 17).",
+          "The paper includes useful analyses of clean–robust trade-offs, training data, attack objectives, token changes, and runtime; the reported 2.2× training-step speedup supports the efficiency motivation (pp. 9, 15–18)."
+        ],
+        "weaknesses": [
+          "The evaluation relies mainly on straight-through gradients through a piecewise-constant quantizer, without convincing adaptive black-box, transfer, BPDA/EOT, or gradient-free checks. Alarmingly, attacked accuracy sometimes exceeds clean accuracy and remains exactly constant across increasing radii (Table 8, p. 17), while Table 10 reports zero changed tokens even among purportedly successful attacks (p. 18). These anomalies make the robustness gains difficult to trust.",
+          "Novelty is moderate: the defense largely transfers the existing robust-CLIP feature-consistency formulation to tokenizer encoders, and the proposed attack simply maximizes pre-quantization feature distance rather than directly addressing quantization geometry (pp. 4–5).",
+          "Evidence for safety and generalization is limited: targeted captioning uses only a few qualitative examples (p. 8), most classification evaluations use only 500 images (p. 14), and the supervised-training comparison changes the tokenizer/codebook for one task before inserting it into another frozen system, confounding task overfitting with representation incompatibility (p. 9)."
+        ],
+        "score_rationale": "The problem and breadth are valuable, but robustness is the paper’s main claim, and the numerical anomalies plus lack of adaptive evaluation leave open the possibility that much of the gain reflects attack failure around quantization. Together with incremental methodology and limited quantitative safety evidence, this warrants a below-acceptance score despite promising results."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper studies adversarial attacks on discrete image tokenizers and adapts unsupervised feature-space adversarial fine-tuning to robustify them. Across classification, retrieval, VQA, and captioning, replacing only the tokenizer encoder yields substantial robustness gains, though the breadth of the safety and generalization claims exceeds the evaluation.",
+        "strengths": [
+          "Timely problem formulation with a useful task-agnostic attack and plug-in defense; novelty is strongest in systematically examining discrete tokenizers, while the optimization method itself largely adapts prior robust-encoder training (pp. 3–5).",
+          "Broad downstream evaluation shows large gains under end-to-end attacks: e.g., average UniTok classification robustness at 4/255 rises from 0.0% to as high as 51.3%, and VQA from 6.4% to 37.4% (pp. 6–7).",
+          "The paper includes useful trade-off, training-data, objective, token-stability, and runtime analyses, including a reported 2.2× tokenizer-level training speedup (pp. 9, 15–18)."
+        ],
+        "weaknesses": [
+          "Evaluation of discrete defenses may be vulnerable to gradient masking: it relies on straight-through gradients, and retrieval/VQA use only APGD-based custom attacks without convincing gradient-free, transfer, or exact discrete-boundary checks (pp. 6, 14). This is especially important given the zero token changes reported for many defended models (p. 18).",
+          "The headline captioning/safety conclusions rest on only a few qualitative targeted examples, without attack success rates, larger-scale evaluation, or comparison to alternative attacks (pp. 7–9, 16).",
+          "The defense is demonstrated mainly on two related vector-quantized tokenizer families, with sizable clean-accuracy costs at stronger training radii; claims about general tokenizers and broad safety therefore remain uncertain (pp. 6–7, 14)."
+        ],
+        "score_rationale": "The work is relevant, clearly motivated, and empirically substantial enough to be marginally above acceptance. However, the core method is an incremental adaptation of feature-space adversarial training, and insufficiently adaptive evaluation for a quantized model plus largely qualitative safety evidence prevents a stronger score."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper studies adversarial vulnerability in discrete image tokenizers and adapts unsupervised embedding-space adversarial fine-tuning to robustify them. The topic is timely and the evaluation spans classification, retrieval, VQA, reconstruction, and captioning, with substantial reported gains after replacing only the tokenizer encoder. However, the defense is technically close to prior robust-CLIP fine-tuning, and the attack evaluation does not fully rule out gradient obfuscation from quantization and straight-through estimation.",
+        "strengths": [
+          "Identifies an underexplored and practically important attack surface, with a clear task-agnostic attack formulation and plug-compatible defense (pp. 3–5).",
+          "Reports large robustness gains across several downstream tasks and unseen datasets while documenting the clean–robust trade-off (pp. 6–7, 15–17).",
+          "Includes useful comparisons of task-specific versus tokenizer-only training, attack objectives, token changes, and runtime (pp. 9, 17–18)."
+        ],
+        "weaknesses": [
+          "Robustness is evaluated primarily through gradient attacks using a straight-through estimator; no gradient-free, transfer, or other adaptive evaluation convincingly excludes quantization-induced gradient masking, especially given the near-total token invariance in Table 10 (pp. 14, 18).",
+          "Some attack results are internally concerning: Table 8 reports attacked accuracy exceeding clean accuracy for several robust models, which is incompatible with standard worst-case robust accuracy unless the clean point is excluded and suggests weak attacks or unclear metric construction (p. 17).",
+          "Novelty of the defense is moderate because it directly extends the robust-CLIP embedding-consistency approach; moreover, several evaluations use only 500 images and the targeted captioning safety evidence is qualitative and limited to a few examples (pp. 2, 8, 14)."
+        ],
+        "score_rationale": "This is a relevant, well-motivated first study with broad empirical evidence and a useful tokenizer-level defense. I lean marginally above acceptance because the results are substantial and transferable, but confidence in the central robustness claim is limited by insufficiently adaptive evaluation around the discrete bottleneck and anomalous attack metrics."
+      }
+    }
+  ]
+}

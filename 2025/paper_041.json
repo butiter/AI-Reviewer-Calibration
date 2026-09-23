@@ -1,0 +1,381 @@
+{
+  "year": 2025,
+  "package_id": "paper_041",
+  "paper_id": "bEgDEyy2Yk",
+  "number": 5279,
+  "title": "An efficient implementation for solving the all pairs minimax path problem in an undirected dense graph",
+  "authors": "Gangli Liu",
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": "Minimax path problem; Longest-leg path distance; Min-Max-Jump distance; Widest path problem; Maximum capacity path problem; Bottleneck edge query problem; All points path distance; Floyd-Warshall algorithm; Minimum spanning tree",
+  "forum_url": "https://openreview.net/forum?id=bEgDEyy2Yk",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "human_mean_rating": 1.0,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The praper implements and experimentally tests an algorithm for computing minimax path distance that was proposed in paper Liu 2023. In my opinion the contribution of the paper is certianly below ICLR bar, as there are the following shortcomings:\n- the paper is in area of exparimental algorithmis with no siginificant contribution to machine learning, \n- there is no siginificant contribution to algorithms, i.e., the paper just implents in a straight-forward way the algorithms and tests it, there is not technincal challange in this implementation, nor the tests introduce any nowel methodology,\n- the paper makes false statement that previous quadratic time algorithms have not been impmemented - this is not true as even the orginal paper by Sibson from 1973 contains the Fortran implementation of the algorithm."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper does not contain any significant contribution."
+        },
+        "weaknesses": {
+          "value": "- the paper is in area of exparimental algorithmis with no siginificant contribution to machine learning, \n- there is no siginificant contribution to algorithms, i.e., the paper just implents in a straight-forward way the algorithms and tests it, there is not technincal challange in this implementation, nor the tests introduce any nowel methodology,\n- the paper makes false statement that previous quadratic time algorithms have not been impmemented - this is not true as even the orginal paper by Sibson from 1973 contains the Fortran implementation of the algorithm."
+        },
+        "questions": {
+          "value": "No questions."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "w4S0fVB1i7",
+      "forum": "bEgDEyy2Yk",
+      "replyto": "bEgDEyy2Yk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_ThN1"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_ThN1"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5279/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730751227660,
+      "cdate": 1730751227660,
+      "tmdate": 1731428361115,
+      "mdate": 1731428361115,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Given an undirected graph, this paper considers the problem of computing the minimax path problem between all pairs of vertices. For any path, let the bottleneck edge be the largest edge on the path. For all pairs of vertices, compute a path with the smallest bottleneck edge. The authors refer to a prior paper that suggests a simple spanning tree based algorithm to compute this bottleneck edge and also state that this algorithm has an execution time of O(n^2). The main contribution of this algorithm is in the implementation of this algorithm."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The problem of finding all pairs of minimax path is interesting and has applications within ML"
+        },
+        "weaknesses": {
+          "value": "* A straight-forward implementation of an existing algorithm cannot be considered publishable research\n* Writing quality and presentation is extremely poor\n* Theoretical claims about complexity is not formally established."
+        },
+        "questions": {
+          "value": "NA"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "I8BrFESjF0",
+      "forum": "bEgDEyy2Yk",
+      "replyto": "bEgDEyy2Yk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_YNVS"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_YNVS"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5279/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730669885531,
+      "cdate": 1730669885531,
+      "tmdate": 1731428361232,
+      "mdate": 1731428361232,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper is about an implementation of an algorithm for all pairs minimax path problem in undirected dense graphs that works in $O(n^2)$ time. The problem asks to output the minimax distance between every pair of points s and t, where the minimax distance between s and t is the minimum of the maximum weighted edge in a path from s to t, over all the paths from s to t. The algorithm is from \"Gangli Liu. 2023. Min-Max-Jump distance and its applications. arXiv preprint arXiv:2301.05994 (2023).\", and essentially first finds an MST, and uses the fact that the minimax distance between any s and t is the maximum weighted edge on the st path in the MST. Then they use this fact to fill up an n by n matrix storing all these values. This paper basically codes this algorithm up."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "the problem is well motivated in general."
+        },
+        "weaknesses": {
+          "value": "while the problem is well motivated, finding an implementation for the algorithm is not very well motivated. It seems that no implementation existed before because the algorithms were not very efficient, and the algorithm of Liu is quite simple and efficient. The mere fact of coding that algorithm up is a simple classroom exercise it seems. If there are techniques used for going from the pseucode to the implementation, the authors have not described them, and it seems from the code that there are no such techniques. \nBesides the above fundamental point, the write up could be polished, there are several grammatical mistakes. \nabstract: \"it is a code implementation of...\" -> \" this paper is a code implementation of the minimax path algorithm in Liu\".\nline 18:: works good -> works well.\nline 106:: the sense -> the sign\nin the related work it is good to note if there are any other papers like your paper where they implement an algorithm from a previous paper."
+        },
+        "questions": {
+          "value": "I fundamentally don't see the point in this paper, it seems that all the heavy work and clever ideas were due to the Liu paper. Your correspondence in the conclusion section talks about a paper that was written before Liu, and I believe that implementing that would be hard, but it doesn't mean that implementing Liu's algorithm is hard. Implementing Liu's algorithm seems like a homework exercise, and please clarify any obstacles in doing this."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "KJ3F9s8ftA",
+      "forum": "bEgDEyy2Yk",
+      "replyto": "bEgDEyy2Yk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_Wbvm"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_Wbvm"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5279/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730391886050,
+      "cdate": 1730391886050,
+      "tmdate": 1731428361611,
+      "mdate": 1731428361611,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "Given a weighted graph and a vertex pair, the minimax path problem is to compute a path between the given vertex pair such that the maximum weight of the edges in the path is minimized. All pairs minimax path problem seeks to compute the maximum weight of the minimax path for every vertex pair. This paper implements a fast algorithm for the all pairs minimax path problem, which is proposed in the previous paper. Experiments show that their implementation is indeed faster."
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "Judging from the manuscript, this is the first implementation for $O(n^2)$ time algorithm for the all pairs minimax path problem. Because this algorithm works for any graph including dense graph (where $m=\\Theta(n^2)$), this is actually an optimal algorithm."
+        },
+        "weaknesses": {
+          "value": "The most prominent weakness of this work is that it only provides an implementation of the existing method of the previous paper of Liu (arXiv 2023). I think the implementation itself can be considered as a significant contribution when the original algorithm has some difficulties in implementing and they are tackled by some novel or dedicated techniques. However, the implemented algorithm (Figure 1(a)) is much simpler that seems to be easily implemented, and actually it is implemented by short Python codes (Figure 1(b)). We do not find any implementation techniques in Section 3; Section 3 consists of just an explanation for the existing method of Liu. This means that obtaining simple algorithm that is easy for implement has already been done in the previous work. Thus, I think this is not a significant contribution.\n\nAnother weakness of this work is that it is never compared empirically with the existing (and traditional) O(n^2) algorithm. In the conclusion, the authors claim that the SLINK algorithm of Sibson (1973) is difficult to implement by quoting the conversation with other people. However, we easily find some SLINK implementations such as https://github.com/battuzz/slink and https://github.com/jackyust/SLINK_CLINK . Moreover, the paper of Sibson also has a FORTRAN implementation of his algorithm. Thus, it is questionable that the SLINK algorithm is hard to implement. At least, the authors should try to implement SLINK and compare it with the proposed implementation.\n\nMinor comments:\n- The citations should be enclosed with brackets. Maybe you use \\citet{...} instead of \\citep{...}, don't you?\n- Tables 1 and 2 are significantly wider than the paper width; please fit these tables into the paper width."
+        },
+        "questions": {
+          "value": "Since the APPD matrix contains O(n^2) elements, explicitly computing APPD matrix in O(n^2) time is an optimal algorithm. Thus, I want to consider a variant of this problem: given a graph $G$ with $n$ vertices and $m$ edges, we preprocess $G$ to build a data structure $D$ that can answer the minimax path distance of any vertex pair in reasonable time. For relatively dense graphs, where $m=o(n^2)$ and $m=\\omega(n)$, we can expect to lower the preprocessing time or space requirement below $n^2$ at the cost of query time of $D$. Do you know any existing works for this problem?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 1
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "j5iqkC78Q5",
+      "forum": "bEgDEyy2Yk",
+      "replyto": "bEgDEyy2Yk",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_qiFx"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5279/Reviewer_qiFx"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5279/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730267455381,
+      "cdate": 1730267455381,
+      "tmdate": 1731428362094,
+      "mdate": 1731428362094,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper implements an existing MST-based procedure for producing all-pairs minimax distances and reports substantial runtime improvements over several cubic implementations. The underlying idea is plausible, but the submission offers little algorithmic novelty, an incomplete proof, and insufficiently controlled or reproducible experiments for ICLR.",
+        "strengths": [
+          "The method exploits the standard fact that paths in an MST preserve minimax distances and targets the output-optimal O(n²) regime (pp. 3, 5–6).",
+          "The implementation is simple, and the reported scaling to 10,000 vertices is practically encouraging (pp. 4–5).",
+          "The paper considers both minimax and widest-path variants (pp. 5–6)."
+        ],
+        "weaknesses": [
+          "Novelty is very limited: the algorithm is explicitly taken from Liu (2023), while the principal claim of being the first practical O(n²) implementation is supported mainly by an informal search and private email rather than systematic evidence (pp. 2, 5–8).",
+          "The O(n²) argument is informal and partly misleading: component sizes need not both become O(1) late in execution. A rigorous proof that every pair is written exactly once, including tied weights and disconnected/degenerate inputs, is absent (p. 5).",
+          "The evaluation uses one timing per setting, unspecified datasets, no variance or accuracy checks, incomplete widest-path results, mismatched languages, and no comparison with SLINK/dendrogram-based O(n²) implementations; the anonymous data URL is unavailable in the supplied text (pp. 4–6)."
+        ],
+        "score_rationale": "Although the likely-correct MST procedure yields promising runtimes, implementing a previously published algorithm is not a sufficient research contribution here. The weak complexity justification, unsupported priority claim, and non-reproducible evaluation warrant rejection. There is some uncertainty because a complete external code artifact may resolve implementation details, but none is available in the supplied manuscript."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The manuscript implements a previously published MST-based procedure for producing all-pairs minimax distances and reports favorable runtimes on seven dense graphs. The core idea is classical and the paper offers little algorithmic or empirical novelty beyond a Python implementation.",
+        "strengths": [
+          "The output-sensitive intuition is reasonable: each unordered vertex pair is filled once when an MST edge separates its endpoints, making the matrix-filling work Θ(n²) (PDF p. 5).",
+          "The reported timing trend is consistent with a substantial practical advantage over the particular cubic implementations tested, including a 10,000-point run in 67 seconds (PDF pp. 4–5).",
+          "The manuscript clearly states its restricted setting of undirected dense graphs and connects minimax paths to MST paths (PDF pp. 1–3)."
+        ],
+        "weaknesses": [
+          "Novelty is very limited: the algorithm is explicitly taken from prior work, while O(n²) solutions were already known. The claimed novelty rests on being the “first” implementation, supported only by an informal email and absence of code found online rather than a defensible scientific contribution (PDF pp. 2, 5–7).",
+          "The complexity and correctness treatment is incomplete and partly inconsistent. The implementation’s actual MST routine is not analyzed, so the claimed O(n²) end-to-end bound is not established; moreover, the statement that bottleneck-spanning-tree APPD may be inaccurate conflicts with the cited exact MST path property on which the method relies (PDF pp. 3–5).",
+          "The evidence is inadequate: timings are single runs, datasets and code are unavailable in the submission, language/implementation comparisons are uncontrolled, efficient classical baselines are omitted, and no numerical correctness checks or widest-path results are presented despite correctness claims (PDF pp. 4–6)."
+        ],
+        "score_rationale": "Although the underlying MST construction is plausible and the reported speedups are encouraging, this is primarily an implementation note for a known algorithm. Unsupported priority claims, incomplete end-to-end complexity analysis, internal technical confusion, and weak, irreproducible experiments fall well below ICLR standards."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 2,
+        "confidence": 5,
+        "summary": "The manuscript implements a classical MST-based procedure for producing all-pairs minimax distances and reports substantial timing gains over cubic baselines. The core idea is valid in principle, but the paper offers little novelty beyond implementing a previously published algorithm, and the claimed end-to-end O(n²) implementation is not adequately established.",
+        "strengths": [
+          "The component-splitting procedure is intuitively correct: removing MST edges from largest to smallest assigns each vertex pair the maximum edge on its unique MST path (PDF pp. 2, 5).",
+          "The output itself requires Θ(n²) space/time, so the proposed pair-filling strategy is asymptotically output-optimal after an MST is available (PDF pp. 5–6).",
+          "The timing table covers inputs up to 10,000 points and shows large empirical gains over the selected baselines (PDF pp. 4–5)."
+        ],
+        "weaknesses": [
+          "Novelty is very limited: the algorithm is explicitly taken from prior work, while MST/single-linkage characterizations and O(n²) methods are already known; the claimed “first actual implementation” is supported only by an informal search and private email, not a rigorous comparison (PDF pp. 2, 6–7).",
+          "The complexity claim does not match the presented implementation evidence. The code hides MST construction in an undefined routine, while the paper assumes dense-graph Prim in O(n²); common NetworkX construction/MST routines can require sorting and O(n² log n) time, so only the post-MST filling phase is convincingly O(n²) (PDF pp. 2, 5).",
+          "Evaluation is insufficient and poorly reproducible: datasets and code are unavailable, each timing is measured once, accuracy is not quantitatively checked, the widest-path experiment reports no results, and comparisons omit optimized standard single-linkage/MST approaches (PDF pp. 4–6)."
+        ],
+        "score_rationale": "Although the underlying MST procedure appears correct, this is mainly an implementation note for an existing classical method. Unsupported novelty claims, an unverified end-to-end complexity claim, and weak, unreproducible experiments leave it well below the technical and empirical bar for ICLR."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The manuscript implements a known MST-based procedure for producing all-pairs minimax/widest-path distances and reports favorable runtimes. The core post-MST calculation appears plausible, but the paper offers little algorithmic novelty and insufficient validation for its strong complexity, correctness, and priority claims.",
+        "strengths": [
+          "The central construction is simple and interpretable: removing MST edges in descending order and filling entries across the resulting components is consistent with the bottleneck-path property (pp. 2, 5).",
+          "The implementation targets the output-optimal O(n²) regime after an appropriate MST is available, and the reported scaling up to n=10,000 is encouraging (pp. 4–5).",
+          "The paper includes executable-looking pseudocode/code and compares against several straightforward baselines (pp. 2–5)."
+        ],
+        "weaknesses": [
+          "The novelty is very limited: the algorithm is explicitly taken from prior work, while the main contribution is a Python implementation. Claims that it is the first practical O(n²) implementation and the fastest method “by far” are supported only by an informal search and private correspondence, not a systematic comparison (pp. 1–2, 6–7).",
+          "The stated O(n²) complexity does not clearly apply to the shown implementation: NetworkX's generic minimum-spanning-tree routine is used, yet the proof assumes an O(n²) Prim implementation. For a dense graph, a comparison-based generic MST implementation may add an O(n² log n) term; no end-to-end complexity analysis of the actual code is provided (pp. 2, 5).",
+          "Evidence is inadequate: correctness is asserted without reported equality checks against reference outputs, the widest-path experiment has no quantitative results, datasets are unavailable in the submission, each timing is measured only once, and comparisons mix Python and C++ without optimized O(n²) alternatives or memory analysis (pp. 4–6)."
+        ],
+        "score_rationale": "Although the underlying method is likely correct, the submission mainly implements a previously published and classical MST-derived idea. Unsupported priority claims, a mismatch between the claimed and implemented end-to-end complexity, and weak reproducibility/correctness evidence make it substantially below the ICLR acceptance bar. Some uncertainty remains because the hidden datasets and code cannot be independently checked from the supplied manuscript."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper implements an existing MST-based procedure for computing all-pairs minimax distances and reports large runtime gains. The core idea appears plausible, but the submission offers little algorithmic novelty, does not rigorously establish the claimed end-to-end O(n²) implementation, and provides inadequate correctness and empirical validation for its broad claims.",
+        "strengths": [
+          "The calculation-and-copy procedure is simple and potentially useful: removing MST edges in descending order partitions vertices whose pairwise bottleneck value can be filled together (pp. 2, 5).",
+          "The implementation targets the output-size-optimal O(n²) regime and demonstrates substantial measured speedups up to 10,000 vertices (pp. 4–5).",
+          "The manuscript presents readable pseudocode and concrete Python code, making the proposed implementation relatively easy to reproduce (p. 2)."
+        ],
+        "weaknesses": [
+          "Novelty is very limited: the algorithm and its O(n²) claim come from prior work, while this paper mainly supplies an implementation. Claims that it is the first practical implementation and “fastest ... by far” are supported only by an email anecdote and a narrow baseline set (pp. 6–7).",
+          "The complexity argument is incomplete. The paper informally explains only the nested filling loops and asserts an O(n²) Prim construction, but the displayed code calls a generic MST routine without showing that its actual implementation has O(n²) time; preprocessing, graph construction, sorting, and repeated traversals are not analyzed rigorously (pp. 2, 5).",
+          "Evidence is insufficient: datasets are hidden and undescribed, each timing is run only once, baseline implementations mix Python and C++, no equality/error checks establish correctness, and the widest-path experiment reports no quantitative results (pp. 4–6)."
+        ],
+        "score_rationale": "The implementation may be correct and practically useful, but reproducing an existing elementary MST procedure is insufficient novelty for ICLR. Unsupported optimality/priority claims, an incomplete end-to-end complexity justification, and weak correctness and runtime evaluation warrant rejection. There is some uncertainty about the MST routine’s actual complexity because its backend is not specified in the manuscript."
+      }
+    }
+  ]
+}

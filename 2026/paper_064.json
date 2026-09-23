@@ -1,0 +1,240 @@
+{
+  "year": 2026,
+  "package_id": "paper_064",
+  "paper_id": "4blGqgStVr",
+  "number": 15225,
+  "title": "PDFBench: A Benchmark for De novo Protein Design from Function",
+  "authors": [
+    "Jiahao Kuang",
+    "Nuowei Liu",
+    "Changzhi Sun",
+    "Jie Wang",
+    "Tao Ji",
+    "Yuanbin Wu"
+  ],
+  "primary_area": "datasets and benchmarks",
+  "keywords": [
+    "De novo Protein Design",
+    "Evaluation Metric",
+    "Benchmark"
+  ],
+  "forum_url": "https://openreview.net/forum?id=4blGqgStVr",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    4,
+    6,
+    2,
+    4
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0sN7VVPUCs",
+      "forum": "4blGqgStVr",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15225/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761498822953,
+      "tmdate": 1764360371962,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "4CEq2mmZql",
+      "forum": "4blGqgStVr",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15225/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761554927478,
+      "tmdate": 1762925521024,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "Qc0l9EfAQs",
+      "forum": "4blGqgStVr",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15225/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761901877414,
+      "tmdate": 1762925520463,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "w2gqnbVbs2",
+      "forum": "4blGqgStVr",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission15225/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761932644865,
+      "tmdate": 1764360372045,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PDFBench is an ambitious computational benchmark spanning description- and keyword-guided protein design, but its central claims of fair comparison and validated metric utility are not adequately supported. The resource could be useful after substantial strengthening of leakage controls, evaluation protocols, and metric validation.",
+        "strengths": [
+          "Broad evaluation across plausibility, foldability, alignment, similarity, novelty, and diversity exposes important trade-offs that model-specific evaluations can conceal (pp. 4–7, 20–22).",
+          "SwissTest and the systematic comparison of eight recent models constitute a potentially valuable community resource (pp. 3–4, 15).",
+          "The appendix provides extensive per-metric results, three-seed variability, and a practical computational-cost analysis (pp. 20–24)."
+        ],
+        "weaknesses": [
+          "The fairness guarantee is unconvincing: a 2025 SwissProt creation cutoff does not establish that sequences, homologs, or annotations were absent from earlier TrEMBL/pretraining data, while the soft-overlap test only examines three models and begins from identical sequences rather than general homologs (pp. 15–16). Unsupported keywords are also skipped or replaced by ancestors, potentially giving models different effective test sets (p. 20).",
+          "Functional quality is assessed almost entirely through learned proxies that may share training data and biases with the generators. EvoLlama is trained on SwissMolinst, but its split relationship to the evaluation data is insufficiently specified; ProTrek-derived thresholds are calibrated on the same benchmark, and no independent or experimental validation establishes that these scores measure requested function (pp. 4, 8, 17–18).",
+          "Several analyses and reporting details undermine soundness: PPL correlations pool natural, Chroma, and random sequences, so strong correlations may primarily reflect population confounding; the stated low-PPL range is internally contradictory; generation/sampling and per-model evaluation-subset details are sparse; and several numerical or interpretive claims conflict with tables (pp. 7–9, 13, 20, 24)."
+        ],
+        "score_rationale": "The benchmark has meaningful scope and potentially useful data, but major leakage/comparability concerns and insufficient validation of function metrics weaken its central contribution. Because these issues affect the headline fairness and scientific conclusions rather than presentation alone, the work is presently below the acceptance threshold, though plausibly repairable."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PDFBench is a potentially useful benchmark aggregating eight function-guided protein generators, two guidance settings, and a broad suite of computational metrics. The extensive tables reveal meaningful trade-offs, but the central claims of fair, contamination-resistant evaluation and validated metric relationships are not yet supported rigorously enough.",
+        "strengths": [
+          "Broad evaluation spanning plausibility, foldability, functional alignment, similarity, novelty, and diversity, with full per-metric results and three-seed variability (pp. 5–6, 20–22).",
+          "SwissTest and the inclusion of description-, GO-, IPR-, and joint-guidance settings address an important evaluation gap (pp. 3, 15).",
+          "Useful empirical observations include the sensitivity of retrieval accuracy to negative selection and explicit comparisons against random and natural-sequence controls (pp. 9, 14)."
+        ],
+        "weaknesses": [
+          "The fairness claim is overstated: a 2025 record cutoff cannot exclude exposure to homologous sequences, functions, or annotations, and the soft-overlap test checks identical sequences plus function similarity for only three models with public training sets (pp. 3, 16). Models also receive unequal keyword substitutions/skipping, with resulting sample counts not reported (p. 20).",
+          "All functional-quality evidence is computational and evaluator-dependent. EvoLlama's training separation is insufficiently documented, while ProTrek is reused for scoring, retrieval, overlap analysis, and several conclusions; there is no wet-lab or independent functional validation (pp. 4, 8, 16–18).",
+          "Several analyses and definitions are insufficiently rigorous: PPL correlations pool deliberately selected natural, Chroma, and random populations, making between-group confounding likely; the text contradicts itself about the low-PPL range; and random proteins score best on novelty/diversity, showing these metrics are not meaningful without validity conditioning (pp. 7, 13, 21–22)."
+        ],
+        "score_rationale": "The benchmark scope and empirical coverage are valuable and moderately novel, but major concerns about leakage control, unequal evaluation support, dependence on shared proxy models, and confounded metric analyses weaken its principal claims. I therefore place it marginally below acceptance; uncertainty remains because the supplied manuscript does not permit verification of the promised code or exact generated samples."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PDFBENCH offers a broad computational comparison of eight function-guided protein generators across description- and keyword-guided settings, including a newly curated temporally filtered test set and 16 metrics. The benchmark is potentially useful, but important comparability, leakage, and metric-validation issues weaken its central claims of fairness and reliable functional evaluation.",
+        "strengths": [
+          "The evaluation spans plausibility, foldability, alignment, similarity, novelty, and diversity, with extensive model comparisons and random/natural reference points (pp. 4–6, 20–22).",
+          "SwissTest provides a useful temporally filtered keyword-guided test set, while MolinstTest gives substantial description-guided coverage (pp. 3, 15).",
+          "The retrieval-strategy sensitivity analysis exposes a practically important instability: accuracy changes dramatically with negative selection even for natural proteins (pp. 9, 14)."
+        ],
+        "weaknesses": [
+          "Comparability is not adequately controlled: unsupported keywords are skipped or replaced by ancestors, while description-guided models receive converted text, so models can be evaluated on different effective constraints and subsets; per-model sample counts are not reported (pp. 4, 20).",
+          "The fairness argument is incomplete. Training data are unavailable for several models, a creation-date cutoff does not exclude earlier unreviewed versions or related sequences, and the EvoLlama evaluator is trained on SwissMolinst without a clearly documented independence analysis for MolinstTest (pp. 4, 16–17).",
+          "Several conclusions overreach the evidence: the PPL–foldability correlation pools sharply different natural/Chroma/random regimes, uses an ambiguously chosen PPL scale, and does not establish within-model predictive validity; all functional claims remain based on computational predictors rather than experimental validation (pp. 7–9, 13)."
+        ],
+        "score_rationale": "The breadth, new test set, and metric analyses constitute a meaningful benchmarking contribution. However, unequal conditioning/support across baselines and insufficiently established independence and validity of oracle metrics undermine the claimed fair comparison. The pooled correlation analyses and absence of experimental functional validation further limit the strength of the conclusions, placing the work marginally below acceptance despite its useful scope."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "PDFBENCH is an ambitious benchmark comparing eight function-guided protein generators across description- and keyword-guided settings. Its breadth is useful, but central claims of fair comparison and functional evaluation are undermined by unequal conditioning, incomplete contamination controls, and weak validation of computational proxies.",
+        "strengths": [
+          "Broad evaluation spanning plausibility, foldability, alignment, similarity, novelty, and diversity, with detailed per-model results and multiple random seeds (pp. 4–6, 20–22).",
+          "SwissTest adds a timely curated test set, while the appendices document dataset construction, metrics, and baseline implementations in useful detail (pp. 15–20).",
+          "The retrieval-strategy experiment convincingly shows that retrieval accuracy can vary drastically with negative selection, an important warning for future evaluations (pp. 9, 14)."
+        ],
+        "weaknesses": [
+          "Keyword comparisons are not controlled: unsupported terms are replaced by ancestors or skipped, while description-guided models can receive converted textual annotations, so models effectively solve different conditioning problems (pp. 4, 20).",
+          "The claimed leakage prevention is insufficient. A SwissProt creation-date cutoff does not exclude earlier TrEMBL versions, homologs, or pre-existing sequences, and the soft-overlap analysis only covers three models and begins from identical sequences rather than systematically measuring homology (pp. 3, 16).",
+          "Functional validity rests entirely on learned proxies without experimental calibration. Moreover, the headline PPL/foldability correlations pool deliberately selected natural, Chroma, and random cohorts, making them vulnerable to group and length confounding; the text also contradicts itself about the low-PPL range (pp. 7–9, 13)."
+        ],
+        "score_rationale": "The benchmark scope and retrieval analysis are valuable, but the unequal model inputs and insufficient contamination controls compromise its core fairness claim. Because functional alignment is not independently validated and several metric conclusions rely on confounded analyses, substantial redesign and validation are needed; uncertainty remains because the anonymous code cannot be assessed."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "PDFBENCH is a useful, broad computational benchmark for function-guided protein generation, evaluating eight models across description- and keyword-conditioned settings. The scale and metric coverage are valuable, but the central claims of fair comparison and metric validity are not yet sufficiently supported.",
+        "strengths": [
+          "Broad evaluation across plausibility, foldability, alignment, similarity, novelty, and diversity, with full per-metric results and three-seed reporting (pp. 5–6, 20–22).",
+          "SwissTest adds a timely keyword-guided evaluation set, while the benchmark covers both natural-language descriptions and GO/IPR conditioning (pp. 3, 15).",
+          "The retrieval-strategy sensitivity analysis exposes a practically important failure mode: accuracy changes by over 55–66 percentage points depending on negative selection (pp. 9, 14)."
+        ],
+        "weaknesses": [
+          "The keyword comparison is not controlled: unsupported terms are skipped or replaced by ancestors, models support very different keyword subsets, and text-conditioned models receive converted descriptions. Thus models are not necessarily evaluated under equivalent constraints (pp. 4, 20).",
+          "Leakage/fairness claims are overstated. A 2025 annotation-date cutoff does not exclude older homologs or functions, several training sets are inaccessible, and the soft-overlap analysis covers only three models and requires an identical sequence before testing functional similarity (pp. 3, 16).",
+          "Metric-validation conclusions rely heavily on computational proxies and confounded pooled correlations. The PPL analysis mixes natural, Chroma, and random sequences, contains a contradictory low-PPL range definition, and does not establish within-distribution predictive validity; no wet-lab or independent functional validation is provided (pp. 7–9, 13)."
+        ],
+        "score_rationale": "The benchmark’s breadth and diagnostic analyses make it potentially useful, but its main scientific premise—fair, reliable cross-model evaluation—is weakened by unequal conditioning, incomplete contamination control, proxy-heavy validation, and insufficiently specified generation/subset protocols. I therefore place it marginally below acceptance, with some uncertainty because the unavailable anonymous code could clarify implementation details."
+      }
+    }
+  ]
+}

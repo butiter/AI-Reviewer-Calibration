@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_008",
+  "paper_id": "uVMZgtw2pf",
+  "number": 444,
+  "title": "CHG Shapley: Efficient Data Valuation and Selection towards Trustworthy Machine Learning",
+  "authors": "Huaiguang Cai",
+  "primary_area": "interpretability and explainable AI",
+  "keywords": "Data Valuation; Shapley Value; Data selection",
+  "forum_url": "https://openreview.net/forum?id=uVMZgtw2pf",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    6,
+    3,
+    5
+  ],
+  "human_mean_rating": 4.666666666666667,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposed a gradient-based method to reduce the computational cost of Data Shapley: the CHG (compound of Hardness and Gradient) utility function, which approximates the utility of each data subset on model performance in every training epoch. By deriving the closed-form Shapley value for each data point using the CHG utility function, they reduce the computational complexity to that of a single model retraining. They test CHG Shapley for real-time data selection in three settings: standard datasets, label noise datasets, and class imbalance datasets."
+        },
+        "soundness": {
+          "value": 4
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The paper is very well written and organized. The main idea and the method are presented very clearly."
+        },
+        "weaknesses": {
+          "value": "I do not see substantial difference between the proposed method and the existing gradient based methods, especially the following one. Even in the experiments, the difference is not always noticeable. \n\n- Wang et al., 2024, Data Shapley in One Training Run.\n\nMinor comments: The previous gradient-based methods are not listed in Table 1."
+        },
+        "questions": {
+          "value": "Is there fundamental difference between your method and the methods in the three papers below? What is the advantage of your method?\n- Wang et al., 2024. Data Shapley in One Training Run.\n- Xia et al., 2024. LESS: Selecting Influential Data for Targeted Instruction Tuning\n- Pruthi et al. 2020. Estimating Training Data Influence by Tracing Gradient Descent"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "teJbotRbye",
+      "forum": "uVMZgtw2pf",
+      "replyto": "uVMZgtw2pf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission444/Reviewer_iunn"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission444/Reviewer_iunn"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission444/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730876097631,
+      "cdate": 1730876097631,
+      "tmdate": 1732615127301,
+      "mdate": 1732615127301,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper studies data evaluation with regard to its contribution to model performance. Prior work on Shapley value and Data Shapley suffers from high resource and time requirements to evaluate each data point. To circumvent this issue, the authors propose instead to estimate the utility function using the CHG (Compound of Hardness and Gradient) score to obtain a close-formed Shapley value for each data point. This approach reduces the computation complexity of Data Shapley to that of a single model training run. Furthermore, the authors extend this framework to real-time data selection, which was previously impractical using prior methods of calculating data value."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The proposed method of combining hardness and gradient utility function is novel. \n- The authors provided experimental results to support their theoretical claims."
+        },
+        "weaknesses": {
+          "value": "- The writing is confusing and lacks intuition. In Theorem 1, the authors provided a long equation 4 without explaining the importance of each term in this expression. \n- In Table 2, it is not immediately clear why CHG Shapley outperforms other methods w.r.t accuracy and time. For example, CHG Shapley does not always provide the highest accuracy across different fractions of CIFAR 10 and CIFAR 100. Moreover, in CIFAR10, AdaptiveRandom sometimes even outperforms CHG Shapley while running for a shorter time. \n- Similarly, in Table 3, the authors only draw the conclusion that CHG Shapley is outperforming Gradient Shapley. However, CHG Shapley is not better than existing methods in most comparisons."
+        },
+        "questions": {
+          "value": "- Can the authors clarify how CHG Shapley is doing better than prior work when the empirical findings seem to suggest the contrary? \n- Can the authors provide more intuition in Equation 4 (Theorem 1)? What does each term here mean and where do they come from?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "7ogVli9YYZ",
+      "forum": "uVMZgtw2pf",
+      "replyto": "uVMZgtw2pf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission444/Reviewer_hu3m"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission444/Reviewer_hu3m"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission444/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730673255856,
+      "cdate": 1730673255856,
+      "tmdate": 1731427259088,
+      "mdate": 1731427259088,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper studies the problem of data valuation and an application of data valuation, namely data selection during training. The authors focus on the efficiency of data valuation for large datasets, which presents an issue for many common Shapley value-based methods. They propose a Gradient Shapley and a compound of hardness and Gradient Shapley as the data valuation method. Empirical investigation shows the comparison of these two proposed methods with several existing methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "- The data valuation problem is highly relevant and interesting to the community. In particular, the issue being studied is the computational cost of Shapley value-based methods. It is also a highly relevant issue.\n- The writing is relatively clear.\n- There are experimental results against several existing methods."
+        },
+        "weaknesses": {
+          "value": "- The authors propose a new utility function that takes into account the \"hardness\". From lines 234-235, it seems the optimization objective of the ML model is changed. However, this new optimization objective does not seem to have been theoretically justified.\n- The proposed approach utilizes an approximation of the change in the loss function, but does not seem to show how good this approximation is.\n- Furthermore, the proposed approach requires computing a per-sample gradient and storing these gradients. It does not seem to significantly reduce the computational cost of training, and additionally incurs memory overhead.\n- More extensive expreimental results, larger datasets and larger models can add to the strength of the claims."
+        },
+        "questions": {
+          "value": "How are (Wu et al., 2022) and (Ki et al., 2023) related to this work? Should they be compared?\n\n`In this paper, we focus on the efficiency problem of data valuation on large-scale datasets.`\n\nHow large is considered large-scale datasets? Data-OOB seems to be able to scale to millions of data points. Is there comparison on datasets of similar scales?\n\nWhat is $\\alpha$ in Theorem 1?\n\nWhat is the memory overhead from storing the per-sample gradients?\n\nTypically, mini-batch SGD is used for training (namely the gradient is computed w.r.t. a mini-batch instead of each data point), which does not compute per-sample gradients. Does that mean you method needs to incur additional computational overhead?\n\nWhat is the error (theoretical or empirical) of the last-layer gradient as an approximation?\n\n_References_\n\nDAVINZ: Data Valuation using Deep Neural Networks at Initialization. Zhaoxuan Wu, Yao Shu, Bryan Kian Hsiang Low. In ICML 2022.\n\nDATA VALUATION WITHOUT TRAINING OF A MODEL. Nohyun Ki, Hoyong Choi, Hye Won Chung. In ICLR 2023."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "twShV3fgyj",
+      "forum": "uVMZgtw2pf",
+      "replyto": "uVMZgtw2pf",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission444/Reviewer_jhq7"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission444/Reviewer_jhq7"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission444/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730432465784,
+      "cdate": 1730432465784,
+      "tmdate": 1731427259192,
+      "mdate": 1731427259192,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CHG Shapley, an analytically computable Shapley value for a surrogate utility based on gradient alignment and example hardness, then applies it to dynamic data selection. The approach is computationally attractive and shows promising CIFAR results, especially at small selection fractions and under label noise, but the theoretical connection to actual model utility is weak and the empirical scope is insufficient for the broad large-scale claims.",
+        "strengths": [
+          "The closed-form treatment of the proposed subset-gradient utility is a useful computational idea, avoiding the repeated model retraining required by conventional Data Shapley (pp. 4–6).",
+          "Experiments compare against several valuation, gradient, and coreset baselines; GradE Shapley performs particularly well under synthetic label noise, even with small retained fractions (pp. 8–9).",
+          "The paper acknowledges meaningful failure modes: hardness becomes harmful under label noise, while one-shot Shapley ranking degrades at larger selection fractions (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The central justification is limited: Lemma 1 concerns a one-step smoothness bound with learning rate exactly 1/L, whereas experiments use ordinary SGD, last-layer gradients, interval selection, and a fixed learning rate. Thus the surrogate is not shown to approximate validation accuracy or multi-epoch training utility (pp. 4, 7–8).",
+          "The evidence is narrow and statistically incomplete: selection is tested only on CIFAR-10/100 with ResNet-18, while valuation uses just 1,000 pretrained embeddings; no repeated trials, error bars, or significance tests are reported. This does not substantiate general large-scale effectiveness (pp. 8–9, 13–15).",
+          "The theoretical and algorithmic presentation has gaps. Theorem 2 supplies only loose random-coalition probability bounds rather than a guarantee for top-k selection, its proof contains an inequality-direction inconsistency, and Algorithm 2 appears to train on an empty subset before the first selection unless epoch indexing begins at zero (pp. 6–7, 19–20)."
+        ],
+        "score_rationale": "The efficient surrogate Shapley construction and encouraging results constitute a meaningful contribution, but the mismatch between theory and implementation, weak selection guarantees, and limited non-replicated experiments leave technical and empirical uncertainty. I therefore rate it marginally below acceptance."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CHG Shapley, replacing validation accuracy with a gradient-and-hardness utility whose Shapley values are claimed to admit closed-form computation, and applies it to dynamic data selection. The approach is computationally attractive and shows promising results, especially GradE Shapley under label noise, but theoretical errors and limited experimental rigor leave the main claims insufficiently established.",
+        "strengths": [
+          "The closed-form proxy-utility approach is a useful efficiency-oriented direction, avoiding the repeated subset retraining required by conventional Data Shapley (pp. 4–6).",
+          "The experiments cover standard, imbalanced, and noisy-label settings; GradE Shapley produces notably strong noisy-label results, sometimes outperforming full-data training (pp. 8–9).",
+          "On the small OpenDataVal benchmark, CHG Shapley offers a favorable accuracy/runtime tradeoff—18 seconds versus hours for several alternatives—while ranking second in noisy-label F1 (pp. 13–15)."
+        ],
+        "weaknesses": [
+          "Theorem 2 is incorrect: Appendix C derives P[X≥0] ≥ 1+E[X]/m for E[X]≤0 but then states the opposite inequality. Consequently, it does not provide the claimed upper bound or theoretical justification for selecting by Shapley value (pp. 6–7, 19–20).",
+          "The utility is only motivated by a one-step smoothness bound at η=1/L, whereas experiments use different optimization settings; its connection to generalization or test accuracy is weak. Moreover, the subset mean is undefined for the empty set and is assigned zero without a rigorous treatment in the theorem/proof (pp. 4–6, 16–18).",
+          "Evidence is narrow and lacks repeated-run uncertainty or significance tests. Data valuation is evaluated only on a 1,000-point CIFAR-10 embedding task, while selection uses only CIFAR-10/100 with ResNet-18; CHG is not consistently best and degrades at larger selection fractions (pp. 8–10, 13–15)."
+        ],
+        "score_rationale": "The efficient analytic proxy and noisy-label results are promising, but the erroneous selection theorem, unclear theoretical link between the proxy and actual model utility, and limited statistical/empirical validation prevent acceptance in the current form. I am moderately confident, though the dense and occasionally inconsistent derivation of Theorem 1 makes its correctness difficult to fully verify from the manuscript."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CHG Shapley, a closed-form Shapley value for a surrogate utility based on gradient alignment and example hardness, then applies it to dynamic data selection. The idea is computationally appealing and produces some strong small-subset results, but the connection to conventional data value or generalization is weak, and the empirical support is too narrow for the paper’s broad efficiency and trustworthiness claims.",
+        "strengths": [
+          "The analytic surrogate enables a potentially useful alternative to repeated subset retraining, with an explicit Shapley formula and practical selection algorithm (pp. 5–7).",
+          "CHG/GradE performs competitively for small selected fractions, especially under label noise, where GradE substantially exceeds the reported full-data accuracy (pp. 8–9).",
+          "The appendix evaluates several valuation tasks and reports a large runtime advantage over retraining-heavy baselines: 18 seconds for CHG versus hours for several competitors (pp. 13–15)."
+        ],
+        "weaknesses": [
+          "The theoretical utility is only a one-step smoothness-bound quantity under the special choice η=1/L and concerns training-loss reduction, not held-out performance or generalization (pp. 4–6). Hardness further changes the objective, and its failure under label noise is empirically acknowledged (pp. 9–10).",
+          "Evidence is limited to CIFAR-10/100 with one main architecture and a small CIFAR-10 embedding valuation benchmark; there are no multiple-seed statistics, uncertainty intervals, sensitivity studies, or broader modern datasets. Results are also mixed under class imbalance and at larger selection fractions (pp. 8–10).",
+          "The efficiency analysis omits the cost and memory of obtaining per-example gradients throughout training. Practical experiments introduce last-layer, interval, and per-class approximations without ablations, while runtime comparisons use differently configured baselines such as 1,000-model estimators (pp. 6–8, 15)."
+        ],
+        "score_rationale": "The closed-form surrogate and small-subset results are promising, but the method is not theoretically shown to approximate standard Data Shapley or predictive utility, and the restricted, variance-free evaluation does not establish the broad claims. I therefore place it marginally below acceptance, with some uncertainty about the exact theorem algebra due to difficult notation in pp. 5 and 16–18."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper derives a closed-form Shapley value for a quadratic surrogate based on per-example gradients and loss-derived hardness, then uses it for online subset selection. The approach is computationally appealing and yields strong CIFAR results, especially at small selection fractions and under label noise. However, the surrogate’s connection to held-out model performance is weak, the selection theory does not justify the implemented top-k procedure, and the empirical study lacks sufficient statistical and breadth-based validation.",
+        "strengths": [
+          "The analytic Shapley construction is a useful and reasonably novel combination of gradient matching, hardness, and cooperative-game valuation, requiring only one training trajectory rather than repeated subset retraining (pp. 4–6).",
+          "The method is evaluated in standard, imbalanced, and noisy-label settings, with particularly strong GradE/CHG results at small fractions; GradE substantially exceeds full-data training under synthetic label noise (pp. 8–9).",
+          "The OpenDataVal experiments suggest a favorable efficiency–quality tradeoff: CHG takes 18 seconds and performs second-best in noisy-label F1, behind the much slower Data-OOB method (pp. 13, 15)."
+        ],
+        "weaknesses": [
+          "The central utility is a one-step training-loss bound, not validation accuracy or generalization. Lemma 1 assumes a full-objective L-Lipschitz gradient and step size 1/L, while experiments use SGD with a fixed learning rate and last-layer/per-class approximations; no error or ranking-preservation guarantee connects this surrogate to actual data value (pp. 4–7).",
+          "Theorem 2 is only a generic bound on the sign probability of a marginal contribution and does not establish that selecting the largest static Shapley values gives a good subset. The paper itself acknowledges that values change after selection and that performance deteriorates at larger fractions (pp. 6–7, 10); the proof also contains a reversed intermediate inequality on p. 19, reducing confidence in presentation rigor.",
+          "Empirical support is narrow and statistically incomplete: selection is tested only on CIFAR-10/100 with one architecture, valuation uses only 1,000 CIFAR embeddings, and no seeds, error bars, or significance tests are reported (pp. 8–9, 13). Direct Data/Beta Shapley comparisons are omitted, and the proposed CHG variant is often not best outside small clean-data fractions."
+        ],
+        "score_rationale": "The paper offers a promising efficient surrogate and notable empirical gains, but its main claims overreach the limited theory and statistically incomplete CIFAR-only evidence. The mismatch between the proved one-step surrogate and practical training/selection is substantial enough to place it below the acceptance threshold, though the idea merits further development."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes CHG Shapley, an analytically computable Shapley value for a surrogate utility based on per-example loss-weighted gradients, and applies it to online data selection. The approach is computationally attractive and yields encouraging CIFAR results, especially at small selection fractions, but the theoretical connection to actual model performance is weak and the empirical validation is insufficiently rigorous for the breadth of the claims.",
+        "strengths": [
+          "The closed-form treatment of a gradient-based subset utility is a useful and potentially scalable alternative to repeated subset retraining (pp. 5–7).",
+          "Experiments cover standard, imbalanced, and noisy-label settings, with particularly strong GradE/CHG results at small selection fractions and under label noise (pp. 8–9).",
+          "The paper candidly identifies important failure modes: hardness becomes harmful under substantial label noise, and fixed Shapley rankings degrade at larger selection fractions (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Lemma 1 only bounds a one-step decrease of the chosen training objective under a specific step size; it does not establish that CHG utility approximates validation accuracy, generalization, or full-training contribution. Moreover, the weighted-gradient valuation objective is not clearly aligned with the ordinary training updates used by the algorithms (pp. 4–6).",
+          "Theorem 2 provides only generally weak probability bounds over uniformly random predecessor coalitions, not a guarantee for top-k subset selection; its proof also contains a reversed intermediate inequality in the negative-expectation case, although the final stated bound is consistent (pp. 6–7, 19–20).",
+          "Evidence is limited to CIFAR with ResNet-18 plus one small 1,000-sample embedding benchmark, reports no repetitions/error bars or statistical tests, and omits direct Data/Beta Shapley comparisons from valuation quality. Thus the broad scalability and superiority claims remain uncertain (pp. 8–9, 13–15)."
+        ],
+        "score_rationale": "The surrogate and closed-form computation are promising, and the reported results merit attention. However, the main theoretical result does not justify using the surrogate as model-performance data value, while the evaluation lacks variance reporting, broader datasets/models, and direct fidelity comparisons to Data Shapley. These issues place the work marginally below acceptance."
+      }
+    }
+  ]
+}

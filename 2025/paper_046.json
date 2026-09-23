@@ -1,0 +1,318 @@
+{
+  "year": 2025,
+  "package_id": "paper_046",
+  "paper_id": "sx2jXZuhIx",
+  "number": 5854,
+  "title": "SVG: 3D Stereoscopic Video Generation via Denoising Frame Matrix",
+  "authors": "Peng Dai; Feitong Tan; Qiangeng Xu; David Futschik; Ruofei Du; Sean Fanello; XIAOJUAN QI; Yinda Zhang",
+  "primary_area": "generative models",
+  "keywords": "video generation; stereoscopic video; inpainting; diffusion model",
+  "forum_url": "https://openreview.net/forum?id=sx2jXZuhIx",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    6,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.666666666666667,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper aims to synthesize 3D stereoscopic videos using an off-the-shelf monocular video generation model without finetuning. Concretely, the authors leverage the estimated video depth and propose a novel frame matrix to denoise both spatially and temporally, and thus the model is aware of the exsiting information on the left view and synthesizes consistent right-view videos accordingly. A disocclusion boundary re-injection scheme is also proposed to solve the boundary problem."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The proposed method is pose-free and training-free.\n\n2. This paper is clearly written and easy to understand.\n\n3. Extensive experiments demonstrate the effectiveness of the proposed frame matrix and the disocclusion boundary re-injection scheme."
+        },
+        "weaknesses": {
+          "value": "1. As the model denoises along both temporal and spatial dimensions, one experiment that is missing is the investigation of varying the number of cameras between the left and right views. How does this variation impact the final quality and overall efficiency of the process? Is it feasible to use fewer internal camera views to save time?\n2. Currently all the experiments have been conducted on the synthesized videos. It would be beneficial to explore how the results look like when applied to real-world videos.\n3. The model heavily depends on a pre-trained depth estimation model, which can overlook thin structures and sometimes produce inaccurate results."
+        },
+        "questions": {
+          "value": "1. Most videos feature a single movable object or minor movements. How does the proposed method perform when applied to more complex scenes, such as those with multiple moving objects and significant motions?\n2. Typos:\n\nL225 Denosing -> Denoising\n\nL266 refence → reference"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "nxCxsR2yCB",
+      "forum": "sx2jXZuhIx",
+      "replyto": "sx2jXZuhIx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5854/Reviewer_P3fm"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5854/Reviewer_P3fm"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5854/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730705469542,
+      "cdate": 1730705469542,
+      "tmdate": 1731427919994,
+      "mdate": 1731427919994,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper addresses a gap in the generation of stereoscopic videos, particularly corresponding to the advancements in VR/AR technologies. The authors introduce an interesting pose-free and training-free framework that aims to improve the generation of high-quality 3D stereoscopic videos from monocular video inputs. The author utilizes video generation models to enhance 3D consistency while addressing challenges such as occlusion and temporal stability."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The paper is well-written and easy to follow. \n- The proposed frame matrix representation is reasonable, and the extensive experiments support its functionality. Therefore, this paper is sufficiently novel. \n- The proposed method demonstrates a strong understanding of the challenges specific to 3D video generation, including issues with depth estimation and video inpainting. \n- I believe that sufficient experiments and ablation studies are presented to support the approach."
+        },
+        "weaknesses": {
+          "value": "The main weaknesses of the proposed method are the disocclusion boundary artifacts, slightly lower temporal consistency compared to Deep3D, and the need for further improvements in holistic perceptual consistency, especially for certain subjects like human faces."
+        },
+        "questions": {
+          "value": "Missing some reference about multi-view synthesis, please consider reference them:\n\n[1] Chen, Zilong, et al. \"V3d: Video diffusion models are effective 3d generators.\" arXiv preprint arXiv:2403.06738 (2024).\n[2] Zuo, Qi, et al. \"Videomv: Consistent multi-view generation based on large video generative model.\" arXiv preprint arXiv:2403.12010 (2024)."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ETqZj1EWTz",
+      "forum": "sx2jXZuhIx",
+      "replyto": "sx2jXZuhIx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5854/Reviewer_zJCL"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5854/Reviewer_zJCL"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5854/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730520898567,
+      "cdate": 1730520898567,
+      "tmdate": 1731427920010,
+      "mdate": 1731427920010,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a training-free framework to generate stereo video from single video sequence by using retrained video generation model. The proposed frame matrix leverages the power of video generation model and the joint optimization idea to generate semantically consistent and temporally smooth content, which offers valuable insights and can provide reference directions for future work.. However, besides the frame matrix, the other modules mentioned in methods are more like tricks and are all followed by existing works. The extensive results show that this paper achieve SOTA performance in training-free manner. However, the drawbacks are obvious, the performance is significantly worse than the training methods, and the process is slow due to the need for multiple iterations."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 1
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. This paper proposes a training-free manner to generate stereo video from monocular video and achieve SOTA performance in training-free manner.\n\n2. The proposed denoising frame matrix uses pre-trained video generation model as the inpainting model, which is the first one to do this in stereo video generation field and offers insight for leveraging video generation model to assist this task."
+        },
+        "weaknesses": {
+          "value": "1. The analysis for denoising frame matrix is insufficient. Although the authors provide the reason for using video generation model, the theory and the high-level reason of why it works are not clear, please show the theoretical analysis of the proposed frame matrix.\n\n2. Lack citations for the methodology followed by other methods. The presentation in the paper contains certain misleading and deceptive elements. Line 153-161, the viewpoint transfer part is widely used in novel view synthesis [R1, R2] and stereo image generation [R3]. Additionally, the proposed boundary re-injection is just a trick, which can not be a contribution. These parts should be revised for better presentation.\n\n[R1] Tucker, R.; and Snavely, N. 2020. Single-view view synthesis with multiplane images. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 551–560.\n\n[R2] Han, Y.; Wang, R.; and Yang, J. 2022. Single-view view synthesis in the wild with learned adaptive multiplane images. In ACM SIGGRAPH 2022 Conference Proceedings, 1–8.\n\n[R3] Wang, X.; Wu, C.; Yin, S.; Ni, M.; Wang, J.; Li, L.; Yang, Z.; Yang, F.; Wang, L.; Liu, Z.; et al. 2023b. Learning 3D Photography Videos via Self-supervised Diffusion on Single Images. arXiv preprint arXiv:2302.10781.\n\n3. Insufficient evaluation metics. In [R1], [R2], [R3], they will use SSIM, PSNR, LPIPS evaluation metrics in novel-view image, which can also be used in stereo video generation. What's more, the temporal consistency is just justified in user study, the quantitative results such as Fréchet Video Distance should also be given.\n\n4. Lack comparison with highly related methods. The methods compared in this paper is too simple. As mentioned in Q2, [R1], [R2], [R3] are the highly related stereo image generation methods. Although they need to train, they own the advantages of high performance and fast inference speed, the authors should give the result in the paper and clarify the strength of their methods."
+        },
+        "questions": {
+          "value": "See the weakness."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "details_of_ethics_concerns": {
+          "value": "None."
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 5
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "Ll2hzuZy0W",
+      "forum": "sx2jXZuhIx",
+      "replyto": "sx2jXZuhIx",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5854/Reviewer_dHEi"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5854/Reviewer_dHEi"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5854/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1729082664080,
+      "cdate": 1729082664080,
+      "tmdate": 1732466272108,
+      "mdate": 1732466272108,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a training-free pipeline for converting monocular generated videos into stereo pairs using depth-based warping, alternating spatial/temporal diffusion over a frame matrix, and latent-boundary re-injection. The approach is creative and visually promising, but the empirical and statistical validation has notable weaknesses.",
+        "strengths": [
+          "The frame-matrix formulation is a novel and intuitive way to reuse a video diffusion prior along both time and viewpoint axes, while boundary re-injection addresses a concrete latent-inpainting artifact (pp. 4–6).",
+          "The method is pose-free, requires no task-specific training, and is demonstrated on inputs from several video generators with competitive qualitative results (pp. 6–10, 23–25).",
+          "The paper includes useful component studies covering frame-matrix denoising, boundary re-injection, camera count, depth smoothing, and viewpoint consistency (pp. 9–10, 18–22)."
+        ],
+        "weaknesses": [
+          "The human-study analysis appears to treat repeated ratings from the same participants as independent; it uses Mann–Whitney tests rather than a paired or mixed-effects analysis. Some reported statistics are also internally questionable—for example, p=0.015 with Z=-6.72—and DynIBaR's non-random missing failures complicate comparisons (pp. 7, 17–18).",
+          "Evidence is limited to only 20 short, 16-frame videos. FVD is reported without clearly defining its reference distribution or uncertainty, and CLIP similarity changes are small and do not directly measure stereo geometry or binocular comfort (pp. 6–10).",
+          "The method remains a heuristic rather than a geometrically consistent stereo generator: depth is normalized to an arbitrary range, viewpoint sequences are treated as ordinary temporal videos, and performance depends on monocular depth quality while degrading for wider baselines (pp. 5–6, 10, 16)."
+        ],
+        "score_rationale": "The central frame-matrix idea is sufficiently novel and the qualitative/user evidence suggests a practically useful improvement, supporting marginal acceptance. However, limited-scale evaluation, weak stereo-specific metrics, and significant statistical-reporting concerns prevent a stronger score; uncertainty remains because actual videos cannot be inspected from the supplied pages."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper presents a training-free monocular-to-stereo video pipeline that combines depth warping with alternating temporal/view-direction diffusion inpainting and boundary re-injection. The frame-matrix construction is intuitive and the visual results are promising, but the empirical validation has important metric and statistical ambiguities that prevent a clear acceptance recommendation.",
+        "strengths": [
+          "The frame-matrix representation is a simple, useful idea for exploiting a pretrained video prior along both time and viewpoint axes without fine-tuning (pp. 4–6).",
+          "Qualitative comparisons and ablations consistently illustrate sharper disocclusion completion and improved cross-view coherence, including difficult generated and real-video content (pp. 8–10, 19–25).",
+          "The approach is practical and broadly applicable to outputs from several generators, while avoiding pose optimization; limitations involving depth errors, short clips, and computational expense are acknowledged (pp. 6, 10)."
+        ],
+        "weaknesses": [
+          "The quantitative protocol is underspecified: the reference distribution and sample construction for FVD are not stated, CLIP similarity is dominated by unchanged warped pixels, and no aggregate geometric stereo-consistency or perceptual-comfort measure is provided (pp. 7, 9–10).",
+          "The user-study analysis appears to treat repeated ratings from the same participants and videos as independent Mann–Whitney samples. It also contains an apparent inconsistency: Z=-6.72 is reported with p=0.015 for 190 Deep3D comparisons (pp. 17–18). These issues weaken the principal evidence.",
+          "Alternating a video denoiser over matrix rows and columns is heuristic: fixed-time viewpoint sequences are assumed to follow the model's temporal-video prior, while the least-squares discussion does not establish convergence or joint consistency. Performance is demonstrated only for 16-frame clips and depends on potentially erroneous monocular depth (pp. 5–6, 10, 16)."
+        ],
+        "score_rationale": "The method is creative, training-free, and visually convincing, with useful ablations. However, modest technical grounding and substantial uncertainty in the principal quantitative and human-study evidence place it marginally below the ICLR acceptance bar."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a training-free pipeline for converting generated monocular videos into stereo pairs using depth warping, alternating diffusion denoising over a time-by-view frame matrix, and boundary re-injection. The frame-matrix construction is a clever and useful adaptation of pretrained video priors, and the reported results are promising, but the evaluation does not adequately establish geometric stereo correctness or robust statistical superiority.",
+        "strengths": [
+          "The frame-matrix representation and alternating temporal/view-direction denoising are novel, intuitive contributions that address both temporal and cross-view consistency without pose estimation or fine-tuning (pp. 4–6).",
+          "The method is practically motivated and reasonably well specified, including warping cleanup, boundary re-injection, pseudocode, runtime, and relevant component ablations (pp. 6, 9–10, 15–16).",
+          "Experiments cover inputs from several video generators and include VR-based perceptual evaluation; the proposed method consistently improves reported human ratings and automated metrics over the selected baselines (pp. 7–10, 17–18)."
+        ],
+        "weaknesses": [
+          "Stereo geometry is evaluated weakly: CLIP similarity largely measures appearance rather than binocular validity, while disparity is inferred by another learned estimator without stereo ground truth. Thus hallucinated regions could be perceptually plausible but geometrically inconsistent (pp. 7–10, 18–19).",
+          "The evidence is small and statistically questionable: only 20 source videos and 20 participants are used, repeated ratings appear to be treated as independent in Mann–Whitney tests, uncertainty for automated metrics is absent, and the reported temporal-consistency p=0.015 conflicts with Z=-6.72 in Table 3 (pp. 7, 17–18).",
+          "Generality and practicality remain limited: experiments use 16-frame clips, a single Zeroscope inpainting backbone, arbitrary normalization of metric-free depth, and roughly eight minutes per clip; failures from depth errors and larger baselines are acknowledged but not systematically quantified (pp. 6, 10)."
+        ],
+        "score_rationale": "This is a creative, technically plausible training-free method with strong qualitative results and broad baseline comparisons, meriting a marginally positive score. However, the lack of ground-truth geometric evaluation, weaknesses in the user-study analysis, and limited short-video setting prevent a clear accept."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a useful training-free pipeline for converting monocular generated videos into stereo pairs. Its main idea—alternating diffusion denoising across the temporal and viewpoint axes of a frame matrix—is creative and empirically promising, while boundary re-injection is a sensible practical improvement. However, the limited 16-frame evaluation and statistical/metric ambiguities weaken the evidence for robust stereoscopic consistency.",
+        "strengths": [
+          "The frame-matrix formulation is a novel and intuitive way to reuse a pretrained video prior across both time and viewpoint dimensions without pose estimation or fine-tuning (pp. 4–6).",
+          "The method is practically motivated and reasonably well specified, including depth smoothing, multi-plane preprocessing, resampling, and boundary re-injection (pp. 6, 15–16).",
+          "Experiments include several input generators, relevant inpainting/view-synthesis baselines, component ablations, VR-based perceptual evaluation, and challenging qualitative cases (pp. 7–10, 17–25)."
+        ],
+        "weaknesses": [
+          "The evidence is small-scale: only 20 videos of 16 frames are evaluated, and there is no systematic assessment of depth failures, binocular discomfort, geometric correspondence, or longer-video drift (pp. 6–7, 10).",
+          "The user-study statistics appear to treat repeated ratings from the same participants and clips as independent Mann–Whitney samples; missing DynIBaR results further complicate comparison. There is also an apparent inconsistency between p=0.015 and Z=-6.72 in the Deep3D comparison (pp. 17–18).",
+          "Several quantitative metrics are insufficiently defined: the reference distribution used for FVD is not stated, CLIP similarity is only an indirect and weak test of stereo consistency, and the key frame-matrix ablation gains are modest (e.g., 95.81 to 96.44 CLIP) (pp. 9–10)."
+        ],
+        "score_rationale": "The method is novel, useful, and supported by convincing qualitative examples plus broadly positive perceptual results, placing it slightly above the acceptance threshold. Confidence is tempered because the core geometric/stereo claims are evaluated on a small short-video set, and ambiguities in the objective metrics and user-study analysis prevent the reported gains from being fully conclusive."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper presents a practical, training-free pipeline for converting monocular generated videos into stereo pairs. Its central idea is a frame matrix whose rows and columns are alternately denoised to encourage cross-view and temporal consistency, supplemented by latent-boundary re-injection. The method is promising and visually compelling, but the evidence does not yet rigorously establish stereo-geometric correctness or statistical superiority.",
+        "strengths": [
+          "The frame-matrix formulation is a simple, useful contribution that repurposes a pretrained video prior across both time and viewpoint without pose estimation or fine-tuning (pp. 4–6).",
+          "The pipeline is technically detailed and includes meaningful component studies for frame-matrix denoising, boundary re-injection, depth smoothing, and camera count (pp. 9–10, 18–22).",
+          "Evaluation covers several source generators and multiple baseline families; qualitative results and VR ratings consistently favor the proposed method (pp. 7–10, 17–18)."
+        ],
+        "weaknesses": [
+          "The main stereo-validity evidence is insufficient: CLIP measures semantic similarity rather than binocular correspondence, while disparity maps are outputs of another learned estimator. There is no ground-truth stereo benchmark, geometric reprojection error, or perceptual comfort analysis (pp. 7–10, 18–19).",
+          "The user-study analysis does not account for repeated measurements by participant/video: Kruskal–Wallis and Mann–Whitney tests are applied as if observations were independent. The appendix also reports an implausible combination of Z=-6.72 and p=0.015, weakening statistical confidence (pp. 7, 17–18).",
+          "Generality is constrained by 16-frame clips, arbitrary normalized monocular depth, and substantial inference cost; failures from depth errors and larger baselines are acknowledged but evaluated only sparsely (pp. 6, 9–10). Ablation gains in Table 2 are small and lack uncertainty estimates (p. 10)."
+        ],
+        "score_rationale": "The frame matrix and boundary re-injection are novel enough and the results support a useful practical advance, placing the work slightly above the acceptance threshold. However, heuristic cross-view denoising is not shown to guarantee stereo geometry, and weaknesses in objective evaluation and user-study statistics prevent a stronger score."
+      }
+    }
+  ]
+}

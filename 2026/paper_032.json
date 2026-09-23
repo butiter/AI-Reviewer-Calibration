@@ -1,0 +1,241 @@
+{
+  "year": 2026,
+  "package_id": "paper_032",
+  "paper_id": "uV8LGh2DCx",
+  "number": 8987,
+  "title": "Task-Aware Model Merging via Fisher-Weighted Median",
+  "authors": [
+    "Baban Gain",
+    "Saswati Dana",
+    "Udit Sharma",
+    "Arnab Kumar Mondal",
+    "Prathosh AP",
+    "Dinesh Garg",
+    "Amith Singhee"
+  ],
+  "primary_area": "foundation or frontier models, including LLMs",
+  "keywords": [
+    "Large Language Model",
+    "Model Merging",
+    "Multitasking"
+  ],
+  "forum_url": "https://openreview.net/forum?id=uV8LGh2DCx",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "",
+  "human_ratings": [
+    2,
+    4,
+    4,
+    2
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "GP1N7RjlUz",
+      "forum": "uV8LGh2DCx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8987/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761140636522,
+      "tmdate": 1762920717760,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "JYmVMJHWSu",
+      "forum": "uV8LGh2DCx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8987/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761460433506,
+      "tmdate": 1764358189869,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "L4GheCWSU1",
+      "forum": "uV8LGh2DCx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8987/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761975030231,
+      "tmdate": 1762920716326,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "XiJkz4agxa",
+      "forum": "uV8LGh2DCx",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8987/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761962841123,
+      "tmdate": 1762920716985,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DRIFT-MEDIAN combines TIES-style sign resolution and cross-model Top-K filtering with a Fisher-weighted median. The evaluation is broad and generally favorable, but the contribution is largely an incremental composition of known components, and ambiguities in selection, tuning, and comparison protocols weaken the evidence for consistent superiority.",
+        "strengths": [
+          "Broad evaluation across GPT-2, three Llama configurations, and CLIP vision models, with mostly improved aggregate PRR (pp. 7–10, 21–22).",
+          "The weighted-L1 objective is simple, interpretable, and correctly connected to a weighted median through a subgradient derivation (pp. 6, 17–18).",
+          "Component ablations and Fisher-domain-mismatch experiments provide useful, though limited, diagnostic evidence (pp. 9–10, 23)."
+        ],
+        "weaknesses": [
+          "Novelty is modest: sign resolution, task-vector sparsification, Fisher weighting, and weighted medians are established ideas; the paper mainly combines them, without a deeper guarantee that this particular sequence is optimal or preserves task performance (pp. 3–7).",
+          "The formal Top-K rule can retain more than K models under ties—especially zeros introduced by sign pruning—because it includes every magnitude greater than or equal to the Kth threshold. This conflicts with the claimed coordinate-wise cardinality control and may materially affect the weighted median (pp. 5–6, 17).",
+          "Experimental fairness is uncertain: DRIFT-MEDIAN hyperparameters are selected according to best downstream performance without a clearly separated tuning set, while baseline settings are adopted from prior recommendations; the Llama-2 PRR comparison also uses different fine-tuned-model denominators, making the claimed 5.09-point improvement questionable (pp. 8–9, 20–21)."
+        ],
+        "score_rationale": "The method is plausible and supported by unusually broad experiments, but its novelty is incremental and important protocol and algorithm-definition issues prevent the reported gains from being fully convincing. I therefore place it marginally below acceptance; uncertainty remains because code and exact tuning splits are unavailable."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes DRIFT-MEDIAN, combining TIES-style sign resolution, coordinate-wise cross-model Top-K filtering, and a Fisher-weighted median. Results are broad and generally favorable, but the core novelty is incremental and the evaluation does not cleanly establish that Fisher weighting—rather than tuning or the other components—causes the gains.",
+        "strengths": [
+          "The method is clearly specified, and the weighted-L1/weighted-median derivation is technically standard but correct (pp. 6, 17–18).",
+          "Evaluation spans GPT-2, three Llama settings, and CLIP across language, reasoning, safety, coding, and vision tasks (pp. 7–10, 21–23).",
+          "Component ablations show that sign resolution, Top-K selection, median aggregation, and scaling each affect aggregate performance (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "Novelty is limited to a fairly direct composition of existing sign pruning, Fisher weighting, Top-K filtering, scaling, and the classical weighted median; importantly, there is no unweighted-median ablation isolating the claimed contribution of Fisher weighting (pp. 3–7, 10).",
+          "Experimental fairness is uncertain: DRIFT-MEDIAN is tuned separately for every model/task suite, apparently using observed benchmark performance, while baselines use recommended fixed settings; no held-out tuning protocol, repeated runs, uncertainty estimates, or matched tuning budgets are reported (pp. 20–21). The Llama-2 comparison additionally mixes copied baseline results with separately evaluated checkpoints/skylines (pp. 8–9).",
+          "The stated Top-K rule can retain more than K models under ties—especially zeros introduced by sign pruning—because all entries meeting a cutoff with '>=' are selected, potentially invalidating the claimed per-coordinate cardinality control (pp. 5–6, 17). The method also requires task data and expensive per-task Fisher estimation, and scalability with task/model count is not demonstrated (pp. 19–22)."
+        ],
+        "score_rationale": "The broad empirical results are promising, but limited conceptual novelty, an underspecified and potentially favorable tuning protocol, absence of the decisive Fisher-versus-unweighted-median ablation, and a technical ambiguity in Top-K selection prevent confidence in the claimed advance. I therefore rate it below the acceptance threshold, while acknowledging uncertainty because code and matched-budget retuning could resolve some concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes DRIFT-MEDIAN, combining TIES-style sign resolution, cross-model coordinate-wise Top-K filtering, and Fisher-weighted median aggregation. The combination is sensible and evaluated across several architectures and modalities, but the novelty is incremental and important experimental-comparison and tuning ambiguities weaken the evidence for consistent superiority.",
+        "strengths": [
+          "The weighted-L1 formulation is clear, and the weighted-median optimality argument is provided explicitly (pp. 6, 17–18).",
+          "Evaluation spans GPT-2, three Llama settings, and CLIP vision tasks, with component ablations showing that each proposed stage affects aggregate PRR (pp. 7–10, 21–22).",
+          "The paper reports computational cost and examines hyperparameter interaction, out-of-domain behavior, and Fisher-data mismatch rather than presenting only headline results (pp. 9–10, 20–23)."
+        ],
+        "weaknesses": [
+          "The contribution is primarily a composition of established sign resolution, Fisher weighting, Top-K filtering, and a standard weighted median; the paper offers limited theory or controlled analysis showing why this particular composition should generalize beyond the tested configurations (pp. 3–7).",
+          "Hyperparameters are selected separately for each model using the “best performance,” but the selection split is not clearly separated from the reported benchmarks, while baselines use recommended fixed settings. There are also no seeds, uncertainty estimates, or significance tests, making modest gains—such as 81.22 versus 80.51 PRR on vision—hard to assess (pp. 9, 20–21).",
+          "Some comparisons are not fully commensurate: the Llama-2 result compares copied baselines normalized by previously reported fine-tuned models against the proposed method normalized by different reproduced fine-tuned scores (pp. 8–9). Moreover, the method requires task data for Fisher estimation—up to 1,000 examples per task—despite unavailable/private task data being a central motivation (pp. 1, 21)."
+        ],
+        "score_rationale": "The method is plausible, clearly described, and supported by broad positive results, placing it near the acceptance boundary. However, incremental novelty, potentially test-informed per-model tuning, absent uncertainty analysis, and the invalidly mixed normalization in the Llama-2 comparison prevent the empirical claims from being sufficiently conclusive. I therefore lean marginally below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes DRIFT-MEDIAN, combining TIES-style sign resolution, cross-model coordinate-wise Top-K filtering, and Fisher-weighted median aggregation. The method is intuitive and evaluated broadly, but its novelty is primarily compositional, and ambiguities in the Top-K formulation plus potentially evaluation-driven hyperparameter selection weaken the technical and empirical case.",
+        "strengths": [
+          "Broad evaluation across GPT-2, three Llama settings, and CLIP vision tasks generally shows improved aggregate PRR over reported baselines (pp. 7–9, 21–22).",
+          "The weighted-L1 objective has a correct standard weighted-median characterization, with a useful self-contained derivation (pp. 6, 17–18).",
+          "Component ablations and analyses of scaling, Fisher-domain mismatch, and detailed per-benchmark results improve transparency (pp. 9–10, 21–23)."
+        ],
+        "weaknesses": [
+          "The stated Top-K rule is technically problematic after sign pruning: because pruned updates are zero and retention uses magnitude ≥ the Kth threshold, whenever the threshold is zero all tied zeros can be retained, potentially admitting every model with nonzero Fisher weight rather than exactly K models. This conflicts with the claimed coordinate-wise limitation and leaves implementation behavior unclear (pp. 5–6, 17).",
+          "Hyperparameters are selected separately for each model by searching for the “best performance,” but no held-out selection protocol is specified; the explored method receives extensive λ/K tuning while baselines use recommended settings. This creates substantial uncertainty about test-set leakage and comparison fairness (pp. 9–10, 20–21). No confidence intervals or repeated-run analysis is provided.",
+          "Novelty is incremental: the main ingredients are established sign resolution, Fisher weighting, Top-K sparsification, and the classical weighted median. Evidence does not address scaling with more tasks or larger models, and the paper explicitly leaves both untested (p. 22); the Llama-2 comparison additionally uses different fine-tuned reference models and denominators across methods (pp. 8–9)."
+        ],
+        "score_rationale": "The combination is plausible and the reported gains are broad, supporting a borderline score. However, the ambiguous zero/tie behavior in the core Top-K operation, unclear held-out hyperparameter selection, and limited novelty prevent confidence that the gains establish a sound, general advance. I am uncertain how much these issues would change results because code is not supplied."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "DRIFT-MEDIAN combines TIES-style sign resolution and coordinate-wise filtering with Fisher-weighted median aggregation. The weighted-L1 formulation is mathematically valid, and results span several language and vision settings, but the contribution is primarily an incremental combination of known components and the evaluation protocol leaves important fairness and model-selection concerns unresolved.",
+        "strengths": [
+          "The Fisher-weighted L1 objective has a clear closed-form weighted-median solution, with an adequate subgradient derivation (pp. 6, 17–18).",
+          "Evaluation covers GPT-2, three Llama configurations, and CLIP across diverse tasks, with detailed per-benchmark results and component ablations (pp. 7–10, 21–22).",
+          "The paper reports computational requirements, domain mismatch tests for Fisher estimation, and an explicit scalability limitation (pp. 21–23)."
+        ],
+        "weaknesses": [
+          "Novelty is limited: sign election comes from TIES, Fisher weighting is established, and weighted medians are classical; the paper offers little theory establishing why their particular ordering and magnitude-based cross-model Top-K should be optimal or task-balanced (pp. 4–7).",
+          "Hyperparameters are selected separately for each architecture according to the “best performance,” but no held-out model-selection protocol is specified; uncertainty across seeds or statistical significance is also absent, making the reported margins difficult to assess (pp. 9–10, 20–21).",
+          "Baseline fairness is problematic: the method uses task-related data to estimate Fisher while several baselines are dataless, and the Llama-2 comparison computes PRR using different fine-tuned checkpoints/denominators for prior methods versus the proposed method (pp. 8–9, 21)."
+        ],
+        "score_rationale": "The paper presents a sensible, correctly derived heuristic and broad positive empirical results, but modest conceptual novelty and substantial evaluation-selection and comparability ambiguities prevent a confident acceptance. I therefore place it marginally below the acceptance threshold; uncertainty remains because code and repeated-run evidence are unavailable."
+      }
+    }
+  ]
+}

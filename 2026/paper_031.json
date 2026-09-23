@@ -1,0 +1,239 @@
+{
+  "year": 2026,
+  "package_id": "paper_031",
+  "paper_id": "GoZyhk7NKP",
+  "number": 8848,
+  "title": "GILT: An LLM-Free, Tuning-Free Graph Foundational Model for In-Context Learning",
+  "authors": [
+    "Weishuo Ma",
+    "Yanbo Wang",
+    "Xiyuan Wang",
+    "Lei Zou",
+    "Muhan Zhang"
+  ],
+  "primary_area": "learning on graphs and other geometries & topologies",
+  "keywords": [
+    "Graph Neural Networks",
+    "Graph Foundational Models",
+    "In-context Learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=GoZyhk7NKP",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    4,
+    2,
+    4
+  ],
+  "human_mean_rating": 3.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "A5zruOgSe4",
+      "forum": "GoZyhk7NKP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8848/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761894777478,
+      "tmdate": 1762920612576,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "YWuafkuHJi",
+      "forum": "GoZyhk7NKP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8848/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761985845871,
+      "tmdate": 1762920611945,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 5
+        },
+        "soundness": {
+          "value": 1
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        }
+      }
+    },
+    {
+      "review_id": "hNDw6JLUC7",
+      "forum": "GoZyhk7NKP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8848/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761644630949,
+      "tmdate": 1762920613563,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "lYQ4wDcTed",
+      "forum": "GoZyhk7NKP",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission8848/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761693336596,
+      "tmdate": 1762920612902,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "GILT is a potentially useful TabPFN-inspired framework that combines graph propagation, prototype-conditioned tokens, and asymmetric attention for tuning-free few-shot prediction across node, link, and graph tasks. However, the evidence does not yet support the broad state-of-the-art or foundational-model claims because comparisons use heterogeneous protocols, important implementation/evaluation details are missing, and several analyses are internally inconsistent.",
+        "strengths": [
+          "The unified node/edge/graph tokenization and support-to-query attention pipeline is coherent and addresses a practically important tuning-free setting (pp. 4–6).",
+          "The model is evaluated across three task levels and often performs competitively, including strong link-prediction results on Cora and Citeseer (pp. 7–8).",
+          "The paper provides component ablations, shot-scaling analysis, pretraining datasets, and hyperparameter ranges (pp. 9–10, 17–21)."
+        ],
+        "weaknesses": [
+          "Comparisons are not consistently controlled: many link/graph results are copied from prior papers under potentially different protocols, LLM baselines are zero-shot while GILT uses up to 20 shots, and average node gains over GraphAny are small and mixed across datasets (pp. 7–9, 19).",
+          "The evidence for learned in-context reasoning is weak. The no-Transformer ablation leaves query class coordinates as zeros and predicts only from that space, making chance-level performance nearly inevitable; a fair direct prototype or metric-learning baseline is absent (pp. 5–6, 9–10).",
+          "There are consequential inconsistencies and underspecification: the text alternates between a parameter-free feature pipeline and a learned low-dimensional projection (pp. 4–5, 18); episodic sampling, query sizes, repetitions, graph pooling, and multi-label task construction are unclear; and the claim that evaluation graphs are all unseen conflicts with cross-task evaluation on Computers and Photo, which appear in the pretraining corpus (pp. 8, 17–19)."
+        ],
+        "score_rationale": "The core construction is plausible and empirically promising, but novelty is moderate and the current experimental design cannot cleanly establish the claimed generality or superiority. The misleading ablation and protocol inconsistencies are substantial enough to place the work below the ICLR acceptance threshold, though they appear potentially remediable."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "GILT combines graph-specific feature alignment and linear propagation with a support/query Transformer and prototypical prediction to perform tuning-free few-shot node, link, and graph classification. The direction is useful and results are promising, but inconsistencies and insufficiently controlled evaluation make the central generalization and efficiency claims difficult to verify.",
+        "strengths": [
+          "A coherent unified formulation covers node, link, and graph items using support/query tokens and a shared-attention Transformer (pp. 4–6).",
+          "The model is evaluated across multiple task levels and generally obtains competitive few-shot results, including strong node and molecular classification performance (pp. 7–8).",
+          "Ablations support the importance of the Transformer and structural encoder, while the shot analysis shows broadly sensible scaling with context size (pp. 9–10, 21)."
+        ],
+        "weaknesses": [
+          "Evaluation comparability is weak: many link/graph and LLM baselines are copied from different publications rather than rerun under the stated protocol (p. 19), Prodigy is discussed but omitted, and molpcba uses ROC-AUC rather than its standard AP metric (pp. 7–8).",
+          "The cross-task experiment is not fully unseen-graph transfer: Computers and Photo are link-prediction test graphs in Table 3(b) but also appear in the pretraining corpus in Table 7 (pp. 8, 18), contradicting the broad held-out claim on p. 17.",
+          "Important implementation and leakage details are unclear. The main text describes PCA plus zero-padding and a parameter-free structural encoder, whereas the appendix introduces a learnable low-dimensional projection and affine LayerNorms (pp. 4–5, 18). For link prediction, the paper never explicitly states that query/test edges are removed from the adjacency used by the GCN, leaving potentially severe leakage uncertain (pp. 4–7)."
+        ],
+        "score_rationale": "The architecture is plausible and potentially valuable, with encouraging empirical results. However, protocol mismatches, seen-graph cross-task evaluation, inconsistent method specification, and unresolved link-prediction leakage risk prevent the evidence from securely supporting the claimed universal, unseen-graph generalization. I therefore rate it below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "GILT combines feature alignment, linear graph propagation, a support/query Transformer, and prototypical prediction to provide tuning-free few-shot learning across node, link, and graph tasks. The direction is useful and node-classification results are promising, but protocol ambiguities and weakly controlled comparisons prevent the broad performance and efficiency claims from being established.",
+        "strengths": [
+          "The unified, LLM-free formulation addresses a practically important setting and covers node, link, and graph classification within one model (PDF pp. 4–6).",
+          "Fresh node-classification comparisons show competitive average performance, while component ablations support the importance of both structural encoding and contextual reasoning (PDF pp. 7, 10).",
+          "The paper provides useful architectural, pre-training, dataset, and hyperparameter details, including held-out evaluation datasets (PDF pp. 17–20)."
+        ],
+        "weaknesses": [
+          "Novelty appears moderate: the method largely combines PCA, linear GCN propagation, TabPFN-inspired attention, and prototypes. The manuscript cites but does not substantively compare against earlier graph ICL work such as Prodigy, weakening the novelty assessment (PDF pp. 3–6, 12).",
+          "The link-prediction protocol does not state whether query/test edges are removed before the GCN processes the adjacency. If they remain, results leak targets; the striking five-shot gains over fully supervised methods therefore cannot be trusted without clarification. Molecular-task construction and missing-label handling are also unspecified, and molpcba is evaluated with ROC-AUC rather than its standard average-precision metric (PDF pp. 7–8, 18–19).",
+          "Many non-node baselines and all efficiency numbers are not established under a controlled common protocol. Results are imported from different publications, while timing lacks matched hardware, preprocessing scope, and task-size details; moreover, the main text's non-parametric feature alignment conflicts with the learnable low-dimensional projection described in the appendix (PDF pp. 4, 9, 18–19)."
+        ],
+        "score_rationale": "The tuning-free graph ICL idea is promising and node results provide meaningful evidence, but the contribution is largely compositional and the decisive cross-task, graph-level, and efficiency claims rely on insufficiently specified or incomparable evaluations. In particular, uncertainty about link-edge leakage is serious enough to place the work below acceptance."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "GILT combines graph-native preprocessing, class-prototype tokens, and a two-stage Transformer to perform tuning-free few-shot node, link, and graph classification. The direction is useful and the node-classification results are promising, but important protocol ambiguities and weakly controlled comparisons prevent the broad empirical claims from being established.",
+        "strengths": [
+          "A practical, unified formulation supports node, link, and graph classification without test-time gradient updates, using numerical rather than textual features (pp. 4–6).",
+          "Node-classification experiments include several relevant tuning-based and tuning-free GFM baselines, and GILT obtains strong average 1-shot and 5-shot results (p. 7).",
+          "Ablations directly examine the Transformer, structural encoder, shared attention, and output representation, with substantial drops for removing the principal components (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The link-prediction protocol may leak query edges: embeddings are computed by graph convolution over the adjacency matrix, but the manuscript never states that held-out positive query edges are removed before encoding (pp. 5, 7–8). The unusually strong 5-shot results therefore cannot be trusted without clarification and leakage-controlled evaluation.",
+          "Most link and graph baselines are copied from prior publications rather than rerun under the same support sets and protocol (p. 19); graph classification covers only two molecular datasets sharing the same nine-dimensional feature schema as the molecular pretraining data (pp. 17–18). This weakens claims of broad heterogeneity handling and state-of-the-art performance.",
+          "Technical specification and robustness are incomplete: the main text describes zero-padding low-dimensional features, whereas the appendix introduces a learnable projection (pp. 4, 18), and no test addresses sensitivity to arbitrary PCA signs/bases despite the Transformer consuming PCA coordinates directly. Exact episodic sampling and comparable efficiency measurement conditions are also insufficiently documented (pp. 18–20)."
+        ],
+        "score_rationale": "The LLM-free, tuning-free system is promising, and the node results support further investigation. However, possible adjacency leakage in the headline link results, non-comparable sourced baselines, narrow graph-level evidence, and inconsistent method details are substantial soundness and validation deficiencies. I therefore lean reject, with some uncertainty because clarification of edge removal and matched reruns could materially improve the assessment."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "GILT combines feature alignment, linear graph propagation, asymmetric support/query tokens, a two-stage Transformer, and a prototypical head to perform tuning-free few-shot node, link, and graph classification. The idea is useful and results are promising, but substantial protocol and specification gaps prevent the evidence from securely supporting the broad state-of-the-art and universal-GFM claims.",
+        "strengths": [
+          "Addresses an important practical setting: adapting to numerical-feature graphs without an LLM or test-time optimization, while unifying node-, edge-, and graph-level tasks (pp. 4–6).",
+          "The held-out node-classification evaluation is reasonably broad, and GILT obtains strong average results against directly evaluated few-shot models (p. 7).",
+          "Component ablations show that the Transformer and structural encoder materially affect performance, rather than serving as cosmetic additions (pp. 9–10)."
+        ],
+        "weaknesses": [
+          "The feature unifier is internally inconsistent and insufficiently specified: p. 4 describes non-parametric PCA plus zero-padding, whereas p. 18 introduces a learnable projection for low-dimensional inputs; it is unclear how one projection supports arbitrary input dimensions or what is fitted using which data.",
+          "Much of the evidence is not protocol-matched. Link and graph baselines are imported from prior publications (p. 19), while shot sampling, query sizes, trial counts, and molecular multi-task construction are not adequately defined. The efficiency comparison likewise lacks hardware and preprocessing controls (pp. 8–9).",
+          "Key claims are under-isolated: there is no raw-embedding nearest-prototype baseline, and the cross-task link experiment evaluates on Computers and Photo even though these graphs occur in the pretraining corpus (pp. 8, 18), weakening claims of generalization to unseen graphs."
+        ],
+        "score_rationale": "The tuning-free graph ICL direction and empirical results are promising, but the architecture is largely a combination of established propagation, TabPFN-style attention, and prototypes, while contradictory implementation details and incompletely controlled comparisons materially limit soundness and reproducibility. I therefore place it marginally below acceptance; uncertainty remains because code could resolve several missing protocol details."
+      }
+    }
+  ]
+}

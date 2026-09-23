@@ -1,0 +1,447 @@
+{
+  "year": 2025,
+  "package_id": "paper_098",
+  "paper_id": "4sJ2FYE65U",
+  "number": 13570,
+  "title": "Neural Multi-Objective Combinatorial Optimization via Graph-Image Multimodal Fusion",
+  "authors": "Jinbiao Chen; Jiahai Wang; Zhiguang Cao; Yaoxin Wu",
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": "Neural Multi-Objective Combinatorial Optimization; Multimodal Fusion; Deep Reinforcement Learning",
+  "forum_url": "https://openreview.net/forum?id=4sJ2FYE65U",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    8,
+    6,
+    8,
+    6
+  ],
+  "human_mean_rating": 6.6,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "This paper aims to fully leverage the intrinsic features of problem instances by proposing a novel graph-image multimodal fusion framework for solving multi-objective combinatorial optimization (MOCO). The authors introduce the concept of \"image\" for MOCO to better capture the spatial structure of problem instances, enhancing the learning process. They also propose a problem-size adaptive resolution strategy to improve generalization. Finally, the paper presents a multimodal fusion mechanism with modality-specific bottlenecks to efficiently integrate graph and image information."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "1. The writing is good.\n\n2. The experiments are detailed, and the results are competitive."
+        },
+        "weaknesses": {
+          "value": "1. I believe the role of the image concept in CO is questionable. To some extent, using images in CO results in information loss and requires more space to represent. As far as I know, many Euclidean TSP models, like [1, 2], use positions directly as input, which requires less space and provides more precise information.\n\n2. Compared to typical neural MOCO methods, GIMF uses sparse matrix images as input, resulting in larger neural network sizes and an inability to handle larger-scale routing problems."
+        },
+        "questions": {
+          "value": "1. What's the training loss of the GIMF?\n\n2. Can GIMF obtain a Pareto set of solutions?\n\n3. I noticed the authors used multi-modal fusion, but I don't quite understand this part. Does it mean that each subproblem requires training a single model and then performing model fusion at the end?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "vAWmiux6ri",
+      "forum": "4sJ2FYE65U",
+      "replyto": "4sJ2FYE65U",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_QYyp"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_QYyp"
+      ],
+      "number": 5,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13570/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730721718671,
+      "cdate": 1730721718671,
+      "tmdate": 1731429643112,
+      "mdate": 1731429643112,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The paper presents a novel graph-image multimodal fusion (GIMF) framework that aims to enhance neural multi-objective combinatorial optimization (MOCO) methods. The GIMF framework integrates graph and image information of problem instances, which is designed to overcome the limitations of existing neural MOCO methods that rely solely on graph-modal information. The main contribution of the proposed method is the coordinate image construction, which provides complementary information to the graph representation.To improve the model's generalization across different problem sizes, a Problem-size Adaptive Resolution (PSAR) strategy is proposed during the image construction process, which helps maintain a stable density for both the image and patches. A multimodal fusion mechanism with Modality-Specific Bottlenecks (MSB) is designed to efficiently couple graph and image information. \n\nThe GIMF framework is implemented with two state-of-the-art neural MOCO backbones, namely CNH and PMOCO. Experimental results on classic MOCO problems demonstrate that GIMF can improve neural MOCO methods by providing image-modal information and exhibits superior generalization capability."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. The major contribution of this paper is its integration of both graph and image modalities to enhance the representation learning for MOCO problems. The construction of coordinate images and the use of PSAR strategy are innovative steps that address the limitations of relying solely on graph information. The proposed MSB in multimodal fusion mechanism is also a novel contribution.\n\n2. The paper is well-organized and written in a clear and concise manner. The introduction effectively sets the stage by outlining the challenges in MOCO and the motivation behind the GIMF framework. The preliminary section clearly describes the definition of the MOCO problem and related concepts, as well as the graph transformer for MOCO. The methodology section is detailed, providing a clear explanation of the image construction process, the PSAR strategy, and the multimodal fusion mechanism.\n\n3. The significance mainly comes from its novelty.Specifically, leveraging a multimodal approach that incorporates image-modal information, which has the potential to improve many existing neural MOCO methods. The paper is also likely to inspire further research in constructing and learning from images of MOCO problems.\n\n4. The experimental results suggest that GIMF does not obviously increase computational time of the neural MOCO basebone. The major innovations PSAR and MSB are validated by ablation study."
+        },
+        "weaknesses": {
+          "value": "The proposed method could improve the performance of CNH and PMOCO, as well as their augment variants. However, sometimes the improvement seems marginal. In Table 1 and Table 2, the reported improvements are all mostly less than 0.001, and sometimes are as small as 0.0001. Meanwhile, the reported best results can not significantly outperform SOTA baselines."
+        },
+        "questions": {
+          "value": "In Table 1 and Table 2, the reported times of GIMF-P and GIMF-C are sometimes smaller than PMOCO and CHN, what is the reason for this phenomenon?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "koOwHg8AXK",
+      "forum": "4sJ2FYE65U",
+      "replyto": "4sJ2FYE65U",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_3Wbv"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_3Wbv"
+      ],
+      "number": 4,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13570/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730659764020,
+      "cdate": 1730659764020,
+      "tmdate": 1732502244998,
+      "mdate": 1732502244998,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper presents a novel Graph-Image Multimodal Fusion (GIMF) framework designed to enhance multi-objective combinatorial optimization (MOCO) methods. By integrating both graph and image information from problem instances, the framework effectively addresses the limitations associated with relying solely on graph-modal information, particularly in the context of bi- and tri-objective traveling salesman problems (TSP)."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- The main novelty of this paper lies in defining the image modality alongside the graph modality, offering a new perspective for addressing challenges in MOCO.\n- This approach enhances conventional heuristic algorithms by leveraging the combined information from both modalities."
+        },
+        "weaknesses": {
+          "value": "- If the image modality has been defined, why still continue to use the graph modality? How could one approach solving an MOCO problem using only the image modality? Additionally, could you provide ablation studies to support this?\n- Since the graph can also be viewed as a transition matrix, what is the relationship between reinforcement learning and the authors' algorithm?"
+        },
+        "questions": {
+          "value": "- Is this analogous to a game played on a chessboard? Are the authors providing definitions and citations related to reinforcement learning? Are you aiming to transform the graph problem into a gameplay problem on a chessboard?\n- Has reinforcement learning for MOCO in chessboard games been well studied elsewhere? If MOCO, such as TSP, is defined within the context of a chessboard game, isn’t it relatively straightforward? Does this require a graph modality, or can the image modality defined by the authors alone be sufficient to address the MOCO problems?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "sTqr923mtn",
+      "forum": "4sJ2FYE65U",
+      "replyto": "4sJ2FYE65U",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_SVeH"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_SVeH"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13570/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730646151422,
+      "cdate": 1730646151422,
+      "tmdate": 1731429643071,
+      "mdate": 1731429643071,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper proposes a generic graph-image multimodal fusion (GIMF) framework that integrates graph and image information of the problem instances to enhance neural MOCO. The framework consists of three main components: (1) a constructed coordinate image (2) a problem-size adaptive resolution strategy and (3) a multimodal fusion mechanism. Experimental results demonstrate its effectiveness."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 4
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1.\tThis paper is well-organized and clear writing.\n2.\tThe proposed method demonstrates novelty.\n3.\tExperiments show that GIMF performs better on classic MOCO problems."
+        },
+        "weaknesses": {
+          "value": "Some details and parameter settings were not explained clearly (see Questions below)."
+        },
+        "questions": {
+          "value": "1. What does \"$\\bm{\\pi_i}$\" represent in the formula for calculating $\\nabla\\mathcal{L}(\\bm{\\theta})$ on line 136, or should it be changed to \"$\\pi_i$\"?\n\n2. What is the meaning of the line from $\\pi_t$ to $h_c$ in Figure 2? The authors should supplement the relationship between $\\pi_t$ and $h_c$ in the main text.\n\n3. Why choose the dimension of patch as $w=h=16$? The authors should provide an explanation or conduct ablation experiments."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "ZKHbYdC2RY",
+      "forum": "4sJ2FYE65U",
+      "replyto": "4sJ2FYE65U",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_hYPJ"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_hYPJ"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13570/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730461376910,
+      "cdate": 1730461376910,
+      "tmdate": 1731429643067,
+      "mdate": 1731429643067,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper introduces a novel approach for MOCO through graph-image multimodal fusion. The framework incorporates a constructed coordinate image and efficient multimodal fusion. Experimental results on MOCO problems show the advance of the proposed GIMF."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "S1. The GIMF framework successfully combines graph and image information, enriching representation learning for MOCO problems. \n\nS2. The PSAR strategy and modality-specific bottlenecks for multimodal fusion are well-justified and empirically validated.\n\nS3. Extensive experiments are conducted."
+        },
+        "weaknesses": {
+          "value": "W1. The improvement achieved by the proposed methods appears to be marginal.\n\nW2. The computational cost of the proposed GIMF framework seems considerably higher than state-of-the-art methods like EMNH. It seems that the performance gains come from a cost of efficiency. \n\nW3. Constructing images seems relatively straightforward for TSP problems, but how does this approach generalize to other real-world scenarios? For some tasks, image construction may be challenging—how do the authors envision addressing this limitation?"
+        },
+        "questions": {
+          "value": "N/A."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "pIg0qAcfYZ",
+      "forum": "4sJ2FYE65U",
+      "replyto": "4sJ2FYE65U",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_4hxj"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission13570/Reviewer_4hxj"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission13570/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730413239534,
+      "cdate": 1730413239534,
+      "tmdate": 1731429643068,
+      "mdate": 1731429643068,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes GIMF, which rasterizes MOCO instances and fuses image-patch and graph-node representations through modality-specific bottlenecks, with adaptive image resolution for size generalization. Results across four synthetic problem families show consistent improvements over the two neural backbones, especially for larger TSP instances, but the novelty and empirical validation are somewhat limited.",
+        "strengths": [
+          "The framework is clearly specified and instantiated with two distinct neural MOCO backbones, supporting some architectural generality (pp. 4–6, 16–17).",
+          "Experiments cover four problems, strong neural and conventional baselines, inference time, augmentation, parameter-matched controls, and larger-size tests (pp. 7–10, 18–20).",
+          "Ablations support the importance of adaptive resolution for TSP size extrapolation, where removing PSAR substantially degrades Bi-TSP200 performance (p. 10)."
+        ],
+        "weaknesses": [
+          "The image is a lossy rasterization of features already present in the graph, with undefined handling of pixel collisions for CVRP/KP; thus the claimed complementary information is better characterized as an inductive bias, and applicability requires problem-specific image design (pp. 4, 10).",
+          "Many gains are small—particularly for CVRP and KP—and the strongest conventional solver remains better on TSP quality; variance, exact significance outcomes, and training cost are not reported despite very large training budgets (pp. 7–10).",
+          "MSB/PSAR ablations and hyperparameter choices are evaluated only on Bi-TSP100/200, apparently using the claimed OOD test setting for selection, while generalization to other problems, distributions, or real-world instances is untested (pp. 8–10, 18–19)."
+        ],
+        "score_rationale": "This is a competent, empirically useful extension with consistent backbone improvements and good breadth, warranting marginal acceptance. However, the core novelty mainly combines known rasterization, ViT, and bottleneck-fusion ideas, while modest gains and test-set/hyperparameter-selection uncertainty weaken the broader generalization claims."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper augments neural multi-objective combinatorial optimization with rasterized instance representations, adaptive image resolution, and modality-specific bottleneck fusion. Across four synthetic problem families and two backbones, it reports consistent—though often modest—HV improvements and improved size generalization. This is a useful empirical contribution, but the conceptual novelty and demonstrated scope are limited.",
+        "strengths": [
+          "The framework is evaluated with two distinct neural MOCO backbones and generally improves each corresponding baseline across Bi-TSP, Bi-CVRP, Bi-KP, and Tri-TSP (pp. 7–9).",
+          "The paper includes targeted ablations showing that PSAR and modality-specific bottlenecks matter particularly for Bi-TSP100-to-200 generalization (pp. 8–10), plus parameter-matched comparisons that reduce the concern that gains arise only from a larger model (pp. 19–20).",
+          "Evaluation includes strong neural, evolutionary, and problem-specific baselines, inference-time comparisons, larger synthetic instances, and TSPLIB-derived instances (pp. 7–10, 18)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the central idea rasterizes node features already present in the graph and combines standard vision/graph Transformers with a variant of existing attention bottlenecks; the paper does not clearly establish what new information, rather than a useful inductive bias, the image supplies (pp. 4–6).",
+          "Many in-distribution gains are very small (e.g., GIMF-C versus CNH on Bi-CVRP), while uncertainty is inadequately exposed: despite mentioning a Wilcoxon test, the tables provide no variance, confidence intervals, exact tests, or multi-seed training results (pp. 7–10).",
+          "The generality claim is under-supported: image construction is problem-specific and potentially lossy under pixel collisions, experiments are confined to coordinate/value-based synthetic families, and out-of-distribution tests focus only on bi-objective TSP size shifts; the authors themselves acknowledge uncertain applicability to less image-friendly and real-world problems (pp. 4, 6, 10)."
+        ],
+        "score_rationale": "Marginally above acceptance: the method is technically plausible, broadly benchmarked, and consistently improves two strong backbones, with useful ablations and parameter controls. However, it is largely an architectural/representation combination with modest gains, incomplete uncertainty reporting, and limited evidence for broad MOCO generality."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper introduces a deterministic raster representation of MOCO instances, adaptive image resolution, and bottleneck-based graph–image fusion. Results are consistently positive across two neural backbones and four synthetic problem families, with especially useful size-generalization gains, but the conceptual novelty is moderate and the evidence lacks variability and training-cost reporting.",
+        "strengths": [
+          "Consistent improvements over both CNH and PMOCO across the main Bi-TSP, Bi-CVRP, Bi-KP, and Tri-TSP evaluations (pp. 7–9).",
+          "Ablations separately examine fusion mechanisms and adaptive resolution, showing that both are particularly important out of distribution (pp. 8–10).",
+          "Evaluation includes strong conventional and neural baselines, larger-size and TSPLIB-derived tests, plus parameter-matched comparisons that reduce the concern that gains merely come from model size (pp. 8–10, 18, 20)."
+        ],
+        "weaknesses": [
+          "The image is a lossy deterministic transformation of the graph features rather than genuinely additional information; thus the main contribution is better characterized as an image-based inductive bias, and its novelty over standard rasterization and bottleneck fusion is limited (pp. 4–6).",
+          "Image construction is underspecified for quantization collisions—particularly how multiple CVRP/KP nodes occupying one pixel are represented—and background values for those problems are not explicitly defined, creating reproducibility and information-loss concerns (p. 4).",
+          "Reported averages and significance tests lack variance, confidence intervals, and multi-seed training results; training cost is also omitted, while generalization experiments are confined largely to TSP and several gains are numerically small (pp. 7–10)."
+        ],
+        "score_rationale": "This is a technically plausible and empirically thorough extension with consistent gains, credible ablations, and parameter-controlled evidence. However, the method combines fairly standard components, overstates deterministic rasterization as complementary information, and leaves statistical robustness and parts of image construction insufficiently documented. I therefore rate it marginally above acceptance, with some uncertainty about reproducibility and whether the modest gains justify the added machinery."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes a graph-image fusion framework for neural multi-objective combinatorial optimization, combining rasterized instance representations, size-adaptive image resolution, and modality-specific attention bottlenecks. The method is technically plausible and consistently improves two established neural backbones, especially under moderate size shifts, but the contribution is incremental and the empirical support lacks variance/seed reporting and broad real-world validation.",
+        "strengths": [
+          "A coherent, reasonably well-specified framework combines adaptive rasterization, scalable positional encoding, and bottleneck-mediated fusion (pp. 4–6).",
+          "Experiments cover four standard problem families, two different neural backbones, conventional heuristics, augmentation, parameter-matched controls, and targeted ablations (pp. 7–10, 18–20).",
+          "The size-generalization results and ablations provide useful evidence that PSAR and the proposed fusion design matter beyond simply increasing parameter count (pp. 9–10, 20)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: the central idea applies established vision Transformers and multimodal attention bottlenecks to a rasterized, largely redundant and lossy encoding of node features already available to the graph model (pp. 4–6).",
+          "Evidence is less conclusive than claimed: many in-distribution gains are numerically small, no run-to-run variability or seed analysis is reported, and the stated Wilcoxon tests are not accompanied by statistics or clearly enumerated outcomes (pp. 7–10).",
+          "Generality remains uncertain: evaluation is mostly on synthetic instances, size extrapolation is limited, only three external TSP instances are used, and pixel collisions or conflicting values after quantization are not defined for the CVRP/KP image construction (pp. 4, 6, 10, 18)."
+        ],
+        "score_rationale": "This is a solid, empirically broad engineering contribution with consistent improvements and informative ablations, warranting marginal acceptance. However, its conceptual advance over existing multimodal bottleneck architectures is limited, the rasterization rules have unresolved edge cases, and missing uncertainty reporting plus narrow real-world evaluation prevent a stronger score."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 6,
+        "confidence": 4,
+        "summary": "The paper proposes GIMF, which rasterizes MOCO instances and fuses ViT patch features with graph-transformer features using modality-specific bottlenecks and size-adaptive image resolution. Results across four synthetic problem families show consistent, generally modest gains over the two neural backbones, with stronger gains on larger Tri-TSP and size-shifted Bi-TSP instances (pp. 8–10). The approach is technically plausible and empirically useful, but its novelty and demonstrated generality are limited.",
+        "strengths": [
+          "The framework is evaluated with two distinct neural MOCO backbones and across Bi-TSP, Tri-TSP, Bi-CVRP, and Bi-KP; improvements over the corresponding backbones are consistent (pp. 6–9).",
+          "Ablations separately examine fusion mechanisms and adaptive resolution, with PSAR showing a substantial benefit under the tested Bi-TSP100-to-200 size shift (p. 10).",
+          "The appendix includes parameter-matched comparisons, reducing the concern that gains arise solely from a larger network (pp. 19–20)."
+        ],
+        "weaknesses": [
+          "Novelty is moderate: rasterization, ViT encoding, attention bottlenecks, and adaptive resolution are largely known components, and the paper does not convincingly explain what information the quantized image contains that is unavailable from the original node features (pp. 4–6).",
+          "The generalization evidence is narrow: out-of-distribution experiments concern only Bi-TSP size shifts and three related TSPLIB cases, while real-world instances, other MOCO families, and distribution shifts are absent (pp. 7, 9–10).",
+          "Reported gains are often small, yet tables provide no variability, confidence intervals, or per-comparison test statistics despite mentioning Wilcoxon tests; raster collisions and information loss are also not analyzed (pp. 4, 7–10)."
+        ],
+        "score_rationale": "This is a competent empirical extension with broad in-distribution comparisons, relevant ablations, and consistent backbone improvements. However, the contribution is primarily an architectural combination, and the strongest generalization claim rests on a limited Bi-TSP study. I therefore place it marginally above the acceptance threshold, with some uncertainty because statistical dispersion and rasterization failure modes are not reported."
+      }
+    }
+  ]
+}

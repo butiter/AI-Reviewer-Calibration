@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_093",
+  "paper_id": "czVzzXPCkw",
+  "number": 12945,
+  "title": "ON EXTRAPOLATION IN MATERIAL PROPERTY REGRESSION",
+  "authors": "Pan Mianzhi; JianFei Li; Yawen Ouyang; Wei-Ying Ma; Jianbing Zhang; Hao Zhou",
+  "primary_area": "applications to physical sciences (physics, chemistry, biology, etc.)",
+  "keywords": "material property prediction; regression; extrapolation",
+  "forum_url": "https://openreview.net/forum?id=czVzzXPCkw",
+  "venue": "Submitted to ICLR 2025",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    5,
+    5,
+    3
+  ],
+  "human_mean_rating": 4.333333333333333,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "(Note: The reviewer does not have a background in material property prediction; thus, this review is based on informed estimates. The reviewer welcomes discussions and is open to adjusting scores or comments based on feedback from the authors and other reviewers.) \n\nThe paper introduces a novel approach that reframes material-property regression (MPR) as a material-property matching problem, aiming to simplify target function complexity. This reframing addresses the difficulty neural networks face in capturing complex non-linearity beyond the training data, improving model extrapolation.\n\nThe core idea is that focusing on the proximity between material and property representations, rather than on precise value predictions, reduces learning difficulty and enhances extrapolation. The authors propose two objectives for learning aligned feature spaces for material-property representation matching. First, they use absolute matching optimization with a negative cosine similarity loss to pull paired material and label representations closer together. Second, the method employs Noise Contrastive Estimation (NCE) to help the model distinguish target from noisy labels, thereby capturing fine-grained relative matching relationships.\n\nWithin these well-aligned latent spaces, the proposed method (MEX) predicts by optimizing for the nearest target value for a given sample. Experiments demonstrate that MEX not only performs best on the benchmark but also shows strong detection capabilities for promising materials, underscoring its extrapolation potential and suitability for robust material discovery.\n\n------\nWhile reading this paper, I hypothesized that the label encoder could easily overfit to the training data, effectively reducing it to a look-up table and thereby losing any extrapolation capability. However, this risk may be mitigated by the inclusion of a noisy label component, which introduces stochasticity to the model, reducing its tendency to overfit. And the Gaussian applied to the label likely encourages continuity in the label space, which could help to foster the model’s extrapolation abilities."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "•\tThe approach addresses a significant problem in material property prediction.\n\n•\tThe results look promising"
+        },
+        "weaknesses": {
+          "value": "•\tDataset Limitations: The dataset is small and simplistic, limiting the evaluation of the method's effectiveness. The number of samples (ranging from 4,764 to 18,982) is limited, and details about the dimensionality of data points are not provided. Additionally, the design of y target $y_{\\text{target}}$, as described in section 3.1, seems unrealistic since the training and target data are entirely disjoint. This choice could disadvantage baseline methods.\n\n•\tBaseline Choice: The Deep Imbalanced Regression (DIR) technique is designed for handling imbalanced data distributions with underrepresented target values. However, the proposed dataset’s disjoint target-training setup may hinder DIR’s performance. DIR methods are not specifically tailored for extrapolation, which is central to this work, making it challenging to evaluate against MEX."
+        },
+        "questions": {
+          "value": "1.\tCould the authors clarify the Geometric Mean metric to aid readers unfamiliar with it?\n2.\tIn Figure 6, the performance seems to decrease as $\\lambda$ increases, suggesting that NCE might negatively impact results. Could the authors explain this trend?\n3.\tThe authors claim that the matching-based approach enhances extrapolation, but how does this method handle out-of-distribution data or outliers? Can contrastive learning effectively handle these cases? \n4.\tCould the authors consider an additional setting where the target and training data overlap slightly, such as by adding extreme high or low values to the training set, to simulate an imbalanced distribution?\n5.\tHow well does the method scale with higher-dimensional targets?\n6.\tIs there a threshold in the matching function M(x, y) to determine when a match is strong enough?\n7.\tHow does the model avoid overfitting in the label encoder, potentially transforming it into a look-up table? Does the noise component mitigate this risk, supporting extrapolation?\n8.\tWhile $y^*$ is estimated via Monte Carlo sampling, could gradient-based methods be viable for this estimation? \n9.\tWhat is the dimensionality of the input data sample x?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 3
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "SquXD7ahdU",
+      "forum": "czVzzXPCkw",
+      "replyto": "czVzzXPCkw",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12945/Reviewer_oJTR"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12945/Reviewer_oJTR"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12945/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1731285481511,
+      "cdate": 1731285481511,
+      "tmdate": 1731428498624,
+      "mdate": 1731428498624,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper explores the challenge of extrapolation in material property regression. Existing deep learning models for MPR assume that the training and test data follow similar distributions, thus limiting their ability to make predictions beyond the known range. To address this issue, the authors introduce the Matching-based Extrapolation (MEX) framework that reframes MPR as a material-attribute matching problem.MEX employs both absolute and relative matching objectives to optimize the consistency of the material and attribute representations, thereby facilitating better extrapolation of material property predictions. The authors also develop a new benchmark."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "- Originality:\n  - Novel perspective of material property prediction. Reframe the task as a material property matching problem.\n- Quality:\n  - A new benchmark is constructed and a new framework is proposed to address the critical problem of out-of-domain material property prediction.\n- Clarity:\n  - Most of the paper is clearly presented, with some details that should be explained more clearly. The section on noise contrastive estimation-based optimization.\n- Significance:\n  - The problem is critical for new material discovery. The benchmark provides an important validation of the OOD material property prediction problem."
+        },
+        "weaknesses": {
+          "value": "- Limited novelty in method.\n  - The key components, NCE, and cosine similarity-based matching are well-known techniques.\n- scalability and computational complexity\n  - The MEX framework’s inference requires iterative candidate label refinement, which introduces considerable computational overhead compared to traditional regression methods.\n- Experiments\n  - Traditional methods, like DFT, are supposed to be compared to find the gap between DL-based extrapolation and traditional methods.\n  - More DL-based methods should be compared to provide evidence that previous works lack the generalization of OOD properties."
+        },
+        "questions": {
+          "value": "- Dataset\n  - The diversity of the dataset, for example, the distribution of atom numbers and the lattice constants, etc.\n- Matching choice\n  - Are there any insights into adapting Noise Contrastive Estimation (NCE) instead of other methods?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "GTer36zeV6",
+      "forum": "czVzzXPCkw",
+      "replyto": "czVzzXPCkw",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12945/Reviewer_JB71"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12945/Reviewer_JB71"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12945/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730360294944,
+      "cdate": 1730360294944,
+      "tmdate": 1731428498991,
+      "mdate": 1731428498991,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The author addresses the issue of material property regression, focusing specifically on regression problems where the feature values lie outside the boundaries of the training set.\nThe author performs the regression task using two encoder models: (1) an encoder for material properties and (2) an encoder for target values.\nFinally, using Monte Carlo sampling, the model outputs target values that can yield features most similar to the object properties within the given boundary.\nThe author structured the dataset using Matminer ensuring that the target values in the training and evaluation environments do not overlap.\nThe proposed method achieved a high level of performance compared to other methods."
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 1
+        },
+        "strengths": {
+          "value": "The problem setting proposed by the author is, to some extent, justifiable, and within this setting, the author presents a state-of-the-art algorithm."
+        },
+        "weaknesses": {
+          "value": "(1) Narrowly defined problem:\nThe experimental setting proposed by the author is highly narrow in scope.\nAn algorithm that performs well only within the proposed setting does not provide insight into whether it effectively considers material properties within the boundaries of the training data.\nFurthermore, the experimental setting proposed by the author appears highly challenging, and the actual MAE values are relatively large compared to the target values.\nTherefore, it is difficult to conclude that the author has sufficiently demonstrated the practicality of the proposed method.\n\n(2) Main method which lacks novelty and analysis:\nSpecifically, it is challenging to discern any reasonable approach proposed by the author for addressing extrapolation.\nThe two matching optimizations proposed by the author are both methods aimed at accurately predicting the given labels in the training set.\nThe author utilizes MC sampling to identify target values outside the range of the training set; however, it is unclear whether the encoding of target values beyond the training range has been effectively learned.\nThis suggests that the algorithm \"may\" achieve high performance if there is significant variance in the value encoder, hyperparameters, and other factors.\nTherefore, to verify the extrapolation performance of the proposed method, the author should present additional ablation studies.\n\n(3) Lack of fairness:\nFirst, there is a question regarding the author’s validation setting.\nIt is unclear why the target value range is the same in both the test and validation environments.\nSecond, the author is aware of the lower and upper bounds of the label range but does not address the issue of setting these bounds beyond the range of the test set.\nThis strongly conflicts with the motivation for extrapolation that the author discusses.\nLastly, the author does not provide the hyperparameter search space for the comparative methods.\nThese are details that should be explicitly documented if new training was conducted on a new dataset."
+        },
+        "questions": {
+          "value": "The first question concerns whether the practicality of the author’s method can be extended.\nNaturally, defining the boundary of target values in the training set is highly unnatural.\nIt is natural for materials with target values similar to those of a new material to be sparsely represented.\nThis implies that the author’s algorithm should also be capable of addressing imbalanced regression problems.\nCan the author demonstrate the effectiveness of this algorithm on established imbalanced regression benchmarks or in environments where labels are sparsely shared between the training and evaluation sets?\nIf feasible, the author should suggest providing a rigorous comparison framework to ensure fairness, as discussed in the weaknesses section.\n\nThe second question is whether the author can explain how the method intuitively aligns with the concept of extrapolation.\nWhether through theoretical or experimental approaches, it is essential to establish confidence that this method genuinely addresses the MPR problem with consideration for extrapolation."
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 3
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "yEWCr5NOet",
+      "forum": "czVzzXPCkw",
+      "replyto": "czVzzXPCkw",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission12945/Reviewer_N2Xe"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission12945/Reviewer_N2Xe"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission12945/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730273489416,
+      "cdate": 1730273489416,
+      "tmdate": 1732748190871,
+      "mdate": 1732748190871,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces seven extreme-label material-property regression splits and MEX, an energy/matching-based regression method trained with cosine alignment and noise-contrastive objectives. The topic is important and the reported MAE/GM gains are broad, but the evaluation gives MEX the full dataset label range—including test-label extrema—as its inference search interval, substantially weakening the claimed extrapolation evidence.",
+        "strengths": [
+          "Addresses a practically relevant and under-studied evaluation setting and provides seven extreme-label tasks with two strong geometric GNN backbones and several DIR/augmentation baselines (pp. 5–7).",
+          "MEX yields sizeable and mostly consistent MAE/GM improvements across both backbones and many tasks, with three-seed variability reported (pp. 6–7).",
+          "The paper includes score-module, hyperparameter, runtime, and rank-correlation analyses rather than reporting only a single headline metric (pp. 8–9, 14)."
+        ],
+        "weaknesses": [
+          "MEX initializes and clips inference candidates using the lower and upper bounds of the entire dataset, hence using test-label extrema (pp. 7, 13). This oracle range is unavailable in genuine discovery and can itself strongly constrain MAE; no training-only-bound or realistically specified-prior control is provided.",
+          "Novelty is limited and incompletely established: the central NCE energy-based regression machinery follows Gustafsson et al., yet that method is not evaluated as a baseline. The roles of cosine matching M versus the learned score S are also inconsistent between the formal definition, training equations, and inference algorithm (pp. 3–5, 8–9).",
+          "The discovery claim is weakly supported: the reported 'recall' evaluates only known extrapolative samples and includes no negatives or precision, so predicting inside the supplied extrapolation interval can score highly (p. 8). Moreover, MEX has weak or negative Spearman correlation on most tasks, limiting candidate ranking utility (p. 14)."
+        ],
+        "score_rationale": "The benchmark and empirical gains are promising, but the oracle use of the complete label range at inference is a major evaluation flaw directly affecting the central extrapolation claim. Together with the missing closest energy-based baseline and weak discovery/ranking evidence, this places the work below the acceptance threshold despite a useful problem formulation and substantial experiments."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper introduces seven label-range extrapolation tasks for material-property regression and proposes MEX, an energy/matching-based regressor trained with cosine alignment and noise-contrastive objectives. Although MEX reports substantial MAE/GM gains, the evaluation has a serious leakage concern and provides weak evidence for the claimed material-discovery utility.",
+        "strengths": [
+          "The benchmark targets an important, underexplored failure mode and covers seven extreme-label splits over four material properties (p. 5).",
+          "Experiments compare several DIR/data-augmentation baselines using two strong geometric backbones, multiple metrics, and three seeds (pp. 6–7).",
+          "MEX generally improves MAE and GM across both backbones, with some score-module and trade-off ablations (pp. 6, 9)."
+        ],
+        "weaknesses": [
+          "At inference, candidate labels are sampled from the exact lower and upper bounds of the entire dataset, including held-out labels (p. 7), despite the problem definition prohibiting target-domain use (p. 3). This leaks oracle knowledge of the test-label support and may materially explain the gains; no train-only or realistically specified search-range comparison is provided.",
+          "The claimed discovery capability is not convincingly evaluated: every evaluated validation/test sample is already extrapolative, and “recall” only measures whether predictions cross the training boundary, without precision, false-positive rates, or ranking in a mixed screening pool (p. 8). Moreover, MEX has near-zero or negative Spearman correlation on most tasks (p. 14).",
+          "Novelty and reproducibility are limited: MEX closely resembles prior energy-based regression with NCE, while the manuscript inconsistently describes inference through cosine matching M versus the learned nonlinear score S (pp. 3–5, 8–9), leaving the actual objective used for prediction ambiguous."
+        ],
+        "score_rationale": "The problem and empirical breadth are valuable, and the reported error reductions are promising. However, use of full-dataset label bounds at inference is a potentially outcome-determining protocol flaw, while weak rank correlations and an inadequate detection metric undermine the central discovery claim. These issues require substantial new evaluation, placing the work below the acceptance threshold."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 4,
+        "confidence": 5,
+        "summary": "The paper introduces seven label-range extrapolation tasks for material-property regression and an energy/matching-based method, MEX. The topic is important and the reported MAE/GM improvements are broad, but the central evaluation is compromised by target-range information used during inference and validation, while the screening evidence is not sufficiently meaningful.",
+        "strengths": [
+          "Targets an important and underexplored material-discovery setting and constructs seven directional extrapolation tasks from four established datasets (pp. 5–6).",
+          "Evaluates two strong geometric backbones and several imbalanced-regression and augmentation baselines; MEX achieves substantial MAE/GM gains across most tasks (pp. 6–7).",
+          "The matching formulation is clearly presented, and the appendices provide inference pseudocode and additional correlation results (pp. 3–4, 13–14)."
+        ],
+        "weaknesses": [
+          "MEX inference initializes and clips candidates using the lower and upper bounds of the entire dataset, hence bounds determined by held-out test labels (pp. 7, 13). This violates the stated constraint that only training-domain information is available (p. 3) and can materially advantage a method whose predictions are explicitly restricted to this oracle range.",
+          "Model selection and early stopping use a validation interval lying outside the training-label range (pp. 5, 7), so the study does not establish extrapolation without labeled out-of-range supervision. Crucial controls using bounds and validation information derivable solely from training data are absent.",
+          "The claimed discovery utility is weakly supported: the recall test contains only extrapolative positives and reports neither negatives nor precision, so predicting within the designated extreme interval can achieve high recall trivially (p. 8). Moreover, Spearman correlations are near zero or negative on most tasks, including MEX (pp. 8, 14), undermining candidate ranking utility."
+        ],
+        "score_rationale": "The benchmark direction and consistent numerical gains are promising, but the use of whole-dataset label bounds at inference is a major leakage issue directly affecting the proposed method, and extrapolative validation further weakens the claimed setting. Combined with uninformative recall-only discovery evaluation and poor rank correlations, the current evidence does not securely establish the main claim. I therefore rate it below the acceptance threshold, with limited uncertainty because the relevant details are explicit on pp. 3, 5, 7–8, and 13–14."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper introduces seven label-range extrapolation tasks for material-property regression and proposes MEX, an energy/matching-based predictor trained with cosine alignment and noise-contrastive objectives. MEX improves MAE and geometric-mean error across two geometric GNN backbones, but important evaluation leakage and weak ranking behavior substantially limit the conclusions.",
+        "strengths": [
+          "The benchmark targets a practically relevant and underexplored setting, with clearly specified property-dependent splits spanning four datasets and seven tasks (p. 5).",
+          "The evaluation covers two strong equivariant backbones and several imbalanced-regression and augmentation baselines; MEX shows broad MAE/GM improvements across tasks (pp. 6–7).",
+          "The paper reports multiple seeds, prediction cost, score-module variants, and sensitivity to the loss weight (pp. 7, 9)."
+        ],
+        "weaknesses": [
+          "MEX initializes and clips inference candidates using the lower and upper bounds of the entire dataset label range, explicitly including held-out labels (pp. 7, 13). This test-distribution information is unavailable under the stated extrapolation setting and may directly enable predictions beyond the training range; no training-only-bound or range-misspecification experiment is provided.",
+          "The evidence for useful material discovery is weak: Spearman correlations are near zero or negative on most tasks, including MEX (pp. 8, 14), while the detection analysis reports recall alone (p. 8). Recall can be inflated by predicting many samples inside the extrapolation interval, so precision, enrichment, or top-k retrieval is necessary.",
+          "Methodological novelty and isolation are limited. MEX closely resembles prior energy-based regression with NCE, which it cites, and lacks key ablations separating the absolute and relative losses or comparison to the original energy-based regression formulation (pp. 4, 9). The adjacent labeled validation interval also weakens the claim of adaptation-free extrapolation (pp. 3, 5, 7)."
+        ],
+        "score_rationale": "The benchmark direction is valuable and the tabulated error gains are substantial, but the use of full-dataset label bounds at inference is a decisive protocol flaw. Combined with mostly poor correlations, recall-only discovery evidence, and incomplete ablations, the manuscript does not yet establish robust extrapolation under realistic unknown target ranges."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies an important but underexplored setting and presents a useful-looking seven-task benchmark plus an energy/matching-based regression method. Although MEX substantially improves MAE/GM, serious protocol leakage and evaluation issues prevent the results from establishing genuine extrapolation or material-discovery utility.",
+        "strengths": [
+          "The paper motivates property-range extrapolation clearly and constructs seven ordered-split tasks spanning four material properties (pp. 1, 5).",
+          "Evaluation covers two strong equivariant backbones and multiple DIR/data-augmentation baselines; MEX shows sizable, generally consistent MAE/GM gains (pp. 6–7).",
+          "The approach is conceptually simple, backbone-agnostic, and includes limited score-module, hyperparameter, and runtime analyses (pp. 8–9)."
+        ],
+        "weaknesses": [
+          "Inference is given the lower and upper bounds of the entire dataset—including held-out labels—and searches/clips predictions within that interval; moreover, hyperparameters and early stopping use an explicitly out-of-training-range validation set (pp. 5, 7, 13). This conflicts with the stated training-only extrapolation setting and can substantially advantage boundary-seeking predictions.",
+          "The claimed discovery evaluation reports recall only on samples already known to lie in validation/test extrapolation regions (p. 8). Always predicting inside that region can achieve perfect recall, so precision, false-positive burden, or ranking over a mixed candidate pool is needed to substantiate screening utility.",
+          "The method is underspecified and only incrementally distinguished from prior energy-based regression: M is defined as cosine similarity, NCE trains a separate nonlinear score S, yet inference maximizes M without clearly stating which score is used (pp. 3–4, 13). Furthermore, correlations remain near zero or negative on most tasks, including MEX (pp. 8, 14), weakening the practical claim."
+        ],
+        "score_rationale": "The benchmark question is valuable and the reported MAE gains are promising, but test-range information at inference, extrapolative validation tuning, and a readily gamed recall evaluation are fundamental threats to the central claims. Combined with ambiguity in the trained versus inferred matching score and weak rank correlations, substantial protocol redesign and stronger evidence are required."
+      }
+    }
+  ]
+}

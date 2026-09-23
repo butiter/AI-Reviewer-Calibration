@@ -1,0 +1,235 @@
+{
+  "year": 2026,
+  "package_id": "paper_086",
+  "paper_id": "1AYy3T3Xjk",
+  "number": 21916,
+  "title": "A Process-Level Method for Creativity Evaluation in LLM-Assisted Learning",
+  "authors": [
+    "Yan Sha"
+  ],
+  "primary_area": "other topics in machine learning (i.e., none of the above)",
+  "keywords": [
+    "LLM",
+    "Creativity assessment",
+    "Process-level evaluation"
+  ],
+  "forum_url": "https://openreview.net/forum?id=1AYy3T3Xjk",
+  "venue": "ICLR 2026 Conference Withdrawn Submission",
+  "status": "withdrawn",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    2,
+    4,
+    2
+  ],
+  "human_mean_rating": 2.5,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "0kWLKEUOvs",
+      "forum": "1AYy3T3Xjk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21916/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761141668500,
+      "tmdate": 1764360503998,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "6S5ki4DMQs",
+      "forum": "1AYy3T3Xjk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21916/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761468438532,
+      "tmdate": 1762941979899,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "NtjBZzJPUd",
+      "forum": "1AYy3T3Xjk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21916/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761704894703,
+      "tmdate": 1762941979389,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "WtYVSc2PGG",
+      "forum": "1AYy3T3Xjk",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission21916/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761843982713,
+      "tmdate": 1762941979167,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes CREDO/ITA, a rubric and fine-tuned LLM for process-level assessment of creativity in student–LLM dialogues. The problem is important and the reported agreement is promising, but major internal inconsistencies, insufficient construct validation, and underspecified experiments prevent the evidence from supporting the central claims.",
+        "strengths": [
+          "Addresses the timely problem of separating learner contributions from LLM scaffolding and explicitly limits intended use to formative assessment (pp. 2, 9).",
+          "Uses student-level data partitioning and reports expert agreement, per-dimension results, and several baselines/ablations (pp. 4–8, 13–14).",
+          "The proposed dimensions and score-plus-rationale output offer a potentially useful starting point for auditable educational assessment (pp. 5–6)."
+        ],
+        "weaknesses": [
+          "The evidence contains serious contradictions: the attribution study samples 200 dialogues from a test set containing only 128; attribution classification is not part of the stated training objective; and full-parameter fine-tuning is both used for the teacher and described as computationally prohibitive (pp. 4, 6, 8, 13–14).",
+          "Evaluation is technically unreliable or incomplete: the displayed QWK formula reverses observed and expected disagreement; no confidence intervals, significance tests, class distributions, or repeated-run variation are reported; and unexplained BERTScore/ROUGE values appear only in the radar plot, whose direction also conflicts with lower-is-better error metrics (pp. 7–8).",
+          "Construct validity is asserted mainly through theoretical correspondence and inter-rater reliability. Cronbach’s alpha does not establish validity and is questionable for four intentionally distinct dimensions; ITA rules, annotation examples, rationale-quality evaluation, subgroup fairness, and genuine cross-domain/generalization tests are missing (pp. 5–6, 8–9, 13–15)."
+        ],
+        "score_rationale": "The central idea has moderate novelty and practical relevance, but the method is not specified well enough to reproduce, and multiple decisive numerical and experimental inconsistencies undermine technical soundness. The paper requires substantial correction and stronger independent validation before its claims are credible."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes CREDO, a four-dimensional framework for assessing creativity from student–LLM dialogue trajectories, plus an ITA attribution scheme and a LoRA/KD-tuned evaluator. The process-level perspective is potentially useful, but central constructs and attribution procedures are insufficiently operationalized, and major internal inconsistencies make the reported evidence unreliable.",
+        "strengths": [
+          "The focus on process evidence and learner-versus-model attribution addresses an important limitation of output-only creativity assessment (pp. 2–5).",
+          "The paper collects a moderately sized naturalistic dialogue corpus and reports student-level partitioning and double annotation (pp. 3–6).",
+          "Limitations concerning population, domain coverage, high-stakes use, and fairness are explicitly acknowledged (pp. 9, 13)."
+        ],
+        "weaknesses": [
+          "The empirical account is internally inconsistent: the test set contains 128 dialogues (p. 4), yet the attribution experiment allegedly samples 200 test dialogues (p. 8). Moreover, the model is not described as being trained for the reported three-class attribution task, and its inference protocol is absent.",
+          "The central ITA/CREDO method lacks reproducible operational details: node extraction, attribution rules, score aggregation, adjudication outcomes, and rationale evaluation are not specified. Cronbach’s alpha does not establish construct validity, and no external creativity or learning-outcome validation is provided (pp. 5–6).",
+          "Evaluation is technically problematic and incomplete: the displayed QWK formula reverses observed and expected disagreement (p. 7); results lack uncertainty/significance analyses; the promised unseen-domain test is missing; the radar chart includes unexplained ROUGE/BERTScore and visually treats lower-is-better errors as larger-is-better performance (p. 8); crucial hyperparameters are deferred to an unavailable report (p. 14)."
+        ],
+        "score_rationale": "Although the problem and process-level framing have merit, the contribution relies on a largely underspecified ontology and standard fine-tuning machinery. The impossible test-set sample count, unclear attribution experiment, questionable metric presentation, and lack of construct/generalization validation prevent confidence in the main claims, warranting rejection."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes CREDO/ITA, a process-oriented framework for attributing learner versus LLM contributions and scoring four dimensions of collaborative creativity. The educational motivation is worthwhile, but the framework is insufficiently operationalized and the empirical evaluation contains major contradictions that undermine the reported evidence.",
+        "strengths": [
+          "Addresses an important problem—evaluating learner creativity during LLM-assisted work rather than only judging final outputs—and explicitly limits the intended use to formative assessment (pp. 2, 9).",
+          "Uses naturalistic multi-turn dialogues and reports student-level train/validation/test separation, which is appropriate for reducing participant leakage (pp. 3–4).",
+          "Reports expert annotation, per-dimension results, and component ablations rather than relying solely on aggregate accuracy (pp. 5–6, 13–14)."
+        ],
+        "weaknesses": [
+          "The results have serious internal inconsistencies: the attribution study samples 200 dialogues from a test set containing only 128 (pp. 4, 8); full-parameter fine-tuning is simultaneously used to create the KD teacher and declared computationally prohibitive (pp. 6, 14); and the stated QWK equation reverses observed and expected disagreement (p. 7). These issues make the numerical claims difficult to trust.",
+          "Construct validity is not established. CREDO's dimensions and ITA node attribution rules are described only at a high level, no scoring manual or concrete annotation examples are supplied, and agreement/internal consistency do not show that the framework measures creativity rather than prompting skill or domain expertise. There is no validation against external creativity judgments or learning outcomes (pp. 4–6).",
+          "Evaluation and reproducibility are incomplete: the GPT-4 version and prompting are unspecified, the DeepSeek model identity is inconsistent, essential hyperparameters are deferred to an absent technical report, rationale quality/faithfulness is not quantitatively reported, and the sole qualitative ITA figure does not visibly distinguish human from model-derived nodes (pp. 6–9, 14)."
+        ],
+        "score_rationale": "The process-level framing has potential, but the contribution is primarily a rubric plus standard LoRA/KD fine-tuning, with weak construct validation and multiple decisive experimental contradictions. Substantial methodological repair and a credible rerun would be required, warranting rejection."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes CREDO, a four-dimensional framework and DeepSeek-based evaluator for attributing creativity in student–LLM dialogues. The problem is important, but weak construct validation, serious experimental inconsistencies, and insufficient methodological detail prevent the reported agreement from substantiating the central claims.",
+        "strengths": [
+          "Targets an important and timely problem: process-level assessment of student contributions during LLM-assisted learning rather than final-output detection (pp. 2–3).",
+          "Uses student-disjoint dataset splitting and acknowledges the narrow population, domain coverage, and need for human review (pp. 4, 9, 13).",
+          "Reports multiple ordinal-scoring metrics, inter-rater agreement, per-dimension results, and limited component ablations (pp. 6–8, 13–14)."
+        ],
+        "weaknesses": [
+          "The central validation contains major inconsistencies: the attribution study allegedly samples 200 dialogues from a 128-dialogue test set (pp. 4, 8); the stated 4.2M LoRA parameters are about 0.013%, not 0.13% of 32B (p. 6); and the displayed QWK equation appears to reverse observed and expected disagreement (p. 7).",
+          "Construct validity is not established. The four CREDO dimensions and ITA node attribution are asserted from broad theoretical links without a detailed coding manual, external creativity criterion, learning-outcome validation, or comparison to established process measures; alpha only measures covariance and does not demonstrate validity of a potentially multidimensional construct (pp. 4–6).",
+          "Experimental reporting is inadequate for reproduction or robust comparison: essential hyperparameters are deferred to an absent report, GPT-4 version/prompts are unspecified, the attribution task lacks baselines and annotator agreement, rationale faithfulness/quality is not evaluated, and the radar chart includes unexplained ROUGE-L/BERTScore values while visually treating error metrics ambiguously (pp. 7–8, 14)."
+        ],
+        "score_rationale": "Although the process-focused framing is potentially useful, the paper does not yet provide credible evidence that CREDO measures creativity rather than reproducing its own annotators’ rubric. The impossible test-set sample and multiple mathematical/reporting errors materially undermine confidence in the results, warranting rejection pending substantial methodological clarification and stronger external validation."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper proposes CREDO/ITA for attributing student versus LLM contributions in multi-turn learning dialogues, then fine-tunes a 32B model to predict four creativity ratings and rationales. The educational problem is important, but the proposed constructs and attribution mechanism are insufficiently operationalized, and multiple inconsistencies undermine the empirical conclusions.",
+        "strengths": [
+          "Targets an important, timely problem and appropriately emphasizes process evidence rather than final-output detection (pp. 2–3).",
+          "Uses student-level train/test separation and acknowledges the narrow population, domain coverage, fairness needs, and unsuitability for high-stakes ranking (pp. 4, 9, 13).",
+          "Reports several relevant ordinal-scoring metrics, per-dimension results, expert agreement, and nominal comparisons with untuned DeepSeek and GPT-4 (pp. 6–8, 13)."
+        ],
+        "weaknesses": [
+          "ITA—the central claimed contribution—is described only through informal node labels, without a complete coding/scoring manual, attribution algorithm, decision rules, or representative annotated dialogues. The asserted theoretical alignment does not establish construct or predictive validity, and Cronbach's alpha is not evidence that four intentionally distinct dimensions measure creativity validly (pp. 4–6).",
+          "The attribution experiment is internally inconsistent and disconnected from the stated training objective: it claims to sample 200 dialogues from a 128-dialogue test set, and the model is evaluated on three attribution classes although its defined objective predicts only four scores and a rationale. Class distributions, agreement for the new labels, training procedure, and leakage controls are absent (pp. 6, 8).",
+          "Experimental reporting is insufficient and sometimes contradictory: the QWK equation appears to reverse observed and expected disagreement; human inter-rater QWK is improperly treated as a performance ceiling; uncertainty/significance and rationale-quality evaluation are absent; key hyperparameters are deferred to an unavailable report; and full fine-tuning is both used to create the KD teacher and called computationally prohibitive in the ablation (pp. 6–8, 13–14)."
+        ],
+        "score_rationale": "The process-oriented framing has potential, but this is currently a reject because the principal attribution method is not reproducible and the strongest quantitative evidence contains direct sample-size/objective inconsistencies. The limited baselines, missing validation of rationales and downstream learning relevance, and incomplete experimental specification prevent the reported QWK gains from establishing a sound or sufficiently novel ICLR contribution."
+      }
+    }
+  ]
+}

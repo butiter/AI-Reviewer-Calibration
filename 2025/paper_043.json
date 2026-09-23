@@ -1,0 +1,315 @@
+{
+  "year": 2025,
+  "package_id": "paper_043",
+  "paper_id": "hTphfqtafO",
+  "number": 5393,
+  "title": "Large Language Models are Interpretable Learners",
+  "authors": "Ruochen Wang; Si Si; Felix Yu; Dorothea Wiesmann Rothuizen; Cho-Jui Hsieh; Inderjit S Dhillon",
+  "primary_area": "interpretability and explainable AI",
+  "keywords": "Interpretability; Explainable AI; LLMs; VLMs; MLLMs; Symbolic Learning; Prompting",
+  "forum_url": "https://openreview.net/forum?id=hTphfqtafO",
+  "venue": "ICLR 2025 Poster",
+  "status": "accepted_poster",
+  "decision": "Accept (Poster)",
+  "human_ratings": [
+    5,
+    6,
+    8
+  ],
+  "human_mean_rating": 6.333333333333333,
+  "human_reviews_scope": "full_public_reviews",
+  "human_reviews": [
+    {
+      "content": {
+        "summary": {
+          "value": "The paper proposes a new framwork, named LSP, for LLM-Symbolic Program combining LLMs with Neurosymbolic programs (NSPs). The main idea of the paper is to consider a prompted LLM as an interpretable unit, enabling the use of NSPs with a minimal domain specific language and thus narrowing this important bottleneck of NSPs. The approach is demonstrated on a proposed Interpretable-Learning benchmark. It includes a comparison with SOTA NSPs as well as some ablation study on the components of the approach. It also include an human evaluation protocol to access the interpretability of the approach."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        },
+        "strengths": {
+          "value": "The main strengths of the paper are :\n+ **Clarity** : the paper is well written with a clear and well motivated idea. The paper provides nice illustration that enable a clear understanding of the proposed approach. The addressed research question are also very clear.  Moreover, a thorough description of the proposed framework, including ablation studies and code for reproducibility is provided.\n+ **Originality** : the main originality of the paper is to use prompting and the ability of summarization of LLMs, a method named RuleSum, to obtain concrete rules and to prevent from manually designing operators, one of the bottleneck of NSPs. It is a simple approach but opening the way for LLM-based symbolic programs. The IL-bench is also an interesting contribution of the paper.\n+ **Quality** : The paper is of sufficient quality for the ICLR conference standard.\n+ **Significance** : the paper propose a new approach for interpretable learning, i.e. interpretable and comprehensible decision making process which an important area for XAI and trust in AI."
+        },
+        "weaknesses": {
+          "value": "While the core idea is interesting, the paper has several limitations:\n+ a first small concerns is about the title of the paper which is for me not really aligned on the content. The authors use LLMs as learnable building blocks for NSPs but are not interpretable as their own. The title of the paper should be slightly changed to better reflect the true claims of the paper.\n+ **lack of clear definition of the notion of interpretability and of the underlying assumptions** : as the authors tackle the trade-off between expressiveness and interpretability, a clear definition of them should be given. For instance for me, using a minimalist DSL means less expressivity since there are only two operators. The assumption that relying on natural language brings interpretability should also be discussed. The interpretability seems to be linked to the interpretability of the prompts.\n+ a better positioning to recent approach on XAI, in particular concept-based XAI, mentioned in appendix A.1 and Mechanistic Interpretability.\n+ **Generality of the findings**  : the IL-Bench should be more motivated. It is not clear for me what a symbolic task is exactly. Moreover, a large part of the task are classification tasks. What about other tasks regarding the proposed approach ?\n+ What is $Dist$ in equation 1 ?"
+        },
+        "questions": {
+          "value": "Some questions are in the Weaknesses section.\nOther questions :\n+ Could the following claim could be discussed : the resulting model is inherently interpretable as the prompt s is expressed in natural language ? \n+ How this idea of using LLMs to transforms signals into high-level concepts, how the approach compared to concept induction approach ? To  Concept-based Explanations for LLMs ? \n+ In the following approach, is the decision making process limited to conditional branching and tree-based models ? Is it a strong limitation ? \n+ Can hallucinations can occur for RuleSum ?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 5
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "4aIzaA1rek",
+      "forum": "hTphfqtafO",
+      "replyto": "hTphfqtafO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5393/Reviewer_44Us"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5393/Reviewer_44Us"
+      ],
+      "number": 3,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5393/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730757220794,
+      "cdate": 1730757220794,
+      "tmdate": 1731428337021,
+      "mdate": 1731428337021,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "The authors in this paper introduce LLM-based Symbolic Programs (LSPs), combining Large Language Models with symbolic programming to create predictive models that balance expressiveness and interpretability. LSPs use LLMs to generate interpretable modules from raw data. With a step-by-step program generation algorithm, the proposed method could generate the symbolic programs. Besides, the authors propose a new benchmark, called IL-Bench, for evaluating interpretable learning tasks. In their evaluation, LSPs outperform traditional methods, offering interpretable, transferable, and generalizable results."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "1. A new benchmark for interpretable learning tasks, for both vision and text scenarios.\n2. Design a LLM-symbolic program generation algorithm (called LSP by authors) by a program structure search procedure.\n3. Evaluation shows that the LSP significantly outperforms the baselines in the authors' evaluation settings."
+        },
+        "weaknesses": {
+          "value": "1. As the authors say, LLM's responsibility is to make decisions in each LLM module in their llm-symbolic programs. Thus, generating a correct LSP relies on the LLM's ability. I am curious whether the proposed method could correspond with other open-source LLMs that could be deployed locally."
+        },
+        "questions": {
+          "value": "Referring to W1, the author may run an additional evaluation of the proposed method with specific open-source LLMs (e.g. LlaMA3.1-8B, LlaMA3.2) that can be run locally. No matter the results, the authors could discuss some potential limitations to making LSP work with locally deployed LLMs.\n\nThe authors claim that the existing LLM benchmark could measure (M)LLM’s IL ability: \"all these tasks are all zero-shot solvable, allowing LLMs to make predictions without additional rule learning. Therefore, these benchmarks are unsuitable for evaluating IL tasks.\"\nMy other questions are:\n\n1. Are datasets from AIPS or/and AlphaGeometry, which contains IMO level mathematical problems, able to be IL benchmark? \nThe authors may discuss the difference between the proposed dataset and the datasets like AIPS or AlphaGeometry in terms of measuring interpretable learning ability.\n\nFYI, AIPS aims to address inequality math problems, and AlphaGeometry aims to address geometrical math problems. Both papers propose a dataset and a problem-solving algorithm. From my point of view, the algorithm is a neural-symbolic method and is similar to LSP, which uses LLM as a module to generate a one-step decision, add a construct for geometry problems, and transform an inequality. Then, designing a high-level search problem to solve the complex problem.\n\n2. Instead of constructing LSP, does SFT or some RL could be applied to LLM to improve the LLM's IL ability?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 4
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "J5va5xxjHU",
+      "forum": "hTphfqtafO",
+      "replyto": "hTphfqtafO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5393/Reviewer_fKng"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5393/Reviewer_fKng"
+      ],
+      "number": 2,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5393/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730600410305,
+      "cdate": 1730600410305,
+      "tmdate": 1731428337317,
+      "mdate": 1731428337317,
+      "license": "CC BY 4.0",
+      "version": 2
+    },
+    {
+      "content": {
+        "summary": {
+          "value": "This paper tackles the challenge of balancing expressiveness and interpretability in predictive models for classification and decision-making. The authors propose LLM-based Symbolic Programs (LSPs) that combine Large Language Models with symbolic programs to bridge this gap. LLMs generate interpretable modules that transform raw inputs into natural language concepts, which are then integrated into decision rules by symbolic programs.\nMoreover, the paper proposes IL-Bench, a new benchmark for the interpretable learning capabilities of LLMs. In experiments, it is demonstrated that LSPs outperform traditional neurosymbolic programs and prompt tuning methods on the proposed benchmark."
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        },
+        "strengths": {
+          "value": "The approach to integrating LLMs into DSL-based neuro-symbolic programming approaches is interesting, although the idea itself may be straightforward. \nBy combining Large Language Models (LLMs) with symbolic programs, the authors effectively leverage the strengths of both methods: LLMs for creating interpretable natural language concepts and symbolic programs for incorporating these into decision rules. This hybrid approach not only enhances model interpretability without sacrificing performance but also makes the knowledge easily transferable to humans and adaptable for other LLMs.\nLimitations are discussed in an explicit section.\nIn experiments, the proposed approach outperformed established baselines in multiple aspects, e.g., on OOD examples, expressiveness, and interpretability (transferability)."
+        },
+        "weaknesses": {
+          "value": "I found the manuscript somewhat challenging to follow due to the absence of consistent examples within the main text. Currently, major examples are relegated to the supplementary materials. To enhance clarity, I recommend incorporating one or two examples directly into the main manuscript and referencing them throughout.\n\nMoreover, a clear problem statement would significantly improve comprehension. Specifically, outlining the input and output parameters before discussing the methodology would be beneficial.\n\nApart from these presentation issues, the experiments appear to demonstrate the efficacy of the proposed approach. However, as I feel I lack sufficient expertise in the baselines, I will defer to other reviewers for a critical assessment of the significance of these results.\n\nMinor Points:\n\nThe structure of the document feels somewhat convoluted. There is an overuse of emphasized text formats (bold, italic, etc.), particularly noticeable on Page 3, which detracts from the core ideas being presented. I recommend retaining emphasis only on the most critical sections and reducing the use of bold and italic text.\n\nEquation 3 could be better explained with a figure that includes a concrete example and details like $\\alpha$ and $y_i$.\n\nThe text size in Figure 8 (f) makes it difficult to interpret. Consider increasing the text size for better readability.\n\nFurthermore, the code is not submitted, making it challenging to assess reproducibility."
+        },
+        "questions": {
+          "value": "I was not fully following the reasoning in line 268 -- 286.\nCould you elaborate the following two arguments?\n> Therefore, with a fixed LLM, the set of natural language prompts, ... provides a massive set of interpretable neural network modules for the task.\n\nWhy the prompts can be trivially seen as interpretable neural modules?\n\n> ... the resulting model is inherently interpretable, as the prompt s is expressed in natural language.\n\nWhy the resulting model can be seen inherently interpretable?"
+        },
+        "flag_for_ethics_review": {
+          "value": [
+            "No ethics review needed."
+          ]
+        },
+        "rating": {
+          "value": 8
+        },
+        "confidence": {
+          "value": 2
+        },
+        "code_of_conduct": {
+          "value": "Yes"
+        }
+      },
+      "id": "p7CfA3QzA7",
+      "forum": "hTphfqtafO",
+      "replyto": "hTphfqtafO",
+      "signatures": [
+        "ICLR.cc/2025/Conference/Submission5393/Reviewer_ZPkh"
+      ],
+      "nonreaders": [],
+      "readers": [
+        "everyone"
+      ],
+      "writers": [
+        "ICLR.cc/2025/Conference",
+        "ICLR.cc/2025/Conference/Submission5393/Reviewer_ZPkh"
+      ],
+      "number": 1,
+      "invitations": [
+        "ICLR.cc/2025/Conference/Submission5393/-/Official_Review",
+        "ICLR.cc/2025/Conference/-/Edit"
+      ],
+      "domain": "ICLR.cc/2025/Conference",
+      "tcdate": 1730472216647,
+      "cdate": 1730472216647,
+      "tmdate": 1731428336850,
+      "mdate": 1731428336850,
+      "license": "CC BY 4.0",
+      "version": 2
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes LLM-Symbolic Programs, which organize natural-language rules generated by an LLM into a learned decision tree, and introduces IL-Bench for evaluating rule induction from labeled examples. The approach is intuitive and reports sizable gains, but its central claim of intrinsic interpretability is not established, and important experimental details and controls are insufficient.",
+        "strengths": [
+          "The combination of LLM-generated rules with explicit conditional tree structure is a useful and reasonably novel formulation, with a clear divide-and-conquer learning algorithm (pp. 6–7, 20).",
+          "LSP substantially outperforms several prompt-optimization baselines on the reported language and vision tasks, especially on synthetic rule recovery and Palworld classification (pp. 9–10).",
+          "The paper includes varied modalities, cross-model transfer, scoring-function and meta-prompt ablations, qualitative programs, and explicit limitations (pp. 10, 17–19, 24)."
+        ],
+        "weaknesses": [
+          "The key interpretability premise is questionable: expressing a prompt in natural language does not expose or guarantee faithfulness of the prompted black-box LLM's actual decision process. The human study lacks the number of raters, blinding, inter-rater analysis, and detailed protocol, so Table 2 does not adequately validate Definition 1.1 (pp. 1, 6, 8, 22).",
+          "The empirical comparison is not sufficiently controlled: dataset sizes and train/test construction are largely absent; ProtoTree depth is deliberately reduced; cost is matched only by proposal count rather than tokens/calls; and the vision comparison uses limited, unusually clean game imagery (pp. 8–9, 21–22).",
+          "The OOD evidence is weak because variants are generated directly from training images while explicitly preserving key creature features, rather than representing an independently sampled domain shift (p. 22). The claimed theoretical cost of O(N/log D) is also unsupported and appears inconsistent with ordinary tree/path accounting (p. 18)."
+        ],
+        "score_rationale": "The structured prompt-tree idea and reported accuracy gains are promising, but the paper's strongest scientific claim—fully interpretable learning—is not justified by either the definition or the underspecified human evaluation. Benchmark and OOD methodology weaknesses further limit confidence in generality, placing the work below the ICLR acceptance threshold despite meaningful novelty."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes LSP, a tree-structured program whose nodes are natural-language rules induced and executed by LLMs, together with IL-Bench. The approach produces substantial gains over prompt-optimization baselines, but the central claim of intrinsic interpretability is not adequately established, and several evaluation choices weaken the evidence.",
+        "strengths": [
+          "A simple, coherent combination of hierarchical program search and LLM-based rule induction, with explicit algorithms and useful qualitative examples (pp. 6–7, 17, 20).",
+          "Large reported improvements over multiple prompt-optimization baselines across language and vision tasks, with some ablations on node scoring, meta-prompts, and learner models (pp. 9–10).",
+          "IL-Bench targets an important underexplored setting in which predictive rules must be inferred from labeled examples rather than recovered directly from pretrained knowledge (pp. 3–4, 16–17)."
+        ],
+        "weaknesses": [
+          "The core argument equates a readable prompt with an interpretable model, although prediction still depends on an opaque, stochastic LLM that may not faithfully implement the stated rule. Cross-model accuracy varies substantially, underscoring this issue (pp. 5–6, 19).",
+          "The interpretability study is insufficiently specified: the number of raters and uncertainty/control conditions are absent, raters receive both the original dataset and program, and only task accuracy is measured. Thus it does not isolate whether the rules are understandable or faithfully explain model behavior (pp. 8, 22).",
+          "Evaluation fairness and robustness are questionable: ProtoTree depth is deliberately reduced, the decision-tree baseline uses raw pixels, training/test sizes and split details are missing, and OOD images are generated from originals while explicitly preserving key features. The claimed OOD generalization and superiority over traditional interpretable learning are therefore not conclusive (pp. 8, 21–22)."
+        ],
+        "score_rationale": "The structured prompt-tree idea is useful and the reported gains are promising, but novelty is incremental relative to prompt trees/mixtures and the paper's strongest interpretability and OOD claims exceed the evidence. Missing experimental details and weak controls place it below the acceptance threshold, though uncertainty remains because released code and fuller protocols could resolve some concerns."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes LLM-Symbolic Programs, tree-structured classifiers whose nodes contain LLM-generated natural-language rules, and introduces IL-Bench. The approach is intuitive and yields strong reported accuracy, but the central claim of intrinsic interpretability and several experimental conclusions are not adequately established.",
+        "strengths": [
+          "The combination of learned natural-language rules with explicit branching is a simple, potentially useful extension of prompt optimization, with a reasonably clear search procedure (pp. 6–7, 19–20).",
+          "Reported gains are broad and substantial across symbolic, caption, and vision tasks, including comparisons with several prompt optimizers and limited ablations (pp. 8–10).",
+          "IL-Bench targets a meaningful gap by including tasks intended to require rule induction rather than zero-shot knowledge, spanning multiple modalities (pp. 3–4, 16–17, 21)."
+        ],
+        "weaknesses": [
+          "The premise that a natural-language prompt makes an LLM module inherently interpretable is not justified: the prompted LLM remains a stochastic black box and may use features or reasoning not stated in the prompt. The small human study lacks participant counts and other essential protocol details, so it cannot validate the strong definition in Definition 1.1 (pp. 1, 5–6, 8, 22).",
+          "Experimental fairness and reproducibility are weak. ProtoTree depth is deliberately changed, the pixel-based tree is a poor comparator to pretrained multimodal models, candidate-count matching does not clearly equalize total optimization information or calls, and dataset sizes/splits and several baseline details are absent (pp. 8–9, 21–22).",
+          "Generalization evidence is particularly unconvincing: OOD images are generated from training images by GPT-4 while explicitly preserving key creature features, rather than representing an independently sampled domain shift (pp. 8, 22). There are also questionable or inconsistent claims, including the unsupported O(N/log D) inference-cost argument (p. 18) and a stated 4.89-point language gain where Table 3 shows 6.13 points (p. 9)."
+        ],
+        "score_rationale": "The structured prompt-tree idea and strong empirical results provide moderate novelty and promise. However, the paper overclaims interpretability, and underspecified human evaluation, questionable OOD construction, and comparison/reproducibility issues leave the main conclusions insufficiently supported. I therefore rate it marginally below acceptance, with some uncertainty because code and fuller dataset artifacts could resolve parts of the empirical concern."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 4,
+        "confidence": 4,
+        "summary": "The paper proposes LLM-Symbolic Programs, which organize natural-language rules induced by an LLM into a decision tree, together with IL-Bench for evaluating rule learning. The approach is intuitive and reports sizable gains, but the central claim of interpretability is not technically justified and the experimental protocol lacks enough detail and controls to support the broad conclusions.",
+        "strengths": [
+          "The combination of LLM-induced rules with explicit branching is a simple, useful framework, and the divide-and-conquer search is clearly motivated (pp. 6–7).",
+          "Results cover symbolic, caption, and vision tasks and show consistent gains over several prompt-optimization baselines (pp. 8–10).",
+          "The paper includes qualitative programs, cross-model transfer, prompt robustness, and limited human/OOD evaluations rather than relying on accuracy alone (pp. 17–19, 22–23)."
+        ],
+        "weaknesses": [
+          "The core premise that a prompted black-box LLM is inherently interpretable merely because its prompt is readable is unsupported: the prompt does not specify or faithfully expose the LLM's actual decision function. The human study provides no participant count, agreement, uncertainty testing, or controls, and raters receive the original image datasets as well as programs (pp. 5–6, 8, 22).",
+          "Benchmark and evaluation details are insufficient for reproducibility and validity: train/validation/test sizes and splits are absent; contamination is addressed mainly by release dates and asserted zero-shot tests; labels shown in Table 8 are not anonymized as claimed; and only three synthetic plus thirteen narrow derived tasks are used (pp. 3–4, 16–17, 21).",
+          "Several comparisons and claims are weakly controlled: ProtoTree depth is deliberately reduced, the pixel decision-tree baseline is not meaningfully comparable, the OOD set is generated by GPT-4V while preserving class features, and the claimed O(N/log D) inference complexity is not convincingly derived and ignores sequential calls (pp. 8, 18, 21–22)."
+        ],
+        "score_rationale": "The tree-structured prompt-learning idea has moderate novelty and encouraging empirical results, but the paper's headline interpretability claim conflates readable instructions with transparent model behavior. Missing dataset/study details, weak baseline and OOD controls, and an unsubstantiated complexity argument leave decisive evidence gaps. I therefore rate it below the acceptance threshold, while acknowledging uncertainty because released code and fuller protocols could resolve some reproducibility concerns."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 5,
+        "confidence": 4,
+        "summary": "The paper proposes LLM-Symbolic Programs, which organize learned natural-language rules into a decision tree, and introduces IL-Bench. The approach is intuitive and reports strong gains over prompt-optimization and prototype-tree baselines. However, the central interpretability claim is not established, and important benchmark and evaluation details are insufficient for validating the reported gains.",
+        "strengths": [
+          "The combination of LLM-generated rules with explicit conditional structure is simple, useful, and moderately novel relative to single-prompt optimization; the algorithm is described concretely on pp. 6–7 and 19–20.",
+          "Reported results are consistently strong across symbolic, caption, and vision tasks, including large gains over prompt-optimization baselines (pp. 8–10).",
+          "The paper includes human transfer, cross-model transfer, OOD evaluation, and several ablations rather than relying only on in-distribution accuracy (pp. 8–10, 18–19, 22–23)."
+        ],
+        "weaknesses": [
+          "A natural-language prompt does not make the prompted LLM an intrinsically interpretable module: its output may depend on opaque pretrained representations or cues absent from the stated rule. Thus the claim that LSP “fully reveals” its decision process is unsupported by fidelity tests comparing predictions with literal rule application (pp. 5–6, 15).",
+          "The empirical protocol is under-specified: dataset sizes and splits are absent, candidate selection appears to evaluate on all of D, and the human study omits participant count, assignment procedure, uncertainty/significance analysis, and controls for learning from the supplied original datasets (pp. 20–22). These omissions make overfitting and human-study confounds difficult to assess.",
+          "Benchmark validity and generalization evidence are limited. The real tasks comprise GPT-4 captions of existing bird data and seven small Palworld groups, while the OOD images are generated from originals with instructions to preserve key features (pp. 16–17, 21–22). This does not convincingly establish broad domain-shift robustness or lack of model contamination; the claimed O(N/log D) inference complexity is also not justified (p. 18)."
+        ],
+        "score_rationale": "The structured prompting idea and reported improvements are promising, but novelty is incremental and the main interpretability conclusion exceeds the evidence. Missing dataset/human-study details and weak OOD validation are substantial reproducibility and soundness concerns, placing the work marginally below acceptance."
+      }
+    }
+  ]
+}

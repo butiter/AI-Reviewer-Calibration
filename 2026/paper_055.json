@@ -1,0 +1,242 @@
+{
+  "year": 2026,
+  "package_id": "paper_055",
+  "paper_id": "vBk8rBx06H",
+  "number": 12209,
+  "title": "An Empirical Study and Theoretical Explanation on Task-Level Model-Merging Collapse",
+  "authors": [
+    "Yuan Cao",
+    "Dezhi Ran",
+    "Yuzhe Guo",
+    "Mengzhou Wu",
+    "Simin Chen",
+    "Linyi Li",
+    "Wei Yang",
+    "Tao Xie"
+  ],
+  "primary_area": "transfer learning, meta learning, and lifelong learning",
+  "keywords": [
+    "Model Merging",
+    "Task Vector",
+    "Multi-task Learning"
+  ],
+  "forum_url": "https://openreview.net/forum?id=vBk8rBx06H",
+  "venue": "Submitted to ICLR 2026",
+  "status": "rejected",
+  "decision": "Reject",
+  "human_ratings": [
+    2,
+    4,
+    4,
+    6
+  ],
+  "human_mean_rating": 4.0,
+  "human_reviews_scope": "rating_fields_only",
+  "human_reviews": [
+    {
+      "review_id": "NTTFaiJBUw",
+      "forum": "vBk8rBx06H",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12209/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761895332572,
+      "tmdate": 1762923156608,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    },
+    {
+      "review_id": "ZAt6qwGAem",
+      "forum": "vBk8rBx06H",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12209/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761952808975,
+      "tmdate": 1762923155940,
+      "content": {
+        "rating": {
+          "value": 4
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 2
+        },
+        "presentation": {
+          "value": 2
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "nQwJsroGGv",
+      "forum": "vBk8rBx06H",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12209/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1761860823553,
+      "tmdate": 1762923156938,
+      "content": {
+        "rating": {
+          "value": 6
+        },
+        "confidence": {
+          "value": 3
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 3
+        }
+      }
+    },
+    {
+      "review_id": "qA1EOp81FQ",
+      "forum": "vBk8rBx06H",
+      "invitations": [
+        "ICLR.cc/2026/Conference/Submission12209/-/Official_Review",
+        "ICLR.cc/2026/Conference/-/Edit"
+      ],
+      "tcdate": 1762216155698,
+      "tmdate": 1762923155513,
+      "content": {
+        "rating": {
+          "value": 2
+        },
+        "confidence": {
+          "value": 4
+        },
+        "soundness": {
+          "value": 3
+        },
+        "presentation": {
+          "value": 3
+        },
+        "contribution": {
+          "value": 2
+        }
+      }
+    }
+  ],
+  "ai_reviews": [
+    {
+      "round": 1,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper reports a broad empirical study of performance degradation when merging task-specialized language models and proposes hidden-state similarity as a predictor. The empirical pattern is potentially useful, but the central theoretical result is invalid as proved, and the statistical evidence supports correlation only—not the claimed fundamental, method-independent mechanism.",
+        "strengths": [
+          "The experiments cover several model families, scales, merging methods, GLUE tasks, heterogeneous LoRA tasks, and additional code/RoBERTa settings (pp. 4–5, 21–30).",
+          "The comparison between multiple parameter-conflict metrics and hidden-state similarity is a useful empirical question, with pairwise results and detailed appendices provided (pp. 7–8, 22–24).",
+          "The paper attempts an actionable application through similarity-guided task selection rather than presenting only a post hoc observation (pp. 8, 28)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is fundamentally unsound. LMC as stated—low loss along convex parameter combinations—does not imply hidden states are linear in parameters, so Eq. 9 is unjustified. Jung centers can require input-dependent convex coefficients, and the proof incorrectly asserts a single coefficient vector works for all inputs; it also treats an expected diameter as a pointwise bound (pp. 6, 20). The abstract additionally describes the Jung upper bound as a lower bound (p. 2).",
+          "The rate–distortion claims are false or inadequately formulated: a zero-rate reconstruction is equated with a model that still depends on X without specifying decoder side information, and distortion just below the zero-rate point need not require the full log2 N bits of expert identity. The resulting “iff” mergeability corollary does not follow from merely separate upper and lower bounds (pp. 6, 20).",
+          "The causal and generality claims substantially exceed the evidence. ANOVA p-values are reported without effect sizes, interaction/model controls, or justification of independence despite reused tasks and groups; methods visibly differ, especially DARE (pp. 4–5). Hidden-state correlations use only 28 GLUE pairs or four groups of eight, k=5 samples per task, group-relative min–max normalization, and report only p-values without coefficients, uncertainty, or multiple-testing correction (pp. 6–8). The two hand-selected replacement groups are not a convincing held-out validation (p. 28)."
+        ],
+        "score_rationale": "The empirical observation and dataset breadth provide some value, but the paper's main theoretical contribution contains multiple decisive mathematical errors, while the experiments do not establish that representation incompatibility fundamentally causes collapse or that task effects dominate methodology. These issues require a substantial reconceptualization rather than a minor revision, warranting rejection."
+      }
+    },
+    {
+      "round": 2,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The manuscript documents severe performance degradation when merging task-specialized models and proposes hidden-state similarity as a predictor, supported by experiments across several architectures and merging methods. However, the central theoretical explanation is invalid, and the statistical evidence is insufficient to establish the claimed fundamental, method-independent mechanism.",
+        "strengths": [
+          "The experiments cover multiple model families, sizes, merging methods, GLUE tasks, heterogeneous LoRA tasks, and additional code/RoBERTa settings (pp. 4–5, 21–30).",
+          "The pairwise comparison of representation- and parameter-space metrics addresses a practically relevant question and reports detailed underlying results (pp. 6–8, 22–24).",
+          "The task-selection experiment offers an initial demonstration of how the proposed metric might be operationally useful (pp. 8, 28)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is fundamentally unsound. LMC of training loss does not imply hidden states are linear in parameters; the proof additionally assumes one set of convex coefficients realizes input-dependent minimum enclosing-ball centers and incorrectly asserts a pointwise diameter is bounded by an expected diameter (pp. 6, 20). The rate-distortion claim that every distortion below D* requires at least log2 N bits is also generally false, and the claimed iff mergeability test does not follow from unequal upper and lower bounds (pp. 6, 20).",
+          "The statistical analysis overstates causality and method independence. Separate one-way ANOVA p-values do not properly model the crossed/repeated task, method, model, and group structure, while conspicuous method effects—especially DARE—are visible in the tables. Non-significance cannot establish that methodology has minimal impact (pp. 4–7, 29–30).",
+          "The representation evidence is fragile: HiddenSim is group-relative via min-max normalization, uses only five examples per task, and lacks clear pooling/alignment details, effect sizes, confidence intervals, or broad out-of-sample prediction. Correlations are based on four groups of only eight tasks and sometimes use the best loss across methods, creating selection risk (pp. 6–8). Several weak fine-tuned baselines and unstable relative losses, especially WNLI and some T5/LoRA tasks, further confound the collapse interpretation (pp. 5, 22–27)."
+        ],
+        "score_rationale": "The empirical phenomenon and dataset breadth are potentially useful, but the paper's main theoretical contribution fails at multiple essential steps, and the empirical statistics do not justify the strong claim that representational incompatibility fundamentally causes method-independent collapse. Substantial theoretical replacement and more rigorous predictive validation would be required."
+      }
+    },
+    {
+      "round": 3,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies task-dependent failure in merging fine-tuned language models and proposes hidden-state similarity as a predictor. Although the empirical observation is potentially useful, the central theorem and rate-distortion interpretation contain fundamental errors, while the statistical evidence is insufficient to establish the claimed causal or method-independent conclusions.",
+        "strengths": [
+          "The study covers several architectures, model scales, merging algorithms, GLUE tasks, heterogeneous LoRA tasks, and additional code/RoBERTa settings (pp. 4–8, 21–30).",
+          "The consistent observation that particular tasks degrade across several merging methods is practically relevant and motivates task-selection diagnostics (pp. 5, 8).",
+          "Comparing representation-space and parameter-space diagnostics is a useful direction, and the paper provides extensive per-task results in the appendices (pp. 22–30)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is invalid. LMC of training loss does not imply hidden states are linear in parameters; pointwise enclosing-ball centers generally cannot share one global set of convex coefficients; and an expected distance diameter does not upper-bound every pointwise diameter (pp. 6, 20). Moreover, the abstract misstates Jung's upper bound as a lower bound, and the claimed iff corollary follows only from a sufficient bound.",
+          "The rate-distortion claims are incorrect: below the zero-rate threshold, rate need not jump immediately to log2(N); average rate-distortion is conflated with worst-case expert distortion, and reconstructions are unjustifiably restricted to a single model parameter vector (p. 20). Claims that the diameter completely characterizes mergeability or that any convex merge is optimal are unsupported.",
+          "The empirical statistics report mostly p-values without correlations, effect sizes, confidence intervals, or adequate control for repeated/non-independent observations and multiple testing (pp. 5–8). HiddenSim uses only five examples per task, scaled-group extrema, and tiny n=8 correlations; the task-replacement experiment is selectively constructed, while large method effects such as DARE and unstable/near-chance checkpoints weaken the method-independence interpretation (pp. 4–8, 22, 28–30)."
+        ],
+        "score_rationale": "The empirical phenomenon and breadth merit attention, but the purported theoretical explanation—the paper's main novelty—is fundamentally unsound, and the correlation analysis does not support the strong causal and universal claims. Substantial theoretical replacement and stronger controlled validation would be required."
+      }
+    },
+    {
+      "round": 4,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies task-dependent failures in merging fine-tuned language models and proposes hidden-state similarity as a predictor. The empirical phenomenon is potentially useful, but the central theoretical result is invalid and the statistical evidence does not justify the claimed causal or method-independent conclusions.",
+        "strengths": [
+          "Evaluates several merging methods across multiple model families, scales, GLUE tasks, LoRA checkpoints, code tasks, and RoBERTa, with substantial detailed results in the appendices (pp. 4–8, 21–30).",
+          "Identifying task-dependent patterns and exploring representation-space diagnostics rather than only parameter conflicts is a relevant and potentially valuable direction (pp. 6–8).",
+          "Includes hyperparameter tuning and a small task-replacement demonstration rather than relying exclusively on default merging configurations (pp. 28–29)."
+        ],
+        "weaknesses": [
+          "Theorem 1 and its proof are fundamentally incorrect. LMC of training loss does not imply hidden states are linear in parameters; a single set of merge coefficients cannot generally realize input-dependent minimum-enclosing-ball centers; expected pairwise distance does not upper-bound every pointwise distance; and rate-distortion below the zero-rate point need not be at least log2 N (pp. 6, 20). The paper also presents Jung's bound as an achievability upper bound while repeatedly describing it as a minimum-distortion lower bound (pp. 2, 6).",
+          "The empirical statistics are inadequate for the conclusions: ANOVA p-values alone provide neither effect sizes nor a valid comparison of task versus method importance, and the conspicuously poor DARE results contradict the broad claim that method choice has minimal impact (pp. 4–7). Dependence among repeated measurements and multiple testing are not addressed.",
+          "Hidden-state evidence is fragile and partly post hoc: distances use only five examples per task, are normalized within each group, lack uncertainty estimates, and MDS correlations are reported for only four selected eight-task groups despite 25 LoRA groups being available (pp. 6–8, 23–28). Persistent loss of a particular task in a fixed eight-way merge can reflect task difficulty, metric floors, or checkpoint quality rather than intrinsic pairwise task incompatibility."
+        ],
+        "score_rationale": "Although the empirical survey and diagnostic idea have promise, the claimed theoretical explanation collapses under several elementary errors, and the limited statistical design cannot establish that representation incompatibility is the primary or fundamental cause. These are central rather than readily local flaws, warranting rejection."
+      }
+    },
+    {
+      "round": 5,
+      "response": {
+        "score": 3,
+        "confidence": 5,
+        "summary": "The paper studies task-dependent failure in merging fine-tuned language models and proposes hidden-state similarity as a predictor. The empirical breadth is useful, but the central theoretical result is invalid as stated, and the statistical evidence does not justify the claimed fundamental or causal conclusions.",
+        "strengths": [
+          "Evaluates several architectures, model scales, task collections, and merging algorithms, with extensive per-task results and some hyperparameter-tuning checks (pp. 4–8, 21–30).",
+          "Identifies a practically relevant pattern: particular tasks repeatedly degrade across multiple merging methods (pp. 5, 29–30).",
+          "The hidden-state similarity signal is potentially useful for task selection, and the replacement examples provide preliminary evidence of utility (pp. 7–8, 28)."
+        ],
+        "weaknesses": [
+          "Theorem 1 is fundamentally unsound: loss-based linear mode connectivity does not imply hidden states are linear in parameters; one fixed convex coefficient vector cannot generally realize pointwise minimum-enclosing-ball centers; and the proof incorrectly asserts pointwise diameter is bounded by an expected diameter (pp. 6, 20). The rate-distortion claim that every D below D* requires at least log2 N bits is also generally false, while worst-case and average distortions are conflated.",
+          "The empirical statistics are insufficient for the main claims. Only correlation p-values—not coefficients, effect sizes, confidence intervals, or multiplicity corrections—are reported; scaled-merging tests use merely eight observations per group, and MDS is validated on only four groups despite 25 LoRA groups being available (pp. 7–8, 23–27). The ANOVA treatment does not address repeated/non-independent measurements or interactions (p. 5).",
+          "The paper overstates correlation as mechanism and universality. Hidden states are measured using only five examples per task and a group-normalized metric, selection demonstrations appear post hoc, and experiments cover a limited family of convex/parameter-space methods. Thus the evidence cannot establish that representational incompatibility fundamentally causes collapse regardless of methodology (pp. 6–9, 28–30)."
+        ],
+        "score_rationale": "The empirical observation and dataset breadth offer some value, but the paper’s claimed theoretical contribution—the main basis for its explanation—is invalid, and the correlation analyses are too under-specified and limited to support the strong causal and universal claims. These are central rather than readily repairable issues, warranting rejection."
+      }
+    }
+  ]
+}
