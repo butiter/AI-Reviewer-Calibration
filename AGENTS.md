@@ -20,7 +20,7 @@
 
 - 五个Subagent返回之后，当前对话进行分析。
 
-你可以查看 [protocol.md](protocol.md) 来获取实际使用的 prompt；也可以查询 `2025/`、`2026/` 中任意论文 JSON 的 `ai_reviews`，查看历史审阅方式。这些 JSON 是评审结果，不是论文输入包。
+你可以查看 [protocol.md](protocol.md) 来获取实际使用的 prompt；也可以查询 `2025/`、`2026/` 中任意论文 JSON 的 `ai_reviews`，查看历史审阅方式。这些 JSON 是评审结果，不是论文输入包。以及，上述的大部分功能应该参照Code/里的代码，你可以使用并修改项目内Code/的文件，以进行处理。
 
 ## 五次独立评审
 
