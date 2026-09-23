@@ -1,0 +1,45 @@
+diff --git a/src/main/scala/org/allenai/pdffigures2/GraphicsExtractor.scala b/src/main/scala/org/allenai/pdffigures2/GraphicsExtractor.scala
+index 4ace54a..2a69f5a 100644
+--- a/src/main/scala/org/allenai/pdffigures2/GraphicsExtractor.scala
++++ b/src/main/scala/org/allenai/pdffigures2/GraphicsExtractor.scala
+@@ -89,7 +89,8 @@ object GraphicsExtractor extends Logging {
+     val (wideLines, nonLines) = graphics.partition(
+       g =>
+         g.height < HeaderLineMinHeight && g.y1 < HeaderLineMinY1 &&
+-          g.width / bounds.width > HeaderLineMinWidthPercent
++          (g.width / bounds.width > HeaderLineMinWidthPercent ||
++            (pageHeader.nonEmpty && g.y1 < 45 && g.width / bounds.width > 0.60))
+     )
+     val sortedWideLines = wideLines.sortBy(_.y1)
+     val headerLine = if (sortedWideLines.isEmpty) {
+diff --git a/src/main/scala/org/allenai/pdffigures2/TextExtractor.scala b/src/main/scala/org/allenai/pdffigures2/TextExtractor.scala
+index 75fd76d..a113b70 100644
+--- a/src/main/scala/org/allenai/pdffigures2/TextExtractor.scala
++++ b/src/main/scala/org/allenai/pdffigures2/TextExtractor.scala
+@@ -74,7 +74,25 @@ private class TextExtractor extends PDFTextStripper with Logging {
+   }
+ 
+   override def endPage(page: PDPage): Unit = {
+-    pages.append(PageWithText(onPage, paragraphsInPage.toList))
++    // Local ICLR adaptation: confirmed sequential review line-number gutters
++    // must not become body-text obstacles to figure region proposals.
++    val pageWidth = page.getCropBox.getWidth.toDouble
++    val candidateWords = paragraphsInPage.flatMap(_.lines).flatMap(_.words).filter { w =>
++      w.text.matches("[0-9]{3,4}") && (w.boundary.x2 < 100 || w.boundary.x1 > pageWidth - 60)
++    }
++    val gutterWords = candidateWords.groupBy(w => Math.round(w.boundary.x2 / 4)).values.flatMap { group =>
++      val sorted = group.sortBy(_.boundary.y1)
++      val consecutive = sorted.sliding(2).count(p => p.size == 2 && p(1).text.toInt - p(0).text.toInt == 1)
++      if (sorted.size >= 8 && consecutive >= 0.7 * (sorted.size - 1)) sorted else Seq.empty[Word]
++    }.toSet
++    val cleaned = paragraphsInPage.toList.flatMap { paragraph =>
++      val lines = paragraph.lines.flatMap { line =>
++        val words = line.words.filterNot(gutterWords.contains)
++        if (words.nonEmpty) Some(Line(words, Box.container(words.map(_.boundary)), line.lineNumber)) else None
++      }
++      if (lines.nonEmpty) Some(Paragraph(lines)) else None
++    }
++    pages.append(PageWithText(onPage, cleaned))
+     paragraphsInPage.clear()
+     onPage += 1
+   }

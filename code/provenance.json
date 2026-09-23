@@ -1,0 +1,56 @@
+{
+  "description": "Extracted from the original 2025/2026 scripts. Host paths removed; parameterized entry points, manifest validation and offline checks added. No model reviews rerun.",
+  "sources": [
+    {
+      "source_family": "2025",
+      "source_file": "build_anonymous_contexts.py",
+      "original_sha256": "9a6e80d44ddc135f47e583b2473cf3433d75c620299dddb1ffdabd6bab7f8d6a"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "prepare_review_inputs.py",
+      "original_sha256": "2cda8bb1f86b89a5f08b18fe63056ffa2c99d5f7b65c03ef41f34d1082be7670"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "detect_figures.py",
+      "original_sha256": "f43c5876b19faf3f2513fad1d918448f1eac4e2b2c250a310192ca26eb65701a"
+    },
+    {
+      "source_family": "2026",
+      "source_file": "detect_layout_offline.py",
+      "original_sha256": "f4055b11f5a47454d372e0b3ff43e34fd0dc480ebcd1597f055a85e5898464ce"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "merge_figure_detections.py",
+      "original_sha256": "9091b58105038874cb53fed6a0bb41e98e250f616c663a18da08428d4a844da1"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "validate_review_inputs.py",
+      "original_sha256": "68ce602ecb28eeca533ade0bade450e1c82dca1f6b692362ea89b3b2cb3329a9"
+    },
+    {
+      "source_family": "portable archive",
+      "source_file": "load_review_input.py",
+      "original_sha256": "4b90d37c1f26ea74c484f23964b24b6eb437aed26d4219a630dbd8e626a2d423"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "review_runner_appserver.py",
+      "original_sha256": "b288961136c58e889fb8fb1a3c092d3d9446a0e3e1d8ada228453dde05ceeae1"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "review_experiment_protocol.py",
+      "original_sha256": "9c2051391d40260ad3405cb9932ce5e53c0aa9ee6598e7703547b8b5b867e98f"
+    },
+    {
+      "source_family": "2025",
+      "source_file": "review_runner_tests.py",
+      "original_sha256": "78b8cac092048538fb5095a82b4de1ad3c36f0eaf106e312b4898259230f6262"
+    }
+  ],
+  "pdffigures2_commit": "3d7ad46753d4a315cccd1c2bcab398380e88c534"
+}
